@@ -3,6 +3,7 @@
 .RData*
 .Ruserdata
 *.Rd
+*.Rproj
 *.trees
 */RcppExports.*
 inst/doc
