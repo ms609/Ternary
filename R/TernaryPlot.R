@@ -41,6 +41,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' @param alab,blab,clab Character specifying the title for the topmost,
 #'                       bottommost and leftmost corners respectively.
 #' @param lab.cex Numeric specifying character expansion for axis titles.
+#' @param lab.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral 
 #'                  shape for the ternary plot.
@@ -81,7 +82,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' 
 #' @export
 TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
-                         lab.cex=1.0, isometric=TRUE, 
+                         lab.cex=1.0, lab.font=1, isometric=TRUE, 
                          padding = 0.04,
                          col=NA, 
                          grid.lines=10, grid.col='grey',
@@ -169,15 +170,15 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
   lines(axes[1, ], axes[2, ], col=axis.col, lty=axis.lty, lwd=axis.lwd)
   
   # Title corners
-  text(0 + tick_length, 0.5 + (tick_length * 2), alab, pos=4, cex=lab.cex)
-  text(0 + tick_length, -(0.5 + (tick_length * 2)), blab, pos=4, cex=lab.cex)
+  text(0 + tick_length, 0.5 + (tick_length * 2), alab, pos=4, cex=lab.cex, font=lab.font)
+  text(0 + tick_length, -(0.5 + (tick_length * 2)), blab, pos=4, cex=lab.cex, font=lab.font)
   if (!is.null(clab)) {
     if (nchar(clab) * lab.cex < 10) {
-      text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex)
+      text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex, font=lab.font)
     } else if (nchar(clab) * lab.cex < 20) {
-      text(sqrt(3/4) + 0.1, -0.22, clab, pos=2, cex=lab.cex)
+      text(sqrt(3/4) + 0.1, -0.22, clab, pos=2, cex=lab.cex, font=lab.font)
     } else {
-      text(sqrt(3/4), -0.085, clab, srt=270, pos=4, cex=lab.cex)
+      text(sqrt(3/4), -0.085, clab, srt=270, pos=4, cex=lab.cex, font=lab.font)
     }
   }
   
