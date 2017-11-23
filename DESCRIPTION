@@ -1,0 +1,21 @@
+Package: Ternary
+Version: 0.1.0.9000
+Date: 2017-11-23
+Title: Ternary Diagram Plotter
+Description: Plots ternary diagrams using the standard graphics functions.  An alternative to ggtern.
+URL: https://github.com/ms609/Ternary
+BugReports: https://github.com/ms609/Ternary/issues
+Authors@R: c(person("Martin R.", 'Smith',
+                  email="martins@gmail.com", 
+                  role=c("aut", "cre", "cph"), 
+                  comment=c(ORCID = "0000-0001-5660-1727"))
+            )
+License: GPL (>= 2)
+Depends: R (>= 3.2.0)
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

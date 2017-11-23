@@ -1,0 +1,15 @@
+.Rproj.user
+.Rhistory
+.RData*
+.Ruserdata
+*.Rd
+*.trees
+*/RcppExports.*
+inst/doc
+src-*
+src/*.o
+src/*.so
+src/*.dll
+vignettes/*.html
+vignettes/*.pdf
+vignettes/*_files
