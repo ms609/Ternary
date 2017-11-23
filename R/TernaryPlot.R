@@ -187,9 +187,9 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
 
 #' @describeIn TernaryPlot Add horizontal lines to the ternary plot
 #' 
-#' @export
 #' @importFrom graphics par
 #' @keywords internal
+#' @export
 HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
                             grid.lty='dotted', grid.lwd=par('lwd')) {
   
