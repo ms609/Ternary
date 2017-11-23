@@ -10,9 +10,12 @@
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #'            
-#'  @return A vector of length two that converts the coordinates given in \code{abc}
-#'          into cartesian (x, y) coordinates, to be overlaid on a ternary plot
-#'          with corners at (0, -1/2), (0, 1/2), (sin(pi/3), 0)
+#' @return A vector of length two that converts the coordinates given in \code{abc}
+#'         into cartesian (x, y) coordinates, to be overlaid on a ternary plot
+#'         with corners at (0, -1/2), (0, 1/2), (sin(pi/3), 0)
+#'
+#' @author Martin R. Smith
+#' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
@@ -185,7 +188,7 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
 #' @describeIn TernaryPlot Add horizontal lines to the ternary plot
 #' 
 #' @export
-#' @imprtFrom graphics par
+#' @importFrom graphics par
 #' @keywords internal
 HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
                             grid.lty='dotted', grid.lwd=par('lwd')) {
