@@ -14,4 +14,4 @@ issue on GitHub](https://github.com/ms609/Ternary/issues).
 
 ## See also
 
-The R package ['ggtern'](https://CRAN.R-project.org/package=ggtern) uses the `ggplot2` framework.
+The R package ['ggtern'](https://CRAN.R-project.org/package=ggtern) implements ternary plots within the `ggplot2` framework.
