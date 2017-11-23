@@ -1,7 +1,7 @@
 Package: Ternary
 Version: 0.1.0
 Date: 2017-11-23
-Title: Ternary Diagram Plotter
+Title: Plot Ternary Diagrams
 Description: Plots ternary diagrams using the standard graphics functions.  An alternative to ggtern.
 URL: https://github.com/ms609/Ternary
 BugReports: https://github.com/ms609/Ternary/issues
