@@ -239,18 +239,20 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #' @export
 AddToTernary <- function (PlottingFunction, coordinates, ...) {
   dims <- dim(coordinates)
-  if (is.null(dims) && mode(coordinates) == 'list') {
-    xy <- vapply(coordinates, TernaryCoords, double(2))
-    return(PlottingFunction(xy[1, ], xy[2, ], ...))
-  } else if (length(dims) == 1) {
-    xy <- TernaryCoords(coordinates)
-    return(PlottingFunction(xy[1], xy[2], ...))
+  if (is.null(dims)) {
+    if (mode(coordinates) == 'list') {
+      xy <- vapply(coordinates, TernaryCoords, double(2))
+      return(PlottingFunction(xy[1, ], xy[2, ], ...))
+    } else if (mode(coordinates) == 'numeric') {
+      xy <- TernaryCoords(coordinates)
+      return(PlottingFunction(xy[1], xy[2], ...))
+    }
   } else if (length(dims) == 2) {
     which_dim <- if(dims[2] == 3) 1 else if (dims[1] == 3) 2 else stop("Coordinates must be ternary points")
     xy <- apply(coordinates, which_dim, TernaryCoords)
     return(PlottingFunction(xy[1, ], xy[2, ], ...))
   } else {
-    stop("coordinates must have fewer than three dimensions") 
+    stop("Unrecognized format for coordinates parameter.") 
   }
 }
 
