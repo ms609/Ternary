@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 0.1.0.9000
+Version: 0.1.0
 Date: 2017-11-23
 Title: Ternary Diagram Plotter
 Description: Plots ternary diagrams using the standard graphics functions.  An alternative to ggtern.
