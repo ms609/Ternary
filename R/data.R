@@ -13,6 +13,7 @@
 #' 
 #' Note that colour 4 is difficult to distinguish from colour 13 in individuals with tritanopia.
 #' Likewise, colour 7 is difficult to distinguish from colour 3.
+#' You may wish to use `cbPalette13 <- cbPalette15[-c(4, 7)]`.
 #' 
 #' @source http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png
 #' @keywords datasets
