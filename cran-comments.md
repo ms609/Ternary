@@ -11,8 +11,6 @@ There was one NOTE:
 > 
 > New submission
 
-
-
 This is a resubmission that fixes Swetlana Herbrandt's previous request:
  - I have written written package names and software names in single quotes.
 
