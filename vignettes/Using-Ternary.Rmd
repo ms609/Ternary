@@ -56,6 +56,14 @@ data_points <- list(
 )
 AddToTernary(points, data_points, bg=vapply(data_points, function (x) rgb(x[1], x[2], x[3], 128, maxColorValue=255), character(1)), pch=21, cex=2.8)
 AddToTernary(text, data_points, names(data_points), cex=0.8, font=2)
+legend('bottomright', 
+       pch=21, pt.cex=1.8,
+       pt.bg=c(rgb(255, 0, 0,   128, NULL, 255), 
+             rgb(240, 180,  52, 128, NULL, 255),
+             rgb(210, 222, 102, 128, NULL, 255),
+             rgb(111, 222,  16, 128, NULL, 255)),
+       legend=c('Red', 'Orange', 'Yellow', 'Green'), 
+       cex=0.8, bty='n')
 
 TernaryPlot('Steam', 'Ice', 'water', grid.lines=5)
 #HorizontalGrid()
@@ -68,6 +76,7 @@ TernaryPolygon(middle_triangle, col='#aaddfa', border='grey')
 TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col='grey')
 TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col='grey')
 TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col='grey')
+
 
 ```
 
