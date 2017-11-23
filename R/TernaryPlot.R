@@ -82,7 +82,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' 
 #' @export
 TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
-                         lab.cex=1.0, lab.font=1, isometric=TRUE, 
+                         lab.cex=1.0, lab.font=2, isometric=TRUE, 
                          padding = 0.04,
                          col=NA, 
                          grid.lines=10, grid.col='grey',
