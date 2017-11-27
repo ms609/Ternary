@@ -40,6 +40,9 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' 
 #' @param alab,blab,clab Character specifying the title for the topmost,
 #'                       bottommost and leftmost corners respectively.
+#' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
+#'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
+#'                  will be added.
 #' @param lab.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' 
@@ -82,6 +85,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' 
 #' @export
 TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
+                         xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=2, isometric=TRUE, 
                          padding = 0.04,
                          col=NA, 
@@ -100,9 +104,16 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
     original_par <- par(pty='s')
     on.exit(par(original_par))
   }
-  plot(-1, -1, axes=FALSE, xlab='', ylab='',
-       xlim=c(-padding, sqrt(3/4) + padding),
-       ylim=c(-0.5 - padding, +0.5 + padding), ...)
+  if (is.null(x.lim)) {
+    xlim <- c(0, sqrt(3/4))
+  }
+  if (is.null(y.lim)) {
+    ylim <- c(-0.5, +0.5)
+  }
+  padVec <- c(-1, 1) * padding
+  
+  plot(-999, -999, axes=FALSE, xlab='', ylab='',
+       xlim=xlim + padVec, ylim=ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
   polygon(axes[1, ], axes[2, ], col=col, border=NA)
