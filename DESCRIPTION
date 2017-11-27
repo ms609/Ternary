@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 0.1.1
+Version: 0.1.1.9000
 Date: 2017-11-23
 Title: Plot Ternary Diagrams
 Description: Plots ternary diagrams using the standard graphics functions.  

@@ -279,3 +279,11 @@ TernaryLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...
 #' @importFrom graphics polygon
 #' @export
 TernaryPolygon <- function (coordinates, ...) AddToTernary(polygon, coordinates, ...)
+
+#' @describeIn AddToTernary Add points, joined by lines
+#' @importFrom graphics lines points
+#' @export
+JoinTheDots <- function(coordinates, ...) {
+  AddToTernary(points, coordinates, ...)
+  AddToTernary(lines, coordinates, ...)
+}

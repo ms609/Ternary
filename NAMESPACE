@@ -2,6 +2,7 @@
 
 export(AddToTernary)
 export(HorizontalGrid)
+export(JoinTheDots)
 export(TernaryCoords)
 export(TernaryLines)
 export(TernaryPlot)
