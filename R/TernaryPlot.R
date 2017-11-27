@@ -104,13 +104,10 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
     original_par <- par(pty='s')
     on.exit(par(original_par))
   }
-  if (is.null(x.lim)) {
-    xlim <- c(0, sqrt(3/4))
-  }
-  if (is.null(y.lim)) {
-    ylim <- c(-0.5, +0.5)
-  }
   padVec <- c(-1, 1) * padding
+  if (is.null(xlim)) xlim <- c(0, sqrt(0.75))
+  if (is.null(ylim)) ylim <- c(-0.5, +0.5)
+  
   
   plot(-999, -999, axes=FALSE, xlab='', ylab='',
        xlim=xlim + padVec, ylim=ylim + padVec, ...)
