@@ -181,9 +181,9 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
   text(0 + tick_length, 0.5 + (tick_length * 2), alab, pos=4, cex=lab.cex, font=lab.font)
   text(0 + tick_length, -(0.5 + (tick_length * 2)), blab, pos=4, cex=lab.cex, font=lab.font)
   if (!is.null(clab)) {
-    if (nchar(clab) * lab.cex < 10) {
+    if (nchar(clab) * lab.cex < 8) {
       text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex, font=lab.font)
-    } else if (nchar(clab) * lab.cex < 20) {
+    } else if (nchar(clab) * lab.cex < 18) {
       text(sqrt(3/4) + 0.1, -0.22, clab, pos=2, cex=lab.cex, font=lab.font)
     } else {
       text(sqrt(3/4), -0.085, clab, srt=270, pos=4, cex=lab.cex, font=lab.font)
