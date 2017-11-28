@@ -5,6 +5,7 @@
 *.Rd
 *.Rproj
 *.trees
+**/~$*
 */RcppExports.*
 inst/doc
 src-*

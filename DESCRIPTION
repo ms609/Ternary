@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 0.1.1.9000
+Version: 0.1.1.9001
 Date: 2017-11-27
 Title: Plot Ternary Diagrams
 Description: Plots ternary diagrams using the standard graphics functions.  
@@ -20,3 +20,4 @@ Suggests:
 LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)
