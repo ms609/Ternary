@@ -50,7 +50,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #'                  shape for the ternary plot.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'                if axis labels are being clipped.
-#' @param col The colour for filling the plot; see \link[graphics]{polygon}.
+#' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
 #' 
 #' @param grid.lines The number of grid lines to plot.
 #' @param grid.col The colour to draw the grid lines.
@@ -68,12 +68,12 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'                 Zero or negative values will suppress the line or ticks.
 #' @param axis.col,ticks.col Colours for the axis line and tick marks respectively. 
-#'        \code{axis.col = NULL} means to use \code{par("fg")}, possibly specified 
+#'        \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified 
 #'        inline, and \code{ticks.col = NULL} means to use whatever colour
 #'        \code{axis.col} resolved to.
 #' 
 #' 
-#' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
+#' @param \dots Additional parameters to \code{[graphics:plot]}.
 #' 
 #' @examples {
 #' TernaryPlot(alab="Top", blab="Bottom", clab="Right", border="red", col=rgb(0.8, 0.8, 0.8))
