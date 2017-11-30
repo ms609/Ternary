@@ -45,6 +45,8 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #'                  will be added.
 #' @param lab.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
+#' @param clab.rotate Numeric specifying number of degrees to rotate label of rightmost 
+#'                    apex.  Set to 270 if \code{clab.rotate = TRUE}.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral 
 #'                  shape for the ternary plot.
@@ -87,6 +89,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
                          xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=2, isometric=TRUE, 
+                         clab.rotate = FALSE,
                          padding = 0.04,
                          col=NA, 
                          grid.lines=10, grid.col='grey',
@@ -181,12 +184,11 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
   text(0 + tick_length, 0.5 + (tick_length * 2), alab, pos=4, cex=lab.cex, font=lab.font)
   text(0 + tick_length, -(0.5 + (tick_length * 2)), blab, pos=4, cex=lab.cex, font=lab.font)
   if (!is.null(clab)) {
-    if (nchar(clab) * lab.cex < 8) {
-      text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex, font=lab.font)
-    } else if (nchar(clab) * lab.cex < 18) {
-      text(sqrt(3/4) + 0.1, -0.22, clab, pos=2, cex=lab.cex, font=lab.font)
-    } else {
+    if (clab.rotate) {
+      if (clab.rotate == TRUE) clab.rotate <- 270
       text(sqrt(3/4), -0.085, clab, srt=270, pos=4, cex=lab.cex, font=lab.font)
+    } else {
+      text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex, font=lab.font)
     }
   }
   
