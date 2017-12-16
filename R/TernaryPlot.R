@@ -99,8 +99,10 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'                  will be added.
 #' @param lab.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
-#' @param clab.rotate Numeric specifying number of degrees to rotate label of rightmost 
-#'                    apex.  Set to 270 if \code{clab.rotate = TRUE}.
+#' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
+#'          degrees to rotate label of rightmost apex.
+#' @param alab.pos,blab.pos,clab.pos Integer specifying positioning of labels,
+#'          iff corresponding `xlab.rotate` parameter is set.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral 
 #'                  shape for the ternary plot.
@@ -143,7 +145,8 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
                          point='up', xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=2, isometric=TRUE, 
-                         clab.rotate = FALSE,
+                         alab.rotate = NULL, blab.rotate = NULL, clab.rotate = NULL,
+                         alab.pos = NULL, blab.pos = NULL, clab.pos = NULL,
                          padding = 0.04,
                          col=NA, 
                          grid.lines=10, grid.col='grey',
@@ -225,15 +228,15 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         
-        rot1 <- c(  0,  90,   0,  90)[direction]
+        rot1 <- c(  0, 270,   0,  90)[direction]
         rot2 <- c( 60, -30,  60, -30)[direction]
         rot3 <- c(-60,  30, -60,  30)[direction]
         
-        pos1 <- c(2, 4, 4, 2)[direction]
+        pos1 <- c(2, 2, 4, 2)[direction]
         pos2 <- c(4, 4, 2, 2)[direction]
         pos3 <- c(4, 2, 2, 4)[direction]
         
-        mult1 <- c(5 , 10, 10, 12)[direction] / 10
+        mult1 <- c(5 , 16, 10, 12)[direction] / 10
         mult2 <- c(5 ,  9,  8,  9)[direction] / 10
         mult3 <- c(16,  8, 16,  8)[direction] / 10
         
@@ -257,17 +260,29 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
   # Draw axis lines
   lines(axes[1, ], axes[2, ], col=axis.col, lty=axis.lty, lwd=axis.lwd)
   
-  # Title corners
-  text(0 + tick_length, 0.5 + (tick_length * 2), alab, pos=4, cex=lab.cex, font=lab.font)
-  text(0 + tick_length, -(0.5 + (tick_length * 2)), blab, pos=4, cex=lab.cex, font=lab.font)
-  if (!is.null(clab)) {
-    if (clab.rotate) {
-      if (clab.rotate == TRUE) clab.rotate <- 270
-      text(sqrt(3/4), -0.085, clab, srt=270, pos=4, cex=lab.cex, font=lab.font)
-    } else {
-      text(sqrt(3/4) + 0.1, -0.15, clab, pos=2, cex=lab.cex, font=lab.font)
-    }
+  if (is.null(alab.rotate)) {
+    ax <- c(-4, 4,  1, -3)[direction] * tick_length
+    ay <- c(1, -4, -2, -4)[direction] * tick_length
+    alab.rotate = c(0, 30, 0, 330)[direction]
+    alab.pos = c(2, 2, 4, 4)[direction]
   }
+  if (is.null(blab.rotate)) {
+    bx <- c(4, 4, -2, -3)[direction] * tick_length
+    by <- c(-4, -2, 4, 2.4)[direction] * tick_length
+    blab.rotate = c(0, 0, 0, 0)[direction]
+    blab.pos = c(2, 4, 4, 2)[direction]
+  }
+  if (is.null(clab.rotate)) {
+    cx <- c(-3, 0, 2, -3)[direction] * tick_length
+    cy <- c(-4, 2, 4, -2)[direction] * tick_length
+    clab.rotate = c(0, 0, 0, 0)[direction]
+    clab.pos = c(4, 4, 2, 2)[direction]
+  }
+  
+  # Title corners
+  text(axes[1, 1] + ax, axes[2, 1] + ay, alab, pos=alab.pos, cex=lab.cex, font=lab.font, srt=alab.rotate)
+  text(axes[1, 2] + bx, axes[2, 2] + by, blab, pos=blab.pos, cex=lab.cex, font=lab.font, srt=blab.rotate)
+  text(axes[1, 3] + cx, axes[2, 3] + cy, clab, pos=clab.pos, cex=lab.cex, font=lab.font, srt=clab.rotate)
   
   # Return:
   return <- NULL

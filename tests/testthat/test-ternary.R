@@ -5,6 +5,7 @@ test_that("Errors are handled gracefully", {
 })
 
 test_that("TernaryCoords gives correct coordinates", {
+  options('ternDirection' = 2)
   input <- list(
     c(1, 0, 0), 
     c(0, 2, 0),
