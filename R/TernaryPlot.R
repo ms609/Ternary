@@ -1,9 +1,9 @@
 #' XY to Ternary
 #' 
 #' @param abc A vector of length three giving the position on a ternary plot.
-#'            \code{c(100, 0, 0)} will plot in the top corner; \code{c(0, 100, 0)} 
-#'            will plot in the bottom corner; \code{c(0, 0, 1)} will plot in
-#'            the right-hand corner.
+#'            \code{c(100, 0, 0)} will plot in the topmost corner; \code{c(0, 100, 0)} 
+#'            will plot in the bottom-left corner; \code{c(0, 0, 1)} will plot in
+#'            the rightmost corner.
 #'            Alternatively, the a coordinate can be specified as the first parameter,
 #'            in which case the b and c coordinates must be specified via \code{b_coord}
 #'            and \code{c_coord}
@@ -16,7 +16,7 @@
 #'
 #' @author Martin R. Smith
 #' @export
-TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
+TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
@@ -24,23 +24,65 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
   if (mode(abc) != 'numeric') stop("Parameter abc must be numeric.")
   
   x_deviation <- abc[3] / sum(abc)
-  if (x_deviation == 1) return(c(cos(pi/6), 0))
-  y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
-  
-  x <- x_deviation * cos(pi/6)
-  y <- y_deviation * (1 - x_deviation) / 2
+  if (x_deviation == 1) {
+      x <- cos(pi/6)
+      y <- 0
+  } else {
+    y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
+    x <- x_deviation * cos(pi/6)
+    y <- y_deviation * (1 - x_deviation) / 2
+  }
+  ret <- if (direction == 1L) c(y, x) else 
+         if (direction == 2L) c(x, y) else 
+         if (direction == 3L) c(y, -x) else
+         if (direction == 4L) c(-x, y) else 
+           stop ("Invalid ternary direction; must be 1, 2, 3 or 4")
   
   # Return:
-  c(x, y)
+  ret
+}
+
+#' Ternary Plot X Range
+#'
+#' @template directionParam
+#'
+#' @return Returns the minimum and maximum X coordinate for a ternary plot in the 
+#' specified direction.
+#' 
+#' @author Martin R. Smith
+#' @export
+TernaryXRange <- function (direction = getOption('ternDirection')) {
+  if (direction  %in% c(1L, 3L)) {
+    c(-0.5, 0.5)
+  } else if (direction == 2L) {
+    c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
+  } else if (direction == 4L) {
+    c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
+  } else stop("Invalid ternary orientation")
+}
+
+#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the 
+#' specified direction.
+TernaryYRange <- function (direction = getOption('ternDirection')) {
+  if (direction == 1L) {
+    c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
+  } else if (direction %in% c(2L, 4L)) {
+    c(-0.5, +0.5)
+  } else if (direction == 3L) {
+    c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
+  } else stop("Invalid ternary orientation")
 }
 
 #' Ternary Plot
 #' 
-#' Create a blank ternary plot, rotated so that its left edge is vertical.
+#' Create a blank ternary plot.
+#' 
 #' The plot will be generated using the standard graphics plot functions, on which
 #' additional elements can be added using cartesian coordinates, perhaps using
 #' functions such as [arrows](arrows), [legend] or [text].
 #' 
+#' @param point Character specifying the orientation of the ternary plot: should the
+#'              triangle point up, left, right or down?
 #' @param alab,blab,clab Character specifying the title for the topmost,
 #'                       bottommost and leftmost corners respectively.
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
@@ -89,7 +131,8 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' @importFrom graphics par plot polygon
 #' 
 #' @export
-TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
+TernaryPlot <- function (point='up',
+                         alab=NULL, blab=NULL, clab=NULL,
                          xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=2, isometric=TRUE, 
                          clab.rotate = FALSE,
@@ -100,10 +143,17 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
                          axis.lty='solid', 
                          axis.labels=TRUE, axis.cex=0.8, 
                          axis.font=par('font'),
-                         axis.tick=TRUE, 
+                         axis.tick=TRUE,
                          axis.lwd=1, ticks.lwd=axis.lwd,
                          axis.col='black', ticks.col=grid.col,
                          ...) {
+  direction <- pmatch(tolower(point), c('up', 'right', 'down', 'left'))
+  if (is.na(direction)) {
+    warning("Point must be one of up, down, left or right")
+  } else {
+    options('ternDirection' = direction)
+  }
+  
   tick_length <- 0.025
   
   if (isometric) {
@@ -111,12 +161,12 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
     on.exit(par(original_par))
   }
   padVec <- c(-1, 1) * padding
-  if (is.null(xlim)) xlim <- c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
-  if (is.null(ylim)) ylim <- c(-0.5, +0.5)
+  if (is.null(xlim)) xlim <- TernaryXRange(direction)
+  if (is.null(ylim)) ylim <- TernaryYRange(direction)
   
   
   plot(-999, -999, axes=FALSE, xlab='', ylab='',
-       xlim=xlim + padVec, ylim=ylim + padVec, ...)
+       xlim=xlim + padVec, ylim=ylim + padVec)###################, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
   polygon(axes[1, ], axes[2, ], col=col, border=NA)

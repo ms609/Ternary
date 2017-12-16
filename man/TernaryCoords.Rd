@@ -4,13 +4,14 @@
 \alias{TernaryCoords}
 \title{XY to Ternary}
 \usage{
-TernaryCoords(abc, b_coord = NULL, c_coord = NULL)
+TernaryCoords(abc, b_coord = NULL, c_coord = NULL,
+  direction = getOption("ternDirection"))
 }
 \arguments{
 \item{abc}{A vector of length three giving the position on a ternary plot.
-\code{c(100, 0, 0)} will plot in the top corner; \code{c(0, 100, 0)}
-will plot in the bottom corner; \code{c(0, 0, 1)} will plot in
-the right-hand corner.
+\code{c(100, 0, 0)} will plot in the topmost corner; \code{c(0, 100, 0)}
+will plot in the bottom-left corner; \code{c(0, 0, 1)} will plot in
+the rightmost corner.
 Alternatively, the a coordinate can be specified as the first parameter,
 in which case the b and c coordinates must be specified via \code{b_coord}
 and \code{c_coord}}

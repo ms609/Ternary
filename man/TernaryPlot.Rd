@@ -5,18 +5,22 @@
 \alias{HorizontalGrid}
 \title{Ternary Plot}
 \usage{
-TernaryPlot(alab = NULL, blab = NULL, clab = NULL, xlim = NULL,
-  ylim = NULL, lab.cex = 1, lab.font = 2, isometric = TRUE,
-  clab.rotate = FALSE, padding = 0.04, col = NA, grid.lines = 10,
-  grid.col = "grey", grid.lty = "dotted", grid.lwd = par("lwd"),
-  axis.lty = "solid", axis.labels = TRUE, axis.cex = 0.8,
-  axis.font = par("font"), axis.tick = TRUE, axis.lwd = 1,
-  ticks.lwd = axis.lwd, axis.col = "black", ticks.col = grid.col, ...)
+TernaryPlot(point = "up", alab = NULL, blab = NULL, clab = NULL,
+  xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 2,
+  isometric = TRUE, clab.rotate = FALSE, padding = 0.04, col = NA,
+  grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
+  grid.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
+  axis.cex = 0.8, axis.font = par("font"), axis.tick = TRUE,
+  axis.lwd = 1, ticks.lwd = axis.lwd, axis.col = "black",
+  ticks.col = grid.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
   grid.lwd = par("lwd"))
 }
 \arguments{
+\item{point}{Character specifying the orientation of the ternary plot: should the
+triangle point up, left, right or down?}
+
 \item{alab, blab, clab}{Character specifying the title for the topmost,
 bottommost and leftmost corners respectively.}
 
@@ -71,7 +75,9 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 \item{\dots}{Additional parameters to \code{[graphics:plot]}.}
 }
 \description{
-Create a blank ternary plot, rotated so that its left edge is vertical.
+Create a blank ternary plot.
+}
+\details{
 The plot will be generated using the standard graphics plot functions, on which
 additional elements can be added using cartesian coordinates, perhaps using
 functions such as \url{arrows}, \link{legend} or \link{text}.
