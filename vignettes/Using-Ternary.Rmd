@@ -65,7 +65,7 @@ legend('bottomright',
        legend=c('Red', 'Orange', 'Yellow', 'Green'), 
        cex=0.8, bty='n')
 
-TernaryPlot('Steam', 'Ice', 'water', grid.lines=5)
+TernaryPlot('Steam', 'Ice', 'Water', grid.lines=5)
 #HorizontalGrid()
 middle_triangle <- matrix(c(
   30, 40, 30,

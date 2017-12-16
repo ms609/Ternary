@@ -108,7 +108,7 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
     on.exit(par(original_par))
   }
   padVec <- c(-1, 1) * padding
-  if (is.null(xlim)) xlim <- c(0, sqrt(0.75))
+  if (is.null(xlim)) xlim <- c(0, 1) # Not sqrt(0.75) as we want the triangle equilateral
   if (is.null(ylim)) ylim <- c(-0.5, +0.5)
   
   
