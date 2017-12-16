@@ -72,10 +72,13 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 }
 \description{
 Create a blank ternary plot, rotated so that its left edge is vertical.
+The plot will be generated using the standard graphics:plot functions, on which
+additional elements can be added using cartesian coordinates -- see functions such
+as \link\link{graphics:arrows}{arrows}, \link{graphics:legend}, \link{graphics:text}.
 }
 \section{Functions}{
 \itemize{
-\item \code{HorizontalGrid}: Add horizontal lines to the ternary plot
+\item \code{HorizontalGrid}: Add \code{grid.lines} horizontal lines to the ternary plot
 }}
 
 \examples{
