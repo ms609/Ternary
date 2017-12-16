@@ -1,18 +1,20 @@
 #' XY to Ternary
 #' 
-#' @param abc A vector of length three giving the position on a ternary plot.
-#'            \code{c(100, 0, 0)} will plot in the topmost corner; \code{c(0, 100, 0)} 
-#'            will plot in the bottom-left corner; \code{c(0, 0, 1)} will plot in
-#'            the rightmost corner.
+#' @param abc A vector of length three giving the position on a ternary plot that points
+#'            in the direction specified by `direction` (1 = up, 2 = right, 3 = down, 4 = left).
+#'            \code{c(100, 0, 0)} will plot in the `direction`-most corner; \code{c(0, 100, 0)} 
+#'            will plot in the corner clockwise of `direction`; \code{c(0, 0, 100)} will plot in
+#'            the corner anti-clockwise of `direction`.
 #'            Alternatively, the a coordinate can be specified as the first parameter,
 #'            in which case the b and c coordinates must be specified via \code{b_coord}
-#'            and \code{c_coord}
+#'            and \code{c_coord}.
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
+#' @template directionParam
 #'            
 #' @return A vector of length two that converts the coordinates given in \code{abc}
-#'         into cartesian (x, y) coordinates, to be overlaid on a ternary plot
-#'         with corners at (0, -1/2), (0, 1/2), (sin(pi/3), 0)
+#'         into cartesian (x, y) coordinates corresponding to the plot created by
+#'         the last call of \code{\link{TernaryPlot}}
 #'
 #' @author Martin R. Smith
 #' @export
@@ -22,7 +24,13 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   }
   if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
   if (mode(abc) != 'numeric') stop("Parameter abc must be numeric.")
+  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
   
+  abc <- abc[if (direction == 1L) c(2, 3, 1) else
+             if (direction == 2L) c(3, 2, 1) else 
+             if (direction == 3L) c(3, 2, 1) else
+             if (direction == 4L) c(2, 3, 1)]
+               
   x_deviation <- abc[3] / sum(abc)
   if (x_deviation == 1) {
       x <- cos(pi/6)
@@ -35,8 +43,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   ret <- if (direction == 1L) c(y, x) else 
          if (direction == 2L) c(x, y) else 
          if (direction == 3L) c(y, -x) else
-         if (direction == 4L) c(-x, y) else 
-           stop ("Invalid ternary direction; must be 1, 2, 3 or 4")
+         if (direction == 4L) c(-x, y)
   
   # Return:
   ret

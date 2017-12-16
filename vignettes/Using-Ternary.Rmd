@@ -76,18 +76,22 @@ TernaryPolygon(middle_triangle, col='#aaddfa', border='grey')
 TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col='grey')
 TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col='grey')
 TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col='grey')
-
-
 ```
 
 
 It is also possible to use cartesian coordinates to plot onto the graph.
 
-By default, the plotting area is a 1x1 square.  In the right-pointing orientation,
-the x-axis ranges from just under 0 to just over sqrt(3)/2, and the y axis from -0.5 to +0.5.
+By default, the plotting area is a 1x1 square.
 
 ```{r Cartesian}
-TernaryPlot()
+load_all()
+par(mfrow=c(2,2), mar=rep(0,4))
+for (dir in c('up', 'right', 'down', 'le')) {
+  TernaryPlot(dir)
+  TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+}
+#cat("X range in this orientation:", TernaryXRange())
+#cat("\nY range in this orientation:", TernaryYRange())
 arrows(x0=0.5, y0=0.4, x1=sqrt(3)/2, y1=0.4, length=0.1, col=cbPalette8[2])
 text(x=mean(c(0.5, sqrt(3)/2)), y=0.4, "Increasing X", pos=3, col=cbPalette8[2])
 text(x=0.5, y=0, "(0.5, 0)", col=cbPalette8[3])
