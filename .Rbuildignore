@@ -4,4 +4,5 @@ cran-comments.md
 /^\.git/
 ^.*\.yml$
 .covrignore
+^.*\.json$
 ^data-raw$

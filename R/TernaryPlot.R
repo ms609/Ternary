@@ -37,9 +37,9 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL) {
 #' Ternary Plot
 #' 
 #' Create a blank ternary plot, rotated so that its left edge is vertical.
-#' The plot will be generated using the standard graphics:plot functions, on which
+#' The plot will be generated using the standard graphics plot functions, on which
 #' additional elements can be added using cartesian coordinates, perhaps using
-#' functions such as [graphics:arrows], [graphics:legend] or [graphics:text].
+#' functions such as [arrows](arrows), [legend] or [text].
 #' 
 #' @param alab,blab,clab Character specifying the title for the topmost,
 #'                       bottommost and leftmost corners respectively.
