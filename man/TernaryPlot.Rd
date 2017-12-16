@@ -5,7 +5,7 @@
 \alias{HorizontalGrid}
 \title{Ternary Plot}
 \usage{
-TernaryPlot(point = "up", alab = NULL, blab = NULL, clab = NULL,
+TernaryPlot(alab = NULL, blab = NULL, clab = NULL, point = "up",
   xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 2,
   isometric = TRUE, clab.rotate = FALSE, padding = 0.04, col = NA,
   grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
@@ -18,11 +18,11 @@ HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
   grid.lwd = par("lwd"))
 }
 \arguments{
-\item{point}{Character specifying the orientation of the ternary plot: should the
-triangle point up, left, right or down?}
-
 \item{alab, blab, clab}{Character specifying the title for the topmost,
 bottommost and leftmost corners respectively.}
+
+\item{point}{Character specifying the orientation of the ternary plot: should the
+triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding}

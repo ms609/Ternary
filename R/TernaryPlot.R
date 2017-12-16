@@ -59,25 +59,27 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
 #' @author Martin R. Smith
 #' @export
 TernaryXRange <- function (direction = getOption('ternDirection')) {
-  if (direction  %in% c(1L, 3L)) {
-    c(-0.5, 0.5)
-  } else if (direction == 2L) {
+  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (direction == 2L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
   } else if (direction == 4L) {
     c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
-  } else stop("Invalid ternary orientation")
+  } else {
+    c(-0.5, 0.5)
+  }
 }
 
-#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the 
-#' specified direction.
+#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
+#' @export
 TernaryYRange <- function (direction = getOption('ternDirection')) {
+  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
   if (direction == 1L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
-  } else if (direction %in% c(2L, 4L)) {
-    c(-0.5, +0.5)
   } else if (direction == 3L) {
     c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
-  } else stop("Invalid ternary orientation")
+  } else {
+    c(-0.5, +0.5)
+  } 
 }
 
 #' Ternary Plot
@@ -88,10 +90,10 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' additional elements can be added using cartesian coordinates, perhaps using
 #' functions such as [arrows](arrows), [legend] or [text].
 #' 
-#' @param point Character specifying the orientation of the ternary plot: should the
-#'              triangle point up, left, right or down?
 #' @param alab,blab,clab Character specifying the title for the topmost,
 #'                       bottommost and leftmost corners respectively.
+#' @param point Character specifying the orientation of the ternary plot: should the
+#'              triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
 #'                  will be added.
@@ -138,9 +140,8 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' @importFrom graphics par plot polygon
 #' 
 #' @export
-TernaryPlot <- function (point='up',
-                         alab=NULL, blab=NULL, clab=NULL,
-                         xlim=NULL, ylim=NULL,
+TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
+                         point='up', xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=2, isometric=TRUE, 
                          clab.rotate = FALSE,
                          padding = 0.04,
@@ -154,7 +155,7 @@ TernaryPlot <- function (point='up',
                          axis.lwd=1, ticks.lwd=axis.lwd,
                          axis.col='black', ticks.col=grid.col,
                          ...) {
-  direction <- pmatch(tolower(point), c('up', 'right', 'down', 'left'))
+  direction <- 1 + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2, 3, 4, 1)) %% 4)
   if (is.na(direction)) {
     warning("Point must be one of up, down, left or right")
   } else {
@@ -173,7 +174,7 @@ TernaryPlot <- function (point='up',
   
   
   plot(-999, -999, axes=FALSE, xlab='', ylab='',
-       xlim=xlim + padVec, ylim=ylim + padVec)###################, ...)
+       xlim=xlim + padVec, ylim=ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
   polygon(axes[1, ], axes[2, ], col=col, border=NA)
@@ -202,35 +203,51 @@ TernaryPlot <- function (point='up',
                                c(q, p, 0),
                                c(0, q, p)),
                           TernaryCoords, double(2))
-      
-      
+      axis1_degrees <- 180 + (direction * 90) %% 360
+      axis2_degrees <- 300 + (direction * 90) %% 360
+      axis3_degrees <- 60 + (direction * 90) %% 360
+                         
       if (axis.tick) {
-        lines(line_ends[1, 1] + c(0, sin(pi/3) * tick_length),
-              line_ends[2, 1] + c(0, cos(pi/3) * tick_length),
+        lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * tick_length),
+              line_ends[2, 1] + c(0, cos(axis1_degrees * pi / 180) * tick_length),
               col=ticks.col, lwd=ticks.lwd)
-      
-        lines(line_ends[1, 2] - c(0, sin(pi/3) * tick_length),
-              line_ends[2, 2] + c(0, cos(pi/3) * tick_length),
+    
+        lines(line_ends[1, 2] + c(0, sin(axis2_degrees * pi / 180) * tick_length),
+              line_ends[2, 2] + c(0, cos(axis2_degrees * pi / 180) * tick_length),
               col=ticks.col, lwd=ticks.lwd)
        
-        lines(line_ends[1, 3] + c(0, 0),
-              line_ends[2, 3] - c(0, tick_length),
+        lines(line_ends[1, 3] + c(0, sin(axis3_degrees * pi / 180) * tick_length),
+              line_ends[2, 3] + c(0, cos(axis3_degrees * pi / 180) * tick_length),
               col=ticks.col, lwd=ticks.lwd)
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
+        
+        rot1 <- c(  0,  90,   0,  90)[direction]
+        rot2 <- c( 60, -30,  60, -30)[direction]
+        rot3 <- c(-60,  30, -60,  30)[direction]
+        
+        pos1 <- c(2, 4, 4, 2)[direction]
+        pos2 <- c(4, 4, 2, 2)[direction]
+        pos3 <- c(4, 2, 2, 4)[direction]
+        
+        mult1 <- c(5 , 10, 10, 12)[direction] / 10
+        mult2 <- c(5 ,  9,  8,  9)[direction] / 10
+        mult3 <- c(16,  8, 16,  8)[direction] / 10
+        
+        
         # Annotate axes
-        text(line_ends[1, 1] + sin(pi/3) * tick_length - 0.06,
-             line_ends[2, 1] + cos(pi/3) * tick_length + 0.015,
-             axis.labels[i], srt=30, pos=4, font=axis.font, cex=axis.cex)
-        text(line_ends[1, 2] - sin(pi/3) * tick_length + 0.03,
-             line_ends[2, 2] + cos(pi/3) * tick_length - 0.03,
-             axis.labels[i], srt=330, pos=2, font=axis.font, cex=axis.cex)
-        text(line_ends[1, 3],
-             line_ends[2, 3] - tick_length + 0.019,
-             axis.labels[i], srt=270, pos=4, font=axis.font, cex=axis.cex)
+        text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * tick_length * mult1,
+             line_ends[2, 1] + cos(axis1_degrees * pi / 180) * tick_length * mult1,
+             axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex)
+        text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * tick_length * mult2,
+             line_ends[2, 2] + cos(axis2_degrees * pi / 180) * tick_length * mult2,
+             axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex)
+        text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * tick_length * mult3,
+             line_ends[2, 3] + cos(axis3_degrees * pi / 180) * tick_length * mult3,
+             axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex)
       }
       
     })
