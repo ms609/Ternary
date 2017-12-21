@@ -111,6 +111,15 @@ HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) # the second line corr
 }
 
 }
+\seealso{
+{
+\itemize{
+\item \link{AddToTernary}: Add elements to a ternary plot
+\item \link{TernaryCoords}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y}) coordinates
+\item \link{TernaryXRange}, \link{TernaryYRange}: What are the \emph{x} and \emph{y} limits of the plotted region?
+}
+}
+}
 \author{
 Martin R. Smith
 }

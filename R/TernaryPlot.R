@@ -1,4 +1,8 @@
-#' XY to Ternary
+#' Convert ternary coordinates to Cartesian space
+#' 
+#' Converts coordinates of a point in ternary space, in the format (_a_, _b_, _c_), to
+#' _x_ and _y_ coordinates of Cartesian space, which can be sent to standard functions
+#' in the graphics package.
 #' 
 #' @param abc A vector of length three giving the position on a ternary plot that points
 #'            in the direction specified by `direction` (1 = up, 2 = right, 3 = down, 4 = left).
@@ -16,6 +20,7 @@
 #'         into cartesian (x, y) coordinates corresponding to the plot created by
 #'         the last call of \code{\link{TernaryPlot}}
 #'
+#' @seealso [TernaryPlot]
 #' @author Martin R. Smith
 #' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
@@ -138,6 +143,12 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' 
 #' 
 #' @param \dots Additional parameters to \code{[graphics:plot]}.
+#' 
+#' @seealso {
+#'  - [AddToTernary]: Add elements to a ternary plot
+#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) coordinates
+#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of the plotted region?
+#' }
 #' 
 #' @examples {
 #' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", col=rgb(0.8, 0.8, 0.8))
