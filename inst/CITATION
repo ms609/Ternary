@@ -14,5 +14,3 @@ citEntry(entry = "article",
                "Ternary: An R Package for Creating Ternary Plots. ",
                "Zenodo",
                ", doi: 10.5281/zenodo.1068996"))
-               
-)
