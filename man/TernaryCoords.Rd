@@ -2,7 +2,7 @@
 % Please edit documentation in R/TernaryPlot.R
 \name{TernaryCoords}
 \alias{TernaryCoords}
-\title{XY to Ternary}
+\title{Convert ternary coordinates to Cartesian space}
 \usage{
 TernaryCoords(abc, b_coord = NULL, c_coord = NULL,
   direction = getOption("ternDirection"))
@@ -21,16 +21,21 @@ and \code{c_coord}.}
 
 \item{c_coord}{The c coordinate, if \code{abc} is a single number.}
 
-\item{direction}{Integer specifying the direction that the current ternary plot 
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot 
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 A vector of length two that converts the coordinates given in \code{abc}
-into cartesian (x, y) coordinates corresponding to the plot created by
-the last call of \code{\link{TernaryPlot}}
+into Cartesian (\emph{x}, \emph{y}) coordinates corresponding to the plot created by
+the last call of \code{\link{TernaryPlot}}.
 }
 \description{
-XY to Ternary
+Converts coordinates of a point in ternary space, in the format (\emph{a}, \emph{b}, \emph{c}), to
+\emph{x} and \emph{y} coordinates of Cartesian space, which can be sent to standard functions
+in the graphics package.
+}
+\seealso{
+\link{TernaryPlot}
 }
 \author{
 Martin R. Smith

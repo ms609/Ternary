@@ -7,7 +7,7 @@
 \alias{TernaryLines}
 \alias{TernaryPolygon}
 \alias{JoinTheDots}
-\title{Add to Ternary Plot}
+\title{Add elements to ternary plot}
 \usage{
 AddToTernary(PlottingFunction, coordinates, ...)
 

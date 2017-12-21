@@ -1,4 +1,8 @@
-#' XY to Ternary
+#' Convert ternary coordinates to Cartesian space
+#' 
+#' Converts coordinates of a point in ternary space, in the format (_a_, _b_, _c_), to
+#' _x_ and _y_ coordinates of Cartesian space, which can be sent to standard functions
+#' in the graphics package.
 #' 
 #' @param abc A vector of length three giving the position on a ternary plot that points
 #'            in the direction specified by `direction` (1 = up, 2 = right, 3 = down, 4 = left).
@@ -13,9 +17,10 @@
 #' @template directionParam
 #'            
 #' @return A vector of length two that converts the coordinates given in \code{abc}
-#'         into cartesian (x, y) coordinates corresponding to the plot created by
-#'         the last call of \code{\link{TernaryPlot}}
+#'         into Cartesian (_x_, _y_) coordinates corresponding to the plot created by
+#'         the last call of \code{\link{TernaryPlot}}.
 #'
+#' @seealso [TernaryPlot]
 #' @author Martin R. Smith
 #' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
@@ -30,7 +35,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
              if (direction == 2L) c(3, 2, 1) else 
              if (direction == 3L) c(3, 2, 1) else
              if (direction == 4L) c(2, 3, 1)]
-               
+  
   x_deviation <- abc[3] / sum(abc)
   if (x_deviation == 1) {
       x <- cos(pi/6)
@@ -49,12 +54,12 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   ret
 }
 
-#' Ternary Plot X Range
+#' X and Y coordinates of ternary plotting area
 #'
 #' @template directionParam
 #'
-#' @return Returns the minimum and maximum X coordinate for a ternary plot in the 
-#' specified direction.
+#' @return Returns the minimum and maximum X coordinate for a ternary plot, 
+#' oriented in the specified direction.
 #' 
 #' @author Martin R. Smith
 #' @export
@@ -82,9 +87,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
   } 
 }
 
-#' Ternary Plot
+#' Create a ternary plot
 #' 
-#' Create a blank ternary plot.
+#' Create and style a blank ternary plot.
 #' 
 #' The plot will be generated using the standard graphics plot functions, on which
 #' additional elements can be added using cartesian coordinates, perhaps using
@@ -138,6 +143,12 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' 
 #' 
 #' @param \dots Additional parameters to \code{[graphics:plot]}.
+#' 
+#' @seealso {
+#'  - [AddToTernary]: Add elements to a ternary plot
+#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) coordinates
+#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of the plotted region?
+#' }
 #' 
 #' @examples {
 #' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", col=rgb(0.8, 0.8, 0.8))
@@ -343,7 +354,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
   return <- NULL
 }
 
-#' Add to Ternary Plot
+#' Add elements to ternary plot
 #' 
 #' Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
 #' 
