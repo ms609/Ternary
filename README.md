@@ -9,7 +9,7 @@
 'Ternary' is an R package that allows the creation of ternary plots (a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams) using the familiar functions of the default 'graphics'
 package.
 
-Plots are currently created in a "right-pointing" orientation.  Specifying other orientations will be possible in the next release, coming in the next month or so.
+Usage instructions can be [viewed here](https://ms609.github.io/Ternary/inst/doc/Using-Ternary.html).
 
 Please let me know of any feature requests or bugs by [opening an 
 issue on GitHub](https://github.com/ms609/Ternary/issues).

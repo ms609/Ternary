@@ -3,7 +3,7 @@
 \docType{data}
 \name{cbPalette15}
 \alias{cbPalette15}
-\title{Fifteen-colour colourblind palette}
+\title{Fifteen-colour colourblind-friendly palette}
 \format{An object of class \code{character} of length 15.}
 \source{
 http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png
