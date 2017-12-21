@@ -21,13 +21,13 @@ and \code{c_coord}.}
 
 \item{c_coord}{The c coordinate, if \code{abc} is a single number.}
 
-\item{direction}{Integer specifying the direction that the current ternary plot 
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot 
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 A vector of length two that converts the coordinates given in \code{abc}
-into cartesian (x, y) coordinates corresponding to the plot created by
-the last call of \code{\link{TernaryPlot}}
+into Cartesian (\emph{x}, \emph{y}) coordinates corresponding to the plot created by
+the last call of \code{\link{TernaryPlot}}.
 }
 \description{
 Converts coordinates of a point in ternary space, in the format (\emph{a}, \emph{b}, \emph{c}), to

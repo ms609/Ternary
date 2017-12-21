@@ -6,7 +6,7 @@
 \title{Eight-colour colourblind-friendly palette}
 \format{An object of class \code{character} of length 8.}
 \source{
-\cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \url{doi:10.1038/nmeth.1618}}
+\cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
 }
 \usage{
 cbPalette8

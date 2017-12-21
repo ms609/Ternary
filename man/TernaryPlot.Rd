@@ -81,7 +81,7 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{\dots}{Additional parameters to \code{[graphics:plot]}.}
 
-\item{direction}{Integer specifying the direction that the current ternary plot 
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot 
 should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{alab.rotate, blab.rotate, clab.rotate}{Integer specifying number of

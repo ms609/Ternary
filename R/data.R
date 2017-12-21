@@ -2,7 +2,7 @@
 #' 
 #' An eight-colour palette compatible with colourblindness.
 #' 
-#' @source \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. <doi:10.1038/nmeth.1618>}
+#' @source \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
 #' @seealso [cbPalette15]
 #' @keywords datasets
 "cbPalette8"
