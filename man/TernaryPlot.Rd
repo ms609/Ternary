@@ -3,7 +3,7 @@
 \name{TernaryPlot}
 \alias{TernaryPlot}
 \alias{HorizontalGrid}
-\title{Ternary Plot}
+\title{Create a ternary plot}
 \usage{
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
@@ -91,7 +91,7 @@ degrees to rotate label of rightmost apex.}
 iff corresponding \code{xlab.rotate} parameter is set.}
 }
 \description{
-Create a blank ternary plot.
+Create and style a blank ternary plot.
 }
 \details{
 The plot will be generated using the standard graphics plot functions, on which
@@ -105,7 +105,9 @@ functions such as \url{arrows}, \link{legend} or \link{text}.
 
 \examples{
 {
-TernaryPlot(alab="Top", blab="Bottom", clab="Right", border="red", col=rgb(0.8, 0.8, 0.8))
+TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", col=rgb(0.8, 0.8, 0.8))
+HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) # the second line corresponds to
+                                              # the base of the triangle, and is not drawn
 }
 
 }

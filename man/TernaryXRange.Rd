@@ -3,7 +3,7 @@
 \name{TernaryXRange}
 \alias{TernaryXRange}
 \alias{TernaryYRange}
-\title{Ternary Plot X Range}
+\title{X and Y coordinates of ternary plotting area}
 \usage{
 TernaryXRange(direction = getOption("ternDirection"))
 
@@ -14,11 +14,11 @@ TernaryYRange(direction = getOption("ternDirection"))
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-Returns the minimum and maximum X coordinate for a ternary plot in the
-specified direction.
+Returns the minimum and maximum X coordinate for a ternary plot,
+oriented in the specified direction.
 }
 \description{
-Ternary Plot X Range
+X and Y coordinates of ternary plotting area
 }
 \section{Functions}{
 \itemize{

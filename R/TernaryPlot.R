@@ -49,12 +49,12 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   ret
 }
 
-#' Ternary Plot X Range
+#' X and Y coordinates of ternary plotting area
 #'
 #' @template directionParam
 #'
-#' @return Returns the minimum and maximum X coordinate for a ternary plot in the 
-#' specified direction.
+#' @return Returns the minimum and maximum X coordinate for a ternary plot, 
+#' oriented in the specified direction.
 #' 
 #' @author Martin R. Smith
 #' @export
@@ -82,9 +82,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
   } 
 }
 
-#' Ternary Plot
+#' Create a ternary plot
 #' 
-#' Create a blank ternary plot.
+#' Create and style a blank ternary plot.
 #' 
 #' The plot will be generated using the standard graphics plot functions, on which
 #' additional elements can be added using cartesian coordinates, perhaps using
@@ -343,7 +343,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
   return <- NULL
 }
 
-#' Add to Ternary Plot
+#' Add elements to ternary plot
 #' 
 #' Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
 #' 

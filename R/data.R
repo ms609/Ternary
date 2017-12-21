@@ -1,4 +1,4 @@
-#' Eight-colour colourblind palette
+#' Eight-colour colourblind-friendly palette
 #' 
 #' An eight-colour palette compatible with colourblindness.
 #' 
@@ -7,7 +7,7 @@
 #' @keywords datasets
 "cbPalette8"
 
-#' Fifteen-colour colourblind palette
+#' Fifteen-colour colourblind-friendly palette
 #' 
 #' A fifteen-colour [Brewer palette](http://mkweb.bcgsc.ca/brewer/) compatible with colourblindness.
 #' 
