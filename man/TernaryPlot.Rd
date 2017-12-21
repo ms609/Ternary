@@ -6,15 +6,16 @@
 \title{Ternary Plot}
 \usage{
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
-  blab = NULL, clab = NULL, point = "up", xlim = NULL, ylim = NULL,
-  lab.cex = 1, lab.font = 2, tip.cex = lab.cex, tip.font = lab.font,
-  isometric = TRUE, atip.rotate = NULL, btip.rotate = NULL,
-  ctip.rotate = NULL, atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
-  padding = 0.04, col = NA, grid.lines = 10, grid.col = "grey",
-  grid.lty = "dotted", grid.lwd = par("lwd"), axis.lty = "solid",
-  axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
-  axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
-  axis.col = "black", ticks.col = grid.col, ...)
+  blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
+  xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 0,
+  tip.cex = lab.cex, tip.font = 2, isometric = TRUE, atip.rotate = NULL,
+  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
+  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
+  grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
+  grid.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
+  axis.cex = 0.8, axis.font = par("font"), axis.tick = TRUE,
+  axis.lwd = 1, ticks.lwd = axis.lwd, axis.col = "black",
+  ticks.col = grid.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
   grid.lwd = par("lwd"))
@@ -26,6 +27,9 @@ from the corner specified in \code{point} (default: top).}
 \item{alab, blab, clab}{Character specifying text with which to label the corresponding
 sides of the triangle.  Left or right-pointing arrows are produced by
 typing \code{\\U2190} or \code{\\U2192}.}
+
+\item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
+Increase \code{padding} if labels are being clipped.}
 
 \item{point}{Character specifying the orientation of the ternary plot: should the
 triangle point up, left, right or down?}
