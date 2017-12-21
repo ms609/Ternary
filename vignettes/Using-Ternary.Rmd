@@ -1,7 +1,7 @@
 ---
 title: "Creating ternary plots with Ternary"
 author: "Martin R. Smith"
-date: "23 November 2017"
+date: "21 December 2017"
 output: rmarkdown::html_document
 
 vignette: >
@@ -35,10 +35,17 @@ as you like it and pointing in any of the four compass directions; secondly, add
 
 
 ## Create a blank plot
-```{R Create blank plot, fig.width=7, fig.height=7}
+At its simplest, all you need to do is type
+```{R Create blank plot}
+TernaryPlot()
+```
+
+The following charts show which corners are which, under different orientations:
+
+```{R Create simple plot, fig.width=7, fig.height=7}
 par(mfrow=c(2, 2), mar=rep(0.5, 4))
 for (dir in c('up', 'right', 'down', 'le')) {
-  TernaryPlot(point=dir, atip='A', btip='B', ctip='C')
+  TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
   TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
 }
 ```
@@ -46,7 +53,7 @@ for (dir in c('up', 'right', 'down', 'le')) {
 ## Plot two stylised plots side by side, and plot data
 ```{R Do plotting}
 par(mfrow=c(1, 2), mar=rep(0.3, 4))
-TernaryPlot(alab='Redder\u2192', 'Greener \u2192', '\u2190 Bluer', point='right', lab.cex=0.8,
+TernaryPlot(alab="Redder\u2192", blab="Greener \u2192", clab="Bluer \u2192", point='right', lab.cex=0.8,
             grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
             axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
             padding=0.08)
@@ -70,8 +77,11 @@ legend('bottomright',
        legend=c('Red', 'Orange', 'Yellow', 'Green'), 
        cex=0.8, bty='n')
 
-TernaryPlot('Steam', 'Ice', 'Water', grid.lines=5)
-#HorizontalGrid()
+###
+# Next plot:
+###
+TernaryPlot('Steam', 'Ice', 'Water', grid.lines=5, point='West')
+HorizontalGrid()
 middle_triangle <- matrix(c(
   30, 40, 30,
   30, 30, 40,

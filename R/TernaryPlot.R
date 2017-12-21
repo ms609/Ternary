@@ -276,7 +276,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   # Title axes
   text(alab_xy[1], alab_xy[2], alab, cex=lab.cex, font=lab.font, srt=c( 60, 330,  60, 330)[direction])
   text(blab_xy[1], blab_xy[2], blab, cex=lab.cex, font=lab.font, srt=c(300,  30, 300,  30)[direction])
-  text(clab_xy[1], clab_xy[2], clab, cex=lab.cex, font=lab.font, srt=c(  0, 270,   0, 270)[direction])
+  text(clab_xy[1], clab_xy[2], clab, cex=lab.cex, font=lab.font, srt=c(  0,  90,   0, 270)[direction])
   
   
   if (is.null(atip.rotate)) {
@@ -308,24 +308,33 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
 }
 
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
+#' @template directionParam
 #' 
 #' @importFrom graphics par
 #' @keywords internal
 #' @export
 HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
-                            grid.lty='dotted', grid.lwd=par('lwd')) {
+                            grid.lty='dotted', grid.lwd=par('lwd'),
+                            direction=getOption('ternDirection')) {
   
+  if (!(direction %in% 1:4)) stop("Parameter direction must be an integer from 1 to 4")
   line_points <- seq(from=0, to=1, length.out=grid.lines + 1L)
+  tern_height <- c(sqrt(3/4), 1, sqrt(3/4), 1)[direction]
+  tern_width <- c(1, sqrt(3/4), 1, sqrt(3/4), 1)[direction]
+  
   
   lapply(line_points[-c(1, grid.lines + 1L)], function (p) {
-    line_ends <- if (p <= 0.5) {
-      apply(matrix(c(1-p, 1-(2*p),  p, 0,  0, p*2), nrow=2), 1, TernaryCoords)
-    } else {
-      p <- 1 - p
-      -apply(matrix(c(1-p, 1-(2*p),  p, 0,  0, p*2), nrow=2), 1, TernaryCoords)
+    x <- tern_width * if (direction == 1) {
+      c(-1, 1) * (1 - p) / 2
+    } else if (direction == 2) {
+      c(0, 0.5 - abs(0.5 - p)) * 2
+    } else if (direction == 3) {
+      c(-1, 1) * p / 2
+    } else if (direction == 4) {
+      c(0, -(0.5 - abs(0.5 - p))) * 2
     }
-    lines(abs(line_ends[1, ]), line_ends[2, ], col=grid.col, lty=grid.lty, lwd=grid.lwd)
-    
+    y <- rep(tern_height, 2) * (p - c(0, 0.5, 1, 0.5)[direction])
+    lines(x, y, col=grid.col, lty=grid.lty, lwd=grid.lwd)
   })
   
   # Return:
