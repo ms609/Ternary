@@ -90,15 +90,21 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' additional elements can be added using cartesian coordinates, perhaps using
 #' functions such as [arrows](arrows), [legend] or [text].
 #' 
-#' @param alab,blab,clab Character specifying the title for the topmost,
-#'                       bottommost and leftmost corners respectively.
+#' @param atip,btip,ctip Character specifying text to title corners, proceeding clockwise
+#'                       from the corner specified in `point` (default: top).
+#' @param alab,blab,clab Character specifying text with which to label the corresponding 
+#'                       sides of the triangle.  Left or right-pointing arrows are produced by
+#'                       typing `\\U2190` or `\\U2192`.
+#' @param lab.offset Numeric specifying distance between midpoint of axis label and the axis.
+#'                   Increase `padding` if labels are being clipped.
+#'                      
 #' @param point Character specifying the orientation of the ternary plot: should the
 #'              triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
 #'                  will be added.
-#' @param lab.cex Numeric specifying character expansion for axis titles.
-#' @param lab.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
+#' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
+#' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
 #'          degrees to rotate label of rightmost apex.
 #' @param alab.pos,blab.pos,clab.pos Integer specifying positioning of labels,
@@ -142,12 +148,14 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' @importFrom graphics par plot polygon
 #' 
 #' @export
-TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
+TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
+                         alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
                          point='up', xlim=NULL, ylim=NULL,
-                         lab.cex=1.0, lab.font=2, isometric=TRUE, 
-                         alab.rotate = NULL, blab.rotate = NULL, clab.rotate = NULL,
-                         alab.pos = NULL, blab.pos = NULL, clab.pos = NULL,
-                         padding = 0.04,
+                         lab.cex=1.0, lab.font=0, tip.cex=lab.cex, tip.font=2,
+                         isometric=TRUE, 
+                         atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
+                         atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
+                         padding = 0.08,
                          col=NA, 
                          grid.lines=10, grid.col='grey',
                          grid.lty='dotted', grid.lwd=par('lwd'),
@@ -198,6 +206,22 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
       NULL
     })
     
+    axis1_degrees <- (180 + (direction * 90)) %% 360
+    axis2_degrees <- (300 + (direction * 90)) %% 360
+    axis3_degrees <- ( 60 + (direction * 90)) %% 360
+    
+    rot1 <- c(  0, 270,   0,  90)[direction]
+    rot2 <- c( 60, -30,  60, -30)[direction]
+    rot3 <- c(-60,  30, -60,  30)[direction]
+    
+    pos1 <- c(2, 2, 4, 2)[direction]
+    pos2 <- c(4, 4, 2, 2)[direction]
+    pos3 <- c(4, 2, 2, 4)[direction]
+    
+    mult1 <- c(5 , 16, 10, 12)[direction] / 10
+    mult2 <- c(5 ,  9,  8,  9)[direction] / 10
+    mult3 <- c(16,  8, 16,  8)[direction] / 10
+    
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
       p <- line_points[i]
@@ -206,9 +230,6 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
                                c(q, p, 0),
                                c(0, q, p)),
                           TernaryCoords, double(2))
-      axis1_degrees <- 180 + (direction * 90) %% 360
-      axis2_degrees <- 300 + (direction * 90) %% 360
-      axis3_degrees <- 60 + (direction * 90) %% 360
                          
       if (axis.tick) {
         lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * tick_length),
@@ -228,19 +249,6 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         
-        rot1 <- c(  0, 270,   0,  90)[direction]
-        rot2 <- c( 60, -30,  60, -30)[direction]
-        rot3 <- c(-60,  30, -60,  30)[direction]
-        
-        pos1 <- c(2, 2, 4, 2)[direction]
-        pos2 <- c(4, 4, 2, 2)[direction]
-        pos3 <- c(4, 2, 2, 4)[direction]
-        
-        mult1 <- c(5 , 16, 10, 12)[direction] / 10
-        mult2 <- c(5 ,  9,  8,  9)[direction] / 10
-        mult3 <- c(16,  8, 16,  8)[direction] / 10
-        
-        
         # Annotate axes
         text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * tick_length * mult1,
              line_ends[2, 1] + cos(axis1_degrees * pi / 180) * tick_length * mult1,
@@ -252,37 +260,48 @@ TernaryPlot <- function (alab=NULL, blab=NULL, clab=NULL,
              line_ends[2, 3] + cos(axis3_degrees * pi / 180) * tick_length * mult3,
              axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex)
       }
-      
     })
-    
   }
   
   # Draw axis lines
   lines(axes[1, ], axes[2, ], col=axis.col, lty=axis.lty, lwd=axis.lwd)
+
+  DirectionalOffset <- function (degrees) {
+    c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
+  }
+  alab_xy <- TernaryCoords(c(1, 0, 1)) + (lab.offset * DirectionalOffset(axis2_degrees - 90))
+  blab_xy <- TernaryCoords(c(1, 1, 0)) + (lab.offset * DirectionalOffset(axis3_degrees - 90))
+  clab_xy <- TernaryCoords(c(0, 1, 1)) + (lab.offset * DirectionalOffset(axis1_degrees - 90))
+    
+  # Title axes
+  text(alab_xy[1], alab_xy[2], alab, cex=lab.cex, font=lab.font, srt=c( 60, 270,   0,  90)[direction])
+  text(blab_xy[1], blab_xy[2], blab, cex=lab.cex, font=lab.font, srt=c(300, 270,   0,  90)[direction])
+  text(clab_xy[1], clab_xy[2], clab, cex=lab.cex, font=lab.font, srt=c(  0, 270,   0,  90)[direction])
   
-  if (is.null(alab.rotate)) {
+  
+  if (is.null(atip.rotate)) {
     ax <- c(-4, 4,  1, -3)[direction] * tick_length
     ay <- c(1, -4, -2, -4)[direction] * tick_length
-    alab.rotate = c(0, 30, 0, 330)[direction]
-    alab.pos = c(2, 2, 4, 4)[direction]
+    atip.rotate = c(0, 30, 0, 330)[direction]
+    atip.pos = c(2, 2, 4, 4)[direction]
   }
-  if (is.null(blab.rotate)) {
+  if (is.null(btip.rotate)) {
     bx <- c(4, 4, -2, -3)[direction] * tick_length
     by <- c(-4, -2, 4, 2.4)[direction] * tick_length
-    blab.rotate = c(0, 0, 0, 0)[direction]
-    blab.pos = c(2, 4, 4, 2)[direction]
+    btip.rotate = c(0, 0, 0, 0)[direction]
+    btip.pos = c(2, 4, 4, 2)[direction]
   }
-  if (is.null(clab.rotate)) {
+  if (is.null(ctip.rotate)) {
     cx <- c(-3, 0, 2, -3)[direction] * tick_length
     cy <- c(-4, 2, 4, -2)[direction] * tick_length
-    clab.rotate = c(0, 0, 0, 0)[direction]
-    clab.pos = c(4, 4, 2, 2)[direction]
+    ctip.rotate = c(0, 0, 0, 0)[direction]
+    ctip.pos = c(4, 4, 2, 2)[direction]
   }
   
   # Title corners
-  text(axes[1, 1] + ax, axes[2, 1] + ay, alab, pos=alab.pos, cex=lab.cex, font=lab.font, srt=alab.rotate)
-  text(axes[1, 2] + bx, axes[2, 2] + by, blab, pos=blab.pos, cex=lab.cex, font=lab.font, srt=blab.rotate)
-  text(axes[1, 3] + cx, axes[2, 3] + cy, clab, pos=clab.pos, cex=lab.cex, font=lab.font, srt=clab.rotate)
+  text(axes[1, 1] + ax, axes[2, 1] + ay, atip, pos=atip.pos, cex=tip.cex, font=tip.font, srt=atip.rotate)
+  text(axes[1, 2] + bx, axes[2, 2] + by, btip, pos=btip.pos, cex=tip.cex, font=tip.font, srt=btip.rotate)
+  text(axes[1, 3] + cx, axes[2, 3] + cy, ctip, pos=ctip.pos, cex=tip.cex, font=tip.font, srt=ctip.rotate)
   
   # Return:
   return <- NULL
