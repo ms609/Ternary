@@ -26,7 +26,7 @@ devtools::load_all()
 
 1 = A; 2 = B; 3 = C
 
-```{R Create simple plot, fig.width=7, fig.height=7}
+```{R Test corner and label position, fig.width=7, fig.height=7}
 par(mfrow=c(2, 2), mar=rep(0.5, 4))
 for (dir in c('up', 'right', 'down', 'le')) {
   TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
@@ -36,7 +36,7 @@ for (dir in c('up', 'right', 'down', 'le')) {
 
 # Horizontal lines
 
-```{R Create simple plot, fig.width=7, fig.height=7}
+```{R Test horizontal lines, fig.width=7, fig.height=7}
 par(mfrow=c(2, 2), mar=rep(0.5, 4))
 for (dir in c('up', 'right', 'down', 'le')) {
   TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
