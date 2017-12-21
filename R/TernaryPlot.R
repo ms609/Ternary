@@ -17,8 +17,8 @@
 #' @template directionParam
 #'            
 #' @return A vector of length two that converts the coordinates given in \code{abc}
-#'         into cartesian (x, y) coordinates corresponding to the plot created by
-#'         the last call of \code{\link{TernaryPlot}}
+#'         into Cartesian (_x_, _y_) coordinates corresponding to the plot created by
+#'         the last call of \code{\link{TernaryPlot}}.
 #'
 #' @seealso [TernaryPlot]
 #' @author Martin R. Smith
@@ -35,7 +35,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
              if (direction == 2L) c(3, 2, 1) else 
              if (direction == 3L) c(3, 2, 1) else
              if (direction == 4L) c(2, 3, 1)]
-               
+  
   x_deviation <- abc[3] / sum(abc)
   if (x_deviation == 1) {
       x <- cos(pi/6)

@@ -1,11 +1,11 @@
 ---
 title: "Creating ternary plots with Ternary"
 author: "Martin R. Smith"
-date: "21 December 2017"
+date: "`r Sys.Date()`"
 output: rmarkdown::html_document
 
 vignette: >
-  %\VignetteIndexEntry{Creating ternary plots}
+  %\VignetteIndexEntry{Creating and manipulating ternary plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -101,7 +101,7 @@ By default, the plotting area is a 1x1 square.
 ```{r Cartesian}
 TernaryPlot(point='right')
 cat("X range in this orientation:", TernaryXRange())
-cat("\nY range in this orientation:", TernaryYRange())
+cat("Y range in this orientation:", TernaryYRange())
 arrows(x0=0.5, y0=0.4, x1=sqrt(3)/2, y1=0.4, length=0.1, col=cbPalette8[2])
 text(x=mean(c(0.5, sqrt(3)/2)), y=0.4, "Increasing X", pos=3, col=cbPalette8[2])
 text(x=0.5, y=0, "(0.5, 0)", col=cbPalette8[3])
