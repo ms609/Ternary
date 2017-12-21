@@ -5,12 +5,13 @@ test_that("Errors are handled gracefully", {
 })
 
 test_that("TernaryCoords gives correct coordinates", {
+  options('ternDirection' = 2)
   input <- list(
-    c(1, 0, 0), 
+    c(0, 0, 1), 
     c(0, 2, 0),
-    c(0, 0, 3),
-    c(9, 9, 0),
-    c(1, 1, 2)
+    c(3, 0, 0),
+    c(0, 9, 9),
+    c(2, 1, 1)
   )
   output <- list(
     c(0, 0.5),
@@ -21,7 +22,7 @@ test_that("TernaryCoords gives correct coordinates", {
   )
   expect_equal(output, lapply(input, TernaryCoords))
   expect_error(TernaryCoords(rep(1, 5), 1, 1))
-  expect_equal(c(0, 0.5), TernaryCoords(1, 0, 0))
+  expect_equal(c(0, 0.5), TernaryCoords(0, 0, 1))
 })
 
 test_that("Ternary plotting does not fail", {

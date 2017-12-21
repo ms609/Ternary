@@ -6,3 +6,4 @@ cran-comments.md
 .covrignore
 ^.*\.json$
 ^data-raw$
+^man-roxygen$

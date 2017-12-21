@@ -1,8 +1,10 @@
-# Ternary vNEXT
+# Ternary v1.0.0-alpha
  - Add function JoinTheDots to plot lines and points simultaneously.
  - Support xlim & ylim for TernaryPlot
+ - Choose direction of plot using new `point` parameter
+ - Allow labelling of tips and of sides (alab becomes atip)
  - Improved control over labelling of plot (clab.rotate parameter)
- - Improveme documentation
+ - Improve documentation
 
 # Ternary v0.1.1
  - Added colour-blind compatible colour palettes `cbPalette8` and `cbPalette15`.

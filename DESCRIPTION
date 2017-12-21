@@ -1,6 +1,6 @@
 Package: Ternary
-Version: 0.1.1.9001
-Date: 2017-11-30
+Version: 0.1.1.9002
+Date: 2017-12-21
 Title: A Package to Generate Ternary Plots
 Description: Plots ternary diagrams using the standard graphics functions.  
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions.

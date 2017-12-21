@@ -5,34 +5,45 @@
 \alias{HorizontalGrid}
 \title{Ternary Plot}
 \usage{
-TernaryPlot(alab = NULL, blab = NULL, clab = NULL, xlim = NULL,
-  ylim = NULL, lab.cex = 1, lab.font = 2, isometric = TRUE,
-  clab.rotate = FALSE, padding = 0.04, col = NA, grid.lines = 10,
-  grid.col = "grey", grid.lty = "dotted", grid.lwd = par("lwd"),
-  axis.lty = "solid", axis.labels = TRUE, axis.cex = 0.8,
-  axis.font = par("font"), axis.tick = TRUE, axis.lwd = 1,
-  ticks.lwd = axis.lwd, axis.col = "black", ticks.col = grid.col, ...)
+TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
+  blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
+  xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 0,
+  tip.cex = lab.cex, tip.font = 2, isometric = TRUE, atip.rotate = NULL,
+  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
+  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
+  grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
+  grid.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
+  axis.cex = 0.8, axis.font = par("font"), axis.tick = TRUE,
+  axis.lwd = 1, ticks.lwd = axis.lwd, axis.col = "black",
+  ticks.col = grid.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
-  grid.lwd = par("lwd"))
+  grid.lwd = par("lwd"), direction = getOption("ternDirection"))
 }
 \arguments{
-\item{alab, blab, clab}{Character specifying the title for the topmost,
-bottommost and leftmost corners respectively.}
+\item{atip, btip, ctip}{Character specifying text to title corners, proceeding clockwise
+from the corner specified in \code{point} (default: top).}
+
+\item{alab, blab, clab}{Character specifying text with which to label the corresponding
+sides of the triangle.  Left or right-pointing arrows are produced by
+typing \code{\\U2190} or \code{\\U2192}.}
+
+\item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
+Increase \code{padding} if labels are being clipped.}
+
+\item{point}{Character specifying the orientation of the ternary plot: should the
+triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding}
 will be added.}
 
-\item{lab.cex}{Numeric specifying character expansion for axis titles.}
+\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
 
-\item{lab.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
+\item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral
 shape for the ternary plot.}
-
-\item{clab.rotate}{Numeric specifying number of degrees to rotate label of rightmost
-apex.  Set to 270 if \code{clab.rotate = TRUE}.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
 if axis labels are being clipped.}
@@ -69,9 +80,20 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
 
 \item{\dots}{Additional parameters to \code{[graphics:plot]}.}
+
+\item{direction}{Integer specifying the direction that the current ternary plot 
+should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{alab.rotate, blab.rotate, clab.rotate}{Integer specifying number of
+degrees to rotate label of rightmost apex.}
+
+\item{alab.pos, blab.pos, clab.pos}{Integer specifying positioning of labels,
+iff corresponding \code{xlab.rotate} parameter is set.}
 }
 \description{
-Create a blank ternary plot, rotated so that its left edge is vertical.
+Create a blank ternary plot.
+}
+\details{
 The plot will be generated using the standard graphics plot functions, on which
 additional elements can be added using cartesian coordinates, perhaps using
 functions such as \url{arrows}, \link{legend} or \link{text}.

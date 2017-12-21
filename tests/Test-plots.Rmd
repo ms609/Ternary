@@ -1,0 +1,46 @@
+---
+title: "Test plots"
+author: "Martin R. Smith"
+date: "21 December 2017"
+output: rmarkdown::html_document
+
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This file provides example plots that I use for testing.
+
+If something looks wrong, it means that I've broken something - please 
+let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues).
+
+
+# Installation
+
+```{R Install and load}
+devtools::install()
+devtools::load_all()
+```
+
+# Corner correspondence
+
+1 = A; 2 = B; 3 = C
+
+```{R Test corner and label position, fig.width=7, fig.height=7}
+par(mfrow=c(2, 2), mar=rep(0.5, 4))
+for (dir in c('up', 'right', 'down', 'le')) {
+  TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
+  TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+}
+```
+
+# Horizontal lines
+
+```{R Test horizontal lines, fig.width=7, fig.height=7}
+par(mfrow=c(2, 2), mar=rep(0.5, 4))
+for (dir in c('up', 'right', 'down', 'le')) {
+  TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
+  TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+  HorizontalGrid(grid.col='red')
+}
+```
