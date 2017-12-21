@@ -18,7 +18,7 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   ticks.col = grid.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
-  grid.lwd = par("lwd"))
+  grid.lwd = par("lwd"), direction = getOption("ternDirection"))
 }
 \arguments{
 \item{atip, btip, ctip}{Character specifying text to title corners, proceeding clockwise
@@ -80,6 +80,9 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
 
 \item{\dots}{Additional parameters to \code{[graphics:plot]}.}
+
+\item{direction}{Integer specifying the direction that the current ternary plot 
+should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{alab.rotate, blab.rotate, clab.rotate}{Integer specifying number of
 degrees to rotate label of rightmost apex.}
