@@ -130,5 +130,5 @@ TernaryPolygon(list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12)),
 ## Bugs and feature requests
 
 I hope that the package comes in useful.  If there's anything it can't do that you wish
-it could, please let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues).
+it could, please let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues/new?title=I%20have%20a%20suggestion!).
 
