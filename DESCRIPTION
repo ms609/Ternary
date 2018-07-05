@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.0.0
+Version: 1.0.0.9000
 Date: 2017-12-21
 Title: An R Package for Creating Ternary Plots
 Description: Plots ternary diagrams using the standard graphics functions.  
