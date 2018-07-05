@@ -112,20 +112,21 @@ text(x=0.5, y=0, "(0.5, 0)", col=cbPalette8[3])
 text(x=0.8, y=-0.5, "(0.8, -0.5)", col=cbPalette8[3])
 ```
 
-## Zooming in
+## Magnification
 
 Perhaps the action on a plot is constrained to a small region of ternary space.
 It's possible to "zoom in" -- i.e. magnify and crop the ternary plot to the region
 of interest.
-To do this you can specify the _x_ and _y_ limits of the region of interest. 
-`TernaryCoords` might be useful in establishing the cartesian coordinates of a
-particular point in ternary space.
 
+To do this you can specify the _x_ and _y_ limits of the region of interest. 
+
+`TernaryCoords` might be useful in establishing the cartesian coordinates of a
+particular point in ternary space.  
 Ensure that _dx_ = _dy_ if you want an isometric plot.
 
 ```{r find-corners}
 my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
-TernaryCoords(my_corners[[1]], direction=1)
+lapply(my_corners, TernaryCoords, direction=1)
 ```
 
 The `padding` parameter is added as a margin to each side of the region specified
