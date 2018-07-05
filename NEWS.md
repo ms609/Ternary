@@ -1,3 +1,6 @@
+# Ternary v1.0.0.9000
+ - Plot minor lines between grid lines, with options to customise appearance.
+
 # Ternary v1.0.0
  - Add function JoinTheDots to plot lines and points simultaneously.
  - Support xlim & ylim for TernaryPlot

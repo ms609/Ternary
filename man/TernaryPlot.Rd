@@ -11,8 +11,10 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   tip.cex = lab.cex, tip.font = 2, isometric = TRUE, atip.rotate = NULL,
   btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
   btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
-  grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
-  grid.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
+  grid.lines = 10, grid.col = "darkgrey", grid.lty = "solid",
+  grid.lwd = par("lwd"), grid.minor.lines = 4,
+  grid.minor.col = "lightgrey", grid.minor.lty = "solid",
+  grid.minor.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
   axis.cex = 0.8, axis.font = par("font"), axis.tick = TRUE,
   axis.lwd = 1, ticks.lwd = axis.lwd, axis.col = "black",
   ticks.col = grid.col, ...)
@@ -36,7 +38,8 @@ triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding}
-will be added.}
+will be added. Allows cropping to magnified region of the plot.
+(See vignette for diagram.)}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
 
@@ -50,13 +53,16 @@ if axis labels are being clipped.}
 
 \item{col}{The colour for filling the plot; see \code{[graphics:polygon]}.}
 
-\item{grid.lines}{The number of grid lines to plot.}
+\item{grid.lines}{Integer speficying the number of grid lines to plot.}
 
-\item{grid.col}{The colour to draw the grid lines.}
+\item{grid.col, grid.minor.col}{The colour to draw the grid lines.}
 
-\item{grid.lty}{Character or (integer) numeric; line type of the grid lines.}
+\item{grid.lty, grid.minor.lty}{Character or (integer) numeric; line type of the grid lines.}
 
-\item{grid.lwd}{Non-negative numeric giving line width of the grid lines.}
+\item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the grid lines.}
+
+\item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
+grid lines to plot between each major pair.}
 
 \item{axis.lty}{Line type for both the axis line and tick marks}
 

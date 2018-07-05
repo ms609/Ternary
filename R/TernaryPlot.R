@@ -107,7 +107,8 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'              triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
-#'                  will be added.
+#'                  will be added. Allows cropping to magnified region of the plot. 
+#'                  (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
@@ -121,10 +122,12 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'                if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
 #' 
-#' @param grid.lines The number of grid lines to plot.
-#' @param grid.col The colour to draw the grid lines.
-#' @param grid.lty Character or (integer) numeric; line type of the grid lines.
-#' @param grid.lwd Non-negative numeric giving line width of the grid lines.
+#' @param grid.lines Integer specifying the number of grid lines to plot.
+#' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
+#'                         grid lines to plot between each major pair.
+#' @param grid.col,grid.minor.col The colour to draw the grid lines.
+#' @param grid.lty,grid.minor.lty Character or (integer) numeric; line type of the grid lines.
+#' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the grid lines.
 #' 
 #' @param axis.lty  Line type for both the axis line and tick marks
 #' @param axis.labels This can either be a logical value specifying whether 
@@ -169,9 +172,11 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
-                         col=NA,
-                         grid.lines=10, grid.col='grey',
-                         grid.lty='dotted', grid.lwd=par('lwd'),
+                         col=NA, 
+                         grid.lines=10, grid.col='darkgrey',
+                         grid.lty='solid', grid.lwd=par('lwd'),
+                         grid.minor.lines=4, grid.minor.col='lightgrey',
+                         grid.minor.lty='solid', grid.minor.lwd=par('lwd'),
                          axis.lty='solid',
                          axis.labels=TRUE, axis.cex=0.8, 
                          axis.font=par('font'),
@@ -204,7 +209,26 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   polygon(axes[1, ], axes[2, ], col=col, border=NA)
   
   if (!is.integer(grid.lines)) grid.lines <- ceiling(grid.lines)
+  if (!is.integer(grid.minor.lines)) grid.minor.lines <- ceiling(grid.minor.lines)
   if (!is.null(grid.lines) && !is.na(grid.lines) && grid.lines > 1L) {
+    # Plot minor grid lines
+    if (grid.minor.lines > 0L) {
+      n_minor_lines <- grid.lines * (grid.minor.lines + 1L)  + 1L
+      minor_line_points <- seq(from=0, to=1, length.out=n_minor_lines)[-seq(from=1, to=n_minor_lines, by=grid.minor.lines + 1L)]
+      lapply(minor_line_points, function (p) {
+        q <- 1 - p
+        line_ends <- vapply(list(c(p, q, 0), c(p, 0, q),
+                                 c(0, p, q), c(q, p, 0),
+                                 c(q, 0, p), c(0, q, p)),
+                            TernaryCoords, double(2))
+        lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
+          lines(line_ends[1, i], line_ends[2, i], col=grid.minor.col,
+                lty=grid.minor.lty, lwd=grid.minor.lwd))
+        NULL
+      })
+      
+    }
+    
     # Plot grid
     line_points <- seq(from=0, to=1, length.out=grid.lines + 1L)
     
