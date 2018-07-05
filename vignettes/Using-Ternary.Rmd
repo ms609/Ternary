@@ -53,7 +53,8 @@ for (dir in c('up', 'right', 'down', 'le')) {
 ## Plot two stylised plots side by side, and plot data
 ```{R Do plotting}
 par(mfrow=c(1, 2), mar=rep(0.3, 4))
-TernaryPlot(alab="Redder\u2192", blab="Greener \u2192", clab="Bluer \u2192", point='right', lab.cex=0.8,
+TernaryPlot(alab="Redder\u2192", blab="Greener \u2192", clab="Bluer \u2192",
+            point='right', lab.cex=0.8, grid.minor.lines = 0,
             grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
             axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
             padding=0.08)
@@ -80,7 +81,10 @@ legend('bottomright',
 ###
 # Next plot:
 ###
-TernaryPlot('Steam', 'Ice', 'Water', grid.lines=5, point='West')
+TernaryPlot('Steam', 'Ice', 'Water', 
+            grid.lines=5, grid.lty='dotted',
+            grid.minor.lines = 1, grid.minor.lty='dotted',
+            point='West')
 HorizontalGrid()
 middle_triangle <- matrix(c(
   30, 40, 30,
