@@ -107,7 +107,8 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'              triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
-#'                  will be added.
+#'                  will be added. Allows cropping to magnified region of the plot. 
+#'                  (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
@@ -123,7 +124,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' 
 #' @param grid.lines Integer speficying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
-#' @aliases                grid lines to plot between each major pair.
+#'                         grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col The colour to draw the grid lines.
 #' @param grid.lty,grid.minor.lty Character or (integer) numeric; line type of the grid lines.
 #' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the grid lines.
