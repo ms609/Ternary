@@ -122,7 +122,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'                if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
 #' 
-#' @param grid.lines Integer speficying the number of grid lines to plot.
+#' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
 #'                         grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col The colour to draw the grid lines.
