@@ -8,19 +8,20 @@
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
   xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 0,
-  tip.cex = lab.cex, tip.font = 2, isometric = TRUE, atip.rotate = NULL,
-  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
-  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
-  grid.lines = 10, grid.col = "darkgrey", grid.lty = "solid",
-  grid.lwd = par("lwd"), grid.minor.lines = 4,
+  tip.cex = lab.cex, tip.font = 2, isometric = TRUE,
+  atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
+  atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
+  padding = 0.08, col = NA, grid.lines = 10, grid.col = "darkgrey",
+  grid.lty = "solid", grid.lwd = par("lwd"), grid.minor.lines = 4,
   grid.minor.col = "lightgrey", grid.minor.lty = "solid",
-  grid.minor.lwd = par("lwd"), axis.lty = "solid", axis.labels = TRUE,
-  axis.cex = 0.8, axis.font = par("font"), axis.tick = TRUE,
-  axis.lwd = 1, ticks.lwd = axis.lwd, axis.col = "black",
-  ticks.col = grid.col, ...)
+  grid.minor.lwd = par("lwd"), axis.lty = "solid",
+  axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
+  axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
+  axis.col = "black", ticks.col = grid.col, ...)
 
-HorizontalGrid(grid.lines = 10, grid.col = "grey", grid.lty = "dotted",
-  grid.lwd = par("lwd"), direction = getOption("ternDirection"))
+HorizontalGrid(grid.lines = 10, grid.col = "grey",
+  grid.lty = "dotted", grid.lwd = par("lwd"),
+  direction = getOption("ternDirection"))
 }
 \arguments{
 \item{atip, btip, ctip}{Character specifying text to title corners, proceeding clockwise
@@ -53,7 +54,7 @@ if axis labels are being clipped.}
 
 \item{col}{The colour for filling the plot; see \code{[graphics:polygon]}.}
 
-\item{grid.lines}{Integer speficying the number of grid lines to plot.}
+\item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
 \item{grid.col, grid.minor.col}{The colour to draw the grid lines.}
 
@@ -87,7 +88,7 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{\dots}{Additional parameters to \code{[graphics:plot]}.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot 
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{alab.rotate, blab.rotate, clab.rotate}{Integer specifying number of

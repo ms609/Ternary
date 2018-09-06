@@ -21,7 +21,7 @@ and \code{c_coord}.}
 
 \item{c_coord}{The c coordinate, if \code{abc} is a single number.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot 
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
