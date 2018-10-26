@@ -17,7 +17,7 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   grid.minor.lwd = par("lwd"), axis.lty = "solid",
   axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
   axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
-  axis.col = "black", ticks.col = grid.col,
+  ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
   axis.labels.col = axis.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
@@ -81,6 +81,10 @@ expression vector of labels to be placed at the tickpoints.}
 
 \item{axis.lwd, ticks.lwd}{Line width for the axis line and tick marks.
 Zero or negative values will suppress the line or ticks.}
+
+\item{ticks.length}{Numeric specifying distance that ticks should extend
+beyond the plot margin.  Also affects position of axis labels, which are
+plotted at the end of each tick.}
 
 \item{axis.col, ticks.col, axis.labels.col}{Colours for the axis line, tick
 marks and labels, respectively.

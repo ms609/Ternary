@@ -139,6 +139,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'  Zero or negative values will suppress the line or ticks.
+#' @param ticks.length Numeric specifying distance that ticks should extend
+#'  beyond the plot margin.  Also affects position of axis labels, which are
+#'  plotted at the end of each tick.
 #' @param axis.col,ticks.col,axis.labels.col Colours for the axis line, tick
 #'  marks and labels, respectively. 
 #'  \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified 
@@ -182,7 +185,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          axis.labels=TRUE, axis.cex=0.8, 
                          axis.font=par('font'),
                          axis.tick=TRUE,
-                         axis.lwd=1, ticks.lwd=axis.lwd,
+                         axis.lwd=1, ticks.lwd=axis.lwd, ticks.length=0.025,
                          axis.col='black', ticks.col=grid.col,
                          axis.labels.col=axis.col,
                          ...) {
@@ -192,8 +195,6 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   } else {
     options('ternDirection' = direction)
   }
-  
-  tick_length <- 0.025
   
   if (isometric) {
     original_par <- par(pty='s')
@@ -271,16 +272,16 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * tick_length),
-              line_ends[2, 1] + c(0, cos(axis1_degrees * pi / 180) * tick_length),
+        lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * ticks.length),
+              line_ends[2, 1] + c(0, cos(axis1_degrees * pi / 180) * ticks.length),
               col=ticks.col, lwd=ticks.lwd)
     
-        lines(line_ends[1, 2] + c(0, sin(axis2_degrees * pi / 180) * tick_length),
-              line_ends[2, 2] + c(0, cos(axis2_degrees * pi / 180) * tick_length),
+        lines(line_ends[1, 2] + c(0, sin(axis2_degrees * pi / 180) * ticks.length),
+              line_ends[2, 2] + c(0, cos(axis2_degrees * pi / 180) * ticks.length),
               col=ticks.col, lwd=ticks.lwd)
        
-        lines(line_ends[1, 3] + c(0, sin(axis3_degrees * pi / 180) * tick_length),
-              line_ends[2, 3] + c(0, cos(axis3_degrees * pi / 180) * tick_length),
+        lines(line_ends[1, 3] + c(0, sin(axis3_degrees * pi / 180) * ticks.length),
+              line_ends[2, 3] + c(0, cos(axis3_degrees * pi / 180) * ticks.length),
               col=ticks.col, lwd=ticks.lwd)
       }
       
@@ -289,16 +290,16 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         
         # Annotate axes
-        text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * tick_length * mult1,
-             line_ends[2, 1] + cos(axis1_degrees * pi / 180) * tick_length * mult1,
+        text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * ticks.length * mult1,
+             line_ends[2, 1] + cos(axis1_degrees * pi / 180) * ticks.length * mult1,
              axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex,
              col=axis.labels.col)
-        text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * tick_length * mult2,
-             line_ends[2, 2] + cos(axis2_degrees * pi / 180) * tick_length * mult2,
+        text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * ticks.length * mult2,
+             line_ends[2, 2] + cos(axis2_degrees * pi / 180) * ticks.length * mult2,
              axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex,
              col=axis.labels.col)
-        text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * tick_length * mult3,
-             line_ends[2, 3] + cos(axis3_degrees * pi / 180) * tick_length * mult3,
+        text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * ticks.length * mult3,
+             line_ends[2, 3] + cos(axis3_degrees * pi / 180) * ticks.length * mult3,
              axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex,
              col=axis.labels.col)
       }
@@ -322,20 +323,20 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   
   
   if (is.null(atip.rotate)) {
-    ax <- c(-4, 4,  1, -3)[direction] * tick_length
-    ay <- c(1, -4, -2, -4)[direction] * tick_length
+    ax <- c(-4, 4,  1, -3)[direction] * ticks.length
+    ay <- c(1, -4, -2, -4)[direction] * ticks.length
     atip.rotate = c(0, 30, 0, 330)[direction]
     atip.pos = c(2, 2, 4, 4)[direction]
   }
   if (is.null(btip.rotate)) {
-    bx <- c(4, 4, -2, -3)[direction] * tick_length
-    by <- c(-4, -2, 4, 2.4)[direction] * tick_length
+    bx <- c(4, 4, -2, -3)[direction] * ticks.length
+    by <- c(-4, -2, 4, 2.4)[direction] * ticks.length
     btip.rotate = c(0, 0, 0, 0)[direction]
     btip.pos = c(2, 4, 4, 2)[direction]
   }
   if (is.null(ctip.rotate)) {
-    cx <- c(-3, 0, 2, -3)[direction] * tick_length
-    cy <- c(-4, 2, 4, -2)[direction] * tick_length
+    cx <- c(-3, 0, 2, -3)[direction] * ticks.length
+    cy <- c(-4, 2, 4, -2)[direction] * ticks.length
     ctip.rotate = c(0, 0, 0, 0)[direction]
     ctip.pos = c(4, 4, 2, 2)[direction]
   }
