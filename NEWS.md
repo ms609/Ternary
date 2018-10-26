@@ -1,3 +1,6 @@
+# Ternary v1.0.1.9000
+ - Allow custom colouration of axis text
+
 # Ternary v1.0.1
  - Plot minor lines between grid lines, with options to customise appearance.
  - Document magnification options

@@ -96,53 +96,54 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' functions such as [arrows](arrows), [legend] or [text].
 #' 
 #' @param atip,btip,ctip Character specifying text to title corners, proceeding clockwise
-#'                       from the corner specified in `point` (default: top).
+#'  from the corner specified in `point` (default: top).
 #' @param alab,blab,clab Character specifying text with which to label the corresponding 
-#'                       sides of the triangle.  Left or right-pointing arrows are produced by
-#'                       typing `\\U2190` or `\\U2192`.
+#'  sides of the triangle.  Left or right-pointing arrows are produced by
+#'  typing `\\U2190` or `\\U2192`, or using `expression('value' %->% '')`.
 #' @param lab.offset Numeric specifying distance between midpoint of axis label and the axis.
-#'                   Increase `padding` if labels are being clipped.
+#'  Increase `padding` if labels are being clipped.
 #'                      
-#' @param point Character specifying the orientation of the ternary plot: should the
-#'              triangle point up, left, right or down?
+#' @param point Character specifying the orientation of the ternary plot: should
+#'  the triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
-#'                  _x_ and _y_ limits of the plotted area, to which \code{padding}
-#'                  will be added. Allows cropping to magnified region of the plot. 
-#'                  (See vignette for diagram.)
+#'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
+#'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
-#'          degrees to rotate label of rightmost apex.
+#'  degrees to rotate label of rightmost apex.
 #' @param alab.pos,blab.pos,clab.pos Integer specifying positioning of labels,
-#'          iff corresponding `xlab.rotate` parameter is set.
+#'  iff corresponding `xlab.rotate` parameter is set.
 #' 
-#' @param isometric Logical specifying whether to enforce an equilateral 
-#'                  shape for the ternary plot.
+#' @param isometric Logical specifying whether to enforce an equilateral shape
+#'  for the ternary plot.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
-#'                if axis labels are being clipped.
+#'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
 #' 
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
-#'                         grid lines to plot between each major pair.
+#'  grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col The colour to draw the grid lines.
-#' @param grid.lty,grid.minor.lty Character or (integer) numeric; line type of the grid lines.
-#' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the grid lines.
+#' @param grid.lty,grid.minor.lty Character or (integer) numeric; line type of 
+#'  the grid lines.
+#' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the
+#'  grid lines.
 #' 
 #' @param axis.lty  Line type for both the axis line and tick marks
 #' @param axis.labels This can either be a logical value specifying whether 
-#'                    (numerical) annotations are to be made at the tickmarks,
-#'                     or a character or expression vector of labels to be
-#'                     placed at the tickpoints.
+#'  (numerical) annotations are to be made at the tickmarks, or a character or
+#'  expression vector of labels to be placed at the tickpoints.
 #' @param axis.cex Numeric specifying character expansion for axis labels.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
-#'                 Zero or negative values will suppress the line or ticks.
-#' @param axis.col,ticks.col Colours for the axis line and tick marks respectively. 
-#'        \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified 
-#'        inline, and \code{ticks.col = NULL} means to use whatever colour
-#'        \code{axis.col} resolved to.
+#'  Zero or negative values will suppress the line or ticks.
+#' @param axis.col,ticks.col,axis.labels.col Colours for the axis line, tick
+#'  marks and labels, respectively. 
+#'  \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified 
+#'  inline, and \code{ticks.col = NULL} means to use whatever colour
+#'  \code{axis.col} resolved to.
 #' 
 #' 
 #' @param \dots Additional parameters to \code{[graphics:plot]}.
@@ -183,6 +184,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          axis.tick=TRUE,
                          axis.lwd=1, ticks.lwd=axis.lwd,
                          axis.col='black', ticks.col=grid.col,
+                         axis.labels.col=axis.col,
                          ...) {
   direction <- 1 + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2, 3, 4, 1)) %% 4)
   if (is.na(direction)) {
@@ -289,13 +291,16 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
         # Annotate axes
         text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * tick_length * mult1,
              line_ends[2, 1] + cos(axis1_degrees * pi / 180) * tick_length * mult1,
-             axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex)
+             axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex,
+             col=axis.labels.col)
         text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * tick_length * mult2,
              line_ends[2, 2] + cos(axis2_degrees * pi / 180) * tick_length * mult2,
-             axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex)
+             axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex,
+             col=axis.labels.col)
         text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * tick_length * mult3,
              line_ends[2, 3] + cos(axis3_degrees * pi / 180) * tick_length * mult3,
-             axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex)
+             axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex,
+             col=axis.labels.col)
       }
     })
   }

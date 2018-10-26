@@ -17,7 +17,8 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   grid.minor.lwd = par("lwd"), axis.lty = "solid",
   axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
   axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
-  axis.col = "black", ticks.col = grid.col, ...)
+  axis.col = "black", ticks.col = grid.col,
+  axis.labels.col = axis.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
   grid.lty = "dotted", grid.lwd = par("lwd"),
@@ -29,25 +30,24 @@ from the corner specified in \code{point} (default: top).}
 
 \item{alab, blab, clab}{Character specifying text with which to label the corresponding
 sides of the triangle.  Left or right-pointing arrows are produced by
-typing \code{\\U2190} or \code{\\U2192}.}
+typing \code{\\U2190} or \code{\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
 \item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
 Increase \code{padding} if labels are being clipped.}
 
-\item{point}{Character specifying the orientation of the ternary plot: should the
-triangle point up, left, right or down?}
+\item{point}{Character specifying the orientation of the ternary plot: should
+the triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
-\emph{x} and \emph{y} limits of the plotted area, to which \code{padding}
-will be added. Allows cropping to magnified region of the plot.
-(See vignette for diagram.)}
+\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+Allows cropping to magnified region of the plot. (See vignette for diagram.)}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
 
 \item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
 
-\item{isometric}{Logical specifying whether to enforce an equilateral
-shape for the ternary plot.}
+\item{isometric}{Logical specifying whether to enforce an equilateral shape
+for the ternary plot.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
 if axis labels are being clipped.}
@@ -58,9 +58,11 @@ if axis labels are being clipped.}
 
 \item{grid.col, grid.minor.col}{The colour to draw the grid lines.}
 
-\item{grid.lty, grid.minor.lty}{Character or (integer) numeric; line type of the grid lines.}
+\item{grid.lty, grid.minor.lty}{Character or (integer) numeric; line type of
+the grid lines.}
 
-\item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the grid lines.}
+\item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the
+grid lines.}
 
 \item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.}
@@ -68,9 +70,8 @@ grid lines to plot between each major pair.}
 \item{axis.lty}{Line type for both the axis line and tick marks}
 
 \item{axis.labels}{This can either be a logical value specifying whether
-(numerical) annotations are to be made at the tickmarks,
-or a character or expression vector of labels to be
-placed at the tickpoints.}
+(numerical) annotations are to be made at the tickmarks, or a character or
+expression vector of labels to be placed at the tickpoints.}
 
 \item{axis.cex}{Numeric specifying character expansion for axis labels.}
 
@@ -81,7 +82,8 @@ placed at the tickpoints.}
 \item{axis.lwd, ticks.lwd}{Line width for the axis line and tick marks.
 Zero or negative values will suppress the line or ticks.}
 
-\item{axis.col, ticks.col}{Colours for the axis line and tick marks respectively.
+\item{axis.col, ticks.col, axis.labels.col}{Colours for the axis line, tick
+marks and labels, respectively.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
 inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
