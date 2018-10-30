@@ -1,8 +1,8 @@
-[![Project Status: Inactive.](http://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#project-statuses)
+[![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#project-statuses)
 [![Build Status](https://travis-ci.org/ms609/Ternary.svg?branch=master)](https://travis-ci.org/ms609/Ternary)<!--
 [![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/Ternary)-->
-[![CRAN Status Badge](http://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)<!--
+[![CRAN Status Badge](https://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)<!--
 [![Research software impact](http://depsy.org/api/package/cran/Ternary/badge.svg)](http://depsy.org/package/r/Ternary)-->
 
 # Ternary
