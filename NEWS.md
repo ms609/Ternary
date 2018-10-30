@@ -1,5 +1,7 @@
-# Ternary v1.0.1.9000
- - Allow custom colouration of axis text
+# Ternary v1.0.2
+ - Improve configuration options by allowing:
+   - Custom colouration of axis text
+   - Modification of axis tick length
 
 # Ternary v1.0.1
  - Plot minor lines between grid lines, with options to customise appearance.

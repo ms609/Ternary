@@ -1,6 +1,6 @@
 Package: Ternary
-Version: 1.0.1.9000
-Date: 2018-10-26
+Version: 1.0.2
+Date: 2018-10-30
 Title: An R Package for Creating Ternary Plots
 Description: Plots ternary diagrams using the standard graphics functions.  
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions.
@@ -12,6 +12,7 @@ Authors@R: c(person('Martin R.', 'Smith',
                   comment=c(ORCID = '0000-0001-5660-1727'))
             )
 License: GPL (>= 2)
+Language: en-GB
 Depends: R (>= 3.2.0)
 Suggests:
     knitr,
