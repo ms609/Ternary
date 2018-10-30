@@ -47,7 +47,7 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)}
 \item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
-for the ternary plot.}
+for the ternary plot.  Ignored if \code{xlim} or \code{ylim} are set.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
 if axis labels are being clipped.}

@@ -107,6 +107,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  the triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
+#'  Presently overrides the setting of `isometric`.
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
@@ -116,7 +117,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  iff corresponding `xlab.rotate` parameter is set.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
-#'  for the ternary plot.
+#'  for the ternary plot.  Presently ignored if `xlim` or `ylim` are set.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
@@ -133,7 +134,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' @param axis.lty  Line type for both the axis line and tick marks
 #' @param axis.labels This can either be a logical value specifying whether 
 #'  (numerical) annotations are to be made at the tickmarks, or a character or
-#'  expression vector of labels to be placed at the tickpoints.
+#'  expression vector of labels to be placed at the tick points.
 #' @param axis.cex Numeric specifying character expansion for axis labels.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.

@@ -3,7 +3,7 @@
 \docType{data}
 \name{cbPalette8}
 \alias{cbPalette8}
-\title{Eight-colour colourblind-friendly palette}
+\title{Eight-colour palette compatible with colour blindness}
 \format{An object of class \code{character} of length 8.}
 \source{
 \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
@@ -12,7 +12,7 @@
 cbPalette8
 }
 \description{
-An eight-colour palette compatible with colourblindness.
+An eight-colour palette recommended for use with colour blind audiences.
 }
 \seealso{
 \link{cbPalette15}
