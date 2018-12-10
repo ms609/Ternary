@@ -395,7 +395,9 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #' @param coordinates A list, matrix, data.frame or vector in which each
 #'                    element (or row) specifies
 #'                    the three coordinates of a point in ternary space.
-#' @param \dots Additional parameters to pass to \code{PlottingFunction}.
+#' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
+#' If using `TernaryText`, this will likely include the parameter `labels`,
+#' to specify the text to plot.
 #' 
 #' @examples {
 #'   coords <- list(
