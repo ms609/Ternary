@@ -1,3 +1,3 @@
 #!/bin/sh
 
-Rscript -e "devtools::build_manual('.', './doc')"
+# Rscript -e "devtools::build_manual('.', './doc')"

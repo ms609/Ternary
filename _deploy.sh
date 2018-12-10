@@ -7,8 +7,9 @@ set -e
 git config --global user.email "martins@gmail.com"
 git config --global user.name "Martin Smith"
 git clone -b gh-pages https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git render-output
+Rscript -e "devtools::build_manual('.', './render-output')"
 cd render-output
-cp -r ../doc/* ./
+# cp -r ../doc/* ./
 git add --all *
 git commit -m "Render documentation" || true
 git push -q origin gh-pages
