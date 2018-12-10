@@ -40,6 +40,7 @@ the triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+Presently overrides the setting of \code{isometric}.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
@@ -47,7 +48,13 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)}
 \item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
-for the ternary plot.  Ignored if \code{xlim} or \code{ylim} are set.}
+for the ternary plot.  Presently ignored if \code{xlim} or \code{ylim} are set.}
+
+\item{atip.rotate, btip.rotate, ctip.rotate}{Integer specifying number of
+degrees to rotate label of rightmost apex.}
+
+\item{atip.pos, btip.pos, ctip.pos}{Integer specifying positioning of labels,
+iff corresponding \code{xlab.rotate} parameter is set.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
 if axis labels are being clipped.}
@@ -71,7 +78,7 @@ grid lines to plot between each major pair.}
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
-expression vector of labels to be placed at the tickpoints.}
+expression vector of labels to be placed at the tick points.}
 
 \item{axis.cex}{Numeric specifying character expansion for axis labels.}
 
@@ -96,12 +103,6 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
-
-\item{alab.rotate, blab.rotate, clab.rotate}{Integer specifying number of
-degrees to rotate label of rightmost apex.}
-
-\item{alab.pos, blab.pos, clab.pos}{Integer specifying positioning of labels,
-iff corresponding \code{xlab.rotate} parameter is set.}
 }
 \description{
 Create and style a blank ternary plot.
@@ -136,4 +137,3 @@ HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) # the second line corr
 \author{
 Martin R. Smith
 }
-\keyword{internal}

@@ -111,9 +111,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
-#' @param alab.rotate,blab.rotate,clab.rotate Integer specifying number of
+#' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
-#' @param alab.pos,blab.pos,clab.pos Integer specifying positioning of labels,
+#' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
 #'  iff corresponding `xlab.rotate` parameter is set.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
@@ -355,7 +355,6 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
 #' @template directionParam
 #' 
 #' @importFrom graphics par
-#' @keywords internal
 #' @export
 HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
                             grid.lty='dotted', grid.lwd=par('lwd'),

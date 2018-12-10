@@ -1,3 +1,6 @@
+# Ternary v1.0.2.9000 (development)
+ - Fix issues with `TernaryPlot` documentation.
+
 # Ternary v1.0.2
  - Improve configuration options by allowing:
    - Custom colouration of axis text
