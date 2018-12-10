@@ -1,10 +1,12 @@
+^CRAN-RELEASE$
+^data-raw$
+^man-roxygen$
 ^revdep$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+.covrignore
 cran-comments.md
 /^\.git/
 ^.*\.yml$
-.covrignore
 ^.*\.json$
-^data-raw$
-^man-roxygen$
+^.*\.sh$
