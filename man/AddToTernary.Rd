@@ -31,7 +31,9 @@ JoinTheDots(coordinates, ...)
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 
-\item{\dots}{Additional parameters to pass to \code{PlottingFunction}.}
+\item{\dots}{Additional parameters to pass to \code{PlottingFunction}.
+If using \code{TernaryText}, this will likely include the parameter \code{labels},
+to specify the text to plot.}
 }
 \description{
 Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
