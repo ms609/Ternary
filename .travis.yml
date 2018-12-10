@@ -21,7 +21,13 @@ r_packages:
    
 before_script:
  - R -e "devtools::document()"
-  
+ - chmod +x ./_build.sh
+ - chmod +x ./_deploy.sh
+
+script:
+  - travis_wait 43 ./_build.sh
+  - ./_deploy.sh
+
 after_success:
   - Rscript -e "covr::codecov()"
   
