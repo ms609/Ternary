@@ -6,7 +6,7 @@ set -e
 [ "${TRAVIS_BRANCH}" != "master" ] && exit 0
 git config --global user.email "martins@gmail.com"
 git config --global user.name "Martin Smith"
-git clone -b gh-pages https://${GITHUB_PAT}@github.com/${TRAVIS_REPO_SLUG}.git render-output
+git clone -b gh-pages https://github.com/${TRAVIS_REPO_SLUG}.git render-output
 Rscript -e "devtools::build_manual('.', './render-output')"
 cd render-output
 # cp -r ../doc/* ./
