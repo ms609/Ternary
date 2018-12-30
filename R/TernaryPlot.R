@@ -107,7 +107,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  the triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
-#'  Presently overrides the setting of `isometric`.
+#'  Default to display the complete height or width of the plot.  If \code{isometric=TRUE}
+#'  and only one of `xlim` and `ylim` is set, the other will be calculated to maintain
+#'  an equilateral plot.
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
@@ -117,7 +119,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  iff corresponding `xlab.rotate` parameter is set.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
-#'  for the ternary plot.  Presently ignored if `xlim` or `ylim` are set.
+#'  for the ternary plot.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
@@ -200,10 +202,13 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   if (isometric) {
     original_par <- par(pty='s')
     on.exit(par(original_par))
+    
+    if (is.null(xlim) && !is.null(ylim)) xlim <- TernaryXRange(direction) * (ylim[2] - ylim[1])
+    if (is.null(ylim) && !is.null(xlim)) ylim <- TernaryYRange(direction) * (xlim[2] - xlim[1])
   }
-  padVec <- c(-1, 1) * padding
   if (is.null(xlim)) xlim <- TernaryXRange(direction)
   if (is.null(ylim)) ylim <- TernaryYRange(direction)
+  padVec <- c(-1, 1) * padding
   
   
   plot(-999, -999, axes=FALSE, xlab='', ylab='',
