@@ -40,15 +40,20 @@ the triangle point up, left, right or down?}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
-Presently overrides the setting of \code{isometric}.
-Allows cropping to magnified region of the plot. (See vignette for diagram.)}
+Default to display the complete height or width of the plot.
+Allows cropping to magnified region of the plot. (See vignette for diagram.)
+May be overwridden if \code{isometric=TRUE}; see documentation for \code{isometric} parameter.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
 
 \item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
-for the ternary plot.  Presently ignored if \code{xlim} or \code{ylim} are set.}
+for the ternary plot.
+If only one of \code{xlim} and \code{ylim} is set, the other will be calculated to maintain
+an equilateral plot.
+If both \code{xlim} and \code{ylim} are set, but have different ranges, then the limit with the
+smaller range will be scaled until its range matches that of the other limit.}
 
 \item{atip.rotate, btip.rotate, ctip.rotate}{Integer specifying number of
 degrees to rotate label of rightmost apex.}
