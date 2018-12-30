@@ -1,5 +1,6 @@
-# Ternary v1.0.2.9000 (development)
+# Ternary v1.0.2.9001 (development)
  - Fix issues with `TernaryPlot` documentation.
+ - Maintain isometry when one of `xlim` or `ylim` is specified?
 
 # Ternary v1.0.2
  - Improve configuration options by allowing:
