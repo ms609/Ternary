@@ -107,10 +107,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  the triangle point up, left, right or down?
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
-#'  Default to display the complete height or width of the plot.  If \code{isometric=TRUE}
-#'  and only one of `xlim` and `ylim` is set, the other will be calculated to maintain
-#'  an equilateral plot.
+#'  Default to display the complete height or width of the plot.  
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
+#'  May be overwridden if \code{isometric=TRUE}; see documentation for `isometric` parameter.
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
@@ -120,6 +119,10 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
 #'  for the ternary plot.
+#'  If only one of `xlim` and `ylim` is set, the other will be calculated to maintain
+#'  an equilateral plot.
+#'  If both `xlim` and `ylim` are set, but have different ranges, then the limit with the
+#'  smaller range will be scaled until its range matches that of the other limit.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
@@ -204,7 +207,19 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
     on.exit(par(original_par))
     
     if (is.null(xlim) && !is.null(ylim)) xlim <- TernaryXRange(direction) * (ylim[2] - ylim[1])
-    if (is.null(ylim) && !is.null(xlim)) ylim <- TernaryYRange(direction) * (xlim[2] - xlim[1])
+    xRange <- xlim[2] - xlim[1]
+    if (is.null(ylim) && !is.null(xlim)) ylim <- TernaryYRange(direction) * xRange
+    yRange <- ylim[2] - ylim[1]
+    
+    if (length(xlim) > 0 && abs(xRange - yRange) > 1e-07) {
+      if (abs(xRange) < abs(yRange)) {
+        xlim <- xlim * (yRange / xRange)
+        warning("x range < y range, but isometric = TRUE; setting xlim = c(", xlim[1], ', ', xlim[2], ")")
+      } else {
+        ylim <- ylim * (xRange / yRange)
+        warning("x range > y range, but isometric = TRUE; setting ylim = c(", ylim[1], ', ', ylim[2], ")")
+      }
+    }
   }
   if (is.null(xlim)) xlim <- TernaryXRange(direction)
   if (is.null(ylim)) ylim <- TernaryYRange(direction)
