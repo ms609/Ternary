@@ -1,5 +1,6 @@
 ^CRAN-RELEASE$
 ^data-raw$
+^docs$
 ^man-roxygen$
 ^revdep$
 ^.*\.Rproj$
@@ -7,6 +8,7 @@
 .covrignore
 cran-comments.md
 /^\.git/
+^Rplot.*$
 ^.*\.yml$
 ^.*\.json$
 ^.*\.sh$
