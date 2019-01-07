@@ -1,4 +1,5 @@
-# Ternary v1.0.2.9001 (development)
+# Ternary v1.0.2.9002 (development)
+ - Add support for contour plots
  - Fix issues with `TernaryPlot` documentation.
  - Maintain isometry when one of `xlim` or `ylim` is specified?
 

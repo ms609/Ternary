@@ -14,8 +14,11 @@ TernaryYRange(direction = getOption("ternDirection"))
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-Returns the minimum and maximum X coordinate for a ternary plot,
-oriented in the specified direction.
+Returns the minimum and maximum X or Y coordinate of the area
+in which a ternary plot is drawn, oriented in the specified direction.
+Because the plotting area is a square, the triangle of the ternary plot
+will not occupy the full range in one direction.
+Assumes that the defaults have not been overwritten by specifying \code{xlim} or \code{ylim}.
 }
 \description{
 X and Y coordinates of ternary plotting area
