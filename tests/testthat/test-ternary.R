@@ -6,21 +6,22 @@ test_that("Errors are handled gracefully", {
 
 test_that("TernaryCoords gives correct coordinates", {
   options('ternDirection' = 2)
-  input <- list(
-    c(0, 0, 1), 
-    c(0, 2, 0),
-    c(3, 0, 0),
-    c(0, 9, 9),
-    c(2, 1, 1)
+  input <- cbind(
+    c(a = 0, b = 0, c = 1), 
+    c(a = 0, b = 2, c = 0),
+    c(a = 3, b = 0, c = 0),
+    c(a = 0, b = 9, c = 9),
+    c(a = 2, b = 1, c = 1)
   )
-  output <- list(
+  output <- cbind(
     c(0, 0.5),
     c(0, -0.5),
     c(sin(pi/3), 0),
     c(0, 0),
     c(sin(pi/3)/2, 0)
   )
-  expect_equal(output, lapply(input, TernaryCoords))
+  expect_equal(output, apply(input, 2, TernaryCoords))
+  expect_equal(input / rep(colSums(input), each=3), XYToTernary(output[1, ], output[2, ]))
   expect_error(TernaryCoords(rep(1, 5), 1, 1))
   expect_equal(c(0, 0.5), TernaryCoords(0, 0, 1))
 })

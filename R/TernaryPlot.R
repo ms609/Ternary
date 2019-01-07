@@ -56,49 +56,44 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
 
 #' Cartesian coordinates to ternary point
 #' 
-#' @param xy A vector of length two, giving the _x_ and _y_ coordinates of a point,
-#' or (with `y`) a numeric value giving the _x_ coordinate of a point.
-#' @param y Y coordinate of point in cartesian space
+#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
 #' @template directionParam
 #' 
-#' @return `XYToTernary` Returns a ternary point corresponding to the specified _x_ and _y_ 
+#' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
 #' coordinates, where a + b + c = 1.
 #' 
 #' 
 #' @author Martin R. Smith
 #' 
 #' @export
-XYToTernary <- function (xy, y_coord=NULL, direction=getOption('ternDirection')) {
-  if (!is.null(y_coord)) {
-    xy <- c(xy, y_coord)
-  }
-  if (length(xy) != 2) stop("Parameter xy must be a vector of length two.")
-  if (mode(xy) != 'numeric') stop("Parameter xy must be numeric.")
+XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
+  if (mode(x) != 'numeric') stop("Parameter x must be numeric.")
+  if (mode(y) != 'numeric') stop("Parameter y must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
   
   if (direction == 1L) {
-    a <- xy[2] / sqrt(0.75)
+    a <- y / sqrt(0.75)
     bcRange <- 1 - a
-    b <- xy[1] + (bcRange / 2)
+    b <- x + (bcRange / 2)
     c <- bcRange - b
   } else if (direction == 2L) {
-    a <- xy[1] / sqrt(0.75)
+    a <- x / sqrt(0.75)
     bcRange <- 1 - a
-    c <- xy[2] + (bcRange / 2)
+    c <- y + (bcRange / 2)
     b <- bcRange - c
   } else if (direction == 3L) {
-    a <- -xy[2] / sqrt(0.75)
+    a <- -y / sqrt(0.75)
     bcRange <- 1 - a
-    b <- -xy[1] + (bcRange / 2)
+    b <- -x + (bcRange / 2)
     c <- bcRange - b
   } else { # direction == 4L
-    a <- -xy[1] / sqrt(0.75)
+    a <- -x / sqrt(0.75)
     bcRange <- 1 - a
-    b <- xy[2] + (bcRange / 2)
+    b <- y + (bcRange / 2)
     c <- bcRange - b
   }
   # Return:
-  c(a, b, c)
+  rbind(a, b, c)
 }
  
 #' X and Y coordinates of ternary plotting area
