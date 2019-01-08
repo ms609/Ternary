@@ -4,19 +4,16 @@
 \alias{XYToTernary}
 \title{Cartesian coordinates to ternary point}
 \usage{
-XYToTernary(xy, y_coord = NULL, direction = getOption("ternDirection"))
+XYToTernary(x, y, direction = getOption("ternDirection"))
 }
 \arguments{
-\item{xy}{A vector of length two, giving the \emph{x} and \emph{y} coordinates of a point,
-or (with \code{y}) a numeric value giving the \emph{x} coordinate of a point.}
+\item{x, y}{Numeric values giving the \emph{x} and \emph{y} coordinates of a point or points.}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
-
-\item{y}{Y coordinate of point in cartesian space}
 }
 \value{
-\code{XYToTernary} Returns a ternary point corresponding to the specified \emph{x} and \emph{y}
+\code{XYToTernary} Returns the ternary point(s) corresponding to the specified \emph{x} and \emph{y}
 coordinates, where a + b + c = 1.
 }
 \description{

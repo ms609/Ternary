@@ -1,5 +1,7 @@
 #' Value of a function at regularly spaced points
 #'
+#' @template FuncParam
+#' @template resolutionParam
 #' @template directionParam
 #' @return A matrix whose rows correspond to:
 #' 
@@ -12,7 +14,7 @@
 #' 
 #' @author Martin R. Smith
 #' @export
-TernaryPointValues <- function(Func, resolution = 96L, direction = getOption('ternDirection')) {
+TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('ternDirection')) {
   if (direction == 1) {
     xRange <- c(-0.5, 0.5)
     dX <- 1
@@ -97,7 +99,9 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 #' @param spectrum Vector of colours to use as a spectrum.
 #' @template resolutionParam
 #' @template directionParam
+#' 
 #' @author Martin R. Smith
+#' 
 #' @importFrom viridisLite viridis
 #' @export
 ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0.6),
@@ -113,9 +117,19 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
   invisible()
 }
 
-
+#' Add contours to a ternary plot
+#' 
+#' Draws contour lines to depict the value of a function in ternary space
+#' 
+#' @template FuncParam
+#' @template resolutionParam
+#' @template directionParam
+#' @param \dots Further parameters to pass to `\link[graphics]{contour}
+#' 
+#' @author Martin R. Smith
+#' @importFrom graphics contour
 #' @export
-TernaryContour <- function (Func, resolution = 96L) {
+TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternDirection'), ...) {
   if (direction == 1) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
@@ -123,14 +137,12 @@ TernaryContour <- function (Func, resolution = 96L) {
   
   FunctionWrapper <- function(x, y) {
     abc <- XYToTernary(x, y)
-    Func(abc[1, ], abc[2, ], abc[3, ])
+    # TODO make more efficient by doing this intelligently rather than lazily
+    ifelse(apply(abc < - 0.6 / resolution, 2, any),
+           NA,
+           Func(abc[1, ], abc[2, ], abc[3, ]))
   }
   z <- outer(X=x, Y=y, FUN=FunctionWrapper)
-  
-  # TODO make more efficient by doing this intelligently rather than lazily
-  OutsideTriangle <- function(x, y) apply(XYToTernary(x, y) < 1e-7, 2, any)
-  z[outer(X=x, Y=y, FUN=OutsideTriangle)] <- NA
-  
-  contour(x, y, z, add=TRUE)
+  contour(x, y, z, add=TRUE, ...)
 }
 

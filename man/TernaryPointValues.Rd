@@ -4,10 +4,15 @@
 \alias{TernaryPointValues}
 \title{Value of a function at regularly spaced points}
 \usage{
-TernaryPointValues(Func, resolution = 96L,
+TernaryPointValues(Func, resolution = 48L,
   direction = getOption("ternDirection"))
 }
 \arguments{
+\item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
+whose value should be depicted.}
+
+\item{resolution}{Number of rows into which the larger triangle should be subdivided.}
+
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
@@ -16,7 +21,8 @@ A matrix whose rows correspond to:
 
 \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
 
-\strong{z}: The value of \code{Func(x, y)}
+\strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the ternary coordinates
+of \code{x} and \code{y}.
 
 \strong{down}: \code{0} if the triangle concerned points upwards (or right), \code{1} otherwise
 }
