@@ -30,6 +30,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
   if (mode(abc) != 'numeric') stop("Parameter abc must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  names(abc) <- NULL # or they may be inherited by x and y, confusingly
   
   abc <- abc[if (direction == 1L) c(2, 3, 1) else
              if (direction == 2L) c(3, 2, 1) else 
