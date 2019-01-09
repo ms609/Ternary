@@ -1,4 +1,4 @@
-# Ternary v1.0.2.9002 (development)
+# Ternary v1.0.2.9100 (development)
  - Add support for contour plots
  - Fix issues with `TernaryPlot` documentation.
  - Remove names in `TernaryCoords`.
