@@ -20,7 +20,7 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
   triangleHeight <- sqrt(0.75) / resolution
   trianglesInRow <- 2L * rev(seq_len(resolution)) - 1L
   
-  if (direction == 1) {
+  if (direction == 1) { # Point up
     triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
     upY <- seq(from = triangleHeight / 3,
                to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
@@ -32,6 +32,19 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     }))
     y <- rep(upY[seq_len(resolution)], trianglesInRow)
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
+    y <- y + (triDown * triangleHeight / 3)
+  } else if (direction == 3L) { # Point down
+    triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    upY <- seq(from = 0 - (2 * triangleHeight / 3),
+               to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
+    x <- unlist(lapply(seq_len(resolution), function (yStep) {
+      upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
+      downX <- if (yStep == resolution) integer(0) else 
+        triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
+      c(rbind(upX, c(downX, NA)))[-((resolution - yStep + 1) * 2L)]
+    }))
+    y <- rep(upY[seq_len(resolution)], trianglesInRow)
+    triDown <- unlist(lapply(trianglesInRow, seq_len)) %% 2L
     y <- y + (triDown * triangleHeight / 3)
   } else if (direction == 2L) { # "Up" is to the right
     rightX <- seq(from = triangleHeight / 3,
@@ -46,19 +59,6 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     x <- rep(rightX[seq_len(resolution)], trianglesInRow)
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
     x <- x + (triDown * triangleHeight / 3)
-  } else if (direction == 3L) {
-    triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
-    upY <- seq(from = 0  - (2 * triangleHeight / 3),
-               to = sqrt(0.75) + triangleHeight / 3, length.out = resolution)
-    x <- unlist(lapply(seq_len(resolution), function (yStep) {
-      upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
-      downX <- if (yStep == resolution) integer(0) else 
-        triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
-      c(rbind(upX, c(downX, NA)))[-((resolution - yStep + 1) * 2L)]
-    }))
-    y <- rep(upY[seq_len(resolution)], trianglesInRow)
-    triDown <- unlist(lapply(trianglesInRow, seq_len)) %% 2L
-    y <- y + (triDown * triangleHeight / 3)
   } else { # (direction == 4L)
     
   }
@@ -110,8 +110,9 @@ TernaryLeftTiles <- function(x, y, resolution, col) {
   widthBy3 <- width / 3
   height <- 1 / resolution
   heightBy2 <- height / 2
+  
   vapply(seq_along(x), function (i) {
-    cornerX <- x[i] + c(widthBy3 + widthBy3, rep(-widthBy3, 2))
+    cornerX <- x[i] - c(widthBy3 + widthBy3, rep(-widthBy3, 2))
     cornerY <- y[i] + c(0, heightBy2, -heightBy2)
     polygon(cornerX, cornerY, col = col[i], border = NA)
     logical(0)
@@ -127,6 +128,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
   widthBy3 <- width / 3
   height <- 1 / resolution
   heightBy2 <- height / 2
+  
   vapply(seq_along(x), function (i) {
     cornerX <- x[i] + c(widthBy3 + widthBy3, rep(-widthBy3, 2))
     cornerY <- y[i] + c(0, heightBy2, -heightBy2)
