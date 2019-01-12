@@ -78,6 +78,41 @@ TernaryDownTiles <- function(x, y, resolution, col) {
   invisible()
 }
 
+#' @keywords internal
+#' @export
+TernaryLeftTiles <- function(x, y, resolution, col) {
+  width <- sqrt(0.75) / resolution
+  widthBy3 <- width / 3
+  height <- 1 / resolution
+  heightBy2 <- height / 2
+  vapply(seq_along(x), function (i) {
+    cornerX <- x[i] + c(widthBy3 + widthBy3, rep(-widthBy3, 2))
+    cornerY <- y[i] + c(0, heightBy2, -heightBy2)
+    polygon(cornerX, cornerY, col = col[i], border = NA)
+    logical(0)
+  }, logical(0))
+  # Return:
+  invisible()
+}
+
+#' @keywords internal
+#' @export
+TernaryRightTiles <- function(x, y, resolution, col) {
+  width <- sqrt(0.75) / resolution
+  widthBy3 <- width / 3
+  height <- 1 / resolution
+  heightBy2 <- height / 2
+  vapply(seq_along(x), function (i) {
+    cornerX <- x[i] + c(widthBy3 + widthBy3, rep(-widthBy3, 2))
+    cornerY <- y[i] + c(0, heightBy2, -heightBy2)
+    polygon(cornerX, cornerY, col = col[i], border = NA)
+    logical(0)
+  }, logical(0))
+  # Return:
+  invisible()
+}
+
+
 #' @aliases TernaryUpTiles TernaryDownTiles TernaryLeftTiles TernaryRightTiles
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('ternDirection')) {
@@ -132,9 +167,18 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
 #' @importFrom graphics contour
 #' @export
 TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternDirection'), ...) {
-  if (direction == 1) {
+  if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
+  } else if (direction == 2L) {
+    x <- seq(0, sqrt(0.75), length.out = resolution)
+    y <- seq(-0.5, 0.5, length.out = resolution)
+  } else if (direction == 3L) {
+    x <- seq(-0.5, 0.5, length.out = resolution)
+    y <- seq(-sqrt(0.75), 0, length.out = resolution)
+  } else { # (direction == 4) 
+    x <- seq(-sqrt(0.75), 0, length.out = resolution)
+    y <- seq(-0.5, 0.5, length.out = resolution)
   }
   
   FunctionWrapper <- function(x, y) {
