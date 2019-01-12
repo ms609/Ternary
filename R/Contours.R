@@ -15,27 +15,52 @@
 #' @author Martin R. Smith
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('ternDirection')) {
+  
+  offset <- 1 / resolution / 2L
+  triangleHeight <- sqrt(0.75) / resolution
+  trianglesInRow <- 2L * rev(seq_len(resolution)) - 1L
+  
   if (direction == 1) {
-    xRange <- c(-0.5, 0.5)
-    dX <- 1
-    yRange <- c(0, sqrt(0.75))
-    dY <- sqrt(0.75)
-    offset <- dX / resolution / 2L
-    triangleHeight <- dY / resolution
-    trianglesInRow <- 2L * rev(seq_len(resolution)) - 1L
-    
-    triX <- seq(from=xRange[1] + offset, to=xRange[2] - offset, by=offset)
-    upY <- seq(from=yRange[1] + triangleHeight / 3,
-               to=yRange[2] - (2 * triangleHeight / 3), length.out = resolution)
+    triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    upY <- seq(from = triangleHeight / 3,
+               to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
     x <- unlist(lapply(seq_len(resolution), function (yStep) {
-      upX <- triX[seq(from=yStep, to=(2L * resolution) - yStep, by = 2L)]
-      downX <- if(yStep == resolution) integer(0) else 
+      upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
+      downX <- if (yStep == resolution) integer(0) else 
         triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
       c(rbind(upX, c(downX, NA)))[-((resolution - yStep + 1) * 2L)]
     }))
     y <- rep(upY[seq_len(resolution)], trianglesInRow)
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
     y <- y + (triDown * triangleHeight / 3)
+  } else if (direction == 2L) { # "Up" is to the right
+    rightX <- seq(from = triangleHeight / 3,
+                  to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
+    triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    y <- unlist(lapply(seq_len(resolution), function (xStep) {
+      rightY <- triY[seq(from = xStep, to = (2L * resolution) - xStep, by = 2L)]
+      leftY  <- if (xStep == resolution) integer(0) else 
+        triY[seq(from=xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
+      c(rbind(rightY, c(leftY, NA)))[-((resolution - xStep + 1) * 2L)]
+    }))
+    x <- rep(rightX[seq_len(resolution)], trianglesInRow)
+    triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
+    x <- x + (triDown * triangleHeight / 3)
+  } else if (direction == 3L) {
+    triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    upY <- seq(from = 0  - (2 * triangleHeight / 3),
+               to = sqrt(0.75) + triangleHeight / 3, length.out = resolution)
+    x <- unlist(lapply(seq_len(resolution), function (yStep) {
+      upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
+      downX <- if (yStep == resolution) integer(0) else 
+        triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
+      c(rbind(upX, c(downX, NA)))[-((resolution - yStep + 1) * 2L)]
+    }))
+    y <- rep(upY[seq_len(resolution)], trianglesInRow)
+    triDown <- unlist(lapply(trianglesInRow, seq_len)) %% 2L
+    y <- y + (triDown * triangleHeight / 3)
+  } else { # (direction == 4L)
+    
   }
   abc <- XYToTernary(x, y)
   # Return:
