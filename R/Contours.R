@@ -152,7 +152,33 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 }
 
 
+#' Paint tiles on ternary plot
+#' 
+#' Function to fill a ternary plot with coloured tiles.  Useful in combination with 
+#' [`TernaryPointValues`] and [`TernaryContour`].
+#' 
 #' @aliases TernaryUpTiles TernaryDownTiles TernaryLeftTiles TernaryRightTiles
+#' @param x,y Numeric vectors specifying _x_ and _y_ coordinates of centres of each triangle.
+#' @param down Logical vector specifying `TRUE` if each triangle should point down (or right),
+#' `FALSE` otherwise.
+#' @template resolutionParam
+#' @param col Vector specifying the colour with which to fill each triangle.
+#' @template directionParam
+#' 
+#' @examples
+#' 
+#' FunctionToContour <- function (a, b, c) {
+#'   a - c + (4 * a * b) + (27 * a * b * c)
+#' }
+#' 
+#' TernaryPlot()
+#' 
+#' values <- TernaryPointValues(FunctionToContour, resolution=24L)
+#' ColourTernary(values)
+#' TernaryContour(FunctionToContour, resolution=36L)
+#' 
+#' 
+#' @author Martin R. Smith
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('ternDirection')) {
   down <- as.logical(down)

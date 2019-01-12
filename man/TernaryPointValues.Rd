@@ -11,7 +11,9 @@ TernaryPointValues(Func, resolution = 48L,
 \item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
 whose value should be depicted.}
 
-\item{resolution}{Number of rows into which the larger triangle should be subdivided.}
+\item{resolution}{The number of triangles whose base should lie on the longest
+axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
+colour gradients, but at a computational cost.}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}

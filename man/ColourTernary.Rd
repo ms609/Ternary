@@ -14,7 +14,9 @@ generated using \code{[TernaryPointValues]}.}
 
 \item{spectrum}{Vector of colours to use as a spectrum.}
 
-\item{resolution}{Number of rows into which the larger triangle should be subdivided.}
+\item{resolution}{The number of triangles whose base should lie on the longest
+axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
+colour gradients, but at a computational cost.}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
