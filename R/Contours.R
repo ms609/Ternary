@@ -60,9 +60,21 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
     x <- x + (triDown * triangleHeight / 3)
   } else { # (direction == 4L)
-    
+    rightX <- seq(from = 0 - (2 * triangleHeight / 3),
+                  to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
+    triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    y <- unlist(lapply(seq_len(resolution), function (xStep) {
+      rightY <- triY[seq(from = xStep, to = (2L * resolution) - xStep, by = 2L)]
+      leftY  <- if (xStep == resolution) integer(0) else 
+        triY[seq(from=xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
+      c(rbind(rightY, c(leftY, NA)))[-((resolution - xStep + 1) * 2L)]
+    }))
+    x <- rep(rightX[seq_len(resolution)], trianglesInRow)
+    triDown <- (unlist(lapply(trianglesInRow, seq_len))) %% 2L
+    x <- x + (triDown * triangleHeight / 3)
   }
   abc <- XYToTernary(x, y)
+  
   # Return:
   rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ]), down = triDown)
 }

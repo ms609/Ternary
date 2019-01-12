@@ -124,6 +124,7 @@ FunctionToContour <- function (a, b, c) {
 }
 
 TernaryPlot()
+
 values <- TernaryPointValues(FunctionToContour, resolution=24L)
 ColourTernary(values)
 TernaryContour(FunctionToContour, resolution=36L)
