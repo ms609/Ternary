@@ -67,11 +67,13 @@ TernaryDownTiles <- function(x, y, resolution, col) {
   height <- sqrt(0.75) / resolution
   heightBy3 <- height / 3
   
-  apply(cbind(x, y, col), 1, function (tri) {
-    cornerX <- as.double(tri['x']) + c(0, widthBy2, -widthBy2)
-    cornerY <- as.double(tri['y']) - c(heightBy3 + heightBy3, rep(-heightBy3, 2))
-    polygon(cornerX, cornerY, col = tri['col'], border = NA)
-  })
+  vapply(seq_along(x), function (i) {
+    cornerX <- x[i] + c(0, widthBy2, -widthBy2)
+    cornerY <- y[i] - c(heightBy3 + heightBy3, rep(-heightBy3, 2))
+    polygon(cornerX, cornerY, col = col[i], border = NA)
+    logical(0)
+  }, logical(0))
+  
   # Return: 
   invisible()
 }
