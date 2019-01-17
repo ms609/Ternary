@@ -141,27 +141,32 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' additional elements can be added using cartesian coordinates, perhaps using
 #' functions such as [arrows](arrows), [legend] or [text].
 #' 
-#' @param atip,btip,ctip Character specifying text to title corners, proceeding clockwise
-#'  from the corner specified in `point` (default: top).
-#' @param alab,blab,clab Character specifying text with which to label the corresponding 
-#'  sides of the triangle.  Left or right-pointing arrows are produced by
+#' @param atip,btip,ctip Character string specifying text to title corners, 
+#' proceeding clockwise from the corner specified in `point` (default: top).
+#' @param alab,blab,clab Character string specifying text with which to label 
+#' the corresponding sides of the triangle.  
+#' Left or right-pointing arrows are produced by
 #'  typing `\\U2190` or `\\U2192`, or using `expression('value' %->% '')`.
 #' @param lab.offset Numeric specifying distance between midpoint of axis label and the axis.
 #'  Increase `padding` if labels are being clipped.
 #'                      
-#' @param point Character specifying the orientation of the ternary plot: should
-#'  the triangle point up, left, right or down?
+#' @param point Character string specifying the orientation of the ternary plot: 
+#' should the triangle point `"up"`, `"right"`, `"down"` or `"left"`? 
+#' The integers 1 to 4 can be used in place of the character strings.
+#' 
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
-#'  Default to display the complete height or width of the plot.  
+#'  The default is to display the complete height or width of the plot.  
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
-#'  May be overwridden if \code{isometric=TRUE}; see documentation for `isometric` parameter.
+#'  May be overwridden if `isometric=TRUE`; see documentation for
+#'  `isometric` parameter.
+#'  
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
 #' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
 #' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
-#'  iff corresponding `xlab.rotate` parameter is set.
+#'  iff the corresponding `xlab.rotate` parameter is set.
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
 #'  for the ternary plot.
@@ -171,18 +176,18 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  smaller range will be scaled until its range matches that of the other limit.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'  if axis labels are being clipped.
-#' @param col The colour for filling the plot; see \code{[graphics:polygon]}.
+#' @param col The colour for filling the plot; see \code{\link[graphics]{polygon}}.
 #' 
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
 #'  grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col The colour to draw the grid lines.
-#' @param grid.lty,grid.minor.lty Character or (integer) numeric; line type of 
+#' @param grid.lty,grid.minor.lty Character or integer; line type of 
 #'  the grid lines.
 #' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the
 #'  grid lines.
 #' 
-#' @param axis.lty  Line type for both the axis line and tick marks
+#' @param axis.lty  Line type for both the axis line and tick marks.
 #' @param axis.labels This can either be a logical value specifying whether 
 #'  (numerical) annotations are to be made at the tickmarks, or a character or
 #'  expression vector of labels to be placed at the tick points.
@@ -201,7 +206,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #'  \code{axis.col} resolved to.
 #' 
 #' 
-#' @param \dots Additional parameters to \code{[graphics:plot]}.
+#' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
 #' 
 #' @seealso {
 #'  - [AddToTernary]: Add elements to a ternary plot
