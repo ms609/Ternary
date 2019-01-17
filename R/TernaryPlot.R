@@ -55,12 +55,57 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
   ret
 }
 
+#' Cartesian coordinates to ternary point
+#' 
+#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
+#' @template directionParam
+#' 
+#' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
+#' coordinates, where a + b + c = 1.
+#' 
+#' 
+#' @author Martin R. Smith
+#' 
+#' @export
+XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
+  if (mode(x) != 'numeric') stop("Parameter x must be numeric.")
+  if (mode(y) != 'numeric') stop("Parameter y must be numeric.")
+  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  
+  if (direction == 1L) {
+    a <- y / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- x + (bcRange / 2)
+    c <- bcRange - b
+  } else if (direction == 2L) {
+    a <- x / sqrt(0.75)
+    bcRange <- 1 - a
+    c <- y + (bcRange / 2)
+    b <- bcRange - c
+  } else if (direction == 3L) {
+    a <- -y / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- -x + (bcRange / 2)
+    c <- bcRange - b
+  } else { # direction == 4L
+    a <- -x / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- y + (bcRange / 2)
+    c <- bcRange - b
+  }
+  # Return:
+  rbind(a, b, c)
+}
+ 
 #' X and Y coordinates of ternary plotting area
 #'
 #' @template directionParam
 #'
-#' @return Returns the minimum and maximum X coordinate for a ternary plot, 
-#' oriented in the specified direction.
+#' @return Returns the minimum and maximum X or Y coordinate of the area 
+#' in which a ternary plot is drawn, oriented in the specified direction.
+#' Because the plotting area is a square, the triangle of the ternary plot
+#' will not occupy the full range in one direction.
+#' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
 #' 
 #' @author Martin R. Smith
 #' @export
