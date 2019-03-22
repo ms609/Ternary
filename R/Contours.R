@@ -2,6 +2,9 @@
 #'
 #' Evaluates a function at points on a triangular grid. 
 #' Intended to facilitate coloured contour plots with [`ColourTernary`].
+#' 
+#' Density plotting functions are somewhat experimental; please report any
+#' issues at [https://github.com/ms609/Ternary/issues/new].
 #'
 #' @template FuncParam
 #' @template resolutionParam
