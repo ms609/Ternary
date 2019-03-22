@@ -2,9 +2,13 @@
 % Please edit documentation in R/Contours.R
 \name{TernaryPointValues}
 \alias{TernaryPointValues}
+\alias{TernaryDensity}
 \title{Value of a function at regularly spaced points}
 \usage{
 TernaryPointValues(Func, resolution = 48L,
+  direction = getOption("ternDirection"))
+
+TernaryDensity(coordinates, resolution = 48L,
   direction = getOption("ternDirection"))
 }
 \arguments{
@@ -17,6 +21,10 @@ colour gradients, but at a computational cost.}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{coordinates}{A list, matrix, data.frame or vector in which each
+element (or row) specifies
+the three coordinates of a point in ternary space.}
 }
 \value{
 A matrix whose rows correspond to:
@@ -29,8 +37,15 @@ of \code{x} and \code{y}.
 \strong{down}: \code{0} if the triangle concerned points upwards (or right), \code{1} otherwise
 }
 \description{
-Value of a function at regularly spaced points
+Evaluates a function at points on a triangular grid.
+Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
 }
+\section{Functions}{
+\itemize{
+\item \code{TernaryDensity}: Returns the density of points in each triangle
+}}
+
 \author{
 Martin R. Smith
 }
+\concept{Contour plots}

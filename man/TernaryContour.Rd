@@ -26,3 +26,4 @@ Draws contour lines to depict the value of a function in ternary space
 \author{
 Martin R. Smith
 }
+\concept{Contour plots}

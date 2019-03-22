@@ -32,6 +32,9 @@ TernaryPointValues <- function(Func, resolution = 48L,
 
 #' Coordinates of triangle mid-points
 #' 
+#' @template resolutionParam
+#' @template directionParam
+#' 
 #' @value A matrix containing three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
@@ -109,11 +112,16 @@ TriangleCentres <- function (resolution = 48L,
 }
 
 #' @describeIn TernaryPointValues Returns the density of points in each triangle
+#' @template coordinatesParam
 #' @importFrom sp point.in.polygon
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
-  
-  scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord), double(3))
+  if (class(coordinates) == 'list') {
+    scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord), double(3))
+  } else {
+    scaled <- resolution * apply(coordinates, 1, function (coord) coord / sum(coord))
+  }
+  if (direction != 1L) stop("This function only supports 'upright' plots. Support for other directions coming soon.")
   whichTri <- floor(scaled)
   margins <- scaled %% 1 == 0
   onVertex <- apply(margins, 2, all)
@@ -134,7 +142,6 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   OnUpEdge <- function (abc) {
     # Return 1 for points on edge, 2 for each point on outer edge, 0 for each other.
     onThisEdge <- apply(floorEdges, 2, AllEqual, abc)
-    cat(onThisEdge)
     theseEdges <- edges[, onThisEdge, drop=FALSE]
     
     ncol(theseEdges) + 
