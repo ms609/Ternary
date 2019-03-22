@@ -122,26 +122,57 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   
   centres <- whichTri[, !onEdge & !onVertex, drop=FALSE]
   edges   <- scaled[, onEdge, drop=FALSE]
+  floorEdges <- floor(edges)
   vertices <- scaled[, onVertex, drop=FALSE]
+  floorVertices <- floor(vertices)
   
-  OnEdge <- function (abc) {
+  OnUpEdge <- function (abc) {
+    # Return 1 for points on edge, 2 for each point on outer edge, 0 for each other.
+    onThisEdge <- apply(floorEdges, 2, identical, abc)
+    theseEdges <- edges[, onThisEdge, drop=FALSE]
     
-    # Return 1 if on edge, 2 if on outer edge, 0 otherwise.
+    ncol(theseEdges) + 
+    {if (abc[1] == 0) sum(theseEdges[1, ] == 0) else 0L} +
+    {if (abc[2] == 0) sum(theseEdges[2, ] == 0) else 0L} +
+    {if (abc[3] == 0) sum(theseEdges[3, ] == 0) else 0L}
+  }
+  OnDownEdge <- function (abc) {
+    sum(
+      apply(edges, 2, identical, abc + c(0.5, 0.5, 1.0)),
+      apply(edges, 2, identical, abc + c(0.5, 1.0, 0.5)),
+      apply(edges, 2, identical, abc + c(1.0, 0.5, 0.5))
+    )
   }
   OnVertex <- function (abc) {
     
-    # Return 1 if on vertex, 2 if on vertex on edge of plot, 6 if on vertex of plot
+    # Return 1 for each point on vertex, 
+    # 2 for each point on a vertex on edge of plot, 
+    # 6 for each point on outer vertex of plot
   }
   
   # Each point contributes a score of six, which -- if on a vertex -- may need
   # sharing between 2, 3 or 6 triangles.
   #ups <-
+  lapply(seq_len(resolution) - 1L, function (a) {
+    sapply(seq_len(resolution - a) - 1L, function (b) {
+      abc <- c(a, b, resolution - a- b - 1L)
+      paste0(a, b, resolution - a - b - 1L, ':', OnUpEdge(abc))
+    }, USE.NAMES = FALSE)
+  })
+  #
     lapply(seq_len(resolution) - 1L, function (a) {
     vapply(seq_len(resolution - a) - 1L, function (b) {
       abc <- c(a, b, resolution - a - b - 1L)
       (6 * sum(apply(centres, 2, identical, abc))) + 
       (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
       }, double(1), USE.NAMES = FALSE)
+  })
+  #downs <- 
+    lapply(seq_len(resolution - 1L) - 1L, function (a) {
+    sapply(seq_len(resolution - a - 1L) - 1L, function (b) {
+      abc <- c(a, b, resolution - a - b - 2L)
+      paste0(a, b, abc[3], ': ', OnDownEdge(abc))
+      }, USE.NAMES = FALSE)
   })
   #downs <- 
     lapply(seq_len(resolution - 1L) - 1L, function (a) {
