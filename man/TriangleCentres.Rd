@@ -15,6 +15,14 @@ colour gradients, but at a computational cost.}
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
+\value{
+A matrix containing three named rows:
+\itemize{
+\item \code{x} \emph{x} coordinates of triangle midpoints;
+\item \code{y} \emph{y} coordinates of triangle midpoints;
+\item \code{triDown} binary integer specifying whether given triangle points down.
+}
+}
 \description{
 Coordinates of triangle mid-points
 }

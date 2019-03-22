@@ -35,7 +35,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @template resolutionParam
 #' @template directionParam
 #' 
-#' @value A matrix containing three named rows:
+#' @return A matrix containing three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` binary integer specifying whether given triangle points down.
