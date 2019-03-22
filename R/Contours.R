@@ -113,7 +113,6 @@ TriangleCentres <- function (resolution = 48L,
 
 #' @describeIn TernaryPointValues Returns the density of points in each triangle
 #' @template coordinatesParam
-#' @importFrom sp point.in.polygon
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
   if (class(coordinates) == 'list') {
