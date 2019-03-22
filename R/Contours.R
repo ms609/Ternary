@@ -1,5 +1,8 @@
 #' Value of a function at regularly spaced points
 #'
+#' Evaluates a function at points on a triangular grid. 
+#' Intended to facilitate coloured contour plots with [`ColourTernary`].
+#'
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
@@ -12,15 +15,36 @@
 #'   
 #'   **down**: `0` if the triangle concerned points upwards (or right), `1` otherwise
 #' 
+#' @concept Contour plots
 #' @author Martin R. Smith
 #' @export
-TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('ternDirection')) {
+TernaryPointValues <- function(Func, resolution = 48L, 
+                               direction = getOption('ternDirection')) {
+  triangleCentres <- TriangleCentres (resolution, direction)
+  x <- triangleCentres['x', ]
+  y <- triangleCentres['y', ]
+  abc <- XYToTernary(x, y)
+  
+  # Return:
+  rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ]), 
+        down = triangleCentres['triDown', ])
+}
+
+#' Coordinates of triangle mid-points
+#' 
+#' @value A matrix containing three named rows:
+#'  - `x` _x_ coordinates of triangle midpoints;
+#'  - `y` _y_ coordinates of triangle midpoints;
+#'  - `triDown` logical specifying whether given triangle points down.
+TriangleCentres <- function (resolution = 48L, 
+                             direction = getOption('ternDirection')) {
   
   offset <- 1 / resolution / 2L
   triangleHeight <- sqrt(0.75) / resolution
   trianglesInRow <- 2L * rev(seq_len(resolution)) - 1L
   
   if (direction == 1) { # Point up
+    
     triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
     upY <- seq(from = triangleHeight / 3,
                to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
@@ -33,7 +57,9 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     y <- rep(upY[seq_len(resolution)], trianglesInRow)
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
     y <- y + (triDown * triangleHeight / 3)
+    
   } else if (direction == 3L) { # Point down
+    
     triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
     upY <- seq(from = 0 - (2 * triangleHeight / 3),
                to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
@@ -46,7 +72,9 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     y <- rep(upY[seq_len(resolution)], trianglesInRow)
     triDown <- unlist(lapply(trianglesInRow, seq_len)) %% 2L
     y <- y + (triDown * triangleHeight / 3)
+    
   } else if (direction == 2L) { # "Up" is to the right
+    
     rightX <- seq(from = triangleHeight / 3,
                   to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
     triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
@@ -59,7 +87,9 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     x <- rep(rightX[seq_len(resolution)], trianglesInRow)
     triDown <- (1 + unlist(lapply(trianglesInRow, seq_len))) %% 2L
     x <- x + (triDown * triangleHeight / 3)
+    
   } else { # (direction == 4L)
+    
     rightX <- seq(from = 0 - (2 * triangleHeight / 3),
                   to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
     triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
@@ -73,10 +103,54 @@ TernaryPointValues <- function(Func, resolution = 48L, direction = getOption('te
     triDown <- (unlist(lapply(trianglesInRow, seq_len))) %% 2L
     x <- x + (triDown * triangleHeight / 3)
   }
-  abc <- XYToTernary(x, y)
   
-  # Return:
-  rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ]), down = triDown)
+  #Return:
+  rbind(x, y, triDown)
+}
+
+#' @describeIn TernaryPointValues Returns the density of points in each triangle
+#' @importFrom sp point.in.polygon
+#' @export
+TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
+  
+  scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord), double(3))
+  whichTri <- floor(scaled)
+  margins <- scaled %% 1 == 0
+  onVertex <- apply(margins, 2, all)
+  onEdge <- logical(length(onVertex))
+  onEdge[!onVertex] <- apply(margins[, !onVertex], 2, any)
+  
+  centres <- whichTri[, !onEdge & !onVertex, drop=FALSE]
+  edges   <- scaled[, onEdge, drop=FALSE]
+  vertices <- scaled[, onVertex, drop=FALSE]
+  
+  OnEdge <- function (abc) {
+    
+    # Return 1 if on edge, 2 if on outer edge, 0 otherwise.
+  }
+  OnVertex <- function (abc) {
+    
+    # Return 1 if on vertex, 2 if on vertex on edge of plot, 6 if on vertex of plot
+  }
+  
+  # Each point contributes a score of six, which -- if on a vertex -- may need
+  # sharing between 2, 3 or 6 triangles.
+  #ups <-
+    lapply(seq_len(resolution) - 1L, function (a) {
+    vapply(seq_len(resolution - a) - 1L, function (b) {
+      abc <- c(a, b, resolution - a - b - 1L)
+      (6 * sum(apply(centres, 2, identical, abc))) + 
+      (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
+      }, double(1), USE.NAMES = FALSE)
+  })
+  #downs <- 
+    lapply(seq_len(resolution - 1L) - 1L, function (a) {
+    vapply(seq_len(resolution - a - 1L) - 1L, function (b) {
+      abc <- c(a, b, resolution - a - b - 2L)
+      6 * sum(apply(centres, 2, identical, abc))
+      }, double(1), USE.NAMES = FALSE)
+  })
+  
 }
 
 #' @keywords internal
@@ -179,6 +253,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' 
 #' 
 #' @author Martin R. Smith
+#' 
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('ternDirection')) {
   down <- as.logical(down)
@@ -204,6 +279,7 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 #' 
 #' @author Martin R. Smith
 #' 
+#' @concept Contour plots
 #' @importFrom viridisLite viridis
 #' @export
 ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0.6),
@@ -229,6 +305,8 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
 #' @param \dots Further parameters to pass to `\link[graphics]{contour}
 #' 
 #' @author Martin R. Smith
+#' 
+#' @concept Contour plots
 #' @importFrom graphics contour
 #' @export
 TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternDirection'), ...) {
