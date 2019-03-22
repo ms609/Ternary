@@ -35,7 +35,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @value A matrix containing three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
-#'  - `triDown` logical specifying whether given triangle points down.
+#'  - `triDown` binary integer specifying whether given triangle points down.
 TriangleCentres <- function (resolution = 48L, 
                              direction = getOption('ternDirection')) {
   
@@ -124,11 +124,17 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   edges   <- scaled[, onEdge, drop=FALSE]
   floorEdges <- floor(edges)
   vertices <- scaled[, onVertex, drop=FALSE]
-  floorVertices <- floor(vertices)
+  vertexLocation <- apply(vertices == 0, 2, sum)
+  vertexInternal <- vertexLocation == 0L
+  vertexOnEdge <- vertexLocation == 1L
+  vertexOnCorner <- vertexLocation == 2L
+  
+  AllEqual <- function (x, y) all(x == y)
   
   OnUpEdge <- function (abc) {
     # Return 1 for points on edge, 2 for each point on outer edge, 0 for each other.
-    onThisEdge <- apply(floorEdges, 2, identical, abc)
+    onThisEdge <- apply(floorEdges, 2, AllEqual, abc)
+    cat(onThisEdge)
     theseEdges <- edges[, onThisEdge, drop=FALSE]
     
     ncol(theseEdges) + 
@@ -138,50 +144,73 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   }
   OnDownEdge <- function (abc) {
     sum(
-      apply(edges, 2, identical, abc + c(0.5, 0.5, 1.0)),
-      apply(edges, 2, identical, abc + c(0.5, 1.0, 0.5)),
-      apply(edges, 2, identical, abc + c(1.0, 0.5, 0.5))
+      apply(edges, 2, AllEqual, abc + c(0.5, 0.5, 1.0)),
+      apply(edges, 2, AllEqual, abc + c(0.5, 1.0, 0.5)),
+      apply(edges, 2, AllEqual, abc + c(1.0, 0.5, 0.5))
     )
   }
-  OnVertex <- function (abc) {
+  OnUpVertex <- function (abc) {
+    onThisTriangle <-
+      apply(vertices, 2, AllEqual, abc + c(1L, 0L, 0L)) |
+      apply(vertices, 2, AllEqual, abc + c(0L, 1L, 0L)) |
+      apply(vertices, 2, AllEqual, abc + c(0L, 0L, 1L))
+
+    sum(vertexInternal[onThisTriangle], # Return 1 for each point on vertex, 
+        2L * vertexOnEdge[onThisTriangle], # 2 for each point on a vertex on edge of plot, 
+        6L * vertexOnCorner[onThisTriangle])# 6 for each point on outer vertex of plot
+  }
+  OnDownVertex <- function (abc) {
+    onThisTriangle <-
+      apply(vertices, 2, AllEqual, abc + c(1L, 1L, 0L)) |
+      apply(vertices, 2, AllEqual, abc + c(1L, 0L, 1L)) |
+      apply(vertices, 2, AllEqual, abc + c(0L, 1L, 1L))
     
-    # Return 1 for each point on vertex, 
-    # 2 for each point on a vertex on edge of plot, 
-    # 6 for each point on outer vertex of plot
+    sum(vertexInternal[onThisTriangle], 2L * vertexOnEdge[onThisTriangle])
   }
   
+    
   # Each point contributes a score of six, which -- if on a vertex -- may need
   # sharing between 2, 3 or 6 triangles.
-  #ups <-
-  lapply(seq_len(resolution) - 1L, function (a) {
-    sapply(seq_len(resolution - a) - 1L, function (b) {
-      abc <- c(a, b, resolution - a- b - 1L)
-      paste0(a, b, resolution - a - b - 1L, ':', OnUpEdge(abc))
-    }, USE.NAMES = FALSE)
-  })
-  #
-    lapply(seq_len(resolution) - 1L, function (a) {
+  
+  #lapply(seq_len(resolution) - 1L, function (a) {
+  #  sapply(seq_len(resolution - a) - 1L, function (b) {
+  #    abc <- c(a, b, resolution - a- b - 1L)
+  #    paste0(paste0(abc, collapse=','), ': E', 3*OnUpEdge(abc), " +C", OnUpVertex(abc))
+  #  }, USE.NAMES = FALSE)
+  #})
+   ups <- unlist(lapply(seq_len(resolution) - 1L, function (a) {
     vapply(seq_len(resolution - a) - 1L, function (b) {
       abc <- c(a, b, resolution - a - b - 1L)
-      (6 * sum(apply(centres, 2, identical, abc))) + 
+      (6 * sum(apply(centres, 2, AllEqual, abc))) + 
       (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
       }, double(1), USE.NAMES = FALSE)
-  })
-  #downs <- 
-    lapply(seq_len(resolution - 1L) - 1L, function (a) {
-    sapply(seq_len(resolution - a - 1L) - 1L, function (b) {
-      abc <- c(a, b, resolution - a - b - 2L)
-      paste0(a, b, abc[3], ': ', OnDownEdge(abc))
-      }, USE.NAMES = FALSE)
-  })
-  #downs <- 
+  }))
+  
+  #lapply(seq_len(resolution - 1L) - 1L, function (a) {
+  #  sapply(seq_len(resolution - a - 1L) - 1L, function (b) {
+  #    abc <- c(a, b, resolution - a - b - 2L)
+  #    paste0(a, b, abc[3], ': ', OnDownEdge(abc) , '; C: ', OnDownVertex(abc))
+  #    }, USE.NAMES = FALSE)
+  #})
+  downs <- unlist(
     lapply(seq_len(resolution - 1L) - 1L, function (a) {
     vapply(seq_len(resolution - a - 1L) - 1L, function (b) {
       abc <- c(a, b, resolution - a - b - 2L)
-      6 * sum(apply(centres, 2, identical, abc))
+      6 * sum(apply(centres, 2, AllEqual, abc)) +
+        (3 * sum(OnDownEdge(abc))) + sum(OnDownVertex(abc))
       }, double(1), USE.NAMES = FALSE)
-  })
+  }))
   
+  centrePoints <- TriangleCentres(resolution, direction)
+  triDown <- as.logical(centrePoints['triDown', ])
+  ret <- integer(length(ups) + length(downs))
+  ret[triDown] <- downs
+  ret[!triDown] <- ups
+  
+  # Return:
+  rbind(centrePoints[1:2, ], 
+        z = ret, 
+        down = triDown)
 }
 
 #' @keywords internal

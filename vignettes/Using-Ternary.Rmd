@@ -134,6 +134,7 @@ TernaryContour(FunctionToContour, resolution=36L)
 ```{r density-contours}
 coordinates <- list(middle = c(1, 1, 1),
                top = c(1, 0, 0),
+               belowTop = c(2, 1, 1),
                leftSideSolid = c(9, 2, 9),
                leftSideSolid2 = c(9, 2, 9) / 2,
                right3way = c(1, 2, 0),
@@ -143,12 +144,13 @@ coordinates <- list(middle = c(1, 1, 1),
                rightBorder = c(1, 2, 3)
                )
 
-TernaryPlot()
+TernaryPlot(grid.lines=3, axis.labels=1:3)
 
-values <- TernaryPointValues(FunctionToContour, resolution=3L)
+values <- TernaryDensity(coordinates, resolution=3L)
 ColourTernary(values)
 TernaryPoints(coordinates, col='red')
-TernaryContour(FunctionToContour, resolution=36L)
+text(values[1, ], values[2, ])
+#TernaryContour(FunctionToContour, resolution=36L)
 
 ```
 
