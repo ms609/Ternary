@@ -185,11 +185,9 @@ ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) 
   }, {
     # 4L
     corners <- matrix(c(-cos(pi/6), 0, 0, 0.5, 0, -0.5), nrow=2)
-    edgeM <- tan(pi/6) * rep(c(1, -1, 0), 2)
-    edgeC <- 0.5 * c(1, 1, 0, -1, -1, 1)
+    edgeM <- tan(pi/6) * rep(c(1, -1, Inf), 2)
+    edgeC <- 0.5 * c(1, -1, 0, -1, 1, -2 * cos(pi/6))
   })
-  xx <- lapply((1:6)[is.finite(edgeM)], function (i) abline(edgeC[i], edgeM[i], col=i))
-  xx <- lapply((1:6)[!is.finite(edgeM)], function (i) abline(v=edgeC[i], col=i))
 
   # If m = Inf, we have a vertical line, and c specifies its x intercept.
   ReflectAcrossLine <- function (xi, yi, m, c) {
