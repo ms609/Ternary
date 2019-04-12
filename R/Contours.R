@@ -468,7 +468,13 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
     1.06 * min(sqrt(var(x)), h) * lengthX ^ (-0.2)
   }
   
+  h <- if (missing(bandwidth)) {
+    c(Bandwidth(x, n), Bandwidth(y, n))
+  } else {
+    rep(bandwidth / 4L, length.out = 2L)
+  }
   
+
   switch (direction, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
     gy <- seq(0, sqrt(0.75), length.out = resolution)
@@ -497,7 +503,7 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
                   matrix(dnorm(ay), ncol = n)) / prod(n, h)
   
   # TODO make more efficient by doing this intelligently rather than lazily
-  zOffPlot <- outer(gx, gy, OutsidePlot)
+  zOffPlot <- outer(gx, gy, OutsidePlot, tolerance = -0.2 / resolution)
   z[zOffPlot] <- NA
   
   contour(list(x = gx, y = gy, z = z), add=TRUE) #, ...

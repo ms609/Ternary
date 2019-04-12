@@ -137,13 +137,17 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' Is a point in the plotting area?
 #' 
 #' @param x,y Vectors of _x_ and _y_ coordinates of points
+#' @param tolerance Consider points this close to the edge of the plot to be 
+#' inside.  Set to negative values to count points that are just outside the 
+#' plot as inside, and to positive values to count points that are just inside
+#' the margins as outside. Maximum positive value: 1/3.
 #' 
 #' @return Logical vector specifying whether each pair of _x_ and _y_ coordinates
 #' corresponds to a point outside the plotted ternary diagram.
 #' 
 #' @author Martin R. Smith
 #' @export
-OutsidePlot <- function (x, y) {
+OutsidePlot <- function (x, y, tolerance = 0) {
   abc <- XYToTernary(x, y)
-  apply(abc < - 0.6 / resolution, 2, any)
+  apply(abc < tolerance, 2, any)
 }
