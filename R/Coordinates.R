@@ -176,7 +176,7 @@ ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) 
     # 2L
     corners <- matrix(c(cos(pi/6), 0, 0, -0.5, 0, 0.5), nrow=2)
     edgeM <- tan(pi/6) * rep(c(-1, 1, Inf), 2)
-    edgeC <- 0.5 * c(1, 1, 0, -1, -1, 2 * cos(pi/6))
+    edgeC <- 0.5 * c(1, -1, 0, -1, 1, 2 * cos(pi/6))
   }, {
     # 3L
     corners <- matrix(c(0, -cos(pi/6), -0.5, 0, 0.5, 0), nrow=2)
@@ -197,7 +197,7 @@ ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) 
     ret <- cbind(d + d - xi, 2 * d * m - yi + c + c)
     infiniteM <- !is.finite(m)
     if (any(infiniteM)) {
-      altRet <- cbind(c + c - xi, rep(y, length.out=dim(ret)[1]))
+      altRet <- cbind(c + c - xi, rep(yi, length.out=max(length(c), length(xi))))
       ret[infiniteM, ] <- altRet[infiniteM, ]
     }
     ret
