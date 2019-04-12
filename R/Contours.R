@@ -42,6 +42,9 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` binary integer specifying whether given triangle points down.
+#'  
+#' @author Martin R. Smith
+#' @export
 TriangleCentres <- function (resolution = 48L, 
                              direction = getOption('ternDirection')) {
   
@@ -119,11 +122,12 @@ TriangleCentres <- function (resolution = 48L,
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
   if (class(coordinates) == 'list') {
-    scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord), double(3))
+    scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord),
+                                  double(3L))
   } else {
     scaled <- resolution * apply(coordinates, 1, function (coord) coord / sum(coord))
   }
-  if (direction != 1L) stop("This function only supports 'upright' plots. Support for other directions coming soon.")
+  
   whichTri <- floor(scaled)
   margins <- scaled %% 1 == 0
   onVertex <- apply(margins, 2, all)
@@ -187,13 +191,6 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   #    paste0(paste0(abc, collapse=','), ': E', 3*OnUpEdge(abc), " +C", OnUpVertex(abc))
   #  }, USE.NAMES = FALSE)
   #})
-   ups <- unlist(lapply(seq_len(resolution) - 1L, function (a) {
-    vapply(seq_len(resolution - a) - 1L, function (b) {
-      abc <- c(a, b, resolution - a - b - 1L)
-      (6 * sum(apply(centres, 2, AllEqual, abc))) + 
-      (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
-      }, double(1), USE.NAMES = FALSE)
-  }))
   
   #lapply(seq_len(resolution - 1L) - 1L, function (a) {
   #  sapply(seq_len(resolution - a - 1L) - 1L, function (b) {
@@ -201,6 +198,15 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   #    paste0(a, b, abc[3], ': ', OnDownEdge(abc) , '; C: ', OnDownVertex(abc))
   #    }, USE.NAMES = FALSE)
   #})
+  
+  # Work with an upright triangle for now.  Then translate it if necessary
+  ups <- unlist(lapply(seq_len(resolution) - 1L, function (a) {
+    vapply(seq_len(resolution - a) - 1L, function (b) {
+      abc <- c(a, b, resolution - a - b - 1L)
+      (6 * sum(apply(centres, 2, AllEqual, abc))) + 
+      (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
+      }, double(1), USE.NAMES = FALSE)
+  }))
   downs <- unlist(
     lapply(seq_len(resolution - 1L) - 1L, function (a) {
     vapply(seq_len(resolution - a - 1L) - 1L, function (b) {
@@ -211,10 +217,25 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   }))
   
   centrePoints <- TriangleCentres(resolution, direction)
-  triDown <- as.logical(centrePoints['triDown', ])
-  ret <- integer(length(ups) + length(downs))
-  ret[triDown] <- downs
-  ret[!triDown] <- ups
+  
+  switch(direction, {
+    # 1L = point up
+    triDown <- as.logical(centrePoints['triDown', ])
+    ret <- integer(length(ups) + length(downs))
+    ret[triDown] <- downs
+    ret[!triDown] <- ups
+  }, {
+    #2L = right
+  }, {
+    #3L = down
+    triDown <- as.logical(centrePoints['triDown', ])
+    ret <- integer(length(ups) + length(downs))
+    ret[!triDown] <- downs
+    ret[triDown] <- ups
+  }, {
+    #4L = left
+  })
+  
   
   # Return:
   rbind(centrePoints[1:2, ], 
