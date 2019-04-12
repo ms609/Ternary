@@ -449,7 +449,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' @concept Contour plots
 #' @author Adapted from MASS::kde2d by Martin R. Smith
 #' @export
-TernaryKDE <- function (coordinates, bandwidth, resolution = 25L, ...) {
+TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, ...) {
   xy <- apply(coordinates, 1, TernaryCoords)
   x <- xy[1, ]
   y <- xy[2, ]
