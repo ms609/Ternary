@@ -5,7 +5,7 @@ test_that("Errors are handled gracefully", {
 })
 
 test_that("TernaryCoords gives correct coordinates", {
-  options('ternDirection' = 2)
+  options('ternDirection' = 2L)
   input <- cbind(
     c(a = 0, b = 0, c = 1), 
     c(a = 0, b = 2, c = 0),
