@@ -3,8 +3,8 @@
 #' Evaluates a function at points on a triangular grid. 
 #' Intended to facilitate coloured contour plots with [`ColourTernary`].
 #' 
-#' Density plotting functions are somewhat experimental; please report any
-#' issues at [https://github.com/ms609/Ternary/issues/new].
+#' Density plotting functions are somewhat experimental; please
+#' \href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
 #'
 #' @template FuncParam
 #' @template resolutionParam
@@ -13,10 +13,11 @@
 #' 
 #'   **x**, **y**: co-ordinates of the centres of smaller triangles
 #'   
-#'   **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the ternary coordinates
-#'   of `x` and `y`.
+#'   **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the 
+#'   ternary coordinates of `x` and `y`.
 #'   
-#'   **down**: `0` if the triangle concerned points upwards (or right), `1` otherwise
+#'   **down**: `0` if the triangle concerned points upwards (or right), 
+#'   `1` otherwise
 #' 
 #' @concept Contour plots
 #' @author Martin R. Smith
@@ -365,7 +366,7 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 #' Colour a ternary plot according to the output of a function
 #' 
 #' @param values Numeric vector specifying the values associated with each point, 
-#' generated using `[TernaryPointValues]`.
+#' generated using [`TernaryPointValues`].
 #' @param spectrum Vector of colours to use as a spectrum.
 #' @template resolutionParam
 #' @template directionParam
@@ -390,12 +391,12 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
 
 #' Add contours to a ternary plot
 #' 
-#' Draws contour lines to depict the value of a function in ternary space
+#' Draws contour lines to depict the value of a function in ternary space.
 #' 
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
-#' @param \dots Further parameters to pass to `\link[graphics]{contour}
+#' @template dotsToContour
 #' 
 #' @author Martin R. Smith
 #' 
@@ -437,19 +438,23 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' "an axis-aligned bivariate normal kernel, evaluated on a square grid";
 #' a model based on a triangular grid may be more appropriate.  If this
 #' distinction is important to you, please let the maintainers known by opening a 
-#' [Github issue](https://github.com/ms609/Ternary/issues/new?title=Triangular%20KDE).
+#' \href{https://github.com/ms609/Ternary/issues/new?title=Triangular%20KDE}{Github issue}.
 #' 
 #' @template coordinatesParam
 #' @param bandwidth Vector of bandwidths for x and y directions. 
 #' Defaults to normal reference bandwidth (see MASS::bandwidth.nrd).
 #' A scalar value will be taken to apply to both directions.
 #' @template resolutionParam
-#' @param \dots Additional parameters to pass to `contour`.
+#' @template directionParam
+#' @template dotsToContour
 #' 
 #' @concept Contour plots
 #' @author Adapted from MASS::kde2d by Martin R. Smith
 #' @export
-TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, ...) {
+TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 
+                                   direction = getOption('ternDirection'),
+                                   ...) {
+  # Adapted from MASS::kde2d
   xy <- apply(coordinates, 1, TernaryCoords)
   x <- xy[1, ]
   y <- xy[2, ]
@@ -460,15 +465,24 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, ...
     r <- quantile(x, c(0.25, 0.75))
     h <- (r[2L] - r[1L]) / 1.34
     # Don't multiply by 4 just to divide by 4 again...
-    1.06 * min(sqrt(var(x)), h) * lengthX^(-0.2)
+    1.06 * min(sqrt(var(x)), h) * lengthX ^ (-0.2)
   }
   
-  # Adapted from MASS::kde2d
-  xLim <- TernaryXRange()
-  yLim <- TernaryYRange()
   
-  gx <- seq.int(xLim[1L], xLim[2L], length.out = resolution)
-  gy <- seq.int(yLim[1L], yLim[2L], length.out = resolution)
+  switch (direction, {
+    gx <- seq(-0.5, 0.5, length.out = resolution)
+    gy <- seq(0, sqrt(0.75), length.out = resolution)
+  }, {
+    gx <- seq(0, sqrt(0.75), length.out = resolution)
+    gy <- seq(-0.5, 0.5, length.out = resolution)
+  }, {
+    gx <- seq(-0.5, 0.5, length.out = resolution)
+    gy <- seq(-sqrt(0.75), 0, length.out = resolution)
+  }, { 
+    gx <- seq(-sqrt(0.75), 0, length.out = resolution)
+    gy <- seq(-0.5, 0.5, length.out = resolution)
+  })
+  
   h <- if (missing(bandwidth)) {
     c(Bandwidth(x, n), Bandwidth(y, n))
   } else {

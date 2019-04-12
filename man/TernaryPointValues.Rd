@@ -31,14 +31,19 @@ A matrix whose rows correspond to:
 
 \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
 
-\strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the ternary coordinates
-of \code{x} and \code{y}.
+\strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the
+ternary coordinates of \code{x} and \code{y}.
 
-\strong{down}: \code{0} if the triangle concerned points upwards (or right), \code{1} otherwise
+\strong{down}: \code{0} if the triangle concerned points upwards (or right),
+\code{1} otherwise
 }
 \description{
 Evaluates a function at points on a triangular grid.
 Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
+}
+\details{
+Density plotting functions are somewhat experimental; please
+\href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
 }
 \section{Functions}{
 \itemize{

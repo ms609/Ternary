@@ -26,3 +26,6 @@ A matrix containing three named rows:
 \description{
 Coordinates of triangle mid-points
 }
+\author{
+Martin R. Smith
+}

@@ -10,7 +10,7 @@ ColourTernary(values, spectrum = viridisLite::viridis(256L, alpha = 0.6),
 }
 \arguments{
 \item{values}{Numeric vector specifying the values associated with each point,
-generated using \code{[TernaryPointValues]}.}
+generated using \code{\link{TernaryPointValues}}.}
 
 \item{spectrum}{Vector of colours to use as a spectrum.}
 
