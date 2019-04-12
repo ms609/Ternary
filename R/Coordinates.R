@@ -166,6 +166,24 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' @return A list of the _x_, _y_ coordinates of the points produced if 
 #' the given point is reflected across each of the edges or corners.
 #' 
+#' @examples 
+#' TernaryPlot(axis.labels=FALSE, point=4)
+#' 
+#' xy <- cbind(
+#'   TernaryCoords(0.9, 0.08, 0.02),
+#'   TernaryCoords(0.15, 0.8, 0.05),
+#'   TernaryCoords(0.05, 0.1, 0.85)
+#' )
+#' x <- xy[1, ]
+#' y <- xy[2, ]
+#' 
+#' points(x, y, col='red', pch=1:3)
+#' ref <- ReflectedEquivalents(x, y)
+#' points(ref[[1]][, 1], ref[[1]][, 2], col='blue', pch=1)
+#' points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
+#' points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
+#' 
+#' 
 ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
   switch(direction, {
     # 1L

@@ -473,6 +473,8 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
   } else {
     rep(bandwidth / 4L, length.out = 2L)
   }
+  if (any(h <= 0))
+    stop("bandwidths must be strictly positive")
   
   switch (direction, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
@@ -488,14 +490,11 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
     gy <- seq(-0.5, 0.5, length.out = resolution)
   })
   
-  h <- if (missing(bandwidth)) {
-    c(Bandwidth(x, n), Bandwidth(y, n))
-  } else {
-    rep(bandwidth / 4L, length.out = 2L)
+  PointValue <- function (ix, iy) {
+    ax <- ix - x / h[1L]
+    ay <- iy - y / h[2L]
+    tcrossprod(dnorm(ax), dnorm(ay)) / prod(n, h)
   }
-  if (any(h <= 0))
-    stop("bandwidths must be strictly positive")
-  
   ax <- outer(gx, x, "-") / h[1L]
   ay <- outer(gy, y, "-") / h[2L]
   z <- tcrossprod(matrix(dnorm(ax), ncol = n),

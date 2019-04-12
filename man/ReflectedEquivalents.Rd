@@ -21,3 +21,22 @@ To avoid edge effects, it may be desirable to add the value of a point
 within a ternary plot with the value of its 'reflection' across the nearest
 axis or corner.
 }
+\examples{
+TernaryPlot(axis.labels=FALSE, point=4)
+
+xy <- cbind(
+  TernaryCoords(0.9, 0.08, 0.02),
+  TernaryCoords(0.15, 0.8, 0.05),
+  TernaryCoords(0.05, 0.1, 0.85)
+)
+x <- xy[1, ]
+y <- xy[2, ]
+
+points(x, y, col='red', pch=1:3)
+ref <- ReflectedEquivalents(x, y)
+points(ref[[1]][, 1], ref[[1]][, 2], col='blue', pch=1)
+points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
+points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
+
+
+}
