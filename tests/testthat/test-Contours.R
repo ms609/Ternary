@@ -14,7 +14,7 @@ test_that('Densities are correctly calculated', {
                       rightBorder = c(1, 2, 3)
   )
   
-  values <- TernaryDensity(coordinates, resolution=3L)
+  values <- TernaryDensity(coordinates, resolution=3L, direction=1L)
   expect_equal(c(3, 10, 4, 3, 2, 16, 7, 3, 12),
                values['z', ])
   
