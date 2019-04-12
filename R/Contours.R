@@ -496,5 +496,9 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
   z <- tcrossprod(matrix(dnorm(ax), ncol = n),
                   matrix(dnorm(ay), ncol = n)) / prod(n, h)
   
+  # TODO make more efficient by doing this intelligently rather than lazily
+  zOffPlot <- outer(gx, gy, OutsidePlot)
+  z[zOffPlot] <- NA
+  
   contour(list(x = gx, y = gy, z = z), add=TRUE) #, ...
 }

@@ -134,3 +134,16 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
   } 
 }
 
+#' Is a point in the plotting area?
+#' 
+#' @param x,y Vectors of _x_ and _y_ coordinates of points
+#' 
+#' @return Logical vector specifying whether each pair of _x_ and _y_ coordinates
+#' corresponds to a point outside the plotted ternary diagram.
+#' 
+#' @author Martin R. Smith
+#' @export
+OutsidePlot <- function (x, y) {
+  abc <- XYToTernary(x, y)
+  apply(abc < - 0.6 / resolution, 2, any)
+}
