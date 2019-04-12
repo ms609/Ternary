@@ -428,3 +428,59 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
   contour(x, y, z, add=TRUE, ...)
 }
 
+#' Add contours of estimated point density to a ternary plot
+#' 
+#' Uses two-dimensional kernel density estimation to plot contours of 
+#' point density.
+#' 
+#' This function is modelled on MASS::kde2d, which uses
+#' "an axis-aligned bivariate normal kernel, evaluated on a square grid";
+#' a model based on a triangular grid may be more appropriate.  If this
+#' distinction is important to you, please let the maintainers known by opening a 
+#' [Github issue](https://github.com/ms609/Ternary/issues/new?title=Triangular%20KDE).
+#' 
+#' @template coordinatesParam
+#' @param bandwidth Vector of bandwidths for x and y directions. 
+#' Defaults to normal reference bandwidth (see MASS::bandwidth.nrd).
+#' A scalar value will be taken to apply to both directions.
+#' @template resolutionParam
+#' @param \dots Additional parameters to pass to `contour`.
+#' 
+#' @concept Contour plots
+#' @author Adapted from MASS::kde2d by Martin R. Smith
+#' @export
+TernaryKDE <- function (coordinates, bandwidth, resolution = 25L, ...) {
+  xy <- apply(coordinates, 1, TernaryCoords)
+  x <- xy[1, ]
+  y <- xy[2, ]
+  n <- length(x)
+  
+  Bandwidth <- function (x, lengthX) {
+    # Adapted from MASS::bandwidth.nrd
+    r <- quantile(x, c(0.25, 0.75))
+    h <- (r[2L] - r[1L]) / 1.34
+    # Don't multiply by 4 just to divide by 4 again...
+    1.06 * min(sqrt(var(x)), h) * lengthX^(-0.2)
+  }
+  
+  # Adapted from MASS::kde2d
+  xLim <- TernaryXRange()
+  yLim <- TernaryYRange()
+  
+  gx <- seq.int(xLim[1L], xLim[2L], length.out = resolution)
+  gy <- seq.int(yLim[1L], yLim[2L], length.out = resolution)
+  h <- if (missing(bandwidth)) {
+    c(Bandwidth(x, n), Bandwidth(y, n))
+  } else {
+    rep(bandwidth / 4L, length.out = 2L)
+  }
+  if (any(h <= 0))
+    stop("bandwidths must be strictly positive")
+  
+  ax <- outer(gx, x, "-") / h[1L]
+  ay <- outer(gy, y, "-") / h[2L]
+  z <- tcrossprod(matrix(dnorm(ax), ncol = n),
+                  matrix(dnorm(ay), ncol = n)) / prod(n, h)
+  
+  contour(list(x = gx, y = gy, z = z), add=TRUE) #, ...
+}
