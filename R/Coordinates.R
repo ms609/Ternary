@@ -21,6 +21,7 @@
 #'         the last call of \code{\link{TernaryPlot}}.
 #'
 #' @seealso [TernaryPlot]
+#' @concept Coordinate translation
 #' @author Martin R. Smith
 #' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
@@ -67,6 +68,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
 #' 
 #' @author Martin R. Smith
 #' 
+#' @concept Coordinate translation
 #' @export
 XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
   if (mode(x) != 'numeric') stop("Parameter x must be numeric.")
@@ -136,7 +138,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 
 #' Is a point in the plotting area?
 #' 
-#' @param x,y Vectors of _x_ and _y_ coordinates of points
+#' @template xyParams
 #' @param tolerance Consider points this close to the edge of the plot to be 
 #' inside.  Set to negative values to count points that are just outside the 
 #' plot as inside, and to positive values to count points that are just inside
@@ -150,4 +152,68 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 OutsidePlot <- function (x, y, tolerance = 0) {
   abc <- XYToTernary(x, y)
   apply(abc < tolerance, 2, any)
+}
+
+#' Reflected equivalents of points outside the ternary plot
+#' 
+#' To avoid edge effects, it may be desirable to add the value of a point
+#' within a ternary plot with the value of its 'reflection' across the nearest 
+#' axis or corner.
+#' 
+#' @template xyParams
+#' @template directionParam
+#' 
+#' @return A list of the _x_, _y_ coordinates of the points produced if 
+#' the given point is reflected across each of the edges or corners.
+#' 
+ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
+  switch(direction, {
+    # 1L
+    corners <- matrix(c(0, cos(pi/6), 0.5, 0, -0.5, 0), nrow=2)
+    edgeM <- tan(pi/3) * rep(c(1, -1, 0), 2)
+    edgeC <- cos(pi/6) * c(1, 1, 0, -1, -1, 1)
+  }, {
+    # 2L
+    corners <- matrix(c(cos(pi/6), 0, 0, -0.5, 0, 0.5), nrow=2)
+    edgeM <- tan(pi/6) * rep(c(-1, 1, Inf), 2)
+    edgeC <- 0.5 * c(1, 1, 0, -1, -1, 2 * cos(pi/6))
+  }, {
+    # 3L
+    corners <- matrix(c(0, -cos(pi/6), -0.5, 0, 0.5, 0), nrow=2)
+    edgeM <- tan(pi/3) * rep(c(1, -1, 0), 2)
+    edgeC <- cos(pi/6) * c(-1, -1, 0, 1, 1, 1)
+  }, {
+    # 4L
+    corners <- matrix(c(-cos(pi/6), 0, 0, 0.5, 0, -0.5), nrow=2)
+    edgeM <- tan(pi/6) * rep(c(1, -1, 0), 2)
+    edgeC <- 0.5 * c(1, 1, 0, -1, -1, 1)
+  })
+  xx <- lapply((1:6)[is.finite(edgeM)], function (i) abline(edgeC[i], edgeM[i], col=i))
+  xx <- lapply((1:6)[!is.finite(edgeM)], function (i) abline(v=edgeC[i], col=i))
+
+  # If m = Inf, we have a vertical line, and c specifies its x intercept.
+  ReflectAcrossLine <- function (xi, yi, m, c) {
+    d <- (xi + (yi - c) * m) / (1 + (m * m))
+    ret <- cbind(d + d - xi, 2 * d * m - yi + c + c)
+    infiniteM <- !is.finite(m)
+    if (any(infiniteM)) {
+      altRet <- cbind(c + c - xi, rep(y, length.out=dim(ret)[1]))
+      ret[infiniteM, ] <- altRet[infiniteM, ]
+    }
+    ret
+  }
+  
+  mirror1 <- c(5L, 6L, 4L)
+  mirror2 <- c(6L, 4L, 5L)
+  lapply(seq_along(x), function (i) {
+    reflectOnce <- ReflectAcrossLine(x[i], y[i], edgeM, edgeC)
+    rbind(
+      reflectOnce,
+      ReflectAcrossLine(reflectOnce[1:3, 1L], reflectOnce[1:3, 2L],
+                        edgeM[mirror1], edgeC[mirror1]),
+      ReflectAcrossLine(reflectOnce[1:3, 1L], reflectOnce[1:3, 2L],
+                        edgeM[mirror2], edgeC[mirror2])
+    )
+  })
+  
 }

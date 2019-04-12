@@ -474,7 +474,6 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
     rep(bandwidth / 4L, length.out = 2L)
   }
   
-
   switch (direction, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
     gy <- seq(0, sqrt(0.75), length.out = resolution)

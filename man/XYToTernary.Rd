@@ -22,3 +22,4 @@ Cartesian coordinates to ternary point
 \author{
 Martin R. Smith
 }
+\concept{Coordinate translation}

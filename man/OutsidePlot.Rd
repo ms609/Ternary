@@ -4,10 +4,15 @@
 \alias{OutsidePlot}
 \title{Is a point in the plotting area?}
 \usage{
-OutsidePlot(x, y)
+OutsidePlot(x, y, tolerance = 0)
 }
 \arguments{
-\item{x, y}{Vectors of \emph{x} and \emph{y} coordinates of points}
+\item{x, y}{Vectors of \emph{x} and \emph{y} coordinates of points.}
+
+\item{tolerance}{Consider points this close to the edge of the plot to be
+inside.  Set to negative values to count points that are just outside the
+plot as inside, and to positive values to count points that are just inside
+the margins as outside. Maximum positive value: 1/3.}
 }
 \value{
 Logical vector specifying whether each pair of \emph{x} and \emph{y} coordinates

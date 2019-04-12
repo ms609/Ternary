@@ -40,3 +40,4 @@ in the graphics package.
 \author{
 Martin R. Smith
 }
+\concept{Coordinate translation}
