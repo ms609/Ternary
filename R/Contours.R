@@ -217,30 +217,33 @@ TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption
   }))
   
   centrePoints <- TriangleCentres(resolution, direction)
+  triDown <- as.logical(centrePoints['triDown', ])
+  ret <- integer(length(ups) + length(downs))
+  towardsBase <- if (direction < 3L) triDown else !triDown
+  ret[towardsBase] <- downs
+  ret[!towardsBase] <- ups
   
   switch(direction, {
     # 1L = point up
-    triDown <- as.logical(centrePoints['triDown', ])
-    ret <- integer(length(ups) + length(downs))
-    ret[triDown] <- downs
-    ret[!triDown] <- ups
+    xy <- centrePoints[1:2, ]
   }, {
     #2L = right
+    xy <- rbind(x = centrePoints[1, ], 
+                y = -centrePoints[2, ])
   }, {
     #3L = down
-    triDown <- as.logical(centrePoints['triDown', ])
-    ret <- integer(length(ups) + length(downs))
-    ret[!triDown] <- downs
-    ret[triDown] <- ups
+    xy <- rbind(x = -centrePoints[1, ],
+                y = centrePoints[2, ])
   }, {
     #4L = left
+    xy <- centrePoints[1:2, ]
   })
   
-  
+  # TernaryPlot(grid.lines=3, axis.labels=1:3, point='right')
+  # ColourTernary(rbind(xy, z = ret, down = triDown))
+
   # Return:
-  rbind(centrePoints[1:2, ], 
-        z = ret, 
-        down = triDown)
+  rbind(xy, z = ret, down = triDown)
 }
 
 #' @keywords internal
