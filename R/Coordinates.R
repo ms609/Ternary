@@ -181,7 +181,7 @@ ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) 
     # 3L
     corners <- matrix(c(0, -cos(pi/6), -0.5, 0, 0.5, 0), nrow=2)
     edgeM <- tan(pi/3) * rep(c(1, -1, 0), 2)
-    edgeC <- cos(pi/6) * c(-1, -1, 0, 1, 1, 1)
+    edgeC <- cos(pi/6) * c(-1, -1, 0, 1, 1, -1)
   }, {
     # 4L
     corners <- matrix(c(-cos(pi/6), 0, 0, 0.5, 0, -0.5), nrow=2)
