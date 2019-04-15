@@ -2,20 +2,13 @@
 * local Windows 10 install, R 3.5.2
 * Windows with devtools::check_win_devel()
 * ubuntu 12.04 (on travis-ci), R 3.2.0 and devel
-* Linux with check_rhub()
+* R-hub, with `check_rhub(platforms = rhub::platforms()[[1]])`
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
+There were no ERRORs or WARNINGs or NOTEs.
 
-There was 1 NOTE:
-
-  New maintainer:
-  Maintainer: 'Martin R. Smith <martin.smith@durham.ac.uk>'
-    Martin R. Smith <martin.smith@durham.ac.uk>
-  Old maintainer(s):
-    Martin R. Smith <martins@gmail.com>
-    
-I have replaced my personal e-mail address with my professional one.
+(Certain R-hub platforms delivered trivial notes, e.g. bemoaning the
+absence of pandoc or qpdf.)
 
 ## Downstream dependencies
 
