@@ -183,7 +183,7 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
 #' points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
 #' 
-#' 
+#' @export
 ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
   switch(direction, {
     # 1L

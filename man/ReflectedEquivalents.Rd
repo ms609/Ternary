@@ -38,5 +38,4 @@ points(ref[[1]][, 1], ref[[1]][, 2], col='blue', pch=1)
 points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
 points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
 
-
 }

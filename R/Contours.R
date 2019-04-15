@@ -473,6 +473,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' 
 #' @concept Contour plots
 #' @author Adapted from MASS::kde2d by Martin R. Smith
+#' @importFrom stats dnorm quantile var
 #' @export
 TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 
                                    tolerance = -0.2 / resolution,
