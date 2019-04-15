@@ -27,6 +27,7 @@ git:
   depth: 1
 
 before_script:
+ - R -e "install.packages('devtools')"
  - R -e "devtools::document()"
  - chmod +x ./_build.sh
  - chmod +x ./_deploy.sh
