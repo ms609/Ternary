@@ -23,7 +23,7 @@
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
 #'  The default is to display the complete height or width of the plot.  
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
-#'  May be overwridden if `isometric=TRUE`; see documentation for
+#'  May be overridden if `isometric=TRUE`; see documentation of
 #'  `isometric` parameter.
 #'  
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.

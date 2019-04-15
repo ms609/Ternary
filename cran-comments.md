@@ -1,5 +1,5 @@
 ## Test environments
-* local Windows 10 install, R 3.5.1
+* local Windows 10 install, R 3.5.2
 * Windows with devtools::check_win_devel()
 * ubuntu 12.04 (on travis-ci), R 3.2.0 and devel
 * Linux with check_rhub()

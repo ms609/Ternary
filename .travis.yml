@@ -9,10 +9,12 @@ sudo: required # Required to use binary packages, which are faster than source i
 
 git:
   depth: 1
+  
+r_packages:
+ - devtools # Binaries require R 3.4
 
 r_binary_packages:
  - covr
- - devtools
  - knitr
  - rmarkdown
  - roxygen2
