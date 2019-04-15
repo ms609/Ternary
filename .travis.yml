@@ -1,24 +1,24 @@
 language: r
 r:
- - 3.2
- - devel
+  - 3.4
+  - devel
+
 cache: packages
 warnings_are_errors: true
 r_check_args: --as-cran
-
-git:
-  depth: 5
+sudo: required # Required to use binary packages, which are faster than source installs
 
 r_binary_packages:
- - testthat
-  
-r_packages:
  - covr
  - devtools
  - knitr
  - rmarkdown
  - roxygen2
-   
+ - testthat
+
+git:
+  depth: 1
+
 before_script:
  - R -e "devtools::document()"
  - chmod +x ./_build.sh
