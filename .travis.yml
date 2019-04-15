@@ -1,33 +1,25 @@
 language: r
+r:
+  - 3.4
+  - devel
+
 cache: packages
 warnings_are_errors: true
 r_check_args: --as-cran
 sudo: required # Required to use binary packages, which are faster than source installs
 
-matrix:
-  include:
-   - r: 3.2
-     r_packages:
-      - devtools # Binaries require R 3.4
-      - covr
-      - knitr
-      - rmarkdown
-      - roxygen2
-      - testthat
-   - r: devel
-     r_binary_packages:
-      - covr
-      - devtools
-      - knitr
-      - rmarkdown
-      - roxygen2
-      - testthat
+r_binary_packages:
+ - covr
+ - devtools
+ - knitr
+ - rmarkdown
+ - roxygen2
+ - testthat
 
 git:
   depth: 1
 
 before_script:
- - R -e "install.packages('devtools')"
  - R -e "devtools::document()"
  - chmod +x ./_build.sh
  - chmod +x ./_deploy.sh
