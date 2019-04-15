@@ -1,7 +1,7 @@
 ## Test environments
 * local Windows 10 install, R 3.5.2
 * Windows with devtools::check_win_devel()
-* ubuntu 12.04 (on travis-ci), R 3.2.0 and devel
+* Ubuntu 14.04.5 LTS, R 3.2.0 and devel, via [Travis CI](https://travis-ci.org/ms609/Ternary)
 * R-hub, with `check_rhub(platforms = rhub::platforms()[[1]])`
 
 ## R CMD check results
@@ -12,9 +12,8 @@ absence of pandoc or qpdf.)
 
 ## Downstream dependencies
 
-There is one downstream dependency:
+All downstream dependencies passed `revdepcheck::revdep_check()`:
 * cocktailApp
-
-As `revdepcheck` is not presently available for Windows, I have not been able to
-test this using R CMD check.  I have manually inspected the package to confirm 
-that the new parameters added will not impact the existing usage there.
+* CongreveLamsdell2016
+* plot3logit
+* Quartet
