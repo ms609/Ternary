@@ -5,6 +5,7 @@
 \title{Add contours of estimated point density to a ternary plot}
 \usage{
 TernaryDensityContour(coordinates, bandwidth, resolution = 25L,
+  tolerance = -0.2/resolution, edgeCorrection = TRUE,
   direction = getOption("ternDirection"), ...)
 }
 \arguments{
@@ -19,6 +20,13 @@ A scalar value will be taken to apply to both directions.}
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
+
+\item{tolerance}{Numeric specifying how close to the margins the contours
+should be plotted, as a fraction of the size of the triangle.
+Negative values will cause contour lines to extend beyond the margins of the plot.}
+
+\item{edgeCorrection}{Logical specifying whether to correct for edge effects
+(see details).}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}

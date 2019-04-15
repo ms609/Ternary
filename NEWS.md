@@ -1,6 +1,5 @@
 # Ternary v1.0.2.9101 (development)
- - Add support for contour plots
- - Rudimentary support for density shading
+ - Add support for contour plots and density shading
  - Maintain isometry when one of `xlim` or `ylim` is specified.
  - Fix issues with `TernaryPlot` documentation.
  - Remove names in `TernaryCoords`.

@@ -435,23 +435,48 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' point density.
 #' 
 #' This function is modelled on MASS::kde2d, which uses
-#' "an axis-aligned bivariate normal kernel, evaluated on a square grid";
-#' a model based on a triangular grid may be more appropriate.  If this
-#' distinction is important to you, please let the maintainers known by opening a 
+#' "an axis-aligned bivariate normal kernel, evaluated on a square grid".
+#' 
+#' This is to say, values are calculated on a square grid, and contours fitted
+#' between these points.  This produces a couple of artefacts.
+#' Firstly, contours may not extend beyond the outermost point within the 
+#' diagram, which may fall some distance from the margin of the plot if a 
+#' low `resolution` is used.  Setting a negative `tolerance` parameter allows
+#' these contours to extend closer to (or beyond) the margin of the plot.
+#' 
+#' Individual points cannot fall outside the margins of the ternary diagram,
+#' but their associated kernels can. In order to sample regions of the kernels
+#' that have 'bled' outside the ternary diagram, each point's value is 
+#' calculated by summing the point density at that point and at equivalent 
+#' points outside the ternary diagram, 'reflected' across the margin of 
+#' the plot (see function [`ReflectedEquivalents`]).  This correction can be
+#' disabled by setting the `edgeCorrection` parameter to `FALSE`.
+#' 
+#' A model based on a triangular grid may be more appropriate in certain
+#' situations, but is non-trivial to implement; if this distinction is 
+#' important to you, please let the maintainers known by opening a 
 #' \href{https://github.com/ms609/Ternary/issues/new?title=Triangular%20KDE}{Github issue}.
+#' 
 #' 
 #' @template coordinatesParam
 #' @param bandwidth Vector of bandwidths for x and y directions. 
 #' Defaults to normal reference bandwidth (see MASS::bandwidth.nrd).
 #' A scalar value will be taken to apply to both directions.
 #' @template resolutionParam
+#' @param tolerance Numeric specifying how close to the margins the contours 
+#' should be plotted, as a fraction of the size of the triangle.
+#' Negative values will cause contour lines to extend beyond the margins of the plot.
 #' @template directionParam
 #' @template dotsToContour
+#' @param edgeCorrection Logical specifying whether to correct for edge effects
+#'  (see details).
 #' 
 #' @concept Contour plots
 #' @author Adapted from MASS::kde2d by Martin R. Smith
 #' @export
 TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 
+                                   tolerance = -0.2 / resolution,
+                                   edgeCorrection = TRUE,
                                    direction = getOption('ternDirection'),
                                    ...) {
   # Adapted from MASS::kde2d
@@ -490,19 +515,29 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
     gy <- seq(-0.5, 0.5, length.out = resolution)
   })
   
-  PointValue <- function (ix, iy) {
-    ax <- ix - x / h[1L]
-    ay <- iy - y / h[2L]
-    tcrossprod(dnorm(ax), dnorm(ay)) / prod(n, h)
+  if (edgeCorrection) {
+    KDE <- function (ix, iy) {
+      if (OutsidePlot(ix, iy, tolerance = tolerance)) NA else {
+        reflections <- ReflectedEquivalents(ix, iy, direction=direction)[[1]]
+        ax <- outer(c(ix, reflections[, 1]), x, "-") / h[1L]
+        ay <- outer(c(iy, reflections[, 2]), y, "-") / h[2L]
+        sum(vapply(seq_len(1L + dim(reflections)[1]), function (i)
+          tcrossprod(matrix(dnorm(ax[i, ]), ncol=n), matrix(dnorm(ay[i, ]), ncol=n)),
+          double(1))) / prod(n, h)
+      }
+    }
+    
+    z <- matrix(mapply(KDE, gx, rep(gy, each=length(gx))), ncol=length(gx))
+  } else {
+    ax <- outer(gx, x, "-") / h[1L]
+    ay <- outer(gy, y, "-") / h[2L]
+    z <- tcrossprod(matrix(dnorm(ax), ncol = n),
+                    matrix(dnorm(ay), ncol = n)) / prod(n, h)
+    
+    # TODO make more efficient by doing this intelligently rather than lazily
+    zOffPlot <- outer(gx, gy, OutsidePlot, tolerance = tolerance)
+    z[zOffPlot] <- NA
   }
-  ax <- outer(gx, x, "-") / h[1L]
-  ay <- outer(gy, y, "-") / h[2L]
-  z <- tcrossprod(matrix(dnorm(ax), ncol = n),
-                  matrix(dnorm(ay), ncol = n)) / prod(n, h)
   
-  # TODO make more efficient by doing this intelligently rather than lazily
-  zOffPlot <- outer(gx, gy, OutsidePlot, tolerance = -0.2 / resolution)
-  z[zOffPlot] <- NA
-  
-  contour(list(x = gx, y = gy, z = z), add=TRUE) #, ...
+  contour(list(x = gx, y = gy, z = z), add=TRUE, ...)
 }
