@@ -1,15 +1,4 @@
 language: r
-r:
- - 3.2
- - devel
-cache: packages
-warnings_are_errors: true
-r_check_args: --as-cran
-sudo: required # Required to use binary packages, which are faster than source installs
-
-git:
-  depth: 1
-
 matrix:
   include:
    - r: 3.2
@@ -29,6 +18,13 @@ matrix:
       - rmarkdown
       - roxygen2
       - testthat
+cache: packages
+warnings_are_errors: true
+r_check_args: --as-cran
+sudo: required # Required to use binary packages, which are faster than source installs
+
+git:
+  depth: 1
 
 before_script:
  - R -e "devtools::document()"
