@@ -6,6 +6,7 @@
 *.trees
 **/~$*
 */RcppExports.*
+revdep/
 src-*
 src/*.o
 src/*.so
