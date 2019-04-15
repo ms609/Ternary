@@ -1,3 +1,138 @@
+#' Convert ternary coordinates to Cartesian space
+#' 
+#' Converts coordinates of a point in ternary space, in the format (_a_, _b_, _c_), to
+#' _x_ and _y_ coordinates of Cartesian space, which can be sent to standard functions
+#' in the graphics package.
+#' 
+#' @param abc A vector of length three giving the position on a ternary plot that points
+#'            in the direction specified by `direction` (1 = up, 2 = right, 3 = down, 4 = left).
+#'            \code{c(100, 0, 0)} will plot in the `direction`-most corner; \code{c(0, 100, 0)} 
+#'            will plot in the corner clockwise of `direction`; \code{c(0, 0, 100)} will plot in
+#'            the corner anti-clockwise of `direction`.
+#'            Alternatively, the a coordinate can be specified as the first parameter,
+#'            in which case the b and c coordinates must be specified via \code{b_coord}
+#'            and \code{c_coord}.
+#' @param b_coord The b coordinate, if \code{abc} is a single number.
+#' @param c_coord The c coordinate, if \code{abc} is a single number.
+#' @template directionParam
+#'            
+#' @return A vector of length two that converts the coordinates given in \code{abc}
+#'         into Cartesian (_x_, _y_) coordinates corresponding to the plot created by
+#'         the last call of \code{\link{TernaryPlot}}.
+#'
+#' @seealso [TernaryPlot]
+#' @author Martin R. Smith
+#' @export
+TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
+  if (!is.null(b_coord) && !is.null(c_coord)) {
+    abc <- c(abc, b_coord, c_coord)
+  }
+  if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
+  if (mode(abc) != 'numeric') stop("Parameter abc must be numeric.")
+  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  names(abc) <- NULL # or they may be inherited by x and y, confusingly
+  
+  abc <- abc[if (direction == 1L) c(2, 3, 1) else
+             if (direction == 2L) c(3, 2, 1) else 
+             if (direction == 3L) c(3, 2, 1) else
+             if (direction == 4L) c(2, 3, 1)]
+  
+  x_deviation <- abc[3] / sum(abc)
+  if (x_deviation == 1) {
+      x <- cos(pi/6)
+      y <- 0
+  } else {
+    y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
+    x <- x_deviation * cos(pi/6)
+    y <- y_deviation * (1 - x_deviation) / 2
+  }
+  ret <- if (direction == 1L) c(y, x) else 
+         if (direction == 2L) c(x, y) else 
+         if (direction == 3L) c(y, -x) else
+         if (direction == 4L) c(-x, y)
+  
+  # Return:
+  ret
+}
+
+#' Cartesian coordinates to ternary point
+#' 
+#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
+#' @template directionParam
+#' 
+#' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
+#' coordinates, where a + b + c = 1.
+#' 
+#' 
+#' @author Martin R. Smith
+#' 
+#' @export
+XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
+  if (mode(x) != 'numeric') stop("Parameter x must be numeric.")
+  if (mode(y) != 'numeric') stop("Parameter y must be numeric.")
+  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  
+  if (direction == 1L) {
+    a <- y / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- x + (bcRange / 2)
+    c <- bcRange - b
+  } else if (direction == 2L) {
+    a <- x / sqrt(0.75)
+    bcRange <- 1 - a
+    c <- y + (bcRange / 2)
+    b <- bcRange - c
+  } else if (direction == 3L) {
+    a <- -y / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- -x + (bcRange / 2)
+    c <- bcRange - b
+  } else { # direction == 4L
+    a <- -x / sqrt(0.75)
+    bcRange <- 1 - a
+    b <- y + (bcRange / 2)
+    c <- bcRange - b
+  }
+  # Return:
+  rbind(a, b, c)
+}
+ 
+#' X and Y coordinates of ternary plotting area
+#'
+#' @template directionParam
+#'
+#' @return Returns the minimum and maximum X or Y coordinate of the area 
+#' in which a ternary plot is drawn, oriented in the specified direction.
+#' Because the plotting area is a square, the triangle of the ternary plot
+#' will not occupy the full range in one direction.
+#' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
+#' 
+#' @author Martin R. Smith
+#' @export
+TernaryXRange <- function (direction = getOption('ternDirection')) {
+  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (direction == 2L) {
+    c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
+  } else if (direction == 4L) {
+    c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
+  } else {
+    c(-0.5, 0.5)
+  }
+}
+
+#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
+#' @export
+TernaryYRange <- function (direction = getOption('ternDirection')) {
+  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (direction == 1L) {
+    c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
+  } else if (direction == 3L) {
+    c(-1, 0) + ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
+  } else {
+    c(-0.5, +0.5)
+  } 
+}
+
 #' Create a ternary plot
 #' 
 #' Create and style a blank ternary plot.
@@ -23,7 +158,7 @@
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
 #'  The default is to display the complete height or width of the plot.  
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
-#'  May be overridden if `isometric=TRUE`; see documentation of
+#'  May be overwridden if `isometric=TRUE`; see documentation for
 #'  `isometric` parameter.
 #'  
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
@@ -111,7 +246,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          axis.col='black', ticks.col=grid.col,
                          axis.labels.col=axis.col,
                          ...) {
-  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2L, 3L, 4L, 1L)) %% 4L)
+  direction <- 1 + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2, 3, 4, 1)) %% 4)
   if (is.na(direction)) {
     warning("Point must be one of up, down, left or right")
   } else {
@@ -328,7 +463,9 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #'        \code{\link[graphics]{points}},
 #'        \code{\link[graphics]{lines}} or
 #'        \code{\link[graphics]{text}}.
-#' @template coordinatesParam
+#' @param coordinates A list, matrix, data.frame or vector in which each
+#'                    element (or row) specifies
+#'                    the three coordinates of a point in ternary space.
 #' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
 #' If using `TernaryText`, this will likely include the parameter `labels`,
 #' to specify the text to plot.

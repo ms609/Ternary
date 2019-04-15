@@ -1,19 +1,27 @@
 ## Test environments
-* local Windows 10 install, R 3.5.2
+* local Windows 10 install, R 3.5.1
 * Windows with devtools::check_win_devel()
-* Ubuntu 14.04.5 LTS, R 3.2.0 and devel, via [Travis CI](https://travis-ci.org/ms609/Ternary)
-* R-hub, with `check_rhub(platforms = rhub::platforms()[[1]])`
+* ubuntu 12.04 (on travis-ci), R 3.2.0 and devel
+* Linux with check_rhub()
 
 ## R CMD check results
-There were no ERRORs or WARNINGs or NOTEs.
+There were no ERRORs or WARNINGs.
 
-(Certain R-hub platforms delivered trivial notes, e.g. bemoaning the
-absence of pandoc or qpdf.)
+There was 1 NOTE:
+
+  New maintainer:
+  Maintainer: 'Martin R. Smith <martin.smith@durham.ac.uk>'
+    Martin R. Smith <martin.smith@durham.ac.uk>
+  Old maintainer(s):
+    Martin R. Smith <martins@gmail.com>
+    
+I have replaced my personal e-mail address with my professional one.
 
 ## Downstream dependencies
 
-All downstream dependencies passed `revdepcheck::revdep_check()`:
+There is one downstream dependency:
 * cocktailApp
-* CongreveLamsdell2016
-* plot3logit
-* Quartet
+
+As `revdepcheck` is not presently available for Windows, I have not been able to
+test this using R CMD check.  I have manually inspected the package to confirm 
+that the new parameters added will not impact the existing usage there.

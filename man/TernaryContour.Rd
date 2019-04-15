@@ -18,12 +18,11 @@ colour gradients, but at a computational cost.}
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 
-\item{\dots}{Further parameters to pass to `\link[graphics]{contour}.}
+\item{\dots}{Further parameters to pass to `\link[graphics]{contour}}
 }
 \description{
-Draws contour lines to depict the value of a function in ternary space.
+Draws contour lines to depict the value of a function in ternary space
 }
 \author{
 Martin R. Smith
 }
-\concept{Contour plots}

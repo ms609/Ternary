@@ -1,8 +1,5 @@
-# Ternary v1.1.0
-## New features
- - Add support for contour plots and density shading.
- 
-## Bug fixes 
+# Ternary v1.0.2.9100 (development)
+ - Add support for contour plots
  - Maintain isometry when one of `xlim` or `ylim` is specified.
  - Fix issues with `TernaryPlot` documentation.
  - Remove names in `TernaryCoords`.
@@ -17,16 +14,16 @@
  - Document magnification options.
 
 # Ternary v1.0.0
- - Add function `JoinTheDots` to plot lines and points simultaneously.
+ - Add function JoinTheDots to plot lines and points simultaneously.
  - Support xlim & ylim for `TernaryPlot`.
  - Choose direction of plot using new `point` parameter.
- - Allow labelling of tips and of sides (`alab` becomes `atip`).
- - Improved control over labelling of plot (`clab.rotate` parameter).
+ - Allow labelling of tips and of sides (alab becomes atip).
+ - Improved control over labelling of plot (clab.rotate parameter).
  - Improve documentation.
 
 # Ternary v0.1.1
  - Added colour-blind compatible colour palettes `cbPalette8` and `cbPalette15`.
- - Support `lab.font` in `TernaryPlot`.
+ - Support lab.font in TernaryPlot.
 
 # Ternary v0.1.0
  - Generates ternary plots with vertical left axis.
