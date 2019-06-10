@@ -1,7 +1,7 @@
 #' Value of a function at regularly spaced points
 #'
 #' Evaluates a function at points on a triangular grid. 
-#' Intended to facilitate coloured contour plots with [`ColourTernary`].
+#' Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
 #' 
 #' Density plotting functions are somewhat experimental; please
 #' \href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
@@ -455,7 +455,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' A model based on a triangular grid may be more appropriate in certain
 #' situations, but is non-trivial to implement; if this distinction is 
 #' important to you, please let the maintainers known by opening a 
-#' \href{https://github.com/ms609/Ternary/issues/new?title=Triangular%20KDE}{Github issue}.
+#' \href{https://github.com/ms609/Ternary/issues/new?title=Triangular+KDE}{Github issue}.
 #' 
 #' 
 #' @template coordinatesParam

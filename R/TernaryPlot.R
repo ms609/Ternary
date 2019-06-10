@@ -411,7 +411,7 @@ TernaryLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...
 #' @export
 TernaryPoints <- function (coordinates, ...) AddToTernary(points, coordinates, ...)
 
-#' @describeIn AddToTernary Add \link[graphics::polygon]{polygons}
+#' @describeIn AddToTernary Add \link[graphics:polygon]{polygons}
 #' @importFrom graphics polygon
 #' @export
 TernaryPolygon <- function (coordinates, ...) AddToTernary(polygon, coordinates, ...)

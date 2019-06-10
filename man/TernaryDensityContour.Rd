@@ -37,6 +37,30 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Uses two-dimensional kernel density estimation to plot contours of
 point density.
 }
+\details{
+This function is modelled on MASS::kde2d, which uses
+"an axis-aligned bivariate normal kernel, evaluated on a square grid".
+
+This is to say, values are calculated on a square grid, and contours fitted
+between these points.  This produces a couple of artefacts.
+Firstly, contours may not extend beyond the outermost point within the
+diagram, which may fall some distance from the margin of the plot if a
+low \code{resolution} is used.  Setting a negative \code{tolerance} parameter allows
+these contours to extend closer to (or beyond) the margin of the plot.
+
+Individual points cannot fall outside the margins of the ternary diagram,
+but their associated kernels can. In order to sample regions of the kernels
+that have 'bled' outside the ternary diagram, each point's value is
+calculated by summing the point density at that point and at equivalent
+points outside the ternary diagram, 'reflected' across the margin of
+the plot (see function \code{\link{ReflectedEquivalents}}).  This correction can be
+disabled by setting the \code{edgeCorrection} parameter to \code{FALSE}.
+
+A model based on a triangular grid may be more appropriate in certain
+situations, but is non-trivial to implement; if this distinction is
+important to you, please let the maintainers known by opening a
+\href{https://github.com/ms609/Ternary/issues/new?title=Triangular+KDE}{Github issue}.
+}
 \author{
 Adapted from MASS::kde2d by Martin R. Smith
 }

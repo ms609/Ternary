@@ -53,7 +53,7 @@ Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 
 \item \code{TernaryPoints}: Add \link[graphics]{points}
 
-\item \code{TernaryPolygon}: Add \link[graphics::polygon]{polygons}
+\item \code{TernaryPolygon}: Add \link[graphics:polygon]{polygons}
 
 \item \code{TernaryText}: Add \link[graphics]{text}
 
