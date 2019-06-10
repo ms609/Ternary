@@ -240,7 +240,9 @@ text(0.38, 0.1, '<padding> ', pos=2, cex=0.75, srt=90)
 
 ## Bugs and feature requests
 
-I hope that the package comes in useful.  If there's anything it can't do that you wish
-it could, please let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues/new?title=I%20have%20a%20suggestion!).
+I hope that the package comes in useful.  
+
+If there's anything it can't do that you wish
+it could, please let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues/new?title=Suggestion:+).
 
  # # #
