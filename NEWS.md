@@ -1,3 +1,7 @@
+# Ternary v1.1.1
+## New features
+ - `TernaryArrows` adds arrows to a ternary plot.
+
 # Ternary v1.1.0
 ## New features
  - Add support for contour plots and density shading.

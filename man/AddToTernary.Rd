@@ -2,22 +2,25 @@
 % Please edit documentation in R/TernaryPlot.R
 \name{AddToTernary}
 \alias{AddToTernary}
-\alias{TernaryPoints}
-\alias{TernaryText}
+\alias{TernaryArrows}
 \alias{TernaryLines}
+\alias{TernaryPoints}
 \alias{TernaryPolygon}
+\alias{TernaryText}
 \alias{JoinTheDots}
 \title{Add elements to ternary plot}
 \usage{
 AddToTernary(PlottingFunction, coordinates, ...)
 
-TernaryPoints(coordinates, ...)
-
-TernaryText(coordinates, ...)
+TernaryArrows(fromCoordinates, toCoordinates = fromCoordinates, ...)
 
 TernaryLines(coordinates, ...)
 
+TernaryPoints(coordinates, ...)
+
 TernaryPolygon(coordinates, ...)
+
+TernaryText(coordinates, ...)
 
 JoinTheDots(coordinates, ...)
 }
@@ -34,19 +37,25 @@ the three coordinates of a point in ternary space.}
 \item{\dots}{Additional parameters to pass to \code{PlottingFunction}.
 If using \code{TernaryText}, this will likely include the parameter \code{labels},
 to specify the text to plot.}
+
+\item{fromCoordinates, toCoordinates}{For \code{TernaryArrows}, coordinates at
+which arrows should begin and end; cf. \code{x0}, \code{y0}, \code{x1} and \code{y1} in
+\link[graphics]{arrows}.  Recycled as necessary.}
 }
 \description{
-Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
+Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 }
 \section{Functions}{
 \itemize{
-\item \code{TernaryPoints}: Add points
+\item \code{TernaryArrows}: Add  \link[graphics]{arrows}
 
-\item \code{TernaryText}: Add points
+\item \code{TernaryLines}: Add \link[graphics]{lines}
 
-\item \code{TernaryLines}: Add points
+\item \code{TernaryPoints}: Add \link[graphics]{points}
 
-\item \code{TernaryPolygon}: Add points
+\item \code{TernaryPolygon}: Add \link[graphics::polygon]{polygons}
+
+\item \code{TernaryText}: Add \link[graphics]{text}
 
 \item \code{JoinTheDots}: Add points, joined by lines
 }}
@@ -60,9 +69,10 @@ Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
     D = c(0.5, 1.5, 1)
   )
   TernaryPlot()
-  AddToTernary(lines, coords, col='green', lwd=2)
-  TernaryLines(coords, col='red', lty='dotted')
-  TernaryText(coords, cex=0.7, col='red')
+  AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+  TernaryLines(coords, col='darkgreen')
+  TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+  TernaryText(coords, cex=0.8, col='red', font=2)
   TernaryPoints(coords, pch=1, cex=2, col='blue')
   AddToTernary(points, coords, pch=1, cex=3)
 }

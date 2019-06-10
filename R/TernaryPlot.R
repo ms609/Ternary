@@ -322,13 +322,16 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 
 #' Add elements to ternary plot
 #' 
-#' Plot points onto a ternary diagram created with \code{\link{TernaryPlot}}.
+#' Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 #' 
 #' @param PlottingFunction Function to add data to a plot; perhaps one of
 #'        \code{\link[graphics]{points}},
 #'        \code{\link[graphics]{lines}} or
 #'        \code{\link[graphics]{text}}.
 #' @template coordinatesParam
+#' @param fromCoordinates,toCoordinates For `TernaryArrows`, coordinates at 
+#' which arrows should begin and end; cf. `x0`, `y0`, `x1` and `y1` in 
+#' \link[graphics]{arrows}.  Recycled as necessary.
 #' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
 #' If using `TernaryText`, this will likely include the parameter `labels`,
 #' to specify the text to plot.
@@ -341,9 +344,10 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #'     D = c(0.5, 1.5, 1)
 #'   )
 #'   TernaryPlot()
-#'   AddToTernary(lines, coords, col='green', lwd=2)
-#'   TernaryLines(coords, col='red', lty='dotted')
-#'   TernaryText(coords, cex=0.7, col='red')
+#'   AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+#'   TernaryLines(coords, col='darkgreen')
+#'   TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+#'   TernaryText(coords, cex=0.8, col='red', font=2)
 #'   TernaryPoints(coords, pch=1, cex=2, col='blue')
 #'   AddToTernary(points, coords, pch=1, cex=3)
 #' }
@@ -351,43 +355,71 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #' @author Martin R. Smith
 #' @export
 AddToTernary <- function (PlottingFunction, coordinates, ...) {
+  xy <- CoordinatesToXY(coordinates)
+  PlottingFunction(xy[1, ], xy[2, ], ...)
+}
+
+#' Convert user-specified ternary coordinates into X and Y coordinates
+#' 
+#' Accepts various formats of input data; extracts ternary coordinates and
+#' converts to X and Y coordinates.
+#' 
+#' @template coordinatesParam
+#' 
+#' @return An array of two rows, corresponding to the X and Y coordinates of 
+#' `coordinates`.
+#' 
+#' @export
+#' @keywords internal
+#' @author Martin R. Smith
+CoordinatesToXY <- function (coordinates) {
   dims <- dim(coordinates)
+  
+  # Return:
   if (is.null(dims)) {
     if (mode(coordinates) == 'list') {
-      xy <- vapply(coordinates, TernaryCoords, double(2))
-      return(PlottingFunction(xy[1, ], xy[2, ], ...))
+      vapply(coordinates, TernaryCoords, double(2))
     } else if (mode(coordinates) == 'numeric') {
-      xy <- TernaryCoords(coordinates)
-      return(PlottingFunction(xy[1], xy[2], ...))
+      matrix(TernaryCoords(coordinates), nrow=2)
     }
   } else if (length(dims) == 2) {
     which_dim <- if(dims[2] == 3) 1 else if (dims[1] == 3) 2 else stop("Coordinates must be ternary points")
-    xy <- apply(coordinates, which_dim, TernaryCoords)
-    return(PlottingFunction(xy[1, ], xy[2, ], ...))
+    apply(coordinates, which_dim, TernaryCoords)
   } else {
-    stop("Unrecognized format for coordinates parameter.") 
+    stop("Unrecognized format for coordinates parameter.")
   }
 }
 
-#' @describeIn AddToTernary Add points
-#' @importFrom graphics points
+#' @describeIn AddToTernary Add  \link[graphics]{arrows}
+#' @importFrom graphics arrows
 #' @export
-TernaryPoints <- function (coordinates, ...) AddToTernary(points, coordinates, ...)
+TernaryArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
+  
+  # Return:
+  arrows(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
 
-#' @describeIn AddToTernary Add points
-#' @importFrom graphics text
-#' @export
-TernaryText <- function (coordinates, ...) AddToTernary(text, coordinates, ...)
-
-#' @describeIn AddToTernary Add points
+#' @describeIn AddToTernary Add \link[graphics]{lines}
 #' @importFrom graphics lines
 #' @export
 TernaryLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...)
 
-#' @describeIn AddToTernary Add points
+#' @describeIn AddToTernary Add \link[graphics]{points}
+#' @importFrom graphics points
+#' @export
+TernaryPoints <- function (coordinates, ...) AddToTernary(points, coordinates, ...)
+
+#' @describeIn AddToTernary Add \link[graphics::polygon]{polygons}
 #' @importFrom graphics polygon
 #' @export
 TernaryPolygon <- function (coordinates, ...) AddToTernary(polygon, coordinates, ...)
+
+#' @describeIn AddToTernary Add \link[graphics]{text}
+#' @importFrom graphics text
+#' @export
+TernaryText <- function (coordinates, ...) AddToTernary(text, coordinates, ...)
 
 #' @describeIn AddToTernary Add points, joined by lines
 #' @importFrom graphics lines points
