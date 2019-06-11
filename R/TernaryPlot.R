@@ -4,7 +4,8 @@
 #' 
 #' The plot will be generated using the standard graphics plot functions, on which
 #' additional elements can be added using cartesian coordinates, perhaps using
-#' functions such as [arrows](arrows), [legend] or [text].
+#' functions such as \code{\link[graphics]{arrows}}, 
+#' \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 #' 
 #' @param atip,btip,ctip Character string specifying text to title corners, 
 #' proceeding clockwise from the corner specified in `point` (default: top).
