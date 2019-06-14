@@ -9,6 +9,8 @@ There were no ERRORs or WARNINGs or NOTEs.
 
 (Certain R-hub platforms delivered trivial notes relating to pandoc.)
 
+I have updated the link to {arrows} in man/TernaryPlot.Rd.
+
 ## Downstream dependencies
 
 All downstream dependencies passed `revdepcheck::revdep_check()`:
