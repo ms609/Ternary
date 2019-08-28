@@ -12,3 +12,4 @@ cran-comments.md
 ^.*\.yml$
 ^.*\.json$
 ^.*\.sh$
+^CODE_OF_CONDUCT\.md$
