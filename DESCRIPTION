@@ -4,7 +4,7 @@ Date: 2019-06-14
 Title: An R Package for Creating Ternary Plots
 Description: Plots ternary diagrams using the standard graphics functions.  
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions.
-URL: https://ms609.github.io/Ternary
+URL: https://ms609.github.io/Ternary, https://github.com/ms609/Ternary
 BugReports: https://github.com/ms609/Ternary/issues
 Authors@R: c(person('Martin R.', 'Smith',
                   email='martin.smith@durham.ac.uk',
