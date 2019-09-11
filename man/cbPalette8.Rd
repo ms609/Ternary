@@ -14,6 +14,17 @@ cbPalette8
 \description{
 An eight-colour palette recommended for use with colour blind audiences.
 }
+\examples{
+{
+data('cbPalette8')
+par(mar=rep(0, 4))
+dev.new(width=8, height=1/2, units='cm')
+plot(0, type='n', xlim=c(1, 8), ylim=c(0, 1), axes=FALSE)
+points(1:8, rep(0, 8), col=cbPalette8, pch=15)
+text(1:8, 0.5, col=cbPalette8)
+}
+
+}
 \seealso{
 \link{cbPalette15}
 }

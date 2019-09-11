@@ -1,5 +1,5 @@
 # Ternary
-# 
+
 [![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](http://www.repostatus.org/#project-statuses)
 [![Build Status](https://travis-ci.org/ms609/Ternary.svg?branch=master)](https://travis-ci.org/ms609/Ternary)<!--
 [![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/Ternary)-->
