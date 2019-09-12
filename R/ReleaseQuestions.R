@@ -1,6 +1,6 @@
 release_questions <- function() {
   c(
-    "Are vignettes up to date?",
+    "Are new features described in vignettes?",
     "Have you updated .zenodo.json?"
   )
 }
