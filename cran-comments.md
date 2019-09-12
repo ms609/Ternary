@@ -14,8 +14,5 @@ I have updated the link to {arrows} in man/TernaryPlot.Rd.
 
 ## Downstream dependencies
 
-All downstream dependencies passed `revdepcheck::revdep_check()`:
-* cocktailApp
-* CongreveLamsdell2016
-* plot3logit
-* Quartet
+`revdepcheck::revdep_check()` failed to run, but tests indicate that 
+behaviour used by reverse dependencies has not changed.
