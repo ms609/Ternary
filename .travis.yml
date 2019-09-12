@@ -1,13 +1,50 @@
 language: r
-r:
-  - 3.4
-  - devel
-
 cache: packages
+sudo: required # required if r_binary_packages; false otherwise
 warnings_are_errors: true
-r_check_args: --as-cran
-sudo: required # Required to use binary packages, which are faster than source installs
+r_check_args: --as-cran # --no-manual # Workaround error compiling PDF manual
+matrix:
+  include:
+    - r: 3.4.0
+      script: 
+        - travis_wait 43 ./_build.sh
+        - ./_deploy.sh
+    - r: release
+      before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
+      deploy:
+        provider: script
+        script: 
+          - Rscript -e 'pkgdown::deploy_site_github()'
+        skip_cleanup: true
+        local_dir: "docs"
+        keep-history: true
+        on: 
+          branch: master
+    - r: devel
+      after_success:
+        - Rscript -e "covr::codecov()"
+    - os: osx
+      r: release
+      r_packages:
+        - covr
+        - devtools
+        - knitr
+        - rmarkdown
+        - roxygen2
+        - testthat
+        - vdiffr
+      before_install:
+      - brew install cairo
+      - sudo tlmgr install doi titling hyperref
+#  allow_failures:
+#    r: devel # Incompatible with devtools?
 
+git:
+  depth: 1
+
+r_packages:
+ - vdiffr
+ 
 r_binary_packages:
  - covr
  - devtools
@@ -16,18 +53,12 @@ r_binary_packages:
  - roxygen2
  - testthat
 
-git:
-  depth: 1
-
 before_script:
- - R -e "devtools::document()"
- - chmod +x ./_build.sh
- - chmod +x ./_deploy.sh
+  - R -e "devtools::document()"
+  - chmod +x ./_build.sh
+  - chmod +x ./_deploy.sh
 
-script:
-  - travis_wait 43 ./_build.sh
-  - ./_deploy.sh
-
-after_success:
-  - Rscript -e "covr::codecov()"
-  
+notifications:
+  email:
+    on_success: change
+    on_failure: change
