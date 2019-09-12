@@ -74,6 +74,7 @@ test_that('Ranges are correct', {
 })
 
 test_that('OutsidePlot works', {
+  options('ternDirection' = 1L)
   expect_true(OutsidePlot(100, 100))
   expect_false(OutsidePlot(0, 0))
   expect_equal(c(TRUE, TRUE), OutsidePlot(0:1, 1:0))
