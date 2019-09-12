@@ -198,19 +198,23 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       rot1 <- c(  0, 270,   0,  90)[direction]
       rot2 <- c( 60, -30,  60, -30)[direction]
       rot3 <- c(-60,  30, -60,  30)[direction]
+      
+      pos1 <- c(2, 2, 4, 2)[direction]
+      pos2 <- c(4, 4, 2, 2)[direction]
+      pos3 <- c(4, 2, 2, 4)[direction]
     } else {
       axis1_degrees <- (240 + (direction * 90)) %% 360
-      axis2_degrees <- (360 + (direction * 90)) %% 360
+      axis2_degrees <- (      (direction * 90)) %% 360
       axis3_degrees <- (120 + (direction * 90)) %% 360
       
-      rot1 <- c(-60, 210, -60,  30)[direction]
+      rot1 <- c(-60,  30, -60,  30)[direction]
       rot2 <- c(  0, -90,  00, -90)[direction]
-      rot3 <- c(-120, -30,-120, -30)[direction]
+      rot3 <- c( 60, -30,  60, -30)[direction]
       
+      pos1 <- c(2, 4, 4, 2)[direction]
+      pos2 <- c(4, 4, 2, 2)[direction]
+      pos3 <- c(2, 2, 4, 4)[direction]
     }
-    pos1 <- c(2, 2, 4, 2)[direction]
-    pos2 <- c(4, 4, 2, 2)[direction]
-    pos3 <- c(4, 2, 2, 4)[direction]
     
     mult1 <- c(5 , 16, 10, 12)[direction] / 10
     mult2 <- c(5 ,  9,  8,  9)[direction] / 10
