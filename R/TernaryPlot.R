@@ -220,9 +220,10 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       pos2 <- c(4, 4, 2, 2)[direction]
       pos3 <- c(2, 2, 4, 4)[direction]
       
-      mult1 <- c(9 ,  8,  8, 10)[direction] / 10
-      mult2 <- c(8 , 12,  8, 14)[direction] / 10
-      mult3 <- c(14,  8, 16,  6)[direction] / 10
+      mult1 <- c(5, 4, 4, 5)[direction] / 5
+      mult2 <- c(4, 6, 4, 7)[direction] / 5
+      mult3 <- c(8, 4, 7, 3)[direction] / 5
+      
     }
     
   
@@ -281,9 +282,9 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   blab_xy <- TernaryCoords(c(1, 1, 0)) + (lab.offset * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
   clab_xy <- TernaryCoords(c(0, 1, 1)) + (lab.offset * DirectionalOffset(c(180, 270,   0,  90)[direction]))
     
-  TitleAxis(alab_xy, if (clockwise) alab else paste(1, clab), c( 60, 330,  60, 330))
-  TitleAxis(blab_xy, if (clockwise) blab else paste(2, alab), c(300,  30, 300,  30))
-  TitleAxis(clab_xy, if (clockwise) clab else paste(3, blab), c(  0,  90,   0, 270))
+  TitleAxis(alab_xy, if (clockwise) alab else clab, c( 60, 330,  60, 330))
+  TitleAxis(blab_xy, if (clockwise) blab else alab, c(300,  30, 300,  30))
+  TitleAxis(clab_xy, if (clockwise) clab else blab, c(  0,  90,   0, 270))
   
   
   if (is.null(atip.rotate)) {
