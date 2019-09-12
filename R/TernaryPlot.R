@@ -119,7 +119,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                                               'east', 'south', 'west', 'north',
                                               2L, 3L, 4L, 1L)) %% 4L)
   if (is.na(direction)) {
-    warning("Point must be one of up, down, left or right")
+    stop("Point must be one of up, down, left or right")
   } else {
     options('ternDirection' = direction)
   }
