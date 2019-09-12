@@ -206,6 +206,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
     mult2 <- c(5 ,  9,  8,  9)[direction] / 10
     mult3 <- c(16,  8, 16,  8)[direction] / 10
     
+    Angles <- if (clockwise) c(sin, cos) else c(cos, sin)
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
       p <- line_points[i]
@@ -217,7 +218,6 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          
       if (axis.tick) {
         AxisTick <- function (ends, degrees) {
-          Angles <- if (clockwise) c(sin, cos) else c(cos, sin)
           lines(ends[1] + c(0, Angles[[1]](degrees * pi / 180) * ticks.length),
                 ends[2] + c(0, Angles[[2]](degrees * pi / 180) * ticks.length),
                 col=ticks.col, lwd=ticks.lwd)
@@ -226,26 +226,22 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
         AxisTick(line_ends[, 1], axis1_degrees)
         AxisTick(line_ends[, 2], axis2_degrees)
         AxisTick(line_ends[, 3], axis3_degrees)
-      
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
+        AxisLabel <- function (ends, degrees, mult, rot, pos) {
+          text(ends[1] + Angles[[1]](degrees * pi / 180) * ticks.length * mult,
+               ends[2] + Angles[[2]](degrees * pi / 180) * ticks.length * mult,
+               axis.labels[i], srt=rot, pos=pos, font=axis.font, cex=axis.cex,
+               col=axis.labels.col)
+        }
         
         # Annotate axes
-        text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * ticks.length * mult1,
-             line_ends[2, 1] + cos(axis1_degrees * pi / 180) * ticks.length * mult1,
-             axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
-        text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * ticks.length * mult2,
-             line_ends[2, 2] + cos(axis2_degrees * pi / 180) * ticks.length * mult2,
-             axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
-        text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * ticks.length * mult3,
-             line_ends[2, 3] + cos(axis3_degrees * pi / 180) * ticks.length * mult3,
-             axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
+        AxisLabel(line_ends[, 1], axis1_degrees, mult1, rot1, pos1)
+        AxisLabel(line_ends[, 2], axis2_degrees, mult2, rot2, pos2)
+        AxisLabel(line_ends[, 3], axis3_degrees, mult3, rot3, pos3)
       }
     })
   }
