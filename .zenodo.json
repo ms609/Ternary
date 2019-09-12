@@ -2,7 +2,7 @@
     "description": "An R Package to Generate Ternary Plots", 
     "license": "gpl-3.0", 
     "title": "Ternary", 
-    "version": "v1.1.1", 
+    "version": "v1.1.2", 
     "upload_type": "software", 
     "creators": [
         {
