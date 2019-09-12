@@ -19,7 +19,7 @@
 #'   **down**: `0` if the triangle concerned points upwards (or right), 
 #'   `1` otherwise
 #' 
-#' @concept Contour plots
+#' @family contour plotting functions
 #' @author Martin R. Smith
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, 
@@ -373,7 +373,7 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 #' 
 #' @author Martin R. Smith
 #' 
-#' @concept Contour plots
+#' @family contour plotting functions
 #' @importFrom viridisLite viridis
 #' @export
 ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0.6),
@@ -400,7 +400,7 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
 #' 
 #' @author Martin R. Smith
 #' 
-#' @concept Contour plots
+#' @family contour plotting functions
 #' @importFrom graphics contour
 #' @export
 TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternDirection'), ...) {
@@ -471,7 +471,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' @param edgeCorrection Logical specifying whether to correct for edge effects
 #'  (see details).
 #' 
-#' @concept Contour plots
+#' @family contour plotting functions
 #' @author Adapted from MASS::kde2d by Martin R. Smith
 #' @importFrom stats dnorm quantile var
 #' @export
