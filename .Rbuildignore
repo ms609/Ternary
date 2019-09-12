@@ -17,3 +17,5 @@ CONTRIBUTING.md
 ^CODE_OF_CONDUCT\.md$
 ^\.travis\.yml$
 ^pkgdown$
+^doc$
+^Meta$
