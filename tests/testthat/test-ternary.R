@@ -45,7 +45,7 @@ test_that("Ternary plotting functions", {
     TernaryText(c(1.5, 1, 1), 'A')
   }
   TernaryPlotterYlim <- function () {
-    TernaryPlot('A', 'B', 'C', ylim=c(0, 0.82), point=1)
+    TernaryPlot('A', 'B', 'C', ylim=c(0, 0.82), point=1, main='... to plot')
     TernaryLines(list(c(1, 1, 1), c(0, 1, 2)), lwd=2)
     TernaryArrows(c(1, 1.2, 1), c(0, 1.2, 2), lwd=1)
     TernaryPolygon(matrix(c(
