@@ -98,11 +98,11 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
                          point='up', clockwise=TRUE, xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=0, tip.cex=lab.cex, tip.font=2,
-                         isometric=TRUE, 
-                         atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
+                         isometric=TRUE, atip.rotate = NULL, 
+                         btip.rotate = NULL, ctip.rotate = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
-                         col=NA, 
+                         col=NA,
                          grid.lines=10, grid.col='darkgrey',
                          grid.lty='solid', grid.lwd=par('lwd'),
                          grid.minor.lines=4, grid.minor.col='lightgrey',
@@ -115,7 +115,9 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          axis.col='black', ticks.col=grid.col,
                          axis.labels.col=axis.col,
                          ...) {
-  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2L, 3L, 4L, 1L)) %% 4L)
+  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
+                                              'east', 'south', 'west', 'north',
+                                              2L, 3L, 4L, 1L)) %% 4L)
   if (is.na(direction)) {
     warning("Point must be one of up, down, left or right")
   } else {
