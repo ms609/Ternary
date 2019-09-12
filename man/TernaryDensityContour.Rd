@@ -61,7 +61,12 @@ situations, but is non-trivial to implement; if this distinction is
 important to you, please let the maintainers known by opening a
 \href{https://github.com/ms609/Ternary/issues/new?title=Triangular+KDE}{Github issue}.
 }
+\seealso{
+Other contour plotting functions: \code{\link{ColourTernary}},
+  \code{\link{TernaryContour}},
+  \code{\link{TernaryPointValues}}
+}
 \author{
 Adapted from MASS::kde2d by Martin R. Smith
 }
-\concept{Contour plots}
+\concept{contour plotting functions}

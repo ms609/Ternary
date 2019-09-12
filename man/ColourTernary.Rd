@@ -24,7 +24,12 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \description{
 Colour a ternary plot according to the output of a function
 }
+\seealso{
+Other contour plotting functions: \code{\link{TernaryContour}},
+  \code{\link{TernaryDensityContour}},
+  \code{\link{TernaryPointValues}}
+}
 \author{
 Martin R. Smith
 }
-\concept{Contour plots}
+\concept{contour plotting functions}
