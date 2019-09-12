@@ -25,8 +25,7 @@
 #' @author Martin R. Smith
 #' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, 
-                           direction = getOption('ternDirection'),
-                           clockwise = getOption('ternChirality')) {
+                           direction = getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
