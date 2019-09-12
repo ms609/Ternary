@@ -216,17 +216,17 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * ticks.length),
-              line_ends[2, 1] + c(0, cos(axis1_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
-    
-        lines(line_ends[1, 2] + c(0, sin(axis2_degrees * pi / 180) * ticks.length),
-              line_ends[2, 2] + c(0, cos(axis2_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
-       
-        lines(line_ends[1, 3] + c(0, sin(axis3_degrees * pi / 180) * ticks.length),
-              line_ends[2, 3] + c(0, cos(axis3_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
+        AxisTick <- function (ends, degrees) {
+          Angles <- if (clockwise) c(sin, cos) else c(cos, sin)
+          lines(ends[1] + c(0, Angles[[1]](degrees * pi / 180) * ticks.length),
+                ends[2] + c(0, Angles[[2]](degrees * pi / 180) * ticks.length),
+                col=ticks.col, lwd=ticks.lwd)
+        }
+      
+        AxisTick(line_ends[, 1], axis1_degrees)
+        AxisTick(line_ends[, 2], axis2_degrees)
+        AxisTick(line_ends[, 3], axis3_degrees)
+      
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
