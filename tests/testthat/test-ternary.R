@@ -205,6 +205,7 @@ test_that('Vignette plots are rendered correctly', {
     TernaryText(list(c(10, 69, 21), c(20, 64, 16)), c(10, 20), srt=0, cex=0.9, col='darkgrey')
     
     # Plot desired polygon
+    my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
     TernaryPolygon(my_corners, col='#2cbe4e')
     
     # Show xlim, ylim and padding, using cartesian coordinates
