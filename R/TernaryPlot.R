@@ -263,14 +263,17 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   DirectionalOffset <- function (degrees) {
     c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
   }
+  
+  TitleAxis <- function (xy, lab, rot) {
+    text(xy[1], xy[2], lab, cex=lab.cex, font=lab.font, srt=rot[direction])
+  }
   alab_xy <- TernaryCoords(c(1, 0, 1)) + (lab.offset * DirectionalOffset(c(300,  60, 120, 210)[direction]))
   blab_xy <- TernaryCoords(c(1, 1, 0)) + (lab.offset * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
   clab_xy <- TernaryCoords(c(0, 1, 1)) + (lab.offset * DirectionalOffset(c(180, 270,   0,  90)[direction]))
     
-  # Title axes
-  text(alab_xy[1], alab_xy[2], alab, cex=lab.cex, font=lab.font, srt=c( 60, 330,  60, 330)[direction])
-  text(blab_xy[1], blab_xy[2], blab, cex=lab.cex, font=lab.font, srt=c(300,  30, 300,  30)[direction])
-  text(clab_xy[1], clab_xy[2], clab, cex=lab.cex, font=lab.font, srt=c(  0,  90,   0, 270)[direction])
+  TitleAxis(alab_xy, if (clockwise) alab else paste(1, clab), c( 60, 330,  60, 330))
+  TitleAxis(blab_xy, if (clockwise) blab else paste(2, alab), c(300,  30, 300,  30))
+  TitleAxis(clab_xy, if (clockwise) clab else paste(3, blab), c(  0,  90,   0, 270))
   
   
   if (is.null(atip.rotate)) {
