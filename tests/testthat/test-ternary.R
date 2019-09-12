@@ -94,9 +94,6 @@ test_that('Vignette plots are rendered correctly', {
                    rgb(111, 222,  16, 128, NULL, 255)),
     )
     
-    ###
-    # Next plot:
-    ###
     TernaryPlot('Steam', 'Ice', 'Water', 
                 grid.lines=5, grid.lty='dotted',
                 grid.minor.lines=1, grid.minor.lty='dotted',
@@ -125,78 +122,6 @@ test_that('Vignette plots are rendered correctly', {
   }
   expect_doppelganger('Cartesian', Cartesian)
   
-  Contours <- function () {
-    par(mar=rep(0.2, 4))
-    TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
-    
-    FunctionToContour <- function (a, b, c) {
-      a - c + (4 * a * b) + (27 * a * b * c)
-    }
-    
-    values <- TernaryPointValues(FunctionToContour, resolution=12L)
-    ColourTernary(values)
-    TernaryContour(FunctionToContour, resolution=36L)
-  }
-  expect_doppelganger('Contours', Contours)
-  
-  DensityContours <- function () {
-    par(mar=rep(0.2, 4))
-    TernaryPlot()
-    
-    nPoints <- 4000L
-    set.seed(0)
-    coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
-                         abs(rnorm(nPoints, 1, 1.5)),
-                         abs(rnorm(nPoints, 1, 0.5)))
-    
-    ColourTernary(TernaryDensity(coordinates, resolution=10L))
-    TernaryPoints(coordinates, col='red', pch='.')
-    TernaryDensityContour(coordinates, resolution=30L)
-  }
-  expect_doppelganger('density-contours', DensityContours)
-  
-  LoResDensCont <- function () {
-    coordinates <- list(middle = c(1, 1, 1),
-                        top = c(3, 0, 0),
-                        belowTop = c(2, 1, 1),
-                        leftSideSolid = c(9, 2, 9),
-                        leftSideSolid2 = c(9.5, 2, 8.5),
-                        right3way = c(1, 2, 0),
-                        rightEdge = c(2.5, 0.5, 0),
-                        leftBorder = c(1, 1, 4),
-                        topBorder = c(2, 1, 3),
-                        rightBorder = c(1, 2, 3)
-    )
-    par(mfrow=c(2, 2), mar=rep(0.2, 4))
-    TernaryPlot(grid.lines=3, axis.labels=1:3, point='up')
-    values <- TernaryDensity(coordinates, resolution=3L)
-    ColourTernary(values)
-    TernaryPoints(coordinates, col='red')
-    text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex=0.8)
-    
-    TernaryPlot(grid.lines=3, axis.labels=1:3, point='right')
-    values <- TernaryDensity(coordinates, resolution=3L)
-    ColourTernary(values)
-    TernaryPoints(coordinates, col='red')
-    text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex=0.8)
-    
-    TernaryPlot(grid.lines=3, axis.labels=1:3, point='down')
-    values <- TernaryDensity(coordinates, resolution=3L)
-    ColourTernary(values)
-    TernaryPoints(coordinates, col='red')
-    text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex=0.8)
-    
-    TernaryPlot(grid.lines=3, axis.labels=1:3, point='left')
-    values <- TernaryDensity(coordinates, resolution=3L)
-    ColourTernary(values)
-    TernaryPoints(coordinates, col='red')
-    text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex=0.8)
-    
-    TernaryDensityContour(t(vapply(coordinates, I, double(3L))), 
-                          resolution=12L, tolerance=-0.02, col='orange')
-  }
-  expect_doppelganger('lo-res-density-contours', LoResDensCont)
-  
   Padding <- function () {
     TernaryPlot(xlim=c(0.28, 0.38), ylim=c(0.1, 0.2), padding=0.04)
     
@@ -205,6 +130,7 @@ test_that('Vignette plots are rendered correctly', {
     TernaryText(list(c(10, 69, 21), c(20, 64, 16)), c(10, 20), srt=0, cex=0.9, col='darkgrey')
     
     # Plot desired polygon
+    my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
     TernaryPolygon(my_corners, col='#2cbe4e')
     
     # Show xlim, ylim and padding, using cartesian coordinates

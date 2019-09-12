@@ -13,3 +13,5 @@ cran-comments.md
 ^.*\.json$
 ^.*\.sh$
 ^CODE_OF_CONDUCT\.md$
+^\.travis\.yml$
+^pkgdown$

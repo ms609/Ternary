@@ -61,4 +61,31 @@ test_that('Coordinates are reflected correctly', {
     -0.69277 ,-1.05008,
      0.17325,  0.44992
   ), ncol=2, byrow=TRUE))
-})  
+})
+
+test_that('Ranges are correct', {
+  expect_equal(c(-1, 1) / 2, TernaryXRange(direction = 1))
+  expect_equal(c(-1, 1) / 2, TernaryYRange(direction = 2))
+  expect_equal(c(-1, 1) / 2, TernaryXRange(direction = 3))
+  expect_equal(c(-1, 1) / 2, TernaryYRange(direction = 4))
+  expect_equal(c(-1, 0) + ((1 - sqrt(0.75)) / 2), TernaryYRange(direction = 3))
+  expect_equal(c(0, 1) - ((1 - sqrt(0.75)) / 2), TernaryXRange(direction = 2))
+  expect_equal(c(-1, 0) + ((1 - sqrt(0.75)) / 2), TernaryXRange(direction = 4))
+})
+
+test_that('OutsidePlot works', {
+  options('ternDirection' = 1L)
+  expect_true(OutsidePlot(100, 100))
+  expect_false(OutsidePlot(0, 0))
+  expect_equal(c(TRUE, TRUE), OutsidePlot(0:1, 1:0))
+  expect_false(OutsidePlot(0, 0.8))
+  expect_true(OutsidePlot(0, 0.8, tolerance=0.05))
+})
+
+test_that('Errors are handled nicely', {
+  expect_error(TernaryCoords(1:3, direction=5))
+  expect_error(TernaryXRange(1:3, direction=5))
+  expect_error(TernaryYRange(1:3, direction=5))
+  expect_error(XYToTernary(letters[1:2], 1:2))
+  expect_error(XYToTernary(1:2, letters[1:2]))
+})

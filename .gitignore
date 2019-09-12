@@ -15,3 +15,4 @@ vignettes/*.html
 vignettes/*.pdf
 vignettes/*_files
 tests/testthat/Rplots.pdf
+docs/
