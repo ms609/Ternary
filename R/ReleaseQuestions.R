@@ -8,6 +8,7 @@ release_questions <- function() {
 
 # Additional tests:
 # 
+# spell_check()
 # check_win_devel(); check_rhub()
 # revdepcheck::revdep_check()
 # build_vignettes()
