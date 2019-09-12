@@ -50,7 +50,12 @@ Density plotting functions are somewhat experimental; please
 \item \code{TernaryDensity}: Returns the density of points in each triangle
 }}
 
+\seealso{
+Other contour plotting functions: \code{\link{ColourTernary}},
+  \code{\link{TernaryContour}},
+  \code{\link{TernaryDensityContour}}
+}
 \author{
 Martin R. Smith
 }
-\concept{Contour plots}
+\concept{contour plotting functions}

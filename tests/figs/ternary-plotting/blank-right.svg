@@ -17,16 +17,6 @@
     <rect x='152.64' y='59.04' width='443.52' height='443.52' />
   </clipPath>
 </defs>
-<defs>
-  <clipPath id='cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA='>
-    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
-  </clipPath>
-</defs>
-<defs>
-  <clipPath id='cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ='>
-    <rect x='152.64' y='59.04' width='443.52' height='443.52' />
-  </clipPath>
-</defs>
 <polyline points='527.70,280.80 221.10,457.81 221.10,103.79 527.70,280.80 527.70,280.80 ' style='stroke-width: 0.75; stroke: none;' clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)' />
 <polyline points='227.24,454.27 227.24,107.33 ' style='stroke-width: 0.75; stroke: #D3D3D3;' clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)' />
 <polyline points='221.10,110.87 521.56,284.34 ' style='stroke-width: 0.75; stroke: #D3D3D3;' clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)' />
@@ -245,9 +235,9 @@
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text transform='translate(406.99,159.15) rotate(-330)' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='33.34px' lengthAdjust='spacingAndGlyphs'>Aness</text></g>
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text transform='translate(411.05,409.48) rotate(-30)' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='33.34px' lengthAdjust='spacingAndGlyphs'>Bness</text></g>
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text transform='translate(168.58,297.81) rotate(-90)' style='font-size: 12.00px; font-family: Liberation Sans;' textLength='34.02px' lengthAdjust='spacingAndGlyphs'>Cness</text></g>
-<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text transform='translate(549.76,322.92) rotate(-30)' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='8.67px' lengthAdjust='spacingAndGlyphs'>A</text></g>
-<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='263.71' y='478.26' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='8.67px' lengthAdjust='spacingAndGlyphs'>B</text></g>
-<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='228.30' y='88.84' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='8.67px' lengthAdjust='spacingAndGlyphs'>C</text></g>
+<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text transform='translate(516.65,342.04) rotate(-30)' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='46.91px' lengthAdjust='spacingAndGlyphs'>A vertex</text></g>
+<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='263.71' y='478.26' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='47.36px' lengthAdjust='spacingAndGlyphs'>B vertex</text></g>
+<g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='228.30' y='88.84' style='font-size: 12.00px; font-weight: bold; font-family: Liberation Sans;' textLength='47.36px' lengthAdjust='spacingAndGlyphs'>C vertex</text></g>
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='473.26' y='284.92' style='font-size: 12.00px; font-weight: bold; fill: #009E73; font-family: Liberation Sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>1</text></g>
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='243.32' y='417.75' style='font-size: 12.00px; font-weight: bold; fill: #009E73; font-family: Liberation Sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>2</text></g>
 <g clip-path='url(#cpMTUyLjY0fDU5Ni4xNnw1MDIuNTZ8NTkuMDQ=)'><text x='243.32' y='152.16' style='font-size: 12.00px; font-weight: bold; fill: #009E73; font-family: Liberation Sans;' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>3</text></g>

@@ -23,7 +23,12 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \description{
 Draws contour lines to depict the value of a function in ternary space.
 }
+\seealso{
+Other contour plotting functions: \code{\link{ColourTernary}},
+  \code{\link{TernaryDensityContour}},
+  \code{\link{TernaryPointValues}}
+}
 \author{
 Martin R. Smith
 }
-\concept{Contour plots}
+\concept{contour plotting functions}

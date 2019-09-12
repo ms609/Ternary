@@ -7,8 +7,8 @@
 \usage{
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
-  xlim = NULL, ylim = NULL, lab.cex = 1, lab.font = 0,
-  tip.cex = lab.cex, tip.font = 2, isometric = TRUE,
+  clockwise = TRUE, xlim = NULL, ylim = NULL, lab.cex = 1,
+  lab.font = 0, tip.cex = lab.cex, tip.font = 2, isometric = TRUE,
   atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
   atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
   padding = 0.08, col = NA, grid.lines = 10, grid.col = "darkgrey",
@@ -39,6 +39,10 @@ Increase \code{padding} if labels are being clipped.}
 \item{point}{Character string specifying the orientation of the ternary plot:
 should the triangle point \code{"up"}, \code{"right"}, \code{"down"} or \code{"left"}?
 The integers 1 to 4 can be used in place of the character strings.}
+
+\item{clockwise}{Logical specifying the direction of axes.  If \code{TRUE} (the
+default), each axis runs from zero to its maximum value in a clockwise
+direction around the plot.}
 
 \item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.

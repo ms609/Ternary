@@ -19,6 +19,9 @@
 #' @param point Character string specifying the orientation of the ternary plot: 
 #' should the triangle point `"up"`, `"right"`, `"down"` or `"left"`? 
 #' The integers 1 to 4 can be used in place of the character strings.
+#' @param clockwise Logical specifying the direction of axes.  If `TRUE` (the 
+#' default), each axis runs from zero to its maximum value in a clockwise
+#' direction around the plot.
 #' 
 #' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
 #'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
@@ -93,13 +96,14 @@
 #' @export
 TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
-                         point='up', xlim=NULL, ylim=NULL,
+                         point='up', clockwise=TRUE,
+                         xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=0, tip.cex=lab.cex, tip.font=2,
-                         isometric=TRUE, 
-                         atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
+                         isometric=TRUE, atip.rotate = NULL, 
+                         btip.rotate = NULL, ctip.rotate = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
-                         col=NA, 
+                         col=NA,
                          grid.lines=10, grid.col='darkgrey',
                          grid.lty='solid', grid.lwd=par('lwd'),
                          grid.minor.lines=4, grid.minor.col='lightgrey',
@@ -112,7 +116,9 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          axis.col='black', ticks.col=grid.col,
                          axis.labels.col=axis.col,
                          ...) {
-  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up', 'east', 'south', 'west', 'north', 2L, 3L, 4L, 1L)) %% 4L)
+  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
+                                              'east', 'south', 'west', 'north',
+                                              2L, 3L, 4L, 1L)) %% 4L)
   if (is.na(direction)) {
     stop("Point must be one of up, down, left or right")
   } else {
@@ -143,7 +149,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   padVec <- c(-1, 1) * padding
   
   
-  plot(-999, -999, axes=FALSE, xlab='', ylab='',
+  plot(0, type='n', axes=FALSE, xlab='', ylab='',
        xlim=xlim + padVec, ylim=ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
@@ -184,22 +190,43 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       NULL
     })
     
-    axis1_degrees <- (180 + (direction * 90)) %% 360
-    axis2_degrees <- (300 + (direction * 90)) %% 360
-    axis3_degrees <- ( 60 + (direction * 90)) %% 360
+    if (clockwise) {
+      axis1_degrees <- (180 + (direction * 90)) %% 360
+      axis2_degrees <- (300 + (direction * 90)) %% 360
+      axis3_degrees <- ( 60 + (direction * 90)) %% 360
+      
+      rot1 <- c(  0, 270,   0,  90)[direction]
+      rot2 <- c( 60, -30,  60, -30)[direction]
+      rot3 <- c(-60,  30, -60,  30)[direction]
+      
+      pos1 <- c(2, 2, 4, 2)[direction]
+      pos2 <- c(4, 4, 2, 2)[direction]
+      pos3 <- c(4, 2, 2, 4)[direction]
+      
+      
+      mult1 <- c(5 , 16, 10, 12)[direction] / 10
+      mult2 <- c(5 ,  9,  8,  9)[direction] / 10
+      mult3 <- c(16,  8, 16,  8)[direction] / 10
+    } else {
+      axis1_degrees <- (240 + (direction * 90)) %% 360
+      axis2_degrees <- (      (direction * 90)) %% 360
+      axis3_degrees <- (120 + (direction * 90)) %% 360
+      
+      rot1 <- c(-60,  30, -60,  30)[direction]
+      rot2 <- c(  0, -90,  00, -90)[direction]
+      rot3 <- c( 60, -30,  60, -30)[direction]
+      
+      pos1 <- c(2, 4, 4, 2)[direction]
+      pos2 <- c(4, 4, 2, 2)[direction]
+      pos3 <- c(2, 2, 4, 4)[direction]
+      
+      mult1 <- c(5, 4, 4, 5)[direction] / 5
+      mult2 <- c(4, 6, 4, 7)[direction] / 5
+      mult3 <- c(8, 4, 7, 3)[direction] / 5
+      
+    }
     
-    rot1 <- c(  0, 270,   0,  90)[direction]
-    rot2 <- c( 60, -30,  60, -30)[direction]
-    rot3 <- c(-60,  30, -60,  30)[direction]
-    
-    pos1 <- c(2, 2, 4, 2)[direction]
-    pos2 <- c(4, 4, 2, 2)[direction]
-    pos3 <- c(4, 2, 2, 4)[direction]
-    
-    mult1 <- c(5 , 16, 10, 12)[direction] / 10
-    mult2 <- c(5 ,  9,  8,  9)[direction] / 10
-    mult3 <- c(16,  8, 16,  8)[direction] / 10
-    
+  
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
       p <- line_points[i]
@@ -210,36 +237,33 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        lines(line_ends[1, 1] + c(0, sin(axis1_degrees * pi / 180) * ticks.length),
-              line_ends[2, 1] + c(0, cos(axis1_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
-    
-        lines(line_ends[1, 2] + c(0, sin(axis2_degrees * pi / 180) * ticks.length),
-              line_ends[2, 2] + c(0, cos(axis2_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
-       
-        lines(line_ends[1, 3] + c(0, sin(axis3_degrees * pi / 180) * ticks.length),
-              line_ends[2, 3] + c(0, cos(axis3_degrees * pi / 180) * ticks.length),
-              col=ticks.col, lwd=ticks.lwd)
+        AxisTick <- function (ends, degrees) {
+          lines(ends[1] + c(0, sin(degrees * pi / 180) * ticks.length),
+                ends[2] + c(0, cos(degrees * pi / 180) * ticks.length),
+                col=ticks.col, lwd=ticks.lwd)
+        }
+      
+        AxisTick(line_ends[, 1], axis1_degrees)
+        AxisTick(line_ends[, 2], axis2_degrees)
+        AxisTick(line_ends[, 3], axis3_degrees)
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
+        if (!clockwise) axis.labels <- rev(axis.labels)
+        
+        AxisLabel <- function (ends, degrees, mult, rot, pos) {
+          text(ends[1] + sin(degrees * pi / 180) * ticks.length * mult,
+               ends[2] + cos(degrees * pi / 180) * ticks.length * mult,
+               axis.labels[i], srt=rot, pos=pos, font=axis.font, cex=axis.cex,
+               col=axis.labels.col)
+        }
         
         # Annotate axes
-        text(line_ends[1, 1] + sin(axis1_degrees * pi / 180) * ticks.length * mult1,
-             line_ends[2, 1] + cos(axis1_degrees * pi / 180) * ticks.length * mult1,
-             axis.labels[i], srt=rot1, pos=pos1, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
-        text(line_ends[1, 2] + sin(axis2_degrees * pi / 180) * ticks.length * mult2,
-             line_ends[2, 2] + cos(axis2_degrees * pi / 180) * ticks.length * mult2,
-             axis.labels[i], srt=rot2, pos=pos2, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
-        text(line_ends[1, 3] + sin(axis3_degrees * pi / 180) * ticks.length * mult3,
-             line_ends[2, 3] + cos(axis3_degrees * pi / 180) * ticks.length * mult3,
-             axis.labels[i], srt=rot3, pos=pos3, font=axis.font, cex=axis.cex,
-             col=axis.labels.col)
+        AxisLabel(line_ends[, 1], axis1_degrees, mult1, rot1, pos1)
+        AxisLabel(line_ends[, 2], axis2_degrees, mult2, rot2, pos2)
+        AxisLabel(line_ends[, 3], axis3_degrees, mult3, rot3, pos3)
       }
     })
   }
@@ -250,33 +274,38 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   DirectionalOffset <- function (degrees) {
     c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
   }
+  
+  TitleAxis <- function (xy, lab, rot) {
+    text(xy[1], xy[2], lab, cex=lab.cex, font=lab.font, srt=rot[direction])
+  }
   alab_xy <- TernaryCoords(c(1, 0, 1)) + (lab.offset * DirectionalOffset(c(300,  60, 120, 210)[direction]))
   blab_xy <- TernaryCoords(c(1, 1, 0)) + (lab.offset * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
   clab_xy <- TernaryCoords(c(0, 1, 1)) + (lab.offset * DirectionalOffset(c(180, 270,   0,  90)[direction]))
     
-  # Title axes
-  text(alab_xy[1], alab_xy[2], alab, cex=lab.cex, font=lab.font, srt=c( 60, 330,  60, 330)[direction])
-  text(blab_xy[1], blab_xy[2], blab, cex=lab.cex, font=lab.font, srt=c(300,  30, 300,  30)[direction])
-  text(clab_xy[1], clab_xy[2], clab, cex=lab.cex, font=lab.font, srt=c(  0,  90,   0, 270)[direction])
+  TitleAxis(alab_xy, if (clockwise) alab else clab, c( 60, 330,  60, 330))
+  TitleAxis(blab_xy, if (clockwise) blab else alab, c(300,  30, 300,  30))
+  TitleAxis(clab_xy, if (clockwise) clab else blab, c(  0,  90,   0, 270))
   
   
   if (is.null(atip.rotate)) {
-    ax <- c(-4, 4,  1, -3)[direction] * ticks.length
-    ay <- c(1, -4, -2, -4)[direction] * ticks.length
-    atip.rotate = c(0, 30, 0, 330)[direction]
-    atip.pos = c(2, 2, 4, 4)[direction]
+    axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
+    ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
+    ax <-axRaw[direction] * ticks.length
+    ay <- ayRaw[direction] * ticks.length
+    atip.rotate <- if (clockwise) c(0, 30, 0, 330)[direction] else c(0, 30, 0, 30)[direction]
+    atip.pos <- if (clockwise) c(2, 2, 4, 4)[direction] else c(4, 2, 2, 4)[direction]
   }
   if (is.null(btip.rotate)) {
     bx <- c(4, 4, -2, -3)[direction] * ticks.length
     by <- c(-4, -2, 4, 2.4)[direction] * ticks.length
-    btip.rotate = c(0, 0, 0, 0)[direction]
-    btip.pos = c(2, 4, 4, 2)[direction]
+    btip.rotate <- c(0, 0, 0, 0)[direction]
+    btip.pos <- c(2, 4, 4, 2)[direction]
   }
   if (is.null(ctip.rotate)) {
     cx <- c(-3, 0, 2, -3)[direction] * ticks.length
     cy <- c(-4, 2, 4, -2)[direction] * ticks.length
-    ctip.rotate = c(0, 0, 0, 0)[direction]
-    ctip.pos = c(4, 4, 2, 2)[direction]
+    ctip.rotate <- c(0, 0, 0, 0)[direction]
+    ctip.pos <- c(4, 4, 2, 2)[direction]
   }
   
   # Title corners

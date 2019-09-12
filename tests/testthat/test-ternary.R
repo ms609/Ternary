@@ -45,7 +45,7 @@ test_that("Ternary plotting functions", {
     TernaryText(c(1.5, 1, 1), 'A')
   }
   TernaryPlotterYlim <- function () {
-    TernaryPlot('A', 'B', 'C', ylim=c(0, 0.82), point=1)
+    TernaryPlot('A', 'B', 'C', ylim=c(0, 0.82), point=1, main='... to plot')
     TernaryLines(list(c(1, 1, 1), c(0, 1, 2)), lwd=2)
     TernaryArrows(c(1, 1.2, 1), c(0, 1.2, 2), lwd=1)
     TernaryPolygon(matrix(c(
@@ -62,9 +62,12 @@ test_that("Ternary plotting functions", {
 test_that('Vignette plots are rendered correctly', {
   expect_doppelganger('Blank plot', TernaryPlot)
   
-  BlankTernary <- function (dir) {
-    TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
-    TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+  BlankTernary <- function (dir, clockwise = TRUE) {
+    TernaryPlot(point=dir, atip='A vertex', btip='B vertex', ctip='C vertex', 
+                alab='Aness', blab='Bness', clab='Cness',
+                clockwise = clockwise)
+    TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), 
+                col=cbPalette8[4], font=2)
     HorizontalGrid(grid.col = 'red')
   }
   
@@ -73,10 +76,21 @@ test_that('Vignette plots are rendered correctly', {
   TernaryDown <- function () BlankTernary('down')
   TernaryLe <- function () BlankTernary('le')
   
+  
+  TernaryUpAC <- function () BlankTernary('up', clockwise = FALSE)
+  TernaryRightAC <- function () BlankTernary('right', clockwise = FALSE)
+  TernaryDownAC <- function () BlankTernary('down', clockwise = FALSE)
+  TernaryLeAC <- function () BlankTernary('le', clockwise = FALSE)
+  
   expect_doppelganger('Blank up', TernaryUp)
   expect_doppelganger('Blank right', TernaryRight)
   expect_doppelganger('Blank down', TernaryDown)
   expect_doppelganger('Blank le', TernaryLe)
+  
+  expect_doppelganger('Blank up anticlockwise', TernaryUpAC)
+  expect_doppelganger('Blank right anticlockwise', TernaryRightAC)
+  expect_doppelganger('Blank down anticlockwise', TernaryDownAC)
+  expect_doppelganger('Blank le anticlockwise', TernaryLeAC)
   
   TernaryCols <- function () {
     par(mfrow=c(1, 2), mar=rep(0.3, 4))
@@ -158,6 +172,5 @@ test_that('Vignette plots are rendered correctly', {
     text(0.38, 0.1, '<padding> ', pos=2, cex=0.75, srt=90)
   }
   expect_doppelganger('padding', Padding)
-  
   
 })

@@ -1,3 +1,8 @@
+# Ternary v1.1.1.9000 (development)
+## New features
+ - `clockwise` parameter allows plots to be configured in 'flipped' orientation
+   (https://github.com/ms609/Ternary/issues/22)
+
 # Ternary v1.1.1
 ## New features
  - `TernaryArrows` adds arrows to a ternary plot.

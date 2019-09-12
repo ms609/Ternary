@@ -1,30 +1,31 @@
 #' Convert ternary coordinates to Cartesian space
 #' 
-#' Converts coordinates of a point in ternary space, in the format (_a_, _b_, _c_), to
-#' _x_ and _y_ coordinates of Cartesian space, which can be sent to standard functions
-#' in the graphics package.
+#' Converts coordinates of a point in ternary space, in the format 
+#' (_a_, _b_, _c_), to _x_ and _y_ coordinates of Cartesian space, which can be
+#' sent to standard functions in the _graphics_ package.
 #' 
-#' @param abc A vector of length three giving the position on a ternary plot that points
-#'            in the direction specified by `direction` (1 = up, 2 = right, 3 = down, 4 = left).
-#'            \code{c(100, 0, 0)} will plot in the `direction`-most corner; \code{c(0, 100, 0)} 
-#'            will plot in the corner clockwise of `direction`; \code{c(0, 0, 100)} will plot in
-#'            the corner anti-clockwise of `direction`.
-#'            Alternatively, the a coordinate can be specified as the first parameter,
-#'            in which case the b and c coordinates must be specified via \code{b_coord}
-#'            and \code{c_coord}.
+#' @param abc A vector of length three giving the position on a ternary plot
+#' that points in the direction specified by `direction` (1 = up, 2 = right, 
+#' 3 = down, 4 = left). \code{c(100, 0, 0)} will plot in the `direction`-most 
+#' corner; \code{c(0, 100, 0)} will plot in the corner clockwise of `direction`;
+#' \code{c(0, 0, 100)} will plot in the corner anti-clockwise of `direction`.
+#' Alternatively, the a coordinate can be specified as the first parameter,
+#' in which case the b and c coordinates must be specified via \code{b_coord}
+#' and \code{c_coord}.
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #' @template directionParam
 #'            
-#' @return A vector of length two that converts the coordinates given in \code{abc}
-#'         into Cartesian (_x_, _y_) coordinates corresponding to the plot created by
-#'         the last call of \code{\link{TernaryPlot}}.
+#' @return A vector of length two that converts the coordinates given in
+#' \code{abc} into Cartesian (_x_, _y_) coordinates corresponding to the plot 
+#' created by the last call of \code{\link{TernaryPlot}}.
 #'
 #' @seealso [TernaryPlot]
-#' @concept Coordinate translation
+#' @family coordinate translation functions
 #' @author Martin R. Smith
 #' @export
-TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption('ternDirection')) {
+TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, 
+                           direction = getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
@@ -68,7 +69,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, direction=getOption(
 #' 
 #' @author Martin R. Smith
 #' 
-#' @concept Coordinate translation
+#' @family coordinate translation functions
 #' @export
 XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
   if (mode(x) != 'numeric') stop("Parameter x must be numeric.")

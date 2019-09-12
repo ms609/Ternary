@@ -6,7 +6,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .covrignore
+.Rprofile
 cran-comments.md
+CONTRIBUTING.md
 /^\.git/
 ^Rplot.*$
 ^.*\.yml$
