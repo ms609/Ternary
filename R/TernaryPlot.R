@@ -202,6 +202,11 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       pos1 <- c(2, 2, 4, 2)[direction]
       pos2 <- c(4, 4, 2, 2)[direction]
       pos3 <- c(4, 2, 2, 4)[direction]
+      
+      
+      mult1 <- c(5 , 16, 10, 12)[direction] / 10
+      mult2 <- c(5 ,  9,  8,  9)[direction] / 10
+      mult3 <- c(16,  8, 16,  8)[direction] / 10
     } else {
       axis1_degrees <- (240 + (direction * 90)) %% 360
       axis2_degrees <- (      (direction * 90)) %% 360
@@ -214,11 +219,12 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       pos1 <- c(2, 4, 4, 2)[direction]
       pos2 <- c(4, 4, 2, 2)[direction]
       pos3 <- c(2, 2, 4, 4)[direction]
+      
+      mult1 <- c(8 , 10,  6, 10)[direction] / 10
+      mult2 <- c(6 , 12,  8, 12)[direction] / 10
+      mult3 <- c(16,  8, 12,  8)[direction] / 10
     }
     
-    mult1 <- c(5 , 16, 10, 12)[direction] / 10
-    mult2 <- c(5 ,  9,  8,  9)[direction] / 10
-    mult3 <- c(16,  8, 16,  8)[direction] / 10
   
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
