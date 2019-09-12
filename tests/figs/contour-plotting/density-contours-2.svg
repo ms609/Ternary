@@ -17,16 +17,6 @@
     <rect x='74.88' y='2.88' width='570.24' height='570.24' />
   </clipPath>
 </defs>
-<defs>
-  <clipPath id='cpMC4wMHw3MjAuMDB8NTc2LjAwfDAuMDA='>
-    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
-  </clipPath>
-</defs>
-<defs>
-  <clipPath id='cpNzQuODh8NjQ1LjEyfDU3My4xMnwyLjg4'>
-    <rect x='74.88' y='2.88' width='570.24' height='570.24' />
-  </clipPath>
-</defs>
 <polyline points='557.10,288.00 162.90,515.59 162.90,60.41 557.10,288.00 557.10,288.00 ' style='stroke-width: 0.75; stroke: none;' clip-path='url(#cpNzQuODh8NjQ1LjEyfDU3My4xMnwyLjg4)' />
 <polyline points='170.79,511.03 170.79,64.97 ' style='stroke-width: 0.75; stroke: #D3D3D3;' clip-path='url(#cpNzQuODh8NjQ1LjEyfDU3My4xMnwyLjg4)' />
 <polyline points='162.90,69.52 549.21,292.55 ' style='stroke-width: 0.75; stroke: #D3D3D3;' clip-path='url(#cpNzQuODh8NjQ1LjEyfDU3My4xMnwyLjg4)' />

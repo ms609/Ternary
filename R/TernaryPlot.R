@@ -96,7 +96,8 @@
 #' @export
 TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
-                         point='up', clockwise=TRUE, xlim=NULL, ylim=NULL,
+                         point='up', clockwise=TRUE,
+                         xlim=NULL, ylim=NULL,
                          lab.cex=1.0, lab.font=0, tip.cex=lab.cex, tip.font=2,
                          isometric=TRUE, atip.rotate = NULL, 
                          btip.rotate = NULL, ctip.rotate = NULL,
@@ -148,7 +149,7 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   padVec <- c(-1, 1) * padding
   
   
-  plot(-999, -999, axes=FALSE, xlab='', ylab='',
+  plot(0, type='n', axes=FALSE, xlab='', ylab='',
        xlim=xlim + padVec, ylim=ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
