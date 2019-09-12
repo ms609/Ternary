@@ -220,9 +220,9 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       pos2 <- c(4, 4, 2, 2)[direction]
       pos3 <- c(2, 2, 4, 4)[direction]
       
-      mult1 <- c(8 , 10,  6, 10)[direction] / 10
-      mult2 <- c(6 , 12,  8, 12)[direction] / 10
-      mult3 <- c(16,  8, 12,  8)[direction] / 10
+      mult1 <- c(9 ,  8,  8, 10)[direction] / 10
+      mult2 <- c(8 , 12,  8, 14)[direction] / 10
+      mult3 <- c(14,  8, 16,  6)[direction] / 10
     }
     
   
