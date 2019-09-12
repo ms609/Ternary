@@ -1,5 +1,5 @@
 ---
-title: "Creating ternary plots with Ternary"
+title: "Plotting with Ternary"
 author: "Martin R. Smith"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_document
