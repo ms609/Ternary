@@ -218,5 +218,4 @@ test_that('Vignette plots are rendered correctly', {
   }
   expect_doppelganger('padding', Padding)
   
-  
 })
