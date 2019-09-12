@@ -5,8 +5,7 @@
 \title{Convert ternary coordinates to Cartesian space}
 \usage{
 TernaryCoords(abc, b_coord = NULL, c_coord = NULL,
-  direction = getOption("ternDirection"),
-  clockwise = getOption("ternChirality"))
+  direction = getOption("ternDirection"))
 }
 \arguments{
 \item{abc}{A vector of length three giving the position on a ternary plot
@@ -38,7 +37,8 @@ sent to standard functions in the \emph{graphics} package.
 \seealso{
 \link{TernaryPlot}
 
-Other coordinate translation functions: \code{\link{XYToTernary}}
+Other coordinate translation functions: \code{\link{TriangleCentres}},
+  \code{\link{XYToTernary}}
 }
 \author{
 Martin R. Smith

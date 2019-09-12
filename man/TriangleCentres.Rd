@@ -26,6 +26,11 @@ A matrix containing three named rows:
 \description{
 Coordinates of triangle mid-points
 }
+\seealso{
+Other coordinate translation functions: \code{\link{TernaryCoords}},
+  \code{\link{XYToTernary}}
+}
 \author{
 Martin R. Smith
 }
+\concept{coordinate translation functions}

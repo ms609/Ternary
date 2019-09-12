@@ -20,7 +20,8 @@ coordinates, where a + b + c = 1.
 Cartesian coordinates to ternary point
 }
 \seealso{
-Other coordinate translation functions: \code{\link{TernaryCoords}}
+Other coordinate translation functions: \code{\link{TernaryCoords}},
+  \code{\link{TriangleCentres}}
 }
 \author{
 Martin R. Smith

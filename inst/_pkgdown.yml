@@ -6,3 +6,28 @@ authors:
     
 development:
   mode: auto
+
+reference:
+  - title: "Creating ternary plots"
+    desc: >
+      Functions for plotting straightforward data onto a ternary plot.
+    contents:
+      - TernaryPlot
+      - AddToTernary
+  - title: "Coordinates"
+    desc: >
+      Functions for manipulating co-ordinates.
+    contents:
+      - OutsidePlot
+      - has_concept('coordinate translation functions')
+  - title: "Contouring"
+    desc: > 
+      Functions for adding contours and shading to ternary plots.
+    contents:
+      - has_concept('contour plotting functions')
+  - title: "Colour palettes"
+    desc: >
+      Colourblind-compatible palettes.
+    contents:
+      - cbPalette8
+      - cbPalette15

@@ -44,6 +44,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` binary integer specifying whether given triangle points down.
 #'  
+#' @family coordinate translation functions
 #' @author Martin R. Smith
 #' @export
 TriangleCentres <- function (resolution = 48L, 
