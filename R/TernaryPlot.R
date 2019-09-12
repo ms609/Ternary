@@ -240,6 +240,8 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
+        if (!clockwise) axis.labels <- rev(axis.labels)
+        
         AxisLabel <- function (ends, degrees, mult, rot, pos) {
           text(ends[1] + sin(degrees * pi / 180) * ticks.length * mult,
                ends[2] + cos(degrees * pi / 180) * ticks.length * mult,
