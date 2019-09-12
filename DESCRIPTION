@@ -20,6 +20,7 @@ Suggests:
     knitr,
     rmarkdown,
     testthat,
+    vdiffr
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
