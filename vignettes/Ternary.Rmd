@@ -46,8 +46,10 @@ The following charts show which corners are which, under different orientations:
 ```{R Create simple plot, fig.width=7, fig.height=7}
 par(mfrow=c(2, 2), mar=rep(0.5, 4))
 for (dir in c('up', 'right', 'down', 'le')) {
-  TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
-  TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+  TernaryPlot(point=dir, atip='A', btip='B', ctip='C',
+              alab='Aness', blab='Bness', clab='Cness')
+  TernaryText(list(A=c(10, 1, 1), B=c(1, 10, 1), C=c(1, 1, 10)),
+              col=cbPalette8[4], font=2)
 }
 ```
 
@@ -110,7 +112,8 @@ It is also possible to use cartesian coordinates to plot onto the graph.
 By default, the plotting area is a 1x1 square.
 
 ```{r Cartesian}
-TernaryPlot(point='right')
+par(mar = rep(0, 4)) # Reduce margins
+TernaryPlot(point='right', clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
 cat("Y range in this orientation:", TernaryYRange())
 arrows(x0=0.5, y0=0.4, x1=sqrt(3)/2, y1=0.4, length=0.1, col=cbPalette8[2])
@@ -118,6 +121,9 @@ text(x=mean(c(0.5, sqrt(3)/2)), y=0.4, "Increasing X", pos=3, col=cbPalette8[2])
 text(x=0.5, y=0, "(0.5, 0)", col=cbPalette8[3])
 text(x=0.8, y=-0.5, "(0.8, -0.5)", col=cbPalette8[3])
 ```
+
+Note that the location of axis labelling has been modified on this plot using 
+the `clockwise` parameter.
 
 ## Contours
 
