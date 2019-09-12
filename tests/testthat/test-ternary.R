@@ -126,16 +126,27 @@ test_that('Vignette plots are rendered correctly', {
   expect_doppelganger('Cartesian', Cartesian)
   
   Contours <- function () {
-    par(mar=rep(0.2, 4))
-    TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+    par(mar=rep(0, 4), mfrow=c(2, 2))
     
     FunctionToContour <- function (a, b, c) {
       a - c + (4 * a * b) + (27 * a * b * c)
     }
     
-    values <- TernaryPointValues(FunctionToContour, resolution=12L)
-    ColourTernary(values)
-    TernaryContour(FunctionToContour, resolution=36L)
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 1L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
+    TernaryContour(FunctionToContour, resolution=12L)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 2L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
+    TernaryContour(FunctionToContour, resolution=12L)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 3L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
+    TernaryContour(FunctionToContour, resolution=12L)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 4L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
+    TernaryContour(FunctionToContour, resolution=12L)
   }
   expect_doppelganger('Contours', Contours)
   
@@ -143,7 +154,7 @@ test_that('Vignette plots are rendered correctly', {
     par(mar=rep(0.2, 4))
     TernaryPlot()
     
-    nPoints <- 4000L
+    nPoints <- 400L
     set.seed(0)
     coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                          abs(rnorm(nPoints, 1, 1.5)),
@@ -151,7 +162,7 @@ test_that('Vignette plots are rendered correctly', {
     
     ColourTernary(TernaryDensity(coordinates, resolution=10L))
     TernaryPoints(coordinates, col='red', pch='.')
-    TernaryDensityContour(coordinates, resolution=30L)
+    TernaryDensityContour(coordinates, resolution=10L)
   }
   expect_doppelganger('density-contours', DensityContours)
   
