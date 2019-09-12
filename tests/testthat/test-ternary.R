@@ -2,6 +2,12 @@ context("Ternary plotting")
 test_that("Errors are handled gracefully", {
   expect_error(TernaryCoords(c(1, 2)))
   expect_error(TernaryCoords(c("a", "b", "c")))
+  expect_error(TernaryPlot(point = 'nowhere'))
+  expect_error(TernaryPoints(rep(1, 5)))
+  expect_error(HorizontalGrid(direction = 5))
+  expect_warning(TernaryPlot(xlim=c(0, 10), ylim=c(0, 1), isometric = TRUE))
+  expect_warning(TernaryPlot(xlim=c(0, 1), ylim=c(0, -10), isometric = TRUE))
+  expect_error(CoordinatesToXY(array(1, dim=c(1, 1, 1))))
 })
 
 test_that("TernaryCoords gives correct coordinates", {
@@ -31,18 +37,26 @@ test_that("TernaryCoords gives correct coordinates", {
   expect_equal(c(0, 0.5), TernaryCoords(0, 0, 1))
 })
 
-test_that("Ternary plotting does not fail", {
-  expect_null(TernaryPlot('A', 'B', 'C'))
-  expect_null(HorizontalGrid())
-  expect_error(TernaryPoints(rep(1, 5)))
-  expect_null(TernaryPoints(c(1, 1, 1)))
-  expect_null(TernaryText(c(1, 1, 1), 'A'))
-  expect_null(TernaryLines(list(c(1, 1, 1), c(0, 1, 2)), lwd=2))
-  expect_null(TernaryPolygon(matrix(c(
-    30, 40, 30,
-    30, 30, 40,
-    55, 20, 25
-  ), ncol=3, byrow=TRUE)))
+test_that("Ternary plotting functions", {
+  TernaryPlotterXlim <- function () {
+    TernaryPlot('A', 'B', 'C', xlim=c(0, 0.86), point=2)
+    JoinTheDots(list(c(1, 1, 1), c(0, 1, 2)), lwd=2, col='green')
+    TernaryPoints(c(0.5, 1, 1))
+    TernaryText(c(1.5, 1, 1), 'A')
+  }
+  TernaryPlotterYlim <- function () {
+    TernaryPlot('A', 'B', 'C', ylim=c(0, 0.82), point=1)
+    TernaryLines(list(c(1, 1, 1), c(0, 1, 2)), lwd=2)
+    TernaryArrows(c(1, 1.2, 1), c(0, 1.2, 2), lwd=1)
+    TernaryPolygon(matrix(c(
+      30, 40, 30,
+      30, 30, 40,
+      55, 20, 25
+    ), ncol=3, byrow=TRUE))
+  }
+  
+  expect_doppelganger('plot-to-ternary-x', TernaryPlotterXlim)
+  expect_doppelganger('plot-to-ternary-y', TernaryPlotterYlim)
 })
 
 test_that('Vignette plots are rendered correctly', {
@@ -51,6 +65,7 @@ test_that('Vignette plots are rendered correctly', {
   BlankTernary <- function (dir) {
     TernaryPlot(point=dir, atip='A', btip='B', ctip='C', alab='Aness', blab='Bness', clab='Cness')
     TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), col=cbPalette8[4], font=2)
+    HorizontalGrid(grid.col = 'red')
   }
   
   TernaryUp <- function () BlankTernary('up')
