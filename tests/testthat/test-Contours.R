@@ -80,6 +80,23 @@ test_that('Contours are plotted', {
   }
   expect_doppelganger('density-contours-2', DensityContours2)
   
+  
+  
+  DensityContours3 <- function () {
+    par(mar=rep(0.2, 4))
+    TernaryPlot(point=3)
+    
+    nPoints <- 400L
+    set.seed(0)
+    coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+                         abs(rnorm(nPoints, 1, 1.5)),
+                         abs(rnorm(nPoints, 1, 0.5)))
+    
+    TernaryPoints(coordinates, col='red', pch='.')
+    TernaryDensityContour(coordinates, resolution=10L)
+  }
+  expect_doppelganger('density-contours-3', DensityContours3)
+  
   LoResDensCont <- function () {
     coordinates <- list(middle = c(1, 1, 1),
                         top = c(3, 0, 0),

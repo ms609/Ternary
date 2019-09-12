@@ -83,9 +83,10 @@ test_that('OutsidePlot works', {
 })
 
 test_that('Errors are handled nicely', {
-  expect_error(TernaryCoords(1:3, direction=5))
-  expect_error(TernaryXRange(1:3, direction=5))
-  expect_error(TernaryYRange(1:3, direction=5))
+  expect_error(TernaryCoords(1:3, direction = 5))
+  expect_error(TernaryXRange(direction = 5))
+  expect_error(TernaryYRange(direction = 5))
+  expect_error(XYToTernary(1:2, 1:2, direction = 5))
   expect_error(XYToTernary(letters[1:2], 1:2))
   expect_error(XYToTernary(1:2, letters[1:2]))
 })
