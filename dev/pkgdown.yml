@@ -1,0 +1,9 @@
+pandoc: '2.2'
+pkgdown: 1.4.0
+pkgdown_sha: ~
+articles:
+  Ternary: Ternary.html
+urls:
+  reference: https://ms609.github.io/Ternary/reference
+  article: https://ms609.github.io/Ternary/articles
+
