@@ -288,22 +288,24 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   
   
   if (is.null(atip.rotate)) {
-    ax <- c(-4, 4,  1, -3)[direction] * ticks.length
-    ay <- c(1, -4, -2, -4)[direction] * ticks.length
-    atip.rotate = c(0, 30, 0, 330)[direction]
-    atip.pos = c(2, 2, 4, 4)[direction]
+    axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
+    ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
+    ax <-axRaw[direction] * ticks.length
+    ay <- ayRaw[direction] * ticks.length
+    atip.rotate <- if (clockwise) c(0, 30, 0, 330)[direction] else c(0, 30, 0, 30)[direction]
+    atip.pos <- if (clockwise) c(2, 2, 4, 4)[direction] else c(4, 2, 2, 4)[direction]
   }
   if (is.null(btip.rotate)) {
     bx <- c(4, 4, -2, -3)[direction] * ticks.length
     by <- c(-4, -2, 4, 2.4)[direction] * ticks.length
-    btip.rotate = c(0, 0, 0, 0)[direction]
-    btip.pos = c(2, 4, 4, 2)[direction]
+    btip.rotate <- c(0, 0, 0, 0)[direction]
+    btip.pos <- c(2, 4, 4, 2)[direction]
   }
   if (is.null(ctip.rotate)) {
     cx <- c(-3, 0, 2, -3)[direction] * ticks.length
     cy <- c(-4, 2, 4, -2)[direction] * ticks.length
-    ctip.rotate = c(0, 0, 0, 0)[direction]
-    ctip.pos = c(4, 4, 2, 2)[direction]
+    ctip.rotate <- c(0, 0, 0, 0)[direction]
+    ctip.pos <- c(4, 4, 2, 2)[direction]
   }
   
   # Title corners
