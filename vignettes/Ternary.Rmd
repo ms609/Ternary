@@ -1,5 +1,5 @@
 ---
-title: "Plotting with Ternary"
+title: "Create Ternary Plots in R"
 author: "Martin R. Smith"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_document
@@ -10,7 +10,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-I hope that this package proves simple to use.
+_Ternary_ is an R package to allow the creation of ternary plots in the standard
+R graphics environment.  I hope that it proves simple to use.
 
 Install the package with:
 
@@ -122,8 +123,8 @@ text(x=0.5, y=0, "(0.5, 0)", col=cbPalette8[3])
 text(x=0.8, y=-0.5, "(0.8, -0.5)", col=cbPalette8[3])
 ```
 
-Note that the location of axis labelling has been modified on this plot using 
-the `clockwise` parameter.
+Note the anticlockwise axis labelling on this plot, obtained using 
+`clockwise = FALSE`.
 
 ## Contours
 
@@ -248,7 +249,6 @@ text(0.38, 0.1, '<padding> ', pos=2, cex=0.75, srt=90)
 
 ## Bugs and feature requests
 
-I hope that the package comes in useful.  
-
-If there's anything it can't do that you wish
-it could, please let me know by opening a [Github issue](https://github.com/ms609/Ternary/issues/new?title=Suggestion:+).
+I hope the package proves useful. If there's anything it can't do that you wish
+it could, please let me know by opening a
+[Github issue](https://github.com/ms609/Ternary/issues/new?title=Suggestion:+).

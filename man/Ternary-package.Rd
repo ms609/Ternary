@@ -4,7 +4,7 @@
 \name{Ternary-package}
 \alias{Ternary}
 \alias{Ternary-package}
-\title{Ternary: An R Package for Creating Ternary Plots}
+\title{Ternary: Create Ternary Plots}
 \description{
 Plots ternary diagrams using the standard graphics functions.  
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions.

@@ -31,3 +31,9 @@ reference:
     contents:
       - cbPalette8
       - cbPalette15
+
+template:
+  params:
+    docsearch:
+      api_key: 9cc82e3c6c1059647be4e6dfacda7715
+      index_name: ternary
