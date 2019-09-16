@@ -1,13 +1,10 @@
-year <- "2017"
-
-citHeader(paste0("If using this package, please cite Smith (", 
-          year, ")."))
+citHeader(paste0("If using this package, please cite Smith (2017)."))
 
 citEntry(entry = "article",
         journal = "Zenodo",
         author = personList(as.person("Martin R. Smith")),
-        title = "Ternary: An R Package for Creating Ternary Plots. ",
-        year = year,
+        title = "Ternary: An R Package for Creating Ternary Plots",
+        year = "2017",
 
         textVersion =
         paste0("Smith (", year, "). ",
