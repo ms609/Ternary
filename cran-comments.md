@@ -8,7 +8,8 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs.
 
-I have updated the link to {CODE_OF_CONDUCT.md} in README.Rd.
+I have updated the link to {CODE_OF_CONDUCT.md} in README.Rd, and 
+omitted the redundant "An R Package for" from the title.
 
 ## Downstream dependencies
 
