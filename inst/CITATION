@@ -7,7 +7,6 @@ citEntry(entry = "article",
         year = "2017",
 
         textVersion =
-        paste0("Smith (", year, "). ",
+        paste0("Smith (2017). ",
                "Ternary: An R Package for Creating Ternary Plots. ",
-               "Zenodo",
-               ", doi: 10.5281/zenodo.1068996"))
+               "Zenodo, doi: 10.5281/zenodo.1068996"))
