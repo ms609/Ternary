@@ -420,7 +420,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
   }
   
   FunctionWrapper <- function(x, y) {
-    abc <- XYToTernary(x, y)
+    abc <- XYToTernary(x, y, direction)
     # TODO make more efficient by doing this intelligently rather than lazily
     ifelse(apply(abc < - 0.6 / resolution, 2, any),
            NA,

@@ -48,6 +48,27 @@ test_that('Contours are plotted', {
   }
   expect_doppelganger('Contours', Contours)
   
+  ContoursSkiwiff <- function () {
+    FunctionToContour <- function (a, b, c) {
+      a - c + (4 * a * b) + (27 * a * b * c)
+    }
+    
+    par(mar=rep(0, 4), mfrow=c(2, 2))
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 3L, ylim=c(0, 1))
+    TernaryContour(FunctionToContour, resolution = 12L, direction = 1)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 4L, xlim=c(0, 1))
+    TernaryContour(FunctionToContour, resolution = 12L, direction = 2)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 1L, ylim=c(-1, 0))
+    TernaryContour(FunctionToContour, resolution = 12L, direction = 3)
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 2L, xlim=c(-1, 0))
+    TernaryContour(FunctionToContour, resolution = 12L, direction = 4)
+  }
+  expect_doppelganger('Contours-skiwiff', ContoursSkiwiff)
+  
+  
   DensityContours <- function () {
     par(mar=rep(0.2, 4))
     TernaryPlot()
