@@ -27,7 +27,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
   triangleCentres <- TriangleCentres (resolution, direction)
   x <- triangleCentres['x', ]
   y <- triangleCentres['y', ]
-  abc <- XYToTernary(x, y)
+  abc <- XYToTernary(x, y, direction)
   
   # Return:
   rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ]), 
