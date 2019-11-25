@@ -132,24 +132,60 @@
     <p>Create and style a blank ternary plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>TernaryPlot</span>(<span class='kw'>atip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ctip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>alab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>blab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>clab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.offset</span> <span class='kw'>=</span> <span class='fl'>0.16</span>, <span class='kw'>point</span> <span class='kw'>=</span> <span class='st'>"up"</span>,
-  <span class='kw'>clockwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lab.cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>lab.font</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>tip.cex</span> <span class='kw'>=</span> <span class='no'>lab.cex</span>, <span class='kw'>tip.font</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>isometric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>atip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ctip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>atip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>btip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ctip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>padding</span> <span class='kw'>=</span> <span class='fl'>0.08</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>NA</span>, <span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"darkgrey"</span>,
-  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>, <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>), <span class='kw'>grid.minor.lines</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>grid.minor.col</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>, <span class='kw'>grid.minor.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>grid.minor.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>), <span class='kw'>axis.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>axis.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>axis.font</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"font"</span>),
-  <span class='kw'>axis.tick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>axis.lwd</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>ticks.lwd</span> <span class='kw'>=</span> <span class='no'>axis.lwd</span>,
-  <span class='kw'>ticks.length</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>axis.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>, <span class='kw'>ticks.col</span> <span class='kw'>=</span> <span class='no'>grid.col</span>,
-  <span class='kw'>axis.labels.col</span> <span class='kw'>=</span> <span class='no'>axis.col</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>TernaryPlot</span>(
+  <span class='kw'>atip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ctip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>alab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>blab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>clab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lab.offset</span> <span class='kw'>=</span> <span class='fl'>0.16</span>,
+  <span class='kw'>point</span> <span class='kw'>=</span> <span class='st'>"up"</span>,
+  <span class='kw'>clockwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lab.cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>lab.font</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>tip.cex</span> <span class='kw'>=</span> <span class='no'>lab.cex</span>,
+  <span class='kw'>tip.font</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>isometric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>atip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ctip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>atip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>btip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ctip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>padding</span> <span class='kw'>=</span> <span class='fl'>0.08</span>,
+  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
+  <span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"darkgrey"</span>,
+  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
+  <span class='kw'>grid.minor.lines</span> <span class='kw'>=</span> <span class='fl'>4</span>,
+  <span class='kw'>grid.minor.col</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
+  <span class='kw'>grid.minor.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>grid.minor.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
+  <span class='kw'>axis.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
+  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>axis.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
+  <span class='kw'>axis.font</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"font"</span>),
+  <span class='kw'>axis.tick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>axis.lwd</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>ticks.lwd</span> <span class='kw'>=</span> <span class='no'>axis.lwd</span>,
+  <span class='kw'>ticks.length</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
+  <span class='kw'>axis.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
+  <span class='kw'>ticks.col</span> <span class='kw'>=</span> <span class='no'>grid.col</span>,
+  <span class='kw'>axis.labels.col</span> <span class='kw'>=</span> <span class='no'>axis.col</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>HorizontalGrid</span>(<span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
-  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"dotted"</span>, <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>))</pre>
+<span class='fu'>HorizontalGrid</span>(
+  <span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
+  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"dotted"</span>,
+  <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
+  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>)
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -164,7 +200,7 @@ proceeding clockwise from the corner specified in <code>point</code> (default: t
       <td><p>Character string specifying text with which to label
 the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
-typing <code>\U2190</code> or <code>\U2192</code>, or using <code><a href='https://rdrr.io/r/base/expression.html'>expression('value' %-&gt;% '')</a></code>.</p></td>
+typing <code>\\U2190</code> or <code>\\U2192</code>, or using <code><a href='https://rdrr.io/r/base/expression.html'>expression('value' %-&gt;% '')</a></code>.</p></td>
     </tr>
     <tr>
       <th>lab.offset</th>
