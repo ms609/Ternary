@@ -1,8 +1,7 @@
-# Ternary v1.1.2.9000 (development)
-## Bug fixes
-
-- Obey user-sepcified `direction` in `TernaryContour` and `TernaryPointValues`
-  (thanks @pkR-pjR)
+# Ternary v1.1.3
+- Use `mode`, not `class`, for compatability with R4.0.0.
+- Obey user-specified `direction` in `TernaryContour` and `TernaryPointValues`
+  (thanks @pkR-pjR).
 
 # Ternary v1.1.2
  - `clockwise` parameter allows plots to be configured in 'flipped' orientation

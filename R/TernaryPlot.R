@@ -31,7 +31,8 @@
 #'  `isometric` parameter.
 #'  
 #' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
-#' @param lab.font,tip.font Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.
+#' @param lab.font,tip.font Numeric specifying font (Roman, bold, italic, 
+#'  bold-italic) for axis titles.
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
 #' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
@@ -39,10 +40,11 @@
 #' 
 #' @param isometric Logical specifying whether to enforce an equilateral shape
 #'  for the ternary plot.
-#'  If only one of `xlim` and `ylim` is set, the other will be calculated to maintain
-#'  an equilateral plot.
-#'  If both `xlim` and `ylim` are set, but have different ranges, then the limit with the
-#'  smaller range will be scaled until its range matches that of the other limit.
+#'  If only one of `xlim` and `ylim` is set, the other will be calculated to 
+#'  maintain an equilateral plot.
+#'  If both `xlim` and `ylim` are set, but have different ranges, then the limit
+#'  with the smaller range will be scaled until its range matches that of the 
+#'  other limit.
 #' @param padding Numeric specifying size of internal margin of the plot; increase
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{\link[graphics]{polygon}}.
@@ -79,15 +81,18 @@
 #' 
 #' @seealso {
 #'  - [AddToTernary]: Add elements to a ternary plot
-#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) coordinates
-#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of the plotted region?
+#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) 
+#'      coordinates
+#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of 
+#'      the plotted region?
 #' }
 #' 
-#' @examples {
-#' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", col=rgb(0.8, 0.8, 0.8))
-#' HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) # the second line corresponds to
-#'                                               # the base of the triangle, and is not drawn
-#' }
+#' @examples 
+#' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", 
+#'             col=rgb(0.8, 0.8, 0.8))
+#' HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) 
+#' # the second line corresponds to the base of the triangle, and is not drawn
+#' 
 #' 
 #' @author Martin R. Smith
 #' 
