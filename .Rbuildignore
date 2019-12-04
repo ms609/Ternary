@@ -19,3 +19,4 @@ CONTRIBUTING.md
 ^pkgdown$
 ^doc$
 ^Meta$
+^codemeta\.json$

@@ -1,8 +1,7 @@
-# Ternary v1.1.2.9000 (development)
-## Bug fixes
-
-- Obey user-sepcified `direction` in `TernaryContour` and `TernaryPointValues`
-  (thanks @pkR-pjR)
+# Ternary v1.1.3
+- Use `inherits`, not `class` [https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again].
+- Obey user-specified `direction` in `TernaryContour` and `TernaryPointValues`
+  (thanks @pkR-pjR).
 
 # Ternary v1.1.2
  - `clockwise` parameter allows plots to be configured in 'flipped' orientation

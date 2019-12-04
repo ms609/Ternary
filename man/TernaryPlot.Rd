@@ -53,14 +53,16 @@ May be overridden if \code{isometric=TRUE}; see documentation of
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
 
-\item{lab.font, tip.font}{Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.}
+\item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
+bold-italic) for axis titles.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
-If only one of \code{xlim} and \code{ylim} is set, the other will be calculated to maintain
-an equilateral plot.
-If both \code{xlim} and \code{ylim} are set, but have different ranges, then the limit with the
-smaller range will be scaled until its range matches that of the other limit.}
+If only one of \code{xlim} and \code{ylim} is set, the other will be calculated to
+maintain an equilateral plot.
+If both \code{xlim} and \code{ylim} are set, but have different ranges, then the limit
+with the smaller range will be scaled until its range matches that of the
+other limit.}
 
 \item{atip.rotate, btip.rotate, ctip.rotate}{Integer specifying number of
 degrees to rotate label of rightmost apex.}
@@ -131,19 +133,21 @@ functions such as \code{\link[graphics]{arrows}},
 }}
 
 \examples{
-{
-TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", col=rgb(0.8, 0.8, 0.8))
-HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) # the second line corresponds to
-                                              # the base of the triangle, and is not drawn
-}
+TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", 
+            col=rgb(0.8, 0.8, 0.8))
+HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1) 
+# the second line corresponds to the base of the triangle, and is not drawn
+
 
 }
 \seealso{
 {
 \itemize{
 \item \link{AddToTernary}: Add elements to a ternary plot
-\item \link{TernaryCoords}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y}) coordinates
-\item \link{TernaryXRange}, \link{TernaryYRange}: What are the \emph{x} and \emph{y} limits of the plotted region?
+\item \link{TernaryCoords}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y})
+coordinates
+\item \link{TernaryXRange}, \link{TernaryYRange}: What are the \emph{x} and \emph{y} limits of
+the plotted region?
 }
 }
 }

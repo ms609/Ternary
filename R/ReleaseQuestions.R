@@ -1,7 +1,7 @@
 release_questions <- function() {
   c(
     "Are new features described in vignettes?",
-    "Have you updated .zenodo.json?"
+    "Have you updated the version number in .zenodo.json, NEWS & DESCRIPTION?"
   )
 }
 
