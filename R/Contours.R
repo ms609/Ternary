@@ -123,7 +123,7 @@ TriangleCentres <- function (resolution = 48L,
 #' @template coordinatesParam
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
-  if (mode(coordinates) == 'list') {
+  if (inherits(coordinates, 'list')) {
     scaled <- resolution * vapply(coordinates, function (coord) coord / sum(coord),
                                   double(3L))
   } else {

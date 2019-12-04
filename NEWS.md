@@ -1,5 +1,5 @@
 # Ternary v1.1.3
-- Use `mode`, not `class`, for compatibility with R4.0.0.
+- Use `inherits`, not `class` [https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again].
 - Obey user-specified `direction` in `TernaryContour` and `TernaryPointValues`
   (thanks @pkR-pjR).
 
