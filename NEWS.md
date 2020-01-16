@@ -1,3 +1,6 @@
+# Ternary v1.1.3.9000 (development)
+- Axis.labels example in vignette.
+
 # Ternary v1.1.3
 - Use `inherits`, not `class` [https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again].
 - Obey user-specified `direction` in `TernaryContour` and `TernaryPointValues`

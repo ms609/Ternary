@@ -148,7 +148,7 @@ or by according to the density of points across the plot:
 
 ```{r density-contours}
 par(mar=rep(0.2, 4))
-TernaryPlot()
+TernaryPlot(axis.labels=seq(0, 10, by=1))
 
 nPoints <- 4000L
 coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
