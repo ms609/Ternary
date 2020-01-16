@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.3.9000</span>
       </span>
     </div>
 
@@ -234,16 +234,18 @@ May be overridden if <code>isometric=TRUE</code>; see documentation of
     </tr>
     <tr>
       <th>lab.font, tip.font</th>
-      <td><p>Numeric specifying font (roman, bold, italic, bold-italic) for axis titles.</p></td>
+      <td><p>Numeric specifying font (Roman, bold, italic,
+bold-italic) for axis titles.</p></td>
     </tr>
     <tr>
       <th>isometric</th>
       <td><p>Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
-If only one of <code>xlim</code> and <code>ylim</code> is set, the other will be calculated to maintain
-an equilateral plot.
-If both <code>xlim</code> and <code>ylim</code> are set, but have different ranges, then the limit with the
-smaller range will be scaled until its range matches that of the other limit.</p></td>
+If only one of <code>xlim</code> and <code>ylim</code> is set, the other will be calculated to
+maintain an equilateral plot.
+If both <code>xlim</code> and <code>ylim</code> are set, but have different ranges, then the limit
+with the smaller range will be scaled until its range matches that of the
+other limit.</p></td>
     </tr>
     <tr>
       <th>atip.rotate, btip.rotate, ctip.rotate</th>
@@ -355,16 +357,17 @@ functions such as <code><a href='https://rdrr.io/r/graphics/arrows.html'>arrows<
 
     <div class='dont-index'><p><ul>
 <li><p><a href='AddToTernary.html'>AddToTernary</a>: Add elements to a ternary plot</p></li>
-<li><p><a href='TernaryCoords.html'>TernaryCoords</a>: Convert ternary coordinates to Cartesian (<em>x</em> and <em>y</em>) coordinates</p></li>
-<li><p><a href='TernaryXRange.html'>TernaryXRange</a>, <a href='TernaryXRange.html'>TernaryYRange</a>: What are the <em>x</em> and <em>y</em> limits of the plotted region?</p></li>
+<li><p><a href='TernaryCoords.html'>TernaryCoords</a>: Convert ternary coordinates to Cartesian (<em>x</em> and <em>y</em>)
+coordinates</p></li>
+<li><p><a href='TernaryXRange.html'>TernaryXRange</a>, <a href='TernaryXRange.html'>TernaryYRange</a>: What are the <em>x</em> and <em>y</em> limits of
+the plotted region?</p></li>
 </ul></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>{
-<span class='fu'>TernaryPlot</span>(<span class='kw'>atip</span><span class='kw'>=</span><span class='st'>"Top"</span>, <span class='kw'>btip</span><span class='kw'>=</span><span class='st'>"Bottom"</span>, <span class='kw'>ctip</span><span class='kw'>=</span><span class='st'>"Right"</span>, <span class='kw'>axis.col</span><span class='kw'>=</span><span class='st'>"red"</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span>))
-<span class='fu'>HorizontalGrid</span>(<span class='kw'>grid.lines</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>grid.col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>grid.lty</span><span class='kw'>=</span><span class='fl'>1</span>) <span class='co'># the second line corresponds to</span>
-                                              <span class='co'># the base of the triangle, and is not drawn</span>
-}</div><div class='img'><img src='TernaryPlot-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>TernaryPlot</span>(<span class='kw'>atip</span><span class='kw'>=</span><span class='st'>"Top"</span>, <span class='kw'>btip</span><span class='kw'>=</span><span class='st'>"Bottom"</span>, <span class='kw'>ctip</span><span class='kw'>=</span><span class='st'>"Right"</span>, <span class='kw'>axis.col</span><span class='kw'>=</span><span class='st'>"red"</span>,
+            <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span>))</div><div class='input'><span class='fu'>HorizontalGrid</span>(<span class='kw'>grid.lines</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>grid.col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>grid.lty</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='img'><img src='TernaryPlot-1.png' alt='' width='700' height='433' /></div><div class='input'># the second line corresponds to the base of the triangle, and is not drawn
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
