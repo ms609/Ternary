@@ -34,6 +34,8 @@ reference:
 
 template:
   params:
+    bootswatch: journal
     docsearch:
       api_key: 9cc82e3c6c1059647be4e6dfacda7715
       index_name: ternary
+    ganalytics: UA-156666971-3
