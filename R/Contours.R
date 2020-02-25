@@ -389,7 +389,7 @@ ColourTernary <- function (values,
                            resolution = sqrt(ncol(values)),
                            direction = getOption('ternDirection')) {
   z <- values['z', ]
-  if (is.null(spectrum) || (!is.numeric(z) && all(vapply(z, function(X) {
+  col <- if (is.null(spectrum) || (!is.numeric(z) && all(vapply(z, function(X) {
       tryCatch(is.matrix(col2rgb(X)), error = function(e) FALSE)}, FALSE)))) {
     z
   } else {

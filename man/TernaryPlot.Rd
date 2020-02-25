@@ -9,16 +9,17 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   blab = NULL, clab = NULL, lab.offset = 0.16, lab.col = NULL,
   point = "up", clockwise = TRUE, xlim = NULL, ylim = NULL,
   lab.cex = 1, lab.font = 0, tip.cex = lab.cex, tip.font = 2,
-  isometric = TRUE, atip.rotate = NULL, btip.rotate = NULL,
-  ctip.rotate = NULL, atip.pos = NULL, btip.pos = NULL,
-  ctip.pos = NULL, padding = 0.08, col = NA, grid.lines = 10,
-  grid.col = "darkgrey", grid.lty = "solid", grid.lwd = par("lwd"),
-  grid.minor.lines = 4, grid.minor.col = "lightgrey",
-  grid.minor.lty = "solid", grid.minor.lwd = par("lwd"),
-  axis.lty = "solid", axis.labels = TRUE, axis.cex = 0.8,
-  axis.font = par("font"), axis.tick = TRUE, axis.lwd = 1,
-  ticks.lwd = axis.lwd, ticks.length = 0.025, axis.col = "black",
-  ticks.col = grid.col, axis.labels.col = axis.col, ...)
+  tip.col = "black", isometric = TRUE, atip.rotate = NULL,
+  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
+  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
+  grid.lines = 10, grid.col = "darkgrey", grid.lty = "solid",
+  grid.lwd = par("lwd"), grid.minor.lines = 4,
+  grid.minor.col = "lightgrey", grid.minor.lty = "solid",
+  grid.minor.lwd = par("lwd"), axis.lty = "solid",
+  axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
+  axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
+  ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
+  axis.labels.col = axis.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
   grid.lty = "dotted", grid.lwd = par("lwd"),
@@ -58,7 +59,8 @@ May be overridden if \code{isometric=TRUE}; see documentation of
 labels.}
 
 \item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
-bold-italic) for axis titles.}
+bold-italic) for axis titles.
+Use a vector of length three to set a different font for each direction.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
@@ -81,13 +83,16 @@ if axis labels are being clipped.}
 
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
-\item{grid.col, grid.minor.col}{The colour to draw the grid lines.}
+\item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
+of length three to set different values for each direction.}
 
-\item{grid.lty, grid.minor.lty}{Character or integer; line type of
-the grid lines.}
+\item{grid.lty, grid.minor.lty}{Character or integer vector; line type of
+the grid lines. Use a vector of length three to set different values for
+each direction.}
 
 \item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the
-grid lines.}
+grid lines.  Use a vector of length three to set different values for each
+direction.}
 
 \item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.}
@@ -98,22 +103,25 @@ grid lines to plot between each major pair.}
 (numerical) annotations are to be made at the tickmarks, or a character or
 expression vector of labels to be placed at the tick points.}
 
-\item{axis.cex}{Numeric specifying character expansion for axis labels.}
+\item{axis.cex}{Numeric specifying character expansion for axis labels.
+Use a vector of length three to set a different value for each direction.}
 
 \item{axis.font}{Font for text. Defaults to \code{par('font')}.}
 
 \item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
 
 \item{axis.lwd, ticks.lwd}{Line width for the axis line and tick marks.
-Zero or negative values will suppress the line or ticks.}
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.}
 
 \item{ticks.length}{Numeric specifying distance that ticks should extend
 beyond the plot margin.  Also affects position of axis labels, which are
-plotted at the end of each tick.}
+plotted at the end of each tick.
+Use a vector of length three to set a different length for each direction.}
 
-\item{axis.col, ticks.col, axis.labels.col}{Colours for the axis line, tick
-marks and labels, respectively.  Use a vector of length three to set a
-different colour for each axis.
+\item{axis.col, ticks.col, tip.col, axis.labels.col}{Colours for the axis line,
+tick marks, tip labels and axis labels, respectively.
+Use a vector of length three to set a different value for each direction.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
 inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
