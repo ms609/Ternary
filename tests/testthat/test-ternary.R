@@ -99,6 +99,8 @@ test_that('Vignette plots are rendered correctly', {
                 grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
                 axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
                 padding=0.08)
+    cols <- TernaryPointValues(rgb)
+    ColourTernary(cols, spectrum = NULL)
     data_points <- list(
       R = c(255, 0, 0), 
       O = c(240, 180, 52),

@@ -63,6 +63,11 @@ TernaryPlot(alab="Redder \u2192", blab="\u2190 Greener", clab="Bluer \u2192",
             grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
             axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
             padding=0.08)
+# Colour the background:
+cols <- TernaryPointValues(rgb)
+ColourTernary(cols, spectrum = NULL)
+
+# Add data points
 data_points <- list(
   R = c(255, 0, 0), 
   O = c(240, 180, 52),
@@ -86,6 +91,7 @@ legend('bottomright',
                rgb(210, 222, 102, 128, NULL, 255),
                rgb(111, 222,  16, 128, NULL, 255)),
        )
+
 
 ###
 # Next plot:

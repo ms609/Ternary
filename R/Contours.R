@@ -342,7 +342,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' 
 #' TernaryPlot()
 #' 
-#' values <- TernaryPointValues(FunctionToContour, resolution=24L)
+#' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 #' ColourTernary(values)
 #' TernaryContour(FunctionToContour, resolution=36L)
 #' 
@@ -350,7 +350,8 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' @author Martin R. Smith
 #' 
 #' @export
-TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('ternDirection')) {
+TernaryTiles <- function (x, y, down, resolution, col, 
+                          direction = getOption('ternDirection')) {
   down <- as.logical(down)
   if (direction %% 2) {
     TernaryDownTiles(x[down], y[down], resolution, col[down])
@@ -366,29 +367,50 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 
 #' Colour a ternary plot according to the output of a function
 #' 
-#' @param values Numeric vector specifying the values associated with each point, 
-#' generated using [`TernaryPointValues`].
-#' @param spectrum Vector of colours to use as a spectrum.
+#' @param values Numeric matrix specifying the values associated with each
+#' point, generated using [`TernaryPointValues`].
+#' @param spectrum Vector of colours to use as a spectrum, or `NULL` to use
+#' `values['z', ]`.
 #' @template resolutionParam
 #' @template directionParam
 #' 
-#' @author Martin R. Smith
+#' @template MRS
+#' 
+#' @examples 
+#' TernaryPlot()
+#' values <- TernaryPointValues(rgb, resolution = 20)
+#' ColourTernary(values, spectrum = NULL)
 #' 
 #' @family contour plotting functions
 #' @importFrom viridisLite viridis
 #' @export
-ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0.6),
+ColourTernary <- function (values, 
+                           spectrum = viridisLite::viridis(256L, alpha = 0.6),
                            resolution = sqrt(ncol(values)),
                            direction = getOption('ternDirection')) {
   z <- values['z', ]
-  zNorm <- z - min(z)
-  zNorm <- zNorm / max(zNorm)
-  TernaryTiles(values['x', ], values['y', ], values['down', ], resolution = resolution, 
-               col=spectrum[as.integer(zNorm * (length(spectrum) - 1L)) + 1L], 
-               direction = direction)
+  if (is.null(spectrum) || (!is.numeric(z) && all(vapply(z, function(X) {
+      tryCatch(is.matrix(col2rgb(X)), error = function(e) FALSE)}, FALSE)))) {
+    z
+  } else {
+    if (!is.numeric(z)) {
+      stop("values['z', ] must be numeric.\nTo colour by values['z', ], set `spectrum = FALSE`.")
+    }
+    zNorm <- z - min(z)
+    zNorm <- zNorm / max(zNorm)
+    spectrum[as.integer(zNorm * (length(spectrum) - 1L)) + 1L]
+  }
+  TernaryTiles(as.numeric(values['x', ]), as.numeric(values['y', ]),
+               as.numeric(values['down', ]),
+               resolution = resolution, col = col, direction = direction)
+  
   # Return:
   invisible()
 }
+
+#' @rdname ColourTernary
+#' @export
+ColorTernary <- ColourTernary
 
 #' Add contours to a ternary plot
 #' 
