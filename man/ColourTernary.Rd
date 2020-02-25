@@ -2,17 +2,23 @@
 % Please edit documentation in R/Contours.R
 \name{ColourTernary}
 \alias{ColourTernary}
+\alias{ColorTernary}
 \title{Colour a ternary plot according to the output of a function}
 \usage{
 ColourTernary(values, spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
   direction = getOption("ternDirection"))
+
+ColorTernary(values, spectrum = viridisLite::viridis(256L, alpha = 0.6),
+  resolution = sqrt(ncol(values)),
+  direction = getOption("ternDirection"))
 }
 \arguments{
-\item{values}{Numeric vector specifying the values associated with each point,
-generated using \code{\link{TernaryPointValues}}.}
+\item{values}{Numeric matrix specifying the values associated with each
+point, generated using \code{\link{TernaryPointValues}}.}
 
-\item{spectrum}{Vector of colours to use as a spectrum.}
+\item{spectrum}{Vector of colours to use as a spectrum, or \code{NULL} to use
+\code{values['z', ]}.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -24,12 +30,18 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \description{
 Colour a ternary plot according to the output of a function
 }
+\examples{
+TernaryPlot()
+values <- TernaryPointValues(rgb, resolution = 20)
+ColourTernary(values, spectrum = NULL)
+
+}
 \seealso{
 Other contour plotting functions: \code{\link{TernaryContour}},
   \code{\link{TernaryDensityContour}},
   \code{\link{TernaryPointValues}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{contour plotting functions}

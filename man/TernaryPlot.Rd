@@ -6,19 +6,19 @@
 \title{Create a ternary plot}
 \usage{
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
-  blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
-  clockwise = TRUE, xlim = NULL, ylim = NULL, lab.cex = 1,
-  lab.font = 0, tip.cex = lab.cex, tip.font = 2, isometric = TRUE,
-  atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
-  atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
-  padding = 0.08, col = NA, grid.lines = 10, grid.col = "darkgrey",
-  grid.lty = "solid", grid.lwd = par("lwd"), grid.minor.lines = 4,
-  grid.minor.col = "lightgrey", grid.minor.lty = "solid",
-  grid.minor.lwd = par("lwd"), axis.lty = "solid",
-  axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
-  axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
-  ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
-  axis.labels.col = axis.col, ...)
+  blab = NULL, clab = NULL, lab.offset = 0.16, lab.col = NULL,
+  point = "up", clockwise = TRUE, xlim = NULL, ylim = NULL,
+  lab.cex = 1, lab.font = 0, tip.cex = lab.cex, tip.font = 2,
+  isometric = TRUE, atip.rotate = NULL, btip.rotate = NULL,
+  ctip.rotate = NULL, atip.pos = NULL, btip.pos = NULL,
+  ctip.pos = NULL, padding = 0.08, col = NA, grid.lines = 10,
+  grid.col = "darkgrey", grid.lty = "solid", grid.lwd = par("lwd"),
+  grid.minor.lines = 4, grid.minor.col = "lightgrey",
+  grid.minor.lty = "solid", grid.minor.lwd = par("lwd"),
+  axis.lty = "solid", axis.labels = TRUE, axis.cex = 0.8,
+  axis.font = par("font"), axis.tick = TRUE, axis.lwd = 1,
+  ticks.lwd = axis.lwd, ticks.length = 0.025, axis.col = "black",
+  ticks.col = grid.col, axis.labels.col = axis.col, ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
   grid.lty = "dotted", grid.lwd = par("lwd"),
@@ -36,6 +36,9 @@ typing \code{\\U2190} or \code{\\U2192}, or using \code{expression('value' \%->\
 \item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
 Increase \code{padding} if labels are being clipped.}
 
+\item{lab.col}{Character vector specifying colours for axis labels. Use a
+vector of length three to specify a different colour for each label.}
+
 \item{point}{Character string specifying the orientation of the ternary plot:
 should the triangle point \code{"up"}, \code{"right"}, \code{"down"} or \code{"left"}?
 The integers 1 to 4 can be used in place of the character strings.}
@@ -51,7 +54,8 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric=TRUE}; see documentation of
 \code{isometric} parameter.}
 
-\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
+\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis
+labels.}
 
 \item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
 bold-italic) for axis titles.}
@@ -108,7 +112,8 @@ beyond the plot margin.  Also affects position of axis labels, which are
 plotted at the end of each tick.}
 
 \item{axis.col, ticks.col, axis.labels.col}{Colours for the axis line, tick
-marks and labels, respectively.
+marks and labels, respectively.  Use a vector of length three to set a
+different colour for each axis.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
 inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
@@ -152,5 +157,5 @@ the plotted region?
 }
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

@@ -29,6 +29,6 @@ Other contour plotting functions: \code{\link{ColourTernary}},
   \code{\link{TernaryPointValues}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{contour plotting functions}

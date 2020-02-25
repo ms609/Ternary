@@ -22,5 +22,5 @@ corresponds to a point outside the plotted ternary diagram.
 Is a point in the plotting area?
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

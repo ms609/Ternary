@@ -31,6 +31,6 @@ Other coordinate translation functions: \code{\link{TernaryCoords}},
   \code{\link{XYToTernary}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{coordinate translation functions}

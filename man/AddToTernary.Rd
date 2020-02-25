@@ -79,5 +79,5 @@ Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
