@@ -1,11 +1,10 @@
 #' Value of a function at regularly spaced points
 #'
-#' Evaluates a function at points on a triangular grid. 
-#' Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
+#' Intended to facilitate coloured contour plots with [`ColourTernary()`],
+#' `TernaryPointValue()` evaluates a function at points on a triangular grid;
+#' `TernaryDensity()` calculates the density of points in each grid cell.
 #' 
-#' Density plotting functions are somewhat experimental; please
-#' \href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
-#'
+#' 
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
@@ -18,6 +17,22 @@
 #'   
 #'   **down**: `0` if the triangle concerned points upwards (or right), 
 #'   `1` otherwise
+#' 
+#' @examples
+#' TernaryPointValues(rgb, resolution = 2)
+#' TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
+#' 
+#' 
+#' TernaryPlot(axis.labels = seq(0, 10, by = 1))
+#' 
+#' nPoints <- 4000L
+#' coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+#'                      abs(rnorm(nPoints, 1, 1.5)),
+#'                      abs(rnorm(nPoints, 1, 0.5)))
+#' 
+#' density <- TernaryDensity(coordinates, resolution = 10L)
+#' ColourTernary(density)
+#' TernaryPoints(coordinates, col = 'red', pch = '.')
 #' 
 #' @family contour plotting functions
 #' @template MRS
@@ -36,6 +51,9 @@ TernaryPointValues <- function(Func, resolution = 48L,
 
 #' Coordinates of triangle mid-points
 #' 
+#' Calculate _x_ and _y_ coordinates of the midpoints of triangles
+#' tiled to cover a ternary plot.
+#' 
 #' @template resolutionParam
 #' @template directionParam
 #' 
@@ -44,6 +62,9 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` binary integer specifying whether given triangle points down.
 #'  
+#' @examples 
+#' TriangleCentres(2)
+#'
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
@@ -119,7 +140,7 @@ TriangleCentres <- function (resolution = 48L,
   rbind(x, y, triDown)
 }
 
-#' @describeIn TernaryPointValues Returns the density of points in each triangle
+#' @rdname TernaryPointValues
 #' @template coordinatesParam
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, direction = getOption('ternDirection')) {
@@ -377,6 +398,17 @@ TernaryTiles <- function (x, y, down, resolution, col,
 #' @template MRS
 #' 
 #' @examples 
+#' TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+#'  
+#' FunctionToContour <- function (a, b, c) {
+#'   a - c + (4 * a * b) + (27 * a * b * c)
+#' }
+#' 
+#' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
+#' ColourTernary(values)
+#' TernaryContour(FunctionToContour, resolution = 36L)
+#' 
+#' 
 #' TernaryPlot()
 #' values <- TernaryPointValues(rgb, resolution = 20)
 #' ColourTernary(values, spectrum = NULL)
@@ -422,6 +454,17 @@ ColorTernary <- ColourTernary
 #' @template dotsToContour
 #' 
 #' @template MRS
+#' 
+#' @examples
+#' TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+#'  
+#' FunctionToContour <- function (a, b, c) {
+#'   a - c + (4 * a * b) + (27 * a * b * c)
+#' }
+#' 
+#' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
+#' ColourTernary(values)
+#' TernaryContour(FunctionToContour, resolution = 36L)
 #' 
 #' @family contour plotting functions
 #' @importFrom graphics contour
@@ -493,9 +536,23 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' @template dotsToContour
 #' @param edgeCorrection Logical specifying whether to correct for edge effects
 #'  (see details).
+#'  
+#' @examples
+#' 
+#' TernaryPlot(axis.labels = seq(0, 10, by = 1))
+#' 
+#' nPoints <- 4000L
+#' coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+#'                      abs(rnorm(nPoints, 1, 1.5)),
+#'                      abs(rnorm(nPoints, 1, 0.5)))
+#' 
+#' ColourTernary(TernaryDensity(coordinates, resolution = 10L))
+#' TernaryPoints(coordinates, col = 'red', pch = '.')
+#' TernaryDensityContour(coordinates, resolution = 30L)
+#'  
+#' @author Adapted from `MASS::kde2d()` by Martin R. Smith
 #' 
 #' @family contour plotting functions
-#' @author Adapted from `MASS::kde2d()` by Martin R. Smith
 #' @importFrom stats dnorm quantile var
 #' @export
 TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 

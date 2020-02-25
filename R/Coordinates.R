@@ -22,10 +22,18 @@
 #'
 #' @seealso
 #' - [`TernaryPlot()`]
+#' 
+#' @examples
+#'   TernaryCoords(100, 0, 0)
+#'   TernaryCoords(c(0, 100, 0))
+#'   
+#'   coords <- matrix(1:12, ncol=3)
+#'   apply(coords, 1, TernaryCoords)
+#' 
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
-TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, 
+TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL, 
                            direction = getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
@@ -61,12 +69,16 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL,
 
 #' Cartesian coordinates to ternary point
 #' 
+#' Convert cartesian (_x_, _y_) coordinates to a point in ternary space.
+#' 
 #' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
 #' @template directionParam
 #' 
 #' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
 #' coordinates, where a + b + c = 1.
 #' 
+#' @examples
+#' XYToTernary(c(0.1, 0.2), 0.5)
 #' 
 #' @template MRS
 #' 

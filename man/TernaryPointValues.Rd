@@ -38,18 +38,27 @@ ternary coordinates of \code{x} and \code{y}.
 \code{1} otherwise
 }
 \description{
-Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
+Intended to facilitate coloured contour plots with \code{\link[=ColourTernary]{ColourTernary()}},
+\code{TernaryPointValue()} evaluates a function at points on a triangular grid;
+\code{TernaryDensity()} calculates the density of points in each grid cell.
 }
-\details{
-Density plotting functions are somewhat experimental; please
-\href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
-}
-\section{Functions}{
-\itemize{
-\item \code{TernaryDensity}: Returns the density of points in each triangle
-}}
+\examples{
+TernaryPointValues(rgb, resolution = 2)
+TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
 
+
+TernaryPlot(axis.labels = seq(0, 10, by = 1))
+
+nPoints <- 4000L
+coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+                     abs(rnorm(nPoints, 1, 1.5)),
+                     abs(rnorm(nPoints, 1, 0.5)))
+
+density <- TernaryDensity(coordinates, resolution = 10L)
+ColourTernary(density)
+TernaryPoints(coordinates, col = 'red', pch = '.')
+
+}
 \seealso{
 Other contour plotting functions: \code{\link{ColourTernary}},
   \code{\link{TernaryContour}},

@@ -38,7 +38,7 @@ Uses two-dimensional kernel density estimation to plot contours of
 point density.
 }
 \details{
-This function is modelled on \code{MASS::kde2d}, which uses
+This function is modelled on \code{MASS::kde2d()}, which uses
 "an axis-aligned bivariate normal kernel, evaluated on a square grid".
 
 This is to say, values are calculated on a square grid, and contours fitted
@@ -61,12 +61,26 @@ situations, but is non-trivial to implement; if this distinction is
 important to you, please let the maintainers known by opening a
 \href{https://github.com/ms609/Ternary/issues/new?title=Triangular+KDE}{Github issue}.
 }
+\examples{
+
+TernaryPlot(axis.labels = seq(0, 10, by = 1))
+
+nPoints <- 4000L
+coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+                     abs(rnorm(nPoints, 1, 1.5)),
+                     abs(rnorm(nPoints, 1, 0.5)))
+
+ColourTernary(TernaryDensity(coordinates, resolution = 10L))
+TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryDensityContour(coordinates, resolution = 30L)
+ 
+}
 \seealso{
 Other contour plotting functions: \code{\link{ColourTernary}},
   \code{\link{TernaryContour}},
   \code{\link{TernaryPointValues}}
 }
 \author{
-Adapted from \code{MASS::kde2d} by Martin R. Smith
+Adapted from \code{MASS::kde2d()} by Martin R. Smith
 }
 \concept{contour plotting functions}

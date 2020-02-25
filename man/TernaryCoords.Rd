@@ -34,6 +34,14 @@ Converts coordinates of a point in ternary space, in the format
 (\emph{a}, \emph{b}, \emph{c}), to \emph{x} and \emph{y} coordinates of Cartesian space, which can be
 sent to standard functions in the \emph{graphics} package.
 }
+\examples{
+  TernaryCoords(100, 0, 0)
+  TernaryCoords(c(0, 100, 0))
+  
+  coords <- matrix(1:12, ncol=3)
+  apply(coords, 1, TernaryCoords)
+
+}
 \seealso{
 \itemize{
 \item \code{\link[=TernaryPlot]{TernaryPlot()}}

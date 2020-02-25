@@ -24,7 +24,12 @@ A matrix containing three named rows:
 }
 }
 \description{
-Coordinates of triangle mid-points
+Calculate \emph{x} and \emph{y} coordinates of the midpoints of triangles
+tiled to cover a ternary plot.
+}
+\examples{
+TriangleCentres(2)
+
 }
 \seealso{
 Other coordinate translation functions: \code{\link{TernaryCoords}},
