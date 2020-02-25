@@ -139,9 +139,9 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Create and style a blank ternary plot.
 }
 \details{
-The plot will be generated using the standard graphics plot functions, on which
-additional elements can be added using cartesian coordinates, perhaps using
-functions such as \code{\link[graphics]{arrows}},
+The plot will be generated using the standard 'graphics' plot functions, on
+which additional elements can be added using cartesian coordinates, perhaps
+using functions such as \code{\link[graphics]{arrows}},
 \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 }
 \section{Functions}{

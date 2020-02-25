@@ -1,4 +1,4 @@
-# Ternary v1.1.3.9001 (development)
+# Ternary v1.1.4
 - Support user-specified colours in `ColourTernary()`.
 - More options for controlling axis colours in `TernaryPlot()`.
 - Add examples to documentation.

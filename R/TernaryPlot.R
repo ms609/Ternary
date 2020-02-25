@@ -2,9 +2,9 @@
 #' 
 #' Create and style a blank ternary plot.
 #' 
-#' The plot will be generated using the standard graphics plot functions, on which
-#' additional elements can be added using cartesian coordinates, perhaps using
-#' functions such as \code{\link[graphics]{arrows}}, 
+#' The plot will be generated using the standard 'graphics' plot functions, on
+#' which additional elements can be added using cartesian coordinates, perhaps 
+#' using functions such as \code{\link[graphics]{arrows}}, 
 #' \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 #' 
 #' @param atip,btip,ctip Character string specifying text to title corners, 

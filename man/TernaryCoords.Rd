@@ -32,7 +32,7 @@ corresponding to the plot created by the last call of \code{\link[=TernaryPlot]{
 \description{
 Convert coordinates of a point in ternary space, in the format
 (\emph{a}, \emph{b}, \emph{c}), to \emph{x} and \emph{y} coordinates of Cartesian space, which can be
-sent to standard functions in the \emph{graphics} package.
+sent to standard functions in the 'graphics' package.
 }
 \examples{
   TernaryCoords(100, 0, 0)

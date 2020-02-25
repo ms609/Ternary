@@ -2,7 +2,7 @@
 #' 
 #' Convert coordinates of a point in ternary space, in the format 
 #' (_a_, _b_, _c_), to _x_ and _y_ coordinates of Cartesian space, which can be
-#' sent to standard functions in the _graphics_ package.
+#' sent to standard functions in the 'graphics' package.
 #' 
 #' @param abc A vector of length three giving the position on a ternary plot
 #' that points in the direction specified by `direction` (1 = up, 2 = right, 
