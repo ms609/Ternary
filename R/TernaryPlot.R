@@ -30,7 +30,8 @@
 #'  May be overridden if `isometric=TRUE`; see documentation of
 #'  `isometric` parameter.
 #'  
-#' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
+#' @param lab.cex,tip.cex Numeric specifying character expansion for axis 
+#'  labels.
 #' @param lab.font,tip.font Numeric specifying font (Roman, bold, italic, 
 #'  bold-italic) for axis titles.
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
@@ -387,7 +388,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #'   AddToTernary(points, coords, pch=1, cex=3)
 #' }
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 AddToTernary <- function (PlottingFunction, coordinates, ...) {
   xy <- CoordinatesToXY(coordinates)
@@ -404,9 +405,9 @@ AddToTernary <- function (PlottingFunction, coordinates, ...) {
 #' @return An array of two rows, corresponding to the X and Y coordinates of 
 #' `coordinates`.
 #' 
+#' @template MRS
 #' @export
 #' @keywords internal
-#' @author Martin R. Smith
 CoordinatesToXY <- function (coordinates) {
   dims <- dim(coordinates)
   
