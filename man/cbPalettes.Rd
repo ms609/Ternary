@@ -7,7 +7,7 @@
 \alias{cbPalette13}
 \alias{cbPalette15}
 \title{Palettes compatible with colour blindness}
-\format{An object of class \code{character} of length 8.}
+\format{Character vectors of lengths 8, 13 and 15.}
 \source{
 \itemize{
 \item \code{cbPalette8}: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
@@ -32,18 +32,15 @@ colours (i.e. \code{cbPalette13 <- cbPalette15[-c(4, 7)]}).
 }
 \examples{
 data('cbPalette8')
-oPar <- par(mar=rep(0, 4))
-plot(0, type = 'n', xlim = c(1, 8), ylim = c(0, 1), axes = FALSE, asp = 8)
-points(1:8, rep(0, 8), col=cbPalette8, pch=15)
-text(1:8, 1, col = cbPalette8)
+plot.new()
+plot.window(xlim = c(1, 16), ylim = c(0, 3))
+text(1:8 * 2, 3, 1:8, col = cbPalette8)
+points(1:8 * 2, rep(2, 8), col = cbPalette8, pch = 15)
 
 data('cbPalette15')
-plot(0, type='n', xlim=c(1, 15), ylim=c(0, 1), axes=FALSE, asp = 15)
-points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
 text(1:15, 1, col = cbPalette15)
 text(c(4, 7), 1, '[   ]')
-
-par(oPar)
+points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
 
 }
 \keyword{datasets}

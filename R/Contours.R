@@ -549,7 +549,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' 
 #' TernaryPlot(axis.labels = seq(0, 10, by = 1))
 #' 
-#' nPoints <- 4000L
+#' nPoints <- 400L
 #' coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
 #'                      abs(rnorm(nPoints, 1, 1.5)),
 #'                      abs(rnorm(nPoints, 1, 0.5)))
