@@ -60,10 +60,12 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @return A matrix containing three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
-#'  - `triDown` binary integer specifying whether given triangle points down.
+#'  - `triDown` `0` for upwards-pointing triangles, `1` for downwards-pointing.
 #'  
 #' @examples 
-#' TriangleCentres(2)
+#' TernaryPlot(grid.lines = 4)
+#' centres <- TriangleCentres(4)
+#' text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
 #'
 #' @family coordinate translation functions
 #' @template MRS
@@ -415,6 +417,7 @@ TernaryTiles <- function (x, y, down, resolution, col,
 #' 
 #' @family contour plotting functions
 #' @importFrom viridisLite viridis
+#' @importFrom grDevices col2rgb
 #' @export
 ColourTernary <- function (values, 
                            spectrum = viridisLite::viridis(256L, alpha = 0.6),
@@ -422,8 +425,8 @@ ColourTernary <- function (values,
                            direction = getOption('ternDirection')) {
   z <- values['z', ]
   col <- if (is.null(spectrum) || (!is.numeric(z) && all(
-      suppressWarnings(is.na(as.numeric(X))) & vapply(z, function(X) {
-      tryCatch(is.matrix(col2rgb(X)), error = function(e) FALSE)}, FALSE)))) {
+      suppressWarnings(is.na(as.numeric(z)))) && 
+      tryCatch(is.matrix(col2rgb(z)), error = function(e) FALSE))) {
     z
   } else {
     if (!is.numeric(z)) {

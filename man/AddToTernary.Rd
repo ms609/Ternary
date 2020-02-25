@@ -61,21 +61,20 @@ Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 }}
 
 \examples{
-{
-  coords <- list(
-    A = c(1, 0, 2),
-    B = c(1, 1, 1),
-    C = c(1.5, 1.5, 0),
-    D = c(0.5, 1.5, 1)
-  )
-  TernaryPlot()
-  AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
-  TernaryLines(coords, col='darkgreen')
-  TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-  TernaryText(coords, cex=0.8, col='red', font=2)
-  TernaryPoints(coords, pch=1, cex=2, col='blue')
-  AddToTernary(points, coords, pch=1, cex=3)
-}
+coords <- list(
+  A = c(1, 0, 2),
+  B = c(1, 1, 1),
+  C = c(1.5, 1.5, 0),
+  D = c(0.5, 1.5, 1)
+)
+TernaryPlot()
+AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+TernaryLines(coords, col='darkgreen')
+TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+TernaryText(coords, cex=0.8, col='red', font=2)
+TernaryPoints(coords, pch=1, cex=2, col='blue')
+AddToTernary(points, coords, pch=1, cex=3)
+
 
 }
 \author{

@@ -1,6 +1,6 @@
 #' Convert ternary coordinates to Cartesian space
 #' 
-#' Converts coordinates of a point in ternary space, in the format 
+#' Convert coordinates of a point in ternary space, in the format 
 #' (_a_, _b_, _c_), to _x_ and _y_ coordinates of Cartesian space, which can be
 #' sent to standard functions in the _graphics_ package.
 #' 
@@ -151,6 +151,9 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 }
 
 #' Is a point in the plotting area?
+#' 
+#' Evaluate whether a given set of coordinates lie outwith the boundaries of
+#' a plotted ternary diagram.
 #' 
 #' @template xyParams
 #' @param tolerance Consider points this close to the edge of the plot to be 

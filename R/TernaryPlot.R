@@ -422,35 +422,35 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 
 #' Add elements to ternary plot
 #' 
-#' Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
+#' Plot shapes onto a ternary diagram created with [`TernaryPlot()`].
 #' 
 #' @param PlottingFunction Function to add data to a plot; perhaps one of
 #'        \code{\link[graphics]{points}},
 #'        \code{\link[graphics]{lines}} or
 #'        \code{\link[graphics]{text}}.
 #' @template coordinatesParam
-#' @param fromCoordinates,toCoordinates For `TernaryArrows`, coordinates at 
+#' @param fromCoordinates,toCoordinates For `TernaryArrows()`, coordinates at 
 #' which arrows should begin and end; _cf._ `x0`, `y0`, `x1` and `y1` in 
 #' \link[graphics]{arrows}.  Recycled as necessary.
-#' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
-#' If using `TernaryText`, this will likely include the parameter `labels`,
+#' @param \dots Additional parameters to pass to `PlottingFunction()`.  
+#' If using `TernaryText()w`, this will likely include the parameter `labels`,
 #' to specify the text to plot.
 #' 
-#' @examples {
-#'   coords <- list(
-#'     A = c(1, 0, 2),
-#'     B = c(1, 1, 1),
-#'     C = c(1.5, 1.5, 0),
-#'     D = c(0.5, 1.5, 1)
-#'   )
-#'   TernaryPlot()
-#'   AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
-#'   TernaryLines(coords, col='darkgreen')
-#'   TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-#'   TernaryText(coords, cex=0.8, col='red', font=2)
-#'   TernaryPoints(coords, pch=1, cex=2, col='blue')
-#'   AddToTernary(points, coords, pch=1, cex=3)
-#' }
+#' @examples 
+#' coords <- list(
+#'   A = c(1, 0, 2),
+#'   B = c(1, 1, 1),
+#'   C = c(1.5, 1.5, 0),
+#'   D = c(0.5, 1.5, 1)
+#' )
+#' TernaryPlot()
+#' AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+#' TernaryLines(coords, col='darkgreen')
+#' TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+#' TernaryText(coords, cex=0.8, col='red', font=2)
+#' TernaryPoints(coords, pch=1, cex=2, col='blue')
+#' AddToTernary(points, coords, pch=1, cex=3)
+#' 
 #' 
 #' @template MRS
 #' @export
