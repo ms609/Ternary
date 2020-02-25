@@ -42,7 +42,7 @@
 
 
 <meta property="og:title" content="Add elements to ternary plot — AddToTernary" />
-<meta property="og:description" content="Plot shapes onto a ternary diagram created with TernaryPlot." />
+<meta property="og:description" content="Plot shapes onto a ternary diagram created with TernaryPlot()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -139,7 +139,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Plot shapes onto a ternary diagram created with <code><a href='TernaryPlot.html'>TernaryPlot</a></code>.</p>
+    <p>Plot shapes onto a ternary diagram created with <code><a href='TernaryPlot.html'>TernaryPlot()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>AddToTernary</span>(<span class='no'>PlottingFunction</span>, <span class='no'>coordinates</span>, <span class='no'>...</span>)
@@ -174,13 +174,13 @@ the three coordinates of a point in ternary space.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to pass to <code>PlottingFunction</code>.
-If using <code>TernaryText</code>, this will likely include the parameter <code>labels</code>,
+      <td><p>Additional parameters to pass to <code>PlottingFunction()</code>.
+If using <code>TernaryText()w</code>, this will likely include the parameter <code>labels</code>,
 to specify the text to plot.</p></td>
     </tr>
     <tr>
       <th>fromCoordinates, toCoordinates</th>
-      <td><p>For <code>TernaryArrows</code>, coordinates at
+      <td><p>For <code>TernaryArrows()</code>, coordinates at
 which arrows should begin and end; <em>cf.</em> <code>x0</code>, <code>y0</code>, <code>x1</code> and <code>y1</code> in
 <a href='https://rdrr.io/r/graphics/arrows.html'>arrows</a>.  Recycled as necessary.</p></td>
     </tr>
@@ -199,21 +199,14 @@ which arrows should begin and end; <em>cf.</em> <code>x0</code>, <code>y0</code>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>{
-  <span class='no'>coords</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-    <span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
-    <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-    <span class='kw'>C</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.5</span>, <span class='fl'>0</span>),
-    <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1.5</span>, <span class='fl'>1</span>)
-  )
-  <span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()
-  <span class='fu'>AddToTernary</span>(<span class='no'>lines</span>, <span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='st'>'dotted'</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>3</span>)
-  <span class='fu'>TernaryLines</span>(<span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>)
-  <span class='fu'>TernaryArrows</span>(<span class='no'>coords</span>[<span class='fl'>1</span>], <span class='no'>coords</span>[<span class='fl'>2</span>:<span class='fl'>4</span>], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'orange'</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>0.2</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>1</span>)
-  <span class='fu'>TernaryText</span>(<span class='no'>coords</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.8</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)
-  <span class='fu'>TernaryPoints</span>(<span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>)
-  <span class='fu'>AddToTernary</span>(<span class='no'>points</span>, <span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>3</span>)
-}</div><div class='img'><img src='AddToTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>coords</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
+  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
+  <span class='kw'>C</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.5</span>, <span class='fl'>0</span>),
+  <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1.5</span>, <span class='fl'>1</span>)
+)
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='no'>lines</span>, <span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='st'>'dotted'</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'>TernaryLines</span>(<span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>)</div><div class='input'><span class='fu'>TernaryArrows</span>(<span class='no'>coords</span>[<span class='fl'>1</span>], <span class='no'>coords</span>[<span class='fl'>2</span>:<span class='fl'>4</span>], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'orange'</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>0.2</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='input'><span class='fu'>TernaryText</span>(<span class='no'>coords</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.8</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'>TernaryPoints</span>(<span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>)</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='no'>points</span>, <span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='img'><img src='AddToTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

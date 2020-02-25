@@ -167,7 +167,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
     <p>A matrix containing three named rows:</p><ul>
 <li><p><code>x</code> <em>x</em> coordinates of triangle midpoints;</p></li>
 <li><p><code>y</code> <em>y</em> coordinates of triangle midpoints;</p></li>
-<li><p><code>triDown</code> binary integer specifying whether given triangle points down.</p></li>
+<li><p><code>triDown</code> <code>0</code> for upwards-pointing triangles, <code>1</code> for downwards-pointing.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -177,10 +177,8 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
 <code><a href='XYToTernary.html'>XYToTernary</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>TriangleCentres</span>(<span class='fl'>2</span>)</div><div class='output co'>#&gt;               [,1]      [,2]      [,3]      [,4]
-#&gt; x       -0.2500000 0.0000000 0.2500000 0.0000000
-#&gt; y        0.1443376 0.2886751 0.1443376 0.5773503
-#&gt; triDown  0.0000000 1.0000000 0.0000000 0.0000000</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='input'><span class='no'>centres</span> <span class='kw'>&lt;-</span> <span class='fu'>TriangleCentres</span>(<span class='fl'>4</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='no'>centres</span>[<span class='st'>'x'</span>, ], <span class='no'>centres</span>[<span class='st'>'y'</span>, ], <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='no'>centres</span>[<span class='st'>'triDown'</span>, ], <span class='st'>'v'</span>, <span class='st'>'^'</span>))</div><div class='img'><img src='TriangleCentres-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
