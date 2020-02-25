@@ -32,19 +32,18 @@ colours (i.e. \code{cbPalette13 <- cbPalette15[-c(4, 7)]}).
 }
 \examples{
 data('cbPalette8')
-dev.new(width=8, height=1, units='cm')
-par(mar=rep(0, 4))
-plot(0, type='n', xlim=c(1, 8), ylim=c(0, 1), axes=FALSE)
+oPar <- par(mar=rep(0, 4))
+plot(0, type = 'n', xlim = c(1, 8), ylim = c(0, 1), axes = FALSE, asp = 8)
 points(1:8, rep(0, 8), col=cbPalette8, pch=15)
-text(1:8, 0.5, col = cbPalette8)
+text(1:8, 1, col = cbPalette8)
 
 data('cbPalette15')
-dev.new(width=8, height=1, units='cm')
-par(mar=rep(0, 4))
-plot(0, type='n', xlim=c(1, 15), ylim=c(0, 1), axes=FALSE)
+plot(0, type='n', xlim=c(1, 15), ylim=c(0, 1), axes=FALSE, asp = 15)
 points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
-text(1:15, 0.5, col = cbPalette15)
-text(c(4, 7), 0.5, '[   ]')
+text(1:15, 1, col = cbPalette15)
+text(c(4, 7), 1, '[   ]')
+
+par(oPar)
 
 }
 \keyword{datasets}
