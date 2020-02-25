@@ -42,8 +42,9 @@
 
 
 <meta property="og:title" content="Value of a function at regularly spaced points — TernaryPointValues" />
-<meta property="og:description" content="Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with ColourTernary." />
+<meta property="og:description" content="Intended to facilitate coloured contour plots with ColourTernary(),
+TernaryPointValue() evaluates a function at points on a triangular grid;
+TernaryDensity() calculates the density of points in each grid cell." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -140,8 +141,9 @@ Intended to facilitate coloured contour plots with ColourTernary." />
     </div>
 
     <div class="ref-description">
-    <p>Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with <code><a href='ColourTernary.html'>ColourTernary</a></code>.</p>
+    <p>Intended to facilitate coloured contour plots with <code><a href='ColourTernary.html'>ColourTernary()</a></code>,
+<code>TernaryPointValue()</code> evaluates a function at points on a triangular grid;
+<code>TernaryDensity()</code> calculates the density of points in each grid cell.</p>
     </div>
 
     <pre class="usage"><span class='fu'>TernaryPointValues</span>(
@@ -191,16 +193,6 @@ the three coordinates of a point in ternary space.</p></td>
 ternary coordinates of <code>x</code> and <code>y</code>.</p>
 <p><strong>down</strong>: <code>0</code> if the triangle concerned points upwards (or right),
 <code>1</code> otherwise</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Density plotting functions are somewhat experimental; please
-<a href='https://github.com/ms609/Ternary/issues/new'>report any issues</a>.</p>
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
-
-    
-<ul>
-<li><p><code>TernaryDensity</code>: Returns the density of points in each triangle</p></li>
-</ul>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other contour plotting functions: 
@@ -208,15 +200,39 @@ ternary coordinates of <code>x</code> and <code>y</code>.</p>
 <code><a href='TernaryContour.html'>TernaryContour</a>()</code>,
 <code><a href='TernaryDensityContour.html'>TernaryDensityContour</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>TernaryPointValues</span>(<span class='no'>rgb</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;      [,1]                [,2]                [,3]               
+#&gt; x    "-0.25"             "0"                 "0.25"             
+#&gt; y    "0.144337567297406" "0.288675134594813" "0.144337567297406"
+#&gt; z    "#2B2BAA"           "#555555"           "#2BAA2A"          
+#&gt; down "0"                 "1"                 "0"                
+#&gt;      [,4]               
+#&gt; x    "0"                
+#&gt; y    "0.577350269189626"
+#&gt; z    "#AA2B2B"          
+#&gt; down "0"                </div><div class='input'><span class='fu'>TernaryPointValues</span>(<span class='kw'>function</span> (<span class='no'>a</span>, <span class='no'>b</span>, <span class='no'>c</span>) <span class='no'>a</span> * <span class='no'>b</span> * <span class='no'>c</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;             [,1]       [,2]       [,3]       [,4]
+#&gt; x    -0.25000000 0.00000000 0.25000000 0.00000000
+#&gt; y     0.14433757 0.28867513 0.14433757 0.57735027
+#&gt; z     0.01851852 0.03703704 0.01851852 0.01851852
+#&gt; down  0.00000000 1.00000000 0.00000000 0.00000000</div><div class='input'>
+
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='input'>
+<span class='no'>nPoints</span> <span class='kw'>&lt;-</span> <span class='fl'>4000L</span>
+<span class='no'>coordinates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>2</span>, <span class='fl'>3</span>)),
+                     <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>1</span>, <span class='fl'>1.5</span>)),
+                     <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>1</span>, <span class='fl'>0.5</span>)))
+
+<span class='no'>density</span> <span class='kw'>&lt;-</span> <span class='fu'>TernaryDensity</span>(<span class='no'>coordinates</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>10L</span>)
+<span class='fu'><a href='ColourTernary.html'>ColourTernary</a></span>(<span class='no'>density</span>)</div><div class='input'><span class='fu'><a href='AddToTernary.html'>TernaryPoints</a></span>(<span class='no'>coordinates</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>'red'</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>'.'</span>)</div><div class='img'><img src='TernaryPointValues-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#functions">Functions</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>

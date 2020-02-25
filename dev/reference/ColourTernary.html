@@ -190,8 +190,16 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
 <code><a href='TernaryPointValues.html'>TernaryPointValues</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>rgb</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>20</span>)
-<span class='fu'>ColourTernary</span>(<span class='no'>values</span>, <span class='kw'>spectrum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='ColourTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>alab</span> <span class='kw'>=</span> <span class='st'>'a'</span>, <span class='kw'>blab</span> <span class='kw'>=</span> <span class='st'>'b'</span>, <span class='kw'>clab</span> <span class='kw'>=</span> <span class='st'>'c'</span>)</div><div class='input'>
+<span class='no'>FunctionToContour</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span> (<span class='no'>a</span>, <span class='no'>b</span>, <span class='no'>c</span>) {
+  <span class='no'>a</span> - <span class='no'>c</span> + (<span class='fl'>4</span> * <span class='no'>a</span> * <span class='no'>b</span>) + (<span class='fl'>27</span> * <span class='no'>a</span> * <span class='no'>b</span> * <span class='no'>c</span>)
+}
+
+<span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>FunctionToContour</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>24L</span>)
+<span class='fu'>ColourTernary</span>(<span class='no'>values</span>)</div><div class='input'><span class='fu'><a href='TernaryContour.html'>TernaryContour</a></span>(<span class='no'>FunctionToContour</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>36L</span>)</div><div class='img'><img src='ColourTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>rgb</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>20</span>)
+<span class='fu'>ColourTernary</span>(<span class='no'>values</span>, <span class='kw'>spectrum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='ColourTernary-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
