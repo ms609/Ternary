@@ -376,6 +376,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' 
 #' @template MRS
 #' 
+#' @family functions for colouring and shading
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, 
                           direction = getOption('ternDirection')) {
@@ -420,6 +421,7 @@ TernaryTiles <- function (x, y, down, resolution, col,
 #' ColourTernary(values, spectrum = NULL)
 #' 
 #' @family contour plotting functions
+#' @family functions for colouring and shading
 #' @importFrom viridisLite viridis
 #' @importFrom grDevices col2rgb
 #' @export

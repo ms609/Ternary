@@ -125,6 +125,7 @@ XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
 #' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
 #' 
 #' @template MRS
+#' @family plot limits
 #' @export
 TernaryXRange <- function (direction = getOption('ternDirection')) {
   if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
@@ -177,6 +178,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' OutsidePlot(c(0.5, 0.1), 0.5) 
 #' 
 #' @template MRS
+#' @family plot limits
 #' @export
 OutsidePlot <- function (x, y, tolerance = 0) {
   abc <- XYToTernary(x, y)
@@ -212,6 +214,7 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
 #' points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
 #' 
+#' @family coordinate translation functions
 #' @export
 ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
   switch(direction, {

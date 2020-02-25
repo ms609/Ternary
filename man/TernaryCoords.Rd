@@ -47,8 +47,8 @@ sent to standard functions in the \emph{graphics} package.
 \item \code{\link[=TernaryPlot]{TernaryPlot()}}
 }
 
-Other coordinate translation functions: \code{\link{TriangleCentres}},
-  \code{\link{XYToTernary}}
+Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
+  \code{\link{TriangleCentres}}, \code{\link{XYToTernary}}
 }
 \author{
 Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})

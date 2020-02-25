@@ -51,8 +51,11 @@ ColourTernary(values, spectrum = NULL)
 Other contour plotting functions: \code{\link{TernaryContour}},
   \code{\link{TernaryDensityContour}},
   \code{\link{TernaryPointValues}}
+
+Other functions for colouring and shading: \code{\link{TernaryTiles}}
 }
 \author{
 Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{contour plotting functions}
+\concept{functions for colouring and shading}

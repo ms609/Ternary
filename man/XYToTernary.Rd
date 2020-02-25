@@ -24,7 +24,8 @@ XYToTernary(c(0.1, 0.2), 0.5)
 
 }
 \seealso{
-Other coordinate translation functions: \code{\link{TernaryCoords}},
+Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
+  \code{\link{TernaryCoords}},
   \code{\link{TriangleCentres}}
 }
 \author{

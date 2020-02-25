@@ -17,9 +17,9 @@ typing \code{vignette('Ternary', 'Ternary')} at the R console.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://ms609.github.io/Ternary}
-  \item \url{https://github.com/ms609/Ternary}
-  \item Report bugs at \url{https://github.com/ms609/Ternary/issues}
+  \item \url{https://ms609.github.io/Ternary/}
+  \item \url{https://github.com/ms609/Ternary/}
+  \item Report bugs at \url{https://github.com/ms609/Ternary/issues/}
 }
 
 }

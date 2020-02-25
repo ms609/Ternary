@@ -35,6 +35,10 @@ OutsidePlot(0.1, 0.5)
 OutsidePlot(c(0.5, 0.1), 0.5) 
 
 }
+\seealso{
+Other plot limits: \code{\link{TernaryXRange}}
+}
 \author{
 Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{plot limits}

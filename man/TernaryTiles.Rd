@@ -44,6 +44,10 @@ TernaryContour(FunctionToContour, resolution=36L)
 
 
 }
+\seealso{
+Other functions for colouring and shading: \code{\link{ColourTernary}}
+}
 \author{
 Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{functions for colouring and shading}
