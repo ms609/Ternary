@@ -15,11 +15,24 @@ plot as inside, and to positive values to count points that are just inside
 the margins as outside. Maximum positive value: 1/3.}
 }
 \value{
-Logical vector specifying whether each pair of \emph{x} and \emph{y} coordinates
-corresponds to a point outside the plotted ternary diagram.
+\code{OutsidePlot()} returns a logical vector specifying whether each
+pair of \emph{x} and \emph{y} coordinates corresponds to a point outside the plotted
+ternary diagram.
 }
 \description{
 Is a point in the plotting area?
+}
+\examples{
+
+TernaryPlot()
+points(0.5, 0.5, col = 'darkgreen')
+OutsidePlot(0.5, 0.5)
+ 
+points(0.1, 0.5, col = 'red')
+OutsidePlot(0.1, 0.5)
+
+OutsidePlot(c(0.5, 0.1), 0.5) 
+
 }
 \author{
 Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})

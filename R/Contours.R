@@ -457,7 +457,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' Uses two-dimensional kernel density estimation to plot contours of 
 #' point density.
 #' 
-#' This function is modelled on MASS::kde2d, which uses
+#' This function is modelled on `MASS::kde2d()`, which uses
 #' "an axis-aligned bivariate normal kernel, evaluated on a square grid".
 #' 
 #' This is to say, values are calculated on a square grid, and contours fitted
@@ -483,7 +483,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #' 
 #' @template coordinatesParam
 #' @param bandwidth Vector of bandwidths for x and y directions. 
-#' Defaults to normal reference bandwidth (see MASS::bandwidth.nrd).
+#' Defaults to normal reference bandwidth (see `MASS::bandwidth.nrd`).
 #' A scalar value will be taken to apply to both directions.
 #' @template resolutionParam
 #' @param tolerance Numeric specifying how close to the margins the contours 
@@ -495,7 +495,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 #'  (see details).
 #' 
 #' @family contour plotting functions
-#' @author Adapted from MASS::kde2d by Martin R. Smith
+#' @author Adapted from `MASS::kde2d()` by Martin R. Smith
 #' @importFrom stats dnorm quantile var
 #' @export
 TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 

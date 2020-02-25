@@ -39,7 +39,7 @@ If using \code{TernaryText}, this will likely include the parameter \code{labels
 to specify the text to plot.}
 
 \item{fromCoordinates, toCoordinates}{For \code{TernaryArrows}, coordinates at
-which arrows should begin and end; cf. \code{x0}, \code{y0}, \code{x1} and \code{y1} in
+which arrows should begin and end; \emph{cf.} \code{x0}, \code{y0}, \code{x1} and \code{y1} in
 \link[graphics]{arrows}.  Recycled as necessary.}
 }
 \description{

@@ -94,13 +94,13 @@
 #' 
 #' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
 #' 
-#' @seealso {
-#'  - [AddToTernary]: Add elements to a ternary plot
-#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) 
+#' @seealso
+#'  - [`AddToTernary()`]: Add elements to a ternary plot
+#'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian (_x_ and _y_) 
 #'      coordinates
-#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of 
-#'      the plotted region?
-#' }
+#'  - [`TernaryXRange()`], [`TernaryYRange()`]: What are the _x_ and _y_ limits
+#'      of the plotted region?
+#' 
 #' 
 #' @examples 
 #' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", 
@@ -430,7 +430,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #'        \code{\link[graphics]{text}}.
 #' @template coordinatesParam
 #' @param fromCoordinates,toCoordinates For `TernaryArrows`, coordinates at 
-#' which arrows should begin and end; cf. `x0`, `y0`, `x1` and `y1` in 
+#' which arrows should begin and end; _cf._ `x0`, `y0`, `x1` and `y1` in 
 #' \link[graphics]{arrows}.  Recycled as necessary.
 #' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
 #' If using `TernaryText`, this will likely include the parameter `labels`,

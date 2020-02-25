@@ -5,8 +5,8 @@
 
 # Ternary v1.1.3
 - Use `inherits`, not `class` [https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again].
-- Obey user-specified `direction` in `TernaryContour` and `TernaryPointValues`
-  (thanks @pkR-pjR).
+- Obey user-specified `direction` in `TernaryContour()` and 
+  `TernaryPointValues()` (thanks @pkR-pjR).
 
 # Ternary v1.1.2
  - `clockwise` parameter allows plots to be configured in 'flipped' orientation
@@ -21,8 +21,8 @@
  
 ## Bug fixes 
  - Maintain isometry when one of `xlim` or `ylim` is specified.
- - Fix issues with `TernaryPlot` documentation.
- - Remove names in `TernaryCoords`.
+ - Fix issues with `TernaryPlot()` documentation.
+ - Remove names in `TernaryCoords()`.
 
 # Ternary v1.0.2
  - Improve configuration options by allowing:
@@ -34,8 +34,8 @@
  - Document magnification options.
 
 # Ternary v1.0.0
- - Add function `JoinTheDots` to plot lines and points simultaneously.
- - Support xlim & ylim for `TernaryPlot`.
+ - Add function `JoinTheDots()` to plot lines and points simultaneously.
+ - Support `xlim` & `ylim` for `TernaryPlot()`.
  - Choose direction of plot using new `point` parameter.
  - Allow labelling of tips and of sides (`alab` becomes `atip`).
  - Improved control over labelling of plot (`clab.rotate` parameter).
@@ -43,7 +43,7 @@
 
 # Ternary v0.1.1
  - Added colour-blind compatible colour palettes `cbPalette8` and `cbPalette15`.
- - Support `lab.font` in `TernaryPlot`.
+ - Support `lab.font` in `TernaryPlot()`.
 
 # Ternary v0.1.0
  - Generates ternary plots with vertical left axis.

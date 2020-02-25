@@ -25,9 +25,9 @@ and \code{c_coord}.}
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-A vector of length two that converts the coordinates given in
-\code{abc} into Cartesian (\emph{x}, \emph{y}) coordinates corresponding to the plot
-created by the last call of \code{\link{TernaryPlot}}.
+\code{TernaryCoords()} returns a vector of length two that converts
+the coordinates given in \code{abc} into Cartesian (\emph{x}, \emph{y}) coordinates
+corresponding to the plot created by the last call of \code{\link[=TernaryPlot]{TernaryPlot()}}.
 }
 \description{
 Converts coordinates of a point in ternary space, in the format
@@ -35,7 +35,9 @@ Converts coordinates of a point in ternary space, in the format
 sent to standard functions in the \emph{graphics} package.
 }
 \seealso{
-\link{TernaryPlot}
+\itemize{
+\item \code{\link[=TernaryPlot]{TernaryPlot()}}
+}
 
 Other coordinate translation functions: \code{\link{TriangleCentres}},
   \code{\link{XYToTernary}}

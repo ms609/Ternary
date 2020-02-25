@@ -19,7 +19,7 @@ TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
   axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
   axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
   ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
-  axis.labels.col = axis.col, ...)
+  ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
   grid.lty = "dotted", grid.lwd = par("lwd"),
@@ -34,8 +34,10 @@ the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
 typing \code{\\U2190} or \code{\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
-\item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
-Increase \code{padding} if labels are being clipped.}
+\item{lab.offset}{Numeric specifying distance between midpoint of axis label
+and the axis.
+Increase \code{padding} if labels are being clipped.
+Use a vector of length three to specify a different offset for each label.}
 
 \item{lab.col}{Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.}
@@ -56,7 +58,8 @@ May be overridden if \code{isometric=TRUE}; see documentation of
 \code{isometric} parameter.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion for axis
-labels.}
+labels.
+Use a vector of length three to specify a different value for each direction.}
 
 \item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
 bold-italic) for axis titles.
@@ -97,7 +100,8 @@ direction.}
 \item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.}
 
-\item{axis.lty}{Line type for both the axis line and tick marks.}
+\item{axis.lty}{Line type for both the axis line and tick marks.
+Use a vector of length three to set a different value for each direction.}
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
@@ -119,8 +123,8 @@ beyond the plot margin.  Also affects position of axis labels, which are
 plotted at the end of each tick.
 Use a vector of length three to set a different length for each direction.}
 
-\item{axis.col, ticks.col, tip.col, axis.labels.col}{Colours for the axis line,
-tick marks, tip labels and axis labels, respectively.
+\item{axis.col, ticks.col, tip.col}{Colours for the axis line,
+tick marks and tip labels respectively.
 Use a vector of length three to set a different value for each direction.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
 inline, and \code{ticks.col = NULL} means to use whatever colour
@@ -154,14 +158,12 @@ HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1)
 
 }
 \seealso{
-{
 \itemize{
-\item \link{AddToTernary}: Add elements to a ternary plot
-\item \link{TernaryCoords}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y})
+\item \code{\link[=AddToTernary]{AddToTernary()}}: Add elements to a ternary plot
+\item \code{\link[=TernaryCoords]{TernaryCoords()}}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y})
 coordinates
-\item \link{TernaryXRange}, \link{TernaryYRange}: What are the \emph{x} and \emph{y} limits of
-the plotted region?
-}
+\item \code{\link[=TernaryXRange]{TernaryXRange()}}, \code{\link[=TernaryYRange]{TernaryYRange()}}: What are the \emph{x} and \emph{y} limits
+of the plotted region?
 }
 }
 \author{

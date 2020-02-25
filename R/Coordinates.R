@@ -16,11 +16,12 @@
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #' @template directionParam
 #'            
-#' @return A vector of length two that converts the coordinates given in
-#' \code{abc} into Cartesian (_x_, _y_) coordinates corresponding to the plot 
-#' created by the last call of \code{\link{TernaryPlot}}.
+#' @return `TernaryCoords()` returns a vector of length two that converts 
+#' the coordinates given in `abc` into Cartesian (_x_, _y_) coordinates 
+#' corresponding to the plot created by the last call of [`TernaryPlot()`].
 #'
-#' @seealso [TernaryPlot]
+#' @seealso
+#' - [`TernaryPlot()`]
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
@@ -145,8 +146,20 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' plot as inside, and to positive values to count points that are just inside
 #' the margins as outside. Maximum positive value: 1/3.
 #' 
-#' @return Logical vector specifying whether each pair of _x_ and _y_ coordinates
-#' corresponds to a point outside the plotted ternary diagram.
+#' @return `OutsidePlot()` returns a logical vector specifying whether each 
+#' pair of _x_ and _y_ coordinates corresponds to a point outside the plotted
+#' ternary diagram.
+#' 
+#' @examples
+#' 
+#' TernaryPlot()
+#' points(0.5, 0.5, col = 'darkgreen')
+#' OutsidePlot(0.5, 0.5)
+#'  
+#' points(0.1, 0.5, col = 'red')
+#' OutsidePlot(0.1, 0.5)
+#'
+#' OutsidePlot(c(0.5, 0.1), 0.5) 
 #' 
 #' @template MRS
 #' @export

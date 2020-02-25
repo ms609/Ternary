@@ -14,7 +14,7 @@ element (or row) specifies
 the three coordinates of a point in ternary space.}
 
 \item{bandwidth}{Vector of bandwidths for x and y directions.
-Defaults to normal reference bandwidth (see MASS::bandwidth.nrd).
+Defaults to normal reference bandwidth (see \code{MASS::bandwidth.nrd}).
 A scalar value will be taken to apply to both directions.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
@@ -38,7 +38,7 @@ Uses two-dimensional kernel density estimation to plot contours of
 point density.
 }
 \details{
-This function is modelled on MASS::kde2d, which uses
+This function is modelled on \code{MASS::kde2d}, which uses
 "an axis-aligned bivariate normal kernel, evaluated on a square grid".
 
 This is to say, values are calculated on a square grid, and contours fitted
@@ -67,6 +67,6 @@ Other contour plotting functions: \code{\link{ColourTernary}},
   \code{\link{TernaryPointValues}}
 }
 \author{
-Adapted from MASS::kde2d by Martin R. Smith
+Adapted from \code{MASS::kde2d} by Martin R. Smith
 }
 \concept{contour plotting functions}
