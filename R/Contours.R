@@ -10,18 +10,22 @@
 #' @template directionParam
 #' @return A matrix whose rows correspond to:
 #' 
-#'   **x**, **y**: co-ordinates of the centres of smaller triangles
+#' - **x**, **y**: co-ordinates of the centres of smaller triangles
 #'   
-#'   **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the 
+#' - **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the 
 #'   ternary coordinates of `x` and `y`.
 #'   
-#'   **down**: `0` if the triangle concerned points upwards (or right), 
+#' - **down**: `0` if the triangle concerned points upwards (or right), 
 #'   `1` otherwise
 #' 
 #' @examples
-#' TernaryPointValues(rgb, resolution = 2)
 #' TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
 #' 
+#' TernaryPlot(grid.lines = 4)
+#' cols <- TernaryPointValues(rgb, resolution = 4)
+#' text(as.numeric(cols['x', ]), as.numeric(cols['y', ]),
+#'      labels =  ifelse(cols['down', ] == '1', 'v', '^'),
+#'      col = cols['z', ])
 #' 
 #' TernaryPlot(axis.labels = seq(0, 10, by = 1))
 #' 
@@ -62,7 +66,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` `0` for upwards-pointing triangles, `1` for downwards-pointing.
 #'  
-#' @examples 
+#' @examples
 #' TernaryPlot(grid.lines = 4)
 #' centres <- TriangleCentres(4)
 #' text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
@@ -501,7 +505,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
 
 #' Add contours of estimated point density to a ternary plot
 #' 
-#' Uses two-dimensional kernel density estimation to plot contours of 
+#' Use two-dimensional kernel density estimation to plot contours of 
 #' point density.
 #' 
 #' This function is modelled on `MASS::kde2d()`, which uses

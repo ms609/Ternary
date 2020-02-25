@@ -20,7 +20,8 @@ pair of \emph{x} and \emph{y} coordinates corresponds to a point outside the plo
 ternary diagram.
 }
 \description{
-Is a point in the plotting area?
+Evaluate whether a given set of coordinates lie outwith the boundaries of
+a plotted ternary diagram.
 }
 \examples{
 

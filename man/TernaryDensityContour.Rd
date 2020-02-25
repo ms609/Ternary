@@ -34,7 +34,7 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \item{\dots}{Further parameters to pass to `\link[graphics]{contour}.}
 }
 \description{
-Uses two-dimensional kernel density estimation to plot contours of
+Use two-dimensional kernel density estimation to plot contours of
 point density.
 }
 \details{

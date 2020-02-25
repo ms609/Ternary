@@ -20,7 +20,7 @@ A matrix containing three named rows:
 \itemize{
 \item \code{x} \emph{x} coordinates of triangle midpoints;
 \item \code{y} \emph{y} coordinates of triangle midpoints;
-\item \code{triDown} binary integer specifying whether given triangle points down.
+\item \code{triDown} \code{0} for upwards-pointing triangles, \code{1} for downwards-pointing.
 }
 }
 \description{
@@ -28,7 +28,9 @@ Calculate \emph{x} and \emph{y} coordinates of the midpoints of triangles
 tiled to cover a ternary plot.
 }
 \examples{
-TriangleCentres(2)
+TernaryPlot(grid.lines = 4)
+centres <- TriangleCentres(4)
+text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
 
 }
 \seealso{

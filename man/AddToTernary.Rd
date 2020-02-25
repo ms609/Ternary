@@ -34,16 +34,16 @@ JoinTheDots(coordinates, ...)
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 
-\item{\dots}{Additional parameters to pass to \code{PlottingFunction}.
-If using \code{TernaryText}, this will likely include the parameter \code{labels},
+\item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
+If using \code{TernaryText()w}, this will likely include the parameter \code{labels},
 to specify the text to plot.}
 
-\item{fromCoordinates, toCoordinates}{For \code{TernaryArrows}, coordinates at
+\item{fromCoordinates, toCoordinates}{For \code{TernaryArrows()}, coordinates at
 which arrows should begin and end; \emph{cf.} \code{x0}, \code{y0}, \code{x1} and \code{y1} in
 \link[graphics]{arrows}.  Recycled as necessary.}
 }
 \description{
-Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
+Plot shapes onto a ternary diagram created with \code{\link[=TernaryPlot]{TernaryPlot()}}.
 }
 \section{Functions}{
 \itemize{

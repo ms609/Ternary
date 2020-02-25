@@ -30,7 +30,7 @@ the coordinates given in \code{abc} into Cartesian (\emph{x}, \emph{y}) coordina
 corresponding to the plot created by the last call of \code{\link[=TernaryPlot]{TernaryPlot()}}.
 }
 \description{
-Converts coordinates of a point in ternary space, in the format
+Convert coordinates of a point in ternary space, in the format
 (\emph{a}, \emph{b}, \emph{c}), to \emph{x} and \emph{y} coordinates of Cartesian space, which can be
 sent to standard functions in the \emph{graphics} package.
 }
