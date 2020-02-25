@@ -85,7 +85,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.3.9001</span>
       </span>
     </div>
 
@@ -150,6 +150,7 @@
   <span class='kw'>blab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>clab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>lab.offset</span> <span class='kw'>=</span> <span class='fl'>0.16</span>,
+  <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>point</span> <span class='kw'>=</span> <span class='st'>"up"</span>,
   <span class='kw'>clockwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -158,6 +159,7 @@
   <span class='kw'>lab.font</span> <span class='kw'>=</span> <span class='fl'>0</span>,
   <span class='kw'>tip.cex</span> <span class='kw'>=</span> <span class='no'>lab.cex</span>,
   <span class='kw'>tip.font</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>tip.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>isometric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>atip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>btip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
@@ -185,7 +187,6 @@
   <span class='kw'>ticks.length</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
   <span class='kw'>axis.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
   <span class='kw'>ticks.col</span> <span class='kw'>=</span> <span class='no'>grid.col</span>,
-  <span class='kw'>axis.labels.col</span> <span class='kw'>=</span> <span class='no'>axis.col</span>,
   <span class='no'>...</span>
 )
 
@@ -214,8 +215,15 @@ typing <code>\\U2190</code> or <code>\\U2192</code>, or using <code><a href='htt
     </tr>
     <tr>
       <th>lab.offset</th>
-      <td><p>Numeric specifying distance between midpoint of axis label and the axis.
-Increase <code>padding</code> if labels are being clipped.</p></td>
+      <td><p>Numeric specifying distance between midpoint of axis label
+and the axis.
+Increase <code>padding</code> if labels are being clipped.
+Use a vector of length three to specify a different offset for each label.</p></td>
+    </tr>
+    <tr>
+      <th>lab.col</th>
+      <td><p>Character vector specifying colours for axis labels. Use a
+vector of length three to specify a different colour for each label.</p></td>
     </tr>
     <tr>
       <th>point</th>
@@ -240,12 +248,15 @@ May be overridden if <code>isometric=TRUE</code>; see documentation of
     </tr>
     <tr>
       <th>lab.cex, tip.cex</th>
-      <td><p>Numeric specifying character expansion for axis titles.</p></td>
+      <td><p>Numeric specifying character expansion for axis
+labels.
+Use a vector of length three to specify a different value for each direction.</p></td>
     </tr>
     <tr>
       <th>lab.font, tip.font</th>
       <td><p>Numeric specifying font (Roman, bold, italic,
-bold-italic) for axis titles.</p></td>
+bold-italic) for axis titles.
+Use a vector of length three to set a different font for each direction.</p></td>
     </tr>
     <tr>
       <th>isometric</th>
@@ -282,17 +293,20 @@ if axis labels are being clipped.</p></td>
     </tr>
     <tr>
       <th>grid.col, grid.minor.col</th>
-      <td><p>The colour to draw the grid lines.</p></td>
+      <td><p>Colours to draw the grid lines. Use a vector
+of length three to set different values for each direction.</p></td>
     </tr>
     <tr>
       <th>grid.lty, grid.minor.lty</th>
-      <td><p>Character or integer; line type of
-the grid lines.</p></td>
+      <td><p>Character or integer vector; line type of
+the grid lines. Use a vector of length three to set different values for
+each direction.</p></td>
     </tr>
     <tr>
       <th>grid.lwd, grid.minor.lwd</th>
       <td><p>Non-negative numeric giving line width of the
-grid lines.</p></td>
+grid lines.  Use a vector of length three to set different values for each
+direction.</p></td>
     </tr>
     <tr>
       <th>grid.minor.lines</th>
@@ -301,7 +315,8 @@ grid lines to plot between each major pair.</p></td>
     </tr>
     <tr>
       <th>axis.lty</th>
-      <td><p>Line type for both the axis line and tick marks.</p></td>
+      <td><p>Line type for both the axis line and tick marks.
+Use a vector of length three to set a different value for each direction.</p></td>
     </tr>
     <tr>
       <th>axis.labels</th>
@@ -311,7 +326,8 @@ expression vector of labels to be placed at the tick points.</p></td>
     </tr>
     <tr>
       <th>axis.cex</th>
-      <td><p>Numeric specifying character expansion for axis labels.</p></td>
+      <td><p>Numeric specifying character expansion for axis labels.
+Use a vector of length three to set a different value for each direction.</p></td>
     </tr>
     <tr>
       <th>axis.font</th>
@@ -324,18 +340,21 @@ expression vector of labels to be placed at the tick points.</p></td>
     <tr>
       <th>axis.lwd, ticks.lwd</th>
       <td><p>Line width for the axis line and tick marks.
-Zero or negative values will suppress the line or ticks.</p></td>
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.</p></td>
     </tr>
     <tr>
       <th>ticks.length</th>
       <td><p>Numeric specifying distance that ticks should extend
 beyond the plot margin.  Also affects position of axis labels, which are
-plotted at the end of each tick.</p></td>
+plotted at the end of each tick.
+Use a vector of length three to set a different length for each direction.</p></td>
     </tr>
     <tr>
-      <th>axis.col, ticks.col, axis.labels.col</th>
-      <td><p>Colours for the axis line, tick
-marks and labels, respectively.
+      <th>axis.col, ticks.col, tip.col</th>
+      <td><p>Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
 <code>axis.col = NULL</code> means to use <code><a href='https://rdrr.io/r/graphics/par.html'>par('fg')</a></code>, possibly specified
 inline, and <code>ticks.col = NULL</code> means to use whatever colour
 <code>axis.col</code> resolved to.</p></td>
@@ -391,7 +410,7 @@ the plotted region?</p></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Martin R. Smith</p>
+    <p>Martin R. Smith (<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
   </div>
 </div>
 
