@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -42,8 +42,9 @@
 
 
 <meta property="og:title" content="Value of a function at regularly spaced points — TernaryPointValues" />
-<meta property="og:description" content="Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with ColourTernary." />
+<meta property="og:description" content="Intended to facilitate coloured contour plots with ColourTernary(),
+TernaryPointValue() evaluates a function at points on a triangular grid;
+TernaryDensity() calculates the density of points in each grid cell." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -58,6 +59,16 @@ Intended to facilitate coloured contour plots with ColourTernary." />
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156666971-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156666971-3');
+</script>
 
 
   </head>
@@ -76,7 +87,7 @@ Intended to facilitate coloured contour plots with ColourTernary." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -130,8 +141,9 @@ Intended to facilitate coloured contour plots with ColourTernary." />
     </div>
 
     <div class="ref-description">
-    <p>Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with <code><a href='ColourTernary.html'>ColourTernary</a></code>.</p>
+    <p>Intended to facilitate coloured contour plots with <code><a href='ColourTernary.html'>ColourTernary()</a></code>,
+<code>TernaryPointValue()</code> evaluates a function at points on a triangular grid;
+<code>TernaryDensity()</code> calculates the density of points in each grid cell.</p>
     </div>
 
     <pre class="usage"><span class='fu'>TernaryPointValues</span>(
@@ -175,22 +187,14 @@ the three coordinates of a point in ternary space.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A matrix whose rows correspond to:</p>
-<p><strong>x</strong>, <strong>y</strong>: co-ordinates of the centres of smaller triangles</p>
-<p><strong>z</strong>: The value of <code>Func(a, b, c)</code>, where <code>a</code>, <code>b</code> and <code>c</code> are the
-ternary coordinates of <code>x</code> and <code>y</code>.</p>
-<p><strong>down</strong>: <code>0</code> if the triangle concerned points upwards (or right),
-<code>1</code> otherwise</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Density plotting functions are somewhat experimental; please
-<a href='https://github.com/ms609/Ternary/issues/new'>report any issues</a>.</p>
-    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
-
-    
-<ul>
-<li><p><code>TernaryDensity</code>: Returns the density of points in each triangle</p></li>
+    <p>A matrix whose rows correspond to:</p><ul>
+<li><p><strong>x</strong>, <strong>y</strong>: co-ordinates of the centres of smaller triangles</p></li>
+<li><p><strong>z</strong>: The value of <code>Func(a, b, c)</code>, where <code>a</code>, <code>b</code> and <code>c</code> are the
+ternary coordinates of <code>x</code> and <code>y</code>.</p></li>
+<li><p><strong>down</strong>: <code>0</code> if the triangle concerned points upwards (or right),
+<code>1</code> otherwise</p></li>
 </ul>
+
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other contour plotting functions: 
@@ -198,19 +202,37 @@ ternary coordinates of <code>x</code> and <code>y</code>.</p>
 <code><a href='TernaryContour.html'>TernaryContour</a>()</code>,
 <code><a href='TernaryDensityContour.html'>TernaryDensityContour</a>()</code></p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>TernaryPointValues</span>(<span class='kw'>function</span> (<span class='no'>a</span>, <span class='no'>b</span>, <span class='no'>c</span>) <span class='no'>a</span> * <span class='no'>b</span> * <span class='no'>c</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt;             [,1]       [,2]       [,3]       [,4]
+#&gt; x    -0.25000000 0.00000000 0.25000000 0.00000000
+#&gt; y     0.14433757 0.28867513 0.14433757 0.57735027
+#&gt; z     0.01851852 0.03703704 0.01851852 0.01851852
+#&gt; down  0.00000000 1.00000000 0.00000000 0.00000000</div><div class='input'>
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='input'><span class='no'>cols</span> <span class='kw'>&lt;-</span> <span class='fu'>TernaryPointValues</span>(<span class='no'>rgb</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='fu'><a href='https://rdrr.io/r/graphics/text.html'>text</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>cols</span>[<span class='st'>'x'</span>, ]), <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span>(<span class='no'>cols</span>[<span class='st'>'y'</span>, ]),
+     <span class='kw'>labels</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span>(<span class='no'>cols</span>[<span class='st'>'down'</span>, ] <span class='kw'>==</span> <span class='st'>'1'</span>, <span class='st'>'v'</span>, <span class='st'>'^'</span>),
+     <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>cols</span>[<span class='st'>'z'</span>, ])</div><div class='img'><img src='TernaryPointValues-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>, <span class='kw'>by</span> <span class='kw'>=</span> <span class='fl'>1</span>))</div><div class='input'>
+<span class='no'>nPoints</span> <span class='kw'>&lt;-</span> <span class='fl'>4000L</span>
+<span class='no'>coordinates</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>2</span>, <span class='fl'>3</span>)),
+                     <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>1</span>, <span class='fl'>1.5</span>)),
+                     <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>abs</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>nPoints</span>, <span class='fl'>1</span>, <span class='fl'>0.5</span>)))
+
+<span class='no'>density</span> <span class='kw'>&lt;-</span> <span class='fu'>TernaryDensity</span>(<span class='no'>coordinates</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>10L</span>)
+<span class='fu'><a href='ColourTernary.html'>ColourTernary</a></span>(<span class='no'>density</span>)</div><div class='input'><span class='fu'><a href='AddToTernary.html'>TernaryPoints</a></span>(<span class='no'>coordinates</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>'red'</span>, <span class='kw'>pch</span> <span class='kw'>=</span> <span class='st'>'.'</span>)</div><div class='img'><img src='TernaryPointValues-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#functions">Functions</a></li>
       <li><a href="#see-also">See also</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Martin R. Smith</p>
+    <p>Martin R. Smith (<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
   </div>
 </div>
 

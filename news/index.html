@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -56,6 +56,16 @@
 <![endif]-->
 
 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156666971-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-156666971-3');
+</script>
+
 
   </head>
 
@@ -73,7 +83,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -125,13 +135,24 @@
       <small>Source: <a href='https://github.com/ms609/Ternary/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ternary-v1-1-4" class="section level1">
+<h1 class="page-header">
+<a href="#ternary-v1-1-4" class="anchor"></a>Ternary v1.1.4<small> Unreleased </small>
+</h1>
+<ul>
+<li>Support user-specified colours in <code><a href="../reference/ColourTernary.html">ColourTernary()</a></code>.</li>
+<li>More options for controlling axis colours in <code><a href="../reference/TernaryPlot.html">TernaryPlot()</a></code>.</li>
+<li>Add examples to documentation.</li>
+<li>Axis.labels example in vignette.</li>
+</ul>
+</div>
     <div id="ternary-v1-1-3" class="section level1">
 <h1 class="page-header">
 <a href="#ternary-v1-1-3" class="anchor"></a>Ternary v1.1.3<small> 2019-12-04 </small>
 </h1>
 <ul>
 <li>Use <code>inherits</code>, not <code>class</code> [<a href="https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again" class="uri">https://developer.r-project.org/Blog/public/2019/11/09/when-you-think-class.-think-again</a>].</li>
-<li>Obey user-specified <code>direction</code> in <code>TernaryContour</code> and <code>TernaryPointValues</code> (thanks <a href='https://github.com/pkR-pjR'>@pkR-pjR</a>).</li>
+<li>Obey user-specified <code>direction</code> in <code><a href="../reference/TernaryContour.html">TernaryContour()</a></code> and <code><a href="../reference/TernaryPointValues.html">TernaryPointValues()</a></code> (thanks <a href='https://github.com/pkR-pjR'>@pkR-pjR</a>).</li>
 </ul>
 </div>
     <div id="ternary-v1-1-2" class="section level1">
@@ -168,8 +189,8 @@
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Maintain isometry when one of <code>xlim</code> or <code>ylim</code> is specified.</li>
-<li>Fix issues with <code>TernaryPlot</code> documentation.</li>
-<li>Remove names in <code>TernaryCoords</code>.</li>
+<li>Fix issues with <code><a href="../reference/TernaryPlot.html">TernaryPlot()</a></code> documentation.</li>
+<li>Remove names in <code><a href="../reference/TernaryCoords.html">TernaryCoords()</a></code>.</li>
 </ul>
 </div>
 </div>
@@ -200,8 +221,8 @@
 <a href="#ternary-v1-0-0" class="anchor"></a>Ternary v1.0.0<small> 2017-12-21 </small>
 </h1>
 <ul>
-<li>Add function <code>JoinTheDots</code> to plot lines and points simultaneously.</li>
-<li>Support xlim &amp; ylim for <code>TernaryPlot</code>.</li>
+<li>Add function <code><a href="../reference/AddToTernary.html">JoinTheDots()</a></code> to plot lines and points simultaneously.</li>
+<li>Support <code>xlim</code> &amp; <code>ylim</code> for <code><a href="../reference/TernaryPlot.html">TernaryPlot()</a></code>.</li>
 <li>Choose direction of plot using new <code>point</code> parameter.</li>
 <li>Allow labelling of tips and of sides (<code>alab</code> becomes <code>atip</code>).</li>
 <li>Improved control over labelling of plot (<code>clab.rotate</code> parameter).</li>
@@ -214,7 +235,7 @@
 </h1>
 <ul>
 <li>Added colour-blind compatible colour palettes <code>cbPalette8</code> and <code>cbPalette15</code>.</li>
-<li>Support <code>lab.font</code> in <code>TernaryPlot</code>.</li>
+<li>Support <code>lab.font</code> in <code><a href="../reference/TernaryPlot.html">TernaryPlot()</a></code>.</li>
 </ul>
 </div>
     <div id="ternary-v0-1-0" class="section level1">
@@ -231,6 +252,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#ternary-v1-1-4">1.1.4</a></li>
         <li><a href="#ternary-v1-1-3">1.1.3</a></li>
         <li><a href="#ternary-v1-1-2">1.1.2</a></li>
         <li><a href="#ternary-v1-1-1">1.1.1</a></li>
