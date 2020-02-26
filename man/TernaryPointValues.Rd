@@ -6,7 +6,7 @@
 \title{Value of a function at regularly spaced points}
 \usage{
 TernaryPointValues(Func, resolution = 48L,
-  direction = getOption("ternDirection"))
+  direction = getOption("ternDirection"), ...)
 
 TernaryDensity(coordinates, resolution = 48L,
   direction = getOption("ternDirection"))
@@ -22,12 +22,14 @@ colour gradients, but at a computational cost.}
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 
+\item{\dots}{Additional parameters to \code{Func()}.}
+
 \item{coordinates}{A list, matrix, data.frame or vector in which each
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 }
 \value{
-A matrix whose rows correspond to:
+\code{TernaryPointValues()} returns a matrix whose rows correspond to:
 \itemize{
 \item \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
 \item \strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the

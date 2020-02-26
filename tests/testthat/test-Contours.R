@@ -170,7 +170,7 @@ test_that('Contours are plotted', {
 test_that('Colours are drawn', {
   RGBColours <- function () {
     TernaryPlot()
-    values <- TernaryPointValues(rgb, resolution = 20)
+    values <- TernaryPointValues(rgb, resolution = 20, alpha = 0.5)
     ColourTernary(values, spectrum = NULL)
   }
   expect_doppelganger('RGBColours', RGBColours)
@@ -181,3 +181,4 @@ test_that('Errors are handled', {
   expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
   expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
 })
+\

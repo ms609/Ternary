@@ -8,7 +8,8 @@
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
-#' @return A matrix whose rows correspond to:
+#' @param \dots Additional parameters to `Func()`.
+#' @return `TernaryPointValues()` returns a matrix whose rows correspond to:
 #' 
 #' - **x**, **y**: co-ordinates of the centres of smaller triangles
 #'   
@@ -42,14 +43,14 @@
 #' @template MRS
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, 
-                               direction = getOption('ternDirection')) {
+                               direction = getOption('ternDirection'), ...) {
   triangleCentres <- TriangleCentres (resolution, direction)
   x <- triangleCentres['x', ]
   y <- triangleCentres['y', ]
   abc <- XYToTernary(x, y, direction)
   
   # Return:
-  rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ]), 
+  rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ], ...), 
         down = triangleCentres['triDown', ])
 }
 
