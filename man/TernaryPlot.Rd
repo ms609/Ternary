@@ -6,19 +6,20 @@
 \title{Create a ternary plot}
 \usage{
 TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
-  blab = NULL, clab = NULL, lab.offset = 0.16, point = "up",
-  clockwise = TRUE, xlim = NULL, ylim = NULL, lab.cex = 1,
-  lab.font = 0, tip.cex = lab.cex, tip.font = 2, isometric = TRUE,
-  atip.rotate = NULL, btip.rotate = NULL, ctip.rotate = NULL,
-  atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
-  padding = 0.08, col = NA, grid.lines = 10, grid.col = "darkgrey",
-  grid.lty = "solid", grid.lwd = par("lwd"), grid.minor.lines = 4,
+  blab = NULL, clab = NULL, lab.offset = 0.16, lab.col = NULL,
+  point = "up", clockwise = TRUE, xlim = NULL, ylim = NULL,
+  lab.cex = 1, lab.font = 0, tip.cex = lab.cex, tip.font = 2,
+  tip.col = "black", isometric = TRUE, atip.rotate = NULL,
+  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
+  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
+  grid.lines = 10, grid.col = "darkgrey", grid.lty = "solid",
+  grid.lwd = par("lwd"), grid.minor.lines = 4,
   grid.minor.col = "lightgrey", grid.minor.lty = "solid",
   grid.minor.lwd = par("lwd"), axis.lty = "solid",
   axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
   axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
   ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
-  axis.labels.col = axis.col, ...)
+  ...)
 
 HorizontalGrid(grid.lines = 10, grid.col = "grey",
   grid.lty = "dotted", grid.lwd = par("lwd"),
@@ -33,8 +34,13 @@ the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
 typing \code{\\U2190} or \code{\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
-\item{lab.offset}{Numeric specifying distance between midpoint of axis label and the axis.
-Increase \code{padding} if labels are being clipped.}
+\item{lab.offset}{Numeric specifying distance between midpoint of axis label
+and the axis.
+Increase \code{padding} if labels are being clipped.
+Use a vector of length three to specify a different offset for each label.}
+
+\item{lab.col}{Character vector specifying colours for axis labels. Use a
+vector of length three to specify a different colour for each label.}
 
 \item{point}{Character string specifying the orientation of the ternary plot:
 should the triangle point \code{"up"}, \code{"right"}, \code{"down"} or \code{"left"}?
@@ -51,10 +57,13 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric=TRUE}; see documentation of
 \code{isometric} parameter.}
 
-\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis titles.}
+\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis
+labels.
+Use a vector of length three to specify a different value for each direction.}
 
 \item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
-bold-italic) for axis titles.}
+bold-italic) for axis titles.
+Use a vector of length three to set a different font for each direction.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
@@ -77,38 +86,46 @@ if axis labels are being clipped.}
 
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
-\item{grid.col, grid.minor.col}{The colour to draw the grid lines.}
+\item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
+of length three to set different values for each direction.}
 
-\item{grid.lty, grid.minor.lty}{Character or integer; line type of
-the grid lines.}
+\item{grid.lty, grid.minor.lty}{Character or integer vector; line type of
+the grid lines. Use a vector of length three to set different values for
+each direction.}
 
 \item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the
-grid lines.}
+grid lines.  Use a vector of length three to set different values for each
+direction.}
 
 \item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.}
 
-\item{axis.lty}{Line type for both the axis line and tick marks.}
+\item{axis.lty}{Line type for both the axis line and tick marks.
+Use a vector of length three to set a different value for each direction.}
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
 expression vector of labels to be placed at the tick points.}
 
-\item{axis.cex}{Numeric specifying character expansion for axis labels.}
+\item{axis.cex}{Numeric specifying character expansion for axis labels.
+Use a vector of length three to set a different value for each direction.}
 
 \item{axis.font}{Font for text. Defaults to \code{par('font')}.}
 
 \item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
 
 \item{axis.lwd, ticks.lwd}{Line width for the axis line and tick marks.
-Zero or negative values will suppress the line or ticks.}
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.}
 
 \item{ticks.length}{Numeric specifying distance that ticks should extend
 beyond the plot margin.  Also affects position of axis labels, which are
-plotted at the end of each tick.}
+plotted at the end of each tick.
+Use a vector of length three to set a different length for each direction.}
 
-\item{axis.col, ticks.col, axis.labels.col}{Colours for the axis line, tick
-marks and labels, respectively.
+\item{axis.col, ticks.col, tip.col}{Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
 inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
@@ -122,9 +139,9 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Create and style a blank ternary plot.
 }
 \details{
-The plot will be generated using the standard graphics plot functions, on which
-additional elements can be added using cartesian coordinates, perhaps using
-functions such as \code{\link[graphics]{arrows}},
+The plot will be generated using the standard 'graphics' plot functions, on
+which additional elements can be added using cartesian coordinates, perhaps
+using functions such as \code{\link[graphics]{arrows}},
 \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 }
 \section{Functions}{
@@ -141,16 +158,14 @@ HorizontalGrid(grid.lines=2, grid.col='blue', grid.lty=1)
 
 }
 \seealso{
-{
 \itemize{
-\item \link{AddToTernary}: Add elements to a ternary plot
-\item \link{TernaryCoords}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y})
+\item \code{\link[=AddToTernary]{AddToTernary()}}: Add elements to a ternary plot
+\item \code{\link[=TernaryCoords]{TernaryCoords()}}: Convert ternary coordinates to Cartesian (\emph{x} and \emph{y})
 coordinates
-\item \link{TernaryXRange}, \link{TernaryYRange}: What are the \emph{x} and \emph{y} limits of
-the plotted region?
-}
+\item \code{\link[=TernaryXRange]{TernaryXRange()}}, \code{\link[=TernaryYRange]{TernaryYRange()}}: What are the \emph{x} and \emph{y} limits
+of the plotted region?
 }
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

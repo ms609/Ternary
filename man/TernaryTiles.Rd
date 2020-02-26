@@ -38,12 +38,16 @@ FunctionToContour <- function (a, b, c) {
 
 TernaryPlot()
 
-values <- TernaryPointValues(FunctionToContour, resolution=24L)
+values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 ColourTernary(values)
 TernaryContour(FunctionToContour, resolution=36L)
 
 
 }
-\author{
-Martin R. Smith
+\seealso{
+Other functions for colouring and shading: \code{\link{ColourTernary}}
 }
+\author{
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
+}
+\concept{functions for colouring and shading}

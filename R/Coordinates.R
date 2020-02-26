@@ -1,8 +1,8 @@
 #' Convert ternary coordinates to Cartesian space
 #' 
-#' Converts coordinates of a point in ternary space, in the format 
+#' Convert coordinates of a point in ternary space, in the format 
 #' (_a_, _b_, _c_), to _x_ and _y_ coordinates of Cartesian space, which can be
-#' sent to standard functions in the _graphics_ package.
+#' sent to standard functions in the 'graphics' package.
 #' 
 #' @param abc A vector of length three giving the position on a ternary plot
 #' that points in the direction specified by `direction` (1 = up, 2 = right, 
@@ -16,15 +16,24 @@
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #' @template directionParam
 #'            
-#' @return A vector of length two that converts the coordinates given in
-#' \code{abc} into Cartesian (_x_, _y_) coordinates corresponding to the plot 
-#' created by the last call of \code{\link{TernaryPlot}}.
+#' @return `TernaryCoords()` returns a vector of length two that converts 
+#' the coordinates given in `abc` into Cartesian (_x_, _y_) coordinates 
+#' corresponding to the plot created by the last call of [`TernaryPlot()`].
 #'
-#' @seealso [TernaryPlot]
+#' @seealso
+#' - [`TernaryPlot()`]
+#' 
+#' @examples
+#'   TernaryCoords(100, 0, 0)
+#'   TernaryCoords(c(0, 100, 0))
+#'   
+#'   coords <- matrix(1:12, ncol=3)
+#'   apply(coords, 1, TernaryCoords)
+#' 
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
-TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, 
+TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL, 
                            direction = getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
@@ -60,12 +69,16 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL,
 
 #' Cartesian coordinates to ternary point
 #' 
+#' Convert cartesian (_x_, _y_) coordinates to a point in ternary space.
+#' 
 #' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
 #' @template directionParam
 #' 
 #' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
 #' coordinates, where a + b + c = 1.
 #' 
+#' @examples
+#' XYToTernary(c(0.1, 0.2), 0.5)
 #' 
 #' @template MRS
 #' 
@@ -112,6 +125,7 @@ XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
 #' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
 #' 
 #' @template MRS
+#' @family plot limits
 #' @export
 TernaryXRange <- function (direction = getOption('ternDirection')) {
   if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
@@ -139,16 +153,32 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 
 #' Is a point in the plotting area?
 #' 
+#' Evaluate whether a given set of coordinates lie outwith the boundaries of
+#' a plotted ternary diagram.
+#' 
 #' @template xyParams
 #' @param tolerance Consider points this close to the edge of the plot to be 
 #' inside.  Set to negative values to count points that are just outside the 
 #' plot as inside, and to positive values to count points that are just inside
 #' the margins as outside. Maximum positive value: 1/3.
 #' 
-#' @return Logical vector specifying whether each pair of _x_ and _y_ coordinates
-#' corresponds to a point outside the plotted ternary diagram.
+#' @return `OutsidePlot()` returns a logical vector specifying whether each 
+#' pair of _x_ and _y_ coordinates corresponds to a point outside the plotted
+#' ternary diagram.
+#' 
+#' @examples
+#' 
+#' TernaryPlot()
+#' points(0.5, 0.5, col = 'darkgreen')
+#' OutsidePlot(0.5, 0.5)
+#'  
+#' points(0.1, 0.5, col = 'red')
+#' OutsidePlot(0.1, 0.5)
+#'
+#' OutsidePlot(c(0.5, 0.1), 0.5) 
 #' 
 #' @template MRS
+#' @family plot limits
 #' @export
 OutsidePlot <- function (x, y, tolerance = 0) {
   abc <- XYToTernary(x, y)
@@ -184,6 +214,7 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' points(ref[[2]][, 1], ref[[2]][, 2], col='green', pch=2)
 #' points(ref[[3]][, 1], ref[[3]][, 2], col='orange', pch=3)
 #' 
+#' @family coordinate translation functions
 #' @export
 ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
   switch(direction, {

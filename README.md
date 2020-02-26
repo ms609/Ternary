@@ -16,7 +16,7 @@ Usage instructions can be
 [viewed here](https://ms609.github.io/Ternary/articles/Ternary.html).
 
 Please let me know of any feature requests or bugs by [opening an 
-issue on GitHub](https://github.com/ms609/Ternary/issues).
+issue on GitHub](https://github.com/ms609/Ternary/issues/).
 
 ## Citation
 

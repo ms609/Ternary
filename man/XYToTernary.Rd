@@ -17,13 +17,18 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 coordinates, where a + b + c = 1.
 }
 \description{
-Cartesian coordinates to ternary point
+Convert cartesian (\emph{x}, \emph{y}) coordinates to a point in ternary space.
+}
+\examples{
+XYToTernary(c(0.1, 0.2), 0.5)
+
 }
 \seealso{
-Other coordinate translation functions: \code{\link{TernaryCoords}},
+Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
+  \code{\link{TernaryCoords}},
   \code{\link{TriangleCentres}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{coordinate translation functions}

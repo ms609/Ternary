@@ -1,41 +1,39 @@
-#' Eight-colour palette compatible with colour blindness
+#' Palettes compatible with colour blindness
 #' 
-#' An eight-colour palette recommended for use with colour blind audiences.
+#' Colour palettes recommended for use with colour blind audiences.
 #' 
-#' @examples {
+#' `cbPalette15` is a [Brewer palette](http://mkweb.bcgsc.ca/brewer/). 
+#' Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
+#' respectively, in individuals with tritanopia, `cbPalette13` omits these
+#' colours (i.e. `cbPalette13 <- cbPalette15[-c(4, 7)]`).
+#' 
+#' @format Character vectors of lengths 8, 13 and 15.
+#' 
+#' @examples 
 #' data('cbPalette8')
-#' dev.new(width=8, height=1, units='cm')
-#' par(mar=rep(0, 4))
-#' plot(0, type='n', xlim=c(1, 8), ylim=c(0, 1), axes=FALSE)
-#' points(1:8, rep(0, 8), col=cbPalette8, pch=15)
-#' text(1:8, 0.5, col=cbPalette8)
-#' }
+#' plot.new()
+#' plot.window(xlim = c(1, 16), ylim = c(0, 3))
+#' text(1:8 * 2, 3, 1:8, col = cbPalette8)
+#' points(1:8 * 2, rep(2, 8), col = cbPalette8, pch = 15)
 #' 
-#' @source \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
-#' @seealso [cbPalette15]
-#' @keywords datasets
-"cbPalette8"
-
-#' Fifteen-colour palette compatible with colour blindness
-#' 
-#' A fifteen-colour [Brewer palette](http://mkweb.bcgsc.ca/brewer/) comprehensible
-#' by colour blind viewers.
-#' 
-#' Note that colour 4 is difficult to distinguish from colour 13 in individuals with tritanopia.
-#' Likewise, colour 7 is difficult to distinguish from colour 3.
-#' You may wish to use `cbPalette13 <- cbPalette15[-c(4, 7)]`.
-#' 
-#' @examples {
 #' data('cbPalette15')
-#' dev.new(width=8, height=1, units='cm')
-#' par(mar=rep(0, 4))
-#' plot(0, type='n', xlim=c(1, 15), ylim=c(0, 1), axes=FALSE)
-#' points(1:15, rep(0, 15), col=cbPalette15, pch=15)
-#' text(1:15, 0.5, col=cbPalette15)
-#' }
+#' text(1:15, 1, col = cbPalette15)
+#' text(c(4, 7), 1, '[   ]')
+#' points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
 #' 
-#' @seealso [cbPalette8]
-#' @source \url{http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png}
+#' @source 
+#' - `cbPalette8`: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
+#' 
+#' - `cbPalette15`: \url{http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png}
+#' 
 #' @keywords datasets
+#' @name cbPalettes
+NULL
+
+#' @rdname cbPalettes
+"cbPalette8"
+#' @rdname cbPalettes
+"cbPalette13"
+#' @rdname cbPalettes
 "cbPalette15"
 

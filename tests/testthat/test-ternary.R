@@ -39,8 +39,8 @@ test_that("TernaryCoords gives correct coordinates", {
 
 test_that("Ternary plotting functions", {
   TernaryPlotterXlim <- function () {
-    TernaryPlot('A', 'B', 'C', xlim=c(0, 0.86), point=2)
-    JoinTheDots(list(c(1, 1, 1), c(0, 1, 2)), lwd=2, col='green')
+    TernaryPlot('A', 'B', 'C', xlim=c(0, 0.86), point = 2)
+    JoinTheDots(list(c(1, 1, 1), c(0, 1, 2)), lwd = 2, col = 'green')
     TernaryPoints(c(0.5, 1, 1))
     TernaryText(c(1.5, 1, 1), 'A')
   }
@@ -57,6 +57,60 @@ test_that("Ternary plotting functions", {
   
   expect_doppelganger('plot-to-ternary-x', TernaryPlotterXlim)
   expect_doppelganger('plot-to-ternary-y', TernaryPlotterYlim)
+})
+
+test_that("Axes can be styled individually", {
+  AxisStyle <- function() {
+    par(mfrow = 1:2, xpd = NA)
+    cols <- c('red', 'darkgreen', 'blue')
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c',
+                atip = 'a', btip = 'b', ctip = 'c',
+                lab.col = cols,
+                lab.cex = 1:3 / 2,
+                lab.offset = 1:3 / 15,
+                grid.lines = 4,
+                axis.lwd = 1:3,
+                axis.lty = 1:3,
+                ticks.lwd = 1:3,
+                grid.col = cols,
+                grid.lwd = 1:3,
+                grid.lty = 1:3,
+                grid.minor.col = c('#ff9999', '#99ff99', '#9999ff'),
+                grid.minor.lty = 4:6,
+                grid.minor.lwd = 1:3,
+                axis.col = cols,
+                axis.font = 1:3,
+                ticks.col = cols,
+                ticks.length = 1:3 / 50,
+                tip.font = 1:3,
+                tip.col = cols)
+    TernaryPoints(c(2, 1, 0))
+    
+    TernaryPlot(alab = 'a', blab = 'b', clab = 'c',
+                atip = 'a', btip = 'b', ctip = 'c',
+                clockwise = FALSE,
+                lab.col = cols,
+                lab.cex = 1:3 / 2,
+                lab.offset = 1:3 / 15,
+                grid.lines = 4,
+                axis.lwd = 1:3,
+                axis.lty = 1:3,
+                ticks.lwd = 1:3,
+                grid.col = cols,
+                grid.lwd = 1:3,
+                grid.lty = 1:3,
+                grid.minor.col = c('#ff9999', '#99ff99', '#9999ff'),
+                grid.minor.lty = 4:6,
+                grid.minor.lwd = 1:3,
+                axis.col = cols,
+                axis.font = 1:3,
+                ticks.col = cols,
+                ticks.length = 1:3 / 50,
+                tip.font = 1:3,
+                tip.col = cols)
+    TernaryPoints(c(2, 1, 0))
+  }
+  expect_doppelganger('AxisStyle', AxisStyle) 
 })
 
 test_that('Vignette plots are rendered correctly', {
@@ -95,10 +149,13 @@ test_that('Vignette plots are rendered correctly', {
   TernaryCols <- function () {
     par(mfrow=c(1, 2), mar=rep(0.3, 4))
     TernaryPlot(alab="Redder \u2192", blab="\u2190 Greener", clab="Bluer \u2192",
+                lab.col=c('red', 'green', 'blue'),
                 point='right', lab.cex=0.8, grid.minor.lines=0,
                 grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
                 axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
                 padding=0.08)
+    cols <- TernaryPointValues(rgb)
+    ColourTernary(cols, spectrum = NULL)
     data_points <- list(
       R = c(255, 0, 0), 
       O = c(240, 180, 52),

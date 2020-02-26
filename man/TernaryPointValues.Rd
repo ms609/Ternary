@@ -28,34 +28,46 @@ the three coordinates of a point in ternary space.}
 }
 \value{
 A matrix whose rows correspond to:
-
-\strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
-
-\strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the
+\itemize{
+\item \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
+\item \strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the
 ternary coordinates of \code{x} and \code{y}.
-
-\strong{down}: \code{0} if the triangle concerned points upwards (or right),
+\item \strong{down}: \code{0} if the triangle concerned points upwards (or right),
 \code{1} otherwise
 }
+}
 \description{
-Evaluates a function at points on a triangular grid.
-Intended to facilitate coloured contour plots with \code{\link{ColourTernary}}.
+Intended to facilitate coloured contour plots with \code{\link[=ColourTernary]{ColourTernary()}},
+\code{TernaryPointValue()} evaluates a function at points on a triangular grid;
+\code{TernaryDensity()} calculates the density of points in each grid cell.
 }
-\details{
-Density plotting functions are somewhat experimental; please
-\href{https://github.com/ms609/Ternary/issues/new}{report any issues}.
-}
-\section{Functions}{
-\itemize{
-\item \code{TernaryDensity}: Returns the density of points in each triangle
-}}
+\examples{
+TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
 
+TernaryPlot(grid.lines = 4)
+cols <- TernaryPointValues(rgb, resolution = 4)
+text(as.numeric(cols['x', ]), as.numeric(cols['y', ]),
+     labels =  ifelse(cols['down', ] == '1', 'v', '^'),
+     col = cols['z', ])
+
+TernaryPlot(axis.labels = seq(0, 10, by = 1))
+
+nPoints <- 4000L
+coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
+                     abs(rnorm(nPoints, 1, 1.5)),
+                     abs(rnorm(nPoints, 1, 0.5)))
+
+density <- TernaryDensity(coordinates, resolution = 10L)
+ColourTernary(density)
+TernaryPoints(coordinates, col = 'red', pch = '.')
+
+}
 \seealso{
 Other contour plotting functions: \code{\link{ColourTernary}},
   \code{\link{TernaryContour}},
   \code{\link{TernaryDensityContour}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{contour plotting functions}

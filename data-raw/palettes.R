@@ -18,4 +18,7 @@ cbPalette15 <- c(
   rgb(255,255,109, maxColorValue=255)
 )
 
-usethis::use_data(cbPalette8, cbPalette15, overwrite=TRUE, compress='gzip')
+cbPalette13 <- cbPalette15[-c(4, 7)]
+
+usethis::use_data(cbPalette8, cbPalette13, cbPalette15, overwrite=TRUE, 
+                  compress = 'gzip')

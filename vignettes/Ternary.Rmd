@@ -59,10 +59,16 @@ for (dir in c('up', 'right', 'down', 'le')) {
 ```{R Do plotting}
 par(mfrow=c(1, 2), mar=rep(0.3, 4))
 TernaryPlot(alab="Redder \u2192", blab="\u2190 Greener", clab="Bluer \u2192",
+            lab.col=c('red', 'darkgreen', 'blue'),
             point='right', lab.cex=0.8, grid.minor.lines=0,
             grid.lty='solid', col=rgb(0.9, 0.9, 0.9), grid.col='white', 
             axis.col=rgb(0.6, 0.6, 0.6), ticks.col=rgb(0.6, 0.6, 0.6),
             padding=0.08)
+# Colour the background:
+cols <- TernaryPointValues(rgb)
+ColourTernary(cols, spectrum = NULL)
+
+# Add data points
 data_points <- list(
   R = c(255, 0, 0), 
   O = c(240, 180, 52),
@@ -86,6 +92,7 @@ legend('bottomright',
                rgb(210, 222, 102, 128, NULL, 255),
                rgb(111, 222,  16, 128, NULL, 255)),
        )
+
 
 ###
 # Next plot:
@@ -147,17 +154,17 @@ TernaryContour(FunctionToContour, resolution=36L)
 or by according to the density of points across the plot:
 
 ```{r density-contours}
-par(mar=rep(0.2, 4))
-TernaryPlot(axis.labels=seq(0, 10, by=1))
+par(mar = rep(0.2, 4))
+TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
 nPoints <- 4000L
 coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                      abs(rnorm(nPoints, 1, 1.5)),
                      abs(rnorm(nPoints, 1, 0.5)))
 
-ColourTernary(TernaryDensity(coordinates, resolution=10L))
-TernaryPoints(coordinates, col='red', pch='.')
-TernaryDensityContour(coordinates, resolution=30L)
+ColourTernary(TernaryDensity(coordinates, resolution = 10L))
+TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryDensityContour(coordinates, resolution = 30L)
 ```
 
 The following image demonstrates the behaviour of the density estimates when 

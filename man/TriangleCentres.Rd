@@ -20,17 +20,24 @@ A matrix containing three named rows:
 \itemize{
 \item \code{x} \emph{x} coordinates of triangle midpoints;
 \item \code{y} \emph{y} coordinates of triangle midpoints;
-\item \code{triDown} binary integer specifying whether given triangle points down.
+\item \code{triDown} \code{0} for upwards-pointing triangles, \code{1} for downwards-pointing.
 }
 }
 \description{
-Coordinates of triangle mid-points
+Calculate \emph{x} and \emph{y} coordinates of the midpoints of triangles
+tiled to cover a ternary plot.
+}
+\examples{
+TernaryPlot(grid.lines = 4)
+centres <- TriangleCentres(4)
+text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
+
 }
 \seealso{
-Other coordinate translation functions: \code{\link{TernaryCoords}},
-  \code{\link{XYToTernary}}
+Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
+  \code{\link{TernaryCoords}}, \code{\link{XYToTernary}}
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{coordinate translation functions}

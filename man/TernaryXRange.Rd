@@ -28,6 +28,10 @@ X and Y coordinates of ternary plotting area
 \item \code{TernaryYRange}: Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
 }}
 
-\author{
-Martin R. Smith
+\seealso{
+Other plot limits: \code{\link{OutsidePlot}}
 }
+\author{
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
+}
+\concept{plot limits}

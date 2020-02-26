@@ -34,16 +34,16 @@ JoinTheDots(coordinates, ...)
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 
-\item{\dots}{Additional parameters to pass to \code{PlottingFunction}.
-If using \code{TernaryText}, this will likely include the parameter \code{labels},
+\item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
+If using \code{TernaryText()w}, this will likely include the parameter \code{labels},
 to specify the text to plot.}
 
-\item{fromCoordinates, toCoordinates}{For \code{TernaryArrows}, coordinates at
-which arrows should begin and end; cf. \code{x0}, \code{y0}, \code{x1} and \code{y1} in
+\item{fromCoordinates, toCoordinates}{For \code{TernaryArrows()}, coordinates at
+which arrows should begin and end; \emph{cf.} \code{x0}, \code{y0}, \code{x1} and \code{y1} in
 \link[graphics]{arrows}.  Recycled as necessary.}
 }
 \description{
-Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
+Plot shapes onto a ternary diagram created with \code{\link[=TernaryPlot]{TernaryPlot()}}.
 }
 \section{Functions}{
 \itemize{
@@ -61,23 +61,22 @@ Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
 }}
 
 \examples{
-{
-  coords <- list(
-    A = c(1, 0, 2),
-    B = c(1, 1, 1),
-    C = c(1.5, 1.5, 0),
-    D = c(0.5, 1.5, 1)
-  )
-  TernaryPlot()
-  AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
-  TernaryLines(coords, col='darkgreen')
-  TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-  TernaryText(coords, cex=0.8, col='red', font=2)
-  TernaryPoints(coords, pch=1, cex=2, col='blue')
-  AddToTernary(points, coords, pch=1, cex=3)
-}
+coords <- list(
+  A = c(1, 0, 2),
+  B = c(1, 1, 1),
+  C = c(1.5, 1.5, 0),
+  D = c(0.5, 1.5, 1)
+)
+TernaryPlot()
+AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+TernaryLines(coords, col='darkgreen')
+TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+TernaryText(coords, cex=0.8, col='red', font=2)
+TernaryPoints(coords, pch=1, cex=2, col='blue')
+AddToTernary(points, coords, pch=1, cex=3)
+
 
 }
 \author{
-Martin R. Smith
+Martin R. Smith (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

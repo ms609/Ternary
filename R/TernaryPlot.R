@@ -2,9 +2,9 @@
 #' 
 #' Create and style a blank ternary plot.
 #' 
-#' The plot will be generated using the standard graphics plot functions, on which
-#' additional elements can be added using cartesian coordinates, perhaps using
-#' functions such as \code{\link[graphics]{arrows}}, 
+#' The plot will be generated using the standard 'graphics' plot functions, on
+#' which additional elements can be added using cartesian coordinates, perhaps 
+#' using functions such as \code{\link[graphics]{arrows}}, 
 #' \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 #' 
 #' @param atip,btip,ctip Character string specifying text to title corners, 
@@ -13,8 +13,10 @@
 #' the corresponding sides of the triangle.  
 #' Left or right-pointing arrows are produced by
 #'  typing `\\U2190` or `\\U2192`, or using `expression('value' %->% '')`.
-#' @param lab.offset Numeric specifying distance between midpoint of axis label and the axis.
+#' @param lab.offset Numeric specifying distance between midpoint of axis label 
+#' and the axis.
 #'  Increase `padding` if labels are being clipped.
+#'  Use a vector of length three to specify a different offset for each label.
 #'                      
 #' @param point Character string specifying the orientation of the ternary plot: 
 #' should the triangle point `"up"`, `"right"`, `"down"` or `"left"`? 
@@ -30,9 +32,14 @@
 #'  May be overridden if `isometric=TRUE`; see documentation of
 #'  `isometric` parameter.
 #'  
-#' @param lab.cex,tip.cex Numeric specifying character expansion for axis titles.
+#' @param lab.cex,tip.cex Numeric specifying character expansion for axis 
+#'  labels. 
+#' Use a vector of length three to specify a different value for each direction.
 #' @param lab.font,tip.font Numeric specifying font (Roman, bold, italic, 
 #'  bold-italic) for axis titles.
+#'  Use a vector of length three to set a different font for each direction.
+#' @param lab.col Character vector specifying colours for axis labels. Use a
+#'  vector of length three to specify a different colour for each label.
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
 #' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
@@ -52,26 +59,34 @@
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
 #'  grid lines to plot between each major pair.
-#' @param grid.col,grid.minor.col The colour to draw the grid lines.
-#' @param grid.lty,grid.minor.lty Character or integer; line type of 
-#'  the grid lines.
+#' @param grid.col,grid.minor.col Colours to draw the grid lines. Use a vector
+#'  of length three to set different values for each direction.
+#' @param grid.lty,grid.minor.lty Character or integer vector; line type of 
+#'  the grid lines. Use a vector of length three to set different values for 
+#'  each direction.
 #' @param grid.lwd,grid.minor.lwd Non-negative numeric giving line width of the
-#'  grid lines.
+#'  grid lines.  Use a vector of length three to set different values for each 
+#'  direction.
 #' 
 #' @param axis.lty  Line type for both the axis line and tick marks.
+#'  Use a vector of length three to set a different value for each direction.
 #' @param axis.labels This can either be a logical value specifying whether 
 #'  (numerical) annotations are to be made at the tickmarks, or a character or
 #'  expression vector of labels to be placed at the tick points.
 #' @param axis.cex Numeric specifying character expansion for axis labels.
+#'  Use a vector of length three to set a different value for each direction.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'  Zero or negative values will suppress the line or ticks.
+#'  Use a vector of length three to set different values for each axis.
 #' @param ticks.length Numeric specifying distance that ticks should extend
 #'  beyond the plot margin.  Also affects position of axis labels, which are
-#'  plotted at the end of each tick.
-#' @param axis.col,ticks.col,axis.labels.col Colours for the axis line, tick
-#'  marks and labels, respectively. 
+#'  plotted at the end of each tick.  
+#'  Use a vector of length three to set a different length for each direction.
+#' @param axis.col,ticks.col,tip.col Colours for the axis line,
+#'  tick marks and tip labels respectively.
+#'  Use a vector of length three to set a different value for each direction.
 #'  \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified 
 #'  inline, and \code{ticks.col = NULL} means to use whatever colour
 #'  \code{axis.col} resolved to.
@@ -79,13 +94,13 @@
 #' 
 #' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
 #' 
-#' @seealso {
-#'  - [AddToTernary]: Add elements to a ternary plot
-#'  - [TernaryCoords]: Convert ternary coordinates to Cartesian (_x_ and _y_) 
+#' @seealso
+#'  - [`AddToTernary()`]: Add elements to a ternary plot
+#'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian (_x_ and _y_) 
 #'      coordinates
-#'  - [TernaryXRange], [TernaryYRange]: What are the _x_ and _y_ limits of 
-#'      the plotted region?
-#' }
+#'  - [`TernaryXRange()`], [`TernaryYRange()`]: What are the _x_ and _y_ limits
+#'      of the plotted region?
+#' 
 #' 
 #' @examples 
 #' TernaryPlot(atip="Top", btip="Bottom", ctip="Right", axis.col="red", 
@@ -98,27 +113,28 @@
 #' 
 #' @importFrom graphics par plot polygon
 #' @export
-TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
-                         alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
-                         point='up', clockwise=TRUE,
-                         xlim=NULL, ylim=NULL,
-                         lab.cex=1.0, lab.font=0, tip.cex=lab.cex, tip.font=2,
-                         isometric=TRUE, atip.rotate = NULL, 
+TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
+                         alab = NULL, blab = NULL, clab = NULL, 
+                         lab.offset = 0.16, lab.col = NULL,
+                         point = 'up', clockwise = TRUE,
+                         xlim = NULL, ylim = NULL,
+                         lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
+                         tip.font = 2, tip.col = 'black',
+                         isometric = TRUE, atip.rotate = NULL,
                          btip.rotate = NULL, ctip.rotate = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
-                         col=NA,
-                         grid.lines=10, grid.col='darkgrey',
-                         grid.lty='solid', grid.lwd=par('lwd'),
-                         grid.minor.lines=4, grid.minor.col='lightgrey',
-                         grid.minor.lty='solid', grid.minor.lwd=par('lwd'),
-                         axis.lty='solid',
-                         axis.labels=TRUE, axis.cex=0.8, 
-                         axis.font=par('font'),
-                         axis.tick=TRUE,
-                         axis.lwd=1, ticks.lwd=axis.lwd, ticks.length=0.025,
-                         axis.col='black', ticks.col=grid.col,
-                         axis.labels.col=axis.col,
+                         col = NA,
+                         grid.lines = 10, grid.col = 'darkgrey',
+                         grid.lty = 'solid', grid.lwd = par('lwd'),
+                         grid.minor.lines = 4, grid.minor.col = 'lightgrey',
+                         grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
+                         axis.lty = 'solid',
+                         axis.labels = TRUE, axis.cex = 0.8,
+                         axis.font = par('font'), axis.tick = TRUE,
+                         axis.lwd = 1, 
+                         ticks.lwd = axis.lwd, ticks.length = 0.025,
+                         axis.col = 'black', ticks.col = grid.col,
                          ...) {
   direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
                                               'east', 'south', 'west', 'north',
@@ -129,22 +145,52 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
     options('ternDirection' = direction)
   }
   
+  # Prepare parameters
+  Triplicate <- function (x) if (length(x) == 1) rep(x, 3) else x
+  lab.col <- Triplicate(lab.col)
+  lab.cex <- Triplicate(lab.cex)
+  lab.font <- Triplicate(lab.font)
+  lab.offset <- Triplicate(lab.offset)
+  axis.col <- Triplicate(axis.col)
+  axis.cex <- Triplicate(axis.cex)
+  axis.lty <- Triplicate(axis.lty)
+  ticks.col <- Triplicate(ticks.col)
+  grid.col <- Triplicate(grid.col)
+  grid.lwd <- Triplicate(grid.lwd)
+  grid.lty <- Triplicate(grid.lty)
+  grid.minor.col <- Triplicate(grid.minor.col)
+  grid.minor.lty <- Triplicate(grid.minor.lty)
+  grid.minor.lwd <- Triplicate(grid.minor.lwd)
+  axis.lwd <- Triplicate(axis.lwd)
+  ticks.length <- Triplicate(ticks.length)
+  ticks.lwd <- Triplicate(ticks.lwd)
+  tip.col <- Triplicate(tip.col)
+  tip.cex <- Triplicate(tip.cex)
+  tip.font <- Triplicate(tip.font)
+  sides <- if(clockwise) 1:3 else c(3, 1, 2)
+  
   if (isometric) {
-    original_par <- par(pty='s')
+    original_par <- par(pty = 's')
     on.exit(par(original_par))
     
-    if (is.null(xlim) && !is.null(ylim)) xlim <- TernaryXRange(direction) * (ylim[2] - ylim[1])
+    if (is.null(xlim) && !is.null(ylim)) {
+      xlim <- TernaryXRange(direction) * (ylim[2] - ylim[1])
+    }
     xRange <- xlim[2] - xlim[1]
-    if (is.null(ylim) && !is.null(xlim)) ylim <- TernaryYRange(direction) * xRange
+    if (is.null(ylim) && !is.null(xlim)) {
+      ylim <- TernaryYRange(direction) * xRange
+    }
     yRange <- ylim[2] - ylim[1]
     
     if (length(xlim) > 0 && abs(xRange - yRange) > 1e-07) {
       if (abs(xRange) < abs(yRange)) {
         xlim <- xlim * (yRange / xRange)
-        warning("x range < y range, but isometric = TRUE; setting xlim = c(", xlim[1], ', ', xlim[2], ")")
+        warning("x range < y range, but isometric = TRUE; setting xlim = c(", 
+                xlim[1], ', ', xlim[2], ")")
       } else {
         ylim <- ylim * (xRange / yRange)
-        warning("x range > y range, but isometric = TRUE; setting ylim = c(", ylim[1], ', ', ylim[2], ")")
+        warning("x range > y range, but isometric = TRUE; setting ylim = c(", 
+                ylim[1], ', ', ylim[2], ")")
       }
     }
   }
@@ -153,8 +199,8 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
   padVec <- c(-1, 1) * padding
   
   
-  plot(0, type='n', axes=FALSE, xlab='', ylab='',
-       xlim=xlim + padVec, ylim=ylim + padVec, ...)
+  plot(0, type = 'n', axes = FALSE, xlab = '', ylab = '',
+       xlim = xlim + padVec, ylim = ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
   polygon(axes[1, ], axes[2, ], col=col, border=NA)
@@ -165,7 +211,9 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
     # Plot minor grid lines
     if (grid.minor.lines > 0L) {
       n_minor_lines <- grid.lines * (grid.minor.lines + 1L)  + 1L
-      minor_line_points <- seq(from=0, to=1, length.out=n_minor_lines)[-seq(from=1, to=n_minor_lines, by=grid.minor.lines + 1L)]
+      minor_line_points <- seq(from = 0, to = 1, length.out = 
+                                 n_minor_lines)[-seq(from = 1, to = n_minor_lines, 
+                                                     by = grid.minor.lines + 1L)]
       lapply(minor_line_points, function (p) {
         q <- 1 - p
         line_ends <- vapply(list(c(p, q, 0), c(p, 0, q),
@@ -173,15 +221,15 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                                  c(q, 0, p), c(0, q, p)),
                             TernaryCoords, double(2))
         lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-          lines(line_ends[1, i], line_ends[2, i], col=grid.minor.col,
-                lty=grid.minor.lty, lwd=grid.minor.lwd))
+          lines(line_ends[1, i], line_ends[2, i], col = grid.minor.col[i[2]/2],
+                lty = grid.minor.lty[i[2]/2], lwd = grid.minor.lwd[i[2]/2]))
         NULL
       })
       
     }
     
     # Plot grid
-    line_points <- seq(from=0, to=1, length.out=grid.lines + 1L)
+    line_points <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
     
     lapply(line_points[-c(1, grid.lines + 1L)], function (p) {
       q <- 1 - p
@@ -190,7 +238,8 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                                c(q, 0, p), c(0, q, p)),
                           TernaryCoords, double(2))
       lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-      lines(line_ends[1, i], line_ends[2, i], col=grid.col, lty=grid.lty, lwd=grid.lwd))
+      lines(line_ends[1, i], line_ends[2, i], col = grid.col[i[2]/2], 
+            lty = grid.lty[i[2]/2], lwd = grid.lwd[i[2]/2]))
       NULL
     })
     
@@ -241,81 +290,97 @@ TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        AxisTick <- function (ends, degrees) {
-          lines(ends[1] + c(0, sin(degrees * pi / 180) * ticks.length),
-                ends[2] + c(0, cos(degrees * pi / 180) * ticks.length),
-                col=ticks.col, lwd=ticks.lwd)
+        AxisTick <- function (side, degrees) {
+          lines(line_ends[1, side] + c(0, sin(degrees * pi / 180) * ticks.length[side]),
+                line_ends[2, side] + c(0, cos(degrees * pi / 180) * ticks.length[side]),
+                col = ticks.col[sides[side]], lwd = ticks.lwd[sides[side]])
         }
       
-        AxisTick(line_ends[, 1], axis1_degrees)
-        AxisTick(line_ends[, 2], axis2_degrees)
-        AxisTick(line_ends[, 3], axis3_degrees)
+        AxisTick(1, axis1_degrees)
+        AxisTick(2, axis2_degrees)
+        AxisTick(3, axis3_degrees)
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
         if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         if (!clockwise) axis.labels <- rev(axis.labels)
-        
-        AxisLabel <- function (ends, degrees, mult, rot, pos) {
-          text(ends[1] + sin(degrees * pi / 180) * ticks.length * mult,
-               ends[2] + cos(degrees * pi / 180) * ticks.length * mult,
-               axis.labels[i], srt=rot, pos=pos, font=axis.font, cex=axis.cex,
-               col=axis.labels.col)
+       
+        AxisLabel <- function (side, degrees, mult, rot, pos) {
+          text(line_ends[1, side] + sin(degrees * pi / 180) * ticks.length[side] * mult,
+               line_ends[2, side] + cos(degrees * pi / 180) * ticks.length[side] * mult,
+               axis.labels[i], srt = rot, pos = pos, font = axis.font[sides[side]],
+               cex = axis.cex[sides[side]],
+               col = lab.col[sides[side]])
         }
         
         # Annotate axes
-        AxisLabel(line_ends[, 1], axis1_degrees, mult1, rot1, pos1)
-        AxisLabel(line_ends[, 2], axis2_degrees, mult2, rot2, pos2)
-        AxisLabel(line_ends[, 3], axis3_degrees, mult3, rot3, pos3)
+        AxisLabel(1, axis1_degrees, mult1, rot1, pos1)
+        AxisLabel(2, axis2_degrees, mult2, rot2, pos2)
+        AxisLabel(3, axis3_degrees, mult3, rot3, pos3)
       }
     })
   }
   
   # Draw axis lines
-  lines(axes[1, ], axes[2, ], col=axis.col, lty=axis.lty, lwd=axis.lwd)
+  lines(axes[1, 3:4], axes[2, 3:4], col = axis.col[sides[1]], 
+        lty = axis.lty[sides[1]], lwd = axis.lwd[sides[1]])
+  lines(axes[1, 1:2], axes[2, 1:2], col = axis.col[sides[2]], 
+        lty = axis.lty[sides[2]], lwd = axis.lwd[sides[2]])
+  lines(axes[1, 2:3], axes[2, 2:3], col = axis.col[sides[3]], 
+        lty = axis.lty[sides[3]], lwd = axis.lwd[sides[3]])
 
   DirectionalOffset <- function (degrees) {
     c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
   }
   
-  TitleAxis <- function (xy, lab, rot) {
-    text(xy[1], xy[2], lab, cex=lab.cex, font=lab.font, srt=rot[direction])
+  TitleAxis <- function (xy, lab, side, rot) {
+    text(xy[1], xy[2], lab, cex = lab.cex[side], font = lab.font[side],
+         srt = rot[direction], col = lab.col[side])
   }
-  alab_xy <- TernaryCoords(c(1, 0, 1)) + (lab.offset * DirectionalOffset(c(300,  60, 120, 210)[direction]))
-  blab_xy <- TernaryCoords(c(1, 1, 0)) + (lab.offset * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
-  clab_xy <- TernaryCoords(c(0, 1, 1)) + (lab.offset * DirectionalOffset(c(180, 270,   0,  90)[direction]))
+  alab_xy <- TernaryCoords(c(1, 0, 1)) + 
+    (lab.offset[1] * DirectionalOffset(c(300,  60, 120, 210)[direction]))
+  blab_xy <- TernaryCoords(c(1, 1, 0)) + 
+    (lab.offset[2] * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
+  clab_xy <- TernaryCoords(c(0, 1, 1)) + 
+    (lab.offset[3] * DirectionalOffset(c(180, 270,   0,  90)[direction]))
     
-  TitleAxis(alab_xy, if (clockwise) alab else clab, c( 60, 330,  60, 330))
-  TitleAxis(blab_xy, if (clockwise) blab else alab, c(300,  30, 300,  30))
-  TitleAxis(clab_xy, if (clockwise) clab else blab, c(  0,  90,   0, 270))
+  TitleAxis(alab_xy, if (clockwise) alab else clab, if (clockwise) 1 else 3, 
+            c( 60, 330,  60, 330))
+  TitleAxis(blab_xy, if (clockwise) blab else alab, if (clockwise) 2 else 1, 
+            c(300,  30, 300,  30))
+  TitleAxis(clab_xy, if (clockwise) clab else blab, if (clockwise) 3 else 2, 
+            c(  0,  90,   0, 270))
   
   
   if (is.null(atip.rotate)) {
     axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
     ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
-    ax <-axRaw[direction] * ticks.length
-    ay <- ayRaw[direction] * ticks.length
+    ax <-axRaw[direction] * ticks.length[1]
+    ay <- ayRaw[direction] * ticks.length[1]
     atip.rotate <- if (clockwise) c(0, 30, 0, 330)[direction] else c(0, 30, 0, 30)[direction]
     atip.pos <- if (clockwise) c(2, 2, 4, 4)[direction] else c(4, 2, 2, 4)[direction]
   }
   if (is.null(btip.rotate)) {
-    bx <- c(4, 4, -2, -3)[direction] * ticks.length
-    by <- c(-4, -2, 4, 2.4)[direction] * ticks.length
+    bx <- c(4, 4, -2, -3)[direction] * ticks.length[2]
+    by <- c(-4, -2, 4, 2.4)[direction] * ticks.length[2]
     btip.rotate <- c(0, 0, 0, 0)[direction]
     btip.pos <- c(2, 4, 4, 2)[direction]
   }
   if (is.null(ctip.rotate)) {
-    cx <- c(-3, 0, 2, -3)[direction] * ticks.length
-    cy <- c(-4, 2, 4, -2)[direction] * ticks.length
+    cx <- c(-3, 0, 2, -3)[direction] * ticks.length[3]
+    cy <- c(-4, 2, 4, -2)[direction] * ticks.length[3]
     ctip.rotate <- c(0, 0, 0, 0)[direction]
     ctip.pos <- c(4, 4, 2, 2)[direction]
   }
   
   # Title corners
-  text(axes[1, 1] + ax, axes[2, 1] + ay, atip, pos=atip.pos, cex=tip.cex, font=tip.font, srt=atip.rotate)
-  text(axes[1, 2] + bx, axes[2, 2] + by, btip, pos=btip.pos, cex=tip.cex, font=tip.font, srt=btip.rotate)
-  text(axes[1, 3] + cx, axes[2, 3] + cy, ctip, pos=ctip.pos, cex=tip.cex, font=tip.font, srt=ctip.rotate)
+  text(axes[1, 1] + ax, axes[2, 1] + ay, atip, pos = atip.pos, cex = tip.cex[1],
+       font = tip.font[1], col = tip.col[1], srt = atip.rotate)
+  text(axes[1, 2] + bx, axes[2, 2] + by, btip, pos = btip.pos, cex = tip.cex[2],
+       font = tip.font[2], col = tip.col[2], srt = btip.rotate)
+  text(axes[1, 3] + cx, axes[2, 3] + cy, ctip, pos = ctip.pos, cex = tip.cex[3],
+       font = tip.font[3], col = tip.col[3], srt = ctip.rotate)
   
   # Return:
   return <- NULL
@@ -356,35 +421,35 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 
 #' Add elements to ternary plot
 #' 
-#' Plot shapes onto a ternary diagram created with \code{\link{TernaryPlot}}.
+#' Plot shapes onto a ternary diagram created with [`TernaryPlot()`].
 #' 
 #' @param PlottingFunction Function to add data to a plot; perhaps one of
 #'        \code{\link[graphics]{points}},
 #'        \code{\link[graphics]{lines}} or
 #'        \code{\link[graphics]{text}}.
 #' @template coordinatesParam
-#' @param fromCoordinates,toCoordinates For `TernaryArrows`, coordinates at 
-#' which arrows should begin and end; cf. `x0`, `y0`, `x1` and `y1` in 
+#' @param fromCoordinates,toCoordinates For `TernaryArrows()`, coordinates at 
+#' which arrows should begin and end; _cf._ `x0`, `y0`, `x1` and `y1` in 
 #' \link[graphics]{arrows}.  Recycled as necessary.
-#' @param \dots Additional parameters to pass to \code{PlottingFunction}.  
-#' If using `TernaryText`, this will likely include the parameter `labels`,
+#' @param \dots Additional parameters to pass to `PlottingFunction()`.  
+#' If using `TernaryText()w`, this will likely include the parameter `labels`,
 #' to specify the text to plot.
 #' 
-#' @examples {
-#'   coords <- list(
-#'     A = c(1, 0, 2),
-#'     B = c(1, 1, 1),
-#'     C = c(1.5, 1.5, 0),
-#'     D = c(0.5, 1.5, 1)
-#'   )
-#'   TernaryPlot()
-#'   AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
-#'   TernaryLines(coords, col='darkgreen')
-#'   TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-#'   TernaryText(coords, cex=0.8, col='red', font=2)
-#'   TernaryPoints(coords, pch=1, cex=2, col='blue')
-#'   AddToTernary(points, coords, pch=1, cex=3)
-#' }
+#' @examples 
+#' coords <- list(
+#'   A = c(1, 0, 2),
+#'   B = c(1, 1, 1),
+#'   C = c(1.5, 1.5, 0),
+#'   D = c(0.5, 1.5, 1)
+#' )
+#' TernaryPlot()
+#' AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+#' TernaryLines(coords, col='darkgreen')
+#' TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
+#' TernaryText(coords, cex=0.8, col='red', font=2)
+#' TernaryPoints(coords, pch=1, cex=2, col='blue')
+#' AddToTernary(points, coords, pch=1, cex=3)
+#' 
 #' 
 #' @template MRS
 #' @export
