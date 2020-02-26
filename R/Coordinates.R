@@ -22,7 +22,7 @@
 #'
 #' @seealso [TernaryPlot]
 #' @family coordinate translation functions
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL, 
                            direction = getOption('ternDirection')) {
@@ -67,7 +67,7 @@ TernaryCoords <- function (abc, b_coord=NULL, c_coord=NULL,
 #' coordinates, where a + b + c = 1.
 #' 
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' 
 #' @family coordinate translation functions
 #' @export
@@ -111,7 +111,7 @@ XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
 #' will not occupy the full range in one direction.
 #' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 TernaryXRange <- function (direction = getOption('ternDirection')) {
   if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
@@ -148,7 +148,7 @@ TernaryYRange <- function (direction = getOption('ternDirection')) {
 #' @return Logical vector specifying whether each pair of _x_ and _y_ coordinates
 #' corresponds to a point outside the plotted ternary diagram.
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 OutsidePlot <- function (x, y, tolerance = 0) {
   abc <- XYToTernary(x, y)

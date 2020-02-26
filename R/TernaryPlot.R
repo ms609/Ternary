@@ -94,10 +94,9 @@
 #' # the second line corresponds to the base of the triangle, and is not drawn
 #' 
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' 
 #' @importFrom graphics par plot polygon
-#' 
 #' @export
 TernaryPlot <- function (atip=NULL, btip=NULL, ctip=NULL,
                          alab=NULL, blab=NULL, clab=NULL, lab.offset=0.16,
@@ -387,7 +386,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #'   AddToTernary(points, coords, pch=1, cex=3)
 #' }
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 AddToTernary <- function (PlottingFunction, coordinates, ...) {
   xy <- CoordinatesToXY(coordinates)
@@ -404,9 +403,9 @@ AddToTernary <- function (PlottingFunction, coordinates, ...) {
 #' @return An array of two rows, corresponding to the X and Y coordinates of 
 #' `coordinates`.
 #' 
+#' @template MRS
 #' @export
 #' @keywords internal
-#' @author Martin R. Smith
 CoordinatesToXY <- function (coordinates) {
   dims <- dim(coordinates)
   

@@ -20,7 +20,7 @@
 #'   `1` otherwise
 #' 
 #' @family contour plotting functions
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, 
                                direction = getOption('ternDirection')) {
@@ -45,7 +45,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #'  - `triDown` binary integer specifying whether given triangle points down.
 #'  
 #' @family coordinate translation functions
-#' @author Martin R. Smith
+#' @template MRS
 #' @export
 TriangleCentres <- function (resolution = 48L, 
                              direction = getOption('ternDirection')) {
@@ -347,7 +347,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' TernaryContour(FunctionToContour, resolution=36L)
 #' 
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' 
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('ternDirection')) {
@@ -372,7 +372,7 @@ TernaryTiles <- function (x, y, down, resolution, col, direction = getOption('te
 #' @template resolutionParam
 #' @template directionParam
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' 
 #' @family contour plotting functions
 #' @importFrom viridisLite viridis
@@ -399,7 +399,7 @@ ColourTernary <- function (values, spectrum = viridisLite::viridis(256L, alpha=0
 #' @template directionParam
 #' @template dotsToContour
 #' 
-#' @author Martin R. Smith
+#' @template MRS
 #' 
 #' @family contour plotting functions
 #' @importFrom graphics contour
