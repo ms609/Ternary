@@ -74,7 +74,7 @@ TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL,
 #' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
 #' @template directionParam
 #' 
-#' @return `XYToTernary` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
+#' @return `XYToTernary()` Returns the ternary point(s) corresponding to the specified _x_ and _y_ 
 #' coordinates, where a + b + c = 1.
 #' 
 #' @examples
@@ -118,8 +118,9 @@ XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
 #'
 #' @template directionParam
 #'
-#' @return Returns the minimum and maximum X or Y coordinate of the area 
-#' in which a ternary plot is drawn, oriented in the specified direction.
+#' @return `TernaryXRange()` and `TernaryYRange()` return the minimum and 
+#' maximum X or Y coordinate of the area in which a ternary plot is drawn,
+#' oriented in the specified direction.
 #' Because the plotting area is a square, the triangle of the ternary plot
 #' will not occupy the full range in one direction.
 #' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
@@ -194,8 +195,9 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' @template xyParams
 #' @template directionParam
 #' 
-#' @return A list of the _x_, _y_ coordinates of the points produced if 
-#' the given point is reflected across each of the edges or corners.
+#' @return `ReflectedEquivalents()` returns a list of the _x_, _y_ coordinates 
+#' of the points produced if the given point is reflected across each of the
+#' edges or corners.
 #' 
 #' @examples 
 #' TernaryPlot(axis.labels=FALSE, point=4)

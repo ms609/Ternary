@@ -62,7 +62,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @template resolutionParam
 #' @template directionParam
 #' 
-#' @return A matrix containing three named rows:
+#' @return `TriangleCentres()` returns a matrix with three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` `0` for upwards-pointing triangles, `1` for downwards-pointing.

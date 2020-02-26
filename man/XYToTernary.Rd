@@ -13,7 +13,7 @@ XYToTernary(x, y, direction = getOption("ternDirection"))
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-\code{XYToTernary} Returns the ternary point(s) corresponding to the specified \emph{x} and \emph{y}
+\code{XYToTernary()} Returns the ternary point(s) corresponding to the specified \emph{x} and \emph{y}
 coordinates, where a + b + c = 1.
 }
 \description{

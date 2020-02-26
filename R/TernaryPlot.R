@@ -465,8 +465,8 @@ AddToTernary <- function (PlottingFunction, coordinates, ...) {
 #' 
 #' @template coordinatesParam
 #' 
-#' @return An array of two rows, corresponding to the X and Y coordinates of 
-#' `coordinates`.
+#' @return `CoordinatesToXY()` returns an array of two rows, corresponding to
+#' the X and Y coordinates of `coordinates`.
 #' 
 #' @template MRS
 #' @export

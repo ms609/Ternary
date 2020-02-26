@@ -12,8 +12,8 @@ element (or row) specifies
 the three coordinates of a point in ternary space.}
 }
 \value{
-An array of two rows, corresponding to the X and Y coordinates of
-\code{coordinates}.
+\code{CoordinatesToXY()} returns an array of two rows, corresponding to
+the X and Y coordinates of \code{coordinates}.
 }
 \description{
 Accepts various formats of input data; extracts ternary coordinates and

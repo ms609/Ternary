@@ -13,8 +13,9 @@ ReflectedEquivalents(x, y, direction = getOption("ternDirection"))
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-A list of the \emph{x}, \emph{y} coordinates of the points produced if
-the given point is reflected across each of the edges or corners.
+\code{ReflectedEquivalents()} returns a list of the \emph{x}, \emph{y} coordinates
+of the points produced if the given point is reflected across each of the
+edges or corners.
 }
 \description{
 To avoid edge effects, it may be desirable to add the value of a point

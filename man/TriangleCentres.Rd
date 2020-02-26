@@ -16,7 +16,7 @@ colour gradients, but at a computational cost.}
 should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
-A matrix containing three named rows:
+\code{TriangleCentres()} returns a matrix with three named rows:
 \itemize{
 \item \code{x} \emph{x} coordinates of triangle midpoints;
 \item \code{y} \emph{y} coordinates of triangle midpoints;
