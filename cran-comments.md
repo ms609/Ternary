@@ -10,5 +10,12 @@ There were no ERRORs or WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
-`revdepcheck::revdep_check()` failed to complete, but tests indicate that 
-behaviour used by reverse dependencies has not changed.
+`revdepcheck::revdep_check()` found no new errors, warnings or notes in reverse
+dependencies:
+
+√ CongreveLamsdell2016 1.0.2
+√ plot3logit 1.0.2
+
+revdepcheck was unable to check the package 'Quartet' (which I maintain); I have
+tested 'Quartet' locally with Ternary 1.1.4 and no errors, warnings or notes are
+reported.
