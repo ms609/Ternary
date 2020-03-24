@@ -44,7 +44,7 @@
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, 
                                direction = getOption('ternDirection'), ...) {
-  triangleCentres <- TriangleCentres (resolution, direction)
+  triangleCentres <- TriangleCentres(resolution, direction)
   x <- triangleCentres['x', ]
   y <- triangleCentres['y', ]
   abc <- XYToTernary(x, y, direction)
@@ -420,6 +420,17 @@ TernaryTiles <- function (x, y, down, resolution, col,
 #' TernaryPlot()
 #' values <- TernaryPointValues(rgb, resolution = 20)
 #' ColourTernary(values, spectrum = NULL)
+#' 
+#' # Create a helper function to place white centrally:
+#' rgbWhite <- function (r, g, b) {
+#'   highest <- apply(rbind(r, g, b), 2L, max)
+#'   rgb(r/highest, g/highest, b/highest)
+#' }
+#' 
+#' TernaryPlot()
+#' values <- TernaryPointValues(rgbWhite, resolution = 20)
+#' ColourTernary(values, spectrum = NULL)
+#' 
 #' 
 #' @family contour plotting functions
 #' @family functions for colouring and shading

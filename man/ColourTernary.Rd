@@ -5,13 +5,19 @@
 \alias{ColorTernary}
 \title{Colour a ternary plot according to the output of a function}
 \usage{
-ColourTernary(values, spectrum = viridisLite::viridis(256L, alpha = 0.6),
+ColourTernary(
+  values,
+  spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection"))
+  direction = getOption("ternDirection")
+)
 
-ColorTernary(values, spectrum = viridisLite::viridis(256L, alpha = 0.6),
+ColorTernary(
+  values,
+  spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection"))
+  direction = getOption("ternDirection")
+)
 }
 \arguments{
 \item{values}{Numeric matrix specifying the values associated with each
@@ -46,13 +52,26 @@ TernaryPlot()
 values <- TernaryPointValues(rgb, resolution = 20)
 ColourTernary(values, spectrum = NULL)
 
+# Create a helper function to place white centrally:
+rgbWhite <- function (r, g, b) {
+  highest <- apply(rbind(r, g, b), 2L, max)
+  rgb(r/highest, g/highest, b/highest)
+}
+
+TernaryPlot()
+values <- TernaryPointValues(rgbWhite, resolution = 20)
+ColourTernary(values, spectrum = NULL)
+
+
 }
 \seealso{
-Other contour plotting functions: \code{\link{TernaryContour}},
-  \code{\link{TernaryDensityContour}},
-  \code{\link{TernaryPointValues}}
+Other contour plotting functions: 
+\code{\link{TernaryContour}()},
+\code{\link{TernaryDensityContour}()},
+\code{\link{TernaryPointValues}()}
 
-Other functions for colouring and shading: \code{\link{TernaryTiles}}
+Other functions for colouring and shading: 
+\code{\link{TernaryTiles}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
