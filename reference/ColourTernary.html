@@ -202,6 +202,15 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
 
 <span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>rgb</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>20</span>)
 <span class='fu'>ColourTernary</span>(<span class='no'>values</span>, <span class='kw'>spectrum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='ColourTernary-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Create a helper function to place white centrally:</span>
+<span class='no'>rgbWhite</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span> (<span class='no'>r</span>, <span class='no'>g</span>, <span class='no'>b</span>) {
+  <span class='no'>highest</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='no'>r</span>, <span class='no'>g</span>, <span class='no'>b</span>), <span class='fl'>2L</span>, <span class='no'>max</span>)
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span>(<span class='no'>r</span>/<span class='no'>highest</span>, <span class='no'>g</span>/<span class='no'>highest</span>, <span class='no'>b</span>/<span class='no'>highest</span>)
+}
+
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>rgbWhite</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>20</span>)
+<span class='fu'>ColourTernary</span>(<span class='no'>values</span>, <span class='kw'>spectrum</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='img'><img src='ColourTernary-3.png' alt='' width='700' height='433' /></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
