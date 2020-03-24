@@ -8,8 +8,14 @@
 \alias{TernaryRightTiles}
 \title{Paint tiles on ternary plot}
 \usage{
-TernaryTiles(x, y, down, resolution, col,
-  direction = getOption("ternDirection"))
+TernaryTiles(
+  x,
+  y,
+  down,
+  resolution,
+  col,
+  direction = getOption("ternDirection")
+)
 }
 \arguments{
 \item{x, y}{Numeric vectors specifying \emph{x} and \emph{y} coordinates of centres of each triangle.}
@@ -45,7 +51,8 @@ TernaryContour(FunctionToContour, resolution=36L)
 
 }
 \seealso{
-Other functions for colouring and shading: \code{\link{ColourTernary}}
+Other functions for colouring and shading: 
+\code{\link{ColourTernary}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

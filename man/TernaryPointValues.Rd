@@ -5,11 +5,18 @@
 \alias{TernaryDensity}
 \title{Value of a function at regularly spaced points}
 \usage{
-TernaryPointValues(Func, resolution = 48L,
-  direction = getOption("ternDirection"), ...)
+TernaryPointValues(
+  Func,
+  resolution = 48L,
+  direction = getOption("ternDirection"),
+  ...
+)
 
-TernaryDensity(coordinates, resolution = 48L,
-  direction = getOption("ternDirection"))
+TernaryDensity(
+  coordinates,
+  resolution = 48L,
+  direction = getOption("ternDirection")
+)
 }
 \arguments{
 \item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
@@ -65,9 +72,10 @@ TernaryPoints(coordinates, col = 'red', pch = '.')
 
 }
 \seealso{
-Other contour plotting functions: \code{\link{ColourTernary}},
-  \code{\link{TernaryContour}},
-  \code{\link{TernaryDensityContour}}
+Other contour plotting functions: 
+\code{\link{ColourTernary}()},
+\code{\link{TernaryContour}()},
+\code{\link{TernaryDensityContour}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

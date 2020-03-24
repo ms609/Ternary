@@ -4,9 +4,15 @@
 \alias{TernaryDensityContour}
 \title{Add contours of estimated point density to a ternary plot}
 \usage{
-TernaryDensityContour(coordinates, bandwidth, resolution = 25L,
-  tolerance = -0.2/resolution, edgeCorrection = TRUE,
-  direction = getOption("ternDirection"), ...)
+TernaryDensityContour(
+  coordinates,
+  bandwidth,
+  resolution = 25L,
+  tolerance = -0.2/resolution,
+  edgeCorrection = TRUE,
+  direction = getOption("ternDirection"),
+  ...
+)
 }
 \arguments{
 \item{coordinates}{A list, matrix, data.frame or vector in which each
@@ -76,9 +82,10 @@ TernaryDensityContour(coordinates, resolution = 30L)
  
 }
 \seealso{
-Other contour plotting functions: \code{\link{ColourTernary}},
-  \code{\link{TernaryContour}},
-  \code{\link{TernaryPointValues}}
+Other contour plotting functions: 
+\code{\link{ColourTernary}()},
+\code{\link{TernaryContour}()},
+\code{\link{TernaryPointValues}()}
 }
 \author{
 Adapted from \code{MASS::kde2d()} by Martin R. Smith

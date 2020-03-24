@@ -4,8 +4,12 @@
 \alias{TernaryCoords}
 \title{Convert ternary coordinates to Cartesian space}
 \usage{
-TernaryCoords(abc, b_coord = NULL, c_coord = NULL,
-  direction = getOption("ternDirection"))
+TernaryCoords(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection")
+)
 }
 \arguments{
 \item{abc}{A vector of length three giving the position on a ternary plot
@@ -47,8 +51,10 @@ sent to standard functions in the 'graphics' package.
 \item \code{\link[=TernaryPlot]{TernaryPlot()}}
 }
 
-Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
-  \code{\link{TriangleCentres}}, \code{\link{XYToTernary}}
+Other coordinate translation functions: 
+\code{\link{ReflectedEquivalents}()},
+\code{\link{TriangleCentres}()},
+\code{\link{XYToTernary}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

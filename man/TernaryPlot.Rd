@@ -5,25 +5,61 @@
 \alias{HorizontalGrid}
 \title{Create a ternary plot}
 \usage{
-TernaryPlot(atip = NULL, btip = NULL, ctip = NULL, alab = NULL,
-  blab = NULL, clab = NULL, lab.offset = 0.16, lab.col = NULL,
-  point = "up", clockwise = TRUE, xlim = NULL, ylim = NULL,
-  lab.cex = 1, lab.font = 0, tip.cex = lab.cex, tip.font = 2,
-  tip.col = "black", isometric = TRUE, atip.rotate = NULL,
-  btip.rotate = NULL, ctip.rotate = NULL, atip.pos = NULL,
-  btip.pos = NULL, ctip.pos = NULL, padding = 0.08, col = NA,
-  grid.lines = 10, grid.col = "darkgrey", grid.lty = "solid",
-  grid.lwd = par("lwd"), grid.minor.lines = 4,
-  grid.minor.col = "lightgrey", grid.minor.lty = "solid",
-  grid.minor.lwd = par("lwd"), axis.lty = "solid",
-  axis.labels = TRUE, axis.cex = 0.8, axis.font = par("font"),
-  axis.tick = TRUE, axis.lwd = 1, ticks.lwd = axis.lwd,
-  ticks.length = 0.025, axis.col = "black", ticks.col = grid.col,
-  ...)
+TernaryPlot(
+  atip = NULL,
+  btip = NULL,
+  ctip = NULL,
+  alab = NULL,
+  blab = NULL,
+  clab = NULL,
+  lab.offset = 0.16,
+  lab.col = NULL,
+  point = "up",
+  clockwise = TRUE,
+  xlim = NULL,
+  ylim = NULL,
+  lab.cex = 1,
+  lab.font = 0,
+  tip.cex = lab.cex,
+  tip.font = 2,
+  tip.col = "black",
+  isometric = TRUE,
+  atip.rotate = NULL,
+  btip.rotate = NULL,
+  ctip.rotate = NULL,
+  atip.pos = NULL,
+  btip.pos = NULL,
+  ctip.pos = NULL,
+  padding = 0.08,
+  col = NA,
+  grid.lines = 10,
+  grid.col = "darkgrey",
+  grid.lty = "solid",
+  grid.lwd = par("lwd"),
+  grid.minor.lines = 4,
+  grid.minor.col = "lightgrey",
+  grid.minor.lty = "solid",
+  grid.minor.lwd = par("lwd"),
+  axis.lty = "solid",
+  axis.labels = TRUE,
+  axis.cex = 0.8,
+  axis.font = par("font"),
+  axis.tick = TRUE,
+  axis.lwd = 1,
+  ticks.lwd = axis.lwd,
+  ticks.length = 0.025,
+  axis.col = "black",
+  ticks.col = grid.col,
+  ...
+)
 
-HorizontalGrid(grid.lines = 10, grid.col = "grey",
-  grid.lty = "dotted", grid.lwd = par("lwd"),
-  direction = getOption("ternDirection"))
+HorizontalGrid(
+  grid.lines = 10,
+  grid.col = "grey",
+  grid.lty = "dotted",
+  grid.lwd = par("lwd"),
+  direction = getOption("ternDirection")
+)
 }
 \arguments{
 \item{atip, btip, ctip}{Character string specifying text to title corners,
@@ -32,7 +68,7 @@ proceeding clockwise from the corner specified in \code{point} (default: top).}
 \item{alab, blab, clab}{Character string specifying text with which to label
 the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
-typing \code{\\U2190} or \code{\\U2192}, or using \code{expression('value' \%->\% '')}.}
+typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
 \item{lab.offset}{Numeric specifying distance between midpoint of axis label
 and the axis.

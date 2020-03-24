@@ -4,8 +4,7 @@
 \alias{TriangleCentres}
 \title{Coordinates of triangle mid-points}
 \usage{
-TriangleCentres(resolution = 48L,
-  direction = getOption("ternDirection"))
+TriangleCentres(resolution = 48L, direction = getOption("ternDirection"))
 }
 \arguments{
 \item{resolution}{The number of triangles whose base should lie on the longest
@@ -34,8 +33,10 @@ text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
 
 }
 \seealso{
-Other coordinate translation functions: \code{\link{ReflectedEquivalents}},
-  \code{\link{TernaryCoords}}, \code{\link{XYToTernary}}
+Other coordinate translation functions: 
+\code{\link{ReflectedEquivalents}()},
+\code{\link{TernaryCoords}()},
+\code{\link{XYToTernary}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

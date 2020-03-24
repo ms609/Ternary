@@ -4,8 +4,12 @@
 \alias{TernaryContour}
 \title{Add contours to a ternary plot}
 \usage{
-TernaryContour(Func, resolution = 96L,
-  direction = getOption("ternDirection"), ...)
+TernaryContour(
+  Func,
+  resolution = 96L,
+  direction = getOption("ternDirection"),
+  ...
+)
 }
 \arguments{
 \item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
@@ -36,9 +40,10 @@ TernaryContour(FunctionToContour, resolution = 36L)
 
 }
 \seealso{
-Other contour plotting functions: \code{\link{ColourTernary}},
-  \code{\link{TernaryDensityContour}},
-  \code{\link{TernaryPointValues}}
+Other contour plotting functions: 
+\code{\link{ColourTernary}()},
+\code{\link{TernaryDensityContour}()},
+\code{\link{TernaryPointValues}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
