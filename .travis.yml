@@ -1,5 +1,6 @@
 language: r
 os: linux
+dist: xenial
 cache: packages
 warnings_are_errors: true
 r_check_args: --as-cran # --no-manual # Workaround error compiling PDF manual
@@ -25,14 +26,13 @@ jobs:
         on: 
           branch: master
     - r: devel
-      r_binary_packages:
+      r_packages:
          - covr
       after_success:
         - Rscript -e "covr::codecov()"
     - os: osx
       r: release
       before_install:
-      #- brew install cairo # Already installed
       - sudo tlmgr install doi titling hyperref
 #  allow_failures:
 #    r: osx # Problem with devtools?
