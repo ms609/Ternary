@@ -1,0 +1,157 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
+  "@type": "SoftwareSourceCode",
+  "identifier": "Ternary",
+  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the\n  standard graphics functions.\n  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting \n  functions.",
+  "name": "Ternary: Create Ternary Plots",
+  "codeRepository": "https://github.com/ms609/Ternary/",
+  "relatedLink": [
+    "https://ms609.github.io/Ternary",
+    "https://CRAN.R-project.org/package=Ternary",
+    "https://ms609.github.io/Ternary/"
+  ],
+  "issueTracker": "https://github.com/ms609/Ternary/issues/",
+  "license": "https://spdx.org/licenses/GPL-2.0",
+  "version": "1.1.4",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.6.3",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Martin R.",
+      "familyName": "Smith",
+      "email": "martin.smith@durham.ac.uk",
+      "@id": "https://orcid.org/0000-0001-5660-1727"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Martin R.",
+      "familyName": "Smith",
+      "email": "martin.smith@durham.ac.uk",
+      "@id": "https://orcid.org/0000-0001-5660-1727"
+    }
+  ],
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Martin R.",
+      "familyName": "Smith",
+      "email": "martin.smith@durham.ac.uk",
+      "@id": "https://orcid.org/0000-0001-5660-1727"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "vdiffr",
+      "name": "vdiffr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.2.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "viridisLite",
+      "name": "viridisLite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=viridisLite"
+    }
+  ],
+  "releaseNotes": "https://github.com/ms609/Ternary.git/blob/master/NEWS.md",
+  "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
+  "contIntegration": ["https://travis-ci.org/ms609/Ternary", "https://codecov.io/gh/ms609/Ternary"],
+  "developmentStatus": "http://www.repostatus.org/#project-statuses",
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2017",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Martin", "R."],
+          "familyName": "Smith"
+        }
+      ],
+      "name": "Ternary: An R Package for Creating Ternary Plots",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2017",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "name": "Zenodo"
+        }
+      }
+    }
+  ]
+}
