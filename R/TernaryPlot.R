@@ -476,9 +476,9 @@ CoordinatesToXY <- function (coordinates) {
   
   # Return:
   if (is.null(dims)) {
-    if (mode(coordinates) == 'list') {
+    if (is.list(coordinates)) {
       vapply(coordinates, TernaryCoords, double(2))
-    } else if (mode(coordinates) == 'numeric') {
+    } else if (is.numeric(coordinates)) {
       matrix(TernaryCoords(coordinates), nrow=2)
     }
   } else if (length(dims) == 2) {
