@@ -183,6 +183,7 @@ test_that('Vignette plots are rendered correctly', {
     TernaryPlot('Steam', 'Ice', 'Water', 
                 grid.lines=5, grid.lty='dotted',
                 grid.minor.lines=1, grid.minor.lty='dotted',
+                btip.rotate = 330, ctip.rotate = 30,
                 point='West')
     HorizontalGrid()
     middle_triangle <- matrix(c(

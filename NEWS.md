@@ -1,3 +1,6 @@
+# Ternary v1.1.4.9001 (development)
+- Fix error in `xtip.rotate` (thanks @LSanselme)
+
 # Ternary v1.1.4.9000 (development)
 - Add examples to documentation.
 

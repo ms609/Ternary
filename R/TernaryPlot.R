@@ -352,24 +352,23 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   TitleAxis(clab_xy, if (clockwise) clab else blab, if (clockwise) 3 else 2, 
             c(  0,  90,   0, 270))
   
-  
+  axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
+  ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
+  ax <- axRaw[direction] * ticks.length[1]
+  ay <- ayRaw[direction] * ticks.length[1]
   if (is.null(atip.rotate)) {
-    axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
-    ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
-    ax <-axRaw[direction] * ticks.length[1]
-    ay <- ayRaw[direction] * ticks.length[1]
     atip.rotate <- if (clockwise) c(0, 30, 0, 330)[direction] else c(0, 30, 0, 30)[direction]
     atip.pos <- if (clockwise) c(2, 2, 4, 4)[direction] else c(4, 2, 2, 4)[direction]
   }
+  bx <- c(4, 4, -2, -3)[direction] * ticks.length[2]
+  by <- c(-4, -2, 4, 2.4)[direction] * ticks.length[2]
   if (is.null(btip.rotate)) {
-    bx <- c(4, 4, -2, -3)[direction] * ticks.length[2]
-    by <- c(-4, -2, 4, 2.4)[direction] * ticks.length[2]
     btip.rotate <- c(0, 0, 0, 0)[direction]
     btip.pos <- c(2, 4, 4, 2)[direction]
   }
+  cx <- c(-3, 0, 2, -3)[direction] * ticks.length[3]
+  cy <- c(-4, 2, 4, -2)[direction] * ticks.length[3]
   if (is.null(ctip.rotate)) {
-    cx <- c(-3, 0, 2, -3)[direction] * ticks.length[3]
-    cy <- c(-4, 2, 4, -2)[direction] * ticks.length[3]
     ctip.rotate <- c(0, 0, 0, 0)[direction]
     ctip.pos <- c(4, 4, 2, 2)[direction]
   }

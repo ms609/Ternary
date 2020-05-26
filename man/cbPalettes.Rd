@@ -7,7 +7,15 @@
 \alias{cbPalette13}
 \alias{cbPalette15}
 \title{Palettes compatible with colour blindness}
-\format{Character vectors of lengths 8, 13 and 15.}
+\format{
+Character vectors of lengths 8, 13 and 15.
+
+An object of class \code{character} of length 8.
+
+An object of class \code{character} of length 13.
+
+An object of class \code{character} of length 15.
+}
 \source{
 \itemize{
 \item \code{cbPalette8}: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}

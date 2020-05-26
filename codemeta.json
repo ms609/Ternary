@@ -15,14 +15,14 @@
   ],
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.1.4.9000",
+  "version": "1.1.4.9001",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
+    "version": "3.5.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -36,6 +36,11 @@
       "familyName": "Smith",
       "email": "martin.smith@durham.ac.uk",
       "@id": "https://orcid.org/0000-0001-5660-1727"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Lilian",
+      "familyName": "Sanselme"
     }
   ],
   "contributor": {},
@@ -128,8 +133,8 @@
       "sameAs": "https://CRAN.R-project.org/package=viridisLite"
     }
   ],
-  "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
-  "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
+  "releaseNotes": "https://github.com/LSanselme/Ternary/blob/master/NEWS.md",
+  "readme": "https://github.com/LSanselme/Ternary/blob/master/README.md",
   "contIntegration": [
     "https://travis-ci.org/ms609/Ternary",
     "https://codecov.io/gh/ms609/Ternary"
@@ -156,5 +161,6 @@
         }
       }
     }
-  ]
+  ],
+  "fileSize": "244.958KB"
 }
