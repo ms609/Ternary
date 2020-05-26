@@ -19,10 +19,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.3",
+    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
+  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -36,14 +36,15 @@
       "familyName": "Smith",
       "email": "martin.smith@durham.ac.uk",
       "@id": "https://orcid.org/0000-0001-5660-1727"
-    },
+    }
+  ],
+  "contributor": [
     {
       "@type": "Person",
       "givenName": "Lilian",
       "familyName": "Sanselme"
     }
   ],
-  "contributor": {},
   "copyrightHolder": [
     {
       "@type": "Person",
@@ -133,8 +134,8 @@
       "sameAs": "https://CRAN.R-project.org/package=viridisLite"
     }
   ],
-  "releaseNotes": "https://github.com/LSanselme/Ternary/blob/master/NEWS.md",
-  "readme": "https://github.com/LSanselme/Ternary/blob/master/README.md",
+  "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
+  "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
   "contIntegration": [
     "https://travis-ci.org/ms609/Ternary",
     "https://codecov.io/gh/ms609/Ternary"
@@ -161,6 +162,5 @@
         }
       }
     }
-  ],
-  "fileSize": "244.958KB"
+  ]
 }
