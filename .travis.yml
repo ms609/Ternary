@@ -7,22 +7,15 @@ r_check_args: --as-cran # --no-manual # Workaround error compiling PDF manual
 jobs:
   include:
     - r: 3.4.0 # vdiffr requires 3.4.
-      r_packages:
-        - crayon # Explicit install of dependency required?
-        - rematch2
-        - usethis
-        - testthat
-        - devtools
-        - vdiffr
     - r: release
       before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
-      r_binary_packages:
-       - covr
-       - devtools
-       - knitr
-       - rmarkdown
-       - roxygen2
-       - testthat
+      #r_binary_packages:
+      # - covr
+      # - devtools
+      # - knitr
+      # - rmarkdown
+      # - roxygen2
+      # - testthat
       deploy:
         provider: script
         script: Rscript -e 'pkgdown::deploy_site_github()'
@@ -42,7 +35,6 @@ jobs:
       before_install:
       - sudo tlmgr install doi titling hyperref
 #  allow_failures:
-#    r: osx # Problem with devtools?
 
 git:
   depth: 1
