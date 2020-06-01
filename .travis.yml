@@ -41,8 +41,6 @@ git:
 
 r_packages:
   - devtools
-  - testthat
-  - vdiffr
 
 before_script:
   - R -e "devtools::document()"
