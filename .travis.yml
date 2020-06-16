@@ -34,7 +34,8 @@ jobs:
       r: release
       before_install:
       - sudo tlmgr install doi titling hyperref
-#  allow_failures:
+  allow_failures:
+   - r: devel # Changes to plot cropping: once on release, run manage_cases()..
 
 git:
   depth: 1
