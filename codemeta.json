@@ -19,10 +19,9 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "4.0.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.0 (2020-04-24)",
+  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -136,10 +135,7 @@
   ],
   "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
-  "contIntegration": [
-    "https://travis-ci.org/ms609/Ternary",
-    "https://codecov.io/gh/ms609/Ternary"
-  ],
+  "contIntegration": ["https://travis-ci.org/ms609/Ternary", "https://codecov.io/gh/ms609/Ternary"],
   "developmentStatus": "http://www.repostatus.org/#project-statuses",
   "citation": [
     {
@@ -162,5 +158,6 @@
         }
       }
     }
-  ]
+  ],
+  "fileSize": "11459.001KB"
 }
