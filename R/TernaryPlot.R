@@ -78,7 +78,8 @@
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.rotate Logical specifying whether to rotate axis labels 
 #'  to parallel grid lines, or numeric specifying custom rotation for each axis,
-#'  to be passed as `srt` parameter to `text()`.
+#'  to be passed as `srt` parameter to `text()`.  Expand margins or set
+#'  `par(xpd = NA)` if labels are clipped.
 #' @param axis.pos Vector of length three specifying position of axis labels, 
 #'  to be passed as `pos` parameter to `text()`; populated automatically if
 #'   `NULL` (the default).
