@@ -76,6 +76,8 @@
 #' @param axis.cex Numeric specifying character expansion for axis labels.
 #'  Use a vector of length three to set a different value for each direction.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
+#' @param axis.rotate Logical specifying whether to rotate axis labels 
+#'  to parallel grid lines.
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'  Zero or negative values will suppress the line or ticks.
@@ -131,7 +133,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
                          axis.lty = 'solid',
                          axis.labels = TRUE, axis.cex = 0.8,
-                         axis.font = par('font'), axis.tick = TRUE,
+                         axis.font = par('font'),
+                         axis.rotate = TRUE,
+                         axis.tick = TRUE,
                          axis.lwd = 1, 
                          ticks.lwd = axis.lwd, ticks.length = 0.025,
                          axis.col = 'black', ticks.col = grid.col,
@@ -162,6 +166,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   grid.minor.lty <- Triplicate(grid.minor.lty)
   grid.minor.lwd <- Triplicate(grid.minor.lwd)
   axis.lwd <- Triplicate(axis.lwd)
+  axis.rotate <- Triplicate(axis.rotate)
   ticks.length <- Triplicate(ticks.length)
   ticks.lwd <- Triplicate(ticks.lwd)
   tip.col <- Triplicate(tip.col)
@@ -244,38 +249,34 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     })
     
     if (clockwise) {
-      axis1_degrees <- (180 + (direction * 90)) %% 360
-      axis2_degrees <- (300 + (direction * 90)) %% 360
-      axis3_degrees <- ( 60 + (direction * 90)) %% 360
+      axis_degrees <- (c(180, 300, 60) + (direction * 90)) %% 360
       
-      rot1 <- c(  0, 270,   0,  90)[direction]
-      rot2 <- c( 60, -30,  60, -30)[direction]
-      rot3 <- c(-60,  30, -60,  30)[direction]
+      rot <- c(c(  0, 270,   0,  90)[direction],
+               c( 60, -30,  60, -30)[direction],
+               c(-60,  30, -60,  30)[direction])
       
-      pos1 <- c(2, 2, 4, 2)[direction]
-      pos2 <- c(4, 4, 2, 2)[direction]
-      pos3 <- c(4, 2, 2, 4)[direction]
+      pos <- c(c(2, 2, 4, 2)[direction],
+               c(4, 4, 2, 2)[direction],
+               c(4, 2, 2, 4)[direction])
       
       
-      mult1 <- c(5 , 16, 10, 12)[direction] / 10
-      mult2 <- c(5 ,  9,  8,  9)[direction] / 10
-      mult3 <- c(16,  8, 16,  8)[direction] / 10
+      mult <- c(c(5 , 16, 10, 12)[direction],
+                c(5 ,  9,  8,  9)[direction],
+                c(16,  8, 16,  8)[direction]) / 10
     } else {
-      axis1_degrees <- (240 + (direction * 90)) %% 360
-      axis2_degrees <- (      (direction * 90)) %% 360
-      axis3_degrees <- (120 + (direction * 90)) %% 360
+      axis_degrees <- (c(240, 0, 120) + (direction * 90)) %% 360
       
-      rot1 <- c(-60,  30, -60,  30)[direction]
-      rot2 <- c(  0, -90,  00, -90)[direction]
-      rot3 <- c( 60, -30,  60, -30)[direction]
+      rot <- c(c(-60,  30, -60,  30)[direction],
+               c(  0, -90,  00, -90)[direction],
+               c( 60, -30,  60, -30)[direction])
       
-      pos1 <- c(2, 4, 4, 2)[direction]
-      pos2 <- c(4, 4, 2, 2)[direction]
-      pos3 <- c(2, 2, 4, 4)[direction]
+      pos <- c(c(2, 4, 4, 2)[direction],
+               c(4, 4, 2, 2)[direction],
+               c(2, 2, 4, 4)[direction])
       
-      mult1 <- c(5, 4, 4, 5)[direction] / 5
-      mult2 <- c(4, 6, 4, 7)[direction] / 5
-      mult3 <- c(8, 4, 7, 3)[direction] / 5
+      mult <- c(c(5, 4, 4, 5)[direction],
+                c(4, 6, 4, 7)[direction],
+                c(8, 4, 7, 3)[direction]) / 5
       
     }
     
@@ -290,15 +291,17 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        AxisTick <- function (side, degrees) {
-          lines(line_ends[1, side] + c(0, sin(degrees * pi / 180) * ticks.length[side]),
-                line_ends[2, side] + c(0, cos(degrees * pi / 180) * ticks.length[side]),
+        AxisTick <- function (side) {
+          lines(line_ends[1, side] + c(0, sin(axis_degrees[side] * pi / 180) *
+                                         ticks.length[side]),
+                line_ends[2, side] + c(0, cos(axis_degrees[side] * pi / 180) *
+                                         ticks.length[side]),
                 col = ticks.col[sides[side]], lwd = ticks.lwd[sides[side]])
         }
       
-        AxisTick(1, axis1_degrees)
-        AxisTick(2, axis2_degrees)
-        AxisTick(3, axis3_degrees)
+        AxisTick(1)
+        AxisTick(2)
+        AxisTick(3)
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
@@ -306,18 +309,21 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         if (!clockwise) axis.labels <- rev(axis.labels)
        
-        AxisLabel <- function (side, degrees, mult, rot, pos) {
-          text(line_ends[1, side] + sin(degrees * pi / 180) * ticks.length[side] * mult,
-               line_ends[2, side] + cos(degrees * pi / 180) * ticks.length[side] * mult,
-               axis.labels[i], srt = rot, pos = pos, font = axis.font[sides[side]],
+        AxisLabel <- function (side) {
+          text(line_ends[1, side] + sin(axis_degrees[side] * pi / 180) * 
+                 ticks.length[side] * mult[side],
+               line_ends[2, side] + cos(axis_degrees[side] * pi / 180) * 
+                 ticks.length[side] * mult[side],
+               axis.labels[i], srt = rot[side],
+               pos = pos[side], font = axis.font[sides[side]],
                cex = axis.cex[sides[side]],
                col = lab.col[sides[side]])
         }
         
         # Annotate axes
-        AxisLabel(1, axis1_degrees, mult1, rot1, pos1)
-        AxisLabel(2, axis2_degrees, mult2, rot2, pos2)
-        AxisLabel(3, axis3_degrees, mult3, rot3, pos3)
+        AxisLabel(1)
+        AxisLabel(2)
+        AxisLabel(3)
       }
     })
   }

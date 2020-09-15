@@ -15,7 +15,7 @@
   ],
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.1.4.9001",
+  "version": "1.1.4.9002",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -159,5 +159,5 @@
       }
     }
   ],
-  "fileSize": "11459.001KB"
+  "fileSize": "11459.234KB"
 }
