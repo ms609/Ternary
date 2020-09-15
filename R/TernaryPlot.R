@@ -80,9 +80,9 @@
 #'  to parallel grid lines, or numeric specifying custom rotation for each axis,
 #'  to be passed as `srt` parameter to `text()`.  Expand margins or set
 #'  `par(xpd = NA)` if labels are clipped.
-#' @param axis.pos Vector of length three specifying position of axis labels, 
-#'  to be passed as `pos` parameter to `text()`; populated automatically if
-#'   `NULL` (the default).
+#' @param axis.pos Vector of length one or three specifying position of axis 
+#'  labels, to be passed as `pos` parameter to `text()`; populated automatically
+#'  if `NULL` (the default).
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'  Zero or negative values will suppress the line or ticks.
