@@ -77,7 +77,11 @@
 #'  Use a vector of length three to set a different value for each direction.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.rotate Logical specifying whether to rotate axis labels 
-#'  to parallel grid lines.
+#'  to parallel grid lines, or numeric specifying custom rotation for each axis,
+#'  to be passed as `srt` parameter to `text()`.
+#' @param axis.pos Vector of length three specifying position of axis labels, 
+#'  to be passed as `pos` parameter to `text()`; populated automatically if
+#'   `NULL` (the default).
 #' @param axis.tick Logical specifying whether to mark the axes with tick marks.
 #' @param axis.lwd,ticks.lwd Line width for the axis line and tick marks. 
 #'  Zero or negative values will suppress the line or ticks.
@@ -135,6 +139,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          axis.labels = TRUE, axis.cex = 0.8,
                          axis.font = par('font'),
                          axis.rotate = TRUE,
+                         axis.pos = NULL,
                          axis.tick = TRUE,
                          axis.lwd = 1, 
                          ticks.lwd = axis.lwd, ticks.length = 0.025,
@@ -167,6 +172,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   grid.minor.lwd <- Triplicate(grid.minor.lwd)
   axis.lwd <- Triplicate(axis.lwd)
   axis.rotate <- Triplicate(axis.rotate)
+  axis.pos <- Triplicate(axis.pos)
   ticks.length <- Triplicate(ticks.length)
   ticks.lwd <- Triplicate(ticks.lwd)
   tip.col <- Triplicate(tip.col)
@@ -259,7 +265,6 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                c(4, 4, 2, 2)[direction],
                c(4, 2, 2, 4)[direction])
       
-      
       mult <- c(c(5 , 16, 10, 12)[direction],
                 c(5 ,  9,  8,  9)[direction],
                 c(16,  8, 16,  8)[direction]) / 10
@@ -279,6 +284,18 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                 c(8, 4, 7, 3)[direction]) / 5
       
     }
+    
+    if (is.logical(axis.rotate)) {
+      rot <- ifelse(axis.rotate, rot, 0)
+      pos.unrotated <- matrix(c(2, 4, 1,
+                                3, 1, 2, 
+                                4, 2, 3, 
+                                1, 3, 4), 3)[, direction]
+      pos <- ifelse(axis.rotate, pos, pos.unrotated)
+    } else {
+      rot <- axis.rotate
+    }
+    if (!is.null(axis.pos)) pos <- axis.pos
     
   
     # Plot and annotate axes
