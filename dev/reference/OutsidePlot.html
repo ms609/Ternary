@@ -147,7 +147,7 @@ a plotted ternary diagram." />
 a plotted ternary diagram.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>OutsidePlot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>tolerance</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
+    <pre class="usage"><span class='fu'>OutsidePlot</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, tolerance = <span class='fl'>0</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,12 +174,22 @@ ternary diagram.</p>
 
     <div class='dont-index'><p>Other plot limits: 
 <code><a href='TernaryXRange.html'>TernaryXRange</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
+(<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='fl'>0.5</span>, <span class='fl'>0.5</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>'darkgreen'</span>)</div><div class='input'><span class='fu'>OutsidePlot</span>(<span class='fl'>0.5</span>, <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>'red'</span>)</div><div class='img'><img src='OutsidePlot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>OutsidePlot</span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
-<span class='fu'>OutsidePlot</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>0.1</span>), <span class='fl'>0.5</span>)</div><div class='output co'>#&gt; [1]  TRUE FALSE</div><div class='input'>
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='fl'>0.5</span>, <span class='fl'>0.5</span>, col = <span class='st'>'darkgreen'</span>)
+</div><div class='input'><span class='fu'>OutsidePlot</span>(<span class='fl'>0.5</span>, <span class='fl'>0.5</span>)
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'> 
+<span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>, col = <span class='st'>'red'</span>)
+</div><div class='img'><img src='OutsidePlot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>OutsidePlot</span>(<span class='fl'>0.1</span>, <span class='fl'>0.5</span>)
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'>
+<span class='fu'>OutsidePlot</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>0.1</span>), <span class='fl'>0.5</span>) 
+</div><div class='output co'>#&gt; [1]  TRUE FALSE</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -196,7 +206,7 @@ ternary diagram.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

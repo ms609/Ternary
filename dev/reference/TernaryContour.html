@@ -146,10 +146,10 @@
     </div>
 
     <pre class="usage"><span class='fu'>TernaryContour</span>(
-  <span class='no'>Func</span>,
-  <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>96L</span>,
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>),
-  <span class='no'>...</span>
+  <span class='kw'>Func</span>,
+  resolution = <span class='fl'>96L</span>,
+  direction = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>),
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -183,15 +183,22 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
 <code><a href='ColourTernary.html'>ColourTernary</a>()</code>,
 <code><a href='TernaryDensityContour.html'>TernaryDensityContour</a>()</code>,
 <code><a href='TernaryPointValues.html'>TernaryPointValues</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
+(<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(<span class='kw'>alab</span> <span class='kw'>=</span> <span class='st'>'a'</span>, <span class='kw'>blab</span> <span class='kw'>=</span> <span class='st'>'b'</span>, <span class='kw'>clab</span> <span class='kw'>=</span> <span class='st'>'c'</span>)</div><div class='input'>
-<span class='no'>FunctionToContour</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span> (<span class='no'>a</span>, <span class='no'>b</span>, <span class='no'>c</span>) {
-  <span class='no'>a</span> - <span class='no'>c</span> + (<span class='fl'>4</span> * <span class='no'>a</span> * <span class='no'>b</span>) + (<span class='fl'>27</span> * <span class='no'>a</span> * <span class='no'>b</span> * <span class='no'>c</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>(alab = <span class='st'>'a'</span>, blab = <span class='st'>'b'</span>, clab = <span class='st'>'c'</span>)
+</div><div class='input'> 
+<span class='kw'>FunctionToContour</span> <span class='op'>&lt;-</span> <span class='fu'>function</span> (<span class='kw'>a</span>, <span class='kw'>b</span>, <span class='kw'>c</span>) {
+  <span class='kw'>a</span> <span class='op'>-</span> <span class='kw'>c</span> <span class='op'>+</span> (<span class='fl'>4</span> <span class='op'>*</span> <span class='kw'>a</span> <span class='op'>*</span> <span class='kw'>b</span>) <span class='op'>+</span> (<span class='fl'>27</span> <span class='op'>*</span> <span class='kw'>a</span> <span class='op'>*</span> <span class='kw'>b</span> <span class='op'>*</span> <span class='kw'>c</span>)
 }
 
-<span class='no'>values</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='no'>FunctionToContour</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>24L</span>)
-<span class='fu'><a href='ColourTernary.html'>ColourTernary</a></span>(<span class='no'>values</span>)</div><div class='input'><span class='fu'>TernaryContour</span>(<span class='no'>FunctionToContour</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='fl'>36L</span>)</div><div class='img'><img src='TernaryContour-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>values</span> <span class='op'>&lt;-</span> <span class='fu'><a href='TernaryPointValues.html'>TernaryPointValues</a></span>(<span class='kw'>FunctionToContour</span>, resolution = <span class='fl'>24L</span>)
+<span class='fu'><a href='ColourTernary.html'>ColourTernary</a></span>(<span class='kw'>values</span>)
+</div><div class='input'><span class='fu'>TernaryContour</span>(<span class='kw'>FunctionToContour</span>, resolution = <span class='fl'>36L</span>)
+</div><div class='img'><img src='TernaryContour-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -208,7 +215,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

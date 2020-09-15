@@ -145,19 +145,19 @@
     <p>Plot shapes onto a ternary diagram created with <code><a href='TernaryPlot.html'>TernaryPlot()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AddToTernary</span>(<span class='no'>PlottingFunction</span>, <span class='no'>coordinates</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>AddToTernary</span>(<span class='kw'>PlottingFunction</span>, <span class='kw'>coordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>TernaryArrows</span>(<span class='no'>fromCoordinates</span>, <span class='kw'>toCoordinates</span> <span class='kw'>=</span> <span class='no'>fromCoordinates</span>, <span class='no'>...</span>)
+<span class='fu'>TernaryArrows</span>(<span class='kw'>fromCoordinates</span>, toCoordinates = <span class='kw'>fromCoordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>TernaryLines</span>(<span class='no'>coordinates</span>, <span class='no'>...</span>)
+<span class='fu'>TernaryLines</span>(<span class='kw'>coordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>TernaryPoints</span>(<span class='no'>coordinates</span>, <span class='no'>...</span>)
+<span class='fu'>TernaryPoints</span>(<span class='kw'>coordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>TernaryPolygon</span>(<span class='no'>coordinates</span>, <span class='no'>...</span>)
+<span class='fu'>TernaryPolygon</span>(<span class='kw'>coordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>TernaryText</span>(<span class='no'>coordinates</span>, <span class='no'>...</span>)
+<span class='fu'>TernaryText</span>(<span class='kw'>coordinates</span>, <span class='kw'>...</span>)
 
-<span class='fu'>JoinTheDots</span>(<span class='no'>coordinates</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>JoinTheDots</span>(<span class='kw'>coordinates</span>, <span class='kw'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,15 +200,26 @@ which arrows should begin and end; <em>cf.</em> <code>x0</code>, <code>y0</code>
 <li><p><code>TernaryText</code>: Add <a href='https://rdrr.io/r/graphics/text.html'>text</a></p></li>
 <li><p><code>JoinTheDots</code>: Add points, joined by lines</p></li>
 </ul>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
+(<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>coords</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='kw'>A</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
-  <span class='kw'>C</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.5</span>, <span class='fl'>0</span>),
-  <span class='kw'>D</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1.5</span>, <span class='fl'>1</span>)
+    <pre class="examples"><div class='input'><span class='kw'>coords</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  A = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>2</span>),
+  B = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>, <span class='fl'>1</span>, <span class='fl'>1</span>),
+  C = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1.5</span>, <span class='fl'>1.5</span>, <span class='fl'>0</span>),
+  D = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.5</span>, <span class='fl'>1.5</span>, <span class='fl'>1</span>)
 )
-<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='no'>lines</span>, <span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>, <span class='kw'>lty</span><span class='kw'>=</span><span class='st'>'dotted'</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='input'><span class='fu'>TernaryLines</span>(<span class='no'>coords</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'darkgreen'</span>)</div><div class='input'><span class='fu'>TernaryArrows</span>(<span class='no'>coords</span>[<span class='fl'>1</span>], <span class='no'>coords</span>[<span class='fl'>2</span>:<span class='fl'>4</span>], <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'orange'</span>, <span class='kw'>length</span><span class='kw'>=</span><span class='fl'>0.2</span>, <span class='kw'>lwd</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='input'><span class='fu'>TernaryText</span>(<span class='no'>coords</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>0.8</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'red'</span>, <span class='kw'>font</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='input'><span class='fu'>TernaryPoints</span>(<span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>)</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='no'>points</span>, <span class='no'>coords</span>, <span class='kw'>pch</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>cex</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='img'><img src='AddToTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span>()
+</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='kw'>lines</span>, <span class='kw'>coords</span>, col=<span class='st'>'darkgreen'</span>, lty=<span class='st'>'dotted'</span>, lwd=<span class='fl'>3</span>)
+</div><div class='input'><span class='fu'>TernaryLines</span>(<span class='kw'>coords</span>, col=<span class='st'>'darkgreen'</span>)
+</div><div class='input'><span class='fu'>TernaryArrows</span>(<span class='kw'>coords</span>[<span class='fl'>1</span>], <span class='kw'>coords</span>[<span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span>], col=<span class='st'>'orange'</span>, length=<span class='fl'>0.2</span>, lwd=<span class='fl'>1</span>)
+</div><div class='input'><span class='fu'>TernaryText</span>(<span class='kw'>coords</span>, cex=<span class='fl'>0.8</span>, col=<span class='st'>'red'</span>, font=<span class='fl'>2</span>)
+</div><div class='input'><span class='fu'>TernaryPoints</span>(<span class='kw'>coords</span>, pch=<span class='fl'>1</span>, cex=<span class='fl'>2</span>, col=<span class='st'>'blue'</span>)
+</div><div class='input'><span class='fu'>AddToTernary</span>(<span class='kw'>points</span>, <span class='kw'>coords</span>, pch=<span class='fl'>1</span>, cex=<span class='fl'>3</span>)
+</div><div class='img'><img src='AddToTernary-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
 </div></pre>
   </div>
@@ -226,7 +237,7 @@ which arrows should begin and end; <em>cf.</em> <code>x0</code>, <code>y0</code>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
