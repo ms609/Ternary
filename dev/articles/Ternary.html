@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.4.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.4.9002</span>
       </span>
     </div>
 
@@ -139,13 +139,14 @@
 <h2 class="hasAnchor">
 <a href="#plot-two-stylised-plots-side-by-side-and-plot-data" class="anchor"></a>Plot two stylised plots side by side, and plot data</h2>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mfrow=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), mar=<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.3</span>, <span class="fl">4</span>))
-<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span>(alab=<span class="st">"Redder \u2192"</span>, blab=<span class="st">"\u2190 Greener"</span>, clab=<span class="st">"Bluer \u2192"</span>,
-            lab.col=<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'red'</span>, <span class="st">'darkgreen'</span>, <span class="st">'blue'</span>),
-            point=<span class="st">'right'</span>, lab.cex=<span class="fl">0.8</span>, grid.minor.lines=<span class="fl">0</span>,
-            grid.lty=<span class="st">'solid'</span>, col=<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="fl">0.9</span>), grid.col=<span class="st">'white'</span>, 
-            axis.col=<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span>), ticks.col=<span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span>),
-            padding=<span class="fl">0.08</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(mfrow = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>), mar = <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">0.3</span>, <span class="fl">4</span>))
+<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span>(alab = <span class="st">"Redder \u2192"</span>, blab = <span class="st">"\u2190 Greener"</span>, clab = <span class="st">"Bluer \u2192"</span>,
+            lab.col = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'red'</span>, <span class="st">'darkgreen'</span>, <span class="st">'blue'</span>),
+            point = <span class="st">'right'</span>, lab.cex = <span class="fl">0.8</span>, grid.minor.lines = <span class="fl">0</span>,
+            grid.lty = <span class="st">'solid'</span>, col = <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="fl">0.9</span>), grid.col = <span class="st">'white'</span>, 
+            axis.col = <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span>), ticks.col = <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span>(<span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span>),
+            axis.rotate = <span class="fl">FALSE</span>,
+            padding = <span class="fl">0.08</span>)
 <span class="co"># Colour the background:</span>
 <span class="kw">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/TernaryPointValues.html">TernaryPointValues</a></span>(<span class="kw">rgb</span>)
 <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span>(<span class="kw">cols</span>, spectrum = <span class="kw">NULL</span>)

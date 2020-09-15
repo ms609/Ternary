@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.4.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.4.9002</span>
       </span>
     </div>
 
@@ -184,6 +184,8 @@
   axis.labels = <span class='fl'>TRUE</span>,
   axis.cex = <span class='fl'>0.8</span>,
   axis.font = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"font"</span>),
+  axis.rotate = <span class='fl'>TRUE</span>,
+  axis.pos = <span class='kw'>NULL</span>,
   axis.tick = <span class='fl'>TRUE</span>,
   axis.lwd = <span class='fl'>1</span>,
   ticks.lwd = <span class='kw'>axis.lwd</span>,
@@ -335,6 +337,19 @@ Use a vector of length three to set a different value for each direction.</p></t
     <tr>
       <th>axis.font</th>
       <td><p>Font for text. Defaults to <code><a href='https://rdrr.io/r/graphics/par.html'>par('font')</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>axis.rotate</th>
+      <td><p>Logical specifying whether to rotate axis labels
+to parallel grid lines, or numeric specifying custom rotation for each axis,
+to be passed as <code>srt</code> parameter to <code><a href='https://rdrr.io/r/graphics/text.html'>text()</a></code>.  Expand margins or set
+<code><a href='https://rdrr.io/r/graphics/par.html'>par(xpd = NA)</a></code> if labels are clipped.</p></td>
+    </tr>
+    <tr>
+      <th>axis.pos</th>
+      <td><p>Vector of length one or three specifying position of axis
+labels, to be passed as <code>pos</code> parameter to <code><a href='https://rdrr.io/r/graphics/text.html'>text()</a></code>; populated automatically
+if <code>NULL</code> (the default).</p></td>
     </tr>
     <tr>
       <th>axis.tick</th>
