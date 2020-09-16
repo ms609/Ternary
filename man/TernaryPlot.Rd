@@ -44,6 +44,8 @@ TernaryPlot(
   axis.labels = TRUE,
   axis.cex = 0.8,
   axis.font = par("font"),
+  axis.rotate = TRUE,
+  axis.pos = NULL,
   axis.tick = TRUE,
   axis.lwd = 1,
   ticks.lwd = axis.lwd,
@@ -147,6 +149,15 @@ expression vector of labels to be placed at the tick points.}
 Use a vector of length three to set a different value for each direction.}
 
 \item{axis.font}{Font for text. Defaults to \code{par('font')}.}
+
+\item{axis.rotate}{Logical specifying whether to rotate axis labels
+to parallel grid lines, or numeric specifying custom rotation for each axis,
+to be passed as \code{srt} parameter to \code{text()}.  Expand margins or set
+\code{par(xpd = NA)} if labels are clipped.}
+
+\item{axis.pos}{Vector of length one or three specifying position of axis
+labels, to be passed as \code{pos} parameter to \code{text()}; populated automatically
+if \code{NULL} (the default).}
 
 \item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
 

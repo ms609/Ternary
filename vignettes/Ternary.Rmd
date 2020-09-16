@@ -63,6 +63,7 @@ TernaryPlot(alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u219
             point = 'right', lab.cex = 0.8, grid.minor.lines = 0,
             grid.lty = 'solid', col = rgb(0.9, 0.9, 0.9), grid.col = 'white', 
             axis.col = rgb(0.6, 0.6, 0.6), ticks.col = rgb(0.6, 0.6, 0.6),
+            axis.rotate = FALSE,
             padding = 0.08)
 # Colour the background:
 cols <- TernaryPointValues(rgb)
