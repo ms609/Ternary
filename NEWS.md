@@ -1,3 +1,11 @@
+# Ternary v1.1.4.9002 (development)
+
+- Optional parameter `axis.rotate` to allow axis labels to be plotted 'unrotated' 
+   (https://github.com/ms609/Ternary/issues/38).
+
+# Ternary v1.1.4.9001 (development)
+- Fix error in `xtip.rotate` (thanks @LSanselme)
+
 # Ternary v1.1.4.9000 (development)
 - Add examples to documentation.
 

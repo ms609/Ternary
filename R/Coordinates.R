@@ -39,7 +39,7 @@ TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL,
     abc <- c(abc, b_coord, c_coord)
   }
   if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
-  if (mode(abc) != 'numeric') stop("Parameter abc must be numeric.")
+  if (!is.numeric(abc)) stop("Parameter abc must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
   names(abc) <- NULL # or they may be inherited by x and y, confusingly
   
@@ -85,8 +85,8 @@ TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL,
 #' @family coordinate translation functions
 #' @export
 XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
-  if (mode(x) != 'numeric') stop("Parameter x must be numeric.")
-  if (mode(y) != 'numeric') stop("Parameter y must be numeric.")
+  if (!is.numeric(x)) stop("Parameter `x` must be numeric.")
+  if (!is.numeric(y)) stop("Parameter `y` must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
   
   if (direction == 1L) {
