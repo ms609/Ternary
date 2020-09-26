@@ -145,63 +145,63 @@
     <p>Create and style a blank ternary plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>TernaryPlot</span>(
-  atip = <span class='kw'>NULL</span>,
-  btip = <span class='kw'>NULL</span>,
-  ctip = <span class='kw'>NULL</span>,
-  alab = <span class='kw'>NULL</span>,
-  blab = <span class='kw'>NULL</span>,
-  clab = <span class='kw'>NULL</span>,
-  lab.offset = <span class='fl'>0.16</span>,
-  lab.col = <span class='kw'>NULL</span>,
-  point = <span class='st'>"up"</span>,
-  clockwise = <span class='fl'>TRUE</span>,
-  xlim = <span class='kw'>NULL</span>,
-  ylim = <span class='kw'>NULL</span>,
-  lab.cex = <span class='fl'>1</span>,
-  lab.font = <span class='fl'>0</span>,
-  tip.cex = <span class='kw'>lab.cex</span>,
-  tip.font = <span class='fl'>2</span>,
-  tip.col = <span class='st'>"black"</span>,
-  isometric = <span class='fl'>TRUE</span>,
-  atip.rotate = <span class='kw'>NULL</span>,
-  btip.rotate = <span class='kw'>NULL</span>,
-  ctip.rotate = <span class='kw'>NULL</span>,
-  atip.pos = <span class='kw'>NULL</span>,
-  btip.pos = <span class='kw'>NULL</span>,
-  ctip.pos = <span class='kw'>NULL</span>,
-  padding = <span class='fl'>0.08</span>,
-  col = <span class='fl'>NA</span>,
-  grid.lines = <span class='fl'>10</span>,
-  grid.col = <span class='st'>"darkgrey"</span>,
-  grid.lty = <span class='st'>"solid"</span>,
-  grid.lwd = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  grid.minor.lines = <span class='fl'>4</span>,
-  grid.minor.col = <span class='st'>"lightgrey"</span>,
-  grid.minor.lty = <span class='st'>"solid"</span>,
-  grid.minor.lwd = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  axis.lty = <span class='st'>"solid"</span>,
-  axis.labels = <span class='fl'>TRUE</span>,
-  axis.cex = <span class='fl'>0.8</span>,
-  axis.font = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"font"</span>),
-  axis.rotate = <span class='fl'>TRUE</span>,
-  axis.pos = <span class='kw'>NULL</span>,
-  axis.tick = <span class='fl'>TRUE</span>,
-  axis.lwd = <span class='fl'>1</span>,
-  ticks.lwd = <span class='kw'>axis.lwd</span>,
-  ticks.length = <span class='fl'>0.025</span>,
-  axis.col = <span class='st'>"black"</span>,
-  ticks.col = <span class='kw'>grid.col</span>,
-  <span class='kw'>...</span>
-)
+    <pre class="usage"><span class='fu'>TernaryPlot</span><span class='op'>(</span>
+  atip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  alab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  blab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  clab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.offset <span class='op'>=</span> <span class='fl'>0.16</span>,
+  lab.col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  point <span class='op'>=</span> <span class='st'>"up"</span>,
+  clockwise <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.cex <span class='op'>=</span> <span class='fl'>1</span>,
+  lab.font <span class='op'>=</span> <span class='fl'>0</span>,
+  tip.cex <span class='op'>=</span> <span class='va'>lab.cex</span>,
+  tip.font <span class='op'>=</span> <span class='fl'>2</span>,
+  tip.col <span class='op'>=</span> <span class='st'>"black"</span>,
+  isometric <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  atip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  atip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  padding <span class='op'>=</span> <span class='fl'>0.08</span>,
+  col <span class='op'>=</span> <span class='cn'>NA</span>,
+  grid.lines <span class='op'>=</span> <span class='fl'>10</span>,
+  grid.col <span class='op'>=</span> <span class='st'>"darkgrey"</span>,
+  grid.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  grid.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  grid.minor.lines <span class='op'>=</span> <span class='fl'>4</span>,
+  grid.minor.col <span class='op'>=</span> <span class='st'>"lightgrey"</span>,
+  grid.minor.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  grid.minor.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  axis.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  axis.labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.cex <span class='op'>=</span> <span class='fl'>0.8</span>,
+  axis.font <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"font"</span><span class='op'>)</span>,
+  axis.rotate <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  axis.tick <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.lwd <span class='op'>=</span> <span class='fl'>1</span>,
+  ticks.lwd <span class='op'>=</span> <span class='va'>axis.lwd</span>,
+  ticks.length <span class='op'>=</span> <span class='fl'>0.025</span>,
+  axis.col <span class='op'>=</span> <span class='st'>"black"</span>,
+  ticks.col <span class='op'>=</span> <span class='va'>grid.col</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>HorizontalGrid</span>(
-  grid.lines = <span class='fl'>10</span>,
-  grid.col = <span class='st'>"grey"</span>,
-  grid.lty = <span class='st'>"dotted"</span>,
-  grid.lwd = <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  direction = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>)
-)</pre>
+<span class='fu'>HorizontalGrid</span><span class='op'>(</span>
+  grid.lines <span class='op'>=</span> <span class='fl'>10</span>,
+  grid.col <span class='op'>=</span> <span class='st'>"grey"</span>,
+  grid.lty <span class='op'>=</span> <span class='st'>"dotted"</span>,
+  grid.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ternDirection"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -417,9 +417,9 @@ of the plotted region?</p></li>
 (<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>TernaryPlot</span>(atip=<span class='st'>"Top"</span>, btip=<span class='st'>"Bottom"</span>, ctip=<span class='st'>"Right"</span>, axis.col=<span class='st'>"red"</span>, 
-            col=<span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span>))
-</div><div class='input'><span class='fu'>HorizontalGrid</span>(grid.lines=<span class='fl'>2</span>, grid.col=<span class='st'>'blue'</span>, grid.lty=<span class='fl'>1</span>) 
+    <pre class="examples"><div class='input'><span class='fu'>TernaryPlot</span><span class='op'>(</span>atip<span class='op'>=</span><span class='st'>"Top"</span>, btip<span class='op'>=</span><span class='st'>"Bottom"</span>, ctip<span class='op'>=</span><span class='st'>"Right"</span>, axis.col<span class='op'>=</span><span class='st'>"red"</span>, 
+            col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>HorizontalGrid</span><span class='op'>(</span>grid.lines<span class='op'>=</span><span class='fl'>2</span>, grid.col<span class='op'>=</span><span class='st'>'blue'</span>, grid.lty<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span> 
 </div><div class='img'><img src='TernaryPlot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># the second line corresponds to the base of the triangle, and is not drawn</span>
 
 
