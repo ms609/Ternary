@@ -13,6 +13,11 @@ vignette: >
 _Ternary_ is an R package to allow the creation of ternary plots in the standard
 R graphics environment.  I hope that it proves simple to use.
 
+For simple use cases, generate Ternary plots using the point-and-click
+[Shiny App](https://ternary.shinyapps.io/plot).
+
+For greater control over your plots, use R.
+
 Install the package with:
 
 ```{r Load package, eval = FALSE}
