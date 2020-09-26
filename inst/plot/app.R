@@ -46,7 +46,7 @@ fontInput <- function (id, name, val) {
 
 
 # Define UI for app that draws a histogram ----
-ui <- fluidPage(title = 'Ternary plotter', theme = 'Ternary.css',
+ui <- fluidPage(title = 'Ternary plotter',
 
   sidebarLayout(
     sidebarPanel(
@@ -118,7 +118,7 @@ ui <- fluidPage(title = 'Ternary plotter', theme = 'Ternary.css',
            
            lwdInput('ticks.lwd', 'Axis ticks', 1),
            sliderInput('ticks.length', 'Axis tick length', 0, 0.1, 0.025),
-           colourInput('ticks.col', 'Axis colour', "darkgrey"),
+           colourInput('ticks.col', 'Axis tick colour', "darkgrey"),
          )
       ),
     ),
@@ -179,16 +179,14 @@ server <- function(input, output, session) {
   
   axisLabels <- reactive({
     if (displaySetting('show.axis.labels')) {
-      candidates <- colnames(ret)
-      if (is.null(candidates)) rep(NULL, 3L) else candidates
+      c(input$dim1, input$dim2, input$dim3)
     } else rep(NULL, 3)
   })
   
   
   tipLabels <- reactive({
     if (displaySetting('show.tip.labels')) {
-      candidates <- colnames(ret)
-      if (is.null(candidates)) rep(NULL, 3L) else candidates
+      c(input$dim1, input$dim2, input$dim3)
     } else rep(NULL, 3)
   })
   
