@@ -26,102 +26,118 @@ palettes <- list("#91aaa7",
 )
 
 ltyInput <- function (id, name, val) {
-  numericInput(id, paste(name, 'line type'), val)
+  selectInput(id, paste(name, 'line type'),
+              list('None' = 'none', 'Solid' = 'solid', 'Dotted' = 'dotted',
+                   'Dashed' = 'dashed', 'Dot-Dash' = 'dotdash',
+                   'Long-dash' = 'longdash', 'Two-dash' = 'twodash'),
+              val)
 }
 cexInput <- function (id, name, val) {
-  sliderInput(id, name, 0, 4, val)
+  sliderInput(id, name, 0, 4, val, step = 0.01)
 }
 lwdInput <- function (id, name, val) {
-  sliderInput(id, paste(name, 'line width'), 0, 6, val)
+  sliderInput(id, paste(name, 'line width'), 0, 6, val, step = 0.01)
 }
 fontInput <- function (id, name, val) {
   selectInput(id, paste0(name, ' font style'),
-              list('Plain' = 0, 'Bold' = 1, 'Italic' = 2, 'Bold-italic' = 3),
+              list('Plain' = 1, 'Bold' = 2, 'Italic' = 3, 'Bold-italic' = 4),
               val)
 }
 
 
 # Define UI for app that draws a histogram ----
-ui <- fluidPage(theme = 'ternary.css',
-  
-  # Sidebar layout with input and output definitions ----
+ui <- fluidPage(title = 'Ternary plotter', theme = 'Ternary.css',
+
   sidebarLayout(
-    
-    # Sidebar panel for inputs ----
     sidebarPanel(
-      
-      fileInput("datafile", "Data", placeholder = "No data file selected"),
-      textOutput(outputId = "dataStatus"),
-      checkboxGroupInput("labels", "Column names label:",
-                         list('Tips' = 'tips',
-                              'Axes' = 'axes'),
-                         'axes'),
-      sliderInput('lab.offset', 'Label offset', -1, 2, 0.16),
-      colourInput('lab.col', 'Label colour', NULL),
-      selectInput('point', 'Plot direction', 
-                  list('Up' = 'up', 'Right' = 'right', 'Down' = 'down',
-                       'Left' = 'left'), 'up'),
-      checkboxGroupInput('display', 'Display options', 
-                  list('Clockwise' = 'clockwise',
-                       'Isometric' = 'isometric',
-                       'Axis labels' = 'axis.labels',
-                       'Axis tick marks' = 'axis.tick',
-                       'Rotate axis labels' = 'axis.rotate'), 
-                  c('clockwise', 'isometric', 'axis.labels',
-                    'axis.tick', 'axis.rotate')),
-      #xlim = NULL,
-      #ylim = NULL,
-      cexInput('lab.cex', 'Label size', 1),
-      fontInput('lab.font', 'Label', 0),
-      
-      cexInput('tip.cex', 'Tip label size', 1),
-      fontInput('tip.font', 'Tip' , 0),
-      
-      colourInput('tip.col', 'Tip colour', 'black'),
-      #atip.rotate = NULL,
-      #btip.rotate = NULL,
-      #ctip.rotate = NULL,
-      #atip.pos = NULL,
-      #btip.pos = NULL,
-      #ctip.pos = NULL,
-      #padding = 0.08,
-      #col = NA,
-      sliderInput('grid.lines' , 'Main grid lines', 0, 64, 10),
-      sliderInput('grid.minor.lines', 'Minor grid lines every:', 0, 10, 4),
-      colourInput('grid.col', 'Grid colour', "darkgrey"),
-      colourInput('grid.minor.col', 'Grid secondary colour', "lightgrey"),
-      ltyInput('grid.lty', 'Grid', 1),
-      ltyInput('grid.minor.lty', 'Secondary grid', 1),
-      lwdInput('grid.lwd', 'Grid', par("lwd")),
-      lwdInput('grid.minor.lwd', 'Secondary grid', par("lwd")),
-      
-      ltyInput('axis.lty', 'Axis line type', 1),
-      cexInput('axis.cex', 'Axis character size', 0.8),
-      fontInput('axis.font', 'Axis', par("font")),
-      lwdInput('axis.lwd', 'Axis', 1),
-      colourInput('axis.col', 'Axis colour', "black"),
-      
-      #axis.pos = NULL,
-      
-      lwdInput('ticks.lwd', 'Axis ticks', 1),
-      sliderInput('ticks.length', 'Axis tick length', 0, 0.1, 0.025),
-      colourInput('ticks.col', 'Axis colour', "darkgrey"),
+      tabsetPanel(
+        tabPanel('Load data',
+           fileInput("datafile", "Data", placeholder = "No data file selected"),
+           textOutput(outputId = "dataStatus"),
+           textInput('dim1', 'Column one', ''),
+           textInput('dim2', 'Column two', ''),
+           textInput('dim3', 'Column three', ''),
+           ),
+        tabPanel('Plot display',
+           
+           sliderInput('lab.offset', 'Label offset', -0.3, 0.5, 0.16, step = 0.005),
+           colourInput('lab.col', 'Label colour', 'black'),
+           selectInput('point', 'Plot direction', 
+                       list('Up' = 'up', 'Right' = 'right', 'Down' = 'down',
+                            'Left' = 'left'), 'up'),
+           checkboxGroupInput('display', 'Display options', 
+                              list('Clockwise' = 'clockwise',
+                                   'Isometric' = 'isometric',
+                                   'Tip labels' = 'show.tip.labels',
+                                   'Axis labels' = 'show.axis.labels',
+                                   'Axis tick labels' = 'axis.labels',
+                                   'Axis tick marks' = 'axis.tick',
+                                   'Rotate tick labels' = 'axis.rotate'), 
+                              c('clockwise', 'isometric', 'axis.labels',
+                                'show.axis.labels', 'axis.tick', 'axis.rotate')),
+          
+          #xlim = NULL,
+          #ylim = NULL,
+          
+          #atip.rotate = NULL,
+          #btip.rotate = NULL,
+          #ctip.rotate = NULL,
+          #atip.pos = NULL,
+          #btip.pos = NULL,
+          #ctip.pos = NULL,
+          #padding = 0.08,
+          #col = NA,
+          cexInput('lab.cex', 'Label size', 1),
+          fontInput('lab.font', 'Label', 1),
+          
+          cexInput('tip.cex', 'Tip label size', 1),
+          fontInput('tip.font', 'Tip' , 1),
+          
+          colourInput('tip.col', 'Tip colour', 'black'),
+          ),
+        tabPanel('Grids',
+           sliderInput('grid.lines' , 'Main grid lines', 1, 42, 10),
+           sliderInput('grid.minor.lines', 'Minor grid lines:', 0, 10, 4),
+           colourInput('grid.col', 'Grid colour', "darkgrey"),
+           colourInput('grid.minor.col', 'Grid secondary colour', "lightgrey"),
+           ltyInput('grid.lty', 'Grid', 'solid'),
+           ltyInput('grid.minor.lty', 'Secondary grid', 'solid'),
+           lwdInput('grid.lwd', 'Grid', par("lwd")),
+           lwdInput('grid.minor.lwd', 'Secondary grid', par("lwd")),
+           ),
+        tabPanel('Axes',
+           
+           
+           ltyInput('axis.lty', 'Axis line type', 'solid'),
+           cexInput('axis.cex', 'Axis character size', 0.8),
+           fontInput('axis.font', 'Axis', par("font")),
+           lwdInput('axis.lwd', 'Axis', 1),
+           colourInput('axis.col', 'Axis colour', "black"),
+           
+           #axis.pos = NULL,
+           
+           lwdInput('ticks.lwd', 'Axis ticks', 1),
+           sliderInput('ticks.length', 'Axis tick length', 0, 0.1, 0.025),
+           colourInput('ticks.col', 'Axis colour', "darkgrey"),
+         )
+      ),
     ),
-    
-    
-    # Main panel for displaying outputs ----
+
+  # Sidebar layout with input and output definitions ----
+  
     mainPanel(
-      plotOutput(outputId = "plot"),
+      fluidRow(plotOutput(outputId = "plot")),
+      fluidRow(textOutput(outputId = "footer")),
     )
-  ),
+  )
+
   
   # References and notes
-  fluidRow(
-    textOutput(outputId = "footer"),
-  )
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
+  
+  displaySetting <- function(id) id %in% input$display
   
   myData <- reactive({
     fileInput <- input$treefile
@@ -135,7 +151,9 @@ server <- function(input, output) {
         output$dataStatus <- renderText({"Data file not found; using example."})
       }
     }
+    
     ret <- read.csv(tmpFile)
+    
     if (dim(ret)[2] < 3L) {
       ret <- read.table(tmpFile)
     }
@@ -146,12 +164,21 @@ server <- function(input, output) {
       ret <- read.csv(exampleFile)
       output$dataStatus <- renderText({"Could not parse data file; using example."})
     }
+    cn <- colnames(ret)
+    updateTextInput(session, 'dim1', value = cn[1])
+    updateTextInput(session, 'dim2', value = cn[2])
+    updateTextInput(session, 'dim3', value = cn[3])
     
     ret
   })
   
+  dataLabels <- reactive({
+    candidates <- colnames(ret)
+    if (is.null(candidates)) rep('', 3L) else candidates
+  })
+  
   axisLabels <- reactive({
-    if ('axes' %in% input$labels) {
+    if (displaySetting('show.axis.labels')) {
       candidates <- colnames(ret)
       if (is.null(candidates)) rep(NULL, 3L) else candidates
     } else rep(NULL, 3)
@@ -159,7 +186,7 @@ server <- function(input, output) {
   
   
   tipLabels <- reactive({
-    if ('tips' %in% input$labels) {
+    if (displaySetting('show.tip.labels')) {
       candidates <- colnames(ret)
       if (is.null(candidates)) rep(NULL, 3L) else candidates
     } else rep(NULL, 3)
@@ -175,17 +202,17 @@ server <- function(input, output) {
       blab =  axisLabels()[2],
       clab = axisLabels()[3],
       lab.offset = input$lab.offset,
-      lab.col = NULL,
-      point = "up",
-      clockwise = TRUE,
+      lab.col = input$lab.col,
+      point = input$point,
+      clockwise = displaySetting('clockwise'),
       xlim = NULL,
       ylim = NULL,
-      lab.cex = 1,
-      lab.font = 0,
-      tip.cex = lab.cex,
-      tip.font = 2,
-      tip.col = "black",
-      isometric = TRUE,
+      lab.cex = input$lab.cex,
+      lab.font = as.numeric(input$lab.font),
+      tip.cex = input$tip.cex,
+      tip.font = as.numeric(input$tip.font),
+      tip.col = input$tip.col,
+      isometric = displaySetting('isometric'),
       atip.rotate = NULL,
       btip.rotate = NULL,
       ctip.rotate = NULL,
@@ -194,26 +221,26 @@ server <- function(input, output) {
       ctip.pos = NULL,
       padding = 0.08,
       col = NA,
-      grid.lines = 10,
+      grid.lines = input$grid.lines,
       grid.col = input$grid.col,
-      grid.lty = "solid",
-      grid.lwd = par("lwd"),
-      grid.minor.lines = 4,
-      grid.minor.col = "lightgrey",
-      grid.minor.lty = "solid",
-      grid.minor.lwd = par("lwd"),
-      axis.lty = "solid",
-      axis.labels = TRUE,
-      axis.cex = 0.8,
-      axis.font = par("font"),
-      axis.rotate = TRUE,
-      axis.pos = NULL,
-      axis.tick = TRUE,
-      axis.lwd = 1,
-      ticks.lwd = axis.lwd,
-      ticks.length = 0.025,
-      axis.col = "black",
-      ticks.col = input$grid.col,
+      grid.lty = input$grid.lty,
+      grid.lwd = input$grid.lwd,
+      grid.minor.lines = input$grid.minor.lines,
+      grid.minor.col = input$grid.minor.col,
+      grid.minor.lty = input$grid.minor.lty,
+      grid.minor.lwd = input$grid.minor.lwd,
+      axis.lty = input$axis.lty,
+      axis.labels = displaySetting('axis.labels'),
+      axis.cex = input$axis.cex,
+      axis.font = as.numeric(input$axis.font),
+      axis.rotate = displaySetting('axis.rotate'),
+      #axis.pos = input$axis.pos,
+      axis.tick = displaySetting('axis.tick'),
+      axis.lwd = input$axis.lwd,
+      ticks.lwd = input$ticks.lwd,
+      ticks.length = input$ticks.length,
+      axis.col = input$axis.col,
+      ticks.col = input$ticks.col
     )
     TernaryPoints(myData()[, 1:3])
     
