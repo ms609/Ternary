@@ -164,6 +164,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   axis.col <- Triplicate(axis.col)
   axis.cex <- Triplicate(axis.cex)
   axis.lty <- Triplicate(axis.lty)
+  axis.font <- Triplicate(axis.font)
   ticks.col <- Triplicate(ticks.col)
   grid.col <- Triplicate(grid.col)
   grid.lwd <- Triplicate(grid.lwd)
