@@ -171,32 +171,32 @@
 <polyline points='446.35,374.37 444.19,370.63 ' style='stroke-width: 2.25; stroke: #0000FF;' />
 <polyline points='554.40,187.23 563.04,187.23 ' style='stroke-width: 0.75; stroke: #FF0000;' />
 <polyline points='662.45,374.37 655.96,385.60 ' style='stroke-width: 1.50; stroke: #006400;' />
-<text transform='translate(427.10,357.88) rotate(60)' style='font-size: 9.60px; font-style: italic; fill: #0000FF; font-family: Liberation Sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
-<text x='568.51' y='189.43' style='font-size: 9.60px; fill: #FF0000; font-family: Liberation Sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text transform='translate(427.10,357.88) rotate(60)' style='font-size: 9.60px; font-weight: bold; fill: #0000FF; font-family: Liberation Sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
+<text x='568.51' y='189.43' style='font-size: 9.60px; font-weight: bold; fill: #FF0000; font-family: Liberation Sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
 <text transform='translate(638.78,407.28) rotate(-60)' style='font-size: 9.60px; font-weight: bold; fill: #006400; font-family: Liberation Sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>100</text>
 <polyline points='473.37,327.59 471.20,323.84 ' style='stroke-width: 2.25; stroke: #0000FF;' />
 <polyline points='581.41,234.01 590.06,234.01 ' style='stroke-width: 0.75; stroke: #FF0000;' />
 <polyline points='608.42,374.37 601.94,385.60 ' style='stroke-width: 1.50; stroke: #006400;' />
-<text transform='translate(456.77,315.71) rotate(60)' style='font-size: 9.60px; font-style: italic; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>75</text>
-<text x='595.53' y='236.21' style='font-size: 9.60px; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>75</text>
+<text transform='translate(456.77,315.71) rotate(60)' style='font-size: 9.60px; font-weight: bold; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>75</text>
+<text x='595.53' y='236.21' style='font-size: 9.60px; font-weight: bold; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>75</text>
 <text transform='translate(587.43,402.66) rotate(-60)' style='font-size: 9.60px; font-weight: bold; fill: #006400; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>75</text>
 <polyline points='500.38,280.80 498.22,277.06 ' style='stroke-width: 2.25; stroke: #0000FF;' />
 <polyline points='608.42,280.80 617.07,280.80 ' style='stroke-width: 0.75; stroke: #FF0000;' />
 <polyline points='554.40,374.37 547.92,385.60 ' style='stroke-width: 1.50; stroke: #006400;' />
-<text transform='translate(483.78,268.93) rotate(60)' style='font-size: 9.60px; font-style: italic; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>50</text>
-<text x='622.54' y='283.00' style='font-size: 9.60px; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text transform='translate(483.78,268.93) rotate(60)' style='font-size: 9.60px; font-weight: bold; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>50</text>
+<text x='622.54' y='283.00' style='font-size: 9.60px; font-weight: bold; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>50</text>
 <text transform='translate(533.40,402.66) rotate(-60)' style='font-size: 9.60px; font-weight: bold; fill: #006400; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>50</text>
 <polyline points='527.39,234.01 525.23,230.27 ' style='stroke-width: 2.25; stroke: #0000FF;' />
 <polyline points='635.43,327.59 644.08,327.59 ' style='stroke-width: 0.75; stroke: #FF0000;' />
 <polyline points='500.38,374.37 493.89,385.60 ' style='stroke-width: 1.50; stroke: #006400;' />
-<text transform='translate(510.80,222.14) rotate(60)' style='font-size: 9.60px; font-style: italic; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>25</text>
-<text x='649.55' y='329.78' style='font-size: 9.60px; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>25</text>
+<text transform='translate(510.80,222.14) rotate(60)' style='font-size: 9.60px; font-weight: bold; fill: #0000FF; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>25</text>
+<text x='649.55' y='329.78' style='font-size: 9.60px; font-weight: bold; fill: #FF0000; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>25</text>
 <text transform='translate(479.38,402.66) rotate(-60)' style='font-size: 9.60px; font-weight: bold; fill: #006400; font-family: Liberation Sans;' textLength='10.66px' lengthAdjust='spacingAndGlyphs'>25</text>
 <polyline points='554.40,187.23 552.24,183.49 ' style='stroke-width: 2.25; stroke: #0000FF;' />
 <polyline points='662.45,374.37 671.09,374.37 ' style='stroke-width: 0.75; stroke: #FF0000;' />
 <polyline points='446.35,374.37 439.87,385.60 ' style='stroke-width: 1.50; stroke: #006400;' />
-<text transform='translate(540.47,179.97) rotate(60)' style='font-size: 9.60px; font-style: italic; fill: #0000FF; font-family: Liberation Sans;' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='676.56' y='376.57' style='font-size: 9.60px; fill: #FF0000; font-family: Liberation Sans;' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text transform='translate(540.47,179.97) rotate(60)' style='font-size: 9.60px; font-weight: bold; fill: #0000FF; font-family: Liberation Sans;' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='676.56' y='376.57' style='font-size: 9.60px; font-weight: bold; fill: #FF0000; font-family: Liberation Sans;' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text transform='translate(428.02,398.05) rotate(-60)' style='font-size: 9.60px; font-weight: bold; fill: #006400; font-family: Liberation Sans;' textLength='5.33px' lengthAdjust='spacingAndGlyphs'>0</text>
 <polyline points='446.35,374.37 554.40,187.23 ' style='stroke-width: 2.25; stroke: #0000FF; stroke-dasharray: 3.00,9.00;' />
 <polyline points='554.40,187.23 662.45,374.37 ' style='stroke-width: 0.75; stroke: #FF0000;' />
