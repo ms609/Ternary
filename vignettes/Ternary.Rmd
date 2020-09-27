@@ -20,11 +20,6 @@ install.packages('Ternary')
 shiny::runGitHub('TernaryApp', 'ms609')
 ```
 
-This app is under development and does not yet implement the full functionality
-or flexibility of the full R package.
-Do [request](https://github.com/ms609/TernaryApp/issues/new?title=Missing+feature:+)
-that I add any features that are presently lacking.
-
 For greater control over your plots, use the full R implementation.
 
 Install the package with:
