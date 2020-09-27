@@ -10,13 +10,22 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-_Ternary_ is an R package to allow the creation of ternary plots in the standard
+'Ternary' is an R package to allow the creation of ternary plots in the standard
 R graphics environment.  I hope that it proves simple to use.
 
-For simple use cases, generate Ternary plots using the point-and-click
-[Shiny App](https://ternary.shinyapps.io/plot).
+For a point-and-click plotting experience, you can use the Shiny app:
+```r
+install.packages('shiny')
+install.packages('Ternary')
+shiny::runGitHub('TernaryApp', 'ms609')
+```
 
-For greater control over your plots, use R.
+This app is under development and does not yet implement the full functionality
+or flexibility of the full R package.
+Do [request](https://github.com/ms609/TernaryApp/issues/new?title=Missing+feature:+)
+that I add any features that are presently lacking.
+
+For greater control over your plots, use the full R implementation.
 
 Install the package with:
 
