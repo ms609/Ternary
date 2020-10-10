@@ -1,4 +1,4 @@
-# Ternary v1.1.4.9002 (development)
+# Ternary v1.1.4.9003 (development)
 
 - Add Shiny user interface; launch with `shiny::runGitHub('ms609/TernaryApp')`.
 

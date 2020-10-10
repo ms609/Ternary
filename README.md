@@ -12,7 +12,7 @@
 (a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams) 
 using the familiar functions of the default 'graphics' package.
 
-For simple use cases, generate Ternary plots using the point-and-click
+For simple use cases, generate ternary plots using the point-and-click
 Shiny app:
 
 ```
