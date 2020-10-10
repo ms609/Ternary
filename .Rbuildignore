@@ -9,7 +9,8 @@
 .Rprofile
 cran-comments.md
 CONTRIBUTING.md
-/^\.git/
+^\.git/
+^inst/TernaryApp/\.git$
 ^Rplot.*$
 ^.*\.yml$
 ^.*\.json$
