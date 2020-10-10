@@ -16,7 +16,7 @@ R graphics environment.  I hope that it proves simple to use.
 For simple use cases, generate Ternary plots using the point-and-click
 Shiny app:
 
-```
+```{r shiny-app, eval = FALSE}
 install.packages('shiny')
 install.packages('Ternary')
 shiny::runGitHub('TernaryApp', 'ms609')
