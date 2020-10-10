@@ -1,5 +1,9 @@
 # Ternary v1.1.4.9002 (development)
 
+- Add Shiny user interface; launch with `shiny::runGitHub('ms609/TernaryApp')`.
+
+# Ternary v1.1.4.9002 (development)
+
 - Optional parameter `axis.rotate` to allow axis labels to be plotted 'unrotated' 
    (https://github.com/ms609/Ternary/issues/38).
 
