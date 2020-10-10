@@ -12,7 +12,17 @@
 (a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams) 
 using the familiar functions of the default 'graphics' package.
 
-Usage instructions can be 
+For simple use cases, generate Ternary plots using the point-and-click
+Shiny app:
+
+```
+install.packages('shiny')
+install.packages('Ternary')
+shiny::runGitHub('ms609/TernaryApp')
+```
+
+For greater control over your plots, use the R command line;
+usage instructions can be 
 [viewed here](https://ms609.github.io/Ternary/articles/Ternary.html).
 
 Please let me know of any feature requests or bugs by [opening an 
