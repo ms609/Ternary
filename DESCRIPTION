@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.1.4.9003
+Version: 1.2.0
 Title: Create Ternary Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) using the
   standard graphics functions.
@@ -20,8 +20,10 @@ Depends: R (>= 3.2.0)
 Imports:
     viridisLite
 Suggests:
+    colourpicker,
     knitr,
     rmarkdown,
+    shiny,
     testthat,
     vdiffr
 LazyData: true

@@ -15,7 +15,7 @@
   ],
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.1.4.9003",
+  "version": "1.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -66,6 +66,18 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "colourpicker",
+      "name": "colourpicker",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=colourpicker"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -87,6 +99,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "shiny",
+      "name": "shiny",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
     {
       "@type": "SoftwareApplication",
@@ -159,5 +183,6 @@
       }
     }
   ],
-  "fileSize": "5142.817KB"
+  "fileSize": "5167.885KB",
+  "keywords": ["ternary-plots", "plotting", "plotting-in-r", "graphics"]
 }
