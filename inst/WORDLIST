@@ -2,11 +2,13 @@ Color
 Finetti
 Github
 ORCID
+TernaryApp
 TernaryPackage
 Zenodo
 ac
 cf
 codecov
+csv
 doi
 durham
 dx
@@ -16,6 +18,7 @@ ggplot
 ggtern
 im
 org
+readxl
 tritanopia
 uk
 unrotated
