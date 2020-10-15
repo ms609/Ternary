@@ -35,7 +35,7 @@ element (or row) specifies
 the three coordinates of a point in ternary space.}
 
 \item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
-If using \verb{TernaryText()w}, this will likely include the parameter \code{labels},
+If using \code{TernaryText()}, this will likely include the parameter \code{labels},
 to specify the text to plot.}
 
 \item{fromCoordinates, toCoordinates}{For \code{TernaryArrows()}, coordinates at

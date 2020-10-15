@@ -454,7 +454,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
 #' which arrows should begin and end; _cf._ `x0`, `y0`, `x1` and `y1` in 
 #' \link[graphics]{arrows}.  Recycled as necessary.
 #' @param \dots Additional parameters to pass to `PlottingFunction()`.  
-#' If using `TernaryText()w`, this will likely include the parameter `labels`,
+#' If using `TernaryText()`, this will likely include the parameter `labels`,
 #' to specify the text to plot.
 #' 
 #' @examples 
