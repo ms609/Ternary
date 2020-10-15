@@ -1,1 +1,3 @@
+inst/TernaryApp/app.R
+R/shiny.R
 R/zzz.R
