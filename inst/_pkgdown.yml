@@ -12,6 +12,7 @@ reference:
     desc: >
       Functions for plotting straightforward data onto a ternary plot.
     contents:
+      - TernaryApp
       - TernaryPlot
       - AddToTernary
   - title: "Coordinates"
