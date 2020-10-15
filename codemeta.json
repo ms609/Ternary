@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "Ternary",
-  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the\n  standard graphics functions.\n  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting \n  functions.",
+  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the\n  standard graphics functions.\n  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting \n  functions.\n  Includes a 'Shiny' user interface for point-and-click plotting.",
   "name": "Ternary: Create Ternary Plots",
   "codeRepository": "https://github.com/ms609/Ternary/",
   "relatedLink": [
@@ -66,18 +66,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "colourpicker",
-      "name": "colourpicker",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=colourpicker"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -90,6 +78,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "readxl",
+      "name": "readxl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readxl"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "rmarkdown",
       "name": "rmarkdown",
       "provider": {
@@ -99,18 +99,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "shiny",
-      "name": "shiny",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
     {
       "@type": "SoftwareApplication",
@@ -146,6 +134,42 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "colourpicker",
+      "name": "colourpicker",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=colourpicker"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "shiny",
+      "name": "shiny",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shiny"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "shinyjs",
+      "name": "shinyjs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinyjs"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "viridisLite",
       "name": "viridisLite",
       "provider": {
@@ -160,7 +184,7 @@
   "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
   "contIntegration": ["https://travis-ci.org/ms609/Ternary", "https://codecov.io/gh/ms609/Ternary"],
-  "developmentStatus": "http://www.repostatus.org/#project-statuses",
+  "developmentStatus": "https://www.repostatus.org/#project-statuses",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -183,6 +207,11 @@
       }
     }
   ],
-  "fileSize": "5167.885KB",
-  "keywords": ["ternary-plots", "plotting", "plotting-in-r", "graphics"]
+  "fileSize": "5175.844KB",
+  "keywords": [
+    "ternary-plots",
+    "plotting",
+    "plotting-in-r",
+    "graphics"
+  ]
 }
