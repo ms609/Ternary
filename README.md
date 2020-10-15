@@ -16,9 +16,8 @@ For simple use cases, generate ternary plots using the point-and-click
 Shiny app:
 
 ```
-install.packages('shiny')
 install.packages('Ternary')
-shiny::runGitHub('ms609/TernaryApp')
+Ternary::TernaryApp()
 ```
 
 For greater control over your plots, use the R command line;

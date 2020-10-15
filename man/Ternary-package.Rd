@@ -9,8 +9,8 @@
 using the familiar functions of the default 'graphics' package.}
 \description{
 For simple use cases, generate ternary plots using the point-and-click
-Shiny app:\preformatted{install.packages('shiny')
-shiny::runGitHub('ms609/TernaryApp')
+Shiny app:\preformatted{install.packages('Ternary')
+Ternary::TernaryApp()
 }
 }
 \details{

@@ -6,8 +6,8 @@
 #' Shiny app:
 #'   
 #' ```
-#' install.packages('shiny')
-#' shiny::runGitHub('ms609/TernaryApp')
+#' install.packages('Ternary')
+#' Ternary::TernaryApp()
 #' ```
 #' 
 #' For greater control over your plots, use the R command line;
