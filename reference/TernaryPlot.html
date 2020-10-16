@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/journal/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -43,7 +47,6 @@
 
 <meta property="og:title" content="Create a ternary plot — TernaryPlot" />
 <meta property="og:description" content="Create and style a blank ternary plot." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -71,7 +74,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -109,7 +112,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ms609/Ternary">
+  <a href="https://github.com/ms609/Ternary/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -142,61 +145,63 @@
     <p>Create and style a blank ternary plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>TernaryPlot</span>(
-  <span class='kw'>atip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>btip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ctip</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>alab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>blab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lab.offset</span> <span class='kw'>=</span> <span class='fl'>0.16</span>,
-  <span class='kw'>lab.col</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>point</span> <span class='kw'>=</span> <span class='st'>"up"</span>,
-  <span class='kw'>clockwise</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lab.cex</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>lab.font</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>tip.cex</span> <span class='kw'>=</span> <span class='no'>lab.cex</span>,
-  <span class='kw'>tip.font</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>tip.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>isometric</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>atip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>btip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ctip.rotate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>atip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>btip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ctip.pos</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>padding</span> <span class='kw'>=</span> <span class='fl'>0.08</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>NA</span>,
-  <span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"darkgrey"</span>,
-  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  <span class='kw'>grid.minor.lines</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-  <span class='kw'>grid.minor.col</span> <span class='kw'>=</span> <span class='st'>"lightgrey"</span>,
-  <span class='kw'>grid.minor.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>grid.minor.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  <span class='kw'>axis.lty</span> <span class='kw'>=</span> <span class='st'>"solid"</span>,
-  <span class='kw'>axis.labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>axis.cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>axis.font</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"font"</span>),
-  <span class='kw'>axis.tick</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>axis.lwd</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>ticks.lwd</span> <span class='kw'>=</span> <span class='no'>axis.lwd</span>,
-  <span class='kw'>ticks.length</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
-  <span class='kw'>axis.col</span> <span class='kw'>=</span> <span class='st'>"black"</span>,
-  <span class='kw'>ticks.col</span> <span class='kw'>=</span> <span class='no'>grid.col</span>,
-  <span class='no'>...</span>
-)
+    <pre class="usage"><span class='fu'>TernaryPlot</span><span class='op'>(</span>
+  atip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip <span class='op'>=</span> <span class='cn'>NULL</span>,
+  alab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  blab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  clab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.offset <span class='op'>=</span> <span class='fl'>0.16</span>,
+  lab.col <span class='op'>=</span> <span class='cn'>NULL</span>,
+  point <span class='op'>=</span> <span class='st'>"up"</span>,
+  clockwise <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  xlim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylim <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lab.cex <span class='op'>=</span> <span class='fl'>1</span>,
+  lab.font <span class='op'>=</span> <span class='fl'>0</span>,
+  tip.cex <span class='op'>=</span> <span class='va'>lab.cex</span>,
+  tip.font <span class='op'>=</span> <span class='fl'>2</span>,
+  tip.col <span class='op'>=</span> <span class='st'>"black"</span>,
+  isometric <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  atip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip.rotate <span class='op'>=</span> <span class='cn'>NULL</span>,
+  atip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  btip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ctip.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  padding <span class='op'>=</span> <span class='fl'>0.08</span>,
+  col <span class='op'>=</span> <span class='cn'>NA</span>,
+  grid.lines <span class='op'>=</span> <span class='fl'>10</span>,
+  grid.col <span class='op'>=</span> <span class='st'>"darkgrey"</span>,
+  grid.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  grid.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  grid.minor.lines <span class='op'>=</span> <span class='fl'>4</span>,
+  grid.minor.col <span class='op'>=</span> <span class='st'>"lightgrey"</span>,
+  grid.minor.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  grid.minor.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  axis.lty <span class='op'>=</span> <span class='st'>"solid"</span>,
+  axis.labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.cex <span class='op'>=</span> <span class='fl'>0.8</span>,
+  axis.font <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"font"</span><span class='op'>)</span>,
+  axis.rotate <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.pos <span class='op'>=</span> <span class='cn'>NULL</span>,
+  axis.tick <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  axis.lwd <span class='op'>=</span> <span class='fl'>1</span>,
+  ticks.lwd <span class='op'>=</span> <span class='va'>axis.lwd</span>,
+  ticks.length <span class='op'>=</span> <span class='fl'>0.025</span>,
+  axis.col <span class='op'>=</span> <span class='st'>"black"</span>,
+  ticks.col <span class='op'>=</span> <span class='va'>grid.col</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
 
-<span class='fu'>HorizontalGrid</span>(
-  <span class='kw'>grid.lines</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>grid.col</span> <span class='kw'>=</span> <span class='st'>"grey"</span>,
-  <span class='kw'>grid.lty</span> <span class='kw'>=</span> <span class='st'>"dotted"</span>,
-  <span class='kw'>grid.lwd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='st'>"lwd"</span>),
-  <span class='kw'>direction</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ternDirection"</span>)
-)</pre>
+<span class='fu'>HorizontalGrid</span><span class='op'>(</span>
+  grid.lines <span class='op'>=</span> <span class='fl'>10</span>,
+  grid.col <span class='op'>=</span> <span class='st'>"grey"</span>,
+  grid.lty <span class='op'>=</span> <span class='st'>"dotted"</span>,
+  grid.lwd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='st'>"lwd"</span><span class='op'>)</span>,
+  direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ternDirection"</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -334,6 +339,19 @@ Use a vector of length three to set a different value for each direction.</p></t
       <td><p>Font for text. Defaults to <code><a href='https://rdrr.io/r/graphics/par.html'>par('font')</a></code>.</p></td>
     </tr>
     <tr>
+      <th>axis.rotate</th>
+      <td><p>Logical specifying whether to rotate axis labels
+to parallel grid lines, or numeric specifying custom rotation for each axis,
+to be passed as <code>srt</code> parameter to <code><a href='https://rdrr.io/r/graphics/text.html'>text()</a></code>.  Expand margins or set
+<code><a href='https://rdrr.io/r/graphics/par.html'>par(xpd = NA)</a></code> if labels are clipped.</p></td>
+    </tr>
+    <tr>
+      <th>axis.pos</th>
+      <td><p>Vector of length one or three specifying position of axis
+labels, to be passed as <code>pos</code> parameter to <code><a href='https://rdrr.io/r/graphics/text.html'>text()</a></code>; populated automatically
+if <code>NULL</code> (the default).</p></td>
+    </tr>
+    <tr>
       <th>axis.tick</th>
       <td><p>Logical specifying whether to mark the axes with tick marks.</p></td>
     </tr>
@@ -361,7 +379,7 @@ inline, and <code>ticks.col = NULL</code> means to use whatever colour
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters to <code><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></code>.</p></td>
+      <td><p>Additional parameters to <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></code>.</p></td>
     </tr>
     <tr>
       <th>direction</th>
@@ -393,27 +411,22 @@ coordinates</p></li>
 of the plotted region?</p></li>
 </ul>
 </div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>TernaryPlot</span>(<span class='kw'>atip</span><span class='kw'>=</span><span class='st'>"Top"</span>, <span class='kw'>btip</span><span class='kw'>=</span><span class='st'>"Bottom"</span>, <span class='kw'>ctip</span><span class='kw'>=</span><span class='st'>"Right"</span>, <span class='kw'>axis.col</span><span class='kw'>=</span><span class='st'>"red"</span>,
-            <span class='kw'>col</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span>(<span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span>))</div><div class='input'><span class='fu'>HorizontalGrid</span>(<span class='kw'>grid.lines</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>grid.col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>grid.lty</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='img'><img src='TernaryPlot-1.png' alt='' width='700' height='433' /></div><div class='input'># the second line corresponds to the base of the triangle, and is not drawn
-
-
-</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#functions">Functions</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
     <p><a href='https://orcid.org/0000-0001-5660-1727'>Martin R. Smith</a>
 (<a href='mailto:martin.smith@durham.ac.uk'>martin.smith@durham.ac.uk</a>)</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>TernaryPlot</span><span class='op'>(</span>atip <span class='op'>=</span> <span class='st'>"Top"</span>, btip <span class='op'>=</span> <span class='st'>"Bottom"</span>, ctip <span class='op'>=</span> <span class='st'>"Right"</span>, axis.col <span class='op'>=</span> <span class='st'>"red"</span>, 
+            col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.8</span>, <span class='fl'>0.8</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'>HorizontalGrid</span><span class='op'>(</span>grid.lines <span class='op'>=</span> <span class='fl'>2</span>, grid.col <span class='op'>=</span> <span class='st'>'blue'</span>, grid.lty <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> 
+</div><div class='img'><img src='TernaryPlot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># the second line corresponds to the base of the triangle, and is not drawn</span>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -424,7 +437,7 @@ of the plotted region?</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
