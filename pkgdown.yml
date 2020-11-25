@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Ternary: Ternary.html
-last_built: 2020-10-25T06:38Z
+last_built: 2020-11-25T08:25Z
 urls:
   reference: https://ms609.github.io/Ternary/reference
   article: https://ms609.github.io/Ternary/articles
