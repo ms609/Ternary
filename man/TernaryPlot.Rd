@@ -95,11 +95,11 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric=TRUE}; see documentation of
 \code{isometric} parameter.}
 
-\item{lab.cex, tip.cex}{Numeric specifying character expansion for axis
-labels.
+\item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
+for axis labels.
 Use a vector of length three to specify a different value for each direction.}
 
-\item{lab.font, tip.font}{Numeric specifying font (Roman, bold, italic,
+\item{lab.font, tip.font}{Numeric specifying font style (Roman, bold, italic,
 bold-italic) for axis titles.
 Use a vector of length three to set a different font for each direction.}
 
@@ -145,7 +145,8 @@ Use a vector of length three to set a different value for each direction.}
 (numerical) annotations are to be made at the tickmarks, or a character or
 expression vector of labels to be placed at the tick points.}
 
-\item{axis.cex}{Numeric specifying character expansion for axis labels.
+\item{axis.cex}{Numeric specifying character expansion (font size)
+for axis labels.
 Use a vector of length three to set a different value for each direction.}
 
 \item{axis.font}{Font for text. Defaults to \code{par('font')}.}

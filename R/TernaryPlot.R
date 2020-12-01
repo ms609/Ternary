@@ -32,10 +32,10 @@
 #'  May be overridden if `isometric=TRUE`; see documentation of
 #'  `isometric` parameter.
 #'  
-#' @param lab.cex,tip.cex Numeric specifying character expansion for axis 
-#'  labels. 
+#' @param lab.cex,tip.cex Numeric specifying character expansion (font size)
+#' for axis labels. 
 #' Use a vector of length three to specify a different value for each direction.
-#' @param lab.font,tip.font Numeric specifying font (Roman, bold, italic, 
+#' @param lab.font,tip.font Numeric specifying font style (Roman, bold, italic, 
 #'  bold-italic) for axis titles.
 #'  Use a vector of length three to set a different font for each direction.
 #' @param lab.col Character vector specifying colours for axis labels. Use a
@@ -73,7 +73,8 @@
 #' @param axis.labels This can either be a logical value specifying whether 
 #'  (numerical) annotations are to be made at the tickmarks, or a character or
 #'  expression vector of labels to be placed at the tick points.
-#' @param axis.cex Numeric specifying character expansion for axis labels.
+#' @param axis.cex Numeric specifying character expansion (font size)
+#'  for axis labels.
 #'  Use a vector of length three to set a different value for each direction.
 #' @param axis.font Font for text. Defaults to \code{par('font')}.
 #' @param axis.rotate Logical specifying whether to rotate axis labels 
