@@ -1,3 +1,7 @@
+# Ternary v1.2.0.9000 (development)
+
+- Trivial documentation improvements.
+
 # Ternary v1.2.0
 - Add Shiny user interface; launch with `TernaryApp()`.
 - Optional parameter `axis.rotate` to allow axis labels to be plotted 'unrotated' 
