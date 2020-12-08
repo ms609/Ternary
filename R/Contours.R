@@ -513,7 +513,7 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
            NA,
            Func(abc[1, ], abc[2, ], abc[3, ]))
   }
-  z <- outer(X=x, Y=y, FUN=FunctionWrapper)
+  z <- outer(X = matrix(x), Y = matrix(y), FUN = FunctionWrapper)
   contour(x, y, z, add=TRUE, ...)
 }
 
