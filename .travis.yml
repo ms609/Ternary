@@ -6,7 +6,7 @@ warnings_are_errors: true
 r_check_args: --as-cran # --no-manual # Workaround error compiling PDF manual
 jobs:
   include:
-    - r: 3.2.0 # vdiffr requires 3.4: these tests should fail gracefully.
+    - r: 3.3.0 # vdiffr requires 3.4: these tests should fail gracefully.
     - r: 3.4.0 # vdiffr requires 3.4.
     - r: release
       before_install:
