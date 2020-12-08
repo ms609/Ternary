@@ -1,5 +1,4 @@
 context('Contour plotting')
-library('vdiffr')
 
 test_that('Densities are correctly calculated', {
   
@@ -46,7 +45,8 @@ test_that('Contours are plotted', {
     ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
     TernaryContour(FunctionToContour, resolution=12L)
   }
-  expect_doppelganger('Contours', Contours)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('Contours', Contours)
   
   ContoursSkiwiff <- function () {
     FunctionToContour <- function (a, b, c) {
@@ -71,7 +71,8 @@ test_that('Contours are plotted', {
     TernaryPlot(point = 2L, xlim=c(-1, 0))
     SubTest(4)
   }
-  expect_doppelganger('Contours-skiwiff', ContoursSkiwiff)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('Contours-skiwiff', ContoursSkiwiff)
   
   
   DensityContours <- function () {
@@ -88,7 +89,8 @@ test_that('Contours are plotted', {
     TernaryPoints(coordinates, col='red', pch='.')
     TernaryDensityContour(coordinates, resolution=10L)
   }
-  expect_doppelganger('density-contours', DensityContours)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('density-contours', DensityContours)
   
   
   DensityContours2 <- function () {
@@ -104,7 +106,8 @@ test_that('Contours are plotted', {
     TernaryPoints(coordinates, col='red', pch='.')
     TernaryDensityContour(coordinates, resolution=10L, edgeCorrection = FALSE)
   }
-  expect_doppelganger('density-contours-2', DensityContours2)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('density-contours-2', DensityContours2)
   
   
   
@@ -121,7 +124,8 @@ test_that('Contours are plotted', {
     TernaryPoints(coordinates, col='red', pch='.')
     TernaryDensityContour(coordinates, resolution=10L)
   }
-  expect_doppelganger('density-contours-3', DensityContours3)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('density-contours-3', DensityContours3)
   
   LoResDensCont <- function () {
     coordinates <- list(middle = c(1, 1, 1),
@@ -163,7 +167,8 @@ test_that('Contours are plotted', {
     TernaryDensityContour(t(vapply(coordinates, I, double(3L))), 
                           resolution=12L, tolerance=-0.02, col='orange')
   }
-  expect_doppelganger('lo-res-density-contours', LoResDensCont)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('lo-res-density-contours', LoResDensCont)
   
 })
 
@@ -173,7 +178,9 @@ test_that('Colours are drawn', {
     values <- TernaryPointValues(rgb, resolution = 20, alpha = 0.5)
     ColourTernary(values, spectrum = NULL)
   }
-  expect_doppelganger('RGBColours', RGBColours)
+  
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('RGBColours', RGBColours)
 })
 
 test_that('Errors are handled', {

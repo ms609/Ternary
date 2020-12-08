@@ -1,5 +1,6 @@
 # Ternary v1.2.0.9000 (development)
 
+- Use package 'vdiffr' conditionally in tests.
 - Trivial documentation improvements.
 
 # Ternary v1.2.0

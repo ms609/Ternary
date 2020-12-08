@@ -47,7 +47,8 @@ test_that("Axis labels are rotatable", {
                 axis.rotate = c(TRUE, FALSE, TRUE))
     
   }
-  expect_doppelganger('AxisRotate', AxisRotate)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('AxisRotate', AxisRotate)
 })
 
 test_that("axis.pos", {
@@ -65,5 +66,6 @@ test_that("axis.pos", {
                 clockwise = TRUE)
     
   }
-  expect_doppelganger('AxisPos', AxisPos)
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('AxisPos', AxisPos)
 })
