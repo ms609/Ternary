@@ -1,7 +1,6 @@
 # Ternary
 
 [![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#project-statuses)
-[![Build Status](https://travis-ci.org/ms609/Ternary.svg?branch=master)](https://travis-ci.org/ms609/Ternary)
 [![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/Ternary)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)
