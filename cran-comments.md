@@ -1,8 +1,9 @@
 ## Test environments
-* local Windows 10 install, R 4.0.2
+* local Windows 10 install, R 4.0.3
 * Windows with devtools::check_win_devel()
-* Ubuntu 16.04.6 LTS, R 3.4.0, release and devel, via [Travis CI](https://travis-ci.org/ms609/Ternary)
-* Mac OS X 10.13.6, R release, via [Travis CI](https://travis-ci.org/ms609/Ternary/)
+* Ubuntu 20.04 LTS, R 3.4.0, release and devel, via GitHub actions
+* Mac OS X 10.13.6, R release, via GitHub actions
+* Windows Server 2019 10.0.17763, R release, via GitHub actions
 * R-hub, with `check_for_cran()`
 
 ## R CMD check results
