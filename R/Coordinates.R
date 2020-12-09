@@ -84,7 +84,7 @@ TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL,
 #' 
 #' @family coordinate translation functions
 #' @export
-XYToTernary <- function (x, y, direction=getOption('ternDirection')) {
+XYToTernary <- function (x, y, direction = getOption('ternDirection')) {
   if (!is.numeric(x)) stop("Parameter `x` must be numeric.")
   if (!is.numeric(y)) stop("Parameter `y` must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
