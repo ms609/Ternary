@@ -514,8 +514,8 @@ TernaryContour <- function (Func, resolution = 96L,
            NA,
            Func(abc[1, ], abc[2, ], abc[3, ]))
   }
-  z <- outer(X = t(x), Y = t(y), FUN = FunctionWrapper)
-  contour(x, y, as.numeric(z), add = TRUE, ...)
+  z <- outer(X = x, Y = y, FUN = FunctionWrapper)
+  contour(x, y, z, add = TRUE, ...)
 }
 
 #' Add contours of estimated point density to a ternary plot
