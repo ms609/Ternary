@@ -58,6 +58,8 @@
 #' Zenodo, doi: [10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
 #' 
 #' @importFrom shiny runApp
+#' @importFrom shinyjs useShinyjs
+#' @importFrom colourpicker colourInput
 #' @template MRS
 #' @export
 TernaryApp <- function() {
