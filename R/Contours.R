@@ -491,7 +491,8 @@ ColorTernary <- ColourTernary
 #' @family contour plotting functions
 #' @importFrom graphics contour
 #' @export
-TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternDirection'), ...) {
+TernaryContour <- function (Func, resolution = 96L, 
+                            direction = getOption('ternDirection'), ...) {
   if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
@@ -509,12 +510,12 @@ TernaryContour <- function (Func, resolution = 96L, direction = getOption('ternD
   FunctionWrapper <- function(x, y) {
     abc <- XYToTernary(x, y, direction)
     # TODO make more efficient by doing this intelligently rather than lazily
-    ifelse(apply(abc < - 0.6 / resolution, 2, any),
+    ifelse(apply(abc < -0.6 / resolution, 2, any),
            NA,
            Func(abc[1, ], abc[2, ], abc[3, ]))
   }
   z <- outer(X = t(x), Y = t(y), FUN = FunctionWrapper)
-  contour(x, y, z, add = TRUE, ...)
+  contour(x, y, as.numeric(z), add = TRUE, ...)
 }
 
 #' Add contours of estimated point density to a ternary plot
