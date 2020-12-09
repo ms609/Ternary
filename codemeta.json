@@ -15,13 +15,13 @@
   ],
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -66,6 +66,18 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "colourpicker",
+      "name": "colourpicker",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=colourpicker"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -102,6 +114,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "shinyjs",
+      "name": "shinyjs",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=shinyjs"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "provider": {
@@ -134,18 +158,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "colourpicker",
-      "name": "colourpicker",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=colourpicker"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "shiny",
       "name": "shiny",
       "provider": {
@@ -155,18 +167,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=shiny"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "shinyjs",
-      "name": "shinyjs",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=shinyjs"
     },
     {
       "@type": "SoftwareApplication",
@@ -183,7 +183,7 @@
   ],
   "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
   "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
-  "contIntegration": ["https://travis-ci.org/ms609/Ternary", "https://codecov.io/gh/ms609/Ternary"],
+  "contIntegration": "https://codecov.io/gh/ms609/Ternary",
   "developmentStatus": "https://www.repostatus.org/#project-statuses",
   "citation": [
     {
@@ -207,7 +207,7 @@
       }
     }
   ],
-  "fileSize": "5175.844KB",
+  "fileSize": "4377.037KB",
   "keywords": [
     "ternary-plots",
     "plotting",
