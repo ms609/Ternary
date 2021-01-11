@@ -126,6 +126,7 @@ TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col = 'grey')
 TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = 'darkblue')
 ```
 
+### Styling points
 
 More sophisticated plots can be created, for example styling each point 
 according to additional properties of the data, in a manner analagous to the
@@ -138,7 +139,7 @@ dat <- data.frame(sio2 = c(2, 4, 10, 20),
                   fe2o3 = c(5, 6, 7, 8),
                   al2o3 = c(12, 11, 10, 9),
                   grain_size = c(20, 16, 12, 8),
-                  reflectance = c(8, 6, 4, 2))
+                  reflectance = c(80, 63, 61, 20))
 
 spectrumBins <- 5
 mySpectrum <- viridisLite::viridis(spectrumBins)
@@ -172,6 +173,8 @@ legend('topright', pt.cex = dat_cex, pch = 16,
 
 See the 'Points' tab of the shiny app for a point-and-click implementation.
 
+
+### Cartesian coordinates 
 
 It is also possible to use cartesian coordinates to plot onto the graph.
 
