@@ -47,7 +47,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -64,7 +64,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ms609/Ternary/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -84,14 +84,13 @@
 
       
 
-      </header><script src="Ternary_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="Ternary_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="Ternary_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="Ternary_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create Ternary Plots in R</h1>
                         <h4 class="author">Martin R. Smith</h4>
             
-            <h4 class="date">2020-12-09</h4>
+            <h4 class="date">2021-01-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/vignettes/Ternary.Rmd"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -197,17 +196,56 @@
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryArrows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">60</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">0.2</span>, col <span class="op">=</span> <span class="st">'darkblue'</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Do%20plotting-1.png" width="700"></p>
-<p>It is also possible to use cartesian coordinates to plot onto the graph.</p>
-<p>By default, the plotting area is a 1x1 square.</p>
+<p>More sophisticated plots can be created, for example styling each point according to additional properties of the data, in a manner analagous to the standard plotting functions:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sio2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
+                  fe2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,
+                  al2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span><span class="op">)</span>,
+                  grain_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">16</span>, <span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span>,
+                  reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">4</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+<span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridisLite/man/viridis.html">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span>
+<span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span>
+<span class="va">dat_col</span> <span class="op">&lt;-</span> <span class="va">mySpectrum</span><span class="op">[</span><span class="va">binnedReflectance</span><span class="op">]</span>
+
+<span class="va">sizeBins</span> <span class="op">&lt;-</span> <span class="fl">5</span>
+<span class="va">mySizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2.4</span>, length.out <span class="op">=</span> <span class="va">sizeBins</span><span class="op">)</span>
+<span class="va">binnedSize</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">grain_size</span>, <span class="va">sizeBins</span><span class="op">)</span>
+<span class="va">dat_cex</span> <span class="op">&lt;-</span> <span class="va">mySizes</span><span class="op">[</span><span class="va">binnedSize</span><span class="op">]</span>
+
+<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>atip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">SiO</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,
+            btip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Fe</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="st">' (wt%)'</span><span class="op">)</span><span class="op">)</span>,
+            ctip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Al</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'sio2'</span>, <span class="st">'fe2o3'</span>, <span class="st">'al2o3'</span><span class="op">)</span><span class="op">]</span>,
+              cex <span class="op">=</span> <span class="va">dat_cex</span>,
+              col <span class="op">=</span> <span class="va">dat_col</span>,
+              pch <span class="op">=</span> <span class="fl">16</span>
+              <span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'topleft'</span>, col <span class="op">=</span> <span class="va">dat_col</span>, pch <span class="op">=</span> <span class="fl">16</span>, 
+       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">binnedReflectance</span>, <span class="st">'%'</span><span class="op">)</span>,
+       title <span class="op">=</span> <span class="st">'Reflectance'</span>, bty <span class="op">=</span> <span class="st">'n'</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
+       
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'topright'</span>, pt.cex <span class="op">=</span> <span class="va">dat_cex</span>, pch <span class="op">=</span> <span class="fl">16</span>,
+       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">binnedSize</span>, <span class="st">'\u03bcm'</span><span class="op">)</span>,
+       title <span class="op">=</span> <span class="st">'Grain size'</span>, bty <span class="op">=</span> <span class="st">'n'</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code></pre></div>
+<p><img src="Ternary_files/figure-html/complex-plot-1.png" width="700"></p>
+<p>It is also possible to use cartesian coordinates to plot onto the graph.</p>
+<p>By default, the plotting area is a 1×1 square.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="co"># Reduce margins</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>point <span class="op">=</span> <span class="st">'right'</span>, clockwise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"X range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryXRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## X range in this orientation: -0.0669873 0.9330127</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Y range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryYRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Y range in this orientation: -0.5 0.5</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/arrows.html">arrows</a></span><span class="op">(</span>x0 <span class="op">=</span> <span class="fl">0.5</span>, y0 <span class="op">=</span> <span class="fl">0.4</span>, x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, y1 <span class="op">=</span> <span class="fl">0.4</span>, length <span class="op">=</span> <span class="fl">0.1</span>,
        col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">0.4</span>, <span class="st">"Increasing X"</span>, pos <span class="op">=</span> <span class="fl">3</span>,
@@ -221,7 +259,7 @@
 <h2 class="hasAnchor">
 <a href="#contours" class="anchor"></a>Contours</h2>
 <p>A plot can be coloured and contoured according to the output of a mathematical expression:</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">'a'</span>, blab <span class="op">=</span> <span class="st">'b'</span>, clab <span class="op">=</span> <span class="st">'c'</span><span class="op">)</span>
 
@@ -234,7 +272,7 @@
 <span class="fu"><a href="../reference/TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/contours-1.png" width="700"></p>
 <p>or by according to the density of points across the plot:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
@@ -257,7 +295,7 @@
 <p>To do this you can specify the <em>x</em> and <em>y</em> limits of the region of interest.</p>
 <p><code>TernaryCoords</code> might be useful in establishing the cartesian coordinates of a particular point in ternary space.<br>
 Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">my_corners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">66</span>, <span class="fl">12</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">72</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">80</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">76</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">my_corners</span>, <span class="va">TernaryCoords</span>, direction <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## [[1]]
@@ -272,7 +310,7 @@ Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 ## [[4]]
 ## [1] 0.320000 0.103923</code></pre>
 <p>The <code>padding</code> parameter is added as a margin to each side of the region specified using <code>xlim</code> and <code>ylim</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.38</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, padding <span class="op">=</span> <span class="fl">0.04</span><span class="op">)</span>
 
 <span class="co"># Annotate grid lines at user-specified points:</span>
