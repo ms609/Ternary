@@ -127,9 +127,52 @@ TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = 'darkblue')
 ```
 
 
+More sophisticated plots can be created, for example styling each point 
+according to additional properties of the data, in a manner analagous to the
+standard plotting functions:
+
+```{r complex-plot}
+par(mar = rep(0.3, 4))
+
+dat <- data.frame(sio2 = c(2, 4, 10, 20),
+                  fe2o3 = c(5, 6, 7, 8),
+                  al2o3 = c(12, 11, 10, 9),
+                  grain_size = c(20, 16, 12, 8),
+                  reflectance = c(8, 6, 4, 2))
+
+spectrumBins <- 5
+mySpectrum <- viridisLite::viridis(spectrumBins)
+binnedReflectance <- cut(dat$reflectance, spectrumBins)
+dat_col <- mySpectrum[binnedReflectance]
+
+sizeBins <- 5
+mySizes <- seq(0.5, 2.4, length.out = sizeBins)
+binnedSize <- cut(dat$grain_size, sizeBins)
+dat_cex <- mySizes[binnedSize]
+
+TernaryPlot(atip = expression(SiO[2]),
+            btip = expression(paste(Fe[2], O[3], ' (wt%)')),
+            ctip = expression(paste(Al[2], O[3]))
+)
+
+TernaryPoints(dat[, c('sio2', 'fe2o3', 'al2o3')],
+              cex = dat_cex,
+              col = dat_col,
+              pch = 16
+              )
+
+legend('topleft', col = dat_col, pch = 16, 
+       legend = paste(binnedReflectance, '%'),
+       title = 'Reflectance', bty = 'n', cex = 0.8)
+       
+legend('topright', pt.cex = dat_cex, pch = 16,
+       legend = paste(binnedSize, '\u03bcm'),
+       title = 'Grain size', bty = 'n', cex = 0.8)
+```
+
 It is also possible to use cartesian coordinates to plot onto the graph.
 
-By default, the plotting area is a 1x1 square.
+By default, the plotting area is a 1&times;1 square.
 
 ```{r Cartesian}
 par(mar = rep(0, 4)) # Reduce margins
