@@ -170,6 +170,9 @@ legend('topright', pt.cex = dat_cex, pch = 16,
        title = 'Grain size', bty = 'n', cex = 0.8)
 ```
 
+See the 'Points' tab of the shiny app for a point-and-click implementation.
+
+
 It is also possible to use cartesian coordinates to plot onto the graph.
 
 By default, the plotting area is a 1&times;1 square.
