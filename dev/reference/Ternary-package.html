@@ -6,7 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ternary: Create Ternary Plots — Ternary-package • Ternary</title>
+<title>The 'Ternary' package allows the creation of ternary plots
+(a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams)
+using the familiar functions of the default 'graphics' package. — Ternary-package • Ternary</title>
 
 
 <!-- jquery -->
@@ -45,11 +47,14 @@
 
 
 
-<meta property="og:title" content="Ternary: Create Ternary Plots — Ternary-package" />
-<meta property="og:description" content="Plots ternary diagrams (simplex plots / Gibbs triangles) using the
-  standard graphics functions.
-  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting 
-  functions." />
+<meta property="og:title" content="The 'Ternary' package allows the creation of ternary plots
+(a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams)
+using the familiar functions of the default 'graphics' package. — Ternary-package" />
+<meta property="og:description" content="For simple use cases, generate ternary plots using the point-and-click
+Shiny app:install.packages('Ternary')
+Ternary::TernaryApp()
+
+" />
 
 
 <meta name="robots" content="noindex">
@@ -91,7 +96,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.1.4.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.1.9000</span>
       </span>
     </div>
 
@@ -99,7 +104,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +121,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ms609/Ternary/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -139,23 +144,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Ternary: Create Ternary Plots</h1>
+    <h1>The 'Ternary' package allows the creation of ternary plots
+(a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams)
+using the familiar functions of the default 'graphics' package.</h1>
     <small class="dont-index">Source: <a href='https://github.com/ms609/Ternary/blob/master/R/Ternary-package.R'><code>R/Ternary-package.R</code></a></small>
     <div class="hidden name"><code>Ternary-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plots ternary diagrams (simplex plots / Gibbs triangles) using the
-  standard graphics functions.
-  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting 
-  functions.</p>
+    <p>For simple use cases, generate ternary plots using the point-and-click
+Shiny app:</p><pre><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>'Ternary'</span><span class='op'>)</span>
+<span class='fu'>Ternary</span><span class='fu'>::</span><span class='fu'><a href='TernaryApp.html'>TernaryApp</a></span><span class='op'>(</span><span class='op'>)</span>
+</pre>
+
     </div>
 
 
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>For usage instructions, please consult the guidance article
+    <p>For greater control over your plots, use the R command line;
+for usage instructions, consult the guidance article
 <a href='https://ms609.github.io/Ternary/articles/Ternary.html'>online</a> or by
 typing <code><a href='../articles/Ternary.html'>vignette('Ternary', 'Ternary')</a></code> at the R console.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
