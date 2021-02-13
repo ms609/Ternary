@@ -13,6 +13,7 @@ vignette: >
 A ternary plot can be shaded and contoured according to a known function:
 
 ```{r contours-by-calculation}
+library("Ternary")
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
 
