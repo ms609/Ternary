@@ -10,9 +10,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-A ternary plot can be coloured and contoured according to a known function:
+A ternary plot can be shaded and contoured according to a known function:
 
-```{r contours}
+```{r contours-by-calculation}
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
 
@@ -31,7 +31,7 @@ it is possible to interpolate between known values.
 
 Inverse distance weighting is a simple approach:
 
-```{r contours}
+```{r idw-interpolation}
 # Generate the value of a function at some random points
 set.seed(0)
 nPts <- 50
