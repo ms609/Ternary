@@ -72,11 +72,12 @@ ColourTernary(map)
 
 # Calculate contours
 PredictABC <- function (a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
-TernaryContour(PredictABC, resolution = 3L)
+TernaryContour(PredictABC, resolution = 36L)
 
 # Mark measured points
-TernaryPoints(abc, pch = 3)
+TernaryPoints(abc, pch = 3, col = '#cc3333')
 ```
 
+
 More sophisticated interpolation approaches are possible, e.g. 
-[kriging](https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm).
+[kriging](https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm); these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.

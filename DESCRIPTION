@@ -24,7 +24,6 @@ Imports:
 Suggests:
     colourpicker,
     knitr,
-    kriging,
     readxl,
     rmarkdown,
     shinyjs,
