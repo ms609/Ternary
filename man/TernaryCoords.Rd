@@ -65,11 +65,11 @@ Convert coordinates of a point in ternary space, in the format
 sent to standard functions in the 'graphics' package.
 }
 \examples{
-  TernaryCoords(100, 0, 0)
-  TernaryCoords(c(0, 100, 0))
-  
-  coords <- matrix(1:12, ncol = 3)
-  TernaryToXY(coords)
+TernaryCoords(100, 0, 0)
+TernaryCoords(c(0, 100, 0))
+
+coords <- matrix(1:12, nrow = 3)
+TernaryToXY(coords)
 
 }
 \seealso{
