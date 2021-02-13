@@ -13,7 +13,9 @@ src/*.o
 src/*.so
 src/*.dll
 vignettes/*.html
+vignettes/*.knit.md
 vignettes/*.pdf
+vignettes/*.utf8.md
 vignettes/*_files
 tests/testthat/Rplots.pdf
 docs/
