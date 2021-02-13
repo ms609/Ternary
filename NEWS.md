@@ -1,3 +1,7 @@
+# Ternary v1.2.1.9001
+
+- `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
+
 # Ternary v1.2.1.9000
  
 - Document point styling in vignette.

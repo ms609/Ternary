@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.2.1.9000
+Version: 1.2.1.9001
 Title: Create Ternary Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) using the
   standard graphics functions.
@@ -24,6 +24,7 @@ Imports:
 Suggests:
     colourpicker,
     knitr,
+    kriging,
     readxl,
     rmarkdown,
     shinyjs,

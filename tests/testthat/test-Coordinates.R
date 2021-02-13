@@ -63,6 +63,13 @@ test_that('Coordinates are reflected correctly', {
   ), ncol=2, byrow=TRUE))
 })
 
+test_that("matrices can be coordinated", {
+  abc <- matrix(1:12, 3)
+  value <- TernaryToXY(abc)
+  expect_equivalent(apply(abc, 2, TernaryToXY), value)
+  expect_equal(c('x', 'y'), rownames(value))
+})
+
 test_that('Ranges are correct', {
   expect_equal(c(-1, 1) / 2, TernaryXRange(direction = 1))
   expect_equal(c(-1, 1) / 2, TernaryYRange(direction = 2))
