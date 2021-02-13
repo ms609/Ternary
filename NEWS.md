@@ -1,6 +1,7 @@
 # Ternary v1.2.1.9001
 
 - `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
+- New vignette with interpolation example.
 
 # Ternary v1.2.1.9000
  
