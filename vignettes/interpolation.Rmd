@@ -39,6 +39,7 @@ nPts <- 50
 a <- runif(nPts)
 b <- runif(nPts) * (1 - a)
 c <- 1 - a - b
+abc <- rbind(a, b, c)
 response <- FunctionToContour(a, b, c)
 
 # Start plot, to define coordinate system
@@ -72,7 +73,7 @@ PredictABC <- function (a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
 TernaryContour(PredictABC, resolution = 36L)
 
 # Mark measured points
-TernaryPoints(rbind(a, b, c), pch = 3, col = '#cc3333')
+TernaryPoints(abc, pch = 3, col = '#cc3333')
 ```
 
 
