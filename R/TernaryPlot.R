@@ -155,30 +155,31 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   }
   
   # Prepare parameters
-  Triplicate <- function (x) if (length(x) == 1) rep(x, 3) else x
-  lab.col <- Triplicate(lab.col)
-  lab.cex <- Triplicate(lab.cex)
-  lab.font <- Triplicate(lab.font)
-  lab.offset <- Triplicate(lab.offset)
-  axis.col <- Triplicate(axis.col)
-  axis.cex <- Triplicate(axis.cex)
-  axis.lty <- Triplicate(axis.lty)
-  axis.font <- Triplicate(axis.font)
-  ticks.col <- Triplicate(ticks.col)
-  grid.col <- Triplicate(grid.col)
-  grid.lwd <- Triplicate(grid.lwd)
-  grid.lty <- Triplicate(grid.lty)
-  grid.minor.col <- Triplicate(grid.minor.col)
-  grid.minor.lty <- Triplicate(grid.minor.lty)
-  grid.minor.lwd <- Triplicate(grid.minor.lwd)
-  axis.lwd <- Triplicate(axis.lwd)
-  axis.rotate <- Triplicate(axis.rotate)
-  axis.pos <- Triplicate(axis.pos)
-  ticks.length <- Triplicate(ticks.length)
-  ticks.lwd <- Triplicate(ticks.lwd)
-  tip.col <- Triplicate(tip.col)
-  tip.cex <- Triplicate(tip.cex)
-  tip.font <- Triplicate(tip.font)
+  lab.col <- .Triplicate(lab.col)
+  lab.cex <- .Triplicate(lab.cex)
+  lab.font <- .Triplicate(lab.font)
+  lab.offset <- .Triplicate(lab.offset)
+  axis.col <- .Triplicate(axis.col)
+  axis.cex <- .Triplicate(axis.cex)
+  axis.lty <- .Triplicate(axis.lty)
+  axis.font <- .Triplicate(axis.font)
+  ticks.col <- .Triplicate(ticks.col)
+  grid.lines <- .ValidateGridLines(grid.lines)
+  grid.col <- .Triplicate(grid.col)
+  grid.lwd <- .Triplicate(grid.lwd)
+  grid.lty <- .Triplicate(grid.lty)
+  grid.minor.lines <- .ValidateGridLines(grid.minor.lines)
+  grid.minor.col <- .Triplicate(grid.minor.col)
+  grid.minor.lty <- .Triplicate(grid.minor.lty)
+  grid.minor.lwd <- .Triplicate(grid.minor.lwd)
+  axis.lwd <- .Triplicate(axis.lwd)
+  axis.rotate <- .Triplicate(axis.rotate)
+  axis.pos <- .Triplicate(axis.pos)
+  ticks.length <- .Triplicate(ticks.length)
+  ticks.lwd <- .Triplicate(ticks.lwd)
+  tip.col <- .Triplicate(tip.col)
+  tip.cex <- .Triplicate(tip.cex)
+  tip.font <- .Triplicate(tip.font)
   sides <- if(clockwise) 1:3 else c(3, 1, 2)
   
   if (isometric) {
@@ -191,17 +192,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     ylim <- .IsometricYLim(xlim, ylim, direction)
     yRange <- .LimRange(ylim)
     
-    if (length(xlim) > 0 && abs(xRange - yRange) > 1e-07) {
-      if (abs(xRange) < abs(yRange)) {
-        xlim <- xlim * (yRange / xRange)
-        warning("x range < y range, but isometric = TRUE; setting xlim = c(", 
-                xlim[1], ', ', xlim[2], ")")
-      } else {
-        ylim <- ylim * (xRange / yRange)
-        warning("x range > y range, but isometric = TRUE; setting ylim = c(", 
-                ylim[1], ', ', ylim[2], ")")
-      }
-    }
+    xlim <- .CheckIsometricXRange(xlim, ylim)
   }
   if (is.null(xlim)) xlim <- TernaryXRange(direction)
   if (is.null(ylim)) ylim <- TernaryYRange(direction)

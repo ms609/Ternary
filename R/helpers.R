@@ -8,14 +8,44 @@
 
 .IsometricYLim <- function (xlim, ylim, direction) {
   if (is.null(ylim) && !is.null(xlim)) {
-    TernaryYRange(direction) * .LimRange(xlim)
-  } else {
-    ylim
+    ylim <- TernaryYRange(direction) * .LimRange(xlim)
   }
+  
+  xRange <- .LimRange(xlim)
+  yRange <- .LimRange(ylim)
+
+  if (length(xlim) > 0 && abs(xRange - yRange) > 1e-07) {
+    if (abs(xRange) > abs(yRange)) {
+      ylim <- ylim * (xRange / yRange)
+      warning("x range > y range, but isometric = TRUE; setting ylim = c(", 
+              ylim[1], ', ', ylim[2], ")")
+    }
+  }
+  
+  # Return:
+  ylim
 }
 
 .LimRange <- function (lim) {
   lim[2] - lim[1]
+}
+
+.CheckIsometricXRange <- function (xlim, ylim) {
+  xRange <- .LimRange(xlim)
+  yRange <- .LimRange(ylim)
+  
+  if (length(xlim) > 0 && abs(xRange - yRange) > 1e-07) {
+    if (abs(xRange) < abs(yRange)) {
+      xlim <- xlim * (yRange / xRange)
+      warning("x range < y range, but isometric = TRUE; setting xlim = c(", 
+              xlim[1], ', ', xlim[2], ")")
+    } else {
+      stop("Unhandled exception: x range > y range, but isometric = TRUE;",
+           "should have set ylim = c(", ylim[1], ', ', ylim[2], ")")
+    }
+  }
+  
+  xlim
 }
 
 .PlotGrid <- function (p, col, lty, lwd) {
@@ -44,3 +74,12 @@
   linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
   lapply(linePoints[-c(1, grid.lines + 1L)], .PlotGrid, ...)
 }
+
+.Triplicate <- function (x) if (length(x) == 1) rep(x, 3) else x
+
+.ValidateGridLines <- function (grid.lines) {
+  if (!is.integer(grid.lines)) {
+    grid.lines <- ceiling(grid.lines)
+  }
+}
+
