@@ -224,23 +224,15 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     grid.minor.lines <- ceiling(grid.minor.lines)
   }
   if (!is.null(grid.lines) && !is.na(grid.lines) && grid.lines > 1L) {
-    .PlotMinorGridLines(grid.lines, grid.minor.lines, grid.minor.col, 
-                        grid.minor.lty, grid.minor.lwd)
+    .PlotMinorGridLines(grid.lines, grid.minor.lines, 
+                        col = grid.minor.col, 
+                        lty = grid.minor.lty, 
+                        lwd = grid.minor.lwd)
     
-    # Plot grid
-    linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
-    
-    lapply(linePoints[-c(1, grid.lines + 1L)], function (p) {
-      q <- 1 - p
-      lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
-                               c(0, p, q), c(q, p, 0),
-                               c(q, 0, p), c(0, q, p)),
-                          TernaryCoords, double(2))
-      lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-      lines(lineEnds[1, i], lineEnds[2, i], col = grid.col[i[2]/2], 
-            lty = grid.lty[i[2]/2], lwd = grid.lwd[i[2]/2]))
-      NULL
-    })
+    .PlotMajorGridLines(grid.lines,
+                        col = grid.col,
+                        lty = grid.lty,
+                        lwd = grid.lwd)
     
     if (clockwise) {
       axis_degrees <- (c(180, 300, 60) + (direction * 90)) %% 360
@@ -285,7 +277,8 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     }
     if (!is.null(axis.pos)) pos <- axis.pos
     
-  
+    
+    linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
     # Plot and annotate axes
     lapply(seq_along(linePoints), function (i) {
       p <- linePoints[i]
@@ -396,27 +389,32 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   return <- NULL
 }
 
-.PlotMinorGridLines <- function (grid.lines, grid.minor.lines, grid.minor.col,
-                                 grid.minor.lty, grid.minor.lwd) {
+.PlotGrid <- function (p, col, lty, lwd) {
+  q <- 1 - p
+  lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
+                          c(0, p, q), c(q, p, 0),
+                          c(q, 0, p), c(0, q, p)),
+                     TernaryCoords, double(2))
+  lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
+    lines(lineEnds[1, i], lineEnds[2, i], col = col[i[2]/2], 
+          lty = lty[i[2]/2], lwd = lwd[i[2]/2]))
+  NULL
+}
+
+.PlotMinorGridLines <- function (grid.lines, grid.minor.lines, ...) {
   if (grid.minor.lines > 0L) {
     nMinorLines <- grid.lines * (grid.minor.lines + 1L)  + 1L
     minorLinePoints <- seq(from = 0, to = 1, length.out = 
                                nMinorLines)[-seq(from = 1, to = nMinorLines, 
                                                    by = grid.minor.lines + 1L)]
-    lapply(minorLinePoints, function (p) {
-      q <- 1 - p
-      lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
-                               c(0, p, q), c(q, p, 0),
-                               c(q, 0, p), c(0, q, p)),
-                          TernaryCoords, double(2))
-      lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-        lines(lineEnds[1, i], lineEnds[2, i], col = grid.minor.col[i[2] / 2],
-              lty = grid.minor.lty[i[2]/2], lwd = grid.minor.lwd[i[2] / 2]))
-      NULL
-    })
+    lapply(minorLinePoints, .PlotGrid, ...)
   }
 }
 
+.PlotMajorGridLines <- function (grid.lines, ...) {
+  linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
+  lapply(linePoints[-c(1, grid.lines + 1L)], .PlotGrid, ...)
+}
 
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
 #' @template directionParam
