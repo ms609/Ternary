@@ -2,9 +2,33 @@
 % Please edit documentation in R/Coordinates.R
 \name{TernaryCoords}
 \alias{TernaryCoords}
+\alias{TernaryToXY.matrix}
+\alias{TernaryToXY.numeric}
+\alias{TernaryToXY}
 \title{Convert ternary coordinates to Cartesian space}
 \usage{
 TernaryCoords(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection")
+)
+
+\method{TernaryToXY}{matrix}(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection")
+)
+
+\method{TernaryToXY}{numeric}(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection")
+)
+
+TernaryToXY(
   abc,
   b_coord = NULL,
   c_coord = NULL,
@@ -19,7 +43,9 @@ corner; \code{c(0, 100, 0)} will plot in the corner clockwise of \code{direction
 \code{c(0, 0, 100)} will plot in the corner anti-clockwise of \code{direction}.
 Alternatively, the a coordinate can be specified as the first parameter,
 in which case the b and c coordinates must be specified via \code{b_coord}
-and \code{c_coord}.}
+and \code{c_coord}.
+Or, a matrix with three rows, representing in turn the \code{a}, \code{b} and \code{c}
+coordinates of points.}
 
 \item{b_coord}{The b coordinate, if \code{abc} is a single number.}
 
@@ -39,11 +65,11 @@ Convert coordinates of a point in ternary space, in the format
 sent to standard functions in the 'graphics' package.
 }
 \examples{
-  TernaryCoords(100, 0, 0)
-  TernaryCoords(c(0, 100, 0))
-  
-  coords <- matrix(1:12, ncol=3)
-  apply(coords, 1, TernaryCoords)
+TernaryCoords(100, 0, 0)
+TernaryCoords(c(0, 100, 0))
+
+coords <- matrix(1:12, nrow = 3)
+TernaryToXY(coords)
 
 }
 \seealso{

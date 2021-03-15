@@ -12,6 +12,8 @@
 #' Alternatively, the a coordinate can be specified as the first parameter,
 #' in which case the b and c coordinates must be specified via \code{b_coord}
 #' and \code{c_coord}.
+#' Or, a matrix with three rows, representing in turn the `a`, `b` and `c`
+#' coordinates of points.
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #' @template directionParam
@@ -24,16 +26,34 @@
 #' - [`TernaryPlot()`]
 #' 
 #' @examples
-#'   TernaryCoords(100, 0, 0)
-#'   TernaryCoords(c(0, 100, 0))
-#'   
-#'   coords <- matrix(1:12, ncol=3)
-#'   apply(coords, 1, TernaryCoords)
+#' TernaryCoords(100, 0, 0)
+#' TernaryCoords(c(0, 100, 0))
+#'
+#' coords <- matrix(1:12, nrow = 3)
+#' TernaryToXY(coords)
 #' 
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
-TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL, 
+TernaryCoords <- function(abc, b_coord = NULL, c_coord = NULL,
+                          direction = getOption('ternDirection')) {
+  UseMethod("TernaryToXY")
+}
+
+#' @rdname TernaryCoords
+#' @export
+TernaryToXY.matrix <- function (abc, b_coord = NULL, c_coord = NULL,
+                                direction = getOption('ternDirection')) {
+  ret <- apply(abc, 2, TernaryToXY, direction = direction)
+  rownames(ret) <- c('x', 'y')
+  
+  # Return:
+  ret
+}
+
+#' @rdname TernaryCoords
+#' @export
+TernaryToXY.numeric <- function (abc, b_coord = NULL, c_coord = NULL,
                            direction = getOption('ternDirection')) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
@@ -66,6 +86,9 @@ TernaryCoords <- function (abc, b_coord = NULL, c_coord = NULL,
   ret
 }
 
+#' @rdname TernaryCoords
+#' @export
+TernaryToXY <- TernaryCoords
 
 #' Cartesian coordinates to ternary point
 #' 

@@ -400,8 +400,11 @@ TernaryTiles <- function (x, y, down, resolution, col,
 
 #' Colour a ternary plot according to the output of a function
 #' 
-#' @param values Numeric matrix specifying the values associated with each
-#' point, generated using [`TernaryPointValues`].
+#' @param values Numeric matrix, possibly created using [`TernaryPointValues()`],
+#' with four named rows: 
+#' `x`, `y`, cartesian coordinates of each triangle centre; 
+#' `z`, value associated with that coordinate;
+#' `down`, triangle direction: `0` = point upwards; `1` = point downwards.
 #' @param spectrum Vector of colours to use as a spectrum, or `NULL` to use
 #' `values['z', ]`.
 #' @template resolutionParam
