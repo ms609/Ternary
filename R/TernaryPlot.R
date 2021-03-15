@@ -215,42 +215,29 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
        xlim = xlim + padVec, ylim = ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
-  polygon(axes[1, ], axes[2, ], col=col, border=NA)
+  polygon(axes[1, ], axes[2, ], col = col, border = NA)
   
-  if (!is.integer(grid.lines)) grid.lines <- ceiling(grid.lines)
-  if (!is.integer(grid.minor.lines)) grid.minor.lines <- ceiling(grid.minor.lines)
+  if (!is.integer(grid.lines)) {
+    grid.lines <- ceiling(grid.lines)
+  }
+  if (!is.integer(grid.minor.lines)) {
+    grid.minor.lines <- ceiling(grid.minor.lines)
+  }
   if (!is.null(grid.lines) && !is.na(grid.lines) && grid.lines > 1L) {
-    # Plot minor grid lines
-    if (grid.minor.lines > 0L) {
-      n_minor_lines <- grid.lines * (grid.minor.lines + 1L)  + 1L
-      minor_line_points <- seq(from = 0, to = 1, length.out = 
-                                 n_minor_lines)[-seq(from = 1, to = n_minor_lines, 
-                                                     by = grid.minor.lines + 1L)]
-      lapply(minor_line_points, function (p) {
-        q <- 1 - p
-        line_ends <- vapply(list(c(p, q, 0), c(p, 0, q),
-                                 c(0, p, q), c(q, p, 0),
-                                 c(q, 0, p), c(0, q, p)),
-                            TernaryCoords, double(2))
-        lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-          lines(line_ends[1, i], line_ends[2, i], col = grid.minor.col[i[2]/2],
-                lty = grid.minor.lty[i[2]/2], lwd = grid.minor.lwd[i[2]/2]))
-        NULL
-      })
-      
-    }
+    .PlotMinorGridLines(grid.lines, grid.minor.lines, grid.minor.col, 
+                        grid.minor.lty, grid.minor.lwd)
     
     # Plot grid
-    line_points <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
+    linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
     
-    lapply(line_points[-c(1, grid.lines + 1L)], function (p) {
+    lapply(linePoints[-c(1, grid.lines + 1L)], function (p) {
       q <- 1 - p
-      line_ends <- vapply(list(c(p, q, 0), c(p, 0, q),
+      lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
                                c(0, p, q), c(q, p, 0),
                                c(q, 0, p), c(0, q, p)),
                           TernaryCoords, double(2))
       lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
-      lines(line_ends[1, i], line_ends[2, i], col = grid.col[i[2]/2], 
+      lines(lineEnds[1, i], lineEnds[2, i], col = grid.col[i[2]/2], 
             lty = grid.lty[i[2]/2], lwd = grid.lwd[i[2]/2]))
       NULL
     })
@@ -300,19 +287,19 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     
   
     # Plot and annotate axes
-    lapply(seq_along(line_points), function (i) {
-      p <- line_points[i]
+    lapply(seq_along(linePoints), function (i) {
+      p <- linePoints[i]
       q <- 1 - p
-      line_ends <- vapply(list(c(p, 0, q),
+      lineEnds <- vapply(list(c(p, 0, q),
                                c(q, p, 0),
                                c(0, q, p)),
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
         AxisTick <- function (side) {
-          lines(line_ends[1, side] + c(0, sin(axis_degrees[side] * pi / 180) *
+          lines(lineEnds[1, side] + c(0, sin(axis_degrees[side] * pi / 180) *
                                          ticks.length[side]),
-                line_ends[2, side] + c(0, cos(axis_degrees[side] * pi / 180) *
+                lineEnds[2, side] + c(0, cos(axis_degrees[side] * pi / 180) *
                                          ticks.length[side]),
                 col = ticks.col[sides[side]], lwd = ticks.lwd[sides[side]])
         }
@@ -323,14 +310,14 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
-        if (length(axis.labels) == 1) axis.labels <- round(line_points * 100, 1)
+        if (length(axis.labels) == 1) axis.labels <- round(linePoints * 100, 1)
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         if (!clockwise) axis.labels <- rev(axis.labels)
        
         AxisLabel <- function (side) {
-          text(line_ends[1, side] + sin(axis_degrees[side] * pi / 180) * 
+          text(lineEnds[1, side] + sin(axis_degrees[side] * pi / 180) * 
                  ticks.length[side] * mult[side],
-               line_ends[2, side] + cos(axis_degrees[side] * pi / 180) * 
+               lineEnds[2, side] + cos(axis_degrees[side] * pi / 180) * 
                  ticks.length[side] * mult[side],
                axis.labels[i], srt = rot[side],
                pos = pos[side], font = axis.font[sides[side]],
@@ -409,6 +396,28 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   return <- NULL
 }
 
+.PlotMinorGridLines <- function (grid.lines, grid.minor.lines, grid.minor.col,
+                                 grid.minor.lty, grid.minor.lwd) {
+  if (grid.minor.lines > 0L) {
+    nMinorLines <- grid.lines * (grid.minor.lines + 1L)  + 1L
+    minorLinePoints <- seq(from = 0, to = 1, length.out = 
+                               nMinorLines)[-seq(from = 1, to = nMinorLines, 
+                                                   by = grid.minor.lines + 1L)]
+    lapply(minorLinePoints, function (p) {
+      q <- 1 - p
+      lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
+                               c(0, p, q), c(q, p, 0),
+                               c(q, 0, p), c(0, q, p)),
+                          TernaryCoords, double(2))
+      lapply(list(c(1, 2), c(3, 4), c(5, 6)), function (i) 
+        lines(lineEnds[1, i], lineEnds[2, i], col = grid.minor.col[i[2] / 2],
+              lty = grid.minor.lty[i[2]/2], lwd = grid.minor.lwd[i[2] / 2]))
+      NULL
+    })
+  }
+}
+
+
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
 #' @template directionParam
 #' 
@@ -419,12 +428,12 @@ HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
                             direction=getOption('ternDirection')) {
   
   if (!(direction %in% 1:4)) stop("Parameter direction must be an integer from 1 to 4")
-  line_points <- seq(from=0, to=1, length.out=grid.lines + 1L)
+  linePoints <- seq(from=0, to=1, length.out=grid.lines + 1L)
   tern_height <- c(sqrt(3/4), 1, sqrt(3/4), 1)[direction]
   tern_width <- c(1, sqrt(3/4), 1, sqrt(3/4), 1)[direction]
   
   
-  lapply(line_points[-c(1, grid.lines + 1L)], function (p) {
+  lapply(linePoints[-c(1, grid.lines + 1L)], function (p) {
     x <- tern_width * if (direction == 1) {
       c(-1, 1) * (1 - p) / 2
     } else if (direction == 2) {
