@@ -289,7 +289,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                           TernaryCoords, double(2))
                          
       if (axis.tick) {
-        AxisTick <- function (side) {
+        .AxisTick <- function (side) {
           lines(lineEnds[1, side] + c(0, sin(axis_degrees[side] * pi / 180) *
                                          ticks.length[side]),
                 lineEnds[2, side] + c(0, cos(axis_degrees[side] * pi / 180) *
@@ -297,9 +297,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                 col = ticks.col[sides[side]], lwd = ticks.lwd[sides[side]])
         }
       
-        AxisTick(1)
-        AxisTick(2)
-        AxisTick(3)
+        .AxisTick(1)
+        .AxisTick(2)
+        .AxisTick(3)
       }
       
       if (length(axis.labels) > 1 || axis.labels != FALSE) {
@@ -307,7 +307,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
         if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
         if (!clockwise) axis.labels <- rev(axis.labels)
        
-        AxisLabel <- function (side) {
+        .AxisLabel <- function (side) {
           text(lineEnds[1, side] + sin(axis_degrees[side] * pi / 180) * 
                  ticks.length[side] * mult[side],
                lineEnds[2, side] + cos(axis_degrees[side] * pi / 180) * 
@@ -319,9 +319,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
         }
         
         # Annotate axes
-        AxisLabel(1)
-        AxisLabel(2)
-        AxisLabel(3)
+        .AxisLabel(1)
+        .AxisLabel(2)
+        .AxisLabel(3)
       }
     })
   }
