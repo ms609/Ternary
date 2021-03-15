@@ -48,6 +48,18 @@
   xlim
 }
 
+.Axes <- function () {
+  vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
+         TernaryCoords, 
+         double(2))
+}
+.AxesX <- function () .Axes()[1, ]
+.AxesY <- function () .Axes()[2, ]
+
+.PlotBackground <- function (col) {
+  polygon(.AxesX(), .AxesY(), col = col, border = NA)
+}
+
 .PlotGrid <- function (p, col, lty, lwd) {
   q <- 1 - p
   lineEnds <- vapply(list(c(p, q, 0), c(p, 0, q),
@@ -60,8 +72,12 @@
   NULL
 }
 
+.GridExists <- function (grid.lines) {
+  !is.null(grid.lines) && !is.na(grid.lines) && grid.lines > 1L
+}
+
 .PlotMinorGridLines <- function (grid.lines, grid.minor.lines, ...) {
-  if (grid.minor.lines > 0L) {
+  if (.GridExists(grid.lines) && grid.minor.lines > 0L) {
     nMinorLines <- grid.lines * (grid.minor.lines + 1L)  + 1L
     minorLinePoints <- seq(from = 0, to = 1, length.out = 
                              nMinorLines)[-seq(from = 1, to = nMinorLines, 
@@ -71,8 +87,10 @@
 }
 
 .PlotMajorGridLines <- function (grid.lines, ...) {
-  linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
-  lapply(linePoints[-c(1, grid.lines + 1L)], .PlotGrid, ...)
+  if (.GridExists(grid.lines)) {
+    linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
+    lapply(linePoints[-c(1, grid.lines + 1L)], .PlotGrid, ...)
+  }
 }
 
 .Triplicate <- function (x) if (length(x) == 1) rep(x, 3) else x

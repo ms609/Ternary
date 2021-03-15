@@ -201,17 +201,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   
   plot(0, type = 'n', axes = FALSE, xlab = '', ylab = '',
        xlim = xlim + padVec, ylim = ylim + padVec, ...)
-  axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
-                 TernaryCoords, double(2))
-  polygon(axes[1, ], axes[2, ], col = col, border = NA)
+  .PlotBackground(col)
   
-  if (!is.integer(grid.lines)) {
-    grid.lines <- ceiling(grid.lines)
-  }
-  if (!is.integer(grid.minor.lines)) {
-    grid.minor.lines <- ceiling(grid.minor.lines)
-  }
-  if (!is.null(grid.lines) && !is.na(grid.lines) && grid.lines > 1L) {
+  if (.GridExists(grid.lines)) {
     .PlotMinorGridLines(grid.lines, grid.minor.lines, 
                         col = grid.minor.col, 
                         lty = grid.minor.lty, 
@@ -315,11 +307,11 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   }
   
   # Draw axis lines
-  lines(axes[1, 3:4], axes[2, 3:4], col = axis.col[sides[1]], 
+  lines(.AxesX()[3:4], .AxesY()[3:4], col = axis.col[sides[1]], 
         lty = axis.lty[sides[1]], lwd = axis.lwd[sides[1]])
-  lines(axes[1, 1:2], axes[2, 1:2], col = axis.col[sides[2]], 
+  lines(.AxesX()[1:2], .AxesY()[1:2], col = axis.col[sides[2]], 
         lty = axis.lty[sides[2]], lwd = axis.lwd[sides[2]])
-  lines(axes[1, 2:3], axes[2, 2:3], col = axis.col[sides[3]], 
+  lines(.AxesX()[2:3], .AxesY()[2:3], col = axis.col[sides[3]], 
         lty = axis.lty[sides[3]], lwd = axis.lwd[sides[3]])
 
   DirectionalOffset <- function (degrees) {
@@ -366,11 +358,11 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   }
   
   # Title corners
-  text(axes[1, 1] + ax, axes[2, 1] + ay, atip, pos = atip.pos, cex = tip.cex[1],
+  text(.AxesX()[1] + ax, .AxesY()[1] + ay, atip, pos = atip.pos, cex = tip.cex[1],
        font = tip.font[1], col = tip.col[1], srt = atip.rotate)
-  text(axes[1, 2] + bx, axes[2, 2] + by, btip, pos = btip.pos, cex = tip.cex[2],
+  text(.AxesX()[2] + bx, .AxesY()[2] + by, btip, pos = btip.pos, cex = tip.cex[2],
        font = tip.font[2], col = tip.col[2], srt = btip.rotate)
-  text(axes[1, 3] + cx, axes[2, 3] + cy, ctip, pos = ctip.pos, cex = tip.cex[3],
+  text(.AxesX()[3] + cx, .AxesY()[3] + cy, ctip, pos = ctip.pos, cex = tip.cex[3],
        font = tip.font[3], col = tip.col[3], srt = ctip.rotate)
   
   # Return:
