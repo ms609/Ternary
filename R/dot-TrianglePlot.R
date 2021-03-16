@@ -8,12 +8,8 @@
 
 .TrianglePlot <- function (atip, btip, ctip,
                            alab, blab, clab,
-                           atip.pos,
-                           btip.pos,
-                           ctip.pos,
-                           atip.rotate,
-                           btip.rotate,
-                           ctip.rotate,
+                           atip.pos, btip.pos, ctip.pos,
+                           atip.rotate, btip.rotate, ctip.rotate,
                            axis.col,
                            axis.cex,
                            axis.labels,
@@ -23,7 +19,6 @@
                            axis.pos,
                            axis.rotate,
                            axis.tick,
-                           clockwise,
                            col,
                            grid.lines,
                            grid.col,
@@ -40,14 +35,15 @@
                            isometric,
                            padding,
                            point,
+                           sideOrder = 1:3,
                            ticks.col,
+                           ticks.incline,
                            ticks.length,
                            ticks.lwd,
                            tip.col,
                            tip.cex,
                            tip.font,
-                           xlim,
-                           ylim,
+                           xlim, ylim,
                            ...) {
   direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
                                               'east', 'south', 'west', 'north',
@@ -59,7 +55,8 @@
   }
   
   axis.rotate <- .Triplicate(axis.rotate)
-  axis.pos = .Triplicate(axis.pos)
+  axis.pos <- .Triplicate(axis.pos)
+  ticks.incline <- .Triplicate(ticks.incline)
   
   if (isometric) {
     
@@ -91,22 +88,21 @@
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
   
-  axisBasis <- if (clockwise) c(180, 300, 60) else c(240, 0, 120)
+  axisBasis <- ifelse(ticks.incline, c(180, 300, 60), c(240, 0, 120))
   axisDegrees <- (axisBasis + (direction * 90)) %% 360
   
-  axisRotation <- if (clockwise) {
+  axisRotation <- ifelse(ticks.incline,
     switch(direction,
            c(0, 60, -60),
            c(270, -30, 30),
            c(0, 60, -60),
-           c(90, -30, 30))
-  } else {
+           c(90, -30, 30)),
     switch(direction,
            c(-60, 0, 60),
            c(30, -90, 30),
            c(60, 0, 60),
            c(30, -90, -30))
-  }
+  )
   
   if (is.logical(axis.rotate)) {
     axisRotation <- ifelse(axis.rotate, axisRotation, 0)
@@ -117,19 +113,18 @@
   if (!is.null(axis.pos)) {
     axisPosition <- axis.pos
   } else {
-    axisPosition <- if (clockwise) {
+    axisPosition <- ifelse(ticks.incline,
       switch(direction,
              c(2, 4, 4),
              c(2, 4, 2),
              c(4, 2, 2),
-             c(2, 2, 4))
-    } else {
+             c(2, 2, 4)),
       switch(direction, 
              c(2, 4, 2),
              c(4, 4, 2),
              c(4, 2, 4),
              c(2, 2, 4))
-    }
+    )
     
     if (is.logical(axis.rotate)) {
       pos.unrotated <- switch(direction, 
@@ -141,19 +136,9 @@
     }
   }
   
-  if (clockwise) {
-    axisMult <- switch(direction, 
-                       c(5, 5, 16),
-                       c(16, 9, 8),
-                       c(10, 8, 16),
-                       c(12, 9, 8)) / 10
-  } else {
-    axisMult <- switch(direction,
-                       c(5, 4, 8),
-                       c(4, 6, 4),
-                       c(4, 4, 7),
-                       c(5, 7, 3)) / 5
-  }
+  axisMult <- ifelse(ticks.incline,
+    switch(direction, c(5, 5, 16), c(16, 9, 8), c(10, 8, 16), c(12, 9, 8)) / 10,
+    switch(direction, c(5, 4, 8), c(4, 6, 4), c(4, 4, 7), c(5, 7, 3)) / 5)
   
   .DirectionalOffset <- function (degrees) {
     c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
@@ -161,8 +146,8 @@
   
   
   if (is.null(atip.rotate)) {
-    atip.rotate <- switch(direction, 0, 30, 0, ifelse(clockwise, 330, 30))
-    atip.pos <- ifelse(clockwise, 
+    atip.rotate <- switch(direction, 0, 30, 0, ifelse(ticks.incline[1], 330, 30))
+    atip.pos <- ifelse(ticks.incline[1],
                        switch(direction, 2, 2, 4, 4),
                        switch(direction, 4, 2, 2, 4))
  
@@ -177,10 +162,8 @@
   }
   
   
-  
   # Return:
   structure(list(
-    
     alab = alab,
     blab = blab,
     clab = clab,
@@ -214,7 +197,6 @@
     axis.rotate = axis.rotate,
     axis.tick = axis.tick,
     
-    clockwise = clockwise,
     direction = direction,
     
     lab.col = .Triplicate(lab.col),
@@ -237,9 +219,10 @@
     
     padding = padding,
     
-    sideOrder = if (clockwise) 1:3 else c(3, 1, 2),
+    sideOrder = sideOrder,
     
     ticks.col = .Triplicate(ticks.col),
+    ticks.incline = ticks.incline,
     ticks.length = .Triplicate(ticks.length),
     ticks.lwd = .Triplicate(ticks.lwd),
     

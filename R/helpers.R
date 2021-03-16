@@ -125,9 +125,6 @@
   col <- tern$ticks.col
   lwd <- tern$ticks.lwd
   
-  direction <- tern$direction
-  clockwise <- tern$clockwise
-  
   selected <- tern$sideOrder[side]
   
   lines(lineEnds[1, side] + 
@@ -150,7 +147,7 @@
       if (length(lab) > 1 || lab != FALSE) {
         if (length(lab) == 1) lab <- round(tern$gridPoints * 100, 1)
         if (length(lab) == tern$grid.lines) lab <- c('', lab)
-        if (!tern$clockwise) lab <- rev(lab)
+        if (!tern$ticks.incline[1]) lab <- rev(lab)
         
         # Annotate axes
         lapply(1:3, .AxisLabel, lineEnds, lab = lab[i])
@@ -196,7 +193,7 @@
 }
 
 .TitleCorners <- function (side, tern = getOption('.Last.triangle')) {
-  clockwise <- tern$clockwise
+  clockwise <- tern$ticks.incline[1]
   direction <- tern$direction
   len <- tern$ticks.length
   
