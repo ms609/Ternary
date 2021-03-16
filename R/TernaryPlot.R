@@ -145,228 +145,84 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          ticks.lwd = axis.lwd, ticks.length = 0.025,
                          axis.col = 'black', ticks.col = grid.col,
                          ...) {
-  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
-                                              'east', 'south', 'west', 'north',
-                                              2L, 3L, 4L, 1L)) %% 4L)
-  if (is.na(direction)) {
-    stop("Point must be one of up, down, left or right")
-  } else {
-    options('ternDirection' = direction)
-  }
   
-  # Prepare parameters
-  lab.col <- .Triplicate(lab.col)
-  lab.cex <- .Triplicate(lab.cex)
-  lab.font <- .Triplicate(lab.font)
-  lab.offset <- .Triplicate(lab.offset)
-  axis.col <- .Triplicate(axis.col)
-  axis.cex <- .Triplicate(axis.cex)
-  axis.lty <- .Triplicate(axis.lty)
-  axis.font <- .Triplicate(axis.font)
-  ticks.col <- .Triplicate(ticks.col)
-  grid.lines <- .ValidateGridLines(grid.lines)
-  grid.col <- .Triplicate(grid.col)
-  grid.lwd <- .Triplicate(grid.lwd)
-  grid.lty <- .Triplicate(grid.lty)
-  grid.minor.lines <- .ValidateGridLines(grid.minor.lines)
-  grid.minor.col <- .Triplicate(grid.minor.col)
-  grid.minor.lty <- .Triplicate(grid.minor.lty)
-  grid.minor.lwd <- .Triplicate(grid.minor.lwd)
-  axis.lwd <- .Triplicate(axis.lwd)
-  axis.rotate <- .Triplicate(axis.rotate)
-  axis.pos <- .Triplicate(axis.pos)
-  ticks.length <- .Triplicate(ticks.length)
-  ticks.lwd <- .Triplicate(ticks.lwd)
-  tip.col <- .Triplicate(tip.col)
-  tip.cex <- .Triplicate(tip.cex)
-  tip.font <- .Triplicate(tip.font)
-  sides <- if(clockwise) 1:3 else c(3, 1, 2)
+  tern <- .TrianglePlot(
+    atip = atip, btip = btip, ctip = ctip,
+    alab = alab, blab = blab, clab = clab,
+    
+    atip.pos = atip.pos,
+    btip.pos = btip.pos,
+    ctip.pos = ctip.pos,
+    atip.rotate = atip.rotate,
+    btip.rotate = btip.rotate,
+    ctip.rotate = ctip.rotate,
+    
+    padding = padding,
+    point = point,
+    clockwise = clockwise,
+    lab.col = lab.col,
+    lab.cex = lab.cex,
+    lab.font = lab.font,
+    lab.offset = lab.offset,
+    axis.col = axis.col,
+    axis.cex = axis.cex,
+    axis.labels = axis.labels,
+    axis.lty = axis.lty,
+    axis.font = axis.font,
+    axis.lwd = axis.lwd,
+    axis.rotate = axis.rotate,
+    axis.tick = axis.tick,
+    axis.pos = axis.pos,
+    ticks.col = ticks.col,
+    grid.lines = grid.lines,
+    grid.col = grid.col,
+    grid.lwd = grid.lwd,
+    grid.lty = grid.lty,
+    grid.minor.lines = grid.minor.lines,
+    grid.minor.col = grid.minor.col,
+    grid.minor.lty = grid.minor.lty,
+    grid.minor.lwd = grid.minor.lwd,
+    isometric = isometric,
+    ticks.length = ticks.length,
+    ticks.lwd = ticks.lwd,
+    tip.col = tip.col,
+    tip.cex = tip.cex,
+    tip.font = tip.font,
+    xlim = xlim,
+    ylim = ylim,
+    col = col,
+    ...)
   
   if (isometric) {
     original_par <- par(pty = 's')
-    on.exit(par(original_par))
-    
-    xlim <- .IsometricXLim(xlim, ylim, direction)
-    xRange <- .LimRange(xlim)
-    
-    ylim <- .IsometricYLim(xlim, ylim, direction)
-    yRange <- .LimRange(ylim)
-    
-    xlim <- .CheckIsometricXRange(xlim, ylim)
-  }
-  if (is.null(xlim)) xlim <- TernaryXRange(direction)
-  if (is.null(ylim)) ylim <- TernaryYRange(direction)
-  padVec <- c(-1, 1) * padding
-  
-  
-  plot(0, type = 'n', axes = FALSE, xlab = '', ylab = '',
-       xlim = xlim + padVec, ylim = ylim + padVec, ...)
-  .PlotBackground(col)
-  
-  if (.GridExists(grid.lines)) {
-    .PlotMinorGridLines(grid.lines, grid.minor.lines, 
-                        col = grid.minor.col, 
-                        lty = grid.minor.lty, 
-                        lwd = grid.minor.lwd)
-    
-    .PlotMajorGridLines(grid.lines,
-                        col = grid.col,
-                        lty = grid.lty,
-                        lwd = grid.lwd)
-    
-    if (clockwise) {
-      axis_degrees <- (c(180, 300, 60) + (direction * 90)) %% 360
-      
-      rot <- c(c(  0, 270,   0,  90)[direction],
-               c( 60, -30,  60, -30)[direction],
-               c(-60,  30, -60,  30)[direction])
-      
-      pos <- c(c(2, 2, 4, 2)[direction],
-               c(4, 4, 2, 2)[direction],
-               c(4, 2, 2, 4)[direction])
-      
-      mult <- c(c(5 , 16, 10, 12)[direction],
-                c(5 ,  9,  8,  9)[direction],
-                c(16,  8, 16,  8)[direction]) / 10
-    } else {
-      axis_degrees <- (c(240, 0, 120) + (direction * 90)) %% 360
-      
-      rot <- c(c(-60,  30, -60,  30)[direction],
-               c(  0, -90,  00, -90)[direction],
-               c( 60, -30,  60, -30)[direction])
-      
-      pos <- c(c(2, 4, 4, 2)[direction],
-               c(4, 4, 2, 2)[direction],
-               c(2, 2, 4, 4)[direction])
-      
-      mult <- c(c(5, 4, 4, 5)[direction],
-                c(4, 6, 4, 7)[direction],
-                c(8, 4, 7, 3)[direction]) / 5
-      
-    }
-    
-    if (is.logical(axis.rotate)) {
-      rot <- ifelse(axis.rotate, rot, 0)
-      pos.unrotated <- matrix(c(2, 4, 1,
-                                3, 1, 2, 
-                                4, 2, 3, 
-                                1, 3, 4), 3)[, direction]
-      pos <- ifelse(axis.rotate, pos, pos.unrotated)
-    } else {
-      rot <- axis.rotate
-    }
-    if (!is.null(axis.pos)) pos <- axis.pos
-    
-    
-    linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
-    # Plot and annotate axes
-    lapply(seq_along(linePoints), function (i) {
-      p <- linePoints[i]
-      q <- 1 - p
-      lineEnds <- vapply(list(c(p, 0, q),
-                               c(q, p, 0),
-                               c(0, q, p)),
-                          TernaryCoords, double(2))
-                         
-      if (axis.tick) {
-        .AxisTick <- function (side) {
-          lines(lineEnds[1, side] + c(0, sin(axis_degrees[side] * pi / 180) *
-                                         ticks.length[side]),
-                lineEnds[2, side] + c(0, cos(axis_degrees[side] * pi / 180) *
-                                         ticks.length[side]),
-                col = ticks.col[sides[side]], lwd = ticks.lwd[sides[side]])
-        }
-      
-        .AxisTick(1)
-        .AxisTick(2)
-        .AxisTick(3)
-      }
-      
-      if (length(axis.labels) > 1 || axis.labels != FALSE) {
-        if (length(axis.labels) == 1) axis.labels <- round(linePoints * 100, 1)
-        if (length(axis.labels) == grid.lines) axis.labels <- c('', axis.labels)
-        if (!clockwise) axis.labels <- rev(axis.labels)
-       
-        .AxisLabel <- function (side) {
-          text(lineEnds[1, side] + sin(axis_degrees[side] * pi / 180) * 
-                 ticks.length[side] * mult[side],
-               lineEnds[2, side] + cos(axis_degrees[side] * pi / 180) * 
-                 ticks.length[side] * mult[side],
-               axis.labels[i], srt = rot[side],
-               pos = pos[side], font = axis.font[sides[side]],
-               cex = axis.cex[sides[side]],
-               col = lab.col[sides[side]])
-        }
-        
-        # Annotate axes
-        .AxisLabel(1)
-        .AxisLabel(2)
-        .AxisLabel(3)
-      }
-    })
+    on.exit(par(original_par), add = TRUE)
   }
   
-  # Draw axis lines
-  lines(.AxesX()[3:4], .AxesY()[3:4], col = axis.col[sides[1]], 
-        lty = axis.lty[sides[1]], lwd = axis.lwd[sides[1]])
-  lines(.AxesX()[1:2], .AxesY()[1:2], col = axis.col[sides[2]], 
-        lty = axis.lty[sides[2]], lwd = axis.lwd[sides[2]])
-  lines(.AxesX()[2:3], .AxesY()[2:3], col = axis.col[sides[3]], 
-        lty = axis.lty[sides[3]], lwd = axis.lwd[sides[3]])
+  .StartPlot(tern, ...)
+  options('.Last.triangle' = tern)
+  
+  .PlotBackground(tern)
 
-  DirectionalOffset <- function (degrees) {
-    c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
-  }
+  .PlotMinorGridLines(tern$grid.lines, tern$grid.minor.lines, 
+                      col = tern$grid.minor.col,
+                      lty = tern$grid.minor.lty,
+                      lwd = tern$grid.minor.lwd)
   
-  TitleAxis <- function (xy, lab, side, rot) {
-    text(xy[1], xy[2], lab, cex = lab.cex[side], font = lab.font[side],
-         srt = rot[direction], col = lab.col[side])
-  }
-  alab_xy <- TernaryCoords(c(1, 0, 1)) + 
-    (lab.offset[1] * DirectionalOffset(c(300,  60, 120, 210)[direction]))
-  blab_xy <- TernaryCoords(c(1, 1, 0)) + 
-    (lab.offset[2] * DirectionalOffset(c( 60, 120, 210, 330)[direction]))
-  clab_xy <- TernaryCoords(c(0, 1, 1)) + 
-    (lab.offset[3] * DirectionalOffset(c(180, 270,   0,  90)[direction]))
-    
-  TitleAxis(alab_xy, if (clockwise) alab else clab, if (clockwise) 1 else 3, 
-            c( 60, 330,  60, 330))
-  TitleAxis(blab_xy, if (clockwise) blab else alab, if (clockwise) 2 else 1, 
-            c(300,  30, 300,  30))
-  TitleAxis(clab_xy, if (clockwise) clab else blab, if (clockwise) 3 else 2, 
-            c(  0,  90,   0, 270))
+  .PlotMajorGridLines(tern$grid.lines,
+                      col = tern$grid.col,
+                      lty = tern$grid.lty,
+                      lwd = tern$grid.lwd)
   
-  axRaw <- if (clockwise) c(-4, 4,  1, -3) else c(4, 4, -1, -3)
-  ayRaw <- if (clockwise) c(1, -4, -2, -4) else c(1, -4, -2, 4)
-  ax <- axRaw[direction] * ticks.length[1]
-  ay <- ayRaw[direction] * ticks.length[1]
-  if (is.null(atip.rotate)) {
-    atip.rotate <- if (clockwise) c(0, 30, 0, 330)[direction] else c(0, 30, 0, 30)[direction]
-    atip.pos <- if (clockwise) c(2, 2, 4, 4)[direction] else c(4, 2, 2, 4)[direction]
-  }
-  bx <- c(4, 4, -2, -3)[direction] * ticks.length[2]
-  by <- c(-4, -2, 4, 2.4)[direction] * ticks.length[2]
-  if (is.null(btip.rotate)) {
-    btip.rotate <- c(0, 0, 0, 0)[direction]
-    btip.pos <- c(2, 4, 4, 2)[direction]
-  }
-  cx <- c(-3, 0, 2, -3)[direction] * ticks.length[3]
-  cy <- c(-4, 2, 4, -2)[direction] * ticks.length[3]
-  if (is.null(ctip.rotate)) {
-    ctip.rotate <- c(0, 0, 0, 0)[direction]
-    ctip.pos <- c(4, 4, 2, 2)[direction]
-  }
+  .PlotAxisTicks(tern)
   
-  # Title corners
-  text(.AxesX()[1] + ax, .AxesY()[1] + ay, atip, pos = atip.pos, cex = tip.cex[1],
-       font = tip.font[1], col = tip.col[1], srt = atip.rotate)
-  text(.AxesX()[2] + bx, .AxesY()[2] + by, btip, pos = btip.pos, cex = tip.cex[2],
-       font = tip.font[2], col = tip.col[2], srt = btip.rotate)
-  text(.AxesX()[3] + cx, .AxesY()[3] + cy, ctip, pos = ctip.pos, cex = tip.cex[3],
-       font = tip.font[3], col = tip.col[3], srt = ctip.rotate)
+  .PlotAxisLabels(tern)
+  
+  lapply(1:3, .AxisLines)
+  lapply(1:3, .TitleAxis)
+  .TitleCorners()
   
   # Return:
-  return <- NULL
+  return <- tern
 }
 
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
@@ -374,28 +230,24 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
 #' 
 #' @importFrom graphics par
 #' @export
-HorizontalGrid <- function (grid.lines = 10, grid.col='grey',
-                            grid.lty='dotted', grid.lwd=par('lwd'),
-                            direction=getOption('ternDirection')) {
+HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
+                            grid.lty = 'dotted', grid.lwd = par('lwd'),
+                            direction = getOption('ternDirection')) {
   
   if (!(direction %in% 1:4)) stop("Parameter direction must be an integer from 1 to 4")
-  linePoints <- seq(from=0, to=1, length.out=grid.lines + 1L)
-  tern_height <- c(sqrt(3/4), 1, sqrt(3/4), 1)[direction]
-  tern_width <- c(1, sqrt(3/4), 1, sqrt(3/4), 1)[direction]
+  linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
+  tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
+  tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)
   
   
   lapply(linePoints[-c(1, grid.lines + 1L)], function (p) {
-    x <- tern_width * if (direction == 1) {
-      c(-1, 1) * (1 - p) / 2
-    } else if (direction == 2) {
-      c(0, 0.5 - abs(0.5 - p)) * 2
-    } else if (direction == 3) {
-      c(-1, 1) * p / 2
-    } else if (direction == 4) {
-      c(0, -(0.5 - abs(0.5 - p))) * 2
-    }
-    y <- rep(tern_height, 2) * (p - c(0, 0.5, 1, 0.5)[direction])
-    lines(x, y, col=grid.col, lty=grid.lty, lwd=grid.lwd)
+    x <- tern_width * switch(direction,
+      c(-1, 1) * (1 - p) / 2,
+      c(0, 0.5 - abs(0.5 - p)) * 2,
+      c(-1, 1) * p / 2,
+      c(0, -(0.5 - abs(0.5 - p))) * 2)
+    y <- rep(tern_height, 2) * (p - switch(direction, 0, 0.5, 1, 0.5))
+    lines(x, y, col = grid.col, lty = grid.lty, lwd = grid.lwd)
   })
   
   # Return:
