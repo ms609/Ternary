@@ -37,3 +37,14 @@ NULL
 #' @rdname cbPalettes
 "cbPalette15"
 
+#' Random sample of points for Holdridge plotting
+#'
+#' A stratified random sampling (average of 100 points) using 
+#' a global mapping of Holdridge’s scheme. 
+#' 
+#' @examples
+#' data('holdridge', package = 'Ternary')
+#' head(holdridge)
+#' @author James Lee Tsakalos
+#' @keywords datasets
+"holdridge"

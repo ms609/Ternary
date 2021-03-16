@@ -237,7 +237,9 @@ HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
                             grid.lty = 'dotted', grid.lwd = par('lwd'),
                             direction = getOption('ternDirection')) {
   
-  if (!(direction %in% 1:4)) stop("Parameter direction must be an integer from 1 to 4")
+  if (!(direction %in% 1:4)) {
+    stop("Parameter `direction` must be an integer from 1 to 4")
+  }
   linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
   tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
   tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)

@@ -29,91 +29,90 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            ticks.lwd = axis.lwd, ticks.length = 0.025,
                            axis.col = 'black', ticks.col = grid.col,
                            ...) {
+  tri <- .TrianglePlot(
+    atip = atip, btip = btip, ctip = ctip,
+    alab = alab, blab = blab, clab = clab,
+    
+    atip.pos = atip.pos,
+    btip.pos = btip.pos,
+    ctip.pos = ctip.pos,
+    atip.rotate = atip.rotate,
+    btip.rotate = btip.rotate,
+    ctip.rotate = ctip.rotate,
+    
+    padding = padding,
+    point = 1L,
+    lab.col = lab.col,
+    lab.cex = lab.cex,
+    lab.font = lab.font,
+    lab.offset = lab.offset,
+    
+    axis.col = axis.col,
+    axis.cex = axis.cex,
+    axis.labels = list(2 ^ (5:-3),
+                       1000 * 2 ^ (-4:4),
+                       rev(c('superarid', 'perarid', 'arid', 'semiarid',
+                         'subhumid', 'humid', 'perhumid', 'superhumid'))
+                       ),
+    axis.lty = axis.lty,
+    axis.font = axis.font,
+    axis.lwd = axis.lwd,
+    axis.rotate = axis.rotate,
+    axis.tick = axis.tick,
+    axis.pos = axis.pos,
+    grid.lines = grid.lines,
+    grid.col = grid.col,
+    grid.lwd = grid.lwd,
+    grid.lty = grid.lty,
+    grid.minor.lines = grid.minor.lines,
+    grid.minor.col = grid.minor.col,
+    grid.minor.lty = grid.minor.lty,
+    grid.minor.lwd = grid.minor.lwd,
+    isometric = isometric,
+    
+    ticks.col = ticks.col,
+    ticks.incline = c(FALSE, TRUE, TRUE),
+    ticks.length = ticks.length,
+    ticks.lwd = ticks.lwd,
+    
+    tip.col = tip.col,
+    tip.cex = tip.cex,
+    tip.font = tip.font,
+    xlim = xlim,
+    ylim = ylim,
+    col = col)
   
-    tri <- .TrianglePlot(
-      atip = atip, btip = btip, ctip = ctip,
-      alab = alab, blab = blab, clab = clab,
-      
-      atip.pos = atip.pos,
-      btip.pos = btip.pos,
-      ctip.pos = ctip.pos,
-      atip.rotate = atip.rotate,
-      btip.rotate = btip.rotate,
-      ctip.rotate = ctip.rotate,
-      
-      padding = padding,
-      point = 1L,
-      lab.col = lab.col,
-      lab.cex = lab.cex,
-      lab.font = lab.font,
-      lab.offset = lab.offset,
-      
-      axis.col = axis.col,
-      axis.cex = axis.cex,
-      axis.labels = list(2 ^ (5:-3),
-                         1000 * 2 ^ (-4:4),
-                         rev(c('superarid', 'perarid', 'arid', 'semiarid',
-                           'subhumid', 'humid', 'perhumid', 'superhumid'))
-                         ),
-      axis.lty = axis.lty,
-      axis.font = axis.font,
-      axis.lwd = axis.lwd,
-      axis.rotate = axis.rotate,
-      axis.tick = axis.tick,
-      axis.pos = axis.pos,
-      grid.lines = grid.lines,
-      grid.col = grid.col,
-      grid.lwd = grid.lwd,
-      grid.lty = grid.lty,
-      grid.minor.lines = grid.minor.lines,
-      grid.minor.col = grid.minor.col,
-      grid.minor.lty = grid.minor.lty,
-      grid.minor.lwd = grid.minor.lwd,
-      isometric = isometric,
-      
-      ticks.col = ticks.col,
-      ticks.incline = c(FALSE, TRUE, TRUE),
-      ticks.length = ticks.length,
-      ticks.lwd = ticks.lwd,
-      
-      tip.col = tip.col,
-      tip.cex = tip.cex,
-      tip.font = tip.font,
-      xlim = xlim,
-      ylim = ylim,
-      col = col)
-    
-    if (isometric) {
-      original_par <- par(pty = 's')
-      on.exit(par(original_par), add = TRUE)
-    }
-    
-    .StartPlot(tri, ...)
-    options('.Last.triangle' = tri)
-    
-    .PlotBackground(tri)
-    
-    .PlotMinorGridLines(tri$grid.lines, tri$grid.minor.lines, 
-                        col = tri$grid.minor.col,
-                        lty = tri$grid.minor.lty,
-                        lwd = tri$grid.minor.lwd)
-    
-    .PlotMajorGridLines(tri$grid.lines,
-                        col = tri$grid.col,
-                        lty = tri$grid.lty,
-                        lwd = tri$grid.lwd)
-    
-    .PlotAxisTicks(tri)
-    
-    .HoldridgeAxisLabels(tri)
-    
-    lapply(1:3, .AxisLines)
-    lapply(1:3, .TitleAxis)
-    .TitleCorners()
-    
-    # Return:
-    return <- tri
+  if (isometric) {
+    original_par <- par(pty = 's')
+    on.exit(par(original_par), add = TRUE)
   }
+  
+  .StartPlot(tri, ...)
+  options('.Last.triangle' = tri)
+  
+  .PlotBackground(tri)
+  
+  .PlotMinorGridLines(tri$grid.lines, tri$grid.minor.lines, 
+                      col = tri$grid.minor.col,
+                      lty = tri$grid.minor.lty,
+                      lwd = tri$grid.minor.lwd)
+  
+  .PlotMajorGridLines(tri$grid.lines,
+                      col = tri$grid.col,
+                      lty = tri$grid.lty,
+                      lwd = tri$grid.lwd)
+  
+  .PlotAxisTicks(tri)
+  
+  .HoldridgeAxisLabels(tri)
+  
+  lapply(1:3, .AxisLines)
+  lapply(1:3, .TitleAxis)
+  .TitleCorners()
+  
+  # Return:
+  return <- tri
+}
   
 .HoldridgeAxisLabels <- function (tri) {
   if (tri$gridExists) {
@@ -141,6 +140,33 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
 
   }
 }
+
+#' @describeIn HoldridgePlot Draw interpretative horizontals
+HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
+                            grid.lwd = par('lwd'),
+                            direction = getOption('ternDirection')) {
+  
+  if (!(direction %in% 1:4)) {
+    stop("Parameter `direction` must be an integer from 1 to 4")
+  }
+  linePoints <- c(1, 2, 3, 5, 7, 9) / 16
+  tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
+  tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)
+  
+  lapply(linePoints, function (p) {
+    x <- tern_width * switch(direction,
+                             c(-1, 1) * (1 - p) / 2,
+                             c(0, 0.5 - abs(0.5 - p)) * 2,
+                             c(-1, 1) * p / 2,
+                             c(0, -(0.5 - abs(0.5 - p))) * 2)
+    y <- rep(tern_height, 2) * (p - switch(direction, 0, 0.5, 1, 0.5))
+    lines(x, y, col = grid.col, lty = grid.lty, lwd = grid.lwd)
+  })
+  
+  # Return:
+  return <- NULL
+}
+
 
 #' @describeIn CoordinatesToXY Convert from Holdridge coordinates
 #' @param pet,prec  Numeric vectors giving *p*otential *e*vapo*t*ranspiration
