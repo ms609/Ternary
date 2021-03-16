@@ -106,7 +106,8 @@
   }
 }
 
-.AxisLabel <- function (side, lineEnds, lab, tern = getOption('.Last.triangle')) {
+.AxisLabel <- function (side, lineEnds, lab,
+                        tern = getOption('.Last.triangle')) {
   selected <- tern$sideOrder[side]
   lng <- tern$ticks.length[side] * tern$axisMult[side]
   text(lineEnds[1, side] + sin(tern$axisRadians[side]) * lng,
@@ -117,7 +118,6 @@
        cex = tern$axis.cex[selected],
        col = tern$lab.col[selected])
 }
-
 
 .AxisTick <- function (side, lineEnds, tern = getOption('.Last.triangle')) {
   
