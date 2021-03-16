@@ -189,7 +189,7 @@
   selected <- tern$sideOrder[side]
   
   spots <- switch(side, 3:4, 1:2, 2:3)
-  lines(tern$axisX[spots], tern$axisY[spots],
+  lines(tern$axesX[spots], tern$axesY[spots],
         col = tern$axis.col[selected],
         lty = tern$axis.lty[selected], 
         lwd = tern$axis.lwd[selected])

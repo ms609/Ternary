@@ -181,6 +181,9 @@
   # Return:
   structure(list(
     
+    alab = alab,
+    blab = blab,
+    clab = clab,
     atip = atip,
     btip = btip,
     ctip = ctip,

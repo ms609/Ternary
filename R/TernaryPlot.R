@@ -190,8 +190,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     tip.font = tip.font,
     xlim = xlim,
     ylim = ylim,
-    col = col,
-    ...)
+    col = col)
   
   if (isometric) {
     original_par <- par(pty = 's')
