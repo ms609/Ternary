@@ -317,10 +317,16 @@ CoordinatesToXY <- function (coordinates) {
     if (is.list(coordinates)) {
       vapply(coordinates, TernaryCoords, double(2))
     } else if (is.numeric(coordinates)) {
-      matrix(TernaryCoords(coordinates), nrow=2)
+      matrix(TernaryCoords(coordinates), nrow = 2)
     }
   } else if (length(dims) == 2) {
-    which_dim <- if(dims[2] == 3) 1 else if (dims[1] == 3) 2 else stop("Coordinates must be ternary points")
+    which_dim <- if(dims[2] == 3) {
+      1
+    } else if (dims[1] == 3) {
+      2
+    } else {
+      stop("Coordinates must be ternary points")
+    }
     apply(coordinates, which_dim, TernaryCoords)
   } else {
     stop("Unrecognized format for coordinates parameter.")

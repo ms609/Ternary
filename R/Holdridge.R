@@ -1,36 +1,34 @@
 #' Create Holdridge plot
 #' 
-#' @param pet,precipitation  Numeric vectors giving potential evapotranspiration
-#'  ratio and annual precipitation (in mm).
-#' @param add Logical specifying whether to add points to an existing plot.
-Holdridge <- function (pet, precipitation, add = FALSE,
-                       atip = NULL, btip = NULL, ctip = NULL,
-                       alab = 'Potential evaoptranspiration ratio',
-                       blab = 'Annual precipitation / mm',
-                       clab = 'Humidity province',
-                       lab.offset = 0.16, lab.col = NULL,
-                       xlim = NULL, ylim = NULL,
-                       lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
-                       tip.font = 2, tip.col = 'black',
-                       isometric = TRUE, atip.rotate = NULL,
-                       btip.rotate = NULL, ctip.rotate = NULL,
-                       atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
-                       padding = 0.04,
-                       col = NA,
-                       grid.lines = 8, grid.col = c( '#004D40', '#1E88E5', '#D81B60'),
-                       grid.lty = 'solid', grid.lwd = par('lwd'),
-                       grid.minor.lines = 1, grid.minor.col = 'lightgrey',
-                       grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
-                       axis.lty = 'solid',
-                       axis.labels = TRUE, axis.cex = 0.8,
-                       axis.font = par('font'),
-                       axis.rotate = TRUE,
-                       axis.pos = NULL,
-                       axis.tick = TRUE,
-                       axis.lwd = 1,
-                       ticks.lwd = axis.lwd, ticks.length = 0.025,
-                       axis.col = 'black', ticks.col = grid.col,
-                       ...) {
+HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
+                           alab = 'Potential evaoptranspiration ratio',
+                           blab = 'Annual precipitation / mm',
+                           clab = 'Humidity province',
+                           lab.offset = 0.22, 
+                           lab.col = c('#D81B60', '#1E88E5', '#111111'),
+                           xlim = NULL, ylim = NULL,
+                           lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
+                           tip.font = 2, tip.col = 'black',
+                           isometric = TRUE, atip.rotate = NULL,
+                           btip.rotate = NULL, ctip.rotate = NULL,
+                           atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
+                           padding = 0.16,
+                           col = NA,
+                           grid.lines = 8,
+                           grid.col = c(NA, '#1E88E5', '#D81B60'),
+                           grid.lty = 'solid', grid.lwd = par('lwd'),
+                           grid.minor.lines = 0, grid.minor.col = 'lightgrey',
+                           grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
+                           axis.lty = 'solid',
+                           axis.labels = TRUE, axis.cex = 0.8,
+                           axis.font = par('font'),
+                           axis.rotate = TRUE,
+                           axis.pos = NULL,
+                           axis.tick = TRUE,
+                           axis.lwd = 1,
+                           ticks.lwd = axis.lwd, ticks.length = 0.025,
+                           axis.col = 'black', ticks.col = grid.col,
+                           ...) {
   
     tri <- .TrianglePlot(
       atip = atip, btip = btip, ctip = ctip,
@@ -44,7 +42,7 @@ Holdridge <- function (pet, precipitation, add = FALSE,
       ctip.rotate = ctip.rotate,
       
       padding = padding,
-      point = point,
+      point = 1L,
       lab.col = lab.col,
       lab.cex = lab.cex,
       lab.font = lab.font,
@@ -144,73 +142,64 @@ Holdridge <- function (pet, precipitation, add = FALSE,
   }
 }
 
-  #' Add elements to ternary plot
-  #' 
-  #' Plot shapes onto a ternary diagram created with [`TernaryPlot()`].
-  #' 
-  #' @param PlottingFunction Function to add data to a plot; perhaps one of
-  #'        \code{\link[graphics]{points}},
-  #'        \code{\link[graphics]{lines}} or
-  #'        \code{\link[graphics]{text}}.
-  #' @template coordinatesParam
-  #' @param fromCoordinates,toCoordinates For `TernaryArrows()`, coordinates at 
-  #' which arrows should begin and end; _cf._ `x0`, `y0`, `x1` and `y1` in 
-  #' \link[graphics]{arrows}.  Recycled as necessary.
-  #' @param \dots Additional parameters to pass to `PlottingFunction()`.  
-  #' If using `TernaryText()`, this will likely include the parameter `labels`,
-  #' to specify the text to plot.
-  #' 
-  #' @examples 
-  #' coords <- list(
-  #'   A = c(1, 0, 2),
-  #'   B = c(1, 1, 1),
-  #'   C = c(1.5, 1.5, 0),
-  #'   D = c(0.5, 1.5, 1)
-  #' )
-  #' TernaryPlot()
-  #' AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
-  #' TernaryLines(coords, col='darkgreen')
-  #' TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-  #' TernaryText(coords, cex=0.8, col='red', font=2)
-  #' TernaryPoints(coords, pch=1, cex=2, col='blue')
-  #' AddToTernary(points, coords, pch=1, cex=3)
-  #' 
-  #' 
-  #' @template MRS
-  #' @export
-  AddToHoldridge <- function (PlottingFunction, coordinates, ...) {
-    xy <- CoordinatesToXY(coordinates)
-    PlottingFunction(xy[1, ], xy[2, ], ...)
-  }
+#' @describeIn CoordinatesToXY Convert from Holdridge coordinates
+#' @param pet,prec  Numeric vectors giving *p*otential *e*vapo*t*ranspiration
+#'  ratio and annual *prec*ipitation (in mm).
+#' @export
+#' @keywords internal
+HoldridgeToXY <- function (pet, prec) {
+  pet08 <- log2(pet) + 3
+  prec08 <- log2(prec / 1000) + 4
   
-  #' @describeIn AddToTernary Add  \link[graphics]{arrows}
-  #' @importFrom graphics arrows
-  #' @export
-  HoldridgeArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) {
-    fromXY <- CoordinatesToXY(fromCoordinates)
-    toXY <- CoordinatesToXY(toCoordinates)
-    
-    # Return:
-    arrows(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
-  }
+  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08))
+}
+
+
+#' @rdname AddToTernary
+#' @inheritParams HoldridgeToXY
+#' @export
+AddToHoldridge <- function (PlottingFunction, pet, prec, ...) {
+  xy <- CoordinatesToXY(pet, prec)
+  PlottingFunction(xy[1, ], xy[2, ], ...)
+}
+
+#' @describeIn AddToTernary Add  \link[graphics]{arrows} to Holdridge plot
+#' @importFrom graphics arrows
+#' @export
+HoldridgeArrows <- function (fromCoordinates, toCoordinates = fromCoordinates,
+                             ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
   
-  #' @describeIn AddToTernary Add \link[graphics]{lines}
-  #' @importFrom graphics lines
-  #' @export
-  HoldridgeLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...)
-  
-  #' @describeIn AddToTernary Add \link[graphics]{points}
-  #' @importFrom graphics points
-  #' @export
-  HoldridgePoints <- function (coordinates, ...) AddToTernary(points, coordinates, ...)
-  
-  #' @describeIn AddToTernary Add \link[graphics:polygon]{polygons}
-  #' @importFrom graphics polygon
-  #' @export
-  HoldridgePolygon <- function (coordinates, ...) AddToTernary(polygon, coordinates, ...)
-  
-  #' @describeIn AddToTernary Add \link[graphics]{text}
-  #' @importFrom graphics text
-  #' @export
-  HoldridgeText <- function (coordinates, ...) AddToTernary(text, coordinates, ...)
-  
+  # Return:
+  arrows(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
+
+#' @describeIn AddToTernary Add \link[graphics]{lines} to Holdridge plot
+#' @importFrom graphics lines
+#' @export
+HoldridgeLines <- function (pet, prec, ...) {
+  AddToHoldridge(lines, pet, prec, ...)
+}
+
+#' @describeIn AddToTernary Add \link[graphics]{points} to Holdridge plot
+#' @importFrom graphics points
+#' @export
+HoldridgePoints <- function (pet, prec, ...) {
+  AddToHoldridge(points, pet, prec, ...)
+}
+
+#' @describeIn AddToTernary Add \link[graphics:polygon]{polygons} to Holdridge 
+#' plot
+#' @importFrom graphics polygon
+#' @export
+HoldridgePolygon <- function (pet, prec, ...) {
+  AddToHoldridge(polygon, pet, prec, ...)
+}
+
+#' @describeIn AddToTernary Add \link[graphics]{text} to Holdridge plot
+#' @importFrom graphics text
+#' @export
+HoldridgeText <- function (pet, prec, ...) {
+  AddToHoldridge(text, pet, prec, ...)
+}
