@@ -151,7 +151,9 @@ HoldridgeToXY <- function (pet, prec) {
   pet08 <- log2(pet) + 3
   prec08 <- log2(prec / 1000) + 4
   
-  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08))
+  plottable <- is.finite(pet08) & is.finite(prec08)
+  
+  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08)[, plottable])
 }
 
 
@@ -159,7 +161,7 @@ HoldridgeToXY <- function (pet, prec) {
 #' @inheritParams HoldridgeToXY
 #' @export
 AddToHoldridge <- function (PlottingFunction, pet, prec, ...) {
-  xy <- CoordinatesToXY(pet, prec)
+  xy <- HoldridgeToXY(pet, prec)
   PlottingFunction(xy[1, ], xy[2, ], ...)
 }
 
