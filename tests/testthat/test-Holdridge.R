@@ -11,7 +11,9 @@ test_that("Holdridge plotting", {
     prec <- holdridge$Precipition
     lat <- holdridge$Latitude
     latCol <- viridisLite::plasma(90, alpha = 0.6)[ceiling(abs(lat))]
-    HoldridgePlot()
+    oPar <- par(mar = rep(0, 4))
+    on.exit(par(oPar), TRUE)
+    HoldridgePlot(hex.labels = holdridgeLifeZonesUp, hex.cex = 0.5)
     HoldridgeBelts()
     HoldridgePoints(pet, prec, cex = 2.2, pch = 21, bg = latCol)
     HoldridgeText(pet, prec, seq_along(pet)[-12], cex = 0.6,

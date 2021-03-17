@@ -48,3 +48,39 @@ NULL
 #' @author James Lee Tsakalos
 #' @keywords datasets
 "holdridge"
+
+#' Names of the 38 classes defined with the Holdridge system
+#' 
+#' `holdridgeClasses` is a character vector naming, from left to right, 
+#' top to bottom, the 38 classes defined by the International Institute for
+#'  Applied Systems Analysis (IIASA).
+#'  
+#' `holdridgeLifeZones` is a character vector naming, from left to right, 
+#' top to bottom, the 38 cells of the Holdridge classification plot.
+#'  
+#' `holdridgeClassesUp` and `holdridgeLifeZonesUp` replace spaces with new
+#' lines, for more legible plotting with [`HoldridgeHexagons()`].
+#' 
+#' @source 
+#' Holdridge (1947),
+#' "Determination of world plant formations from simple climatic data",
+#' _Science_ 105:367&ndash;368.
+#' doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
+#' 
+#' Holdridge (1967),
+#' _Life zone ecology_.
+#' Tropical Science Center, San Jos&eacute;
+#' \url{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}
+#' 
+#' Leemans, R. (1990),
+#' "Possible change in natural vegitation patterns due to a global warming",
+#' _International Institute for Applied Systems Analysis_ Working paper WP-90-08.
+#' \url{https://pure.iiasa.ac.at/id/eprint/3443/1/WP-90-008.pdf}
+#' @template MRS
+"holdridgeClasses"
+
+
+"holdridgeLifeZones"
+
+#' @rdname holdridgeClasses
+"holdridgeClassesUp"

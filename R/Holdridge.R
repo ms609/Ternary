@@ -3,8 +3,15 @@
 #' @inheritParams TernaryPlot
 #' 
 #' @param hex.border,hex.col,hex.lty,hex.lwd Parameters to pass to 
-#' `HoldridgeHexagons()`.  Set to `NA` to suppress hexagons
+#' `HoldridgeHexagons()`.  Set to `NA` to suppress hexagons.
+#' @param hex.labels 38-element character vector specifying label for
+#' each hexagonal class, from top left to bottom right.
+#' @param hex.cex,hex.font,hex.text.col Parameters passed to
+#' [graphics:text][`text()`] to plot `hex.labels`.
 #' 
+#' @examples 
+#' data(holdridgeLifeZonesUp, package = 'Ternary')
+#' HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
 HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            alab = 'Potential evaoptranspiration ratio',
                            blab = 'Annual precipitation / mm',
@@ -26,10 +33,15 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            grid.minor.lines = 0, grid.minor.col = 'lightgrey',
                            grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
                            
-                           hex.border = '#00000066',
+                           hex.border = '#888888',
                            hex.col = HoldridgeHypsometricCol,
                            hex.lty = 'solid',
                            hex.lwd = par('lwd'),
+                           
+                           hex.cex = 0.5,
+                           hex.labels = NULL,
+                           hex.font = NULL,
+                           hex.text.col = 'black',
                            
                            axis.lty = 'solid',
                            axis.labels = TRUE, axis.cex = 0.8,
@@ -105,7 +117,8 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   .PlotBackground(tri)
   
   HoldridgeHexagons(border = hex.border, col = hex.col, lty = hex.lty,
-                    lwd = hex.lwd)
+                    lwd = hex.lwd, labels = hex.labels, font = hex.font,
+                    cex = hex.cex, text.col = hex.text.col)
   
   .PlotMinorGridLines(tri$grid.lines, tri$grid.minor.lines, 
                       col = tri$grid.minor.col,
@@ -193,7 +206,7 @@ HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
 #' @return Character vector listing RGBA values corresponding to each pet-prec
 #' value.
 #' @template MRS
-#' @importFrom grDevices colorRamp
+#' @importFrom grDevices colorRampPalette
 #' @export
 HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
   .Within257 <- function (x) pmax(1, pmin(257, x))
@@ -221,7 +234,11 @@ HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
 HoldridgeHexagons <- function (border = '#004D40',
                                col = HoldridgeHypsometricCol,
                                lty = 'dotted',
-                               lwd = par('lwd')) {
+                               lwd = par('lwd'),
+                               labels = NULL,
+                               cex = 1.0,
+                               text.col = NULL,
+                               font = NULL) {
   
   hexIndex <- matrix(c(26, 19, 13, 8, 4, 1,
                        27, 20, 14, 9, 5, 2,
@@ -257,16 +274,24 @@ HoldridgeHexagons <- function (border = '#004D40',
   
   for (i in 1:8) {
     start <- starts[, i]
+    midX <-  start[1] + hexTopX[3]
+    midY <- start[2]
     polygon(start[1] + hexTopX, start[2] + hexTopY,
-            col = .FillCol(i, 0, start[1] + hexTopX[3], start[2]),
+            col = .FillCol(i, 0, midX, midY),
             lty = lty, border = border, lwd = lwd)
+    text(midX, midY + (e / 2), labels[hexIndex[1, i]], cex = cex, col = text.col,
+         font = font)
     start <- start + c(hexTopX[3], hexTopY[3])
     for (j in seq_len(min(5, 8 - i)) - 1L) {
       turtleX <- start[1] + (j * hexX[3])
       turtleY <- start[2] + (j * hexY[3])
+      midX <- turtleX + e
+      midY <- turtleY + (n / 2)
       polygon(turtleX + hexX, turtleY + hexY,
-              col = .FillCol(i, j, turtleX + e, turtleY + (n / 2)),
+              col = .FillCol(i, j, midX, midY),
               lty = lty, border = border, lwd = lwd)
+      text(midX, midY, labels[hexIndex[1 + j, i]], cex = cex, col = text.col,
+           font = font)
     }
   }
 }

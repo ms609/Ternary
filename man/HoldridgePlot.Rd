@@ -39,10 +39,14 @@ HoldridgePlot(
   grid.minor.col = "lightgrey",
   grid.minor.lty = "solid",
   grid.minor.lwd = par("lwd"),
-  hex.border = "#00000066",
+  hex.border = "#888888",
   hex.col = HoldridgeHypsometricCol,
   hex.lty = "solid",
   hex.lwd = par("lwd"),
+  hex.cex = 0.5,
+  hex.labels = NULL,
+  hex.font = NULL,
+  hex.text.col = "black",
   axis.lty = "solid",
   axis.labels = TRUE,
   axis.cex = 0.8,
@@ -69,7 +73,11 @@ HoldridgeHexagons(
   border = "#004D40",
   col = HoldridgeHypsometricCol,
   lty = "dotted",
-  lwd = par("lwd")
+  lwd = par("lwd"),
+  labels = NULL,
+  cex = 1,
+  text.col = NULL,
+  font = NULL
 )
 }
 \arguments{
@@ -204,7 +212,14 @@ grid lines.  Use a vector of length three to set different values for each
 direction.}
 
 \item{hex.border, hex.col, hex.lty, hex.lwd}{Parameters to pass to
-\code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons}
+\code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons.}
+
+\item{hex.cex, hex.font, hex.text.col}{Parameters passed to
+\link[=`text()`]{graphics:text} to plot \code{hex.labels}.}
+
+\item{hex.labels}{38-element character vector specifying label for
+each hexagonal class, from top left to bottom right.  The data object
+\code{holdridgeClassesUp} gives the IIASA classes.}
 
 \item{axis.lty}{Line type for both the axis line and tick marks.
 Use a vector of length three to set a different value for each direction.}
@@ -272,3 +287,7 @@ Create Holdridge plot
 \item \code{HoldridgeHexagons}: Plot interpretative hexagons.
 }}
 
+\examples{
+data(holdridgeClasses, package = 'Ternary')
+HoldridgePlot(hex.labels = holdridgeClasses)
+}
