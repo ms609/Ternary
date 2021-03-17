@@ -130,6 +130,20 @@ XYToTernary <- function (x, y, direction = getOption('ternDirection')) {
   rbind(a, b, c)
 }
 
+#' @rdname XYToTernary
+#' @export
+XYToHoldridge  <- function (x, y) {
+  tern <- XYToTernary(x, y, 1L)
+  
+  # Return:
+  rbind(pet = 2 ^ (tern[3, ] * 8 - 3),
+        prec = 1000 * 2 ^ (tern[2, ] * 8 - 4))
+}
+
+#' @rdname XYToTernary
+#' @export
+XYToPetPrec <- XYToHoldridge 
+
 #' X and Y coordinates of ternary plotting area
 #'
 #' @template directionParam

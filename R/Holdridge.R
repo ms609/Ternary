@@ -1,5 +1,10 @@
 #' Create Holdridge plot
 #' 
+#' @inheritParams TernaryPlot
+#' 
+#' @param hex.border,hex.col,hex.lty,hex.lwd Parameters to pass to 
+#' `HoldridgeHexagons()`.  Set to `NA` to suppress hexagons
+#' 
 HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            alab = 'Potential evaoptranspiration ratio',
                            blab = 'Annual precipitation / mm',
@@ -14,11 +19,18 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                            padding = 0.16,
                            col = NA,
+                           
                            grid.lines = 8,
                            grid.col = c(NA, '#1E88E5', '#D81B60'),
                            grid.lty = 'solid', grid.lwd = par('lwd'),
                            grid.minor.lines = 0, grid.minor.col = 'lightgrey',
                            grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
+                           
+                           hex.border = '#00000066',
+                           hex.col = HoldridgeHypsometricCol,
+                           hex.lty = 'solid',
+                           hex.lwd = par('lwd'),
+                           
                            axis.lty = 'solid',
                            axis.labels = TRUE, axis.cex = 0.8,
                            axis.font = par('font'),
@@ -92,6 +104,9 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   
   .PlotBackground(tri)
   
+  HoldridgeHexagons(border = hex.border, col = hex.col, lty = hex.lty,
+                    lwd = hex.lwd)
+  
   .PlotMinorGridLines(tri$grid.lines, tri$grid.minor.lines, 
                       col = tri$grid.minor.col,
                       lty = tri$grid.minor.lty,
@@ -141,7 +156,7 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   }
 }
 
-#' @describeIn HoldridgePlot Draw interpretative horizontals
+#' @describeIn HoldridgePlot Plot interpretative horizontals.
 HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
                             grid.lwd = par('lwd'),
                             direction = getOption('ternDirection')) {
@@ -168,6 +183,94 @@ HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
 }
 
 
+#' Convert a point in evapotranspiration-precipitation space to an appropriate
+#' cross-blended hypsometric colour
+#' 
+#' Palette basis: https://www.shadedrelief.com/hypso/hypso.html
+#' 
+#' @inheritParams HoldridgeToXY
+#' 
+#' @return Character vector listing RGBA values corresponding to each pet-prec
+#' value.
+#' @template MRS
+#' @importFrom grDevices colorRamp
+#' @export
+HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
+  .Within257 <- function (x) pmax(1, pmin(257, x))
+  xy <- HoldridgeToXY(pet, prec)
+  aridity <- colorRampPalette(c(arid = "#efd8c6", humid = "#9fc4b3"), 
+                              space = 'Lab')(257)[.Within257(xy[1, ] * 256 + 129)]
+  ret <- vapply(seq_along(aridity), function (i) {
+    colorRampPalette(c(aridity[i], "#ffffff"),
+                     space = 'Lab')(257)[.Within257(xy[2, i] / 0.541 * 256 + 1)]
+  }, character(1))
+  if (is.numeric(opacity)) {
+    paste0(ret, as.hexmode(opacity * 255))
+  } else if (is.character(opacity)) {
+    paste0(ret, opacity)
+  } else {
+    ret
+  }
+}
+
+#' @describeIn HoldridgePlot Plot interpretative hexagons.
+#' @param col Fill colour for hexagons.  Provide a vector specifying a colour
+#' for each hexagon in turn, reading from left to right and top to bottom,
+#' or a function that accepts two arguments, numerics `pet` and `prec`,
+#' and returns a colour in a format accepted by [graphics:polygon][`polygon()`].
+HoldridgeHexagons <- function (border = '#004D40',
+                               col = HoldridgeHypsometricCol,
+                               lty = 'dotted',
+                               lwd = par('lwd')) {
+  
+  hexIndex <- matrix(c(26, 19, 13, 8, 4, 1,
+                       27, 20, 14, 9, 5, 2,
+                       28, 21, 15, 10, 6, 3,
+                       29, 22, 16, 11, 7, NA,
+                       30, 23, 17, 12, NA, NA,
+                       31, 24, 18, rep(NA, 3),
+                       32, 25, rep(NA, 4),
+                       33, rep(NA, 5)), 6)
+  
+  .FillCol <- function(i, j, x, y) {
+    if (is.function(col)) {
+      pp <- XYToHoldridge(x, y)
+      col(pp[1, ], pp[2, ])
+    } else if (length(col) == 1) {
+      col
+    } else {
+      col[hexIndex[j + 1, i]]
+    }
+  }
+  
+  starts <- TernaryToXY(rbind(rep(0, 8),          # biot
+                              seq(0, 28, by = 4), # prec
+                              seq(32, 4, by = -4))) # pet
+  e <- 1 / 16
+  n <- 2 * e / sqrt(3)
+  
+  hexX <- c(0, 0, e, e + e, e + e, e, 0)
+  hexY <- c(0, n, 3 * n / 2, n, 0, -n / 2, 0)
+  
+  hexTopX <- c(0, 0, e, e + e, e + e, 0)
+  hexTopY <- c(0, n / 2, n, n / 2, 0, 0)
+  
+  for (i in 1:8) {
+    start <- starts[, i]
+    polygon(start[1] + hexTopX, start[2] + hexTopY,
+            col = .FillCol(i, 0, start[1] + hexTopX[3], start[2]),
+            lty = lty, border = border, lwd = lwd)
+    start <- start + c(hexTopX[3], hexTopY[3])
+    for (j in seq_len(min(5, 8 - i)) - 1L) {
+      turtleX <- start[1] + (j * hexX[3])
+      turtleY <- start[2] + (j * hexY[3])
+      polygon(turtleX + hexX, turtleY + hexY,
+              col = .FillCol(i, j, turtleX + e, turtleY + (n / 2)),
+              lty = lty, border = border, lwd = lwd)
+    }
+  }
+}
+
 #' @describeIn CoordinatesToXY Convert from Holdridge coordinates
 #' @param pet,prec  Numeric vectors giving *p*otential *e*vapo*t*ranspiration
 #'  ratio and annual *prec*ipitation (in mm).
@@ -179,7 +282,7 @@ HoldridgeToXY <- function (pet, prec) {
   
   plottable <- is.finite(pet08) & is.finite(prec08)
   
-  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08)[, plottable])
+  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08)[, plottable, drop = FALSE])
 }
 
 

@@ -3,6 +3,7 @@
 \name{HoldridgePlot}
 \alias{HoldridgePlot}
 \alias{HoldridgeBelts}
+\alias{HoldridgeHexagons}
 \title{Create Holdridge plot}
 \usage{
 HoldridgePlot(
@@ -38,6 +39,10 @@ HoldridgePlot(
   grid.minor.col = "lightgrey",
   grid.minor.lty = "solid",
   grid.minor.lwd = par("lwd"),
+  hex.border = "#00000066",
+  hex.col = HoldridgeHypsometricCol,
+  hex.lty = "solid",
+  hex.lwd = par("lwd"),
   axis.lty = "solid",
   axis.labels = TRUE,
   axis.cex = 0.8,
@@ -59,12 +64,211 @@ HoldridgeBelts(
   grid.lwd = par("lwd"),
   direction = getOption("ternDirection")
 )
+
+HoldridgeHexagons(
+  border = "#004D40",
+  col = HoldridgeHypsometricCol,
+  lty = "dotted",
+  lwd = par("lwd")
+)
+}
+\arguments{
+\item{atip}{Character string specifying text to title corners,
+proceeding clockwise from the corner specified in \code{point} (default: top).}
+
+\item{btip}{Character string specifying text to title corners,
+proceeding clockwise from the corner specified in \code{point} (default: top).}
+
+\item{ctip}{Character string specifying text to title corners,
+proceeding clockwise from the corner specified in \code{point} (default: top).}
+
+\item{alab}{Character string specifying text with which to label
+the corresponding sides of the triangle.
+Left or right-pointing arrows are produced by
+typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
+
+\item{blab}{Character string specifying text with which to label
+the corresponding sides of the triangle.
+Left or right-pointing arrows are produced by
+typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
+
+\item{clab}{Character string specifying text with which to label
+the corresponding sides of the triangle.
+Left or right-pointing arrows are produced by
+typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
+
+\item{lab.offset}{Numeric specifying distance between midpoint of axis label
+and the axis.
+Increase \code{padding} if labels are being clipped.
+Use a vector of length three to specify a different offset for each label.}
+
+\item{lab.col}{Character vector specifying colours for axis labels. Use a
+vector of length three to specify a different colour for each label.}
+
+\item{xlim}{Numeric vectors of length 2 specifying the minimum and maximum
+\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+The default is to display the complete height or width of the plot.
+Allows cropping to magnified region of the plot. (See vignette for diagram.)
+May be overridden if \code{isometric=TRUE}; see documentation of
+\code{isometric} parameter.}
+
+\item{ylim}{Numeric vectors of length 2 specifying the minimum and maximum
+\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+The default is to display the complete height or width of the plot.
+Allows cropping to magnified region of the plot. (See vignette for diagram.)
+May be overridden if \code{isometric=TRUE}; see documentation of
+\code{isometric} parameter.}
+
+\item{lab.cex}{Numeric specifying character expansion (font size)
+for axis labels.
+Use a vector of length three to specify a different value for each direction.}
+
+\item{lab.font}{Numeric specifying font style (Roman, bold, italic,
+bold-italic) for axis titles.
+Use a vector of length three to set a different font for each direction.}
+
+\item{tip.cex}{Numeric specifying character expansion (font size)
+for axis labels.
+Use a vector of length three to specify a different value for each direction.}
+
+\item{tip.font}{Numeric specifying font style (Roman, bold, italic,
+bold-italic) for axis titles.
+Use a vector of length three to set a different font for each direction.}
+
+\item{tip.col}{Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
+\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
+inline, and \code{ticks.col = NULL} means to use whatever colour
+\code{axis.col} resolved to.}
+
+\item{isometric}{Logical specifying whether to enforce an equilateral shape
+for the ternary plot.
+If only one of \code{xlim} and \code{ylim} is set, the other will be calculated to
+maintain an equilateral plot.
+If both \code{xlim} and \code{ylim} are set, but have different ranges, then the limit
+with the smaller range will be scaled until its range matches that of the
+other limit.}
+
+\item{atip.rotate}{Integer specifying number of
+degrees to rotate label of rightmost apex.}
+
+\item{btip.rotate}{Integer specifying number of
+degrees to rotate label of rightmost apex.}
+
+\item{ctip.rotate}{Integer specifying number of
+degrees to rotate label of rightmost apex.}
+
+\item{atip.pos}{Integer specifying positioning of labels,
+iff the corresponding \code{xlab.rotate} parameter is set.}
+
+\item{btip.pos}{Integer specifying positioning of labels,
+iff the corresponding \code{xlab.rotate} parameter is set.}
+
+\item{ctip.pos}{Integer specifying positioning of labels,
+iff the corresponding \code{xlab.rotate} parameter is set.}
+
+\item{padding}{Numeric specifying size of internal margin of the plot; increase
+if axis labels are being clipped.}
+
+\item{col}{Fill colour for hexagons.  Provide a vector specifying a colour
+for each hexagon in turn, reading from left to right and top to bottom,
+or a function that accepts two arguments, numerics \code{pet} and \code{prec},
+and returns a colour in a format accepted by \link[=`polygon()`]{graphics:polygon}.}
+
+\item{grid.lines}{Integer specifying the number of grid lines to plot.}
+
+\item{grid.col}{Colours to draw the grid lines. Use a vector
+of length three to set different values for each direction.}
+
+\item{grid.lty}{Character or integer vector; line type of
+the grid lines. Use a vector of length three to set different values for
+each direction.}
+
+\item{grid.lwd}{Non-negative numeric giving line width of the
+grid lines.  Use a vector of length three to set different values for each
+direction.}
+
+\item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
+grid lines to plot between each major pair.}
+
+\item{grid.minor.col}{Colours to draw the grid lines. Use a vector
+of length three to set different values for each direction.}
+
+\item{grid.minor.lty}{Character or integer vector; line type of
+the grid lines. Use a vector of length three to set different values for
+each direction.}
+
+\item{grid.minor.lwd}{Non-negative numeric giving line width of the
+grid lines.  Use a vector of length three to set different values for each
+direction.}
+
+\item{hex.border, hex.col, hex.lty, hex.lwd}{Parameters to pass to
+\code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons}
+
+\item{axis.lty}{Line type for both the axis line and tick marks.
+Use a vector of length three to set a different value for each direction.}
+
+\item{axis.labels}{This can either be a logical value specifying whether
+(numerical) annotations are to be made at the tickmarks, or a character or
+expression vector of labels to be placed at the tick points.}
+
+\item{axis.cex}{Numeric specifying character expansion (font size)
+for axis labels.
+Use a vector of length three to set a different value for each direction.}
+
+\item{axis.font}{Font for text. Defaults to \code{par('font')}.}
+
+\item{axis.rotate}{Logical specifying whether to rotate axis labels
+to parallel grid lines, or numeric specifying custom rotation for each axis,
+to be passed as \code{srt} parameter to \code{text()}.  Expand margins or set
+\code{par(xpd = NA)} if labels are clipped.}
+
+\item{axis.pos}{Vector of length one or three specifying position of axis
+labels, to be passed as \code{pos} parameter to \code{text()}; populated automatically
+if \code{NULL} (the default).}
+
+\item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
+
+\item{axis.lwd}{Line width for the axis line and tick marks.
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.}
+
+\item{ticks.lwd}{Line width for the axis line and tick marks.
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.}
+
+\item{ticks.length}{Numeric specifying distance that ticks should extend
+beyond the plot margin.  Also affects position of axis labels, which are
+plotted at the end of each tick.
+Use a vector of length three to set a different length for each direction.}
+
+\item{axis.col}{Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
+\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
+inline, and \code{ticks.col = NULL} means to use whatever colour
+\code{axis.col} resolved to.}
+
+\item{ticks.col}{Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
+\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
+inline, and \code{ticks.col = NULL} means to use whatever colour
+\code{axis.col} resolved to.}
+
+\item{...}{Additional parameters to \code{\link[graphics]{plot}}.}
+
+\item{direction}{(optional) Integer specifying the direction that the current ternary plot
+should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \description{
 Create Holdridge plot
 }
 \section{Functions}{
 \itemize{
-\item \code{HoldridgeBelts}: Draw interpretative horizontals
+\item \code{HoldridgeBelts}: Plot interpretative horizontals.
+
+\item \code{HoldridgeHexagons}: Plot interpretative hexagons.
 }}
 
