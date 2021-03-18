@@ -76,11 +76,14 @@ NULL
 #' "Possible change in natural vegitation patterns due to a global warming",
 #' _International Institute for Applied Systems Analysis_ Working paper WP-90-08.
 #' \url{https://pure.iiasa.ac.at/id/eprint/3443/1/WP-90-008.pdf}
+#' @encoding UTF-8
 #' @template MRS
 "holdridgeClasses"
 
 
+#' @rdname holdridgeClasses
 "holdridgeLifeZones"
-
+#' @rdname holdridgeClasses
+"holdridgeLifeZonesUp"
 #' @rdname holdridgeClasses
 "holdridgeClassesUp"

@@ -259,9 +259,10 @@ HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
   return <- NULL
 }
 
-#' Add elements to ternary plot
+#' Add elements to ternary or Holdridge plot
 #' 
-#' Plot shapes onto a ternary diagram created with [`TernaryPlot()`].
+#' Plot shapes onto a ternary diagram created with [`TernaryPlot()`],
+#' or a Holdridge plot created with [`HoldridgePlot()`].
 #' 
 #' @param PlottingFunction Function to add data to a plot; perhaps one of
 #'        \code{\link[graphics]{points}},
@@ -283,14 +284,19 @@ HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
 #'   D = c(0.5, 1.5, 1)
 #' )
 #' TernaryPlot()
-#' AddToTernary(lines, coords, col='darkgreen', lty='dotted', lwd=3)
+#' AddToTernary(lines, coords, col = 'darkgreen', lty = 'dotted', lwd = 3)
 #' TernaryLines(coords, col='darkgreen')
-#' TernaryArrows(coords[1], coords[2:4], col='orange', length=0.2, lwd=1)
-#' TernaryText(coords, cex=0.8, col='red', font=2)
-#' TernaryPoints(coords, pch=1, cex=2, col='blue')
-#' AddToTernary(points, coords, pch=1, cex=3)
+#' TernaryArrows(coords[1], coords[2:4], col = 'orange', length = 0.2, lwd = 1)
+#' TernaryText(coords, cex = 0.8, col = 'red', font = 2)
+#' TernaryPoints(coords, pch = 1, cex = 2, col = 'blue')
+#' AddToTernary(points, coords, pch = 1, cex = 3)
 #' 
-#' 
+#' # An equivalent syntax applies to Holdridge plots:
+#' HoldridgePlot()
+#' pet <- c(0.8, 2, 0.42)
+#' prec <- c(250, 400, 1337)
+#' HoldridgeText(pet, prec, c('A', 'B', 'C'))
+#' AddToHoldridge(points, pet, prec, cex = 3)
 #' @template MRS
 #' @export
 AddToTernary <- function (PlottingFunction, coordinates, ...) {

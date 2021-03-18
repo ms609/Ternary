@@ -1,4 +1,14 @@
-#' Create Holdridge plot
+#' Plot life zones on a Holdridge plot
+#' 
+#' `HoldridgePlot()` creates a blank triangular plot, as proposed by 
+#' Holdridge (1947, 1967), onto which potential evapotransporation
+#' (\acronym{PET}) ratio and annual precipitation data can be plotted
+#' (using the [`AddToHoldridge()`] family of functions) in order to interpret
+#' climatic life zones.
+#' 
+#' [`HoldridgePoints()`], [`HoldridgeText()`] and related functions allow data 
+#' points to be added to an existing plot; [`AddToHoldridge()`] allows plotting
+#' using any of the standart plotting functions.
 #' 
 #' @inheritParams TernaryPlot
 #' 
@@ -8,10 +18,23 @@
 #' each hexagonal class, from top left to bottom right.
 #' @param hex.cex,hex.font,hex.text.col Parameters passed to
 #' [graphics:text][`text()`] to plot `hex.labels`.
+#' @references 
+#' Holdridge (1947),
+#' "Determination of world plant formations from simple climatic data",
+#' _Science_ 105:367&ndash;368.
+#' doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
 #' 
-#' @examples 
+#' Holdridge (1967),
+#' _Life zone ecology_.
+#' Tropical Science Center, San Jos&eacute;
+#' \url{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}
+#'
+#' @encoding UTF-8
+#' @examples
 #' data(holdridgeLifeZonesUp, package = 'Ternary')
 #' HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
+#' @template MRS
+#' @export
 HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            alab = 'Potential evaoptranspiration ratio',
                            blab = 'Annual precipitation / mm',
