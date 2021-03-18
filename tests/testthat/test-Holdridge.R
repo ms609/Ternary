@@ -8,7 +8,7 @@ test_that("Holdridge coordinate transformation", {
 test_that("Holdridge plotting", {
   HoldridgeBasic <- function () {
     pet <- holdridge[, 2]
-    prec <- holdridge$Precipition
+    prec <- holdridge$Precipitation
     lat <- holdridge$Latitude
     latCol <- viridisLite::plasma(90, alpha = 0.6)[ceiling(abs(lat))]
     oPar <- par(mar = rep(0, 4))

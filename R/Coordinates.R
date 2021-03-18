@@ -58,9 +58,15 @@ TernaryToXY.numeric <- function (abc, b_coord = NULL, c_coord = NULL,
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
-  if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
-  if (!is.numeric(abc)) stop("Parameter abc must be numeric.")
-  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  if (length(abc) != 3) {
+    stop("Parameter `abc` must be a vector of length three.")
+  }
+  if (!is.numeric(abc)) {
+    stop("Parameter `abc` must be numeric.")
+  }
+  if (!(direction %in% 1:4)) {
+    stop("Parameter `direction` must be 1, 2, 3 or 4")
+  }
   names(abc) <- NULL # or they may be inherited by x and y, confusingly
   
   abc <- abc[switch(direction, c(2, 3, 1), c(3, 2, 1), c(3, 2, 1), c(2, 3, 1))]

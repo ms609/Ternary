@@ -179,10 +179,7 @@ iff the corresponding \code{xlab.rotate} parameter is set.}
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
 if axis labels are being clipped.}
 
-\item{col}{Fill colour for hexagons.  Provide a vector specifying a colour
-for each hexagon in turn, reading from left to right and top to bottom,
-or a function that accepts two arguments, numerics \code{pet} and \code{prec},
-and returns a colour in a format accepted by \link[=`polygon()`]{graphics:polygon}.}
+\item{col}{The colour for filling the plot; see \code{\link[graphics]{polygon}}.}
 
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
@@ -213,6 +210,11 @@ direction.}
 
 \item{hex.border, hex.col, hex.lty, hex.lwd}{Parameters to pass to
 \code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons.}
+
+\item{hex.col}{Fill colour for hexagons.  Provide a vector specifying a colour
+for each hexagon in turn, reading from left to right and top to bottom,
+or a function that accepts two arguments, numerics \code{pet} and \code{prec},
+and returns a colour in a format accepted by \link[=`polygon()`]{graphics:polygon}.}
 
 \item{hex.cex, hex.font, hex.text.col}{Parameters passed to
 \link[=`text()`]{graphics:text} to plot \code{hex.labels}.}

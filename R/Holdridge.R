@@ -103,7 +103,7 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     axis.cex = axis.cex,
     axis.labels = list(2 ^ (5:-3),
                        1000 * 2 ^ (-4:4),
-                       rev(c('superarid', 'perarid', 'arid', 'semiarid',
+                       rev(c('semi-\nparched', 'superarid', 'perarid', 'arid', 'semiarid',
                          'subhumid', 'humid', 'perhumid', 'superhumid'))
                        ),
     axis.lty = axis.lty,
@@ -184,14 +184,14 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
       .AxisLabel(2, lineEnds, lab = lab[[2]][i])
     })
     
-    gridGap <- tri$gridPoints[2] / 8
-    lapply(seq_along(tri$gridPoints)[-1], function (i) {
-      p <- tri$gridPoints[i] - gridGap
+    offset <- 7 * tri$gridPoints[2] / 8
+    lapply(seq_along(tri$gridPoints), function (i) {
+      p <- tri$gridPoints[i] + offset
       q <- 1 - p
       lineEnds <- vapply(list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
                          TernaryCoords, double(2))
 
-      .AxisLabel(3, lineEnds, lab = lab[[3]][i - 1])
+      .AxisLabel(3, lineEnds, lab = lab[[3]][i])
     })
 
   }
@@ -201,6 +201,7 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
 #' @export
 HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
                             grid.lwd = par('lwd')) {
+  direction <- 1L # May support other values in future?
   linePoints <- c(1, 2, 3, 5, 7, 9) / 16
   tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
   tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)
@@ -276,7 +277,7 @@ HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
 }
 
 #' @rdname HoldridgePlot
-#' @param col Fill colour for hexagons.  Provide a vector specifying a colour
+#' @param hex.col Fill colour for hexagons.  Provide a vector specifying a colour
 #' for each hexagon in turn, reading from left to right and top to bottom,
 #' or a function that accepts two arguments, numerics `pet` and `prec`,
 #' and returns a colour in a format accepted by [graphics:polygon][`polygon()`].
