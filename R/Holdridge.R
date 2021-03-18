@@ -8,7 +8,11 @@
 #' 
 #' [`HoldridgePoints()`], [`HoldridgeText()`] and related functions allow data 
 #' points to be added to an existing plot; [`AddToHoldridge()`] allows plotting
-#' using any of the standart plotting functions.
+#' using any of the standard plotting functions.
+#' 
+#' [`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
+#' and hexagons allowing plotted data to be linked to interpretated climate
+#' settings.
 #' 
 #' @inheritParams TernaryPlot
 #' 
@@ -25,14 +29,15 @@
 #' doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
 #' 
 #' Holdridge (1967),
-#' _Life zone ecology_.
+#' [_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
 #' Tropical Science Center, San Jos&eacute;
-#' \url{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}
+#' 
 #'
 #' @encoding UTF-8
 #' @examples
 #' data(holdridgeLifeZonesUp, package = 'Ternary')
 #' HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
+#' HoldridgeBelts()
 #' @template MRS
 #' @export
 HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
@@ -139,7 +144,7 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   
   .PlotBackground(tri)
   
-  HoldridgeHexagons(border = hex.border, col = hex.col, lty = hex.lty,
+  HoldridgeHexagons(border = hex.border, hex.col = hex.col, lty = hex.lty,
                     lwd = hex.lwd, labels = hex.labels, font = hex.font,
                     cex = hex.cex, text.col = hex.text.col)
   
@@ -192,14 +197,10 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   }
 }
 
-#' @describeIn HoldridgePlot Plot interpretative horizontals.
+#' @rdname HoldridgePlot
+#' @export
 HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
-                            grid.lwd = par('lwd'),
-                            direction = getOption('ternDirection')) {
-  
-  if (!(direction %in% 1:4)) {
-    stop("Parameter `direction` must be an integer from 1 to 4")
-  }
+                            grid.lwd = par('lwd')) {
   linePoints <- c(1, 2, 3, 5, 7, 9) / 16
   tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
   tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)
@@ -221,13 +222,31 @@ HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
 
 #' Convert a point in evapotranspiration-precipitation space to an appropriate
 #' cross-blended hypsometric colour
-#' 
-#' Palette basis: https://www.shadedrelief.com/hypso/hypso.html
+#'
+#' Used to colour `HoldridgeHexagons()`, and may also be used to aid the
+#' interpretation of PET + precipitation data in any graphical context.
 #' 
 #' @inheritParams HoldridgeToXY
-#' 
-#' @return Character vector listing RGBA values corresponding to each pet-prec
-#' value.
+#' @param opacity Opacity level to be converted to the final two characters
+#' of an \acronym{RGBA} hexadecimal colour definition, e.g. `#000000FF`.
+#' Specify a character string, whcih will be interpreted as a hexadecimal
+#' alpha value and appended to the six \acronym{RGB} hexadecimal digits;
+#' a numeric in the range 0 (transparent) to 1 (opaque);
+#' or `NA`, to return only the six \acronym{RGB} digits.
+#' @return Character vector listing \acronym{RGB} or (if `opacity != NA`)
+#' \acronym{RGBA} values corresponding to each pet-prec value pair.
+#' @template MRS
+#' @references
+#' Palette derived from the hyposmetric colour scheme presented at
+#' [Shaded Relief](https://www.shadedrelief.com/hypso/hypso.html).
+#' @examples
+#' HoldridgePlot(hex.col = HoldridgeHypsometricCol)
+#' VeryTransparent <- function(...) HoldridgeHypsometricCol(..., opacity = 0.3)
+#' HoldridgePlot(hex.col = VeryTransparent)
+#' pet <- holdridge$PET
+#' prec <- holdridge$Precipitation
+#' ptCol <- HoldridgeHypsometricCol(pet, prec)
+#' HoldridgePoints(pet, prec, pch = 21, bg = ptCol)
 #' @template MRS
 #' @importFrom grDevices colorRampPalette
 #' @export
@@ -241,21 +260,28 @@ HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
                      space = 'Lab')(257)[.Within257(xy[2, i] / 0.541 * 256 + 1)]
   }, character(1))
   if (is.numeric(opacity)) {
-    paste0(ret, as.hexmode(opacity * 255))
+    paste0(ret, as.hexmode(ceiling(opacity * 255)))
   } else if (is.character(opacity)) {
+    nChar <- nchar(opacity)
+    if (!all(nChar <= 2)) {
+      warning("`opacity` could not be interpreted as hexadecimal value < 256")
+    }
+    opacity <- paste0(vapply(2L - nChar,
+                             function (pad) paste0(rep('0', pad), collapse = ''),
+                             character(1)), opacity)
     paste0(ret, opacity)
   } else {
     ret
   }
 }
 
-#' @describeIn HoldridgePlot Plot interpretative hexagons.
+#' @rdname HoldridgePlot
 #' @param col Fill colour for hexagons.  Provide a vector specifying a colour
 #' for each hexagon in turn, reading from left to right and top to bottom,
 #' or a function that accepts two arguments, numerics `pet` and `prec`,
 #' and returns a colour in a format accepted by [graphics:polygon][`polygon()`].
 HoldridgeHexagons <- function (border = '#004D40',
-                               col = HoldridgeHypsometricCol,
+                               hex.col = HoldridgeHypsometricCol,
                                lty = 'dotted',
                                lwd = par('lwd'),
                                labels = NULL,
@@ -273,13 +299,13 @@ HoldridgeHexagons <- function (border = '#004D40',
                        33, rep(NA, 5)), 6)
   
   .FillCol <- function(i, j, x, y) {
-    if (is.function(col)) {
+    if (is.function(hex.col)) {
       pp <- XYToHoldridge(x, y)
-      col(pp[1, ], pp[2, ])
-    } else if (length(col) == 1) {
-      col
+      hex.col(pp[1, ], pp[2, ])
+    } else if (length(hex.col) == 1) {
+      hex.col
     } else {
-      col[hexIndex[j + 1, i]]
+      hex.col[hexIndex[j + 1, i]]
     }
   }
   

@@ -68,9 +68,8 @@ NULL
 #' doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
 #' 
 #' Holdridge (1967),
-#' _Life zone ecology_.
+#' [_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
 #' Tropical Science Center, San Jos&eacute;
-#' \url{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}
 #' 
 #' Leemans, R. (1990),
 #' "Possible change in natural vegitation patterns due to a global warming",

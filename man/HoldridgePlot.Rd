@@ -66,13 +66,12 @@ HoldridgePlot(
 HoldridgeBelts(
   grid.col = "#004D40",
   grid.lty = "dotted",
-  grid.lwd = par("lwd"),
-  direction = getOption("ternDirection")
+  grid.lwd = par("lwd")
 )
 
 HoldridgeHexagons(
   border = "#004D40",
-  col = HoldridgeHypsometricCol,
+  hex.col = HoldridgeHypsometricCol,
   lty = "dotted",
   lwd = par("lwd"),
   labels = NULL,
@@ -273,31 +272,27 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
 
 \item{...}{Additional parameters to \code{\link[graphics]{plot}}.}
-
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \description{
-\code{HoldridgePlot()} creates a triangular plot, as proposed by
-Holdridge (1947, 1967), that allows the potential evapotransporation
-(\acronym{PET}) ratio and annual precipitation data to be mapped onto
+\code{HoldridgePlot()} creates a blank triangular plot, as proposed by
+Holdridge (1947, 1967), onto which potential evapotransporation
+(\acronym{PET}) ratio and annual precipitation data can be plotted
+(using the \code{\link[=AddToHoldridge]{AddToHoldridge()}} family of functions) in order to interpret
 climatic life zones.
 }
 \details{
 \code{\link[=HoldridgePoints]{HoldridgePoints()}}, \code{\link[=HoldridgeText]{HoldridgeText()}} and related functions allow data
 points to be added to an existing plot; \code{\link[=AddToHoldridge]{AddToHoldridge()}} allows plotting
-using any of the standart plotting functions.
+using any of the standard plotting functions.
+
+\code{\link[=HoldridgeBelts]{HoldridgeBelts()}} and \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}} plot interpretative lines
+and hexagons allowing plotted data to be linked to interpretated climate
+settings.
 }
-\section{Functions}{
-\itemize{
-\item \code{HoldridgeBelts}: Plot interpretative horizontals.
-
-\item \code{HoldridgeHexagons}: Plot interpretative hexagons.
-}}
-
 \examples{
 data(holdridgeLifeZonesUp, package = 'Ternary')
 HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
+HoldridgeBelts()
 }
 \references{
 Holdridge (1947),
@@ -306,9 +301,8 @@ Holdridge (1947),
 doi:\href{https://dx.doi.org/10.1126/science.105.2727.367}{10.1126/science.105.2727.367}
 
 Holdridge (1967),
-\emph{Life zone ecology}.
+\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{\emph{Life zone ecology}}.
 Tropical Science Center, San José
-\url{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
