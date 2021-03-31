@@ -44,12 +44,18 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            alab = 'Potential evaoptranspiration ratio',
                            blab = 'Annual precipitation / mm',
                            clab = 'Humidity province',
+                           
                            lab.offset = 0.22, 
                            lab.col = c('#D81B60', '#1E88E5', '#111111'),
                            xlim = NULL, ylim = NULL,
-                           lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
-                           tip.font = 2, tip.col = 'black',
-                           isometric = TRUE, atip.rotate = NULL,
+                           
+                           lab.cex = 1.0,
+                           lab.font = 0,
+                           tip.cex = lab.cex,
+                           tip.font = 2,
+                           tip.col = 'black',
+                           isometric = TRUE,
+                           atip.rotate = NULL,
                            btip.rotate = NULL, ctip.rotate = NULL,
                            atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                            padding = 0.16,
@@ -57,9 +63,12 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            
                            grid.lines = 8,
                            grid.col = c(NA, '#1E88E5', '#D81B60'),
-                           grid.lty = 'solid', grid.lwd = par('lwd'),
-                           grid.minor.lines = 0, grid.minor.col = 'lightgrey',
-                           grid.minor.lty = 'solid', grid.minor.lwd = par('lwd'),
+                           grid.lty = 'solid',
+                           grid.lwd = par('lwd'),
+                           grid.minor.lines = 0,
+                           grid.minor.col = 'lightgrey',
+                           grid.minor.lty = 'solid',
+                           grid.minor.lwd = par('lwd'),
                            
                            hex.border = '#888888',
                            hex.col = HoldridgeHypsometricCol,
@@ -71,15 +80,19 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            hex.font = NULL,
                            hex.text.col = 'black',
                            
-                           axis.lty = 'solid',
-                           axis.labels = TRUE, axis.cex = 0.8,
+                           axis.cex = 0.8,
+                           axis.col = c('black', 'black', NA),
                            axis.font = par('font'),
+                           axis.labels = TRUE,
+                           axis.lty = 'solid',
+                           axis.lwd = 1,
                            axis.rotate = TRUE,
                            axis.pos = NULL,
                            axis.tick = TRUE,
-                           axis.lwd = 1,
-                           ticks.lwd = axis.lwd, ticks.length = 0.025,
-                           axis.col = 'black', ticks.col = grid.col,
+                           
+                           ticks.lwd = axis.lwd,
+                           ticks.length = 0.025,
+                           ticks.col = grid.col,
                            ...) {
   tri <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
@@ -319,16 +332,17 @@ HoldridgeHexagons <- function (border = '#004D40',
   hexX <- c(0, 0, e, e + e, e + e, e, 0)
   hexY <- c(0, n, 3 * n / 2, n, 0, -n / 2, 0)
   
-  hexTopX <- c(0, 0, e, e + e, e + e, 0)
-  hexTopY <- c(0, n / 2, n, n / 2, 0, 0)
+  hexTopX <- c(0, 0, e, e + e, e + e)
+  hexTopY <- c(0, n / 2, n, n / 2, 0)
   
   for (i in 1:8) {
     start <- starts[, i]
     midX <-  start[1] + hexTopX[3]
     midY <- start[2]
     polygon(start[1] + hexTopX, start[2] + hexTopY,
-            col = .FillCol(i, 0, midX, midY),
-            lty = lty, border = border, lwd = lwd)
+            col = .FillCol(i, 0, midX, midY), border = NA)
+    lines(start[1] + hexTopX, start[2] + hexTopY,
+          col = border, lty = lty, lwd = lwd)
     text(midX, midY + (e / 2), labels[hexIndex[1, i]], cex = cex, col = text.col,
          font = font)
     start <- start + c(hexTopX[3], hexTopY[3])
