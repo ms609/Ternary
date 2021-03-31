@@ -53,7 +53,7 @@ test_that("Ternary plotting functions", {
       30, 40, 30,
       30, 30, 40,
       55, 20, 25
-    ), ncol=3, byrow=TRUE))
+    ), ncol = 3, byrow = TRUE))
   }
   
   skip_if_not_installed('vdiffr')

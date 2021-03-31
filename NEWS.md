@@ -1,11 +1,12 @@
-# Ternary v1.2.1.9001
+# Ternary v1.2.1.9002
 
-- `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
-- New vignette with interpolation example ([#46](https://github.com/ms609/Ternary/issues/46)).
-
-# Ternary v1.2.1.9000
- 
+- Create Holdridge plots using `HoldridgePlot()` and related functions
+  ([#48](https://github.com/ms609/Ternary/issues/48)).
+- New vignette with interpolation example
+  ([#46](https://github.com/ms609/Ternary/issues/46)).
 - Document point styling in vignette.
+- `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
+
 
 # Ternary v1.2.1
 
