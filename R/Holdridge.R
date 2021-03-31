@@ -81,7 +81,7 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            hex.text.col = 'black',
                            
                            axis.cex = 0.8,
-                           axis.col = c('black', 'black', NA),
+                           axis.col = c(grid.col[2], grid.col[3], NA),
                            axis.font = par('font'),
                            axis.labels = TRUE,
                            axis.lty = 'solid',
