@@ -329,8 +329,8 @@ HoldridgeHexagons <- function (border = '#004D40',
   e <- 1 / 16
   n <- 2 * e / sqrt(3)
   
-  hexX <- c(0, 0, e, e + e, e + e, e, 0)
-  hexY <- c(0, n, 3 * n / 2, n, 0, -n / 2, 0)
+  hexX <- c(0, 0, e, e + e, e + e, e)
+  hexY <- c(0, n, 3 * n / 2, n, 0, -n / 2)
   
   hexTopX <- c(0, 0, e, e + e, e + e)
   hexTopY <- c(0, n / 2, n, n / 2, 0)
