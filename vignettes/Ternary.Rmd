@@ -129,7 +129,7 @@ TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = 'darkblue')
 ### Styling points
 
 More sophisticated plots can be created, for example styling each point 
-according to additional properties of the data, in a manner analagous to the
+according to additional properties of the data, in a manner analogous to the
 standard plotting functions:
 
 ```{r complex-plot}
