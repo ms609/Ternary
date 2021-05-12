@@ -1,5 +1,5 @@
 ## Test environments
-* local Windows 10 install, R 4.0.3
+* local Windows 10 install, R 4.0.5
 * Windows with devtools::check_win_devel()
 * Ubuntu 20.04 LTS, R 3.4.0, release and devel, via GitHub actions
 * Mac OS X 10.13.6, R release, via GitHub actions
