@@ -15,13 +15,13 @@
   ],
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.1",
+  "version": "1.2.1.9001",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -207,7 +207,7 @@
       }
     }
   ],
-  "fileSize": "4377.037KB",
+  "fileSize": "2870.745KB",
   "keywords": [
     "ternary-plots",
     "plotting",
