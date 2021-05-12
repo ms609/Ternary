@@ -88,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2</span>
       </span>
     </div>
 
@@ -105,6 +105,18 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/interpolation.html">Interpolating and contouring</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -147,14 +159,14 @@
 
     <pre class="usage"><span class='fu'>ColourTernary</span><span class='op'>(</span>
   <span class='va'>values</span>,
-  spectrum <span class='op'>=</span> <span class='fu'>viridisLite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>256L</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>,
+  spectrum <span class='op'>=</span> <span class='fu'>viridisLite</span><span class='fu'>::</span><span class='fu'><a href='https://sjmgarnier.github.io/viridisLite/reference/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>256L</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>,
   resolution <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>values</span><span class='op'>)</span><span class='op'>)</span>,
   direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ternDirection"</span><span class='op'>)</span>
 <span class='op'>)</span>
 
 <span class='fu'>ColorTernary</span><span class='op'>(</span>
   <span class='va'>values</span>,
-  spectrum <span class='op'>=</span> <span class='fu'>viridisLite</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/viridisLite/man/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>256L</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>,
+  spectrum <span class='op'>=</span> <span class='fu'>viridisLite</span><span class='fu'>::</span><span class='fu'><a href='https://sjmgarnier.github.io/viridisLite/reference/viridis.html'>viridis</a></span><span class='op'>(</span><span class='fl'>256L</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span>,
   resolution <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>values</span><span class='op'>)</span><span class='op'>)</span>,
   direction <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ternDirection"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
@@ -164,8 +176,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>values</th>
-      <td><p>Numeric matrix specifying the values associated with each
-point, generated using <code><a href='TernaryPointValues.html'>TernaryPointValues</a></code>.</p></td>
+      <td><p>Numeric matrix, possibly created using <code><a href='TernaryPointValues.html'>TernaryPointValues()</a></code>,
+with four named rows:
+<code>x</code>, <code>y</code>, cartesian coordinates of each triangle centre;
+<code>z</code>, value associated with that coordinate;
+<code>down</code>, triangle direction: <code>0</code> = point upwards; <code>1</code> = point downwards.</p></td>
     </tr>
     <tr>
       <th>spectrum</th>
