@@ -1,10 +1,7 @@
-# Ternary v1.2.1.9001
+# Ternary v1.2.2
 
 - `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
 - New vignette with interpolation example ([#46](https://github.com/ms609/Ternary/issues/46)).
-
-# Ternary v1.2.1.9000
- 
 - Document point styling in vignette.
 
 # Ternary v1.2.1

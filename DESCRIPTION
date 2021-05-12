@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.2.1.9001
+Version: 1.2.2
 Title: Create Ternary Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) using the
   standard graphics functions.
