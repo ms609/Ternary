@@ -103,7 +103,7 @@
       <h1 data-toc-skip>Create Ternary Plots in R</h1>
                         <h4 class="author">Martin R. Smith</h4>
             
-            <h4 class="date">2021-03-15</h4>
+            <h4 class="date">2021-05-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/vignettes/Ternary.Rmd"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -223,7 +223,7 @@
                   reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">63</span>, <span class="fl">61</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">5</span>
-<span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/viridisLite/man/viridis.html">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span>
+<span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span>
 <span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span>
 <span class="va">dat_col</span> <span class="op">&lt;-</span> <span class="va">mySpectrum</span><span class="op">[</span><span class="va">binnedReflectance</span><span class="op">]</span>
 
