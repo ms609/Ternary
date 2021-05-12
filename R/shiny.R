@@ -55,7 +55,7 @@
 #' If you use figures produced with this package in a publication, please cite
 #' 
 #' Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._ 
-#' Zenodo, doi: [10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
+#' Zenodo, doi: \doi{10.5281/zenodo.1068996}.
 #' 
 #' @importFrom shiny runApp
 #' @template MRS

@@ -61,7 +61,7 @@ Alternatively, R script that will generate the displayed plot can be viewed
 If you use figures produced with this package in a publication, please cite
 
 Smith, Martin R. (2017). \emph{Ternary: An R Package for Creating Ternary Plots.}
-Zenodo, doi: \href{https://dx.doi.org/10.5281/zenodo.1068996}{10.5281/zenodo.1068996}.
+Zenodo, doi: \doi{10.5281/zenodo.1068996}.
 }
 \seealso{
 Full detail of plotting with 'Ternary', including features not (yet)
