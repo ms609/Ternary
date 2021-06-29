@@ -1,3 +1,7 @@
+# Ternary v1.2.3
+
+- Fix 'colourpicker' bug in app.
+
 # Ternary v1.2.2
 
 - `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
