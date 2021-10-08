@@ -14,7 +14,15 @@ jobs:
   mem-check:
     runs-on: macOS-latest
 
-    name: revdepcheck, macOS, R release
+    name: revdepcheck ${{ matrix.config.deps }}, macOS, R release
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {deps: 'Depends'}
+          - {deps: 'Suggests'}
+          - {deps: 'Imports'}
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
@@ -23,7 +31,7 @@ jobs:
       _R_CHECK_THINGS_IN_CHECK_DIR_: false
       R_REMOTES_STANDALONE: true
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      _R_CHECK_CRAN_INCOMING_USE_ASPELL_: false # Set to true when can figure how to install aspell on Windows
+      _R_CHECK_CRAN_INCOMING_USE_ASPELL_: false
       RSPM: ${{ matrix.config.rspm }}
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
@@ -56,11 +64,13 @@ jobs:
           remotes::install_deps(dependencies = c('soft', 'Config/Needs/revdeps'))
         shell: Rscript {0}
 
-      - name: Check reverse dependencies
+      - name: Check reverse dependencies (${{ matrix.config.deps }})
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
-          revdepcheck::revdep_check(timeout = as.difftime(60, units = 'mins'), num_workers = 4)
+          revdepcheck::revdep_check(timeout = as.difftime(60, units = 'mins'),
+                                    num_workers = 3,
+                                    dependencies = "${{ matrix.config.deps }}")
           problems <- readLines('revdep/problems.md', warn = FALSE)
           if (length(problems) > 1) stop(paste0(problems, collapse= "\n"))
         shell: Rscript {0}
@@ -69,5 +79,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@main
         with:
-          name: revdep-results
+          name: revdep-${{ matrix.config.deps }}-results
           path: revdep/*.md
