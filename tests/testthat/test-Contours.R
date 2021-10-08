@@ -1,5 +1,3 @@
-context('Contour plotting')
-
 test_that('Densities are correctly calculated', {
   
   coordinates <- list(middle = c(1, 1, 1),

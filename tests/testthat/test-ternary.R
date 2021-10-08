@@ -1,5 +1,3 @@
-context("Ternary plotting")
-
 test_that("Errors are handled gracefully", {
   expect_error(TernaryCoords(c(1, 2)))
   expect_error(TernaryCoords(c("a", "b", "c")))
