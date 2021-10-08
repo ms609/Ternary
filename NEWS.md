@@ -1,6 +1,6 @@
 # Ternary v1.2.3
 
-- Fix 'colourpicker' bug in app.
+- Fix bug in `TernaryApp()` when 'colourpicker' not previously installed.
 
 # Ternary v1.2.2
 
