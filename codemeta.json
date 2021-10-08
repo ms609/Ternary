@@ -1,27 +1,20 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "Ternary",
-  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the\n  standard graphics functions.\n  An alternative to 'ggtern', which uses the 'ggplot2' family of plotting \n  functions.\n  Includes a 'Shiny' user interface for point-and-click plotting.",
+  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click plotting.",
   "name": "Ternary: Create Ternary Plots",
   "codeRepository": "https://github.com/ms609/Ternary/",
-  "relatedLink": [
-    "https://ms609.github.io/Ternary",
-    "https://CRAN.R-project.org/package=Ternary",
-    "https://ms609.github.io/Ternary/"
-  ],
+  "relatedLink": "https://ms609.github.io/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.5 (2021-03-31)",
+  "runtimePlatform": "R Under development (unstable) (2021-10-05 r81008)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -53,7 +46,6 @@
       "@id": "https://orcid.org/0000-0001-5660-1727"
     }
   ],
-  "funder": {},
   "maintainer": [
     {
       "@type": "Person",
@@ -128,6 +120,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
+      "version": ">= 3.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -149,14 +142,14 @@
       "sameAs": "https://CRAN.R-project.org/package=vdiffr"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.2.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "shiny",
       "name": "shiny",
@@ -168,7 +161,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "viridisLite",
       "name": "viridisLite",
@@ -179,12 +172,10 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=viridisLite"
-    }
-  ],
-  "releaseNotes": "https://github.com/ms609/Ternary/blob/master/NEWS.md",
-  "readme": "https://github.com/ms609/Ternary/blob/master/README.md",
-  "contIntegration": "https://codecov.io/gh/ms609/Ternary",
-  "developmentStatus": "https://www.repostatus.org/#project-statuses",
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "2103.132KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -206,12 +197,5 @@
         }
       }
     }
-  ],
-  "fileSize": "2870.61KB",
-  "keywords": [
-    "ternary-plots",
-    "plotting",
-    "plotting-in-r",
-    "graphics"
   ]
 }
