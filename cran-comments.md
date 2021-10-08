@@ -1,11 +1,15 @@
 ## Test environments
-* local Windows 10 install, R 4.2.0-prerelease r81008
-* Windows with devtools::check_win_devel()
+* R-hub, with `rhub::check_for_cran()`
+
 * Ubuntu 20.04 LTS, R 3.4.0, release and devel, via 
   [GitHub actions](https://github.com/ms609/Ternary/actions)
-* Mac OS X 10.13.6, R release, via GitHub actions
+  
+* local Windows 10 install, R 4.2.0-prerelease r81008
+* Windows with `devtools::check_win_devel()`
 * Windows Server 2019 10.0.17763, R release, via GitHub actions
-* R-hub, with `check_for_cran()`
+  
+* Mac OS X 10.13.6, R release, via GitHub actions
+
 
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs.
