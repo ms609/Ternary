@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.2.3
+Version: 1.2.3.9000
 Title: Create Ternary Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) using the
   standard graphics functions.
@@ -39,5 +39,5 @@ Config/testthat/edition: 3
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)

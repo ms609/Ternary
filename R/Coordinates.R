@@ -36,14 +36,14 @@
 #' @template MRS
 #' @export
 TernaryCoords <- function(abc, b_coord = NULL, c_coord = NULL,
-                          direction = getOption('ternDirection')) {
+                          direction = getOption('ternDirection', 1L)) {
   UseMethod("TernaryToXY")
 }
 
 #' @rdname TernaryCoords
 #' @export
 TernaryToXY.matrix <- function (abc, b_coord = NULL, c_coord = NULL,
-                                direction = getOption('ternDirection')) {
+                                direction = getOption('ternDirection', 1L)) {
   ret <- apply(abc, 2, TernaryToXY, direction = direction)
   rownames(ret) <- c('x', 'y')
   
@@ -54,7 +54,7 @@ TernaryToXY.matrix <- function (abc, b_coord = NULL, c_coord = NULL,
 #' @rdname TernaryCoords
 #' @export
 TernaryToXY.numeric <- function (abc, b_coord = NULL, c_coord = NULL,
-                           direction = getOption('ternDirection')) {
+                           direction = getOption('ternDirection', 1L)) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
@@ -107,7 +107,7 @@ TernaryToXY <- TernaryCoords
 #' 
 #' @family coordinate translation functions
 #' @export
-XYToTernary <- function (x, y, direction = getOption('ternDirection')) {
+XYToTernary <- function (x, y, direction = getOption('ternDirection', 1L)) {
   if (!is.numeric(x)) stop("Parameter `x` must be numeric.")
   if (!is.numeric(y)) stop("Parameter `y` must be numeric.")
   if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
@@ -151,7 +151,7 @@ XYToTernary <- function (x, y, direction = getOption('ternDirection')) {
 #' @template MRS
 #' @family plot limits
 #' @export
-TernaryXRange <- function (direction = getOption('ternDirection')) {
+TernaryXRange <- function (direction = getOption('ternDirection', 1L)) {
   if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
   if (direction == 2L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
@@ -164,7 +164,7 @@ TernaryXRange <- function (direction = getOption('ternDirection')) {
 
 #' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
 #' @export
-TernaryYRange <- function (direction = getOption('ternDirection')) {
+TernaryYRange <- function (direction = getOption('ternDirection', 1L)) {
   if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
   if (direction == 1L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
@@ -241,7 +241,8 @@ OutsidePlot <- function (x, y, tolerance = 0) {
 #' 
 #' @family coordinate translation functions
 #' @export
-ReflectedEquivalents <- function (x, y, direction = getOption('ternDirection')) {
+ReflectedEquivalents <- function (x, y,
+                                  direction = getOption('ternDirection', 1L)) {
   switch(direction, {
     # 1L
     corners <- matrix(c(0, cos(pi/6), 0.5, 0, -0.5, 0), nrow=2)

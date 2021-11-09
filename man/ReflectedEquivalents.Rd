@@ -4,7 +4,7 @@
 \alias{ReflectedEquivalents}
 \title{Reflected equivalents of points outside the ternary plot}
 \usage{
-ReflectedEquivalents(x, y, direction = getOption("ternDirection"))
+ReflectedEquivalents(x, y, direction = getOption("ternDirection", 1L))
 }
 \arguments{
 \item{x, y}{Vectors of \emph{x} and \emph{y} coordinates of points.}

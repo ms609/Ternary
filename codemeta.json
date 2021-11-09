@@ -8,13 +8,13 @@
   "relatedLink": "https://ms609.github.io/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.3",
+  "version": "1.2.3.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2021-10-05 r81008)",
+  "runtimePlatform": "R Under development (unstable) (2021-11-01 r81125)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -175,7 +175,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "2103.132KB",
+  "fileSize": "2103.407KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

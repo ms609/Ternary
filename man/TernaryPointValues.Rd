@@ -8,14 +8,14 @@
 TernaryPointValues(
   Func,
   resolution = 48L,
-  direction = getOption("ternDirection"),
+  direction = getOption("ternDirection", 1L),
   ...
 )
 
 TernaryDensity(
   coordinates,
   resolution = 48L,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 }
 \arguments{

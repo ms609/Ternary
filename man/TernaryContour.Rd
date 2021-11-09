@@ -7,7 +7,7 @@
 TernaryContour(
   Func,
   resolution = 96L,
-  direction = getOption("ternDirection"),
+  direction = getOption("ternDirection", 1L),
   ...
 )
 }

@@ -1,3 +1,7 @@
+# Ternary v1.2.3.9000 (development)
+
+- Default to upward direction if `TernaryPlot()` not yet called.
+
 # Ternary v1.2.3
 
 - Fix bug in `TernaryApp()` when 'colourpicker' not previously installed.

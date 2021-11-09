@@ -60,7 +60,7 @@ HorizontalGrid(
   grid.col = "grey",
   grid.lty = "dotted",
   grid.lwd = par("lwd"),
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 }
 \arguments{

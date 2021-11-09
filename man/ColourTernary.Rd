@@ -9,14 +9,14 @@ ColourTernary(
   values,
   spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 
 ColorTernary(
   values,
   spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 }
 \arguments{

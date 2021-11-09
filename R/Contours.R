@@ -43,7 +43,7 @@
 #' @template MRS
 #' @export
 TernaryPointValues <- function(Func, resolution = 48L, 
-                               direction = getOption('ternDirection'), ...) {
+                               direction = getOption('ternDirection', 1L), ...) {
   triangleCentres <- TriangleCentres(resolution, direction)
   x <- triangleCentres['x', ]
   y <- triangleCentres['y', ]
@@ -76,7 +76,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @template MRS
 #' @export
 TriangleCentres <- function (resolution = 48L, 
-                             direction = getOption('ternDirection')) {
+                             direction = getOption('ternDirection', 1L)) {
   
   offset <- 1 / resolution / 2L
   triangleHeight <- sqrt(0.75) / resolution
@@ -151,7 +151,7 @@ TriangleCentres <- function (resolution = 48L,
 #' @template coordinatesParam
 #' @export
 TernaryDensity <- function (coordinates, resolution = 48L, 
-                            direction = getOption('ternDirection')) {
+                            direction = getOption('ternDirection', 1L)) {
   if (inherits(coordinates, 'list')) {
     scaled <- resolution * 
       vapply(coordinates,function (coord) coord / sum(coord), double(3L))
@@ -384,7 +384,7 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' @family functions for colouring and shading
 #' @export
 TernaryTiles <- function (x, y, down, resolution, col, 
-                          direction = getOption('ternDirection')) {
+                          direction = getOption('ternDirection', 1L)) {
   down <- as.logical(down)
   if (direction %% 2) {
     TernaryDownTiles(x[down], y[down], resolution, col[down])
@@ -447,7 +447,7 @@ TernaryTiles <- function (x, y, down, resolution, col,
 ColourTernary <- function (values, 
                            spectrum = viridisLite::viridis(256L, alpha = 0.6),
                            resolution = sqrt(ncol(values)),
-                           direction = getOption('ternDirection')) {
+                           direction = getOption('ternDirection', 1L)) {
   z <- values['z', ]
   col <- if (is.null(spectrum) || (!is.numeric(z) && all(
       suppressWarnings(is.na(as.numeric(z)))) && 
@@ -499,7 +499,7 @@ ColorTernary <- ColourTernary
 #' @importFrom graphics contour
 #' @export
 TernaryContour <- function (Func, resolution = 96L, 
-                            direction = getOption('ternDirection'), ...) {
+                            direction = getOption('ternDirection', 1L), ...) {
   if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
@@ -588,7 +588,7 @@ TernaryContour <- function (Func, resolution = 96L,
 TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L, 
                                    tolerance = -0.2 / resolution,
                                    edgeCorrection = TRUE,
-                                   direction = getOption('ternDirection'),
+                                   direction = getOption('ternDirection', 1L),
                                    ...) {
   # Adapted from MASS::kde2d
   xy <- apply(coordinates, 1, TernaryCoords)

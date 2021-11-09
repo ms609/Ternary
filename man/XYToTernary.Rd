@@ -4,7 +4,7 @@
 \alias{XYToTernary}
 \title{Cartesian coordinates to ternary point}
 \usage{
-XYToTernary(x, y, direction = getOption("ternDirection"))
+XYToTernary(x, y, direction = getOption("ternDirection", 1L))
 }
 \arguments{
 \item{x, y}{Numeric values giving the \emph{x} and \emph{y} coordinates of a point or points.}
