@@ -179,8 +179,8 @@ TernaryDensity() calculates the density of points in each grid cell." />
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Func</th>
-      <td><p>Function taking the parameters <code>a</code>, <code>b</code> and <code>c</code>, which evaluates to a numeric
-whose value should be depicted.</p></td>
+      <td><p>Function taking vectors of coordinates <code>a</code>, <code>b</code> and <code>c</code>, which
+returns a numeric vector whose value at each coordinate will be depicted.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -228,11 +228,11 @@ ternary coordinates of <code>x</code> and <code>y</code>.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='r-in'><span class='fu'>TernaryPointValues</span><span class='op'>(</span><span class='kw'>function</span> <span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>c</span><span class='op'>)</span> <span class='va'>a</span> <span class='op'>*</span> <span class='va'>b</span> <span class='op'>*</span> <span class='va'>c</span>, resolution <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>             [,1]       [,2]       [,3]       [,4]</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> x    -0.25000000 0.00000000 0.25000000 0.00000000</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> y     0.14433757 0.28867513 0.14433757 0.57735027</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> z     0.01851852 0.03703704 0.01851852 0.01851852</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> down  0.00000000 1.00000000 0.00000000 0.00000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>            [,1]      [,2]      [,3]      [,4]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> x    -0.2500000 0.0000000 0.2500000 0.0000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> y     0.1443376 0.2886751 0.1443376 0.5773503</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> z    -0.2500000 0.0000000 0.2500000 0.0000000</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> down  0.0000000 1.0000000 0.0000000 0.0000000</span>
 <span class='r-in'></span>
 <span class='r-in'><span class='fu'><a href='TernaryPlot.html'>TernaryPlot</a></span><span class='op'>(</span>grid.lines <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>cols</span> <span class='op'>&lt;-</span> <span class='fu'>TernaryPointValues</span><span class='op'>(</span><span class='va'>rgb</span>, resolution <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
