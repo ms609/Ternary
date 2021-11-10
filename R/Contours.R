@@ -48,9 +48,13 @@ TernaryPointValues <- function(Func, resolution = 48L,
   x <- triangleCentres['x', ]
   y <- triangleCentres['y', ]
   abc <- XYToTernary(x, y, direction)
+  z <- Func(abc[1, ], abc[2, ], abc[3, ], ...)
+  if (length(z) < length(x)) {
+    warning("`Func(a, b, c)` should return a vector, but returned a single value.")
+  }
   
   # Return:
-  rbind(x = x, y = y, z = Func(abc[1, ], abc[2, ], abc[3, ], ...), 
+  rbind(x = x, y = y, z = x, 
         down = triangleCentres['triDown', ])
 }
 
@@ -495,6 +499,28 @@ ColorTernary <- ColourTernary
 #' ColourTernary(values)
 #' TernaryContour(FunctionToContour, resolution = 36L)
 #' 
+#' # Note that FunctionToContour is sent a vector.
+#' # Instead of
+#' BadMax <- function (a, b, c) {
+#'   max(a, b, c) 
+#' }
+#' 
+#' # Use
+#' GoodMax <- function (a, b, c) {
+#'   pmax(a, b, c)
+#' }
+#' TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+#' ColourTernary(TernaryPointValues(GoodMax))
+#' TernaryContour(GoodMax)
+#' 
+#' # Or, for a generalizable example,
+#' GeneralMax <- function (a, b, c) {
+#'   apply(rbind(a, b, c), 2, max)
+#' }
+#' TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+#' ColourTernary(TernaryPointValues(GeneralMax))
+#' TernaryContour(GeneralMax)
+#' 
 #' @family contour plotting functions
 #' @importFrom graphics contour
 #' @export
@@ -516,10 +542,18 @@ TernaryContour <- function (Func, resolution = 96L,
   
   FunctionWrapper <- function(x, y) {
     abc <- XYToTernary(x, y, direction)
-    # TODO make more efficient by doing this intelligently rather than lazily
-    ifelse(apply(abc < -0.6 / resolution, 2, any),
-           NA,
-           Func(abc[1, ], abc[2, ], abc[3, ]))
+    
+    inPlot <- apply(abc > -0.6 / resolution, 2, all)
+    ret <- rep_len(NA_real_, length(x))
+    evaluated <- Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot])
+    
+    if (length(evaluated) == 1L) {
+      warning("`Func(a, b, c)` should return a vector, but returned a single value.")
+    }
+    
+    ret[inPlot] <- evaluated
+    # Return:
+    ret
   }
   z <- outer(X = x, Y = y, FUN = FunctionWrapper)
   contour(x, y, z, add = TRUE, ...)

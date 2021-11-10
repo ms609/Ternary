@@ -19,8 +19,8 @@ TernaryDensity(
 )
 }
 \arguments{
-\item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
-whose value should be depicted.}
+\item{Func}{Function taking vectors of coordinates \code{a}, \code{b} and \code{c}, which
+returns a numeric vector whose value at each coordinate will be depicted.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother

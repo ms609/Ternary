@@ -182,6 +182,10 @@ test_that('Colours are drawn', {
 })
 
 test_that('Errors are handled', {
+  # Non-vectorized Func
+  expect_warning(expect_warning(TernaryContour(max)))
+  expect_warning(TernaryPointValues(max))
+  
   # Postive bandwidths
   expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
   expect_error(ColourTernary(TernaryPointValues(as.character, 5)))

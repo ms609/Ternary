@@ -1,6 +1,9 @@
 # Ternary v1.2.3.9000 (development)
 
 - Default to upward direction if `TernaryPlot()` not yet called.
+- Improved input checking in `TernaryPointValues()` and `TernaryContour()`,
+  ([#53](https://github.com/ms609/Ternary/issues/53)),
+  and avoid unnecessary calculations.
 
 # Ternary v1.2.3
 
