@@ -54,7 +54,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
   }
   
   # Return:
-  rbind(x = x, y = y, z = x, 
+  rbind(x = x, y = y, z = z, 
         down = triangleCentres['triDown', ])
 }
 
