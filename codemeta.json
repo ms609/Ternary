@@ -4,17 +4,17 @@
   "identifier": "Ternary",
   "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click plotting.",
   "name": "Ternary: Create Ternary Plots",
-  "codeRepository": "https://github.com/ms609/Ternary/",
   "relatedLink": "https://ms609.github.io/Ternary/",
+  "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.3.9000",
+  "version": "1.2.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2021-11-01 r81125)",
+  "runtimePlatform": "R version 4.1.2 (2021-11-01)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -175,7 +175,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "2103.407KB",
+  "fileSize": "2044.749KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",

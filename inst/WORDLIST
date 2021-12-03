@@ -8,6 +8,7 @@ Zenodo
 ac
 cf
 codecov
+colourpicker
 csv
 doi
 durham
@@ -19,6 +20,7 @@ ggtern
 im
 org
 readxl
+testthat
 tritanopia
 uk
 unrotated

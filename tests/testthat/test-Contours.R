@@ -182,11 +182,16 @@ test_that('Colours are drawn', {
 })
 
 test_that('Errors are handled', {
-  # Non-vectorized Func
-  expect_warning(expect_warning(TernaryContour(max)))
-  expect_warning(TernaryPointValues(max))
+  skip_if_not_installed('vdiffr')
   
-  # Postive bandwidths
-  expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
-  expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
+  vdiffr::expect_doppelganger('contour-error-handling', function () {
+    TernaryPlot()
+    # Non-vectorized Func
+    expect_warning(expect_warning(TernaryContour(max)))
+    expect_warning(TernaryPointValues(max))
+    
+    # Positive bandwidths
+    expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
+    expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
+  })
 })

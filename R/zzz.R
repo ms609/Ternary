@@ -8,7 +8,7 @@ release_questions <- function() {
 # Additional tests:
 #
 # spell_check()
-# codemetar::write_codemeta()
+# codemeta::write_codemeta()
 # pkgdown::build_reference_index()
 # check_win_devel(); rhub::check_for_cran()
 # revdepcheck::revdep_check()
