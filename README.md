@@ -1,7 +1,7 @@
 # Ternary
 
 [![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#project-statuses)
-[![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/Ternary)
+[![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ms609/Ternary)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)
 [![DOI](https://zenodo.org/badge/111806977.svg)](https://zenodo.org/badge/latestdoi/111806977) [![Join the chat at https://gitter.im/TernaryPackage/community](https://badges.gitter.im/TernaryPackage/community.svg)](https://gitter.im/TernaryPackage/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
