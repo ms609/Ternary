@@ -30,11 +30,14 @@ issue on GitHub](https://github.com/ms609/Ternary/issues/).
 
 You can cite this package as:
 
-Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._ Zenodo, doi: [10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
+Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._
+Comprehensive R Archive Network, 
+doi:[10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
 
 ## See also
 
-The R package '[ggtern](https://CRAN.R-project.org/package=ggtern)' implements ternary plots within the 'ggplot2' framework.
+The R package '[ggtern](https://CRAN.R-project.org/package=ggtern)'
+implements ternary plots within the 'ggplot2' framework.
 
 Please note that the 'Ternary' project is released with a
 [Contributor Code of Conduct](https://ms609.github.io/Ternary/CODE_OF_CONDUCT.html).
