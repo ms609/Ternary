@@ -1,5 +1,3 @@
-context("axis.rotate")
-
 test_that("Axis labels are rotatable", {
   AxisRotate <- function() {
     par(mfrow = c(3, 3), xpd = NA, mar = rep(0, 4))

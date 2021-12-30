@@ -1,15 +1,24 @@
-# Ternary v1.2.1.9002
-
+# branch "holdridge"
 - Create Holdridge plots using `HoldridgePlot()` and related functions
   ([#48](https://github.com/ms609/Ternary/issues/48)).
+
+# Ternary v1.2.4
+- Default to upward direction if `TernaryPlot()` not yet called.
+- Improved input checking in `TernaryPointValues()` and `TernaryContour()`,
+  ([#53](https://github.com/ms609/Ternary/issues/53)),
+  and avoid unnecessary calculations.
+
+# Ternary v1.2.3
+- Fix bug in `TernaryApp()` when 'colourpicker' not previously installed.
+- Update to 'testthat' edition 3.
+
+# Ternary v1.2.2
 - New vignette with interpolation example
   ([#46](https://github.com/ms609/Ternary/issues/46)).
 - Document point styling in vignette.
 - `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
 
-
 # Ternary v1.2.1
-
 - Use package 'vdiffr' conditionally in tests.
 - Trivial documentation improvements.
 

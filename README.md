@@ -1,7 +1,7 @@
 # Ternary
 
 [![Project Status: Inactive.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#project-statuses)
-[![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://codecov.io/gh/ms609/Ternary)
+[![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ms609/Ternary)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)
 [![DOI](https://zenodo.org/badge/111806977.svg)](https://zenodo.org/badge/latestdoi/111806977) [![Join the chat at https://gitter.im/TernaryPackage/community](https://badges.gitter.im/TernaryPackage/community.svg)](https://gitter.im/TernaryPackage/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -30,11 +30,14 @@ issue on GitHub](https://github.com/ms609/Ternary/issues/).
 
 You can cite this package as:
 
-Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._ Zenodo, doi: [10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
+Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._
+Comprehensive R Archive Network, 
+doi:[10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
 
 ## See also
 
-The R package '[ggtern](https://CRAN.R-project.org/package=ggtern)' implements ternary plots within the 'ggplot2' framework.
+The R package '[ggtern](https://CRAN.R-project.org/package=ggtern)'
+implements ternary plots within the 'ggplot2' framework.
 
 Please note that the 'Ternary' project is released with a
 [Contributor Code of Conduct](https://ms609.github.io/Ternary/CODE_OF_CONDUCT.html).

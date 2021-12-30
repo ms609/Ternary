@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 1.2.1.9002
+Version: 1.2.4.9002
 Title: Create Ternary and Holdridge Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
   Holdridge plots using the standard graphics functions.
@@ -20,17 +20,24 @@ Language: en-GB
 Depends: R (>= 3.2.0)
 Imports:
     shiny,
-    viridisLite
+    viridisLite,
 Suggests:
     colourpicker,
     knitr,
     readxl,
     rmarkdown,
     shinyjs,
-    testthat,
-    vdiffr
+    testthat (>= 3.0),
+    vdiffr,
+Config/Needs/coverage: covr
+Config/Needs/memcheck: devtools, rcmdcheck
+Config/Needs/metadata: codemetar
+Config/Needs/revdeps: revdepcheck
+Config/Needs/website: pkgdown
+Config/testthat/parallel: false
+Config/testthat/edition: 3
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)

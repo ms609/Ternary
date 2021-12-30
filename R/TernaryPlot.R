@@ -243,7 +243,7 @@ HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
   linePoints <- seq(from = 0, to = 1, length.out = grid.lines + 1L)
   tern_height <- switch(direction, sqrt(3/4), 1, sqrt(3/4), 1)
   tern_width <- switch(direction, 1, sqrt(3/4), 1, sqrt(3/4), 1)
-  
+
   
   lapply(linePoints[-c(1, grid.lines + 1L)], function (p) {
     x <- tern_width * switch(direction,

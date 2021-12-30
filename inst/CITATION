@@ -1,12 +1,13 @@
-citHeader(paste0("If using this package, please cite Smith (2017)."))
+citHeader(paste0("When using this package, please cite Smith (2017)."))
 
 citEntry(entry = "article",
-        journal = "Zenodo",
-        author = personList(as.person("Martin R. Smith")),
-        title = "Ternary: An R Package for Creating Ternary Plots",
-        year = "2017",
+         key = "Smith2017",
+         journal = "Comprehensive R Archive Network",
+         author = personList(as.person("Martin R. Smith")),
+         title = "Ternary: An R Package for Creating Ternary Plots",
+         year = "2017",
 
-        textVersion =
-        paste0("Smith (2017). ",
-               "Ternary: An R Package for Creating Ternary Plots. ",
-               "Zenodo, doi: 10.5281/zenodo.1068996"))
+         textVersion =
+         paste0("Smith (2017). ",
+                "Ternary: An R Package for Creating Ternary Plots. ",
+                "Comprehensive R Archive Network, doi: 10.5281/zenodo.1068996"))

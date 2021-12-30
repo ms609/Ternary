@@ -6,7 +6,7 @@
 \alias{XYToPetPrec}
 \title{Cartesian coordinates to ternary point}
 \usage{
-XYToTernary(x, y, direction = getOption("ternDirection"))
+XYToTernary(x, y, direction = getOption("ternDirection", 1L))
 
 XYToHoldridge(x, y)
 

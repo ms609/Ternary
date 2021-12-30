@@ -4,7 +4,7 @@
 \alias{TriangleCentres}
 \title{Coordinates of triangle mid-points}
 \usage{
-TriangleCentres(resolution = 48L, direction = getOption("ternDirection"))
+TriangleCentres(resolution = 48L, direction = getOption("ternDirection", 1L))
 }
 \arguments{
 \item{resolution}{The number of triangles whose base should lie on the longest

@@ -7,13 +7,13 @@
 TernaryContour(
   Func,
   resolution = 96L,
-  direction = getOption("ternDirection"),
+  direction = getOption("ternDirection", 1L),
   ...
 )
 }
 \arguments{
-\item{Func}{Function taking the parameters \code{a}, \code{b} and \code{c}, which evaluates to a numeric
-whose value should be depicted.}
+\item{Func}{Function taking vectors of coordinates \code{a}, \code{b} and \code{c}, which
+returns a numeric vector whose value at each coordinate will be depicted.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -37,6 +37,28 @@ FunctionToContour <- function (a, b, c) {
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 ColourTernary(values)
 TernaryContour(FunctionToContour, resolution = 36L)
+
+# Note that FunctionToContour is sent a vector.
+# Instead of
+BadMax <- function (a, b, c) {
+  max(a, b, c) 
+}
+
+# Use
+GoodMax <- function (a, b, c) {
+  pmax(a, b, c)
+}
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+ColourTernary(TernaryPointValues(GoodMax))
+TernaryContour(GoodMax)
+
+# Or, for a generalizable example,
+GeneralMax <- function (a, b, c) {
+  apply(rbind(a, b, c), 2, max)
+}
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+ColourTernary(TernaryPointValues(GeneralMax))
+TernaryContour(GeneralMax)
 
 }
 \seealso{

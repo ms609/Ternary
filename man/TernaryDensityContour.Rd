@@ -10,7 +10,7 @@ TernaryDensityContour(
   resolution = 25L,
   tolerance = -0.2/resolution,
   edgeCorrection = TRUE,
-  direction = getOption("ternDirection"),
+  direction = getOption("ternDirection", 1L),
   ...
 )
 }

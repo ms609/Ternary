@@ -11,28 +11,28 @@ TernaryCoords(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 
 \method{TernaryToXY}{matrix}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 
 \method{TernaryToXY}{numeric}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 
 TernaryToXY(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 }
 \arguments{

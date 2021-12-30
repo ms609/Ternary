@@ -14,7 +14,7 @@ TernaryTiles(
   down,
   resolution,
   col,
-  direction = getOption("ternDirection")
+  direction = getOption("ternDirection", 1L)
 )
 }
 \arguments{

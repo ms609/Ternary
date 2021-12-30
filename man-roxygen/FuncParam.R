@@ -1,2 +1,2 @@
-#' @param Func Function taking the parameters `a`, `b` and `c`, which evaluates to a numeric
-#' whose value should be depicted.
+#' @param Func Function taking vectors of coordinates `a`, `b` and `c`, which
+#' returns a numeric vector whose value at each coordinate will be depicted.

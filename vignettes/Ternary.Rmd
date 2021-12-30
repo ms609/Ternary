@@ -60,6 +60,7 @@ for (dir in c('up', 'right', 'down', 'le')) {
   TernaryPlot(point = dir, atip = 'A', btip = 'B', ctip = 'C',
               alab = 'Aness', blab = 'Bness', clab = 'Cness')
   TernaryText(list(A = c(10, 1, 1), B = c(1, 10, 1), C = c(1, 1, 10)),
+              labels = c('P1', 'P2', 'P3'),
               col = cbPalette8[4], font = 2)
 }
 ```
@@ -129,7 +130,7 @@ TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = 'darkblue')
 ### Styling points
 
 More sophisticated plots can be created, for example styling each point 
-according to additional properties of the data, in a manner analagous to the
+according to additional properties of the data, in a manner analogous to the
 standard plotting functions:
 
 ```{r complex-plot}
@@ -319,6 +320,14 @@ text(0.33, 0.2, "ylim[2]", pos = 3)
 text(0.38, 0.1, '<padding>', pos = 4, cex = 0.75)
 text(0.38, 0.1, '<padding> ', pos = 2, cex = 0.75, srt = 90)
 ```
+
+
+## Further tutorials
+
+For detailed examples of more advanced usage, see the accompanying vignettes on:
+
+- [Interpolating and contouring](interpolation.html)
+
 
 ## Bugs and feature requests
 

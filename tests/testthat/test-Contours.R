@@ -1,5 +1,3 @@
-context('Contour plotting')
-
 test_that('Densities are correctly calculated', {
   
   coordinates <- list(middle = c(1, 1, 1),
@@ -30,20 +28,20 @@ test_that('Contours are plotted', {
     }
     
     TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 1L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
-    TernaryContour(FunctionToContour, resolution=12L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
+    TernaryContour(FunctionToContour, resolution = 12L)
     
     TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 2L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
-    TernaryContour(FunctionToContour, resolution=12L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
+    TernaryContour(FunctionToContour, resolution = 12L)
     
     TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 3L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
-    TernaryContour(FunctionToContour, resolution=12L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
+    TernaryContour(FunctionToContour, resolution = 12L)
     
     TernaryPlot(alab = 'a', blab = 'b', clab = 'c', point = 4L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution=6L))
-    TernaryContour(FunctionToContour, resolution=12L)
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
+    TernaryContour(FunctionToContour, resolution = 12L)
   }
   skip_if_not_installed('vdiffr')
   vdiffr::expect_doppelganger('Contours', Contours)
@@ -184,7 +182,16 @@ test_that('Colours are drawn', {
 })
 
 test_that('Errors are handled', {
-  # Postive bandwidths
-  expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
-  expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
+  skip_if_not_installed('vdiffr')
+  
+  vdiffr::expect_doppelganger('contour-error-handling', function () {
+    TernaryPlot()
+    # Non-vectorized Func
+    expect_warning(expect_warning(TernaryContour(max)))
+    expect_warning(TernaryPointValues(max))
+    
+    # Positive bandwidths
+    expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
+    expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
+  })
 })

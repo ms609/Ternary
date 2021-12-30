@@ -1,5 +1,3 @@
-context('Coordinate transformation')
-
 test_that('Coordinates are reflected correctly', {
   expect_equal( ReflectedEquivalents(0.01, 0.8, direction = 1)[[1]], 
                 matrix(
@@ -69,7 +67,7 @@ test_that('Coordinates are reflected correctly', {
 test_that("matrices can be coordinated", {
   abc <- matrix(1:12, 3)
   value <- TernaryToXY(abc)
-  expect_equivalent(apply(abc, 2, TernaryToXY), value)
+  expect_equal(apply(abc, 2, TernaryToXY), unname(value))
   expect_equal(c('x', 'y'), rownames(value))
 })
 

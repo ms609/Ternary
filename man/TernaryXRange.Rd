@@ -5,9 +5,9 @@
 \alias{TernaryYRange}
 \title{X and Y coordinates of ternary plotting area}
 \usage{
-TernaryXRange(direction = getOption("ternDirection"))
+TernaryXRange(direction = getOption("ternDirection", 1L))
 
-TernaryYRange(direction = getOption("ternDirection"))
+TernaryYRange(direction = getOption("ternDirection", 1L))
 }
 \arguments{
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
