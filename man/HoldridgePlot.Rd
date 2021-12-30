@@ -221,16 +221,17 @@ each direction.}
 grid lines.  Use a vector of length three to set different values for each
 direction.}
 
-\item{hex.border, hex.col, hex.lty, hex.lwd}{Parameters to pass to
+\item{hex.border, hex.lty, hex.lwd}{Parameters to pass to
 \code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons.}
 
-\item{hex.col}{Fill colour for hexagons.  Provide a vector specifying a colour
-for each hexagon in turn, reading from left to right and top to bottom,
-or a function that accepts two arguments, numerics \code{pet} and \code{prec},
-and returns a colour in a format accepted by \link[=`polygon()`]{graphics:polygon}.}
+\item{hex.col}{Fill colour for hexagons.  Provide a vector specifying a
+colour for each hexagon in turn, reading from left to right and top to
+bottom, or a function that accepts two arguments, numerics \code{pet} and \code{prec},
+and returns a colour in a format accepted by
+\code{\link[graphics:polygon]{polygon()}}.}
 
 \item{hex.cex, hex.font, hex.text.col}{Parameters passed to
-\link[=`text()`]{graphics:text} to plot \code{hex.labels}.}
+\code{\link[graphics:text]{text()}} to plot \code{hex.labels}.}
 
 \item{hex.labels}{38-element character vector specifying label for
 each hexagonal class, from top left to bottom right.}
@@ -287,6 +288,16 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 \code{axis.col} resolved to.}
 
 \item{...}{Additional parameters to \code{\link[graphics]{plot}}.}
+
+\item{border}{Colour to use for hexagon borders.}
+
+\item{lty, lwd, cex, font}{\link[graphics:par]{Graphical parameters} specifying
+properties of hexagons to be plotted.}
+
+\item{labels}{Vector specifying labels for life zone hexagons to be plotted.
+Suggested values: \code{\link{holdridgeClassesUp}}, \code{\link{holdridgeLifeZonesUp}}.}
+
+\item{text.col}{Colour of text to be printed in hexagons.}
 }
 \description{
 \code{HoldridgePlot()} creates a blank triangular plot, as proposed by

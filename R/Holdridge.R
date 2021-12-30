@@ -16,12 +16,12 @@
 #' 
 #' @inheritParams TernaryPlot
 #' 
-#' @param hex.border,hex.col,hex.lty,hex.lwd Parameters to pass to 
+#' @param hex.border,hex.lty,hex.lwd Parameters to pass to 
 #' `HoldridgeHexagons()`.  Set to `NA` to suppress hexagons.
 #' @param hex.labels 38-element character vector specifying label for
 #' each hexagonal class, from top left to bottom right.
 #' @param hex.cex,hex.font,hex.text.col Parameters passed to
-#' [graphics:text][`text()`] to plot `hex.labels`.
+#' \code{\link[graphics:text]{text()}} to plot `hex.labels`.
 #' @references 
 #' Holdridge (1947),
 #' "Determination of world plant formations from simple climatic data",
@@ -302,10 +302,17 @@ HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
 }
 
 #' @rdname HoldridgePlot
-#' @param hex.col Fill colour for hexagons.  Provide a vector specifying a colour
-#' for each hexagon in turn, reading from left to right and top to bottom,
-#' or a function that accepts two arguments, numerics `pet` and `prec`,
-#' and returns a colour in a format accepted by [graphics:polygon][`polygon()`].
+#' @param border Colour to use for hexagon borders.
+#' @param hex.col Fill colour for hexagons.  Provide a vector specifying a
+#' colour for each hexagon in turn, reading from left to right and top to
+#' bottom, or a function that accepts two arguments, numerics `pet` and `prec`,
+#' and returns a colour in a format accepted by 
+#' \code{\link[graphics:polygon]{polygon()}}.
+#' @param labels Vector specifying labels for life zone hexagons to be plotted.
+#' Suggested values: [`holdridgeClassesUp`], [`holdridgeLifeZonesUp`].
+#' @param lty,lwd,cex,font \link[graphics:par]{Graphical parameters} specifying
+#' properties of hexagons to be plotted.
+#' @param text.col Colour of text to be printed in hexagons.
 HoldridgeHexagons <- function (border = '#004D40',
                                hex.col = HoldridgeHypsometricCol,
                                lty = 'dotted',
