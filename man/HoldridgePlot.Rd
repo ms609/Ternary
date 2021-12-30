@@ -32,6 +32,8 @@ HoldridgePlot(
   ctip.pos = NULL,
   padding = 0.16,
   col = NA,
+  panel.first = NULL,
+  panel.last = NULL,
   grid.lines = 8,
   grid.col = c(NA, "#1E88E5", "#D81B60"),
   grid.lty = "solid",
@@ -48,17 +50,17 @@ HoldridgePlot(
   hex.labels = NULL,
   hex.font = NULL,
   hex.text.col = "black",
-  axis.lty = "solid",
-  axis.labels = TRUE,
   axis.cex = 0.8,
+  axis.col = c(grid.col[2], grid.col[3], NA),
   axis.font = par("font"),
+  axis.labels = TRUE,
+  axis.lty = "solid",
+  axis.lwd = 1,
   axis.rotate = TRUE,
   axis.pos = NULL,
   axis.tick = TRUE,
-  axis.lwd = 1,
   ticks.lwd = axis.lwd,
   ticks.length = 0.025,
-  axis.col = "black",
   ticks.col = grid.col,
   ...
 )
@@ -181,6 +183,17 @@ if axis labels are being clipped.}
 
 \item{col}{The colour for filling the plot; see \code{\link[graphics]{polygon}}.}
 
+\item{panel.first}{An expression to be evaluated after the plot axes are
+set up but before any plotting takes place.
+This can be useful for drawing backgrounds, e.g. with \code{\link[=ColourTernary]{ColourTernary()}}
+or \code{\link[=HorizontalGrid]{HorizontalGrid()}}.
+Note that this works by lazy evaluation: passing this argument from other
+plot methods may well not work since it may be evaluated too early.}
+
+\item{panel.last}{An expression to be evaluated after plotting has taken
+place but before the axes and box are added.  See the comments about
+\code{panel.first}.}
+
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
 \item{grid.col}{Colours to draw the grid lines. Use a vector
@@ -222,18 +235,29 @@ and returns a colour in a format accepted by \link[=`polygon()`]{graphics:polygo
 \item{hex.labels}{38-element character vector specifying label for
 each hexagonal class, from top left to bottom right.}
 
-\item{axis.lty}{Line type for both the axis line and tick marks.
+\item{axis.cex}{Numeric specifying character expansion (font size)
+for axis labels.
 Use a vector of length three to set a different value for each direction.}
+
+\item{axis.col}{Colours for the axis line,
+tick marks and tip labels respectively.
+Use a vector of length three to set a different value for each direction.
+\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
+inline, and \code{ticks.col = NULL} means to use whatever colour
+\code{axis.col} resolved to.}
+
+\item{axis.font}{Font for text. Defaults to \code{par('font')}.}
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
 expression vector of labels to be placed at the tick points.}
 
-\item{axis.cex}{Numeric specifying character expansion (font size)
-for axis labels.
+\item{axis.lty}{Line type for both the axis line and tick marks.
 Use a vector of length three to set a different value for each direction.}
 
-\item{axis.font}{Font for text. Defaults to \code{par('font')}.}
+\item{axis.lwd}{Line width for the axis line and tick marks.
+Zero or negative values will suppress the line or ticks.
+Use a vector of length three to set different values for each axis.}
 
 \item{axis.rotate}{Logical specifying whether to rotate axis labels
 to parallel grid lines, or numeric specifying custom rotation for each axis,
@@ -246,10 +270,6 @@ if \code{NULL} (the default).}
 
 \item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
 
-\item{axis.lwd}{Line width for the axis line and tick marks.
-Zero or negative values will suppress the line or ticks.
-Use a vector of length three to set different values for each axis.}
-
 \item{ticks.lwd}{Line width for the axis line and tick marks.
 Zero or negative values will suppress the line or ticks.
 Use a vector of length three to set different values for each axis.}
@@ -258,13 +278,6 @@ Use a vector of length three to set different values for each axis.}
 beyond the plot margin.  Also affects position of axis labels, which are
 plotted at the end of each tick.
 Use a vector of length three to set a different length for each direction.}
-
-\item{axis.col}{Colours for the axis line,
-tick marks and tip labels respectively.
-Use a vector of length three to set a different value for each direction.
-\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
-inline, and \code{ticks.col = NULL} means to use whatever colour
-\code{axis.col} resolved to.}
 
 \item{ticks.col}{Colours for the axis line,
 tick marks and tip labels respectively.
