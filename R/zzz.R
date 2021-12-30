@@ -13,5 +13,5 @@ release_questions <- function() {
 # check_win_devel(); rhub::check_for_cran()
 # revdepcheck::revdep_check()
 # build_vignettes()
-# tools::resaveRdaFiles('data', compress='auto') - is default of bzip2 the optimal?
+# tools::resaveRdaFiles('data', compress = 'auto') - is default of bzip2 the optimal?
 # tools::checkRdaFiles('data') - set optimal compression in `data-raw`
