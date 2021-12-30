@@ -13,7 +13,7 @@ vignette: >
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
 
-```{r echo=FALSE}
+```{r hcl-colors-hack echo=FALSE}
 if (getRversion() < 3.6) {
   hcl.colors <- function (n, ...) {
     if (n == 4) {
