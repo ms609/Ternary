@@ -132,7 +132,8 @@
 TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          alab = NULL, blab = NULL, clab = NULL,
                          lab.offset = 0.16, lab.col = NULL,
-                         point = 'up', clockwise = TRUE,
+                         point = getOption('ternDirection', 1L),
+                         clockwise = TRUE,
                          xlim = NULL, ylim = NULL,
                          lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
                          tip.font = 2, tip.col = 'black',
@@ -207,12 +208,20 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     
     xlim = xlim,
     ylim = ylim,
-    col = col)
+    col = col
+  )
   
+  # Set graphical parameters
+  mc <- match.call(expand.dots = FALSE)
+  graphicalParams <- names(mc$...) %in% names(par())
+  new_par <- mc$...[graphicalParams]
   if (isometric) {
-    original_par <- par(pty = 's')
-    on.exit(par(original_par), add = TRUE)
+    new_par$pty = 's'
   }
+  
+  original_par <- par(new_par)
+  on.exit(par(original_par), add = TRUE)
+  
   
   .StartPlot(tern, ...)
   options('.Last.triangle' = tern)
@@ -231,11 +240,11 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                       lty = tern$grid.lty,
                       lwd = tern$grid.lwd)
   
+  panel.last
+  
   .PlotAxisTicks(tern)
   
   .PlotAxisLabels(tern)
-  
-  panel.last
   
   lapply(1:3, .AxisLines)
   lapply(1:3, .TitleAxis)
@@ -252,7 +261,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
 #' @export
 HorizontalGrid <- function (grid.lines = 10, grid.col = 'grey',
                             grid.lty = 'dotted', grid.lwd = par('lwd'),
-                            direction = getOption('ternDirection')) {
+                            direction = getOption('ternDirection', 1L)) {
   
   if (!(direction %in% 1:4)) {
     stop("Parameter `direction` must be an integer from 1 to 4")

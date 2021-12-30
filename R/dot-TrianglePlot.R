@@ -56,12 +56,6 @@
     options('ternDirection' = direction)
   }
   
-  # Set graphical parameters
-  mc <- match.call(expand.dots = FALSE)
-  graphicalParams <- names(mc$...) %in% names(par())
-  oPar <- par(mc$...[graphicalParams])
-  on.exit(par(oPar))
-  
   axis.rotate <- .Triplicate(axis.rotate)
   axis.pos <- .Triplicate(axis.pos)
   ticks.incline <- .Triplicate(ticks.incline)

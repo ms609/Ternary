@@ -149,10 +149,16 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     ylim = ylim,
     col = col)
   
+  # Set graphical parameters
+  mc <- match.call(expand.dots = FALSE)
+  graphicalParams <- names(mc$...) %in% names(par())
+  new_par <- mc$...[graphicalParams]
   if (isometric) {
-    original_par <- par(pty = 's')
-    on.exit(par(original_par), add = TRUE)
+    new_par$pty = 's'
   }
+  
+  original_par <- par(new_par)
+  on.exit(par(original_par), add = TRUE)
   
   .StartPlot(tri, ...)
   options('.Last.triangle' = tri)

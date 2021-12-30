@@ -129,11 +129,12 @@ test_that('Vignette plots are rendered correctly', {
   vdiffr::expect_doppelganger('Blank plot', TernaryPlot)
   
   BlankTernary <- function (dir, clockwise = TRUE) {
-    TernaryPlot(point=dir, atip='A vertex', btip='B vertex', ctip='C vertex', 
-                alab='Aness', blab='Bness', clab='Cness',
+    TernaryPlot(point = dir, 
+                atip = 'A vertex', btip = 'B vertex', ctip = 'C vertex', 
+                alab = 'Aness', blab = 'Bness', clab = 'Cness',
                 clockwise = clockwise)
-    TernaryText(list(A=c(10, 01, 01), B=c(01, 10, 01), C=c(01, 01, 10)), 
-                col=cbPalette8[4], font=2)
+    TernaryText(list(A = c(10, 01, 01), B = c(01, 10, 01), C = c(01, 01, 10)), 
+                col = cbPalette8[4], font = 2)
     HorizontalGrid(grid.col = 'red')
   }
   
