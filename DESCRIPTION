@@ -27,6 +27,7 @@ Suggests:
     readxl,
     rmarkdown,
     shinyjs,
+    spelling,
     testthat (>= 3.0),
     vdiffr,
 Config/Needs/coverage: covr
