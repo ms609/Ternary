@@ -158,18 +158,23 @@ TernaryPoints(Seatbelts[, seat], pch = 1, lwd = 2,
               col = rowCol)
 ```
 
-Finally, as the data are a series, we might wish to plot the trend as a line:
+Now let's plot the October-by-October trend as a line:
 
 ```{r all-deaths}
+oct <- 1:12 %in% 10
 par(mar = c(0, 0, 0, 0))
 TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
-            xlim = c(0.055, 0.095), ylim = c(0.48, 0.52))
+            xlim = c(0.055, 0.095), ylim = c(0.48, 0.52),
+            padding = 0.04)
 
-TernarySegments(Seatbelts[-nPoints, seat], Seatbelts[-1, seat],
+octBelts <- Seatbelts[oct, ]
+
+TernarySegments(octBelts[-nrow(octBelts), seat], octBelts[-1, seat],
                 col = rowCol, lwd = 2)
 
-# Label each point by its month
-TernaryText(Seatbelts[, seat], month.abb, cex = 0.6,
+# Label each point by its year
+TernaryText(octBelts[, seat], paste0("'", 69:84),
+            font = 2, cex = 1.5,
             # Semi-transparent colours
-            col = adjustcolor(rowCol, alpha.f = 0.8))
+            col = adjustcolor(rowCol[oct], alpha.f = 0.8))
 ```
