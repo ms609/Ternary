@@ -324,7 +324,9 @@ text(0.38, 0.1, '<padding> ', pos = 2, cex = 0.75, srt = 90)
 
 ## Further tutorials
 
-For detailed examples of more advanced usage, see the accompanying vignettes on:
+For further examples of usage, see the accompanying vignettes:
+
+- [Introduction for new R users](new-users.html)
 
 - [Interpolating and contouring](interpolation.html)
 

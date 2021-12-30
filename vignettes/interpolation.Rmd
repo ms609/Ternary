@@ -10,23 +10,32 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r hcl-colors-hack, echo=FALSE}
+if (getRversion() < 3.6) {
+  hcl.colors <- function (n, ...) {
+    colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
+                         "#7ED357", "#FDE333"))(n)
+  }
+}
+```
+
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
-
 
 A ternary plot can be shaded and contoured according to a known function:
 
 ```{r contours-by-calculation}
 library("Ternary")
 par(mar = rep(0.2, 4))
-TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
 
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c',
+            # Place an opaque fill behind grid lines:
+            panel.first = ColourTernary(values, spectrum = hcl.colors(256)))
 TernaryContour(FunctionToContour, resolution = 36L)
 
 ```
@@ -70,6 +79,8 @@ tri <- TriangleCentres(resolution = 12L)
 predicted <- Predict(tri[1:2, ])
 map <- rbind(x = tri['x', ], y = tri['y', ], z = predicted,
              down = tri['triDown', ])
+
+# Place a semitransparent colour fill over grid lines:
 ColourTernary(map)
 
 # Calculate contours
@@ -79,7 +90,6 @@ TernaryContour(PredictABC, resolution = 36L)
 # Mark measured points
 TernaryPoints(abc, pch = 3, col = '#cc3333')
 ```
-
 
 More sophisticated interpolation approaches are possible, e.g. 
 [kriging](https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm); these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.

@@ -1,0 +1,221 @@
+---
+title: "Introduction for new R users"
+author: "Martin R. Smith"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_document
+
+vignette: >
+  %\VignetteIndexEntry{Introduction for new R users}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+> Before you start, have you read the [introduction to the
+Ternary package](Ternary.html)?
+
+```{r hcl-colors-hack, echo=FALSE}
+if (getRversion() < 3.6) {
+  hcl.colors <- function (n, ...) {
+    if (n == 4) {
+      return(c("#A71B4B", "#F9C25C", "#81DEAD", "#584B9F"))
+    } else {
+      colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
+                         "#7ED357", "#FDE333"))(n)
+    }
+  }
+}
+```
+
+This guide gives a brief example of using the "Ternary" package, using
+road casualty data from Great Britain.
+
+First, we'll load and preview the data:
+
+```{r load-data}
+data("Seatbelts")
+
+# View the first few entries:
+head(Seatbelts)
+```
+
+For our example study, we'll explore the relative safety of car passengers through time by plotting the proportion of people killed or seriously injured in accidents who were drivers (column `drivers`), front-seat passengers (column `front`), or rear-seat passengers (column `drivers`).
+
+Let's start by loading the "Ternary" package and plotting the data:
+
+```{r first-plot, fig.asp = 1}
+# Load the Ternary library
+library("Ternary")
+
+# Define our columns of interest:
+seat <- c("drivers", "front", "rear")
+
+# Extract and plot the data
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+TernaryPoints(Seatbelts[, seat])
+```
+
+The `law` column takes the value `1` for months in which the wearing of a seatbelt was made compulsory in UK law.  Let's explore the impact of this law by plotting data before and after the law with different symbols.  R's **p**lotting **ch**aracters are numbered thus:
+
+```{r pch, fig.asp = 1/16}
+par(mar = c(0, 0, 0, 0))
+plot(0:20, rep(2, 21), pch = 0:20,
+     cex = 2, ylim = c(-1, 3), ann = FALSE)
+text(0:20, rep(0, 21), 0:20)
+```
+
+Let's choose to plot a `+` (character `3`) when seatbelts are legally required, and `o` (character `1`) when they are not.
+
+```{r seat-pch}
+beltLawPch <- ifelse(Seatbelts[, 'law'], 3, 1)
+```
+
+
+Let's also make the plot more readable by shrinking the margins:
+
+```{r by-law, fig.asp = 1}
+# Shrink the margin so the plot's easier to read
+par(mar = c(0, 0, 0, 0))
+
+# Set up a blank plot
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+
+# Add a legend
+legend('topleft', c('Belt law', 'No law'), pch = c(3, 1))
+
+# Use our beltLawPch variable to style points
+TernaryPoints(Seatbelts[, seat], pch = beltLawPch)
+```
+
+This seems to show a clear pattern: the seatbelt law led to a higher
+proportion of deaths and serious injuries occurring in the rear of cars.
+
+Let's look for other trends through time by colouring each data point by when it was collected.
+Each row summarizes data for a consecutive month, so we can simply colour the points by row number.
+
+Let's define a spectrum. The "viridis" colour scale is free from [perceptual artefacts](https://www.nature.com/articles/s41467-020-19160-7), is [colour-blind friendly](https://www.nature.com/articles/nmeth.1618#ref-CR2), and works when printed in greyscale.
+
+```{r viridis-spec}
+nPoints <- nrow(Seatbelts)
+rowCol <- hcl.colors(nPoints, palette = "viridis", alpha = 0.8)
+```
+
+
+It's a bit of a fuss to draw legends for continuous colour scales, so to keep our code clean let's write a function to add our legends:
+
+```{r leg-funcs}
+SpectrumLegend <- function (spectrum, labels) {
+  nCol <- length(spectrum)
+  
+  # Spectrum legends are inconvenient to produce:
+  xMax <- TernaryXRange()[2]
+  yMax <- TernaryYRange()[2]
+  legendY0 <- yMax * 0.75
+  legendY1 <- yMax * 0.95
+  legendHeight <- legendY1 - legendY0
+  
+  segX <- rep(xMax, nCol)
+  segY <- seq_len(nCol) / nCol
+  segY <- legendY0 + (segY * legendHeight)
+  segments(segX, segY - segY[1] + legendY0, y1 = segY, col = spectrum,
+           lwd = 4)
+  text(segX, c(legendY0, legendY1), labels, pos = 2)
+}
+```
+
+
+Now we can plot our data:
+
+```{r spectrum, fig.asp = 1}
+par(mar = c(0, 0, 0, 0))
+
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+legend('topleft', c('Belt law', 'No law'), pch = c(3, 1))
+
+# Now we can call our legend-adding function:
+SpectrumLegend(rowCol, labels = c('Jan 1969', 'Dec 1984'))
+
+# Use our rowCol variable to style points
+TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
+              lwd = 2, # Use wider lines so points are clearer
+              col = rowCol)
+```
+
+Our belt law appears to sit in the context of a longer term improvement in the relative safety of front-seat passengers.  But how do we explain the scatter in the 'drivers' dimension?  Let's try plotting seasonal variation:
+
+```{r month-spectrum, fig.asp = 1}
+# Define a suitable cyclical spectrum
+fourSeasons <- hcl.colors(4, 'Spectral')
+monthCol <- colorRampPalette(fourSeasons[c(1:4, 1)])(13)[c(7:12, 1:6)]
+
+par(mar = c(0, 0, 0, 0))
+
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+legend('topleft', c('Belt law', 'No law'), pch = c(3, 1))
+
+SpectrumLegend(monthCol, c('Jan', 'Dec'))
+
+# Use our rowCol variable to style points
+TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
+              lwd = 2, # Use wider lines so points are clearer
+              col = monthCol)
+```
+
+With or without seatbelts, drivers are in more relative danger in winter!
+
+Now let's size each point by the number of casualties, scaled by distance driven.
+We'll need to zoom in closer to the plot to see this clearly.
+
+```{r scale-by-deaths}
+par(mar = c(0, 0, 0, 0))
+
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
+            # Magnify the 'action':
+            xlim = c(0.055, 0.095), ylim = c(0.48, 0.52))
+
+legend('topleft', c('No law', 'Belt law'),
+       col = 2:3, pch = 1, lwd = 2, lty = NA)
+sizes <- c(3, 7, 12)
+ scale <- 200
+legend('topright', title = 'Casualties / Mm', legend = sizes,
+      pt.cex = sizes / 1000 * scale,
+      pch = 1, lwd = 2, lty = NA)
+
+# Use our rowCol variable to style points
+TernaryPoints(Seatbelts[, seat], pch = 1, lwd = 2,
+              cex = Seatbelts[, 'DriversKilled'] / Seatbelts[, 'kms'] * scale,
+              col = 2 + Seatbelts[, 'law'])
+```
+
+The smaller size of points after mandatory seatbelt usage is evident.
+
+Now let's plot the annual trend as a line, taking the values for each October as representative:
+
+```{r all-deaths}
+# Subset our data to extract only Octobers:
+oct <- month.name == 'October'
+octBelts <- Seatbelts[oct, ]
+
+par(mar = c(0, 0, 0, 0))
+TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
+            xlim = c(0.055, 0.095), ylim = c(0.48, 0.52),
+            padding = 0.04)
+
+
+TernarySegments(octBelts[-nrow(octBelts), seat], octBelts[-1, seat],
+                col = rowCol, lwd = 2)
+
+# Label each point by its year
+TernaryText(octBelts[, seat], paste0("'", 69:84),
+            font = 2, cex = 1.5,
+            # Semi-transparent colours
+            col = adjustcolor(rowCol[oct], alpha.f = 0.8))
+```
+
+# Where next
+
+For more complicated examples of usage, see the accompanying vignettes:
+
+- [Getting started guide](Ternary.html)
+
+- [Interpolating and contouring](interpolation.html)
+

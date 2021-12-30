@@ -15,7 +15,7 @@
 #' of the ternary plot.  Colours or point styles may be specified in columns
 #' four to six to allow different categories of point to be plotted distinctly.
 #' Example datasets are installed at
-#' `r system.file("TernaryApp", package = "Ternary")`.
+#' `system.file("TernaryApp", package = "Ternary")`.
 #' 
 #' Axes are automatically labelled using column names, if present; these can be
 #' edited manually on this tab.

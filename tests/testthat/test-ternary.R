@@ -114,6 +114,16 @@ test_that("Axes can be styled individually", {
   vdiffr::expect_doppelganger('AxisStyle', AxisStyle) 
 })
 
+test_that("panel.xxst parameter", {
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("panel.xxst-parameter", function ()
+     TernaryPlot(panel.first = rect(0, -1, -1, 1, col = 2),
+                 panel.last = rect(0, -1, 1, 1, col = 3),
+                 atip = "Tip A", btip = "Tip B", clab = "Axis C",
+                 xpd = NA)
+  )
+})
+
 test_that('Vignette plots are rendered correctly', {
   skip_if_not_installed('vdiffr')
   vdiffr::expect_doppelganger('Blank plot', TernaryPlot)
@@ -193,11 +203,14 @@ test_that('Vignette plots are rendered correctly', {
       30, 30, 40,
       55, 20, 25
     ), ncol=3, byrow=TRUE)
-    TernaryPolygon(middle_triangle, col='#aaddfa', border='grey')
-    TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col='grey')
-    TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col='grey')
-    TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col='grey')
-    TernaryArrows(c(20, 20, 60), c(30, 30, 40), length=0.2, col='darkblue')
+    TernaryPolygon(middle_triangle, col = '#aaddfa', border = 'grey')
+    TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col = 'grey')
+    TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col = 'grey')
+    TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col = 'grey')
+    TernaryArrows(c(20, 20, 60), c(30, 30, 40), length=0.2, col = 'darkblue')
+    TernarySegments(rbind(c(25, 15, 60), c(15, 25, 60)),
+                    rbind(c(30, 30, 40), c(30, 30, 40)),
+                    col = c('lightblue', '#0000eecc'))
   }
   
   skip_if_not_installed('vdiffr')
