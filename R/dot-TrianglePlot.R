@@ -34,8 +34,6 @@
                            lab.offset,
                            isometric,
                            padding,
-                           panel.first,
-                           panel.last,
                            point,
                            sideOrder = 1:3,
                            ticks.col,
