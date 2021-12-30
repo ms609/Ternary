@@ -173,7 +173,7 @@
                     0,  90,   0, 270), 4, 3)
   
   xy <- TernaryCoords(switch(side, c(1, 0, 1), c(1, 1, 0), c(0, 1, 1))) + 
-    (loff * .DirectionalOffset(do[tern$direction, selected]))
+    (loff * .DirectionalOffset(do[tern$direction, side]))
   
   text(xy[1], xy[2], switch(selected, tern$alab, tern$blab, tern$clab),
        cex = tern$lab.cex[selected],
