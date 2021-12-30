@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+> Before you start, have you read the [introduction to the
+Ternary package](Ternary.html)?
+
+
 A ternary plot can be shaded and contoured according to a known function:
 
 ```{r contours-by-calculation}
