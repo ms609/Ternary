@@ -67,7 +67,7 @@ jobs:
         env:
           _R_CHECK_CRAN_INCOMING_USE_ASPELL_: true
         run: |
-          sudo apt-get install aspell libcurl4-openssl-dev
+          sudo apt-get install aspell libcurl4-openssl-dev texlive-latex-base texlive-fonts-extra
           while read -r cmd
           do
             eval sudo $cmd

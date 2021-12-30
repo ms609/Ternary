@@ -32,6 +32,8 @@ TernaryPlot(
   ctip.pos = NULL,
   padding = 0.08,
   col = NA,
+  panel.first = NULL,
+  panel.last = NULL,
   grid.lines = 10,
   grid.col = "darkgrey",
   grid.lty = "solid",
@@ -121,6 +123,17 @@ iff the corresponding \code{xlab.rotate} parameter is set.}
 if axis labels are being clipped.}
 
 \item{col}{The colour for filling the plot; see \code{\link[graphics]{polygon}}.}
+
+\item{panel.first}{An expression to be evaluated after the plot axes are
+set up but before any plotting takes place.
+This can be useful for drawing backgrounds, e.g. with \code{\link[=ColourTernary]{ColourTernary()}}
+or \code{\link[=HorizontalGrid]{HorizontalGrid()}}.
+Note that this works by lazy evaluation: passing this argument from other
+plot methods may well not work since it may be evaluated too early.}
+
+\item{panel.last}{An expression to be evaluated after plotting has taken
+place but before the axes and box are added.  See the comments about
+\code{panel.first}.}
 
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 

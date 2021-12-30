@@ -2,6 +2,7 @@
 % Please edit documentation in R/TernaryPlot.R
 \name{AddToTernary}
 \alias{AddToTernary}
+\alias{TernarySegments}
 \alias{TernaryArrows}
 \alias{TernaryLines}
 \alias{TernaryPoints}
@@ -11,6 +12,8 @@
 \title{Add elements to ternary plot}
 \usage{
 AddToTernary(PlottingFunction, coordinates, ...)
+
+TernarySegments(fromCoordinates, toCoordinates = fromCoordinates, ...)
 
 TernaryArrows(fromCoordinates, toCoordinates = fromCoordinates, ...)
 
@@ -47,6 +50,8 @@ Plot shapes onto a ternary diagram created with \code{\link[=TernaryPlot]{Ternar
 }
 \section{Functions}{
 \itemize{
+\item \code{TernarySegments}: Add \link[graphics]{segments}
+
 \item \code{TernaryArrows}: Add  \link[graphics]{arrows}
 
 \item \code{TernaryLines}: Add \link[graphics]{lines}

@@ -23,7 +23,7 @@ Data should be provided as three columns, corresponding to the three axes
 of the ternary plot.  Colours or point styles may be specified in columns
 four to six to allow different categories of point to be plotted distinctly.
 Example datasets are installed at
-C:/Research/R/Ternary/inst/TernaryApp.
+\code{system.file("TernaryApp", package = "Ternary")}.
 
 Axes are automatically labelled using column names, if present; these can be
 edited manually on this tab.

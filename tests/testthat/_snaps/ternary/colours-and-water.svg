@@ -2559,5 +2559,7 @@
 <polyline points='418.56,288.00 527.86,295.01 ' style='stroke-width: 0.75; stroke: #BEBEBE;' />
 <line x1='612.87' y1='344.09' x2='588.58' y2='302.02' style='stroke-width: 0.75; stroke: #00008B;' />
 <polyline points='601.05,309.22 588.58,302.02 588.58,316.42 ' style='stroke-width: 0.75; stroke: #00008B;' />
+<line x1='600.72' y1='351.10' x2='588.58' y2='302.02' style='stroke-width: 0.75; stroke: #ADD8E6;' />
+<line x1='625.01' y1='337.08' x2='588.58' y2='302.02' style='stroke-width: 0.75; stroke: #0000EE; stroke-opacity: 0.80;' />
 </g>
 </svg>

@@ -56,6 +56,16 @@
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{\link[graphics]{polygon}}.
 #' 
+#' @param panel.first An expression to be evaluated after the plot axes are
+#' set up but before any plotting takes place.
+#' This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
+#' or [`HorizontalGrid()`].
+#' Note that this works by lazy evaluation: passing this argument from other
+#' plot methods may well not work since it may be evaluated too early.
+#' @param panel.last An expression to be evaluated after plotting has taken
+#' place but before the axes and box are added.  See the comments about
+#' `panel.first`.
+#' 
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
 #'  grid lines to plot between each major pair.
@@ -120,7 +130,7 @@
 #' @importFrom graphics par plot polygon
 #' @export
 TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
-                         alab = NULL, blab = NULL, clab = NULL, 
+                         alab = NULL, blab = NULL, clab = NULL,
                          lab.offset = 0.16, lab.col = NULL,
                          point = 'up', clockwise = TRUE,
                          xlim = NULL, ylim = NULL,
@@ -131,6 +141,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
                          col = NA,
+                         panel.first = NULL, panel.last = NULL,
                          grid.lines = 10, grid.col = 'darkgrey',
                          grid.lty = 'solid', grid.lwd = par('lwd'),
                          grid.minor.lines = 4, grid.minor.col = 'lightgrey',
@@ -180,6 +191,11 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   tip.cex <- Triplicate(tip.cex)
   tip.font <- Triplicate(tip.font)
   sides <- if(clockwise) 1:3 else c(3, 1, 2)
+  mc <- match.call(expand.dots = FALSE)
+  
+  graphicalParams <- names(mc$...) %in% names(par())
+  oPar <- par(mc$...[graphicalParams])
+  on.exit(par(oPar))
   
   if (isometric) {
     original_par <- par(pty = 's')
@@ -215,7 +231,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
        xlim = xlim + padVec, ylim = ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
-  polygon(axes[1, ], axes[2, ], col=col, border=NA)
+  polygon(axes[1, ], axes[2, ], col = col, border = NA)
+  
+  panel.first
   
   if (!is.integer(grid.lines)) grid.lines <- ceiling(grid.lines)
   if (!is.integer(grid.minor.lines)) grid.minor.lines <- ceiling(grid.minor.lines)
@@ -298,6 +316,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     }
     if (!is.null(axis.pos)) pos <- axis.pos
     
+    panel.last
   
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
@@ -502,20 +521,39 @@ CoordinatesToXY <- function (coordinates) {
     if (is.list(coordinates)) {
       vapply(coordinates, TernaryCoords, double(2))
     } else if (is.numeric(coordinates)) {
-      matrix(TernaryCoords(coordinates), nrow=2)
+      matrix(TernaryCoords(coordinates), nrow = 2)
     }
-  } else if (length(dims) == 2) {
-    which_dim <- if(dims[2] == 3) 1 else if (dims[1] == 3) 2 else stop("Coordinates must be ternary points")
+  } else if (length(dims) == 2L) {
+    which_dim <- if(dims[2] == 3L) {
+      1L
+    } else if (dims[1] == 3L) {
+      2L
+    } else {
+      stop("Coordinates must be ternary points")
+    }
     apply(coordinates, which_dim, TernaryCoords)
   } else {
     stop("Unrecognized format for coordinates parameter.")
   }
 }
 
+#' @describeIn AddToTernary Add \link[graphics]{segments}
+#' @importFrom graphics segments
+#' @export
+TernarySegments <- function (fromCoordinates, toCoordinates = fromCoordinates,
+                             ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
+  
+  # Return:
+  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
+
 #' @describeIn AddToTernary Add  \link[graphics]{arrows}
 #' @importFrom graphics arrows
 #' @export
-TernaryArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) {
+TernaryArrows <- function (fromCoordinates, toCoordinates = fromCoordinates,
+                           ...) {
   fromXY <- CoordinatesToXY(fromCoordinates)
   toXY <- CoordinatesToXY(toCoordinates)
   
@@ -526,7 +564,9 @@ TernaryArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) 
 #' @describeIn AddToTernary Add \link[graphics]{lines}
 #' @importFrom graphics lines
 #' @export
-TernaryLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...)
+TernaryLines <- function (coordinates, ...) {
+  AddToTernary(lines, coordinates, ...)
+}
 
 #' @describeIn AddToTernary Add \link[graphics]{points}
 #' @importFrom graphics points

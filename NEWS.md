@@ -1,3 +1,11 @@
+# Ternary v1.2.4.9000
+
+- Add `TernaryContours()`
+- Add `panel.first` and `panel.last` parameters to `TernaryPlot()`
+  (fixing ([#54](https://github.com/ms609/Ternary/issues/54))).
+- Support graphical parameters (e.g. `xpd`) in `TernaryPlot()`.
+- Add introductory vignette for new R users.
+
 # Ternary v1.2.4
 
 - Default to upward direction if `TernaryPlot()` not yet called.
