@@ -16,14 +16,14 @@ ratio and annual \emph{prec}ipitation (in mm).}
 
 \item{opacity}{Opacity level to be converted to the final two characters
 of an \acronym{RGBA} hexadecimal colour definition, e.g. \verb{#000000FF}.
-Specify a character string, whcih will be interpreted as a hexadecimal
+Specify a character string, which will be interpreted as a hexadecimal
 alpha value and appended to the six \acronym{RGB} hexadecimal digits;
 a numeric in the range 0 (transparent) to 1 (opaque);
 or \code{NA}, to return only the six \acronym{RGB} digits.}
 }
 \value{
 Character vector listing \acronym{RGB} or (if \code{opacity != NA})
-\acronym{RGBA} values corresponding to each pet-prec value pair.
+\acronym{RGBA} values corresponding to each PET-precipitation value pair.
 }
 \description{
 Used to colour \code{HoldridgeHexagons()}, and may also be used to aid the
@@ -39,7 +39,7 @@ ptCol <- HoldridgeHypsometricCol(pet, prec)
 HoldridgePoints(pet, prec, pch = 21, bg = ptCol)
 }
 \references{
-Palette derived from the hyposmetric colour scheme presented at
+Palette derived from the hypsometric colour scheme presented at
 \href{https://www.shadedrelief.com/hypso/hypso.html}{Shaded Relief}.
 }
 \author{

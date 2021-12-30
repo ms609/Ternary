@@ -1,7 +1,7 @@
 #' Plot life zones on a Holdridge plot
 #' 
 #' `HoldridgePlot()` creates a blank triangular plot, as proposed by 
-#' Holdridge (1947, 1967), onto which potential evapotransporation
+#' Holdridge (1947, 1967), onto which potential evapotranspiration
 #' (\acronym{PET}) ratio and annual precipitation data can be plotted
 #' (using the [`AddToHoldridge()`] family of functions) in order to interpret
 #' climatic life zones.
@@ -11,7 +11,7 @@
 #' using any of the standard plotting functions.
 #' 
 #' [`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
-#' and hexagons allowing plotted data to be linked to interpretated climate
+#' and hexagons allowing plotted data to be linked to interpreted climate
 #' settings.
 #' 
 #' @inheritParams TernaryPlot
@@ -255,15 +255,15 @@ HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
 #' @inheritParams HoldridgeToXY
 #' @param opacity Opacity level to be converted to the final two characters
 #' of an \acronym{RGBA} hexadecimal colour definition, e.g. `#000000FF`.
-#' Specify a character string, whcih will be interpreted as a hexadecimal
+#' Specify a character string, which will be interpreted as a hexadecimal
 #' alpha value and appended to the six \acronym{RGB} hexadecimal digits;
 #' a numeric in the range 0 (transparent) to 1 (opaque);
 #' or `NA`, to return only the six \acronym{RGB} digits.
 #' @return Character vector listing \acronym{RGB} or (if `opacity != NA`)
-#' \acronym{RGBA} values corresponding to each pet-prec value pair.
+#' \acronym{RGBA} values corresponding to each PET-precipitation value pair.
 #' @template MRS
 #' @references
-#' Palette derived from the hyposmetric colour scheme presented at
+#' Palette derived from the hypsometric colour scheme presented at
 #' [Shaded Relief](https://www.shadedrelief.com/hypso/hypso.html).
 #' @examples
 #' HoldridgePlot(hex.col = HoldridgeHypsometricCol)

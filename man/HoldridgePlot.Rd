@@ -301,7 +301,7 @@ Suggested values: \code{\link{holdridgeClassesUp}}, \code{\link{holdridgeLifeZon
 }
 \description{
 \code{HoldridgePlot()} creates a blank triangular plot, as proposed by
-Holdridge (1947, 1967), onto which potential evapotransporation
+Holdridge (1947, 1967), onto which potential evapotranspiration
 (\acronym{PET}) ratio and annual precipitation data can be plotted
 (using the \code{\link[=AddToHoldridge]{AddToHoldridge()}} family of functions) in order to interpret
 climatic life zones.
@@ -312,7 +312,7 @@ points to be added to an existing plot; \code{\link[=AddToHoldridge]{AddToHoldri
 using any of the standard plotting functions.
 
 \code{\link[=HoldridgeBelts]{HoldridgeBelts()}} and \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}} plot interpretative lines
-and hexagons allowing plotted data to be linked to interpretated climate
+and hexagons allowing plotted data to be linked to interpreted climate
 settings.
 }
 \examples{

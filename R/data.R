@@ -72,7 +72,7 @@ NULL
 #' Tropical Science Center, San Jos&eacute;
 #' 
 #' Leemans, R. (1990),
-#' "Possible change in natural vegitation patterns due to a global warming",
+#' "Possible change in natural vegetation patterns due to a global warming",
 #' _International Institute for Applied Systems Analysis_ Working paper WP-90-08.
 #' \url{https://pure.iiasa.ac.at/id/eprint/3443/1/WP-90-008.pdf}
 #' @encoding UTF-8
