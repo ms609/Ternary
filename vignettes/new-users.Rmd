@@ -158,16 +158,18 @@ TernaryPoints(Seatbelts[, seat], pch = 1, lwd = 2,
               col = rowCol)
 ```
 
-Now let's plot the October-by-October trend as a line:
+Now let's plot the annual trend as a line, taking the values for each October as representative:
 
 ```{r all-deaths}
-oct <- 1:12 %in% 10
+# Subset our data to extract only Octobers:
+oct <- month.name == 'October'
+octBelts <- Seatbelts[oct, ]
+
 par(mar = c(0, 0, 0, 0))
 TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
             xlim = c(0.055, 0.095), ylim = c(0.48, 0.52),
             padding = 0.04)
 
-octBelts <- Seatbelts[oct, ]
 
 TernarySegments(octBelts[-nrow(octBelts), seat], octBelts[-1, seat],
                 col = rowCol, lwd = 2)
