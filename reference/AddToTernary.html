@@ -43,6 +43,9 @@
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/interpolation.html">Interpolating and contouring</a>
     </li>
+    <li>
+      <a href="../articles/new-users.html">Introduction for new R users</a>
+    </li>
   </ul></li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -78,6 +81,8 @@
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">AddToTernary</span><span class="op">(</span><span class="va">PlottingFunction</span>, <span class="va">coordinates</span>, <span class="va">...</span><span class="op">)</span>
+
+<span class="fu">TernarySegments</span><span class="op">(</span><span class="va">fromCoordinates</span>, toCoordinates <span class="op">=</span> <span class="va">fromCoordinates</span>, <span class="va">...</span><span class="op">)</span>
 
 <span class="fu">TernaryArrows</span><span class="op">(</span><span class="va">fromCoordinates</span>, toCoordinates <span class="op">=</span> <span class="va">fromCoordinates</span>, <span class="va">...</span><span class="op">)</span>
 
@@ -115,7 +120,8 @@ which arrows should begin and end; <em>cf.</em> <code>x0</code>, <code>y0</code>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>TernaryArrows</code>: Add  <a href="https://rdrr.io/r/graphics/arrows.html" class="external-link">arrows</a></p></li>
+<ul><li><p><code>TernarySegments</code>: Add <a href="https://rdrr.io/r/graphics/segments.html" class="external-link">segments</a></p></li>
+<li><p><code>TernaryArrows</code>: Add  <a href="https://rdrr.io/r/graphics/arrows.html" class="external-link">arrows</a></p></li>
 <li><p><code>TernaryLines</code>: Add <a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></p></li>
 <li><p><code>TernaryPoints</code>: Add <a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></p></li>
 <li><p><code>TernaryPolygon</code>: Add <a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygons</a></p></li>
