@@ -13,20 +13,23 @@ vignette: >
 
 `HoldridgePlot()` creates a blank triangular plot, as proposed by 
 Holdridge (1947, 1967), onto which potential evapotranspiration
-(\acronym{PET}) ratio and annual precipitation data can be plotted
-(using the [`AddToHoldridge()`] family of functions) in order to interpret
+(PET) ratio and annual precipitation data can be plotted
+(using the `AddToHoldridge()` family of functions) in order to interpret
 climatic life zones.
 
-[`HoldridgePoints()`], [`HoldridgeText()`] and related functions allow data 
-points to be added to an existing plot; [`AddToHoldridge()`] allows plotting
+`HoldridgePoints()`, `HoldridgeText()` and related functions allow data 
+points to be added to an existing plot; `AddToHoldridge()` allows plotting
 using any of the standard plotting functions.
 
-[`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
+`HoldridgeBelts()` and `HoldridgeHexagons()` plot interpretative lines
 and hexagons allowing plotted data to be linked to interpreted climate
 settings.
 
 ```{r holdridge, fig.asp = 1}
-data(holdridgeLifeZonesUp, package = 'Ternary')
+# Load package and data
+library("Ternary")
+
+data(holdridge, holdridgeLifeZonesUp, package = 'Ternary')
 
 # Suppress plot margins
 par(mar = c(0, 0, 0, 0))
@@ -35,6 +38,20 @@ par(mar = c(0, 0, 0, 0))
 HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
 HoldridgeBelts()
 
-# Plot data
+# Plot data, shaded by latitude; darker = equitorial.
+HoldridgePoints(holdridge$PET, holdridge$Precipitation,
+                col = hcl.colors(91)[abs(holdridge$Latitude) + 1L],
+                lwd = 2)
 
 ```
+
+# References
+
+Holdridge (1947),
+"Determination of world plant formations from simple climatic data",
+_Science_ 105:367&ndash;368.
+doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
+
+Holdridge (1967),
+[_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
+Tropical Science Center, San Jos&eacute;
