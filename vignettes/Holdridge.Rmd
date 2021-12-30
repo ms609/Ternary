@@ -1,0 +1,40 @@
+---
+title: "Holdridge plots"
+author: "Martin R. Smith"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_document
+
+vignette: >
+  %\VignetteIndexEntry{Holdridge plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+`HoldridgePlot()` creates a blank triangular plot, as proposed by 
+Holdridge (1947, 1967), onto which potential evapotranspiration
+(\acronym{PET}) ratio and annual precipitation data can be plotted
+(using the [`AddToHoldridge()`] family of functions) in order to interpret
+climatic life zones.
+
+[`HoldridgePoints()`], [`HoldridgeText()`] and related functions allow data 
+points to be added to an existing plot; [`AddToHoldridge()`] allows plotting
+using any of the standard plotting functions.
+
+[`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
+and hexagons allowing plotted data to be linked to interpreted climate
+settings.
+
+```{r holdridge, fig.asp = 1}
+data(holdridgeLifeZonesUp, package = 'Ternary')
+
+# Suppress plot margins
+par(mar = c(0, 0, 0, 0))
+
+# Create blank Holdridge plot
+HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
+HoldridgeBelts()
+
+# Plot data
+
+```
