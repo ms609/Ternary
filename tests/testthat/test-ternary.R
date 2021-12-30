@@ -114,6 +114,16 @@ test_that("Axes can be styled individually", {
   vdiffr::expect_doppelganger('AxisStyle', AxisStyle) 
 })
 
+test_that("panel.xxst parameter", {
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("panel.xxst-parameter", function ()
+     TernaryPlot(panel.first = rect(0, -1, -1, 1, col = 2),
+                 panel.last = rect(0, -1, 1, 1, col = 3),
+                 atip = "Tip A", btip = "Tip B", clab = "Axis C",
+                 xpd = NA)
+  )
+})
+
 test_that('Vignette plots are rendered correctly', {
   skip_if_not_installed('vdiffr')
   vdiffr::expect_doppelganger('Blank plot', TernaryPlot)

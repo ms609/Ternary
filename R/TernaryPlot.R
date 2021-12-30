@@ -56,6 +56,16 @@
 #'  if axis labels are being clipped.
 #' @param col The colour for filling the plot; see \code{\link[graphics]{polygon}}.
 #' 
+#' @param panel.first An expression to be evaluated after the plot axes are
+#' set up but before any plotting takes place.
+#' This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
+#' or [`HorizontalLines()`].
+#' Note that this works by lazy evaluation: passing this argument from other
+#' plot methods may well not work since it may be evaluated too early.
+#' @param panel.last An expression to be evaluated after plotting has taken
+#' place but before the axes and box are added.  See the comments about
+#' `panel.first`.
+#' 
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled) 
 #'  grid lines to plot between each major pair.
@@ -120,7 +130,7 @@
 #' @importFrom graphics par plot polygon
 #' @export
 TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
-                         alab = NULL, blab = NULL, clab = NULL, 
+                         alab = NULL, blab = NULL, clab = NULL,
                          lab.offset = 0.16, lab.col = NULL,
                          point = 'up', clockwise = TRUE,
                          xlim = NULL, ylim = NULL,
@@ -131,6 +141,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                          atip.pos = NULL, btip.pos = NULL, ctip.pos = NULL,
                          padding = 0.08,
                          col = NA,
+                         panel.first = NULL, panel.last = NULL,
                          grid.lines = 10, grid.col = 'darkgrey',
                          grid.lty = 'solid', grid.lwd = par('lwd'),
                          grid.minor.lines = 4, grid.minor.col = 'lightgrey',
@@ -180,6 +191,11 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   tip.cex <- Triplicate(tip.cex)
   tip.font <- Triplicate(tip.font)
   sides <- if(clockwise) 1:3 else c(3, 1, 2)
+  mc <- match.call(expand.dots = FALSE)
+  
+  graphicalParams <- names(mc$...) %in% names(par())
+  oPar <- par(mc$...[graphicalParams])
+  on.exit(par(oPar))
   
   if (isometric) {
     original_par <- par(pty = 's')
@@ -215,7 +231,9 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
        xlim = xlim + padVec, ylim = ylim + padVec, ...)
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
                  TernaryCoords, double(2))
-  polygon(axes[1, ], axes[2, ], col=col, border=NA)
+  polygon(axes[1, ], axes[2, ], col = col, border = NA)
+  
+  panel.first
   
   if (!is.integer(grid.lines)) grid.lines <- ceiling(grid.lines)
   if (!is.integer(grid.minor.lines)) grid.minor.lines <- ceiling(grid.minor.lines)
@@ -298,6 +316,7 @@ TernaryPlot <- function (atip = NULL, btip = NULL, ctip = NULL,
     }
     if (!is.null(axis.pos)) pos <- axis.pos
     
+    panel.last
   
     # Plot and annotate axes
     lapply(seq_along(line_points), function (i) {
