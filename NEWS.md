@@ -1,3 +1,8 @@
+# Ternary v1.2.4.9000
+
+- Add `TernaryContours()`
+- Add introductory vignette for new R users.
+
 # Ternary v1.2.4
 
 - Default to upward direction if `TernaryPlot()` not yet called.

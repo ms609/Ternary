@@ -320,6 +320,16 @@ text(0.38, 0.1, '<padding>', pos = 4, cex = 0.75)
 text(0.38, 0.1, '<padding> ', pos = 2, cex = 0.75, srt = 90)
 ```
 
+
+## Further tutorials
+
+For further examples of usage, see the accompanying vignettes:
+
+- [Introduction for new R users](new-users.html)
+
+- [Interpolating and contouring](interpolation.html)
+
+
 ## Bugs and feature requests
 
 I hope the package proves useful. If there's anything it can't do that you wish

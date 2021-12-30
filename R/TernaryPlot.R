@@ -502,20 +502,39 @@ CoordinatesToXY <- function (coordinates) {
     if (is.list(coordinates)) {
       vapply(coordinates, TernaryCoords, double(2))
     } else if (is.numeric(coordinates)) {
-      matrix(TernaryCoords(coordinates), nrow=2)
+      matrix(TernaryCoords(coordinates), nrow = 2)
     }
-  } else if (length(dims) == 2) {
-    which_dim <- if(dims[2] == 3) 1 else if (dims[1] == 3) 2 else stop("Coordinates must be ternary points")
+  } else if (length(dims) == 2L) {
+    which_dim <- if(dims[2] == 3L) {
+      1L
+    } else if (dims[1] == 3L) {
+      2L
+    } else {
+      stop("Coordinates must be ternary points")
+    }
     apply(coordinates, which_dim, TernaryCoords)
   } else {
     stop("Unrecognized format for coordinates parameter.")
   }
 }
 
+#' @describeIn AddToTernary Add \link[graphics]{segments}
+#' @importFrom graphics segments
+#' @export
+TernarySegments <- function (fromCoordinates, toCoordinates = fromCoordinates,
+                             ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
+  
+  # Return:
+  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
+
 #' @describeIn AddToTernary Add  \link[graphics]{arrows}
 #' @importFrom graphics arrows
 #' @export
-TernaryArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) {
+TernaryArrows <- function (fromCoordinates, toCoordinates = fromCoordinates,
+                           ...) {
   fromXY <- CoordinatesToXY(fromCoordinates)
   toXY <- CoordinatesToXY(toCoordinates)
   
@@ -526,7 +545,9 @@ TernaryArrows <- function (fromCoordinates, toCoordinates=fromCoordinates, ...) 
 #' @describeIn AddToTernary Add \link[graphics]{lines}
 #' @importFrom graphics lines
 #' @export
-TernaryLines <- function (coordinates, ...) AddToTernary(lines, coordinates, ...)
+TernaryLines <- function (coordinates, ...) {
+  AddToTernary(lines, coordinates, ...)
+}
 
 #' @describeIn AddToTernary Add \link[graphics]{points}
 #' @importFrom graphics points
