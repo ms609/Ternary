@@ -92,7 +92,7 @@ proportion of deaths and serious injuries occurring in the rear of cars.
 Let's look for other trends through time by colouring each data point by when it was collected.
 Each row summarizes data for a consecutive month, so we can simply colour the points by row number.
 
-Let's define a spectrum. The "viridis" colour scale is free from [perceptual artefacts](https://www.nature.com/articles/s41467-020-19160-7), is [colourblind friendly](https://www.nature.com/articles/nmeth.1618#ref-CR2), and works when printed in greyscale.
+Let's define a spectrum. The "viridis" colour scale is free from [perceptual artefacts](https://www.nature.com/articles/s41467-020-19160-7), is [colour-blind friendly](https://www.nature.com/articles/nmeth.1618#ref-CR2), and works when printed in greyscale.
 
 ```{r viridis-spec}
 nPoints <- nrow(Seatbelts)

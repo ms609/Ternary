@@ -59,7 +59,7 @@
 #' @param panel.first An expression to be evaluated after the plot axes are
 #' set up but before any plotting takes place.
 #' This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
-#' or [`HorizontalLines()`].
+#' or [`HorizontalGrid()`].
 #' Note that this works by lazy evaluation: passing this argument from other
 #' plot methods may well not work since it may be evaluated too early.
 #' @param panel.last An expression to be evaluated after plotting has taken
