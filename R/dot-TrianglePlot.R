@@ -34,6 +34,8 @@
                            lab.offset,
                            isometric,
                            padding,
+                           panel.first,
+                           panel.last,
                            point,
                            sideOrder = 1:3,
                            ticks.col,
@@ -53,6 +55,12 @@
   } else {
     options('ternDirection' = direction)
   }
+  
+  # Set graphical parameters
+  mc <- match.call(expand.dots = FALSE)
+  graphicalParams <- names(mc$...) %in% names(par())
+  oPar <- par(mc$...[graphicalParams])
+  on.exit(par(oPar))
   
   axis.rotate <- .Triplicate(axis.rotate)
   axis.pos <- .Triplicate(axis.pos)

@@ -61,6 +61,8 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            padding = 0.16,
                            col = NA,
                            
+                           panel.first = NULL, panel.last = NULL,
+                           
                            grid.lines = 8,
                            grid.col = c(NA, '#1E88E5', '#D81B60'),
                            grid.lty = 'solid',
@@ -157,6 +159,8 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
   
   .PlotBackground(tri)
   
+  panel.first
+  
   HoldridgeHexagons(border = hex.border, hex.col = hex.col, lty = hex.lty,
                     lwd = hex.lwd, labels = hex.labels, font = hex.font,
                     cex = hex.cex, text.col = hex.text.col)
@@ -170,7 +174,9 @@ HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                       col = tri$grid.col,
                       lty = tri$grid.lty,
                       lwd = tri$grid.lwd)
-  
+
+  panel.last
+    
   .PlotAxisTicks(tri)
   
   .HoldridgeAxisLabels(tri)
