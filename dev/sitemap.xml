@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ms609.github.io/Ternary/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/CONTRIBUTING.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/articles/Holdridge.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/articles/Ternary.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/articles/interpolation.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/articles/new-users.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/authors.html</loc>
+  </url>
+  <url>
     <loc>https://ms609.github.io/Ternary/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/news/index.html</loc>
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/AddToTernary.html</loc>
@@ -11,6 +38,12 @@
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/CoordinatesToXY.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/HoldridgeHypsometricCol.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/HoldridgePlot.html</loc>
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/OutsidePlot.html</loc>
@@ -55,9 +88,12 @@
     <loc>https://ms609.github.io/Ternary/reference/cbPalettes.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/Ternary/articles/Ternary.html</loc>
+    <loc>https://ms609.github.io/Ternary/reference/holdridge.html</loc>
   </url>
   <url>
-    <loc>https://ms609.github.io/Ternary/articles/interpolation.html</loc>
+    <loc>https://ms609.github.io/Ternary/reference/holdridgeClasses.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/index.html</loc>
   </url>
 </urlset>

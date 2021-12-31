@@ -28,6 +28,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -40,18 +42,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.3.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.4.9002</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/Ternary.html">Get started</a>
 </li>
@@ -66,7 +62,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/Holdridge.html">Holdridge plots</a>
+    </li>
+    <li>
       <a href="../articles/interpolation.html">Interpolating and contouring</a>
+    </li>
+    <li>
+      <a href="../articles/new-users.html">Introduction for new R users</a>
     </li>
   </ul>
 </li>
@@ -76,7 +78,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ms609/Ternary/">
+  <a href="https://github.com/ms609/Ternary/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -101,11 +103,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create Ternary Plots in R</h1>
-                        <h4 class="author">Martin R. Smith</h4>
+                        <h4 data-toc-skip class="author">Martin R. Smith</h4>
             
-            <h4 class="date">2021-11-12</h4>
+            <h4 data-toc-skip class="date">2021-12-31</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/vignettes/Ternary.Rmd"><code>vignettes/Ternary.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/Ternary.Rmd" class="external-link"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
 
     </div>
@@ -115,48 +117,49 @@
 <p>‘Ternary’ is an R package to allow the creation of ternary plots in the standard R graphics environment. I hope that it proves simple to use.</p>
 <p>For simple use cases, generate Ternary plots using the point-and-click Shiny app:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'Ternary'</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'Ternary'</span><span class="op">)</span>
 <span class="fu">Ternary</span><span class="fu">::</span><span class="fu"><a href="../reference/TernaryApp.html">TernaryApp</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>For greater control over your plots, use the full R implementation.</p>
 <p>Install the package with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'Ternary'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'Ternary'</span><span class="op">)</span></code></pre></div>
 <p>Or if you want the latest development version of the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/">'devtools'</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span>
-<span class="fu">install_github</span><span class="op">(</span><span class="st">'ms609/Ternary'</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">'devtools'</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span>
+<span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">'ms609/Ternary'</span><span class="op">)</span></code></pre></div>
 <p>Once the package is installed, load it into the current R session with</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">'Ternary'</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">'Ternary'</a></span><span class="op">)</span></code></pre></div>
 <p>There are two stages to creating a ternary plot: first, rendering the plot, styled as you like it and pointing in any of the four compass directions; secondly, adding data.</p>
-<div id="create-a-blank-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-a-blank-plot" class="anchor"></a>Create a blank plot</h2>
+<div class="section level2">
+<h2 id="create-a-blank-plot">Create a blank plot<a class="anchor" aria-label="anchor" href="#create-a-blank-plot"></a>
+</h2>
 <p>At its simplest, all you need to do is type</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Create%20blank%20plot-1.png" width="700"></p>
 <p>The following charts show which corners are which, under different orientations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">dir</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'up'</span>, <span class="st">'right'</span>, <span class="st">'down'</span>, <span class="st">'le'</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">dir</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'up'</span>, <span class="st">'right'</span>, <span class="st">'down'</span>, <span class="st">'le'</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>point <span class="op">=</span> <span class="va">dir</span>, atip <span class="op">=</span> <span class="st">'A'</span>, btip <span class="op">=</span> <span class="st">'B'</span>, ctip <span class="op">=</span> <span class="st">'C'</span>,
               alab <span class="op">=</span> <span class="st">'Aness'</span>, blab <span class="op">=</span> <span class="st">'Bness'</span>, clab <span class="op">=</span> <span class="st">'Cness'</span><span class="op">)</span>
-  <span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>, C <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">1</span><span class="op">)</span>, C <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>,
+              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'P1'</span>, <span class="st">'P2'</span>, <span class="st">'P3'</span><span class="op">)</span>,
               col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Create%20simple%20plot-1.png" width="672"></p>
 </div>
-<div id="plot-two-stylised-plots-side-by-side-and-plot-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#plot-two-stylised-plots-side-by-side-and-plot-data" class="anchor"></a>Plot two stylised plots side by side, and plot data</h2>
+<div class="section level2">
+<h2 id="plot-two-stylised-plots-side-by-side-and-plot-data">Plot two stylised plots side by side, and plot data<a class="anchor" aria-label="anchor" href="#plot-two-stylised-plots-side-by-side-and-plot-data"></a>
+</h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"Redder \u2192"</span>, blab <span class="op">=</span> <span class="st">"\u2190 Greener"</span>, clab <span class="op">=</span> <span class="st">"Bluer \u2192"</span>,
-            lab.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'red'</span>, <span class="st">'darkgreen'</span>, <span class="st">'blue'</span><span class="op">)</span>,
+            lab.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'red'</span>, <span class="st">'darkgreen'</span>, <span class="st">'blue'</span><span class="op">)</span>,
             point <span class="op">=</span> <span class="st">'right'</span>, lab.cex <span class="op">=</span> <span class="fl">0.8</span>, grid.minor.lines <span class="op">=</span> <span class="fl">0</span>,
-            grid.lty <span class="op">=</span> <span class="st">'solid'</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="fl">0.9</span><span class="op">)</span>, grid.col <span class="op">=</span> <span class="st">'white'</span>, 
-            axis.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span><span class="op">)</span>, ticks.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span><span class="op">)</span>,
+            grid.lty <span class="op">=</span> <span class="st">'solid'</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="fl">0.9</span><span class="op">)</span>, grid.col <span class="op">=</span> <span class="st">'white'</span>, 
+            axis.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span><span class="op">)</span>, ticks.col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.6</span><span class="op">)</span>,
             axis.rotate <span class="op">=</span> <span class="cn">FALSE</span>,
             padding <span class="op">=</span> <span class="fl">0.08</span><span class="op">)</span>
 <span class="co"># Colour the background:</span>
@@ -164,29 +167,29 @@
 <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">cols</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
 
 <span class="co"># Add data points</span>
-<span class="va">data_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">255</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, 
-  O <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">240</span>, <span class="fl">180</span>, <span class="fl">52</span><span class="op">)</span>,
-  Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">210</span>, <span class="fl">222</span>, <span class="fl">102</span><span class="op">)</span>,
-  G <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">111</span>, <span class="fl">222</span>, <span class="fl">16</span><span class="op">)</span>,
-  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">160</span>, <span class="fl">243</span><span class="op">)</span>,
-  I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">92</span>, <span class="fl">12</span>, <span class="fl">243</span><span class="op">)</span>,
-  V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">225</span>, <span class="fl">24</span>, <span class="fl">208</span><span class="op">)</span>
+<span class="va">data_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
+  R <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">255</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, 
+  O <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">240</span>, <span class="fl">180</span>, <span class="fl">52</span><span class="op">)</span>,
+  Y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">210</span>, <span class="fl">222</span>, <span class="fl">102</span><span class="op">)</span>,
+  G <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">111</span>, <span class="fl">222</span>, <span class="fl">16</span><span class="op">)</span>,
+  B <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">160</span>, <span class="fl">243</span><span class="op">)</span>,
+  I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">92</span>, <span class="fl">12</span>, <span class="fl">243</span><span class="op">)</span>,
+  V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">225</span>, <span class="fl">24</span>, <span class="fl">208</span><span class="op">)</span>
 <span class="op">)</span>
 <span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">points</span>, <span class="va">data_points</span>, pch <span class="op">=</span> <span class="fl">21</span>, cex <span class="op">=</span> <span class="fl">2.8</span>, 
-             bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">vapply</a></span><span class="op">(</span><span class="va">data_points</span>, 
-                         <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">128</span>,
+             bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">data_points</span>, 
+                         <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">128</span>,
                                           maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span>,
-                         <span class="fu"><a href="https://rdrr.io/r/base/character.html">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+                         <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>
              <span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">text</span>, <span class="va">data_points</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">data_points</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'bottomright'</span>, 
-       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Red'</span>, <span class="st">'Orange'</span>, <span class="st">'Yellow'</span>, <span class="st">'Green'</span><span class="op">)</span>,
+<span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">text</span>, <span class="va">data_points</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_points</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">'bottomright'</span>, 
+       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'Red'</span>, <span class="st">'Orange'</span>, <span class="st">'Yellow'</span>, <span class="st">'Green'</span><span class="op">)</span>,
        cex <span class="op">=</span> <span class="fl">0.8</span>, bty <span class="op">=</span> <span class="st">'n'</span>, pch <span class="op">=</span> <span class="fl">21</span>, pt.cex <span class="op">=</span> <span class="fl">1.8</span>,
-       pt.bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">255</span>,   <span class="fl">0</span>,   <span class="fl">0</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>, 
-                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">240</span>, <span class="fl">180</span>,  <span class="fl">52</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>,
-                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">210</span>, <span class="fl">222</span>, <span class="fl">102</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>,
-                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">111</span>, <span class="fl">222</span>,  <span class="fl">16</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span><span class="op">)</span>,
+       pt.bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">255</span>,   <span class="fl">0</span>,   <span class="fl">0</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>, 
+                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">240</span>, <span class="fl">180</span>,  <span class="fl">52</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>,
+                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">210</span>, <span class="fl">222</span>, <span class="fl">102</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span>,
+                 <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="fl">111</span>, <span class="fl">222</span>,  <span class="fl">16</span>, <span class="fl">128</span>, <span class="cn">NULL</span>, <span class="fl">255</span><span class="op">)</span><span class="op">)</span>,
        <span class="op">)</span>
 
 
@@ -198,91 +201,91 @@
             grid.minor.lines <span class="op">=</span> <span class="fl">1</span>, grid.minor.lty <span class="op">=</span> <span class="st">'dotted'</span>,
             point <span class="op">=</span> <span class="st">'West'</span><span class="op">)</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">HorizontalGrid</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">middle_triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+<span class="va">middle_triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
   <span class="fl">30</span>, <span class="fl">40</span>, <span class="fl">30</span>,
   <span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span>,
   <span class="fl">55</span>, <span class="fl">20</span>, <span class="fl">25</span>
 <span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryPolygon</a></span><span class="op">(</span><span class="va">middle_triangle</span>, col <span class="op">=</span> <span class="st">'#aaddfa'</span>, border <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryArrows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">60</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">0.2</span>, col <span class="op">=</span> <span class="st">'darkblue'</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">100</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">2</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, <span class="va">middle_triangle</span><span class="op">[</span><span class="fl">3</span>, <span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">'grey'</span><span class="op">)</span>
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryArrows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">60</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">0.2</span>, col <span class="op">=</span> <span class="st">'darkblue'</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Do%20plotting-1.png" width="700"></p>
-<div id="styling-points" class="section level3">
-<h3 class="hasAnchor">
-<a href="#styling-points" class="anchor"></a>Styling points</h3>
+<div class="section level3">
+<h3 id="styling-points">Styling points<a class="anchor" aria-label="anchor" href="#styling-points"></a>
+</h3>
 <p>More sophisticated plots can be created, for example styling each point according to additional properties of the data, in a manner analogous to the standard plotting functions:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>sio2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
-                  fe2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,
-                  al2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span><span class="op">)</span>,
-                  grain_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">16</span>, <span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span>,
-                  reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">63</span>, <span class="fl">61</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>sio2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,
+                  fe2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,
+                  al2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span><span class="op">)</span>,
+                  grain_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">16</span>, <span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span>,
+                  reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">63</span>, <span class="fl">61</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">5</span>
-<span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span>
-<span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span>
+<span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span>
+<span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span>
 <span class="va">dat_col</span> <span class="op">&lt;-</span> <span class="va">mySpectrum</span><span class="op">[</span><span class="va">binnedReflectance</span><span class="op">]</span>
 
 <span class="va">sizeBins</span> <span class="op">&lt;-</span> <span class="fl">5</span>
-<span class="va">mySizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2.4</span>, length.out <span class="op">=</span> <span class="va">sizeBins</span><span class="op">)</span>
-<span class="va">binnedSize</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">grain_size</span>, <span class="va">sizeBins</span><span class="op">)</span>
+<span class="va">mySizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2.4</span>, length.out <span class="op">=</span> <span class="va">sizeBins</span><span class="op">)</span>
+<span class="va">binnedSize</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">grain_size</span>, <span class="va">sizeBins</span><span class="op">)</span>
 <span class="va">dat_cex</span> <span class="op">&lt;-</span> <span class="va">mySizes</span><span class="op">[</span><span class="va">binnedSize</span><span class="op">]</span>
 
-<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>atip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">SiO</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,
-            btip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Fe</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="st">' (wt%)'</span><span class="op">)</span><span class="op">)</span>,
-            ctip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">Al</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>atip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">SiO</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,
+            btip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">Fe</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="st">' (wt%)'</span><span class="op">)</span><span class="op">)</span>,
+            ctip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">Al</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span>
 
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'sio2'</span>, <span class="st">'fe2o3'</span>, <span class="st">'al2o3'</span><span class="op">)</span><span class="op">]</span>,
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'sio2'</span>, <span class="st">'fe2o3'</span>, <span class="st">'al2o3'</span><span class="op">)</span><span class="op">]</span>,
               cex <span class="op">=</span> <span class="va">dat_cex</span>,
               col <span class="op">=</span> <span class="va">dat_col</span>,
               pch <span class="op">=</span> <span class="fl">16</span>
               <span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'topleft'</span>, col <span class="op">=</span> <span class="va">dat_col</span>, pch <span class="op">=</span> <span class="fl">16</span>, 
-       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">binnedReflectance</span>, <span class="st">'%'</span><span class="op">)</span>,
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">'topleft'</span>, col <span class="op">=</span> <span class="va">dat_col</span>, pch <span class="op">=</span> <span class="fl">16</span>, 
+       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">binnedReflectance</span>, <span class="st">'%'</span><span class="op">)</span>,
        title <span class="op">=</span> <span class="st">'Reflectance'</span>, bty <span class="op">=</span> <span class="st">'n'</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>
        
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">'topright'</span>, pt.cex <span class="op">=</span> <span class="va">dat_cex</span>, pch <span class="op">=</span> <span class="fl">16</span>,
-       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">binnedSize</span>, <span class="st">'\u03bcm'</span><span class="op">)</span>,
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">'topright'</span>, pt.cex <span class="op">=</span> <span class="va">dat_cex</span>, pch <span class="op">=</span> <span class="fl">16</span>,
+       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">binnedSize</span>, <span class="st">'\u03bcm'</span><span class="op">)</span>,
        title <span class="op">=</span> <span class="st">'Grain size'</span>, bty <span class="op">=</span> <span class="st">'n'</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/complex-plot-1.png" width="700"></p>
 <p>See the ‘Points’ tab of the shiny app for a point-and-click implementation.</p>
 </div>
-<div id="cartesian-coordinates" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cartesian-coordinates" class="anchor"></a>Cartesian coordinates</h3>
+<div class="section level3">
+<h3 id="cartesian-coordinates">Cartesian coordinates<a class="anchor" aria-label="anchor" href="#cartesian-coordinates"></a>
+</h3>
 <p>It is also possible to use cartesian coordinates to plot onto the graph.</p>
 <p>By default, the plotting area is a 1×1 square.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="co"># Reduce margins</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="co"># Reduce margins</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>point <span class="op">=</span> <span class="st">'right'</span>, clockwise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"X range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryXRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## X range in this orientation: -0.0669873 0.9330127</code></pre>
+<span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"X range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryXRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## X range in this orientation: -0.0669873 0.9330127</span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Y range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryYRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Y range in this orientation: -0.5 0.5</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Y range in this orientation:"</span>, <span class="fu"><a href="../reference/TernaryXRange.html">TernaryYRange</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Y range in this orientation: -0.5 0.5</span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/arrows.html">arrows</a></span><span class="op">(</span>x0 <span class="op">=</span> <span class="fl">0.5</span>, y0 <span class="op">=</span> <span class="fl">0.4</span>, x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, y1 <span class="op">=</span> <span class="fl">0.4</span>, length <span class="op">=</span> <span class="fl">0.1</span>,
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/arrows.html" class="external-link">arrows</a></span><span class="op">(</span>x0 <span class="op">=</span> <span class="fl">0.5</span>, y0 <span class="op">=</span> <span class="fl">0.4</span>, x1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span>, y1 <span class="op">=</span> <span class="fl">0.4</span>, length <span class="op">=</span> <span class="fl">0.1</span>,
        col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">0.4</span>, <span class="st">"Increasing X"</span>, pos <span class="op">=</span> <span class="fl">3</span>,
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span>, y <span class="op">=</span> <span class="fl">0.4</span>, <span class="st">"Increasing X"</span>, pos <span class="op">=</span> <span class="fl">3</span>,
      col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">0</span>, <span class="st">"(0.5, 0)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, <span class="st">"(0.8, -0.5)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">0</span>, <span class="st">"(0.5, 0)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, <span class="st">"(0.8, -0.5)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Cartesian-1.png" width="700"></p>
 <p>Note the anticlockwise axis labelling on this plot, obtained using <code>clockwise = FALSE</code>.</p>
 </div>
 </div>
-<div id="contours" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contours" class="anchor"></a>Contours</h2>
+<div class="section level2">
+<h2 id="contours">Contours<a class="anchor" aria-label="anchor" href="#contours"></a>
+</h2>
 <p>A plot can be coloured and contoured according to the output of a mathematical expression:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">'a'</span>, blab <span class="op">=</span> <span class="st">'b'</span>, clab <span class="op">=</span> <span class="st">'c'</span><span class="op">)</span>
 
 <span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span>
@@ -295,13 +298,13 @@
 <p><img src="Ternary_files/figure-html/contours-1.png" width="700"></p>
 <p>or by according to the density of points across the plot:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">nPoints</span> <span class="op">&lt;-</span> <span class="fl">4000L</span>
-<span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,
-                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>,
-                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="fu"><a href="../reference/TernaryPointValues.html">TernaryDensity</a></span><span class="op">(</span><span class="va">coordinates</span>, resolution <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">coordinates</span>, col <span class="op">=</span> <span class="st">'red'</span>, pch <span class="op">=</span> <span class="st">'.'</span><span class="op">)</span>
@@ -310,54 +313,63 @@
 <p>The following image demonstrates the behaviour of the density estimates when points fall on boundaries of the triangular grid cells; text denotes the number of points within the cell, with cells straddling <em>n</em> cells contributing 1/<em>n</em> of a point to each cell straddled.</p>
 <p><img src="Ternary_files/figure-html/low-resolution-density-contours-1.png" width="700"></p>
 </div>
-<div id="magnification" class="section level2">
-<h2 class="hasAnchor">
-<a href="#magnification" class="anchor"></a>Magnification</h2>
+<div class="section level2">
+<h2 id="magnification">Magnification<a class="anchor" aria-label="anchor" href="#magnification"></a>
+</h2>
 <p>Perhaps the action on a plot is constrained to a small region of ternary space. It’s possible to “zoom in” – i.e. magnify and crop the ternary plot to the region of interest.</p>
 <p>To do this you can specify the <em>x</em> and <em>y</em> limits of the region of interest.</p>
 <p><code>TernaryCoords</code> might be useful in establishing the cartesian coordinates of a particular point in ternary space.<br>
 Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">my_corners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">66</span>, <span class="fl">12</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">72</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">80</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">76</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">my_corners</span>, <span class="va">TernaryCoords</span>, direction <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 0.2700000 0.1905256
-## 
-## [[2]]
-## [1] 0.3300000 0.1905256
-## 
-## [[3]]
-## [1] 0.3750000 0.1299038
-## 
-## [[4]]
-## [1] 0.320000 0.103923</code></pre>
+<code class="sourceCode R"><span class="va">my_corners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">66</span>, <span class="fl">12</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">72</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">80</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">76</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">my_corners</span>, <span class="va">TernaryCoords</span>, direction <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## [[1]]</span>
+<span class="co">## [1] 0.2700000 0.1905256</span>
+<span class="co">## </span>
+<span class="co">## [[2]]</span>
+<span class="co">## [1] 0.3300000 0.1905256</span>
+<span class="co">## </span>
+<span class="co">## [[3]]</span>
+<span class="co">## [1] 0.3750000 0.1299038</span>
+<span class="co">## </span>
+<span class="co">## [[4]]</span>
+<span class="co">## [1] 0.320000 0.103923</span></code></pre>
 <p>The <code>padding</code> parameter is added as a margin to each side of the region specified using <code>xlim</code> and <code>ylim</code>:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.38</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, padding <span class="op">=</span> <span class="fl">0.04</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.38</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, padding <span class="op">=</span> <span class="fl">0.04</span><span class="op">)</span>
 
 <span class="co"># Annotate grid lines at user-specified points:</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">72</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">82</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span>, srt <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, cex <span class="op">=</span> <span class="fl">0.9</span>,
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">72</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">82</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">10</span><span class="op">)</span>, srt <span class="op">=</span> <span class="op">-</span><span class="fl">60</span>, cex <span class="op">=</span> <span class="fl">0.9</span>,
             col <span class="op">=</span> <span class="st">'darkgrey'</span><span class="op">)</span>
-<span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">69</span>, <span class="fl">21</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">64</span>, <span class="fl">16</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">0.9</span>,
+<span class="fu"><a href="../reference/AddToTernary.html">TernaryText</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">69</span>, <span class="fl">21</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">64</span>, <span class="fl">16</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, srt <span class="op">=</span> <span class="fl">0</span>, cex <span class="op">=</span> <span class="fl">0.9</span>,
             col <span class="op">=</span> <span class="st">'darkgrey'</span><span class="op">)</span>
 
 <span class="co"># Plot desired polygon</span>
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryPolygon</a></span><span class="op">(</span><span class="va">my_corners</span>, col <span class="op">=</span> <span class="st">'#2cbe4e'</span><span class="op">)</span>
 
 <span class="co"># Show xlim, ylim and padding, using cartesian coordinates</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.28</span>, <span class="fl">0.38</span>, <span class="fl">0.38</span>, <span class="fl">0.28</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.15</span>, <span class="st">"xlim[1]"</span>, pos <span class="op">=</span> <span class="fl">2</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.15</span>, <span class="st">"xlim[2]"</span>, pos <span class="op">=</span> <span class="fl">4</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.33</span>, <span class="fl">0.1</span>, <span class="st">"ylim[1]"</span>, pos <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.33</span>, <span class="fl">0.2</span>, <span class="st">"ylim[2]"</span>, pos <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">'&lt;padding&gt;'</span>, pos <span class="op">=</span> <span class="fl">4</span>, cex <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">'&lt;padding&gt; '</span>, pos <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">0.75</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.28</span>, <span class="fl">0.38</span>, <span class="fl">0.38</span>, <span class="fl">0.28</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.15</span>, <span class="st">"xlim[1]"</span>, pos <span class="op">=</span> <span class="fl">2</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.15</span>, <span class="st">"xlim[2]"</span>, pos <span class="op">=</span> <span class="fl">4</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.33</span>, <span class="fl">0.1</span>, <span class="st">"ylim[1]"</span>, pos <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.33</span>, <span class="fl">0.2</span>, <span class="st">"ylim[2]"</span>, pos <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">'&lt;padding&gt;'</span>, pos <span class="op">=</span> <span class="fl">4</span>, cex <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">'&lt;padding&gt; '</span>, pos <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">0.75</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></code></pre></div>
 <p><img src="Ternary_files/figure-html/close-up-1.png" width="700"></p>
 </div>
-<div id="bugs-and-feature-requests" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bugs-and-feature-requests" class="anchor"></a>Bugs and feature requests</h2>
-<p>I hope the package proves useful. If there’s anything it can’t do that you wish it could, please let me know by opening a <a href="https://github.com/ms609/Ternary/issues/new?title=Suggestion:+">Github issue</a>.</p>
+<div class="section level2">
+<h2 id="further-tutorials">Further tutorials<a class="anchor" aria-label="anchor" href="#further-tutorials"></a>
+</h2>
+<p>For further examples of usage, see the accompanying vignettes:</p>
+<ul>
+<li><p><a href="new-users.html">Introduction for new R users</a></p></li>
+<li><p><a href="interpolation.html">Interpolating and contouring</a></p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="bugs-and-feature-requests">Bugs and feature requests<a class="anchor" aria-label="anchor" href="#bugs-and-feature-requests"></a>
+</h2>
+<p>I hope the package proves useful. If there’s anything it can’t do that you wish it could, please let me know by opening a <a href="https://github.com/ms609/Ternary/issues/new?title=Suggestion:+" class="external-link">Github issue</a>.</p>
 </div>
   </div>
 
@@ -372,11 +384,13 @@ Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://community.dur.ac.uk/martin.smith/">Martin R. Smith</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://community.dur.ac.uk/martin.smith/" class="external-link">Martin R. Smith</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
