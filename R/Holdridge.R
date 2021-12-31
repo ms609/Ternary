@@ -38,6 +38,7 @@
 #' HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
 #' HoldridgeBelts()
 #' @template MRS
+#' @family Holdridge plotting functions
 #' @export
 HoldridgePlot <- function (atip = NULL, btip = NULL, ctip = NULL,
                            alab = 'Potential evaoptranspiration ratio',
@@ -274,6 +275,7 @@ HoldridgeBelts <- function (grid.col = '#004D40', grid.lty = 'dotted',
 #' HoldridgePoints(pet, prec, pch = 21, bg = ptCol)
 #' @template MRS
 #' @importFrom grDevices colorRampPalette
+#' @family Holdridge plotting functions
 #' @export
 HoldridgeHypsometricCol <- function (pet, prec, opacity = NA) {
   .Within257 <- function (x) pmax(1, pmin(257, x))
@@ -395,6 +397,7 @@ HoldridgeToXY <- function (pet, prec) {
 
 #' @rdname AddToTernary
 #' @inheritParams HoldridgeToXY
+#' @family Holdridge plotting functions
 #' @export
 AddToHoldridge <- function (PlottingFunction, pet, prec, ...) {
   xy <- HoldridgeToXY(pet, prec)
