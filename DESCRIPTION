@@ -1,11 +1,11 @@
 Package: Ternary
-Version: 1.2.4
-Title: Create Ternary Plots
-Description: Plots ternary diagrams (simplex plots / Gibbs triangles) using the
-  standard graphics functions.
+Version: 1.2.4.9002
+Title: Create Ternary and Holdridge Plots
+Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
+  Holdridge plots using the standard graphics functions.
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting 
   functions.
-  Includes a 'Shiny' user interface for point-and-click plotting.
+  Includes a 'Shiny' user interface for point-and-click ternary plotting.
 URL: https://ms609.github.io/Ternary/, https://github.com/ms609/Ternary/
 BugReports: https://github.com/ms609/Ternary/issues/
 Authors@R: c(person('Martin R.', 'Smith',
@@ -27,6 +27,7 @@ Suggests:
     readxl,
     rmarkdown,
     shinyjs,
+    spelling,
     testthat (>= 3.0),
     vdiffr,
 Config/Needs/coverage: covr

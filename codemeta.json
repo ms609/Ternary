@@ -2,13 +2,13 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "Ternary",
-  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click plotting.",
-  "name": "Ternary: Create Ternary Plots",
+  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) and Holdridge plots using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click ternary plotting.",
+  "name": "Ternary: Create Ternary and Holdridge Plots",
   "relatedLink": "https://ms609.github.io/Ternary/",
   "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "1.2.4",
+  "version": "1.2.4.9002",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -118,6 +118,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "spelling",
+      "name": "spelling",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=spelling"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0",
@@ -175,7 +187,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "2044.749KB",
+  "fileSize": "4501.534KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -193,7 +205,7 @@
         "datePublished": "2017",
         "isPartOf": {
           "@type": ["PublicationVolume", "Periodical"],
-          "name": "Zenodo"
+          "name": "Comprehensive R Archive Network"
         }
       }
     }

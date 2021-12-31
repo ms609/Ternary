@@ -2,9 +2,15 @@
 % Please edit documentation in R/Coordinates.R
 \name{XYToTernary}
 \alias{XYToTernary}
+\alias{XYToHoldridge}
+\alias{XYToPetPrec}
 \title{Cartesian coordinates to ternary point}
 \usage{
 XYToTernary(x, y, direction = getOption("ternDirection", 1L))
+
+XYToHoldridge(x, y)
+
+XYToPetPrec(x, y)
 }
 \arguments{
 \item{x, y}{Numeric values giving the \emph{x} and \emph{y} coordinates of a point or points.}

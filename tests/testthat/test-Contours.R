@@ -171,14 +171,12 @@ test_that('Contours are plotted', {
 })
 
 test_that('Colours are drawn', {
-  RGBColours <- function () {
+  skip_if_not_installed('vdiffr')
+  vdiffr::expect_doppelganger('RGBColours',  function () {
     TernaryPlot()
     values <- TernaryPointValues(rgb, resolution = 20, alpha = 0.5)
     ColourTernary(values, spectrum = NULL)
-  }
-  
-  skip_if_not_installed('vdiffr')
-  vdiffr::expect_doppelganger('RGBColours', RGBColours)
+  })
 })
 
 test_that('Errors are handled', {

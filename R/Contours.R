@@ -446,6 +446,7 @@ TernaryTiles <- function (x, y, down, resolution, col,
 #' @family contour plotting functions
 #' @family functions for colouring and shading
 #' @importFrom viridisLite viridis
+#TODO when require r>3.6.0, update viridis calls to use hcl.colors()
 #' @importFrom grDevices col2rgb
 #' @export
 ColourTernary <- function (values, 

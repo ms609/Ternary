@@ -58,32 +58,31 @@ TernaryToXY.numeric <- function (abc, b_coord = NULL, c_coord = NULL,
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
-  if (length(abc) != 3) stop("Parameter abc must be a vector of length three.")
-  if (!is.numeric(abc)) stop("Parameter abc must be numeric.")
-  if (!(direction %in% 1:4)) stop  ("Parameter direction must be 1, 2, 3 or 4")
+  if (length(abc) != 3) {
+    stop("Parameter `abc` must be a vector of length three.")
+  }
+  if (!is.numeric(abc)) {
+    stop("Parameter `abc` must be numeric.")
+  }
+  if (!(direction %in% 1:4)) {
+    stop("Parameter `direction` must be 1, 2, 3 or 4")
+  }
   names(abc) <- NULL # or they may be inherited by x and y, confusingly
   
-  abc <- abc[if (direction == 1L) c(2, 3, 1) else
-    if (direction == 2L) c(3, 2, 1) else 
-      if (direction == 3L) c(3, 2, 1) else
-        if (direction == 4L) c(2, 3, 1)]
+  abc <- abc[switch(direction, c(2, 3, 1), c(3, 2, 1), c(3, 2, 1), c(2, 3, 1))]
   
   x_deviation <- abc[3] / sum(abc)
   if (x_deviation == 1) {
-    x <- cos(pi/6)
+    x <- cos(pi / 6)
     y <- 0
   } else {
     y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
-    x <- x_deviation * cos(pi/6)
+    x <- x_deviation * cos(pi / 6)
     y <- y_deviation * (1 - x_deviation) / 2
   }
-  ret <- if (direction == 1L) c(y, x) else 
-    if (direction == 2L) c(x, y) else 
-      if (direction == 3L) c(y, -x) else
-        if (direction == 4L) c(-x, y)
   
   # Return:
-  ret
+  switch(direction, c(y, x), c(x, y), c(y, -x), c(-x, y))
 }
 
 #' @rdname TernaryCoords
@@ -136,6 +135,20 @@ XYToTernary <- function (x, y, direction = getOption('ternDirection', 1L)) {
   # Return:
   rbind(a, b, c)
 }
+
+#' @rdname XYToTernary
+#' @export
+XYToHoldridge  <- function (x, y) {
+  tern <- XYToTernary(x, y, 1L)
+  
+  # Return:
+  rbind(pet = 2 ^ (tern[3, ] * 8 - 3),
+        prec = 1000 * 2 ^ (tern[2, ] * 8 - 4))
+}
+
+#' @rdname XYToTernary
+#' @export
+XYToPetPrec <- XYToHoldridge 
 
 #' X and Y coordinates of ternary plotting area
 #'
