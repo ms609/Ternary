@@ -123,7 +123,13 @@ prec <- c(250, 400, 1337)
 HoldridgeText(pet, prec, c('A', 'B', 'C'))
 AddToHoldridge(points, pet, prec, cex = 3)
 }
+\seealso{
+Other Holdridge plotting functions: 
+\code{\link{HoldridgeHypsometricCol}()},
+\code{\link{HoldridgePlot}()}
+}
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{Holdridge plotting functions}

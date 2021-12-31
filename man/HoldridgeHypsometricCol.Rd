@@ -42,6 +42,11 @@ HoldridgePoints(pet, prec, pch = 21, bg = ptCol)
 Palette derived from the hypsometric colour scheme presented at
 \href{https://www.shadedrelief.com/hypso/hypso.html}{Shaded Relief}.
 }
+\seealso{
+Other Holdridge plotting functions: 
+\code{\link{AddToHoldridge}()},
+\code{\link{HoldridgePlot}()}
+}
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
@@ -49,3 +54,4 @@ Palette derived from the hypsometric colour scheme presented at
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{Holdridge plotting functions}

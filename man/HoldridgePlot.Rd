@@ -329,7 +329,13 @@ Holdridge (1967),
 \href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{\emph{Life zone ecology}}.
 Tropical Science Center, San José
 }
+\seealso{
+Other Holdridge plotting functions: 
+\code{\link{AddToHoldridge}()},
+\code{\link{HoldridgeHypsometricCol}()}
+}
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{Holdridge plotting functions}
