@@ -1,9 +1,6 @@
-# branch "holdridge"
+# Ternary v1.2.4.9002
 - Create Holdridge plots using `HoldridgePlot()` and related functions
   ([#48](https://github.com/ms609/Ternary/issues/48)).
-
-# Ternary v1.2.4.9000
-
 - Add `TernaryContours()`
 - Add `panel.first` and `panel.last` parameters to `TernaryPlot()`
   (fixing ([#54](https://github.com/ms609/Ternary/issues/54))).
