@@ -25,8 +25,7 @@
 #' @references 
 #' Holdridge (1947),
 #' "Determination of world plant formations from simple climatic data",
-#' _Science_ 105:367&ndash;368.
-#' doi:[10.1126/science.105.2727.367](https://dx.doi.org/10.1126/science.105.2727.367)
+#' _Science_ 105:367&ndash;368. \doi{10.1126/science.105.2727.367}
 #' 
 #' Holdridge (1967),
 #' [_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).

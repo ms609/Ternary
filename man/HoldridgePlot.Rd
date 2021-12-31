@@ -323,8 +323,7 @@ HoldridgeBelts()
 \references{
 Holdridge (1947),
 "Determination of world plant formations from simple climatic data",
-\emph{Science} 105:367–368.
-doi:\href{https://dx.doi.org/10.1126/science.105.2727.367}{10.1126/science.105.2727.367}
+\emph{Science} 105:367–368. \doi{10.1126/science.105.2727.367}
 
 Holdridge (1967),
 \href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{\emph{Life zone ecology}}.
