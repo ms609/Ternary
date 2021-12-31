@@ -126,7 +126,9 @@ AddToHoldridge(points, pet, prec, cex = 3)
 \seealso{
 Other Holdridge plotting functions: 
 \code{\link{HoldridgeHypsometricCol}()},
-\code{\link{HoldridgePlot}()}
+\code{\link{HoldridgePlot}()},
+\code{\link{holdridgeClasses}},
+\code{\link{holdridge}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

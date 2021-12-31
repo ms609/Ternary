@@ -51,8 +51,16 @@ top to bottom, the 38 cells of the Holdridge classification plot.
 \code{holdridgeClassesUp} and \code{holdridgeLifeZonesUp} replace spaces with new
 lines, for more legible plotting with \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}}.
 }
+\seealso{
+Other Holdridge plotting functions: 
+\code{\link{AddToHoldridge}()},
+\code{\link{HoldridgeHypsometricCol}()},
+\code{\link{HoldridgePlot}()},
+\code{\link{holdridge}}
+}
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{Holdridge plotting functions}
 \keyword{datasets}

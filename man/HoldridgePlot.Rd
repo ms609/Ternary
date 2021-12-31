@@ -332,7 +332,9 @@ Tropical Science Center, San José
 \seealso{
 Other Holdridge plotting functions: 
 \code{\link{AddToHoldridge}()},
-\code{\link{HoldridgeHypsometricCol}()}
+\code{\link{HoldridgeHypsometricCol}()},
+\code{\link{holdridgeClasses}},
+\code{\link{holdridge}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

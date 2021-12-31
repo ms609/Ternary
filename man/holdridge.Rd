@@ -18,7 +18,15 @@ a global mapping of Holdridge’s scheme.
 data('holdridge', package = 'Ternary')
 head(holdridge)
 }
+\seealso{
+Other Holdridge plotting functions: 
+\code{\link{AddToHoldridge}()},
+\code{\link{HoldridgeHypsometricCol}()},
+\code{\link{HoldridgePlot}()},
+\code{\link{holdridgeClasses}}
+}
 \author{
 James Lee Tsakalos
 }
+\concept{Holdridge plotting functions}
 \keyword{datasets}
