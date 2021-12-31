@@ -15,6 +15,11 @@ reference:
       - TernaryApp
       - TernaryPlot
       - AddToTernary
+  - title: "Creating Holdridge plots"
+    desc: >
+      Functions for drawing and adding data to a Holdridge plot.
+    contents:
+      - has_concept("Holdridge plotting functions")
   - title: "Coordinates"
     desc: >
       Functions for manipulating co-ordinates.
