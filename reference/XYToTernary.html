@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -41,6 +41,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/Holdridge.html">Holdridge plots</a>
+    </li>
+    <li>
       <a href="../articles/interpolation.html">Interpolating and contouring</a>
     </li>
     <li>
@@ -80,7 +83,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">XYToTernary</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">XYToTernary</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu">XYToHoldridge</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
+
+<span class="fu">XYToPetPrec</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">

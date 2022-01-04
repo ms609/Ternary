@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
       </span>
     </div>
 
@@ -41,6 +41,9 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/Holdridge.html">Holdridge plots</a>
+    </li>
+    <li>
       <a href="../articles/interpolation.html">Interpolating and contouring</a>
     </li>
     <li>
@@ -86,9 +89,34 @@
         </td>
         <td><p>Create a ternary plot</p></td>
       </tr><tr><td>
-          <p><code><a href="AddToTernary.html">AddToTernary()</a></code> <code><a href="AddToTernary.html">TernarySegments()</a></code> <code><a href="AddToTernary.html">TernaryArrows()</a></code> <code><a href="AddToTernary.html">TernaryLines()</a></code> <code><a href="AddToTernary.html">TernaryPoints()</a></code> <code><a href="AddToTernary.html">TernaryPolygon()</a></code> <code><a href="AddToTernary.html">TernaryText()</a></code> <code><a href="AddToTernary.html">JoinTheDots()</a></code> </p>
+          <p><code><a href="AddToTernary.html">AddToHoldridge()</a></code> <code><a href="AddToTernary.html">HoldridgeArrows()</a></code> <code><a href="AddToTernary.html">HoldridgeLines()</a></code> <code><a href="AddToTernary.html">HoldridgePoints()</a></code> <code><a href="AddToTernary.html">HoldridgePolygon()</a></code> <code><a href="AddToTernary.html">HoldridgeText()</a></code> <code><a href="AddToTernary.html">AddToTernary()</a></code> <code><a href="AddToTernary.html">TernarySegments()</a></code> <code><a href="AddToTernary.html">TernaryArrows()</a></code> <code><a href="AddToTernary.html">TernaryLines()</a></code> <code><a href="AddToTernary.html">TernaryPoints()</a></code> <code><a href="AddToTernary.html">TernaryPolygon()</a></code> <code><a href="AddToTernary.html">TernaryText()</a></code> <code><a href="AddToTernary.html">JoinTheDots()</a></code> </p>
         </td>
-        <td><p>Add elements to ternary plot</p></td>
+        <td><p>Add elements to ternary or Holdridge plot</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="creating-holdridge-plots">Creating Holdridge plots <a href="#creating-holdridge-plots" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Functions for drawing and adding data to a Holdridge plot.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="AddToTernary.html">AddToHoldridge()</a></code> <code><a href="AddToTernary.html">HoldridgeArrows()</a></code> <code><a href="AddToTernary.html">HoldridgeLines()</a></code> <code><a href="AddToTernary.html">HoldridgePoints()</a></code> <code><a href="AddToTernary.html">HoldridgePolygon()</a></code> <code><a href="AddToTernary.html">HoldridgeText()</a></code> <code><a href="AddToTernary.html">AddToTernary()</a></code> <code><a href="AddToTernary.html">TernarySegments()</a></code> <code><a href="AddToTernary.html">TernaryArrows()</a></code> <code><a href="AddToTernary.html">TernaryLines()</a></code> <code><a href="AddToTernary.html">TernaryPoints()</a></code> <code><a href="AddToTernary.html">TernaryPolygon()</a></code> <code><a href="AddToTernary.html">TernaryText()</a></code> <code><a href="AddToTernary.html">JoinTheDots()</a></code> </p>
+        </td>
+        <td><p>Add elements to ternary or Holdridge plot</p></td>
+      </tr><tr><td>
+          <p><code><a href="HoldridgeHypsometricCol.html">HoldridgeHypsometricCol()</a></code> </p>
+        </td>
+        <td><p>Convert a point in evapotranspiration-precipitation space to an appropriate
+cross-blended hypsometric colour</p></td>
+      </tr><tr><td>
+          <p><code><a href="HoldridgePlot.html">HoldridgePlot()</a></code> <code><a href="HoldridgePlot.html">HoldridgeBelts()</a></code> <code><a href="HoldridgePlot.html">HoldridgeHexagons()</a></code> </p>
+        </td>
+        <td><p>Plot life zones on a Holdridge plot</p></td>
+      </tr><tr><td>
+          <p><code><a href="holdridge.html">holdridge</a></code> </p>
+        </td>
+        <td><p>Random sample of points for Holdridge plotting</p></td>
+      </tr><tr><td>
+          <p><code><a href="holdridgeClasses.html">holdridgeClasses</a></code> <code><a href="holdridgeClasses.html">holdridgeLifeZones</a></code> <code><a href="holdridgeClasses.html">holdridgeLifeZonesUp</a></code> <code><a href="holdridgeClasses.html">holdridgeClassesUp</a></code> </p>
+        </td>
+        <td><p>Names of the 38 classes defined with the Holdridge system</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="coordinates">Coordinates <a href="#coordinates" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Functions for manipulating co-ordinates.</p>
@@ -114,7 +142,7 @@
         </td>
         <td><p>Coordinates of triangle mid-points</p></td>
       </tr><tr><td>
-          <p><code><a href="XYToTernary.html">XYToTernary()</a></code> </p>
+          <p><code><a href="XYToTernary.html">XYToTernary()</a></code> <code><a href="XYToTernary.html">XYToHoldridge()</a></code> <code><a href="XYToTernary.html">XYToPetPrec()</a></code> </p>
         </td>
         <td><p>Cartesian coordinates to ternary point</p></td>
       </tr></tbody><tbody><tr><th colspan="2">

@@ -10,6 +10,9 @@
     <loc>https://ms609.github.io/Ternary/CONTRIBUTING.html</loc>
   </url>
   <url>
+    <loc>https://ms609.github.io/Ternary/articles/Holdridge.html</loc>
+  </url>
+  <url>
     <loc>https://ms609.github.io/Ternary/articles/Ternary.html</loc>
   </url>
   <url>
@@ -38,6 +41,12 @@
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/CoordinatesToXY.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/HoldridgeHypsometricCol.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/HoldridgePlot.html</loc>
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/OutsidePlot.html</loc>
@@ -80,6 +89,12 @@
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/cbPalettes.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/holdridge.html</loc>
+  </url>
+  <url>
+    <loc>https://ms609.github.io/Ternary/reference/holdridgeClasses.html</loc>
   </url>
   <url>
     <loc>https://ms609.github.io/Ternary/reference/index.html</loc>
