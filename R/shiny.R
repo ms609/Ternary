@@ -57,7 +57,7 @@
 #' Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._ 
 #' Zenodo, doi: \doi{10.5281/zenodo.1068996}.
 #' 
-#' @importFrom shiny runApp
+#' @importFrom shiny runApp runGitHub
 #' @template MRS
 #' @export
 TernaryApp <- function() {
@@ -66,6 +66,12 @@ TernaryApp <- function() {
     stop("Could not find example directory. Try re-installing 'Ternary'.",
          call. = FALSE)
   }
-  
-  shiny::runApp(appDir, display.mode = "normal")
+  if (system.file("TernaryApp", "app.R", package = "Ternary") == "") {
+    warning("App not installed. To install locally:\r\n - Download ",
+         "https://github.com/ms609/TernaryApp/archive/refs/heads/master.zip\r\n - ",
+         "Unzip contents to ", appDir)
+    shiny::runGitHub("ms609/TernaryApp")
+  } else {
+    shiny::runApp(appDir, display.mode = "normal")
+  }
 }

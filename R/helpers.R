@@ -145,9 +145,16 @@
                          TernaryCoords, double(2))
       
       if (length(lab) > 1 || lab != FALSE) {
-        if (length(lab) == 1) lab <- round(tern$gridPoints * 100, 1)
-        if (length(lab) == tern$grid.lines) lab <- c('', lab)
-        if (!tern$ticks.incline[1]) lab <- rev(lab)
+        if (length(lab) == 1) {
+          lab <- round(tern$gridPoints * 100, 1)
+        }
+        if (!is.null(tern$grid.lines) &&
+            length(lab) == tern$grid.lines) {
+          lab <- c('', lab)
+        }
+        if (!tern$ticks.incline[1]){
+          lab <- rev(lab)
+        }
         
         # Annotate axes
         lapply(1:3, .AxisLabel, lineEnds, lab = lab[i])
