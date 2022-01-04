@@ -2,7 +2,7 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "Ternary",
-  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) and Holdridge plots using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click ternary plotting.",
+  "description": "Plots ternary diagrams (simplex plots / Gibbs triangles) and Holdridge life zone plots <doi:10.1126/science.105.2727.367> using the standard graphics functions. An alternative to 'ggtern', which uses the 'ggplot2' family of plotting functions. Includes a 'Shiny' user interface for point-and-click ternary plotting.",
   "name": "Ternary: Create Ternary and Holdridge Plots",
   "relatedLink": "https://ms609.github.io/Ternary/",
   "codeRepository": "https://github.com/ms609/Ternary/",
@@ -187,7 +187,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "4565.058KB",
+  "fileSize": "4565.105KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
