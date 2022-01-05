@@ -2,7 +2,7 @@
 - Create Holdridge plots using `HoldridgePlot()` and related functions
   ([#48](https://github.com/ms609/Ternary/issues/48)).
 - Add `panel.first` and `panel.last` parameters to `TernaryPlot()`
-  (fixing ([#54](https://github.com/ms609/Ternary/issues/54))).
+  (fixing [#54](https://github.com/ms609/Ternary/issues/54)).
 - Support graphical parameters (e.g. `xpd`) in `TernaryPlot()`.
 - Add introductory vignette for new R users.
 - Help diagnose non-installation of app.
