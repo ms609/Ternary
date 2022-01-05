@@ -1,4 +1,4 @@
-# Ternary v1.2.4.9002
+# Ternary v2.0.0
 - Create Holdridge plots using `HoldridgePlot()` and related functions
   ([#48](https://github.com/ms609/Ternary/issues/48)).
 - Add `TernaryContours()`
