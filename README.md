@@ -40,7 +40,7 @@ You can cite this package as:
 
 Smith, Martin R. (2017). _Ternary: An R Package for Creating Ternary Plots._
 Comprehensive R Archive Network, 
-doi:[10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
+[doi:10.5281/zenodo.1068996](https://dx.doi.org/10.5281/zenodo.1068996).
 
 ## See also
 
