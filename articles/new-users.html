@@ -104,7 +104,7 @@
       <h1 data-toc-skip>Introduction for new R users</h1>
                         <h4 data-toc-skip class="author">Martin R. Smith</h4>
             
-            <h4 data-toc-skip class="date">2022-01-06</h4>
+            <h4 data-toc-skip class="date">2022-01-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/new-users.Rmd" class="external-link"><code>vignettes/new-users.Rmd</code></a></small>
       <div class="hidden name"><code>new-users.Rmd</code></div>
@@ -190,7 +190,7 @@
   <span class="va">segY</span> <span class="op">&lt;-</span> <span class="va">legendY0</span> <span class="op">+</span> <span class="op">(</span><span class="va">segY</span> <span class="op">*</span> <span class="va">legendHeight</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/segments.html" class="external-link">segments</a></span><span class="op">(</span><span class="va">segX</span>, <span class="va">segY</span> <span class="op">-</span> <span class="va">segY</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">legendY0</span>, y1 <span class="op">=</span> <span class="va">segY</span>, col <span class="op">=</span> <span class="va">spectrum</span>,
            lwd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">segX</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">legendY0</span>, <span class="va">legendY1</span><span class="op">)</span>, <span class="va">labels</span>, pos <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">segX</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">legendY0</span>, <span class="va">legendY1</span><span class="op">)</span>, <span class="va">labels</span>, pos <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Now we can plot our data:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
