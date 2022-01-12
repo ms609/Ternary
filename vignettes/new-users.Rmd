@@ -118,7 +118,7 @@ SpectrumLegend <- function (spectrum, labels) {
   segY <- legendY0 + (segY * legendHeight)
   segments(segX, segY - segY[1] + legendY0, y1 = segY, col = spectrum,
            lwd = 4)
-  text(segX, c(legendY0, legendY1), labels, pos = 2)
+  text(range(segX), c(legendY0, legendY1), labels, pos = 2)
 }
 ```
 
