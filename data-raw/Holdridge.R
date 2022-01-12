@@ -40,10 +40,11 @@ holdridgeClasses <- c(
   "Tropical dry forest",
   "Tropical moist forest",
   "Tropical wet forest",
-  "Tropical rain forest")
+  "Tropical rain forest"
+)
 usethis::use_data(holdridgeClasses, overwrite = TRUE)
 
-holdridgeClassesUp <- gsub(' ', '\n', holdridgeClasses, fixed = TRUE)
+holdridgeClassesUp <- gsub(" ", "\n", holdridgeClasses, fixed = TRUE)
 usethis::use_data(holdridgeClassesUp, overwrite = TRUE)
 
 holdridgeLifeZones <- c(rep('Polar', 3),
@@ -54,5 +55,5 @@ holdridgeLifeZones <- c(rep('Polar', 3),
                         'Desert', 'Desert scrub', 'Thorn woodland', 'Very dry forest', 'Dry forest', 'Moist forest', 'Wet forest', 'Rain forest')
 usethis::use_data(holdridgeLifeZones, overwrite = TRUE)
 
-holdridgeLifeZonesUp <- gsub(' ', '\n', holdridgeLifeZones, fixed = TRUE)
+holdridgeLifeZonesUp <- gsub(" ", "\n", holdridgeLifeZones, fixed = TRUE)
 usethis::use_data(holdridgeLifeZonesUp, overwrite = TRUE)
