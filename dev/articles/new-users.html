@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.4.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -99,13 +99,13 @@
 
       
 
-      </header><script src="new-users_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction for new R users</h1>
                         <h4 data-toc-skip class="author">Martin R. Smith</h4>
             
-            <h4 data-toc-skip class="date">2022-01-04</h4>
+            <h4 data-toc-skip class="date">2022-01-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/new-users.Rmd" class="external-link"><code>vignettes/new-users.Rmd</code></a></small>
       <div class="hidden name"><code>new-users.Rmd</code></div>
@@ -191,7 +191,7 @@
   <span class="va">segY</span> <span class="op">&lt;-</span> <span class="va">legendY0</span> <span class="op">+</span> <span class="op">(</span><span class="va">segY</span> <span class="op">*</span> <span class="va">legendHeight</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/graphics/segments.html" class="external-link">segments</a></span><span class="op">(</span><span class="va">segX</span>, <span class="va">segY</span> <span class="op">-</span> <span class="va">segY</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">+</span> <span class="va">legendY0</span>, y1 <span class="op">=</span> <span class="va">segY</span>, col <span class="op">=</span> <span class="va">spectrum</span>,
            lwd <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">segX</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">legendY0</span>, <span class="va">legendY1</span><span class="op">)</span>, <span class="va">labels</span>, pos <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">segX</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">legendY0</span>, <span class="va">legendY1</span><span class="op">)</span>, <span class="va">labels</span>, pos <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>Now we can plot our data:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -270,9 +270,9 @@
             <span class="co"># Semi-transparent colours</span>
             col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/adjustcolor.html" class="external-link">adjustcolor</a></span><span class="op">(</span><span class="va">rowCol</span><span class="op">[</span><span class="va">oct</span><span class="op">]</span>, alpha.f <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><img src="new-users_files/figure-html/all-deaths-1.png" width="700"></p>
-<div class="section level1">
-<h1 id="where-next">Where next<a class="anchor" aria-label="anchor" href="#where-next"></a>
-</h1>
+<div class="section level2">
+<h2 id="where-next">Where next<a class="anchor" aria-label="anchor" href="#where-next"></a>
+</h2>
 <p>For more complicated examples of usage, see the accompanying vignettes:</p>
 <ul>
 <li><p><a href="Ternary.html">Getting started guide</a></p></li>
@@ -298,7 +298,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>

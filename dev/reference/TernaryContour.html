@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">1.2.4.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9000</span>
       </span>
     </div>
 
@@ -121,9 +121,9 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">'a'</span>, blab <span class="op">=</span> <span class="st">'b'</span>, clab <span class="op">=</span> <span class="st">'c'</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
@@ -134,28 +134,27 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Note that FunctionToContour is sent a vector.</span></span>
 <span class="r-in"><span class="co"># Instead of</span></span>
-<span class="r-in"><span class="va">BadMax</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> </span>
+<span class="r-in"><span class="va">BadMax</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Use</span></span>
-<span class="r-in"><span class="va">GoodMax</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">GoodMax</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">'a'</span>, blab <span class="op">=</span> <span class="st">'b'</span>, clab <span class="op">=</span> <span class="st">'c'</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">GoodMax</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">TernaryContour</span><span class="op">(</span><span class="va">GoodMax</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="TernaryContour-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Or, for a generalizable example,</span></span>
-<span class="r-in"><span class="va">GeneralMax</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">GeneralMax</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span>, <span class="fl">2</span>, <span class="va">max</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">'a'</span>, blab <span class="op">=</span> <span class="st">'b'</span>, clab <span class="op">=</span> <span class="st">'c'</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">GeneralMax</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">TernaryContour</span><span class="op">(</span><span class="va">GeneralMax</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="TernaryContour-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>
@@ -170,7 +169,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer></div>
