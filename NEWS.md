@@ -1,3 +1,6 @@
+# Ternary v2.0.0.9000
+- Tidy code formatting and catch typos.
+
 # Ternary v2.0.0
 - Create Holdridge plots using `HoldridgePlot()` and related functions
   ([#48](https://github.com/ms609/Ternary/issues/48)).
