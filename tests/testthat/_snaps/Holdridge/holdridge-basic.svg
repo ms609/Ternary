@@ -208,7 +208,7 @@
 <polyline points='157.98,462.95 360.00,113.05 ' style='stroke-width: 0.75; stroke: #1E88E5;' />
 <polyline points='360.00,113.05 562.02,462.95 ' style='stroke-width: 0.75; stroke: #D81B60;' />
 <polyline points='562.02,462.95 157.98,462.95 ' style='stroke-width: 0.75; stroke: none;' />
-<text transform='translate(184.70,245.11) rotate(-60)' text-anchor='middle' style='font-size: 12.00px; fill: #D81B60; font-family: sans;' textLength='175.45px' lengthAdjust='spacingAndGlyphs'>Potential evaoptranspiration ratio</text>
+<text transform='translate(184.70,245.11) rotate(-60)' text-anchor='middle' style='font-size: 12.00px; fill: #D81B60; font-family: sans;' textLength='175.45px' lengthAdjust='spacingAndGlyphs'>Potential evapotranspiration ratio</text>
 <text transform='translate(535.30,245.11) rotate(-300)' text-anchor='middle' style='font-size: 12.00px; fill: #1E88E5; font-family: sans;' textLength='135.41px' lengthAdjust='spacingAndGlyphs'>Annual precipitation / mm</text>
 <text x='360.00' y='554.95' text-anchor='middle' style='font-size: 12.00px; fill: #111111; font-family: sans;' textLength='95.39px' lengthAdjust='spacingAndGlyphs'>Humidity province</text>
 <polyline points='170.61,441.09 549.39,441.09 ' style='stroke-width: 0.75; stroke: #004D40; stroke-dasharray: 1.00,3.00;' />

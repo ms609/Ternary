@@ -40,9 +40,9 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Colour a ternary plot according to the output of a function
 }
 \examples{
-TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
- 
-FunctionToContour <- function (a, b, c) {
+TernaryPlot(alab = "a", blab = "b", clab = "c")
+
+FunctionToContour <- function(a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
@@ -56,16 +56,14 @@ values <- TernaryPointValues(rgb, resolution = 20)
 ColourTernary(values, spectrum = NULL)
 
 # Create a helper function to place white centrally:
-rgbWhite <- function (r, g, b) {
+rgbWhite <- function(r, g, b) {
   highest <- apply(rbind(r, g, b), 2L, max)
-  rgb(r/highest, g/highest, b/highest)
+  rgb(r / highest, g / highest, b / highest)
 }
 
 TernaryPlot()
 values <- TernaryPointValues(rgbWhite, resolution = 20)
 ColourTernary(values, spectrum = NULL)
-
-
 }
 \seealso{
 Other contour plotting functions: 

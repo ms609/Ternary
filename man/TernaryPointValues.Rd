@@ -51,25 +51,27 @@ Intended to facilitate coloured contour plots with \code{\link[=ColourTernary]{C
 \code{TernaryDensity()} calculates the density of points in each grid cell.
 }
 \examples{
-TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
+TernaryPointValues(function(a, b, c) a * b * c, resolution = 2)
 
 TernaryPlot(grid.lines = 4)
 cols <- TernaryPointValues(rgb, resolution = 4)
-text(as.numeric(cols['x', ]), as.numeric(cols['y', ]),
-     labels =  ifelse(cols['down', ] == '1', 'v', '^'),
-     col = cols['z', ])
+text(as.numeric(cols["x", ]), as.numeric(cols["y", ]),
+  labels = ifelse(cols["down", ] == "1", "v", "^"),
+  col = cols["z", ]
+)
 
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
 nPoints <- 4000L
-coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
-                     abs(rnorm(nPoints, 1, 1.5)),
-                     abs(rnorm(nPoints, 1, 0.5)))
+coordinates <- cbind(
+  abs(rnorm(nPoints, 2, 3)),
+  abs(rnorm(nPoints, 1, 1.5)),
+  abs(rnorm(nPoints, 1, 0.5))
+)
 
 density <- TernaryDensity(coordinates, resolution = 10L)
 ColourTernary(density)
-TernaryPoints(coordinates, col = 'red', pch = '.')
-
+TernaryPoints(coordinates, col = "red", pch = ".")
 }
 \seealso{
 Other contour plotting functions: 

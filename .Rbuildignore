@@ -17,7 +17,7 @@ CONTRIBUTING.md
 ^.*\.json$
 ^.*\.sh$
 ^CODE_OF_CONDUCT\.md$
-^\.travis\.yml$
+^\.lintr$
 ^pkgdown$
 ^doc$
 ^Meta$

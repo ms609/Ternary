@@ -6,21 +6,23 @@ test_that("Holdridge coordinate transformation", {
 })
 
 test_that("Holdridge plotting", {
-  HoldridgeBasic <- function () {
+  HoldridgeBasic <- function() {
     pet <- holdridge[, 2]
     prec <- holdridge$Precipitation
     lat <- holdridge$Latitude
     latCol <- viridisLite::plasma(90, alpha = 0.6)[ceiling(abs(lat))]
     oPar <- par(mar = rep(0, 4))
     on.exit(par(oPar), TRUE)
-    
+
     HoldridgePlot(hex.labels = holdridgeLifeZonesUp, hex.cex = 0.5)
     HoldridgeBelts()
     HoldridgePoints(pet, prec, cex = 2.2, pch = 21, bg = latCol)
-    HoldridgeText(pet, prec, seq_along(pet)[-12], cex = 0.6,
-                  col = 'white', font = 2)
+    HoldridgeText(pet, prec, seq_along(pet)[-12],
+      cex = 0.6,
+      col = "white", font = 2
+    )
   }
-  
-  skip_if_not_installed('vdiffr')
-  vdiffr::expect_doppelganger('holdridge-basic', HoldridgeBasic)
+
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("holdridge-basic", HoldridgeBasic)
 })

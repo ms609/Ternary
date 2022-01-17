@@ -9,11 +9,13 @@
 using the familiar functions of the default 'graphics' package.}
 \description{
 For simple use cases, generate ternary plots using the point-and-click
-Shiny app:\preformatted{install.packages('Ternary')
-Ternary::TernaryApp()
-}
+Shiny app:
 }
 \details{
+\preformatted{install.packages('Ternary')
+Ternary::TernaryApp()
+}
+
 For greater control over your plots, use the R command line;
 for usage instructions, consult the guidance article
 \href{https://ms609.github.io/Ternary/articles/Ternary.html}{online} or by

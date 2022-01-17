@@ -11,7 +11,7 @@ HoldridgePlot(
   atip = NULL,
   btip = NULL,
   ctip = NULL,
-  alab = "Potential evaoptranspiration ratio",
+  alab = "Potential evapotranspiration ratio",
   blab = "Annual precipitation / mm",
   clab = "Humidity province",
   lab.offset = 0.22,
@@ -316,7 +316,7 @@ and hexagons allowing plotted data to be linked to interpreted climate
 settings.
 }
 \examples{
-data(holdridgeLifeZonesUp, package = 'Ternary')
+data(holdridgeLifeZonesUp, package = "Ternary")
 HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
 HoldridgeBelts()
 }
@@ -325,8 +325,7 @@ Holdridge (1947),
 "Determination of world plant formations from simple climatic data",
 \emph{Science} 105:367–368. \doi{10.1126/science.105.2727.367}
 
-Holdridge (1967),
-\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{\emph{Life zone ecology}}.
+Holdridge (1967), \emph{\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{Life zone ecology}}.
 Tropical Science Center, San José
 }
 \seealso{

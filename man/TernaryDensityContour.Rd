@@ -72,14 +72,15 @@ important to you, please let the maintainers known by opening a
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
 nPoints <- 400L
-coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
-                     abs(rnorm(nPoints, 1, 1.5)),
-                     abs(rnorm(nPoints, 1, 0.5)))
+coordinates <- cbind(
+  abs(rnorm(nPoints, 2, 3)),
+  abs(rnorm(nPoints, 1, 1.5)),
+  abs(rnorm(nPoints, 1, 0.5))
+)
 
 ColourTernary(TernaryDensity(coordinates, resolution = 10L))
-TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryPoints(coordinates, col = "red", pch = ".")
 TernaryDensityContour(coordinates, resolution = 30L)
- 
 }
 \seealso{
 Other contour plotting functions: 
