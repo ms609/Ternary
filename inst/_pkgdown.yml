@@ -42,6 +42,7 @@ template:
   params:
     bootswatch: journal
     docsearch:
-      api_key: 9cc82e3c6c1059647be4e6dfacda7715
+      app_id: PQTZW3A3WS
+      api_key: 1a3f070f20390600ef8e4f7801791ec3
       index_name: ternary
     ganalytics: UA-156666971-3
