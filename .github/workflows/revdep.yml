@@ -34,9 +34,9 @@ name: revdep-check
 
 jobs:
   mem-check:
-    runs-on: macOS-latest
+    runs-on: ubuntu-20.04
 
-    name: revdepcheck ${{ matrix.config.deps }}, macOS, R release
+    name: revdepcheck ${{ matrix.config.deps }}, R release
     
     strategy:
       fail-fast: false
