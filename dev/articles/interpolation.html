@@ -195,7 +195,7 @@
 <p><img src="interpolation_files/figure-html/idw-interpolation-1.png" width="700"></p>
 <p>More sophisticated interpolation approaches are possible, e.g.  <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm" class="external-link">kriging</a>; these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.</p>
 <div class="section level2">
-<h2 id="interpolation-within-sampled-region">Interpolation within sampled region<a class="anchor" aria-label="anchor" href="#interpolation-within-sampled-region"></a>
+<h2 id="interpolation-within-a-sampled-region">Interpolation within a sampled region<a class="anchor" aria-label="anchor" href="#interpolation-within-a-sampled-region"></a>
 </h2>
 <p>We might also encounter a situation where we have only sampled a small region of ternary space and do not wish to extrapolate beyond this region.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -224,23 +224,26 @@
 <span class="va">tri</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/TriangleCentres.html">TriangleCentres</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span>
 <span class="co"># Adjust the resolution to suit your own dataset</span>
 
+<span class="co"># Calculate which triangular tiles are within the boundaries of our data</span>
 <span class="va">inHull</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/TriangleInHull.html">TriangleInHull</a></span><span class="op">(</span><span class="va">tri</span>, <span class="va">abc</span><span class="op">)</span>
 
-<span class="co"># Generate empty list of predictions</span>
+<span class="co"># Pre-generate an empty list of predictions</span>
 <span class="va">predicted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">tri</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Now we interpolate between our known values to generate a colour for each</span>
 <span class="co"># of our tiles</span>
 <span class="va">predicted</span><span class="op">[</span><span class="va">inHull</span><span class="op">$</span><span class="va">inside</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">Predict</span><span class="op">(</span><span class="va">tri</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="va">inHull</span><span class="op">$</span><span class="va">inside</span><span class="op">]</span><span class="op">)</span>
-<span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">tri</span><span class="op">[</span><span class="st">"x"</span>, <span class="op">]</span>, y <span class="op">=</span> <span class="va">tri</span><span class="op">[</span><span class="st">"y"</span>, <span class="op">]</span>, z <span class="op">=</span> <span class="va">predicted</span>,
-             down <span class="op">=</span> <span class="va">tri</span><span class="op">[</span><span class="st">"triDown"</span>, <span class="op">]</span><span class="op">)</span>
+<span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tri</span>, z <span class="op">=</span> <span class="va">predicted</span><span class="op">)</span>
 
-<span class="co"># Place a semitransparent colour fill over grid lines:</span>
+<span class="co"># Colour only those tiles where we have made a prediction</span>
 <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">map</span><span class="op">)</span>
 
 <span class="co"># Calculate contours</span>
 <span class="va">PredictABC</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="fu">Predict</span><span class="op">(</span><span class="fu"><a href="../reference/TernaryCoords.html">TernaryToXY</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="../reference/TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">PredictABC</span>, resolution <span class="op">=</span> <span class="fl">36L</span>, within <span class="op">=</span> <span class="va">inHull</span><span class="op">$</span><span class="va">hull</span><span class="op">)</span>
+<span class="fu"><a href="../reference/TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">PredictABC</span>, resolution <span class="op">=</span> <span class="fl">36L</span>,
+               <span class="co"># `within` controls where contours are calculated</span>
+               within <span class="op">=</span> <span class="va">inHull</span><span class="op">$</span><span class="va">hull</span><span class="op">)</span>
+
 
 <span class="co"># Mark the points at which we took measurements</span>
 <span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">abc</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"#cc3333"</span><span class="op">)</span>
