@@ -44,8 +44,7 @@ holdridgeClassesUp
 \code{holdridgeClasses} is a character vector naming, from left to right,
 top to bottom, the 38 classes defined by the International Institute for
 Applied Systems Analysis (IIASA).
-}
-\details{
+
 \code{holdridgeLifeZones} is a character vector naming, from left to right,
 top to bottom, the 38 cells of the Holdridge classification plot.
 

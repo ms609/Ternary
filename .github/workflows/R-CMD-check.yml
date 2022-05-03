@@ -73,47 +73,35 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v2
 
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
 
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
-      - name: Install system dependencies
+      - name: Install apt packages
         if: runner.os == 'Linux'
-        env:
-          _R_CHECK_CRAN_INCOMING_USE_ASPELL_: true
         run: |
-          sudo apt-get install aspell libcurl4-openssl-dev texlive-latex-base texlive-fonts-extra
-          while read -r cmd
-          do
-            eval sudo $cmd
-          done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
-
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
-        shell: Rscript {0}
-
-      - name: Check
-        env:
-          _R_CHECK_CRAN_INCOMING_REMOTE_: false
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
-
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@main
+          sudo apt-get install texlive-latex-base \
+            texlive-fonts-recommended libcurl4-openssl-dev \
+            aspell libcurl4-openssl-dev texlive-latex-base \
+            texlive-fonts-extra
+        
+      - name: Set up R dependencies (Windows)
+        if: runner.os == 'Windows'
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check
+          needs: |
+            check
+            coverage
+            
+      - name: Set up R dependencies (Non-Windows)
+        if: runner.os != 'Windows'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          needs: |
+            check
+
+      - name: Check package
+        uses: r-lib/actions/check-r-package@v2
+
+      - name: Code coverage
+        if: runner.os == 'Windows'
+        run: |
+          covr::codecov()
+        shell: Rscript {0}
