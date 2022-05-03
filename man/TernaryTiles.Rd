@@ -38,7 +38,7 @@ Function to fill a ternary plot with coloured tiles.  Useful in combination with
 }
 \examples{
 
-FunctionToContour <- function(a, b, c) {
+FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
@@ -46,7 +46,9 @@ TernaryPlot()
 
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 ColourTernary(values)
-TernaryContour(FunctionToContour, resolution = 36L)
+TernaryContour(FunctionToContour, resolution=36L)
+
+
 }
 \seealso{
 Other functions for colouring and shading: 

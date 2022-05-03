@@ -27,7 +27,7 @@ with four named rows:
 \code{down}, triangle direction: \code{0} = point upwards; \code{1} = point downwards.}
 
 \item{spectrum}{Vector of colours to use as a spectrum, or \code{NULL} to use
-\code{values['z', ]}.}
+\code{values["z", ]}.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -41,8 +41,8 @@ Colour a ternary plot according to the output of a function
 }
 \examples{
 TernaryPlot(alab = "a", blab = "b", clab = "c")
-
-FunctionToContour <- function(a, b, c) {
+ 
+FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
@@ -56,14 +56,16 @@ values <- TernaryPointValues(rgb, resolution = 20)
 ColourTernary(values, spectrum = NULL)
 
 # Create a helper function to place white centrally:
-rgbWhite <- function(r, g, b) {
+rgbWhite <- function (r, g, b) {
   highest <- apply(rbind(r, g, b), 2L, max)
-  rgb(r / highest, g / highest, b / highest)
+  rgb(r/highest, g/highest, b/highest)
 }
 
 TernaryPlot()
 values <- TernaryPointValues(rgbWhite, resolution = 20)
 ColourTernary(values, spectrum = NULL)
+
+
 }
 \seealso{
 Other contour plotting functions: 
