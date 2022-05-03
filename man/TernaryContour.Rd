@@ -28,9 +28,9 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Draws contour lines to depict the value of a function in ternary space.
 }
 \examples{
-TernaryPlot(alab = "a", blab = "b", clab = "c")
-
-FunctionToContour <- function(a, b, c) {
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+ 
+FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
@@ -40,25 +40,26 @@ TernaryContour(FunctionToContour, resolution = 36L)
 
 # Note that FunctionToContour is sent a vector.
 # Instead of
-BadMax <- function(a, b, c) {
-  max(a, b, c)
+BadMax <- function (a, b, c) {
+  max(a, b, c) 
 }
 
 # Use
-GoodMax <- function(a, b, c) {
+GoodMax <- function (a, b, c) {
   pmax(a, b, c)
 }
-TernaryPlot(alab = "a", blab = "b", clab = "c")
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
 ColourTernary(TernaryPointValues(GoodMax))
 TernaryContour(GoodMax)
 
 # Or, for a generalizable example,
-GeneralMax <- function(a, b, c) {
+GeneralMax <- function (a, b, c) {
   apply(rbind(a, b, c), 2, max)
 }
-TernaryPlot(alab = "a", blab = "b", clab = "c")
+TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
 ColourTernary(TernaryPointValues(GeneralMax))
 TernaryContour(GeneralMax)
+
 }
 \seealso{
 Other contour plotting functions: 

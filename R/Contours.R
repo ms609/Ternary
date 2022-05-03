@@ -77,6 +77,7 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
 #'
 #' @family coordinate translation functions
+#' @seealso Add triangles to a plot: [TernaryTiles()]
 #' @template MRS
 #' @export
 TriangleCentres <- function (resolution = 48L, 
@@ -149,6 +150,31 @@ TriangleCentres <- function (resolution = 48L,
   
   #Return:
   rbind(x, y, triDown)
+}
+
+#' 
+#' @param triangles Three-row matrix as produced by [`TriangleCentres()`].
+#' @examples 
+#' @template MRS
+#' @importFrom sp point.in.polygon
+#' @export
+TriangleInHull <- function(triangles, coordinates) {
+  datDim <- dim(coordinates)[1]
+  if (is.null(datDim) || datDim < 2L || datDim > 3L) {
+    stop("`coordinates` must be a matrix with two (xy) or three (abc) rows")
+  }
+  xy <- if (datDim == 2L) {
+    coordinates
+  } else {
+    TernaryToXY(coordinates)
+  }
+    
+  txy <- t(xy)
+  hull <- chull(txy)
+  centreInHull <- point.in.polygon(triangles["x", ], triangles["y", ],
+                                   xy["x", hull], xy["y", hull])
+  
+  
 }
 
 #' @rdname TernaryPointValues
@@ -452,22 +478,25 @@ TernaryTiles <- function (x, y, down, resolution, col,
 ColourTernary <- function (values, 
                            spectrum = viridisLite::viridis(256L, alpha = 0.6),
                            resolution = sqrt(ncol(values)),
-                           direction = getOption('ternDirection', 1L)) {
-  z <- values['z', ]
-  col <- if (is.null(spectrum) || (!is.numeric(z) && all(
-      suppressWarnings(is.na(as.numeric(z)))) && 
-      tryCatch(is.matrix(col2rgb(z)), error = function(e) FALSE))) {
+                           direction = getOption("ternDirection", 1L)) {
+  z <- values["z", ]
+  col <- if (is.null(spectrum) || 
+             (!is.numeric(z) && 
+              all(suppressWarnings(is.na(as.numeric(z)))) && 
+              tryCatch(is.matrix(col2rgb(z)), error = function(e) FALSE)
+              )
+             ) {
     z
   } else {
     if (!is.numeric(z)) {
       stop("values['z', ] must be numeric.\nTo colour by values['z', ], set `spectrum = FALSE`.")
     }
-    zNorm <- z - min(z)
-    zNorm <- zNorm / max(zNorm)
+    zNorm <- z - min(z, na.rm = TRUE)
+    zNorm <- zNorm / max(zNorm, na.rm = TRUE)
     spectrum[as.integer(zNorm * (length(spectrum) - 1L)) + 1L]
   }
-  TernaryTiles(as.numeric(values['x', ]), as.numeric(values['y', ]),
-               as.numeric(values['down', ]),
+  TernaryTiles(as.numeric(values["x", ]), as.numeric(values["y", ]),
+               as.numeric(values["down", ]),
                resolution = resolution, col = col, direction = direction)
   
   # Return:
