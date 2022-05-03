@@ -9,6 +9,7 @@
 #' plot(x, y)
 #' polygon(x, y)
 #' @template MRS
+#' @family tiling functions
 #' @name Polygon-Geometry
 NULL
 

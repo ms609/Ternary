@@ -39,9 +39,14 @@ Other coordinate translation functions:
 \code{\link{ReflectedEquivalents}()},
 \code{\link{TernaryCoords}()},
 \code{\link{XYToTernary}()}
+
+Other tiling functions: 
+\code{\link{Polygon-Geometry}},
+\code{\link{TriangleInHull}()}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
 \concept{coordinate translation functions}
+\concept{tiling functions}

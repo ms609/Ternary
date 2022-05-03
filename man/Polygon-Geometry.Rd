@@ -51,7 +51,13 @@ PolygonArea(x, y)
 points(PolygonCentre(x, y), pch = 3)
 polygon(GrowPolygon(x, y, -1), border = "red")
 }
+\seealso{
+Other tiling functions: 
+\code{\link{TriangleCentres}()},
+\code{\link{TriangleInHull}()}
+}
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }
+\concept{tiling functions}

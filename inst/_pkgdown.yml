@@ -30,8 +30,9 @@ reference:
     desc: > 
       Functions for adding contours and shading to ternary plots.
     contents:
-      - has_concept('functions for colouring and shading')
       - has_concept('contour plotting functions')
+      - has_concept('functions for colouring and shading')
+      - has_concept('tiling functions')
   - title: "Colour palettes"
     desc: >
       Colourblind-compatible palettes.

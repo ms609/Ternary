@@ -133,39 +133,35 @@ par(mar = rep(0.2, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c",
             # Only plot the sampled region:
             xlim = range(xy["x", ]), ylim = range(xy["y", ])
-            )
+)
 
 # Get centres of tiles to plot
 tri <- TriangleCentres(resolution = 36L)
 # Adjust the resolution to suit your own dataset
 
-# Compute convex hull of our points:
-txy <- t(xy)
-hull <- chull(txy)
-inHull <- if (requireNamespace("sp", quietly = TRUE)) {
-  sp::point.in.polygon(tri["x", ], tri["y", ],
-                                 xy["x", hull], xy["y", hull])
-} else {
-  # If package sp is not available, we can use the geometry package
-  geometry::inhulln(geometry::convhulln(txy), t(tri[c("x", "y"), ]))
-}
+inHull <- TriangleInHull(tri, abc)
+
+# Generate empty list of predictions
+predicted <- rep(NA, ncol(tri))
 
 # Now we interpolate between our known values to generate a colour for each
 # of our tiles
-predicted <- ifelse(inHull, Predict(tri[1:2, ]), NA)
-#predicted <- Predict(tri[1:2, ])
-map <- rbind(x = tri['x', ], y = tri['y', ], z = predicted,
-             down = tri['triDown', ])
+predicted[inHull$inside] <- Predict(tri[1:2, inHull$inside])
+map <- rbind(x = tri["x", ], y = tri["y", ], z = predicted,
+             down = tri["triDown", ])
 
 # Place a semitransparent colour fill over grid lines:
 ColourTernary(map)
 
 # Calculate contours
 PredictABC <- function (a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
-TernaryContour(PredictABC, resolution = 36L)
+TernaryContour(PredictABC, resolution = 36L, within = inHull$hull)
 
 # Mark the points at which we took measurements
-TernaryPoints(abc, pch = 3, col = '#cc3333')
+TernaryPoints(abc, pch = 3, col = "#cc3333")
+
+# Mark the region in which we sampled
+polygon(t(xy)[chull(t(xy)), ], border = "#cc3333")
 ```
 
 
