@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@ with four named rows:
 <code>down</code>, triangle direction: <code>0</code> = point upwards; <code>1</code> = point downwards.</p></dd>
 <dt>spectrum</dt>
 <dd><p>Vector of colours to use as a spectrum, or <code>NULL</code> to use
-<code>values['z', ]</code>.</p></dd>
+<code>values["z", ]</code>.</p></dd>
 <dt>resolution</dt>
 <dd><p>The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -135,8 +135,8 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"> </span>
+<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
@@ -152,15 +152,17 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 <span class="r-plt img"><img src="ColourTernary-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Create a helper function to place white centrally:</span></span>
-<span class="r-in"><span class="va">rgbWhite</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">rgbWhite</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
 <span class="r-in">  <span class="va">highest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span>, <span class="fl">2L</span>, <span class="va">max</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">r</span> <span class="op">/</span> <span class="va">highest</span>, <span class="va">g</span> <span class="op">/</span> <span class="va">highest</span>, <span class="va">b</span> <span class="op">/</span> <span class="va">highest</span><span class="op">)</span></span>
+<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">r</span><span class="op">/</span><span class="va">highest</span>, <span class="va">g</span><span class="op">/</span><span class="va">highest</span>, <span class="va">b</span><span class="op">/</span><span class="va">highest</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">rgbWhite</span>, resolution <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span class="r-plt img"><img src="ColourTernary-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>
@@ -175,7 +177,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer></div>
