@@ -20,6 +20,7 @@ NULL
 #' `positive` is set to TRUE.
 #' Vertices specified in a clockwise sequence always yield a positive area.
 #' 
+#' @return `PolygonArea()` returns the area of the specified polygon.
 #' @examples
 #' PolygonArea(x, y)
 #' @export
@@ -39,6 +40,8 @@ PolygonArea <- function(x, y = NULL, positive = TRUE) {
 
 #' @describeIn Polygon-Geometry Locate the centre of a polygon
 #' @importFrom grDevices xy.coords
+#' @return `PolygonCentre()` returns a single-row matrix containing the
+#' _x_ and _y_ coordinates of the geometric centre of the polygon.
 #' @examples
 #' points(PolygonCentre(x, y), pch = 3, cex = 2)
 #' @export
@@ -65,8 +68,8 @@ PolygonCenter <- PolygonCentre
 #' @describeIn Polygon-Geometry Enlarge a polygon in all directions
 #' 
 #' @param buffer Numeric specifying distance by which to grow polygon.
-#' @return `GrowPolygon()` returns coordinates of the points of `polygon` after
-#' moving each point `buffer` away from the polygon's centroid.
+#' @return `GrowPolygon()` returns coordinates of the vertices of `polygon`
+#' after moving each vertex `buffer` away from the polygon's centre.
 #' @importFrom grDevices xy.coords
 #' @examples
 #' polygon(GrowPolygon(x, y, 1), border = "darkgreen",
