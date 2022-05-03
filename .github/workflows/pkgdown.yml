@@ -3,6 +3,14 @@ on:
     branches:
       - main
       - master
+    paths:
+      - 'DESCRIPTION'
+      - '**pkgdown.yml'
+      - '*.md'
+      - 'inst/CITATION'
+      - 'inst/*.bib'
+      - 'man/**.R'
+      - 'vignettes/**.Rmd'
 
 name: pkgdown
  
