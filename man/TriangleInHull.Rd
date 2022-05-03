@@ -18,7 +18,7 @@ widths (i.e. edge lengths) of the convex hull.}
 \value{
 \code{TriangleInHull()} returns a list with the elements:
 \itemize{
-\item \verb{$inside}: vector specifing whether each of a
+\item \verb{$inside}: vector specifying whether each of a
 set of triangles produced by \code{\link[=TriangleCentres]{TriangleCentres()}} overlaps the convex
 hull of points specified by \code{coordinates}.
 \item \verb{$hull}: Coordinates of convex hull of \code{coordinates}, after expansion

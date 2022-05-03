@@ -157,7 +157,7 @@ TriangleCentres <- function (resolution = 48L,
 #' 
 #' @return `TriangleInHull()` returns a list with the elements:
 #' 
-#' - `$inside`: vector specifing whether each of a
+#' - `$inside`: vector specifying whether each of a
 #' set of triangles produced by [`TriangleCentres()`] overlaps the convex
 #' hull of points specified by `coordinates`.
 #' 
