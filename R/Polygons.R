@@ -6,7 +6,7 @@
 #' @examples 
 #' x <- c(-3, -1, 6, 3, -4)
 #' y <- c(-2, 4, 1, 10, 9)
-#' plot(x, y)
+#' plot(x, y, frame.plot = FALSE)
 #' polygon(x, y)
 #' @template MRS
 #' @family tiling functions
@@ -39,8 +39,8 @@ PolygonArea <- function(x, y = NULL, positive = TRUE) {
 
 #' @describeIn Polygon-Geometry Locate the centre of a polygon
 #' @importFrom grDevices xy.coords
-#' @examples 
-#' points(PolygonCentre(x, y), pch = 3)
+#' @examples
+#' points(PolygonCentre(x, y), pch = 3, cex = 2)
 #' @export
 PolygonCentre <- function(x, y = NULL) {
   xy <- xy.coords(x, y)
@@ -69,6 +69,11 @@ PolygonCenter <- PolygonCentre
 #' moving each point `buffer` away from the polygon's centroid.
 #' @importFrom grDevices xy.coords
 #' @examples
+#' polygon(GrowPolygon(x, y, 1), border = "darkgreen",
+#'         xpd = NA # Allow drawing beyond plot border
+#'        )
+#' 
+#' # Negative values shrink the polygon
 #' polygon(GrowPolygon(x, y, -1), border = "red")
 #' @export
 GrowPolygon <- function(x, y = NULL, buffer = 0) {

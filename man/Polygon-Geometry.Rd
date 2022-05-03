@@ -45,10 +45,15 @@ Geometry functions for irregular polygons
 \examples{
 x <- c(-3, -1, 6, 3, -4)
 y <- c(-2, 4, 1, 10, 9)
-plot(x, y)
+plot(x, y, frame.plot = FALSE)
 polygon(x, y)
 PolygonArea(x, y)
-points(PolygonCentre(x, y), pch = 3)
+points(PolygonCentre(x, y), pch = 3, cex = 2)
+polygon(GrowPolygon(x, y, 1), border = "darkgreen",
+        xpd = NA # Allow drawing beyond plot border
+       )
+
+# Negative values shrink the polygon
 polygon(GrowPolygon(x, y, -1), border = "red")
 }
 \seealso{
