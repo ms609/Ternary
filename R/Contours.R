@@ -625,7 +625,7 @@ TernaryContour <- function (Func, resolution = 96L,
   
   if (is.null(within)) {
     within <- GrowPolygon(t(TernaryToXY(diag(3))),
-                          buffer = 0.6 / resolution)
+                          buffer = 1 / resolution)
   } else {
     within <- xy.coords(within)
   }

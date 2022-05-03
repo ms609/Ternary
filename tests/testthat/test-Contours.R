@@ -55,7 +55,10 @@ test_that("Contours are plotted", {
         resolution = 6L,
         direction = direction
       ))
-      TernaryContour(FunctionToContour, resolution = 12L, direction = direction)
+      TernaryContour(FunctionToContour,
+                     resolution = 12L,
+                     direction = direction,
+                     within = -t(TernaryToXY(diag(3))))
     }
 
     par(mar = rep(0, 4), mfrow = c(2, 2))
