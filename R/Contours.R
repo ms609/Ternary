@@ -203,7 +203,7 @@ TriangleInHull <- function(triangles, coordinates, buffer) {
   } else {
     TernaryToXY(coordinates)
   }
-    
+  
   firstTris <- triangles[c("x", "y"), c(1, 3)]
   triSize <- sqrt(sum((firstTris[, 2] - firstTris[, 1]) ^ 2)) / 2
   

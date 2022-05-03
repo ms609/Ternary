@@ -205,3 +205,21 @@ test_that("Errors are handled", {
     expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
   })
 })
+
+test_that("TriangleInHull()", {
+  expect_error(TriangleInHull(coord = 1:5),
+               "`coordinates` must be a matrix with two \\(xy\\) or three \\(abc\\) rows")
+  # From example
+  set.seed(0)
+  nPts <- 50
+  a <- runif(nPts, 0.3, 0.7)
+  b <- 0.15 + runif(nPts, 0, 0.7 - a)
+  c <- 1 - a - b
+  coordinates <- rbind(a, b, c)
+  triangles <- TriangleCentres(resolution = 5)
+  
+  # Coordinate transform resilience
+  fromABC <- TriangleInHull(triangles, coordinates)
+  fromXY <- TriangleInHull(triangles, TernaryToXY(coordinates))
+  expect_equal(fromABC, fromXY)
+})
