@@ -27,7 +27,7 @@ with four named rows:
 \code{down}, triangle direction: \code{0} = point upwards; \code{1} = point downwards.}
 
 \item{spectrum}{Vector of colours to use as a spectrum, or \code{NULL} to use
-\code{values['z', ]}.}
+\code{values["z", ]}.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -40,7 +40,7 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 Colour a ternary plot according to the output of a function
 }
 \examples{
-TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+TernaryPlot(alab = "a", blab = "b", clab = "c")
  
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)

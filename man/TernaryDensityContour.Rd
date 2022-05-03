@@ -56,9 +56,9 @@ these contours to extend closer to (or beyond) the margin of the plot.
 
 Individual points cannot fall outside the margins of the ternary diagram,
 but their associated kernels can. In order to sample regions of the kernels
-that have 'bled' outside the ternary diagram, each point's value is
+that have "bled" outside the ternary diagram, each point's value is
 calculated by summing the point density at that point and at equivalent
-points outside the ternary diagram, 'reflected' across the margin of
+points outside the ternary diagram, "reflected" across the margin of
 the plot (see function \code{\link{ReflectedEquivalents}}).  This correction can be
 disabled by setting the \code{edgeCorrection} parameter to \code{FALSE}.
 
@@ -77,7 +77,7 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                      abs(rnorm(nPoints, 1, 0.5)))
 
 ColourTernary(TernaryDensity(coordinates, resolution = 10L))
-TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryPoints(coordinates, col = "red", pch = ".")
 TernaryDensityContour(coordinates, resolution = 30L)
  
 }

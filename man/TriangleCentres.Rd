@@ -29,7 +29,7 @@ tiled to cover a ternary plot.
 \examples{
 TernaryPlot(grid.lines = 4)
 centres <- TriangleCentres(4)
-text(centres['x', ], centres['y', ], ifelse(centres['triDown', ], 'v', '^'))
+text(centres["x", ], centres["y", ], ifelse(centres["triDown", ], "v", "^"))
 
 }
 \seealso{

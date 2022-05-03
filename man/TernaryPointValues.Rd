@@ -55,9 +55,9 @@ TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
 
 TernaryPlot(grid.lines = 4)
 cols <- TernaryPointValues(rgb, resolution = 4)
-text(as.numeric(cols['x', ]), as.numeric(cols['y', ]),
-     labels =  ifelse(cols['down', ] == '1', 'v', '^'),
-     col = cols['z', ])
+text(as.numeric(cols["x", ]), as.numeric(cols["y", ]),
+     labels =  ifelse(cols["down", ] == "1", "v", "^"),
+     col = cols["z", ])
 
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
@@ -68,7 +68,7 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
 
 density <- TernaryDensity(coordinates, resolution = 10L)
 ColourTernary(density)
-TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryPoints(coordinates, col = "red", pch = ".")
 
 }
 \seealso{
