@@ -183,10 +183,10 @@ TriangleCentres <- function (resolution = 48L,
 #' inHull <- TriangleInHull(triangles, coordinates)
 #' polygon(inHull$hull, border = 4)
 #' values <- rbind(triangles,
-#'                 z = ifelse(inHull$overlap, "#33cc3333", "#cc333333"))
+#'                 z = ifelse(inHull$inside, "#33cc3333", "#cc333333"))
 #' points(triangles["x", ], triangles["y", ],
 #'        pch = ifelse(triangles["triDown", ], 6, 2),
-#'        col = ifelse(inHull$overlap, "#33cc33", "#cc3333"))
+#'        col = ifelse(inHull$inside, "#33cc33", "#cc3333"))
 #' ColourTernary(values)
 #' @template MRS
 #' @importFrom sp point.in.polygon
