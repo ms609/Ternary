@@ -1,6 +1,6 @@
 #' Polygon geometry
 #' 
-#' Geometry functions for irregular polygons
+#' Geometry functions for irregular polygons.
 #'
 #' @param x,y Vectors containing the coordinates of the vertices of the polygon.
 #' @examples 

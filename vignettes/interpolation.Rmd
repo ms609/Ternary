@@ -108,7 +108,7 @@ TernaryPoints(abc, pch = 3, col = '#cc3333')
 More sophisticated interpolation approaches are possible, e.g. 
 [kriging](https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm); these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.
 
-# Interpolation within sampled region
+# Interpolation within a sampled region
 
 We might also encounter a situation where we have only sampled a small region
 of ternary space and do not wish to extrapolate beyond this region.
@@ -139,23 +139,26 @@ TernaryPlot(alab = "a", blab = "b", clab = "c",
 tri <- TriangleCentres(resolution = 36L)
 # Adjust the resolution to suit your own dataset
 
+# Calculate which triangular tiles are within the boundaries of our data
 inHull <- TriangleInHull(tri, abc)
 
-# Generate empty list of predictions
+# Pre-generate an empty list of predictions
 predicted <- rep(NA, ncol(tri))
 
 # Now we interpolate between our known values to generate a colour for each
 # of our tiles
 predicted[inHull$inside] <- Predict(tri[1:2, inHull$inside])
-map <- rbind(x = tri["x", ], y = tri["y", ], z = predicted,
-             down = tri["triDown", ])
+map <- rbind(tri, z = predicted)
 
-# Place a semitransparent colour fill over grid lines:
+# Colour only those tiles where we have made a prediction
 ColourTernary(map)
 
 # Calculate contours
 PredictABC <- function (a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
-TernaryContour(PredictABC, resolution = 36L, within = inHull$hull)
+TernaryContour(PredictABC, resolution = 36L,
+               # `within` controls where contours are calculated
+               within = inHull$hull)
+
 
 # Mark the points at which we took measurements
 TernaryPoints(abc, pch = 3, col = "#cc3333")

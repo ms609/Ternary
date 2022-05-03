@@ -27,11 +27,16 @@ Vertices specified in a clockwise sequence always yield a positive area.}
 \item{buffer}{Numeric specifying distance by which to grow polygon.}
 }
 \value{
-\code{GrowPolygon()} returns coordinates of the points of \code{polygon} after
-moving each point \code{buffer} away from the polygon's centroid.
+\code{PolygonArea()} returns the area of the specified polygon.
+
+\code{PolygonCentre()} returns a single-row matrix containing the
+\emph{x} and \emph{y} coordinates of the geometric centre of the polygon.
+
+\code{GrowPolygon()} returns coordinates of the vertices of \code{polygon}
+after moving each vertex \code{buffer} away from the polygon's centre.
 }
 \description{
-Geometry functions for irregular polygons
+Geometry functions for irregular polygons.
 }
 \section{Functions}{
 \itemize{

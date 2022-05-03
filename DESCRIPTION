@@ -27,7 +27,6 @@ Imports:
     viridisLite,
 Suggests:
     colourpicker,
-    geometry,
     knitr,
     readxl,
     rmarkdown,
