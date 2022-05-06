@@ -10,14 +10,14 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-'Ternary' is an R package to allow the creation of ternary plots in the standard
+"Ternary" is an R package to allow the creation of ternary plots in the standard
 R graphics environment.  I hope that it proves simple to use.
 
 For simple use cases, generate Ternary plots using the point-and-click
 Shiny app:
 
 ```{r shiny-app, eval = FALSE}
-install.packages('Ternary')
+install.packages("Ternary")
 Ternary::TernaryApp()
 ```
 
@@ -26,19 +26,19 @@ For greater control over your plots, use the full R implementation.
 Install the package with:
 
 ```{r Load package, eval = FALSE}
-install.packages('Ternary')
+install.packages("Ternary")
 ```
 
 Or if you want the latest development version of the package:
 
 ```{R Github package, eval = FALSE}
-if (!require('devtools')) install.packages('devtools')
-install_github('ms609/Ternary')
+if (!require("devtools")) install.packages("devtools")
+install_github("ms609/Ternary")
 ```
 
 Once the package is installed, load it into the current R session with 
 ```{R Load}
-library('Ternary')
+library("Ternary")
 ```
 
 There are two stages to creating a ternary plot: first, rendering the plot, styled
@@ -56,11 +56,11 @@ The following charts show which corners are which, under different orientations:
 
 ```{R Create simple plot, fig.width = 7, fig.height = 7}
 par(mfrow = c(2, 2), mar = rep(0.5, 4))
-for (dir in c('up', 'right', 'down', 'le')) {
-  TernaryPlot(point = dir, atip = 'A', btip = 'B', ctip = 'C',
-              alab = 'Aness', blab = 'Bness', clab = 'Cness')
+for (dir in c("up", "right", "down", "le")) {
+  TernaryPlot(point = dir, atip = "A", btip = "B", ctip = "C",
+              alab = "Aness", blab = "Bness", clab = "Cness")
   TernaryText(list(A = c(10, 1, 1), B = c(1, 10, 1), C = c(1, 1, 10)),
-              labels = c('P1', 'P2', 'P3'),
+              labels = c("P1", "P2", "P3"),
               col = cbPalette8[4], font = 2)
 }
 ```
@@ -73,10 +73,10 @@ par(mfrow = c(1, 2), mar = rep(0.3, 4))
 
 # Initial plot
 TernaryPlot(alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u2192",
-            lab.col = c('red', 'darkgreen', 'blue'),
+            lab.col = c("red", "darkgreen", "blue"),
             main = "Colours", # Title
-            point = 'right', lab.cex = 0.8, grid.minor.lines = 0,
-            grid.lty = 'solid', col = rgb(0.9, 0.9, 0.9), grid.col = 'white', 
+            point = "right", lab.cex = 0.8, grid.minor.lines = 0,
+            grid.lty = "solid", col = rgb(0.9, 0.9, 0.9), grid.col = "white", 
             axis.col = rgb(0.6, 0.6, 0.6), ticks.col = rgb(0.6, 0.6, 0.6),
             axis.rotate = FALSE,
             padding = 0.08)
@@ -101,9 +101,9 @@ AddToTernary(points, data_points, pch = 21, cex = 2.8,
                          character(1))
              )
 AddToTernary(text, data_points, names(data_points), cex = 0.8, font = 2)
-legend('bottomright', 
-       legend = c('Red', 'Orange', 'Yellow', 'Green'),
-       cex = 0.8, bty = 'n', pch = 21, pt.cex = 1.8,
+legend("bottomright", 
+       legend = c("Red", "Orange", "Yellow", "Green"),
+       cex = 0.8, bty = "n", pch = 21, pt.cex = 1.8,
        pt.bg = c(rgb(255,   0,   0, 128, NULL, 255), 
                  rgb(240, 180,  52, 128, NULL, 255),
                  rgb(210, 222, 102, 128, NULL, 255),
@@ -114,10 +114,10 @@ legend('bottomright',
 ###
 # Next plot:
 ###
-TernaryPlot('Steam', 'Ice', 'Water', 
-            grid.lines = 5, grid.lty = 'dotted',
-            grid.minor.lines = 1, grid.minor.lty = 'dotted',
-            point = 'West')
+TernaryPlot("Steam", "Ice", "Water", 
+            grid.lines = 5, grid.lty = "dotted",
+            grid.minor.lines = 1, grid.minor.lty = "dotted",
+            point = "West")
 
 # Another way to add a title
 title("Water phases", cex.main = 0.8)
@@ -133,15 +133,15 @@ middle_triangle <- matrix(c(
 ), ncol = 3, byrow = TRUE)
 
 # Add polygon to plot
-TernaryPolygon(middle_triangle, col = '#aaddfa', border = 'grey')
+TernaryPolygon(middle_triangle, col = '#aaddfa', border = "grey")
 
 # Connect corners of polygon to plot corners
-TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col = 'grey')
-TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col = 'grey')
-TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col = 'grey')
+TernaryLines(list(c(0, 100, 0), middle_triangle[1, ]), col = "grey")
+TernaryLines(list(c(0, 0, 100), middle_triangle[2, ]), col = "grey")
+TernaryLines(list(c(100, 0, 0), middle_triangle[3, ]), col = "grey")
 
 # Add an arrow
-TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = 'darkblue')
+TernaryArrows(c(20, 20, 60), c(30, 30, 40), length = 0.2, col = "darkblue")
 ```
 
 ### Styling points
@@ -174,22 +174,22 @@ TernaryPlot(atip = expression(SiO[2]),
             ctip = expression(paste(Al[2], O[3]))
 )
 
-TernaryPoints(dat[, c('sio2', 'fe2o3', 'al2o3')],
+TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
               cex = dat_cex,
               col = dat_col,
               pch = 16
               )
 
-legend('topleft', col = dat_col, pch = 16, 
+legend("topleft", col = dat_col, pch = 16, 
        legend = paste(binnedReflectance, '%'),
-       title = 'Reflectance', bty = 'n', cex = 0.8)
+       title = "Reflectance", bty = "n", cex = 0.8)
        
-legend('topright', pt.cex = dat_cex, pch = 16,
+legend("topright", pt.cex = dat_cex, pch = 16,
        legend = paste(binnedSize, '\u03bcm'),
-       title = 'Grain size', bty = 'n', cex = 0.8)
+       title = 'Grain size', bty = "n", cex = 0.8)
 ```
 
-See the 'Points' tab of the shiny app for a point-and-click implementation.
+See the "Points" tab of the shiny app for a point-and-click implementation.
 
 
 ### Cartesian coordinates 
@@ -200,7 +200,7 @@ By default, the plotting area is a 1&times;1 square.
 
 ```{r Cartesian}
 par(mar = rep(0, 4)) # Reduce margins
-TernaryPlot(point = 'right', clockwise = FALSE)
+TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
 cat("Y range in this orientation:", TernaryYRange())
 arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3)/2, y1 = 0.4, length = 0.1,
@@ -220,7 +220,7 @@ A plot can be coloured and contoured according to the output of a mathematical e
 
 ```{r contours}
 par(mar = rep(0.2, 4))
-TernaryPlot(alab = 'a', blab = 'b', clab = 'c')
+TernaryPlot(alab = "a", blab = "b", clab = "c")
 
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
@@ -244,7 +244,7 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                      abs(rnorm(nPoints, 1, 0.5)))
 
 ColourTernary(TernaryDensity(coordinates, resolution = 10L))
-TernaryPoints(coordinates, col = 'red', pch = '.')
+TernaryPoints(coordinates, col = "red", pch = '.')
 TernaryDensityContour(coordinates, resolution = 30L)
 ```
 
@@ -266,32 +266,32 @@ coordinates <- list(middle = c(1, 1, 1),
                  rightBorder = c(1, 2, 3)
                )
 par(mfrow = c(2, 2), mar = rep(0.2, 4))
-TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = 'up')
+TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = "up")
 values <- TernaryDensity(coordinates, resolution = 3L)
 ColourTernary(values)
-TernaryPoints(coordinates, col = 'red')
+TernaryPoints(coordinates, col = "red")
 text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex = 0.8)
 
-TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = 'right')
+TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = "right")
 values <- TernaryDensity(coordinates, resolution = 3L)
 ColourTernary(values)
-TernaryPoints(coordinates, col = 'red')
+TernaryPoints(coordinates, col = "red")
 text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex = 0.8)
 
-TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = 'down')
+TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = "down")
 values <- TernaryDensity(coordinates, resolution = 3L)
 ColourTernary(values)
-TernaryPoints(coordinates, col = 'red')
+TernaryPoints(coordinates, col = "red")
 text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex = 0.8)
 
-TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = 'left')
+TernaryPlot(grid.lines = 3, axis.labels = 1:3, point = "left")
 values <- TernaryDensity(coordinates, resolution = 3L)
 ColourTernary(values)
-TernaryPoints(coordinates, col = 'red')
+TernaryPoints(coordinates, col = "red")
 text(values[1, ], values[2, ], paste(values[3, ], '/ 6'), cex = 0.8)
 
 TernaryDensityContour(t(vapply(coordinates, I, double(3L))), 
-                      resolution = 24L, tolerance = -0.02, col = 'orange')
+                      resolution = 24L, tolerance = -0.02, col = "orange")
 
 
 ```
@@ -321,9 +321,9 @@ TernaryPlot(xlim = c(0.28, 0.38), ylim = c(0.1, 0.2), padding = 0.04)
 
 # Annotate grid lines at user-specified points:
 TernaryText(list(c(8, 72, 20), c(8, 82, 10)), c(20, 10), srt = -60, cex = 0.9,
-            col = 'darkgrey')
+            col = "darkgrey")
 TernaryText(list(c(10, 69, 21), c(20, 64, 16)), c(10, 20), srt = 0, cex = 0.9,
-            col = 'darkgrey')
+            col = "darkgrey")
 
 # Plot desired polygon
 TernaryPolygon(my_corners, col = '#2cbe4e')
