@@ -1,4 +1,4 @@
-# Ternary v2.0.0.9001
+# Ternary v2.1.0
 - Colour sub-region of ternary plot with `ColourTernary()`:
   - Add `Polygon-Geometry` functions for polygon manipulation.
   - Support `NA` values in `ColourTernary()`.

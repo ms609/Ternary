@@ -4,7 +4,7 @@
 * Ubuntu 20.04 LTS, R 3.4.0, release and devel, via 
   [GitHub actions](https://github.com/ms609/Ternary/actions)
   
-* local Windows 10 install, R 4.2.0-prerelease r81125
+* local Windows 10 install, R 4.2.0
 * Windows with `devtools::check_win_devel()`
 * Windows Server 2019 10.0.17763, R release, via GitHub actions
   

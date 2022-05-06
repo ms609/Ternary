@@ -37,7 +37,7 @@ Negative values will cause contour lines to extend beyond the margins of the plo
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 
-\item{\dots}{Further parameters to pass to `\link[graphics]{contour}.}
+\item{\dots}{Further parameters to pass to \code{\link[graphics]{contour}()}.}
 }
 \description{
 Use two-dimensional kernel density estimation to plot contours of
