@@ -12,9 +12,9 @@ For simple use cases, generate ternary plots using the point-and-click
 Shiny app:
 }
 \details{
-\preformatted{install.packages('Ternary')
+\if{html}{\out{<div class="sourceCode">}}\preformatted{install.packages('Ternary')
 Ternary::TernaryApp()
-}
+}\if{html}{\out{</div>}}
 
 For greater control over your plots, use the R command line;
 for usage instructions, consult the guidance article

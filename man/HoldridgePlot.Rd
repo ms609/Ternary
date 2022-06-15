@@ -83,26 +83,10 @@ HoldridgeHexagons(
 )
 }
 \arguments{
-\item{atip}{Character string specifying text to title corners,
+\item{atip, btip, ctip}{Character string specifying text to title corners,
 proceeding clockwise from the corner specified in \code{point} (default: top).}
 
-\item{btip}{Character string specifying text to title corners,
-proceeding clockwise from the corner specified in \code{point} (default: top).}
-
-\item{ctip}{Character string specifying text to title corners,
-proceeding clockwise from the corner specified in \code{point} (default: top).}
-
-\item{alab}{Character string specifying text with which to label
-the corresponding sides of the triangle.
-Left or right-pointing arrows are produced by
-typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
-
-\item{blab}{Character string specifying text with which to label
-the corresponding sides of the triangle.
-Left or right-pointing arrows are produced by
-typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
-
-\item{clab}{Character string specifying text with which to label
+\item{alab, blab, clab}{Character string specifying text with which to label
 the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
 typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
@@ -115,42 +99,20 @@ Use a vector of length three to specify a different offset for each label.}
 \item{lab.col}{Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.}
 
-\item{xlim}{Numeric vectors of length 2 specifying the minimum and maximum
+\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
 \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric=TRUE}; see documentation of
 \code{isometric} parameter.}
 
-\item{ylim}{Numeric vectors of length 2 specifying the minimum and maximum
-\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
-The default is to display the complete height or width of the plot.
-Allows cropping to magnified region of the plot. (See vignette for diagram.)
-May be overridden if \code{isometric=TRUE}; see documentation of
-\code{isometric} parameter.}
-
-\item{lab.cex}{Numeric specifying character expansion (font size)
+\item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
 for axis labels.
 Use a vector of length three to specify a different value for each direction.}
 
-\item{lab.font}{Numeric specifying font style (Roman, bold, italic,
+\item{lab.font, tip.font}{Numeric specifying font style (Roman, bold, italic,
 bold-italic) for axis titles.
 Use a vector of length three to set a different font for each direction.}
-
-\item{tip.cex}{Numeric specifying character expansion (font size)
-for axis labels.
-Use a vector of length three to specify a different value for each direction.}
-
-\item{tip.font}{Numeric specifying font style (Roman, bold, italic,
-bold-italic) for axis titles.
-Use a vector of length three to set a different font for each direction.}
-
-\item{tip.col}{Colours for the axis line,
-tick marks and tip labels respectively.
-Use a vector of length three to set a different value for each direction.
-\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
-inline, and \code{ticks.col = NULL} means to use whatever colour
-\code{axis.col} resolved to.}
 
 \item{isometric}{Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
@@ -160,22 +122,10 @@ If both \code{xlim} and \code{ylim} are set, but have different ranges, then the
 with the smaller range will be scaled until its range matches that of the
 other limit.}
 
-\item{atip.rotate}{Integer specifying number of
+\item{atip.rotate, btip.rotate, ctip.rotate}{Integer specifying number of
 degrees to rotate label of rightmost apex.}
 
-\item{btip.rotate}{Integer specifying number of
-degrees to rotate label of rightmost apex.}
-
-\item{ctip.rotate}{Integer specifying number of
-degrees to rotate label of rightmost apex.}
-
-\item{atip.pos}{Integer specifying positioning of labels,
-iff the corresponding \code{xlab.rotate} parameter is set.}
-
-\item{btip.pos}{Integer specifying positioning of labels,
-iff the corresponding \code{xlab.rotate} parameter is set.}
-
-\item{ctip.pos}{Integer specifying positioning of labels,
+\item{atip.pos, btip.pos, ctip.pos}{Integer specifying positioning of labels,
 iff the corresponding \code{xlab.rotate} parameter is set.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot; increase
@@ -196,30 +146,19 @@ place but before the axes and box are added.  See the comments about
 
 \item{grid.lines}{Integer specifying the number of grid lines to plot.}
 
-\item{grid.col}{Colours to draw the grid lines. Use a vector
+\item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.}
 
-\item{grid.lty}{Character or integer vector; line type of
+\item{grid.lty, grid.minor.lty}{Character or integer vector; line type of
 the grid lines. Use a vector of length three to set different values for
 each direction.}
 
-\item{grid.lwd}{Non-negative numeric giving line width of the
+\item{grid.lwd, grid.minor.lwd}{Non-negative numeric giving line width of the
 grid lines.  Use a vector of length three to set different values for each
 direction.}
 
 \item{grid.minor.lines}{Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.}
-
-\item{grid.minor.col}{Colours to draw the grid lines. Use a vector
-of length three to set different values for each direction.}
-
-\item{grid.minor.lty}{Character or integer vector; line type of
-the grid lines. Use a vector of length three to set different values for
-each direction.}
-
-\item{grid.minor.lwd}{Non-negative numeric giving line width of the
-grid lines.  Use a vector of length three to set different values for each
-direction.}
 
 \item{hex.border, hex.lty, hex.lwd}{Parameters to pass to
 \code{HoldridgeHexagons()}.  Set to \code{NA} to suppress hexagons.}
@@ -240,7 +179,7 @@ each hexagonal class, from top left to bottom right.}
 for axis labels.
 Use a vector of length three to set a different value for each direction.}
 
-\item{axis.col}{Colours for the axis line,
+\item{axis.col, ticks.col, tip.col}{Colours for the axis line,
 tick marks and tip labels respectively.
 Use a vector of length three to set a different value for each direction.
 \code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
@@ -256,7 +195,7 @@ expression vector of labels to be placed at the tick points.}
 \item{axis.lty}{Line type for both the axis line and tick marks.
 Use a vector of length three to set a different value for each direction.}
 
-\item{axis.lwd}{Line width for the axis line and tick marks.
+\item{axis.lwd, ticks.lwd}{Line width for the axis line and tick marks.
 Zero or negative values will suppress the line or ticks.
 Use a vector of length three to set different values for each axis.}
 
@@ -271,21 +210,10 @@ if \code{NULL} (the default).}
 
 \item{axis.tick}{Logical specifying whether to mark the axes with tick marks.}
 
-\item{ticks.lwd}{Line width for the axis line and tick marks.
-Zero or negative values will suppress the line or ticks.
-Use a vector of length three to set different values for each axis.}
-
 \item{ticks.length}{Numeric specifying distance that ticks should extend
 beyond the plot margin.  Also affects position of axis labels, which are
 plotted at the end of each tick.
 Use a vector of length three to set a different length for each direction.}
-
-\item{ticks.col}{Colours for the axis line,
-tick marks and tip labels respectively.
-Use a vector of length three to set a different value for each direction.
-\code{axis.col = NULL} means to use \code{par('fg')}, possibly specified
-inline, and \code{ticks.col = NULL} means to use whatever colour
-\code{axis.col} resolved to.}
 
 \item{...}{Additional parameters to \code{\link[graphics]{plot}}.}
 

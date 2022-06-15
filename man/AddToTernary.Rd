@@ -51,15 +51,13 @@ JoinTheDots(coordinates, ...)
 \code{\link[graphics]{lines}} or
 \code{\link[graphics]{text}}.}
 
-\item{pet}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
-ratio and annual \emph{prec}ipitation (in mm).}
-
-\item{prec}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
+\item{pet, prec}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
 ratio and annual \emph{prec}ipitation (in mm).}
 
 \item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
 If using \code{TernaryText()}, this will likely include the parameter \code{labels},
-to specify the text to plot.}
+to specify the text to plot. Other useful
+\link[graphics::par]{graphical parameters} include \code{srt} to rotate text.}
 
 \item{fromCoordinates, toCoordinates}{For \code{TernaryArrows()}, coordinates at
 which arrows should begin and end; \emph{cf.} \code{x0}, \code{y0}, \code{x1} and \code{y1} in

@@ -8,10 +8,7 @@ cross-blended hypsometric colour}
 HoldridgeHypsometricCol(pet, prec, opacity = NA)
 }
 \arguments{
-\item{pet}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
-ratio and annual \emph{prec}ipitation (in mm).}
-
-\item{prec}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
+\item{pet, prec}{Numeric vectors giving \emph{p}otential \emph{e}vapo\emph{t}ranspiration
 ratio and annual \emph{prec}ipitation (in mm).}
 
 \item{opacity}{Opacity level to be converted to the final two characters
@@ -50,9 +47,6 @@ Other Holdridge plotting functions:
 \code{\link{holdridge}}
 }
 \author{
-\href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
-(\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
-
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
 (\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
 }

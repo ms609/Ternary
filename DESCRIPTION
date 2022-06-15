@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 2.1.0
+Version: 2.1.0.9000
 Title: Create Ternary and Holdridge Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
   Holdridge life zone plots <doi:10.1126/science.105.2727.367> using the
@@ -45,5 +45,5 @@ Config/testthat/edition: 3
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)

@@ -1,3 +1,7 @@
+# Ternary v2.1.0.9000
+
+- Mention `srt` graphical parameter in `TernaryText()` documentation.
+
 # Ternary v2.1.0
 - Colour sub-region of ternary plot with `ColourTernary()`:
   - Add `Polygon-Geometry` functions for polygon manipulation.
