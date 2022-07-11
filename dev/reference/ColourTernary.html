@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.1.0.9000</span>
       </span>
     </div>
 
@@ -83,19 +83,19 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ColourTernary</span><span class="op">(</span>
-  <span class="va">values</span>,
-  spectrum <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">256L</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,
-  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="fu">ColorTernary</span><span class="op">(</span>
-  <span class="va">values</span>,
-  spectrum <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">256L</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,
-  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ColourTernary</span><span class="op">(</span></span>
+<span>  <span class="va">values</span>,</span>
+<span>  spectrum <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">256L</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ColorTernary</span><span class="op">(</span></span>
+<span>  <span class="va">values</span>,</span>
+<span>  spectrum <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">256L</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -106,16 +106,23 @@ with four named rows:
 <code>x</code>, <code>y</code>, cartesian coordinates of each triangle centre;
 <code>z</code>, value associated with that coordinate;
 <code>down</code>, triangle direction: <code>0</code> = point upwards; <code>1</code> = point downwards.</p></dd>
+
+
 <dt>spectrum</dt>
 <dd><p>Vector of colours to use as a spectrum, or <code>NULL</code> to use
 <code>values["z", ]</code>.</p></dd>
+
+
 <dt>resolution</dt>
 <dd><p>The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p>(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -134,35 +141,35 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ColourTernary-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">rgb</span>, resolution <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">rgb</span>, resolution <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ColourTernary-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Create a helper function to place white centrally:</span></span>
-<span class="r-in"><span class="va">rgbWhite</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">highest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span>, <span class="fl">2L</span>, <span class="va">max</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">r</span><span class="op">/</span><span class="va">highest</span>, <span class="va">g</span><span class="op">/</span><span class="va">highest</span>, <span class="va">b</span><span class="op">/</span><span class="va">highest</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">rgbWhite</span>, resolution <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Create a helper function to place white centrally:</span></span></span>
+<span class="r-in"><span><span class="va">rgbWhite</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">highest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">g</span>, <span class="va">b</span><span class="op">)</span>, <span class="fl">2L</span>, <span class="va">max</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">r</span><span class="op">/</span><span class="va">highest</span>, <span class="va">g</span><span class="op">/</span><span class="va">highest</span>, <span class="va">b</span><span class="op">/</span><span class="va">highest</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">rgbWhite</span>, resolution <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ColourTernary</span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ColourTernary-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -177,7 +184,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

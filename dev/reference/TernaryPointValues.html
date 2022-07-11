@@ -25,7 +25,7 @@ TernaryDensity() calculates the density of points in each grid cell."><meta name
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.1.0.9000</span>
       </span>
     </div>
 
@@ -87,18 +87,18 @@ TernaryDensity() calculates the density of points in each grid cell."><meta name
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">TernaryPointValues</span><span class="op">(</span>
-  <span class="va">Func</span>,
-  resolution <span class="op">=</span> <span class="fl">48L</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">TernaryDensity</span><span class="op">(</span>
-  <span class="va">coordinates</span>,
-  resolution <span class="op">=</span> <span class="fl">48L</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TernaryPointValues</span><span class="op">(</span></span>
+<span>  <span class="va">Func</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fl">48L</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">TernaryDensity</span><span class="op">(</span></span>
+<span>  <span class="va">coordinates</span>,</span>
+<span>  resolution <span class="op">=</span> <span class="fl">48L</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -106,23 +106,34 @@ TernaryDensity() calculates the density of points in each grid cell."><meta name
     <dl><dt>Func</dt>
 <dd><p>Function taking vectors of coordinates <code>a</code>, <code>b</code> and <code>c</code>, which
 returns a numeric vector whose value at each coordinate will be depicted.</p></dd>
+
+
 <dt>resolution</dt>
 <dd><p>The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p>(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Additional parameters to <code>Func()</code>.</p></dd>
+
+
 <dt>coordinates</dt>
 <dd><p>A list, matrix, data.frame or vector in which each
 element (or row) specifies
 the three coordinates of a point in ternary space.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>TernaryPointValues()</code> returns a matrix whose rows correspond to:</p><ul><li><p><strong>x</strong>, <strong>y</strong>: co-ordinates of the centres of smaller triangles</p></li>
+    
+
+<p><code>TernaryPointValues()</code> returns a matrix whose rows correspond to:</p><ul><li><p><strong>x</strong>, <strong>y</strong>: co-ordinates of the centres of smaller triangles</p></li>
 <li><p><strong>z</strong>: The value of <code>Func(a, b, c)</code>, where <code>a</code>, <code>b</code> and <code>c</code> are the
 ternary coordinates of <code>x</code> and <code>y</code>.</p></li>
 <li><p><strong>down</strong>: <code>0</code> if the triangle concerned points upwards (or right),
@@ -143,32 +154,32 @@ ternary coordinates of <code>x</code> and <code>y</code>.</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">TernaryPointValues</span><span class="op">(</span><span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span>, resolution <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">TernaryPointValues</span><span class="op">(</span><span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span>, resolution <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]       [,3]       [,4]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x    -0.25000000 0.00000000 0.25000000 0.00000000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y     0.14433757 0.28867513 0.14433757 0.57735027</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> z     0.01851852 0.03703704 0.01851852 0.01851852</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> down  0.00000000 1.00000000 0.00000000 0.00000000</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>grid.lines <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu">TernaryPointValues</span><span class="op">(</span><span class="va">rgb</span>, resolution <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"x"</span>, <span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"y"</span>, <span class="op">]</span><span class="op">)</span>,</span>
-<span class="r-in">     labels <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"down"</span>, <span class="op">]</span> <span class="op">==</span> <span class="st">"1"</span>, <span class="st">"v"</span>, <span class="st">"^"</span><span class="op">)</span>,</span>
-<span class="r-in">     col <span class="op">=</span> <span class="va">cols</span><span class="op">[</span><span class="st">"z"</span>, <span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>grid.lines <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu">TernaryPointValues</span><span class="op">(</span><span class="va">rgb</span>, resolution <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"x"</span>, <span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"y"</span>, <span class="op">]</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     labels <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">cols</span><span class="op">[</span><span class="st">"down"</span>, <span class="op">]</span> <span class="op">==</span> <span class="st">"1"</span>, <span class="st">"v"</span>, <span class="st">"^"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>     col <span class="op">=</span> <span class="va">cols</span><span class="op">[</span><span class="st">"z"</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TernaryPointValues-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">nPoints</span> <span class="op">&lt;-</span> <span class="fl">4000L</span></span>
-<span class="r-in"><span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">density</span> <span class="op">&lt;-</span> <span class="fu">TernaryDensity</span><span class="op">(</span><span class="va">coordinates</span>, resolution <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">coordinates</span>, col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>axis.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">nPoints</span> <span class="op">&lt;-</span> <span class="fl">4000L</span></span></span>
+<span class="r-in"><span><span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                     <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">nPoints</span>, <span class="fl">1</span>, <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">density</span> <span class="op">&lt;-</span> <span class="fu">TernaryDensity</span><span class="op">(</span><span class="va">coordinates</span>, resolution <span class="op">=</span> <span class="fl">10L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">density</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">coordinates</span>, col <span class="op">=</span> <span class="st">"red"</span>, pch <span class="op">=</span> <span class="st">"."</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TernaryPointValues-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -183,7 +194,7 @@ ternary coordinates of <code>x</code> and <code>y</code>.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

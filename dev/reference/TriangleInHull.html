@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.1.0.9000</span>
       </span>
     </div>
 
@@ -83,23 +83,30 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">TriangleInHull</span><span class="op">(</span><span class="va">triangles</span>, <span class="va">coordinates</span>, <span class="va">buffer</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TriangleInHull</span><span class="op">(</span><span class="va">triangles</span>, <span class="va">coordinates</span>, <span class="va">buffer</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>triangles</dt>
 <dd><p>Three-row matrix as produced by <code><a href="TriangleCentres.html">TriangleCentres()</a></code>.</p></dd>
+
+
 <dt>coordinates</dt>
 <dd><p>A matrix with two or three rows specifying the
 coordinates of points in <em>x, y</em> or <em>a, b, c</em> format.</p></dd>
+
+
 <dt>buffer</dt>
 <dd><p>Include triangles whose centres lie within <code>buffer</code> triangles
 widths (i.e. edge lengths) of the convex hull.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>TriangleInHull()</code> returns a list with the elements:</p><ul><li><p><code>$inside</code>: vector specifying whether each of a
+    
+
+<p><code>TriangleInHull()</code> returns a list with the elements:</p><ul><li><p><code>$inside</code>: vector specifying whether each of a
 set of triangles produced by <code><a href="TriangleCentres.html">TriangleCentres()</a></code> overlaps the convex
 hull of points specified by <code>coordinates</code>.</p></li>
 <li><p><code>$hull</code>: Coordinates of convex hull of <code>coordinates</code>, after expansion
@@ -119,24 +126,24 @@ to cover overlapping triangles.</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">nPts</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
-<span class="r-in"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">nPts</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.15</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">nPts</span>, <span class="fl">0</span>, <span class="fl">0.7</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">a</span> <span class="op">-</span> <span class="va">b</span></span>
-<span class="r-in"><span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>grid.lines <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">coordinates</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">triangles</span> <span class="op">&lt;-</span> <span class="fu"><a href="TriangleCentres.html">TriangleCentres</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">inHull</span> <span class="op">&lt;-</span> <span class="fu">TriangleInHull</span><span class="op">(</span><span class="va">triangles</span>, <span class="va">coordinates</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">hull</span>, border <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">triangles</span>,</span>
-<span class="r-in">                z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">inside</span>, <span class="st">"#33cc3333"</span>, <span class="st">"#cc333333"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">triangles</span><span class="op">[</span><span class="st">"x"</span>, <span class="op">]</span>, <span class="va">triangles</span><span class="op">[</span><span class="st">"y"</span>, <span class="op">]</span>,</span>
-<span class="r-in">       pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">triangles</span><span class="op">[</span><span class="st">"triDown"</span>, <span class="op">]</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">inside</span>, <span class="st">"#33cc33"</span>, <span class="st">"#cc3333"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nPts</span> <span class="op">&lt;-</span> <span class="fl">50</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">nPts</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">0.15</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">nPts</span>, <span class="fl">0</span>, <span class="fl">0.7</span> <span class="op">-</span> <span class="va">a</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">a</span> <span class="op">-</span> <span class="va">b</span></span></span>
+<span class="r-in"><span><span class="va">coordinates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>grid.lines <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">coordinates</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">triangles</span> <span class="op">&lt;-</span> <span class="fu"><a href="TriangleCentres.html">TriangleCentres</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">inHull</span> <span class="op">&lt;-</span> <span class="fu">TriangleInHull</span><span class="op">(</span><span class="va">triangles</span>, <span class="va">coordinates</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">hull</span>, border <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">triangles</span>,</span></span>
+<span class="r-in"><span>                z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">inside</span>, <span class="st">"#33cc3333"</span>, <span class="st">"#cc333333"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">triangles</span><span class="op">[</span><span class="st">"x"</span>, <span class="op">]</span>, <span class="va">triangles</span><span class="op">[</span><span class="st">"y"</span>, <span class="op">]</span>,</span></span>
+<span class="r-in"><span>       pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">triangles</span><span class="op">[</span><span class="st">"triDown"</span>, <span class="op">]</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">inHull</span><span class="op">$</span><span class="va">inside</span>, <span class="st">"#33cc33"</span>, <span class="st">"#cc3333"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TriangleInHull-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -152,7 +159,7 @@ to cover overlapping triangles.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

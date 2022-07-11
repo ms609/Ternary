@@ -42,7 +42,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.1.0.9000</span>
       </span>
     </div>
 
@@ -105,7 +105,7 @@
       <h1 data-toc-skip>Holdridge plots</h1>
                         <h4 data-toc-skip class="author">Martin R. Smith</h4>
             
-            <h4 data-toc-skip class="date">2022-05-06</h4>
+            <h4 data-toc-skip class="date">2022-07-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/Holdridge.Rmd" class="external-link"><code>vignettes/Holdridge.Rmd</code></a></small>
       <div class="hidden name"><code>Holdridge.Rmd</code></div>
@@ -118,22 +118,22 @@
 <p><code><a href="../reference/AddToTernary.html">HoldridgePoints()</a></code>, <code><a href="../reference/AddToTernary.html">HoldridgeText()</a></code> and related functions allow data points to be added to an existing plot; <code><a href="../reference/AddToTernary.html">AddToHoldridge()</a></code> allows plotting using any of the standard plotting functions.</p>
 <p><code><a href="../reference/HoldridgePlot.html">HoldridgeBelts()</a></code> and <code><a href="../reference/HoldridgePlot.html">HoldridgeHexagons()</a></code> plot interpretative lines and hexagons allowing plotted data to be linked to interpreted climate settings.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Load package and data</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">"Ternary"</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">holdridge</span>, <span class="va">holdridgeLifeZonesUp</span>, package <span class="op">=</span> <span class="st">'Ternary'</span><span class="op">)</span>
-
-<span class="co"># Suppress plot margins</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Create blank Holdridge plot</span>
-<span class="fu"><a href="../reference/HoldridgePlot.html">HoldridgePlot</a></span><span class="op">(</span>hex.labels <span class="op">=</span> <span class="va">holdridgeLifeZonesUp</span><span class="op">)</span>
-<span class="fu"><a href="../reference/HoldridgePlot.html">HoldridgeBelts</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="co"># Plot data, shaded by latitude; darker = equitorial.</span>
-<span class="fu"><a href="../reference/AddToTernary.html">HoldridgePoints</a></span><span class="op">(</span><span class="va">holdridge</span><span class="op">$</span><span class="va">PET</span>, <span class="va">holdridge</span><span class="op">$</span><span class="va">Precipitation</span>,
-                col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">91</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">holdridge</span><span class="op">$</span><span class="va">Latitude</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>,
-                lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Load package and data</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">"Ternary"</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">holdridge</span>, <span class="va">holdridgeLifeZonesUp</span>, package <span class="op">=</span> <span class="st">'Ternary'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Suppress plot margins</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create blank Holdridge plot</span></span>
+<span><span class="fu"><a href="../reference/HoldridgePlot.html">HoldridgePlot</a></span><span class="op">(</span>hex.labels <span class="op">=</span> <span class="va">holdridgeLifeZonesUp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/HoldridgePlot.html">HoldridgeBelts</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Plot data, shaded by latitude; darker = equitorial.</span></span>
+<span><span class="fu"><a href="../reference/AddToTernary.html">HoldridgePoints</a></span><span class="op">(</span><span class="va">holdridge</span><span class="op">$</span><span class="va">PET</span>, <span class="va">holdridge</span><span class="op">$</span><span class="va">Precipitation</span>,</span>
+<span>                col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">91</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="va">holdridge</span><span class="op">$</span><span class="va">Latitude</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>,</span>
+<span>                lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Holdridge_files/figure-html/holdridge-1.png" width="700"></p>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -160,7 +160,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

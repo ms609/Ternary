@@ -25,7 +25,7 @@ sent to standard functions in the 'graphics' package."><meta name="robots" conte
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.1.0.9000</span>
       </span>
     </div>
 
@@ -87,35 +87,35 @@ sent to standard functions in the 'graphics' package.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">TernaryCoords</span><span class="op">(</span>
-  <span class="va">abc</span>,
-  b_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  c_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for matrix</span>
-<span class="fu">TernaryToXY</span><span class="op">(</span>
-  <span class="va">abc</span>,
-  b_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  c_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="co"># S3 method for numeric</span>
-<span class="fu">TernaryToXY</span><span class="op">(</span>
-  <span class="va">abc</span>,
-  b_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  c_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span>
-
-<span class="fu">TernaryToXY</span><span class="op">(</span>
-  <span class="va">abc</span>,
-  b_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  c_coord <span class="op">=</span> <span class="cn">NULL</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TernaryCoords</span><span class="op">(</span></span>
+<span>  <span class="va">abc</span>,</span>
+<span>  b_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  c_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for matrix</span></span>
+<span><span class="fu">TernaryToXY</span><span class="op">(</span></span>
+<span>  <span class="va">abc</span>,</span>
+<span>  b_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  c_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for numeric</span></span>
+<span><span class="fu">TernaryToXY</span><span class="op">(</span></span>
+<span>  <span class="va">abc</span>,</span>
+<span>  b_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  c_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">TernaryToXY</span><span class="op">(</span></span>
+<span>  <span class="va">abc</span>,</span>
+<span>  b_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  c_coord <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -131,17 +131,26 @@ in which case the b and c coordinates must be specified via <code>b_coord</code>
 and <code>c_coord</code>.
 Or, a matrix with three rows, representing in turn the <code>a</code>, <code>b</code> and <code>c</code>
 coordinates of points.</p></dd>
+
+
 <dt>b_coord</dt>
 <dd><p>The b coordinate, if <code>abc</code> is a single number.</p></dd>
+
+
 <dt>c_coord</dt>
 <dd><p>The c coordinate, if <code>abc</code> is a single number.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p>(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>TernaryCoords()</code> returns a vector of length two that converts
+    
+
+<p><code>TernaryCoords()</code> returns a vector of length two that converts
 the coordinates given in <code>abc</code> into Cartesian (<em>x</em>, <em>y</em>) coordinates
 corresponding to the plot created by the last call of <code><a href="TernaryPlot.html">TernaryPlot()</a></code>.</p>
     </div>
@@ -162,17 +171,17 @@ corresponding to the plot created by the last call of <code><a href="TernaryPlot
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">TernaryCoords</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">TernaryCoords</span><span class="op">(</span><span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0000000 0.8660254</span>
-<span class="r-in"><span class="fu">TernaryCoords</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">TernaryCoords</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.0</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">TernaryToXY</span><span class="op">(</span><span class="va">coords</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">12</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">TernaryToXY</span><span class="op">(</span><span class="va">coords</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          [,1]        [,2]        [,3]        [,4]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x -0.08333333 -0.03333333 -0.02083333 -0.01515152</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y  0.14433757  0.23094011  0.25259074  0.26243194</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -187,7 +196,7 @@ corresponding to the plot created by the last call of <code><a href="TernaryPlot
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
