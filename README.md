@@ -29,7 +29,8 @@ usage instructions are available for
 Install the development version from GitHub with 
 `devtools::install_github("ms609/Ternary", args="--recursive")`.
 (Requires [git](https://git-scm.com/) to be installed and added to
-your PATH system environment variable.)
+your PATH system environment variable. You may also require the "curl"
+R package.)
 
 Please let me know of any feature requests or bugs by [opening an 
 issue on GitHub](https://github.com/ms609/Ternary/issues/).
