@@ -207,9 +207,9 @@ using functions such as \code{\link[graphics]{arrows}},
 }
 \section{Functions}{
 \itemize{
-\item \code{HorizontalGrid}: Add \code{grid.lines} horizontal lines to the ternary plot
-}}
+\item \code{HorizontalGrid()}: Add \code{grid.lines} horizontal lines to the ternary plot
 
+}}
 \examples{
 TernaryPlot(
   atip = "Top", btip = "Bottom", ctip = "Right", axis.col = "red",

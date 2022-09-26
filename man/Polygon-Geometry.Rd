@@ -40,13 +40,13 @@ Geometry functions for irregular polygons.
 }
 \section{Functions}{
 \itemize{
-\item \code{PolygonArea}: Calculate the area of an irregular polygon
+\item \code{PolygonArea()}: Calculate the area of an irregular polygon
 
-\item \code{PolygonCentre}: Locate the centre of a polygon
+\item \code{PolygonCentre()}: Locate the centre of a polygon
 
-\item \code{GrowPolygon}: Enlarge a polygon in all directions
+\item \code{GrowPolygon()}: Enlarge a polygon in all directions
+
 }}
-
 \examples{
 x <- c(-3, -1, 6, 3, -4)
 y <- c(-2, 4, 1, 10, 9)

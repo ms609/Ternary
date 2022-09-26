@@ -312,7 +312,7 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' @param \dots Additional parameters to pass to `PlottingFunction()`.
 #' If using `TernaryText()`, this will likely include the parameter `labels`,
 #' to specify the text to plot. Other useful 
-#' \link[graphics::par]{graphical parameters} include `srt` to rotate text.
+#' \link[graphics:par]{graphical parameters} include `srt` to rotate text.
 #'
 #' @examples
 #' coords <- list(

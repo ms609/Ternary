@@ -57,7 +57,7 @@ ratio and annual \emph{prec}ipitation (in mm).}
 \item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
 If using \code{TernaryText()}, this will likely include the parameter \code{labels},
 to specify the text to plot. Other useful
-\link[graphics::par]{graphical parameters} include \code{srt} to rotate text.}
+\link[graphics:par]{graphical parameters} include \code{srt} to rotate text.}
 
 \item{fromCoordinates, toCoordinates}{For \code{TernaryArrows()}, coordinates at
 which arrows should begin and end; \emph{cf.} \code{x0}, \code{y0}, \code{x1} and \code{y1} in
@@ -73,32 +73,32 @@ or a Holdridge plot created with \code{\link[=HoldridgePlot]{HoldridgePlot()}}.
 }
 \section{Functions}{
 \itemize{
-\item \code{HoldridgeArrows}: Add  \link[graphics]{arrows} to Holdridge plot
+\item \code{HoldridgeArrows()}: Add  \link[graphics]{arrows} to Holdridge plot
 
-\item \code{HoldridgeLines}: Add \link[graphics]{lines} to Holdridge plot
+\item \code{HoldridgeLines()}: Add \link[graphics]{lines} to Holdridge plot
 
-\item \code{HoldridgePoints}: Add \link[graphics]{points} to Holdridge plot
+\item \code{HoldridgePoints()}: Add \link[graphics]{points} to Holdridge plot
 
-\item \code{HoldridgePolygon}: Add \link[graphics:polygon]{polygons} to Holdridge
+\item \code{HoldridgePolygon()}: Add \link[graphics:polygon]{polygons} to Holdridge
 plot
 
-\item \code{HoldridgeText}: Add \link[graphics]{text} to Holdridge plot
+\item \code{HoldridgeText()}: Add \link[graphics]{text} to Holdridge plot
 
-\item \code{TernarySegments}: Add \link[graphics]{segments}
+\item \code{TernarySegments()}: Add \link[graphics]{segments}
 
-\item \code{TernaryArrows}: Add  \link[graphics]{arrows}
+\item \code{TernaryArrows()}: Add  \link[graphics]{arrows}
 
-\item \code{TernaryLines}: Add \link[graphics]{lines}
+\item \code{TernaryLines()}: Add \link[graphics]{lines}
 
-\item \code{TernaryPoints}: Add \link[graphics]{points}
+\item \code{TernaryPoints()}: Add \link[graphics]{points}
 
-\item \code{TernaryPolygon}: Add \link[graphics:polygon]{polygons}
+\item \code{TernaryPolygon()}: Add \link[graphics:polygon]{polygons}
 
-\item \code{TernaryText}: Add \link[graphics]{text}
+\item \code{TernaryText()}: Add \link[graphics]{text}
 
-\item \code{JoinTheDots}: Add points, joined by lines
+\item \code{JoinTheDots()}: Add points, joined by lines
+
 }}
-
 \examples{
 coords <- list(
   A = c(1, 0, 2),
