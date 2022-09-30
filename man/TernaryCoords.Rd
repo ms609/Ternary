@@ -70,7 +70,6 @@ TernaryCoords(c(0, 100, 0))
 
 coords <- matrix(1:12, nrow = 3)
 TernaryToXY(coords)
-
 }
 \seealso{
 \itemize{

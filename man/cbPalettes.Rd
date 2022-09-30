@@ -39,16 +39,15 @@ respectively, in individuals with tritanopia, \code{cbPalette13} omits these
 colours (i.e. \code{cbPalette13 <- cbPalette15[-c(4, 7)]}).
 }
 \examples{
-data('cbPalette8')
+data("cbPalette8")
 plot.new()
 plot.window(xlim = c(1, 16), ylim = c(0, 3))
 text(1:8 * 2, 3, 1:8, col = cbPalette8)
 points(1:8 * 2, rep(2, 8), col = cbPalette8, pch = 15)
 
-data('cbPalette15')
+data("cbPalette15")
 text(1:15, 1, col = cbPalette15)
-text(c(4, 7), 1, '[   ]')
+text(c(4, 7), 1, "[   ]")
 points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
-
 }
 \keyword{datasets}

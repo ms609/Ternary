@@ -26,14 +26,13 @@ a plotted ternary diagram.
 \examples{
 
 TernaryPlot()
-points(0.5, 0.5, col = 'darkgreen')
+points(0.5, 0.5, col = "darkgreen")
 OutsidePlot(0.5, 0.5)
- 
-points(0.1, 0.5, col = 'red')
+
+points(0.1, 0.5, col = "red")
 OutsidePlot(0.1, 0.5)
 
-OutsidePlot(c(0.5, 0.1), 0.5) 
-
+OutsidePlot(c(0.5, 0.1), 0.5)
 }
 \seealso{
 Other plot limits: 

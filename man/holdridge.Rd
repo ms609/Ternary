@@ -15,7 +15,7 @@ A stratified random sampling (average of 100 points) using
 a global mapping of Holdridge’s scheme.
 }
 \examples{
-data('holdridge', package = 'Ternary')
+data("holdridge", package = "Ternary")
 head(holdridge)
 }
 \seealso{
