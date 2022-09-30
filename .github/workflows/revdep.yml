@@ -5,13 +5,18 @@ on:
       - master
     paths-ignore:
       - "Meta**"
-      - "memcheck**"
+      - "data-raw**"
       - "docs**"
+      - "inst**"
+      - "man**"
+      - "memcheck**"
+      - "tests**"
+      - "vignettes**"
       - "**.git"
       - "**.json"
       - "**.md"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**revdepcheck.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
   pull_request:
@@ -21,14 +26,20 @@ on:
     paths-ignore:
       - "Meta**"
       - "memcheck**"
+      - "data-raw**"
       - "docs**"
+      - "inst**"
+      - "man**"
+      - "tests**"
+      - "vignettes**"
       - "**.git"
       - "**.json"
       - "**.md"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**revdepcheck.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
+
 
 name: revdep-check
 
