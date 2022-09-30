@@ -4,10 +4,10 @@ test_that("Polygon geometry", {
   y <- c(-2, 4, 1, 10, 9)
   expect_equal(PolygonArea(x, y), 60)
   expect_equal(PolygonArea(rev(x), rev(y)), 60) # not -60
-  
+
   expect_equal(xy.coords(PolygonCentre(x, y))$x, 1.1 / 3)
   expect_equal(xy.coords(PolygonCenter(x, y))$y, 16.6 / 3)
-  
+
   expect_equal(GrowPolygon(x, y, 0), xy.coords(x, y))
   expect_equal(GrowPolygon(c(-1, 3, 3, -1),
                            c(-1, -1, 3, 3),
@@ -16,8 +16,8 @@ test_that("Polygon geometry", {
                     y = c(-2, -2, 4, 4),
                     xlab = NULL, ylab = NULL)
   )
-                           
-  
+
+
   # From https://stackoverflow.com/questions/52244519
   # Note anti-clockwise specification & repeated final point
   dfr <- data.frame(x = c(2, 2.5, 4, 5, 4.5, 3, 2),
@@ -25,6 +25,4 @@ test_that("Polygon geometry", {
   expect_equal(-PolygonArea(dfr), PolygonArea(dfr, positive = FALSE))
   cent <- PolygonCentre(dfr)
   expect_equal(point.in.polygon(cent[, "x"], cent[, "y"], dfr$x, dfr$y), 1L)
-  
 })
-  

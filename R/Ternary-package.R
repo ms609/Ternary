@@ -1,6 +1,6 @@
 #' The 'Ternary' package allows the creation of ternary plots
-#' (a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti diagrams)
-#' using the familiar functions of the default 'graphics' package.
+#' (a.k.a. ternary graphs / simplex plots / Gibbs triangles / de Finetti
+#' diagrams) using the familiar functions of the default 'graphics' package.
 #'
 #' For simple use cases, generate ternary plots using the point-and-click
 #' Shiny app:

@@ -70,8 +70,8 @@ TernaryApp <- function() {
   if (system.file("TernaryApp", "app.R", package = "Ternary") == "") {
     warning(
       "App not installed. To install locally:\r\n - Download ",
-      "https://github.com/ms609/TernaryApp/archive/refs/heads/master.zip\r\n - ",
-      "Unzip contents to ", appDir
+      "https://github.com/ms609/TernaryApp/archive/refs/heads/master.zip\r\n",
+      " - Unzip contents to ", appDir
     )
     shiny::runGitHub("ms609/TernaryApp")
   } else {

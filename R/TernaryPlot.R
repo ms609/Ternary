@@ -25,11 +25,12 @@
 #' default), each axis runs from zero to its maximum value in a clockwise
 #' direction around the plot.
 #'
-#' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and maximum
-#'  _x_ and _y_ limits of the plotted area, to which \code{padding} will be added.
+#' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and
+#'  maximum  _x_ and _y_ limits of the plotted area, to which `padding` will be
+#'  added.
 #'  The default is to display the complete height or width of the plot.
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
-#'  May be overridden if `isometric=TRUE`; see documentation of
+#'  May be overridden if `isometric = TRUE`; see documentation of
 #'  `isometric` parameter.
 #'
 #' @param lab.cex,tip.cex Numeric specifying character expansion (font size)
@@ -52,9 +53,10 @@
 #'  If both `xlim` and `ylim` are set, but have different ranges, then the limit
 #'  with the smaller range will be scaled until its range matches that of the
 #'  other limit.
-#' @param padding Numeric specifying size of internal margin of the plot; increase
-#'  if axis labels are being clipped.
-#' @param col The colour for filling the plot; see \code{\link[graphics]{polygon}}.
+#' @param padding Numeric specifying size of internal margin of the plot;
+#'  increase if axis labels are being clipped.
+#' @param col The colour for filling the plot; see
+#' \code{\link[graphics]{polygon}}.
 #'
 #' @param panel.first An expression to be evaluated after the plot axes are
 #' set up but before any plotting takes place.
@@ -114,8 +116,8 @@
 #'
 #' @seealso
 #'  - [`AddToTernary()`]: Add elements to a ternary plot
-#'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian (_x_ and _y_)
-#'      coordinates
+#'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian
+#'    (_x_ and _y_) coordinates
 #'  - [`TernaryXRange()`], [`TernaryYRange()`]: What are the _x_ and _y_ limits
 #'      of the plotted region?
 #'
@@ -246,7 +248,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
   .TitleCorners()
 
   # Return:
-  return <- tern
+  invisible(tern)
 }
 
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
@@ -293,7 +295,7 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
   })
 
   # Return:
-  return <- NULL
+  invisible(NULL)
 }
 
 #' Add elements to ternary or Holdridge plot
@@ -311,7 +313,7 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' \link[graphics]{arrows}.  Recycled as necessary.
 #' @param \dots Additional parameters to pass to `PlottingFunction()`.
 #' If using `TernaryText()`, this will likely include the parameter `labels`,
-#' to specify the text to plot. Other useful 
+#' to specify the text to plot. Other useful
 #' \link[graphics:par]{graphical parameters} include `srt` to rotate text.
 #'
 #' @examples

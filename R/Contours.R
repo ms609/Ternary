@@ -3,8 +3,8 @@
 #' Intended to facilitate coloured contour plots with [`ColourTernary()`],
 #' `TernaryPointValue()` evaluates a function at points on a triangular grid;
 #' `TernaryDensity()` calculates the density of points in each grid cell.
-#' 
-#' 
+#'
+#'
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
@@ -93,7 +93,7 @@ TriangleCentres <- function (resolution = 48L,
     triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
     upY <- seq(from = triangleHeight / 3,
                to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
-    x <- unlist(lapply(seq_len(resolution), function (yStep) {
+    x <- unlist(lapply(seq_len(resolution), function(yStep) {
       upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
       downX <- if (yStep == resolution) integer(0) else 
         triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
@@ -108,7 +108,7 @@ TriangleCentres <- function (resolution = 48L,
     triX <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
     upY <- seq(from = 0 - (2 * triangleHeight / 3),
                to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
-    x <- unlist(lapply(seq_len(resolution), function (yStep) {
+    x <- unlist(lapply(seq_len(resolution), function(yStep) {
       upX <- triX[seq(from = yStep, to = (2L * resolution) - yStep, by = 2L)]
       downX <- if (yStep == resolution) integer(0) else 
         triX[seq(from=yStep + 1, to = (2L * resolution) - yStep - 1, by = 2L)]
@@ -123,7 +123,7 @@ TriangleCentres <- function (resolution = 48L,
     rightX <- seq(from = triangleHeight / 3,
                   to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
     triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
-    y <- unlist(lapply(seq_len(resolution), function (xStep) {
+    y <- unlist(lapply(seq_len(resolution), function(xStep) {
       rightY <- triY[seq(from = xStep, to = (2L * resolution) - xStep, by = 2L)]
       leftY  <- if (xStep == resolution) integer(0) else 
         triY[seq(from=xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
@@ -138,10 +138,10 @@ TriangleCentres <- function (resolution = 48L,
     rightX <- seq(from = 0 - (2 * triangleHeight / 3),
                   to = - sqrt(0.75) + triangleHeight / 3, length.out = resolution)
     triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
-    y <- unlist(lapply(seq_len(resolution), function (xStep) {
+    y <- unlist(lapply(seq_len(resolution), function(xStep) {
       rightY <- triY[seq(from = xStep, to = (2L * resolution) - xStep, by = 2L)]
       leftY  <- if (xStep == resolution) integer(0) else 
-        triY[seq(from=xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
+        triY[seq(from = xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
       c(rbind(rightY, c(leftY, NA)))[-((resolution - xStep + 1) * 2L)]
     }))
     x <- rep(rightX[seq_len(resolution)], trianglesInRow)
@@ -258,14 +258,14 @@ TernaryDensity <- function (coordinates, resolution = 48L,
     {if (abc[2] == 0) sum(theseEdges[2, ] == 0) else 0L} +
     {if (abc[3] == 0) sum(theseEdges[3, ] == 0) else 0L}
   }
-  OnDownEdge <- function (abc) {
+  OnDownEdge <- function(abc) {
     sum(
       apply(edges, 2, AllEqual, abc + c(0.5, 0.5, 1.0)),
       apply(edges, 2, AllEqual, abc + c(0.5, 1.0, 0.5)),
       apply(edges, 2, AllEqual, abc + c(1.0, 0.5, 0.5))
     )
   }
-  OnUpVertex <- function (abc) {
+  OnUpVertex <- function(abc) {
     onThisTriangle <-
       apply(vertices, 2, AllEqual, abc + c(1L, 0L, 0L)) |
       apply(vertices, 2, AllEqual, abc + c(0L, 1L, 0L)) |
@@ -275,7 +275,7 @@ TernaryDensity <- function (coordinates, resolution = 48L,
         2L * vertexOnEdge[onThisTriangle], # 2 for each point on a vertex on edge of plot, 
         6L * vertexOnCorner[onThisTriangle])# 6 for each point on outer vertex of plot
   }
-  OnDownVertex <- function (abc) {
+  OnDownVertex <- function(abc) {
     onThisTriangle <-
       apply(vertices, 2, AllEqual, abc + c(1L, 1L, 0L)) |
       apply(vertices, 2, AllEqual, abc + c(1L, 0L, 1L)) |

@@ -207,8 +207,10 @@ test_that("Errors are handled", {
 })
 
 test_that("TriangleInHull()", {
-  expect_error(TriangleInHull(coord = 1:5),
-               "`coordinates` must be a matrix with two \\(xy\\) or three \\(abc\\) rows")
+  expect_error(
+    TriangleInHull(coord = 1:5),
+    "`coordinates` must be a matrix with two \\(xy\\) or three \\(abc\\) rows"
+  )
   # From example
   set.seed(0)
   nPts <- 50
@@ -217,7 +219,7 @@ test_that("TriangleInHull()", {
   c <- 1 - a - b
   coordinates <- rbind(a, b, c)
   triangles <- TriangleCentres(resolution = 5)
-  
+
   # Coordinate transform resilience
   fromABC <- TriangleInHull(triangles, coordinates)
   fromXY <- TriangleInHull(triangles, TernaryToXY(coordinates))
