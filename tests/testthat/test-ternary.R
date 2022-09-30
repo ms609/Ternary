@@ -174,7 +174,7 @@ test_that("Vignette plots are rendered correctly", {
       alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u2192",
       lab.col = c("red", "green", "blue"),
       point = "right", lab.cex = 0.8, grid.minor.lines = 0,
-      grid.lty = "solid", col = rgb(0.9, 0.9, 0.9), grid.col = "white",
+      grid.lty = "solid", grid.col = "white",
       axis.col = rgb(0.6, 0.6, 0.6), ticks.col = rgb(0.6, 0.6, 0.6),
       padding = 0.08
     )
@@ -213,6 +213,7 @@ test_that("Vignette plots are rendered correctly", {
       grid.lines = 5, grid.lty = "dotted",
       grid.minor.lines = 1, grid.minor.lty = "dotted",
       btip.rotate = 330, ctip.rotate = 30,
+      col = rgb(0.9, 0.9, 0.9, alpha = 0.2),
       point = "West"
     )
     HorizontalGrid()
