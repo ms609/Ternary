@@ -185,10 +185,13 @@ TernaryXRange <- function(direction = getOption("ternDirection", 1L)) {
   }
 }
 
-#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
+#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a
+#' ternary plot in the specified direction.
 #' @export
 TernaryYRange <- function(direction = getOption("ternDirection", 1L)) {
-  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (is.na(direction) || !(direction %in% 1:4)) {
+    stop("Invalid ternary orientation")
+  }
   if (direction == 1L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
   } else if (direction == 3L) {
@@ -267,25 +270,21 @@ ReflectedEquivalents <- function(x, y,
   switch(direction,
     {
       # 1L
-      corners <- matrix(c(0, cos(pi / 6), 0.5, 0, -0.5, 0), nrow = 2)
       edgeM <- tan(pi / 3) * rep(c(1, -1, 0), 2)
       edgeC <- cos(pi / 6) * c(1, 1, 0, -1, -1, 1)
     },
     {
       # 2L
-      corners <- matrix(c(cos(pi / 6), 0, 0, -0.5, 0, 0.5), nrow = 2)
       edgeM <- tan(pi / 6) * rep(c(-1, 1, Inf), 2)
       edgeC <- 0.5 * c(1, -1, 0, -1, 1, 2 * cos(pi / 6))
     },
     {
       # 3L
-      corners <- matrix(c(0, -cos(pi / 6), -0.5, 0, 0.5, 0), nrow = 2)
       edgeM <- tan(pi / 3) * rep(c(1, -1, 0), 2)
       edgeC <- cos(pi / 6) * c(-1, -1, 0, 1, 1, -1)
     },
     {
       # 4L
-      corners <- matrix(c(-cos(pi / 6), 0, 0, 0.5, 0, -0.5), nrow = 2)
       edgeM <- tan(pi / 6) * rep(c(1, -1, Inf), 2)
       edgeC <- 0.5 * c(1, -1, 0, -1, 1, -2 * cos(pi / 6))
     }
@@ -297,7 +296,8 @@ ReflectedEquivalents <- function(x, y,
     ret <- cbind(d + d - xi, 2 * d * m - yi + c + c)
     infiniteM <- !is.finite(m)
     if (any(infiniteM)) {
-      altRet <- cbind(c + c - xi, rep(yi, length.out = max(length(c), length(xi))))
+      altRet <- cbind(c + c - xi,
+                      rep(yi, length.out = max(length(c), length(xi))))
       ret[infiniteM, ] <- altRet[infiniteM, ]
     }
     ret

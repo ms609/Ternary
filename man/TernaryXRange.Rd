@@ -26,7 +26,8 @@ X and Y coordinates of ternary plotting area
 }
 \section{Functions}{
 \itemize{
-\item \code{TernaryYRange()}: Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
+\item \code{TernaryYRange()}: Returns the minimum and maximum Y coordinate for a
+ternary plot in the specified direction.
 
 }}
 \seealso{

@@ -99,11 +99,12 @@ Use a vector of length three to specify a different offset for each label.}
 \item{lab.col}{Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
-\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and
+maximum  \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
+added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
-May be overridden if \code{isometric=TRUE}; see documentation of
+May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
@@ -128,10 +129,11 @@ degrees to rotate label of rightmost apex.}
 \item{atip.pos, btip.pos, ctip.pos}{Integer specifying positioning of labels,
 iff the corresponding \code{xlab.rotate} parameter is set.}
 
-\item{padding}{Numeric specifying size of internal margin of the plot; increase
-if axis labels are being clipped.}
+\item{padding}{Numeric specifying size of internal margin of the plot;
+increase if axis labels are being clipped.}
 
-\item{col}{The colour for filling the plot; see \code{\link[graphics]{polygon}}.}
+\item{col}{The colour for filling the plot; see
+\code{\link[graphics]{polygon}}.}
 
 \item{panel.first}{An expression to be evaluated after the plot axes are
 set up but before any plotting takes place.

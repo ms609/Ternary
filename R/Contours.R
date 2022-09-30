@@ -735,7 +735,7 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
   if (any(h <= 0))
     stop("bandwidths must be strictly positive")
   
-  switch (direction, {
+  switch(direction, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
     gy <- seq(0, sqrt(0.75), length.out = resolution)
   }, {
@@ -744,34 +744,37 @@ TernaryDensityContour <- function (coordinates, bandwidth, resolution = 25L,
   }, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
     gy <- seq(-sqrt(0.75), 0, length.out = resolution)
-  }, { 
+  }, {
     gx <- seq(-sqrt(0.75), 0, length.out = resolution)
     gy <- seq(-0.5, 0.5, length.out = resolution)
   })
-  
+
   if (edgeCorrection) {
-    KDE <- function (ix, iy) {
-      if (OutsidePlot(ix, iy, tolerance = tolerance)) NA else {
-        reflections <- ReflectedEquivalents(ix, iy, direction=direction)[[1]]
+    KDE <- function(ix, iy) {
+      if (OutsidePlot(ix, iy, tolerance = tolerance)) {
+        NA
+      } else {
+        reflections <- ReflectedEquivalents(ix, iy, direction = direction)[[1]]
         ax <- outer(c(ix, reflections[, 1]), x, "-") / h[1L]
         ay <- outer(c(iy, reflections[, 2]), y, "-") / h[2L]
-        sum(vapply(seq_len(1L + dim(reflections)[1]), function (i)
-          tcrossprod(matrix(dnorm(ax[i, ]), ncol=n), matrix(dnorm(ay[i, ]), ncol=n)),
-          double(1))) / prod(n, h)
+        sum(vapply(seq_len(1L + dim(reflections)[1]), function(i) {
+          tcrossprod(matrix(dnorm(ax[i, ]), ncol = n),
+                     matrix(dnorm(ay[i, ]), ncol = n))
+          }, double(1))) / prod(n, h)
       }
     }
-    
-    z <- matrix(mapply(KDE, gx, rep(gy, each=length(gx))), ncol=length(gx))
+
+    z <- matrix(mapply(KDE, gx, rep(gy, each = length(gx))), ncol = length(gx))
   } else {
     ax <- outer(gx, x, "-") / h[1L]
     ay <- outer(gy, y, "-") / h[2L]
     z <- tcrossprod(matrix(dnorm(ax), ncol = n),
                     matrix(dnorm(ay), ncol = n)) / prod(n, h)
-    
+
     # TODO make more efficient by doing this intelligently rather than lazily
     zOffPlot <- outer(gx, gy, OutsidePlot, tolerance = tolerance)
     z[zOffPlot] <- NA
   }
-  
-  contour(list(x = gx, y = gy, z = z), add=TRUE, ...)
+
+  contour(list(x = gx, y = gy, z = z), add = TRUE, ...)
 }

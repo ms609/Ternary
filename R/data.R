@@ -23,7 +23,8 @@
 #' text(c(4, 7), 1, "[   ]")
 #' points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
 #' @source
-#' - `cbPalette8`: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441. \doi{10.1038/nmeth.1618}}
+#' - `cbPalette8`: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441.
+#' \doi{10.1038/nmeth.1618}}
 #'
 #' - `cbPalette15`: \url{http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png}
 #'
@@ -74,7 +75,8 @@ NULL
 #'
 #' Leemans, R. (1990),
 #' "Possible change in natural vegetation patterns due to a global warming",
-#' _International Institute for Applied Systems Analysis_ Working paper WP-90-08.
+#' _International Institute for Applied Systems Analysis_ Working paper
+#' WP-90-08.
 #' \url{https://pure.iiasa.ac.at/id/eprint/3443/1/WP-90-008.pdf}
 #' @encoding UTF-8
 #' @family Holdridge plotting functions
