@@ -24,7 +24,7 @@ TernaryPointValues and TernaryContour."><!-- mathjax --><script src="https://cdn
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -85,32 +85,41 @@ TernaryPointValues and TernaryContour."><!-- mathjax --><script src="https://cdn
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">TernaryTiles</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">y</span>,
-  <span class="va">down</span>,
-  <span class="va">resolution</span>,
-  <span class="va">col</span>,
-  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">TernaryTiles</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">y</span>,</span>
+<span>  <span class="va">down</span>,</span>
+<span>  <span class="va">resolution</span>,</span>
+<span>  <span class="va">col</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x, y</dt>
 <dd><p>Numeric vectors specifying <em>x</em> and <em>y</em> coordinates of centres of each triangle.</p></dd>
+
+
 <dt>down</dt>
-<dd><p>Logical vector specifying <code>TRUE</code> if each triangle should point down (or right),
-<code>FALSE</code> otherwise.</p></dd>
+<dd><p>Logical vector specifying <code>TRUE</code> if each triangle should point
+down (or right), <code>FALSE</code> otherwise.</p></dd>
+
+
 <dt>resolution</dt>
 <dd><p>The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.</p></dd>
+
+
 <dt>col</dt>
 <dd><p>Vector specifying the colour with which to fill each triangle.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p>(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
 </dl></div>
     <div id="see-also">
     <h2>See also</h2>
@@ -125,19 +134,19 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution<span class="op">=</span><span class="fl">36L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution<span class="op">=</span><span class="fl">36L</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TernaryTiles-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -152,7 +161,7 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

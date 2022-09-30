@@ -24,7 +24,7 @@ converts to X and Y coordinates."><!-- mathjax --><script src="https://cdnjs.clo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -85,9 +85,9 @@ converts to X and Y coordinates.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">HoldridgeToXY</span><span class="op">(</span><span class="va">pet</span>, <span class="va">prec</span><span class="op">)</span>
-
-<span class="fu">CoordinatesToXY</span><span class="op">(</span><span class="va">coordinates</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">HoldridgeToXY</span><span class="op">(</span><span class="va">pet</span>, <span class="va">prec</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">CoordinatesToXY</span><span class="op">(</span><span class="va">coordinates</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -95,20 +95,25 @@ converts to X and Y coordinates.</p>
     <dl><dt>pet, prec</dt>
 <dd><p>Numeric vectors giving <em>p</em>otential <em>e</em>vapo<em>t</em>ranspiration
 ratio and annual <em>prec</em>ipitation (in mm).</p></dd>
+
+
 <dt>coordinates</dt>
 <dd><p>A list, matrix, data.frame or vector in which each
 element (or row) specifies
 the three coordinates of a point in ternary space.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>CoordinatesToXY()</code> returns an array of two rows, corresponding to
+    
+
+<p><code>CoordinatesToXY()</code> returns an array of two rows, corresponding to
 the X and Y coordinates of <code>coordinates</code>.</p>
     </div>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>HoldridgeToXY</code>: Convert from Holdridge coordinates</p></li>
+<ul><li><p><code>HoldridgeToXY()</code>: Convert from Holdridge coordinates</p></li>
 </ul></div>
     <div id="author">
     <h2>Author</h2>
@@ -128,7 +133,7 @@ the X and Y coordinates of <code>coordinates</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

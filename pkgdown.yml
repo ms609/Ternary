@@ -1,12 +1,12 @@
 pandoc: 2.14.2
-pkgdown: 2.0.3
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   Holdridge: Holdridge.html
   Ternary: Ternary.html
   interpolation: interpolation.html
   new-users: new-users.html
-last_built: 2022-05-06T14:52Z
+last_built: 2022-09-30T15:37Z
 urls:
   reference: https://ms609.github.io/Ternary/reference
   article: https://ms609.github.io/Ternary/articles

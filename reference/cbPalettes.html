@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -83,11 +83,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="va">cbPalette8</span>
-
-<span class="va">cbPalette13</span>
-
-<span class="va">cbPalette15</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">cbPalette8</span></span>
+<span></span>
+<span><span class="va">cbPalette13</span></span>
+<span></span>
+<span><span class="va">cbPalette15</span></span></code></pre></div>
     </div>
 
     <div id="format">
@@ -100,13 +100,15 @@
     <div id="source">
     <h2>Source</h2>
     
-<ul><li><p><code>cbPalette8</code>: <cite>Wong B. 2011. Color blindness. Nat. Methods. 8:441. <a href="https://doi.org/10.1038/nmeth.1618" class="external-link">doi:10.1038/nmeth.1618</a>
+<ul><li><p><code>cbPalette8</code>: <cite>Wong B. 2011. Color blindness. Nat. Methods. 8:441.
+<a href="https://doi.org/10.1038/nmeth.1618" class="external-link">doi:10.1038/nmeth.1618</a>
 </cite></p></li>
 <li><p><code>cbPalette15</code>: <a href="http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png" class="external-link">http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png</a></p></li>
 </ul></div>
     <div id="details">
     <h2>Details</h2>
-    <p><code>cbPalette15</code> is a <a href="http://mkweb.bcgsc.ca/brewer/" class="external-link">Brewer palette</a>.
+    <p>Since R 4.0, <code>cbPalette8</code> is available in base R as <code>palette.colors(8)</code>.</p>
+<p><code>cbPalette15</code> is a <a href="http://mkweb.bcgsc.ca/brewer/" class="external-link">Brewer palette</a>.
 Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 respectively, in individuals with tritanopia, <code>cbPalette13</code> omits these
 colours (i.e. <code>cbPalette13 &lt;- cbPalette15[-c(4, 7)]</code>).</p>
@@ -114,18 +116,17 @@ colours (i.e. <code>cbPalette13 &lt;- cbPalette15[-c(4, 7)]</code>).</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'cbPalette8'</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/frame.html" class="external-link">plot.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html" class="external-link">plot.window</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">16</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span> <span class="op">*</span> <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span> <span class="op">*</span> <span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">cbPalette8</span>, pch <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'cbPalette15'</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1</span>, col <span class="op">=</span> <span class="va">cbPalette15</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span>, <span class="fl">1</span>, <span class="st">'[   ]'</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">cbPalette15</span>, pch <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"cbPalette8"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/frame.html" class="external-link">plot.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.window.html" class="external-link">plot.window</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">16</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span> <span class="op">*</span> <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span> <span class="op">*</span> <span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">8</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">cbPalette8</span>, pch <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"cbPalette15"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fl">1</span>, col <span class="op">=</span> <span class="va">cbPalette15</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">7</span><span class="op">)</span>, <span class="fl">1</span>, <span class="st">"[   ]"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">15</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">15</span><span class="op">)</span>, col <span class="op">=</span> <span class="va">cbPalette15</span>, pch <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="cbPalettes-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
 </code></pre></div>
     </div>
   </div>
@@ -140,7 +141,7 @@ colours (i.e. <code>cbPalette13 &lt;- cbPalette15[-c(4, 7)]</code>).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
