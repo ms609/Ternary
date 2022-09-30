@@ -45,13 +45,13 @@
                            tip.font,
                            xlim, ylim,
                            ...) {
-  direction <- 1L + (pmatch(tolower(point), c('right', 'down', 'left', 'up',
-                                              'east', 'south', 'west', 'north',
+  direction <- 1L + (pmatch(tolower(point), c("right", "down", "left", "up",
+                                              "east", "south", "west", "north",
                                               2L, 3L, 4L, 1L)) %% 4L)
   if (is.na(direction)) {
     stop("`point` must be one of up, down, left or right")
   } else {
-    options('ternDirection' = direction)
+    options("ternDirection" = direction)
   }
   
   axis.rotate <- .Triplicate(axis.rotate)
@@ -73,11 +73,11 @@
       if (abs(xRange) < abs(yRange)) {
         xlim <- xlim * (yRange / xRange)
         warning("x range < y range, but isometric = TRUE; setting xlim = c(", 
-                xlim[1], ', ', xlim[2], ")")
+                xlim[1], ", ", xlim[2], ")")
       } else {
         ylim <- ylim * (xRange / yRange)
         warning("x range > y range, but isometric = TRUE; setting ylim = c(", 
-                ylim[1], ', ', ylim[2], ")")
+                ylim[1], ", ", ylim[2], ")")
       }
     }
   }
@@ -197,6 +197,8 @@
     axis.rotate = axis.rotate,
     axis.tick = axis.tick,
     
+    col = col,
+    
     direction = direction,
     
     lab.col = .Triplicate(lab.col),
@@ -233,5 +235,5 @@
     xlim = xlim,
     
     ylim = ylim,
-    ...), class = 'TernaryPlot')
+    ...), class = "TernaryPlot")
 }
