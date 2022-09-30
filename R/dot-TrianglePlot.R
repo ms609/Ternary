@@ -141,18 +141,15 @@
   axisMult <- ifelse(ticks.incline,
     switch(direction, c(5, 5, 16), c(16, 9, 8), c(10, 8, 16), c(12, 9, 8)) / 10,
     switch(direction, c(5, 4, 8), c(4, 6, 4), c(4, 4, 7), c(5, 7, 3)) / 5)
-  
-  .DirectionalOffset <- function (degrees) {
-    c(sin(degrees * pi / 180), cos(degrees * pi/ 180))
-  }
-  
-  
+
+
   if (is.null(atip.rotate)) {
-    atip.rotate <- switch(direction, 0, 30, 0, ifelse(ticks.incline[1], 330, 30))
+    atip.rotate <- switch(direction, 0, 30, 0,
+                          ifelse(ticks.incline[1], 330, 30))
     atip.pos <- ifelse(ticks.incline[1],
                        switch(direction, 2, 2, 4, 4),
                        switch(direction, 4, 2, 2, 4))
- 
+
   }
   if (is.null(btip.rotate)) {
     btip.rotate <- switch(direction, 0, 0, 0, 0)
@@ -162,8 +159,8 @@
     ctip.rotate <- switch(direction, 0, 0, 0, 0)
     ctip.pos <- switch(direction, 4, 4, 2, 2)
   }
-  
-  
+
+
   # Return:
   structure(list(
     alab = alab,
@@ -178,17 +175,17 @@
     atip.rotate = atip.rotate,
     btip.rotate = btip.rotate,
     ctip.rotate = ctip.rotate,
-    
+
     axes = axes,
     axesX = axes[1, ],
     axesY = axes[2, ],
-    
+
     axisDegrees = axisDegrees,
     axisMult = axisMult,
     axisPosition = axisPosition,
     axisRadians = axisDegrees * pi / 180,
     axisRotation = axisRotation,
-    
+
     axis.col = .Triplicate(axis.col),
     axis.cex = .Triplicate(axis.cex),
     axis.font = .Triplicate(axis.font),
@@ -198,20 +195,20 @@
     axis.pos = axis.pos,
     axis.rotate = axis.rotate,
     axis.tick = axis.tick,
-    
+
     col = col,
-    
+
     direction = direction,
-    
+
     lab.col = .Triplicate(lab.col),
     lab.cex = .Triplicate(lab.cex),
     lab.font = .Triplicate(lab.font),
     lab.offset = .Triplicate(lab.offset),
-    
-    
+
+
     gridExists = .GridExists(grid.lines),
     gridPoints = seq(from = 0, to = 1, length.out = grid.lines + 1L),
-    
+
     grid.lines = .ValidateGridLines(grid.lines),
     grid.col = .Triplicate(grid.col),
     grid.lwd = .Triplicate(grid.lwd),
@@ -220,22 +217,22 @@
     grid.minor.col = .Triplicate(grid.minor.col),
     grid.minor.lty = .Triplicate(grid.minor.lty),
     grid.minor.lwd = .Triplicate(grid.minor.lwd),
-    
+
     padding = padding,
-    
+
     sideOrder = sideOrder,
-    
+
     ticks.col = .Triplicate(ticks.col),
     ticks.incline = ticks.incline,
     ticks.length = .Triplicate(ticks.length),
     ticks.lwd = .Triplicate(ticks.lwd),
-    
+
     tip.col = .Triplicate(tip.col),
     tip.cex = .Triplicate(tip.cex),
     tip.font = .Triplicate(tip.font),
-    
+
     xlim = xlim,
-    
+
     ylim = ylim,
     ...), class = "TernaryPlot")
 }

@@ -284,9 +284,15 @@
   cy <- c(-4, 2, 4, -2)[direction] * len[3]
 
   # Title corners
-  .TitleCorner(1, tern, ax, ay, tern$atip, tern$atip.pos, srt = tern$atip.rotate)
-  .TitleCorner(2, tern, bx, by, tern$btip, tern$btip.pos, srt = tern$btip.rotate)
-  .TitleCorner(3, tern, cx, cy, tern$ctip, tern$ctip.pos, srt = tern$ctip.rotate)
+  .TitleCorner(
+    1, tern, ax, ay, tern$atip, tern$atip.pos, srt = tern$atip.rotate
+  )
+  .TitleCorner(
+    2, tern, bx, by, tern$btip, tern$btip.pos, srt = tern$btip.rotate
+  )
+  .TitleCorner(
+    3, tern, cx, cy, tern$ctip, tern$ctip.pos, srt = tern$ctip.rotate
+  )
 }
 
 .TitleCorner <- function(side, tern, x, y, tip, pos, srt) {

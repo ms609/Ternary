@@ -29,7 +29,7 @@
 #'
 #' Holdridge (1967), _[Life zone ecology]_.
 #' Tropical Science Center, San Jos&eacute;
-#' 
+#'
 #' [Life zone ecology]: https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf
 #'
 #' @encoding UTF-8
@@ -420,7 +420,9 @@ HoldridgeToXY <- function(pet, prec) {
 
   plottable <- is.finite(pet08) & is.finite(prec08)
 
-  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08)[, plottable, drop = FALSE])
+  TernaryCoords(
+    rbind(8 - pet08 - prec08, prec08, pet08)[, plottable, drop = FALSE]
+  )
 }
 
 

@@ -1,9 +1,9 @@
 #' Polygon geometry
-#' 
+#'
 #' Geometry functions for irregular polygons.
 #'
 #' @param x,y Vectors containing the coordinates of the vertices of the polygon.
-#' @examples 
+#' @examples
 #' x <- c(-3, -1, 6, 3, -4)
 #' y <- c(-2, 4, 1, 10, 9)
 #' plot(x, y, frame.plot = FALSE)
@@ -19,7 +19,7 @@ NULL
 #' the polygon will be treated as a hole, with a negative area, unless
 #' `positive` is set to TRUE.
 #' Vertices specified in a clockwise sequence always yield a positive area.
-#' 
+#'
 #' @return `PolygonArea()` returns the area of the specified polygon.
 #' @examples
 #' PolygonArea(x, y)
@@ -29,7 +29,7 @@ PolygonArea <- function(x, y = NULL, positive = TRUE) {
   x <- c(xy$x, xy$x[1])
   y <- c(xy$y, xy$y[1])
   area <- (sum((xy$x * y[-1])) - sum((xy$y * x[-1]))) / 2
-  
+
   # Return:
   if (isTRUE(positive)) {
     abs(area)
@@ -48,14 +48,13 @@ PolygonArea <- function(x, y = NULL, positive = TRUE) {
 PolygonCentre <- function(x, y = NULL) {
   xy <- xy.coords(x, y)
   area <- PolygonArea(xy, positive = FALSE)
-  
-  n <- length(xy$x)
+
   x <- xy$x
   x1 <- c(x[-1], x[1])
   y <- xy$y
   y1 <- c(y[-1], y[1])
   prod <- (x * y1) - (x1 * y)
-  
+
   cbind(x = sum((x + x1) * prod),
         y = sum((y + y1) * prod)) / (6 * area)
 }
@@ -66,7 +65,7 @@ PolygonCenter <- PolygonCentre
 
 
 #' @describeIn Polygon-Geometry Enlarge a polygon in all directions
-#' 
+#'
 #' @param buffer Numeric specifying distance by which to grow polygon.
 #' @return `GrowPolygon()` returns coordinates of the vertices of `polygon`
 #' after moving each vertex `buffer` away from the polygon's centre.
@@ -75,23 +74,23 @@ PolygonCenter <- PolygonCentre
 #' polygon(GrowPolygon(x, y, 1), border = "darkgreen",
 #'         xpd = NA # Allow drawing beyond plot border
 #'        )
-#' 
+#'
 #' # Negative values shrink the polygon
 #' polygon(GrowPolygon(x, y, -1), border = "red")
 #' @export
 GrowPolygon <- function(x, y = NULL, buffer = 0) {
   xy <- xy.coords(x, y)
   cent <- PolygonCentre(x, y)
-  
+
   x0 <- xy$x - cent[, "x"]
   y0 <- xy$y - cent[, "y"]
   hyp <- sqrt((x0 * x0) + (y0 * y0))
   stretch <- (hyp + buffer) / hyp
   x1 <- x0 * stretch
   y1 <- y0 * stretch
-  
+
   xy$x <- x1 + cent[, "x"]
   xy$y <- y1 + cent[, "y"]
-  
+
   xy
 }
