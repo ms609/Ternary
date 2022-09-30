@@ -2,6 +2,8 @@
 #'
 #' Colour palettes recommended for use with colour blind audiences.
 #'
+#' Since R 4.0, `cbPalette8` is available in base R as `palette.colors(8)`.
+#'
 #' `cbPalette15` is a [Brewer palette](http://mkweb.bcgsc.ca/brewer/).
 #' Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 #' respectively, in individuals with tritanopia, `cbPalette13` omits these

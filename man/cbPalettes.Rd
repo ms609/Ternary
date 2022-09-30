@@ -33,6 +33,8 @@ cbPalette15
 Colour palettes recommended for use with colour blind audiences.
 }
 \details{
+Since R 4.0, \code{cbPalette8} is available in base R as \code{palette.colors(8)}.
+
 \code{cbPalette15} is a \href{http://mkweb.bcgsc.ca/brewer/}{Brewer palette}.
 Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 respectively, in individuals with tritanopia, \code{cbPalette13} omits these
