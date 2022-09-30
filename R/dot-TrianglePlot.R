@@ -2,7 +2,9 @@
 
 .ValidateGridLines <- function (grid.lines) {
   if (!is.integer(grid.lines)) {
-    grid.lines <- ceiling(grid.lines)
+    ceiling(grid.lines)
+  } else {
+    grid.lines
   }
 }
 

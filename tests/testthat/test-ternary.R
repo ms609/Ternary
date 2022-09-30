@@ -210,9 +210,9 @@ test_that("Vignette plots are rendered correctly", {
     )
 
     TernaryPlot("Steam", "Ice", "Water",
-      grid.lines = 5, grid.lty = "dotted",
-      grid.minor.lines = 1, grid.minor.lty = "dotted",
-      btip.rotate = 330, ctip.rotate = 30,
+      grid.lines = 5L, grid.lty = "dotted",
+      grid.minor.lines = 1L, grid.minor.lty = "dotted",
+      btip.rotate = 330L, ctip.rotate = 30L,
       col = rgb(0.9, 0.9, 0.9, alpha = 0.2),
       point = "West"
     )
