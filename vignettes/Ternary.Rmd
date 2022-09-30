@@ -180,10 +180,10 @@ TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
               pch = 16
               )
 
-legend("topleft", col = dat_col, pch = 16, 
+legend("topleft", col = dat_col, pch = 16,
        legend = paste(binnedReflectance, "%"),
        title = "Reflectance", bty = "n", cex = 0.8)
-       
+
 legend("topright", pt.cex = dat_cex, pch = 16,
        legend = paste(binnedSize, "\u03bcm"),
        title = "Grain size", bty = "n", cex = 0.8)
@@ -203,9 +203,9 @@ par(mar = rep(0, 4)) # Reduce margins
 TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
 cat("Y range in this orientation:", TernaryYRange())
-arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3)/2, y1 = 0.4, length = 0.1,
+arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3) / 2, y1 = 0.4, length = 0.1,
        col = cbPalette8[2])
-text(x = mean(c(0.5, sqrt(3)/2)), y = 0.4, "Increasing X", pos = 3,
+text(x = mean(c(0.5, sqrt(3) / 2)), y = 0.4, "Increasing X", pos = 3,
      col = cbPalette8[2])
 text(x = 0.5, y = 0, "(0.5, 0)", col = cbPalette8[3])
 text(x = 0.8, y = -0.5, "(0.8, -0.5)", col = cbPalette8[3])
@@ -222,7 +222,7 @@ A plot can be coloured and contoured according to the output of a mathematical e
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 
-FunctionToContour <- function (a, b, c) {
+FunctionToContour <- function(a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
@@ -298,7 +298,7 @@ ColourTernary(values)
 TernaryPoints(coordinates, col = "red")
 text(values[1, ], values[2, ], paste(values[3, ], "/ 6"), cex = 0.8)
 
-TernaryDensityContour(t(vapply(coordinates, I, double(3L))), 
+TernaryDensityContour(t(vapply(coordinates, I, double(3L))),
                       resolution = 24L, tolerance = -0.02, col = "orange")
 
 
