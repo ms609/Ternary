@@ -1,5 +1,6 @@
-holdridge <- read.csv(system.file('data-raw', 'Holdridge_data.csv',
-                                  package = 'Ternary'), row.names = 1)
+holdridge <- read.csv(system.file("data-raw", "Holdridge_data.csv",
+  package = "Ternary"
+), row.names = 1)
 usethis::use_data(holdridge, overwrite = TRUE)
 
 holdridgeClasses <- c(
@@ -47,12 +48,14 @@ usethis::use_data(holdridgeClasses, overwrite = TRUE)
 holdridgeClassesUp <- gsub(" ", "\n", holdridgeClasses, fixed = TRUE)
 usethis::use_data(holdridgeClassesUp, overwrite = TRUE)
 
-holdridgeLifeZones <- c(rep('Polar', 3),
-                        paste(c('Dry', 'Moist', 'Wet', 'Rain'), 'tundra'),
-                        'Desert', 'Dry bush', 'Moist furest', 'Wet forest', 'Rain forest',
-                        'Desert', 'Desert scrub', 'Steppe', 'Moist forest', 'Wet forest', 'Rain forest',
-                        'Desert', 'Desert scrub', 'Thorn steppe', 'Dry forest', 'Moist forest', 'Wet forest', 'Rain forest',
-                        'Desert', 'Desert scrub', 'Thorn woodland', 'Very dry forest', 'Dry forest', 'Moist forest', 'Wet forest', 'Rain forest')
+holdridgeLifeZones <- c(
+  rep("Polar", 3),
+  paste(c("Dry", "Moist", "Wet", "Rain"), "tundra"),
+  "Desert", "Dry bush", "Moist furest", "Wet forest", "Rain forest",
+  "Desert", "Desert scrub", "Steppe", "Moist forest", "Wet forest", "Rain forest",
+  "Desert", "Desert scrub", "Thorn steppe", "Dry forest", "Moist forest", "Wet forest", "Rain forest",
+  "Desert", "Desert scrub", "Thorn woodland", "Very dry forest", "Dry forest", "Moist forest", "Wet forest", "Rain forest"
+)
 usethis::use_data(holdridgeLifeZones, overwrite = TRUE)
 
 holdridgeLifeZonesUp <- gsub(" ", "\n", holdridgeLifeZones, fixed = TRUE)
