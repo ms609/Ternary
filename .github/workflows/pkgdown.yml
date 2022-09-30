@@ -10,6 +10,7 @@ on:
       - 'inst/CITATION'
       - 'inst/*.bib'
       - 'man/**.R'
+      - 'man-roxygen/**.R'
       - 'vignettes/**.Rmd'
 
 name: pkgdown
