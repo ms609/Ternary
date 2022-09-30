@@ -4,8 +4,14 @@ test_that("Errors are handled gracefully", {
   expect_error(TernaryPlot(point = "nowhere"))
   expect_error(TernaryPoints(rep(1, 5)))
   expect_error(HorizontalGrid(direction = 5))
-  expect_warning(TernaryPlot(xlim = c(0, 10), ylim = c(0, 1), isometric = TRUE))
-  expect_warning(TernaryPlot(xlim = c(0, 1), ylim = c(0, -10), isometric = TRUE))
+  expect_warning(
+    TernaryPlot(xlim = c(0, 10), ylim = c(0, 1), isometric = TRUE),
+    "x range > y range.+setting ylim"
+  )
+  expect_warning(
+    TernaryPlot(xlim = c(0, 1), ylim = c(0, -10), isometric = TRUE),
+    "x range < y range.+setting xlim"
+  )
   expect_error(CoordinatesToXY(array(1, dim = c(1, 1, 1))))
 })
 
@@ -31,7 +37,8 @@ test_that("TernaryCoords gives correct coordinates", {
   expect_equal(output, CoordinatesToXY(input))
   expect_equal(matrix(output[, 1], 2, 1), CoordinatesToXY(input[, 1]))
 
-  expect_equal(input / rep(colSums(input), each = 3), XYToTernary(output[1, ], output[2, ]))
+  expect_equal(input / rep(colSums(input), each = 3),
+               XYToTernary(output[1, ], output[2, ]))
   expect_error(TernaryCoords(rep(1, 5), 1, 1))
   expect_equal(c(0, 0.5), TernaryCoords(0, 0, 1))
 })
@@ -44,7 +51,8 @@ test_that("Ternary plotting functions", {
     TernaryText(c(1.5, 1, 1), "A")
   }
   TernaryPlotterYlim <- function() {
-    TernaryPlot("A", "B", "C", ylim = c(0, 0.82), point = 1, main = "... to plot")
+    TernaryPlot("A", "B", "C", ylim = c(0, 0.82),
+                point = 1, main = "... to plot")
     TernaryLines(list(c(1, 1, 1), c(0, 1, 2)), lwd = 2)
     TernaryArrows(c(1, 1.2, 1), c(0, 1.2, 2), lwd = 1)
     TernaryPolygon(matrix(c(
@@ -238,8 +246,10 @@ test_that("Vignette plots are rendered correctly", {
 
   Cartesian <- function() {
     TernaryPlot(point = "right")
-    arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3) / 2, y1 = 0.4, length = 0.1, col = cbPalette8[2])
-    text(x = mean(c(0.5, sqrt(3) / 2)), y = 0.4, "Increasing X", pos = 3, col = cbPalette8[2])
+    arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3) / 2, y1 = 0.4,
+           length = 0.1, col = cbPalette8[2])
+    text(x = mean(c(0.5, sqrt(3) / 2)), y = 0.4, "Increasing X",
+         pos = 3, col = cbPalette8[2])
     text(x = 0.5, y = 0, "(0.5, 0)", col = cbPalette8[3])
     text(x = 0.8, y = -0.5, "(0.8, -0.5)", col = cbPalette8[3])
   }
@@ -250,8 +260,11 @@ test_that("Vignette plots are rendered correctly", {
     TernaryPlot(xlim = c(0.28, 0.38), ylim = c(0.1, 0.2), padding = 0.04)
 
     # Annotate grid lines at user-specified points:
-    TernaryText(list(c(8, 72, 20), c(8, 82, 10)), c(20, 10), srt = -60, cex = 0.9, col = "darkgrey")
-    TernaryText(list(c(10, 69, 21), c(20, 64, 16)), c(10, 20), srt = 0, cex = 0.9, col = "darkgrey")
+    TernaryText(
+      list(c(8, 72, 20), c(8, 82, 10)),
+      c(20, 10), srt = -60, cex = 0.9, col = "darkgrey")
+    TernaryText(list(c(10, 69, 21), c(20, 64, 16)),
+                c(10, 20), srt = 0, cex = 0.9, col = "darkgrey")
 
     # Plot desired polygon
     my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
