@@ -102,11 +102,12 @@ TernaryToXY <- TernaryCoords
 #'
 #' Convert cartesian (_x_, _y_) coordinates to a point in ternary space.
 #'
-#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
+#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or
+#' points.
 #' @template directionParam
 #'
-#' @return `XYToTernary()` Returns the ternary point(s) corresponding to the specified _x_ and _y_
-#' coordinates, where a + b + c = 1.
+#' @return `XYToTernary()` Returns the ternary point(s) corresponding to the
+#' specified _x_ and _y_ coordinates, where a + b + c = 1.
 #'
 #' @examples
 #' XYToTernary(c(0.1, 0.2), 0.5)
@@ -169,13 +170,16 @@ XYToPetPrec <- XYToHoldridge
 #' oriented in the specified direction.
 #' Because the plotting area is a square, the triangle of the ternary plot
 #' will not occupy the full range in one direction.
-#' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
+#' Assumes that the defaults have not been overwritten by specifying `xlim` or
+#' `ylim`.
 #'
 #' @template MRS
 #' @family plot limits
 #' @export
 TernaryXRange <- function(direction = getOption("ternDirection", 1L)) {
-  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (is.na(direction) || !(direction %in% 1:4)) {
+    stop("Invalid ternary orientation")
+  }
   if (direction == 2L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
   } else if (direction == 4L) {
