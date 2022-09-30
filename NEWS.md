@@ -1,4 +1,4 @@
-# Ternary v2.1.0.9001
+# Ternary v2.1.1
 
 - Fix regression that caused `col` parameter to be ignored.
 - Fix failure to plot grid when `grid.lines` is integer.
