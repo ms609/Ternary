@@ -29,7 +29,8 @@ colour gradients, but at a computational cost.}
 
 \item{tolerance}{Numeric specifying how close to the margins the contours
 should be plotted, as a fraction of the size of the triangle.
-Negative values will cause contour lines to extend beyond the margins of the plot.}
+Negative values will cause contour lines to extend beyond the margins of the
+plot.}
 
 \item{edgeCorrection}{Logical specifying whether to correct for edge effects
 (see details).}
@@ -79,7 +80,7 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
 ColourTernary(TernaryDensity(coordinates, resolution = 10L))
 TernaryPoints(coordinates, col = "red", pch = ".")
 TernaryDensityContour(coordinates, resolution = 30L)
- 
+
 }
 \seealso{
 Other contour plotting functions: 

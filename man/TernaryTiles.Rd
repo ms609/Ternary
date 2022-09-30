@@ -20,8 +20,8 @@ TernaryTiles(
 \arguments{
 \item{x, y}{Numeric vectors specifying \emph{x} and \emph{y} coordinates of centres of each triangle.}
 
-\item{down}{Logical vector specifying \code{TRUE} if each triangle should point down (or right),
-\code{FALSE} otherwise.}
+\item{down}{Logical vector specifying \code{TRUE} if each triangle should point
+down (or right), \code{FALSE} otherwise.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
