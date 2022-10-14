@@ -80,6 +80,7 @@ test_that("Axes can be styled individually", {
       grid.lines = 4,
       axis.lwd = 1:3,
       axis.lty = 1:3,
+      axis.lab = list(0:4, 10:14, 20:24),
       ticks.lwd = 1:3,
       grid.col = cols,
       grid.lwd = 1:3,

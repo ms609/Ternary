@@ -158,7 +158,9 @@ Use a vector of length three to set a different value for each direction.}
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
-expression vector of labels to be placed at the tick points.}
+expression vector of labels to be placed at the tick points,
+or a list of length three, with each entry specifying labels to be placed
+on each axis in turn.}
 
 \item{axis.cex}{Numeric specifying character expansion (font size)
 for axis labels.
