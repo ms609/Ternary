@@ -167,21 +167,28 @@
         list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
         TernaryCoords, double(2)
       )
-
-      if (length(lab) > 1 || lab != FALSE) {
-        if (length(lab) == 1) {
-          lab <- round(tern$gridPoints * 100, 1)
+      
+      for (side in 1:3) {
+        sideLab <- if (is.list(lab)) {
+          lab[[side]]
+        } else {
+          lab
         }
-        if (!is.null(tern$grid.lines) &&
-          length(lab) == tern$grid.lines) {
-          lab <- c("", lab)
+        if (length(sideLab) > 1 || sideLab != FALSE) {
+          if (length(sideLab) == 1) {
+            sideLab <- round(tern$gridPoints * 100, 1)
+          }
+          if (!is.null(tern$grid.lines) &&
+            length(sideLab) == tern$grid.lines) {
+            sideLab <- c("", sideLab)
+          }
+          if (!tern$ticks.incline[1]) {
+            sideLab <- rev(sideLab)
+          }
+  
+          # Annotate axes
+          .AxisLabel(side, lineEnds, lab = sideLab[i])
         }
-        if (!tern$ticks.incline[1]) {
-          lab <- rev(lab)
-        }
-
-        # Annotate axes
-        lapply(1:3, .AxisLabel, lineEnds, lab = lab[i])
       }
     })
   }

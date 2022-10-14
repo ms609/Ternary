@@ -1,3 +1,7 @@
+# Ternary v2.1.1.9000
+
+- Support independent labelling of axes.
+
 # Ternary v2.1.1
 
 - Fix regression that caused `col` parameter to be ignored.
