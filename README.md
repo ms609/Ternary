@@ -26,8 +26,10 @@ usage instructions are available for
 (with an [introductory vignette for R beginners](https://ms609.github.io/Ternary/articles/new-users.html)), and for
 [Holdridge plots](https://ms609.github.io/Ternary/articles/Holdridge.html). 
 
-Install the development version from GitHub with 
-`devtools::install_github("ms609/Ternary", args="--recursive")`.
+Install the development version from GitHub with
+```r
+devtools::install_github("ms609/Ternary", args="--recursive")
+```
 (Requires [git](https://git-scm.com/) to be installed and added to
 your PATH system environment variable. You may also require the "curl"
 R package.)
