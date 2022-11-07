@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.2</span>
       </span>
     </div>
 
@@ -102,9 +102,10 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Create Ternary Plots in R</h1>
-                        <h4 data-toc-skip class="author">Martin R. Smith</h4>
+                        <h4 data-toc-skip class="author">Martin R.
+Smith</h4>
             
-            <h4 data-toc-skip class="date">2022-09-30</h4>
+            <h4 data-toc-skip class="date">2022-11-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/Ternary.Rmd" class="external-link"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -113,12 +114,16 @@
 
     
     
-<p>“Ternary” is an R package to allow the creation of ternary plots in the standard R graphics environment. I hope that it proves simple to use.</p>
-<p>For simple use cases, generate Ternary plots using the point-and-click Shiny app:</p>
+<p>“Ternary” is an R package to allow the creation of ternary plots in
+the standard R graphics environment. I hope that it proves simple to
+use.</p>
+<p>For simple use cases, generate Ternary plots using the
+point-and-click Shiny app:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Ternary"</span><span class="op">)</span></span>
 <span><span class="fu">Ternary</span><span class="fu">::</span><span class="fu"><a href="../reference/TernaryApp.html">TernaryApp</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>For greater control over your plots, use the full R implementation.</p>
+<p>For greater control over your plots, use the full R
+implementation.</p>
 <p>Install the package with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Ternary"</span><span class="op">)</span></span></code></pre></div>
@@ -126,10 +131,13 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
 <span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ms609/Ternary"</span><span class="op">)</span></span></code></pre></div>
-<p>Once the package is installed, load it into the current R session with</p>
+<p>Once the package is installed, load it into the current R session
+with</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">"Ternary"</a></span><span class="op">)</span></span></code></pre></div>
-<p>There are two stages to creating a ternary plot: first, rendering the plot, styled as you like it and pointing in any of the four compass directions; secondly, adding data.</p>
+<p>There are two stages to creating a ternary plot: first, rendering the
+plot, styled as you like it and pointing in any of the four compass
+directions; secondly, adding data.</p>
 <div class="section level2">
 <h2 id="create-a-blank-plot">Create a blank plot<a class="anchor" aria-label="anchor" href="#create-a-blank-plot"></a>
 </h2>
@@ -137,7 +145,8 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Create%20blank%20plot-1.png" width="700"></p>
-<p>The following charts show which corners are which, under different orientations:</p>
+<p>The following charts show which corners are which, under different
+orientations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">dir</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"up"</span>, <span class="st">"right"</span>, <span class="st">"down"</span>, <span class="st">"le"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -231,7 +240,9 @@
 <div class="section level3">
 <h3 id="styling-points">Styling points<a class="anchor" aria-label="anchor" href="#styling-points"></a>
 </h3>
-<p>More sophisticated plots can be created, for example styling each point according to additional properties of the data, in a manner analogous to the standard plotting functions:</p>
+<p>More sophisticated plots can be created, for example styling each
+point according to additional properties of the data, in a manner
+analogous to the standard plotting functions:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -270,12 +281,14 @@
 <span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">binnedSize</span>, <span class="st">"\u03bcm"</span><span class="op">)</span>,</span>
 <span>       title <span class="op">=</span> <span class="st">"Grain size"</span>, bty <span class="op">=</span> <span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Ternary_files/figure-html/complex-plot-1.png" width="700"></p>
-<p>See the “Points” tab of the shiny app for a point-and-click implementation.</p>
+<p>See the “Points” tab of the shiny app for a point-and-click
+implementation.</p>
 </div>
 <div class="section level3">
 <h3 id="cartesian-coordinates">Cartesian coordinates<a class="anchor" aria-label="anchor" href="#cartesian-coordinates"></a>
 </h3>
-<p>It is also possible to use cartesian coordinates to plot onto the graph.</p>
+<p>It is also possible to use cartesian coordinates to plot onto the
+graph.</p>
 <p>By default, the plotting area is a 1×1 square.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="co"># Reduce margins</span></span>
@@ -293,13 +306,15 @@
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">0</span>, <span class="st">"(0.5, 0)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, <span class="st">"(0.8, -0.5)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Ternary_files/figure-html/Cartesian-1.png" width="700"></p>
-<p>Note the anticlockwise axis labelling on this plot, obtained using <code>clockwise = FALSE</code>.</p>
+<p>Note the anticlockwise axis labelling on this plot, obtained using
+<code>clockwise = FALSE</code>.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="contours">Contours<a class="anchor" aria-label="anchor" href="#contours"></a>
 </h2>
-<p>A plot can be coloured and contoured according to the output of a mathematical expression:</p>
+<p>A plot can be coloured and contoured according to the output of a
+mathematical expression:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span>
@@ -334,15 +349,23 @@
 <span><span class="co"># Contour by point density</span></span>
 <span><span class="fu"><a href="../reference/TernaryDensityContour.html">TernaryDensityContour</a></span><span class="op">(</span><span class="va">coordinates</span>, resolution <span class="op">=</span> <span class="fl">30L</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Ternary_files/figure-html/density-contours-1.png" width="700"></p>
-<p>The following image demonstrates the behaviour of the density estimates when points fall on boundaries of the triangular grid cells; text denotes the number of points within the cell, with cells straddling <em>n</em> cells contributing 1/<em>n</em> of a point to each cell straddled.</p>
+<p>The following image demonstrates the behaviour of the density
+estimates when points fall on boundaries of the triangular grid cells;
+text denotes the number of points within the cell, with cells straddling
+<em>n</em> cells contributing 1/<em>n</em> of a point to each cell
+straddled.</p>
 <p><img src="Ternary_files/figure-html/low-resolution-density-contours-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="magnification">Magnification<a class="anchor" aria-label="anchor" href="#magnification"></a>
 </h2>
-<p>Perhaps the action on a plot is constrained to a small region of ternary space. It’s possible to “zoom in” – i.e. magnify and crop the ternary plot to the region of interest.</p>
-<p>To do this you can specify the <em>x</em> and <em>y</em> limits of the region of interest.</p>
-<p><code>TernaryCoords</code> might be useful in establishing the cartesian coordinates of a particular point in ternary space.<br>
+<p>Perhaps the action on a plot is constrained to a small region of
+ternary space. It’s possible to “zoom in” – i.e. magnify and crop the
+ternary plot to the region of interest.</p>
+<p>To do this you can specify the <em>x</em> and <em>y</em> limits of
+the region of interest.</p>
+<p><code>TernaryCoords</code> might be useful in establishing the
+cartesian coordinates of a particular point in ternary space.<br>
 Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_corners</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">66</span>, <span class="fl">12</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">72</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">80</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">76</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span>
@@ -358,7 +381,9 @@ Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## [[4]]</span></span>
 <span><span class="co">## [1] 0.320000 0.103923</span></span></code></pre>
-<p>The <code>padding</code> parameter is added as a margin to each side of the region specified using <code>xlim</code> and <code>ylim</code>:</p>
+<p>The <code>padding</code> parameter is added as a margin to each side
+of the region specified using <code>xlim</code> and
+<code>ylim</code>:</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.28</span>, <span class="fl">0.38</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span>, padding <span class="op">=</span> <span class="fl">0.04</span><span class="op">)</span></span>
 <span></span>
@@ -386,14 +411,18 @@ Ensure that <em>dx</em> = <em>dy</em> if you want an isometric plot.</p>
 </h2>
 <p>For further examples of usage, see the accompanying vignettes:</p>
 <ul>
-<li><p><a href="new-users.html">Introduction for new R users</a></p></li>
-<li><p><a href="interpolation.html">Interpolating and contouring</a></p></li>
+<li><p><a href="new-users.html">Introduction for new R
+users</a></p></li>
+<li><p><a href="interpolation.html">Interpolating and
+contouring</a></p></li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="bugs-and-feature-requests">Bugs and feature requests<a class="anchor" aria-label="anchor" href="#bugs-and-feature-requests"></a>
 </h2>
-<p>I hope the package proves useful. If there”s anything it can”t do that you wish it could, please let me know by opening a <a href="https://github.com/ms609/Ternary/issues/new?title=Suggestion:+" class="external-link">Github issue</a>.</p>
+<p>I hope the package proves useful. If there”s anything it can”t do
+that you wish it could, please let me know by opening a <a href="https://github.com/ms609/Ternary/issues/new?title=Suggestion:+" class="external-link">Github
+issue</a>.</p>
 </div>
   </div>
 

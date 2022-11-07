@@ -1,4 +1,4 @@
-pandoc: 2.14.2
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
@@ -6,7 +6,7 @@ articles:
   Ternary: Ternary.html
   interpolation: interpolation.html
   new-users: new-users.html
-last_built: 2022-09-30T15:37Z
+last_built: 2022-11-07T08:43Z
 urls:
   reference: https://ms609.github.io/Ternary/reference
   article: https://ms609.github.io/Ternary/articles

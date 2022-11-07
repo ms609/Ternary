@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.2</span>
       </span>
     </div>
 
@@ -102,9 +102,10 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Interpolating and contouring</h1>
-                        <h4 data-toc-skip class="author">Martin R. Smith</h4>
+                        <h4 data-toc-skip class="author">Martin R.
+Smith</h4>
             
-            <h4 data-toc-skip class="date">2022-09-30</h4>
+            <h4 data-toc-skip class="date">2022-11-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/interpolation.Rmd" class="external-link"><code>vignettes/interpolation.Rmd</code></a></small>
       <div class="hidden name"><code>interpolation.Rmd</code></div>
@@ -116,7 +117,8 @@
 <blockquote>
 <p>Before you start, have you read the <a href="Ternary.html">introduction to the Ternary package</a>?</p>
 </blockquote>
-<p>A ternary plot can be shaded and contoured according to a known function:</p>
+<p>A ternary plot can be shaded and contoured according to a known
+function:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://ms609.github.io/Ternary/">"Ternary"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -131,7 +133,8 @@
 <span>            panel.first <span class="op">=</span> <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">256</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span></span></code></pre></div>
 <p><img src="interpolation_files/figure-html/contours-by-calculation-1.png" width="700"></p>
-<p>If it is not computationally feasible to execute a function at every point, it is possible to interpolate between known values.</p>
+<p>If it is not computationally feasible to execute a function at every
+point, it is possible to interpolate between known values.</p>
 <p>Inverse distance weighting is a simple approach:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># If using your own data, set</span></span>
@@ -192,11 +195,15 @@
 <span><span class="co"># Mark the points at which we took measurements</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">abc</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"#cc3333"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="interpolation_files/figure-html/idw-interpolation-1.png" width="700"></p>
-<p>More sophisticated interpolation approaches are possible, e.g.  <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm" class="external-link">kriging</a>; these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.</p>
+<p>More sophisticated interpolation approaches are possible, e.g.  <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm" class="external-link">kriging</a>;
+these may help to alleviate artefacts of sampling intensity as observed
+towards the bottom of the example plot above.</p>
 <div class="section level2">
 <h2 id="interpolation-within-a-sampled-region">Interpolation within a sampled region<a class="anchor" aria-label="anchor" href="#interpolation-within-a-sampled-region"></a>
 </h2>
-<p>We might also encounter a situation where we have only sampled a small region of ternary space and do not wish to extrapolate beyond this region.</p>
+<p>We might also encounter a situation where we have only sampled a
+small region of ternary space and do not wish to extrapolate beyond this
+region.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Select some points at which to sample</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
