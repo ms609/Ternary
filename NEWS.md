@@ -1,9 +1,7 @@
-# Ternary v2.1.1.9000
-
+# Ternary v2.1.2
 - Support independent labelling of axes.
 
 # Ternary v2.1.1
-
 - Fix regression that caused `col` parameter to be ignored.
 - Fix failure to plot grid when `grid.lines` is integer.
 - Mention `srt` graphical parameter in `TernaryText()` documentation.
