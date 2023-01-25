@@ -16,8 +16,7 @@ Ternary package](Ternary.html)?
 This vignette explores how to annotate specific points within a ternary plot.
 We'll start by generating some example data:
 
-```{r init, echo=FALSE}
-library("Ternary")
+```{r init}
 set.seed(40) # For reproducibility
 
 nPoints <- 40
@@ -30,7 +29,12 @@ points <- data.frame(a = abs(rnorm(nPoints, 2, 3)),
 
 ```
 
+After plotting our data on a Ternary plot, we'll need to select which points to
+annotate and where to place their labels.
+
 ```{r plot}
+library("Ternary")
+
 par(mar = rep(0.2, 4))
 TernaryPlot("a", "b", "c", axis.labels = seq(0, 10, by = 1))
 
