@@ -148,7 +148,7 @@ directions; secondly, adding data.</p>
 <p>At its simplest, all you need to do is type</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/Create%20blank%20plot-1.png" width="700"></p>
+<p><img src="Ternary_files/figure-html/create-blank-plot-1.png" width="700"></p>
 <p>The following charts show which corners are which, under different
 orientations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -160,7 +160,7 @@ orientations:</p>
 <span>              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P1"</span>, <span class="st">"P2"</span>, <span class="st">"P3"</span><span class="op">)</span>,</span>
 <span>              col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/Create%20simple%20plot-1.png" width="672"></p>
+<p><img src="Ternary_files/figure-html/create-simple-plot-1.png" width="672"></p>
 </div>
 <div class="section level2">
 <h2 id="plot-two-stylised-plots-side-by-side-and-plot-data">Plot two stylised plots side by side, and plot data<a class="anchor" aria-label="anchor" href="#plot-two-stylised-plots-side-by-side-and-plot-data"></a>
@@ -240,7 +240,7 @@ orientations:</p>
 <span></span>
 <span><span class="co"># Add an arrow</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryArrows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">60</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">0.2</span>, col <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/Do%20plotting-1.png" width="700"></p>
+<p><img src="Ternary_files/figure-html/two-stylised-plots-1.png" width="700"></p>
 <div class="section level3">
 <h3 id="styling-points">Styling points<a class="anchor" aria-label="anchor" href="#styling-points"></a>
 </h3>
@@ -309,7 +309,7 @@ graph.</p>
 <span>     col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">0</span>, <span class="st">"(0.5, 0)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, <span class="st">"(0.8, -0.5)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/Cartesian-1.png" width="700"></p>
+<p><img src="Ternary_files/figure-html/cartesian-1.png" width="700"></p>
 <p>Note the anticlockwise axis labelling on this plot, obtained using
 <code>clockwise = FALSE</code>.</p>
 </div>
