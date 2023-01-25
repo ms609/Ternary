@@ -25,19 +25,19 @@ For greater control over your plots, use the full R implementation.
 
 Install the package with:
 
-```{r Load package, eval = FALSE}
+```{r install-package, eval = FALSE}
 install.packages("Ternary")
 ```
 
 Or if you want the latest development version of the package:
 
-```{R Github package, eval = FALSE}
+```{R github-package, eval = FALSE}
 if (!require("devtools")) install.packages("devtools")
 install_github("ms609/Ternary")
 ```
 
 Once the package is installed, load it into the current R session with 
-```{R Load}
+```{R library-ternary}
 library("Ternary")
 ```
 
@@ -48,13 +48,13 @@ as you like it and pointing in any of the four compass directions; secondly, add
 ## Create a blank plot
 
 At its simplest, all you need to do is type
-```{R Create blank plot}
+```{R create-blank-plot}
 TernaryPlot()
 ```
 
 The following charts show which corners are which, under different orientations:
 
-```{R Create simple plot, fig.width = 7, fig.height = 7}
+```{R create-simple-plot, fig.width = 7, fig.height = 7}
 par(mfrow = c(2, 2), mar = rep(0.5, 4))
 for (dir in c("up", "right", "down", "le")) {
   TernaryPlot(point = dir, atip = "A", btip = "B", ctip = "C",
@@ -67,7 +67,7 @@ for (dir in c("up", "right", "down", "le")) {
 
 ## Plot two stylised plots side by side, and plot data
 
-```{R Do plotting}
+```{R two-stylised-plots}
 # Configure plotting area
 par(mfrow = c(1, 2), mar = rep(0.3, 4))
 
@@ -198,7 +198,7 @@ It is also possible to use cartesian coordinates to plot onto the graph.
 
 By default, the plotting area is a 1&times;1 square.
 
-```{r Cartesian}
+```{r cartesian}
 par(mar = rep(0, 4)) # Reduce margins
 TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
