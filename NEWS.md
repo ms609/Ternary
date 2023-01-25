@@ -1,3 +1,7 @@
+# Ternary v2.1.2.9000
+- New [vignette](https://ms609.github.io/Ternary/articles/annotation.html)
+  with annotation example ([#64](https://github.com/ms609/Ternary/issues/64)).
+
 # Ternary v2.1.2
 - Support independent labelling of axes.
 
@@ -32,8 +36,8 @@
 - Update to 'testthat' edition 3.
 
 # Ternary v1.2.2
-- New vignette with interpolation example
-  ([#46](https://github.com/ms609/Ternary/issues/46)).
+- New [vignette](https://ms609.github.io/Ternary/articles/interpolation.html)
+  with interpolation example ([#46](https://github.com/ms609/Ternary/issues/46)).
 - Document point styling in vignette.
 - `TernaryCoords()`, alias `TernaryToXY()`, accepts matrices.
 
