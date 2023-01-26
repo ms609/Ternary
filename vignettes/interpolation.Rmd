@@ -169,3 +169,14 @@ polygon(t(xy)[chull(t(xy)), ], border = "#cc3333")
 
 
 
+# Where next
+
+For other examples of usage, see the accompanying vignettes:
+
+- [Introduction for new R users](new-users.html)
+
+- [Getting started guide](Ternary.html)
+
+- [Annotation of points](annotations.html)
+
+- [Plotting Holdridge climate zones](Holdridge.html)
