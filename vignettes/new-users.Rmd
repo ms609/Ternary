@@ -219,3 +219,4 @@ For more complicated examples of usage, see the accompanying vignettes:
 
 - [Interpolating and contouring](interpolation.html)
 
+- [Annotation of points](annotations.html)
