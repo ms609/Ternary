@@ -1,4 +1,4 @@
-# Ternary v2.1.2.9000
+# Ternary v2.1.3
 - New [vignette](https://ms609.github.io/Ternary/articles/annotation.html)
   with annotation example ([#64](https://github.com/ms609/Ternary/issues/64)).
 
