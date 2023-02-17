@@ -177,6 +177,6 @@ For other examples of usage, see the accompanying vignettes:
 
 - [Getting started guide](Ternary.html)
 
-- [Annotation of points](annotations.html)
+- [Annotation of points](annotation.html)
 
 - [Plotting Holdridge climate zones](Holdridge.html)

@@ -355,7 +355,7 @@ For further examples of usage, see the accompanying vignettes:
 
 - [Interpolating and contouring](interpolation.html)
 
-- [Annotation of points](annotations.html)
+- [Annotation of points](annotation.html)
 
 - [Plotting Holdridge climate zones](Holdridge.html)
 
