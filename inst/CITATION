@@ -1,13 +1,16 @@
-citHeader(paste0("When using this package, please cite Smith (2017)."))
-
-citEntry(entry = "article",
-         key = "Smith2017",
-         journal = "Comprehensive R Archive Network",
-         author = personList(as.person("Martin R. Smith")),
-         title = "Ternary: An R Package for Creating Ternary Plots",
-         year = "2017",
-
-         textVersion =
-         paste0("Smith (2017). ",
-                "Ternary: An R Package for Creating Ternary Plots. ",
-                "Comprehensive R Archive Network, doi: 10.5281/zenodo.1068996"))
+bibentry(
+  mheader = "When using this package, please cite Smith (2017).",
+  bibtype = "article",
+  key = "Smith2017",
+  journal = "Comprehensive R Archive Network",
+  author = person(c("Martin", "R."), "Smith",
+                  email = "martin.smith@durham.ac.uk"),
+  title = "Ternary: An R Package for Creating Ternary Plots",
+  year = "2017",
+  
+  textVersion = paste0(
+    "Smith (2017). ",
+    "Ternary: An R Package for Creating Ternary Plots. ",
+    "Comprehensive R Archive Network, doi: 10.5281/zenodo.1068996"
+  )
+)
