@@ -33,7 +33,7 @@ Suggests:
     shinyjs,
     spelling,
     testthat (>= 3.0),
-    TreeTools (>=1.7.0),
+    TreeTools (>= 1.7.0),
     vdiffr,
 Config/Needs/check: rcmdcheck
 Config/Needs/coverage: covr
