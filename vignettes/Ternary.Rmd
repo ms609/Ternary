@@ -233,6 +233,17 @@ ColourTernary(values)
 # Add contour lines
 TernaryContour(FunctionToContour, resolution = 36L)
 
+if (requireNamespace("TreeTools", quietly = TRUE)) {
+  # Print legend for colour scale
+  TreeTools::SpectrumLegend(
+    x0 = 0.9,
+    y0 = 0.6,
+    legend = signif(quantile(values, seq(0, 1, 1/3)), 3),
+    palette = viridisLite::viridis(256L, alpha = 0.6),
+    xpd = NA # Do not clip at edge of figure
+  )
+}
+
 ```
 
 or according to the density of points across the plot:
