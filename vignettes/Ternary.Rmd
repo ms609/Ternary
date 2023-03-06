@@ -235,7 +235,7 @@ TernaryContour(FunctionToContour, resolution = 36L)
 
 ```
 
-or by according to the density of points across the plot:
+or according to the density of points across the plot:
 
 ```{r density-contours}
 par(mar = rep(0.2, 4))
