@@ -150,43 +150,74 @@ More sophisticated plots can be created, for example styling each point
 according to additional properties of the data, in a manner analogous to the
 standard plotting functions:
 
-```{r complex-plot}
+```{r point-styling}
+# Configure plotting area
 par(mar = rep(0.3, 4))
 
+# Example data object
 dat <- data.frame(sio2 = c(2, 4, 10, 20),
                   fe2o3 = c(5, 6, 7, 8),
                   al2o3 = c(12, 11, 10, 9),
                   grain_size = c(20, 16, 12, 8),
-                  reflectance = c(80, 63, 61, 20))
+                  reflectance = c(80, 63, 51, 20))
 
-spectrumBins <- 5
+# Define a colour spectrum
+spectrumBins <- 255 # Number of bins to use
 mySpectrum <- viridisLite::viridis(spectrumBins)
+
+# Cut our reflectance data into categories
 binnedReflectance <- cut(dat$reflectance, spectrumBins)
-dat_col <- mySpectrum[binnedReflectance]
 
-sizeBins <- 5
-mySizes <- seq(0.5, 2.4, length.out = sizeBins)
-binnedSize <- cut(dat$grain_size, sizeBins)
-dat_cex <- mySizes[binnedSize]
+# Assign each data point a colour from the spectrum
+pointCol <- mySpectrum[binnedReflectance]
 
+
+# Define a size range
+maxSize <- 2.4 # Size of largest point, in plotting units
+sizes <- dat$grain_size
+pointSize <- sizes * maxSize / max(sizes)
+
+# Initialize the plot
 TernaryPlot(atip = expression(SiO[2]),
             btip = expression(paste(Fe[2], O[3], " (wt%)")),
             ctip = expression(paste(Al[2], O[3]))
 )
 
+# Plot the points
 TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
-              cex = dat_cex,
-              col = dat_col,
-              pch = 16
+              cex = pointSize, # Point size
+              col = pointCol,  # Point colour
+              pch = 16         # Plotting symbol (16 = filled circle)
               )
 
-legend("topleft", col = dat_col, pch = 16,
-       legend = paste(binnedReflectance, "%"),
-       title = "Reflectance", bty = "n", cex = 0.8)
+# Legend for colour scale
+TreeTools::SpectrumLegend(
+  x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
+  cex = 0.8, # Font size
+  palette = mySpectrum,
+  legend = paste(
+    seq(from = min(dat$reflectance), to = max(dat$reflectance),
+        length.out = 5),
+    "%"
+  ),
+  xpd = NA, # Don't clip at margins
+  title = "Reflectance"
+)
 
-legend("topright", pt.cex = dat_cex, pch = 16,
-       legend = paste(binnedSize, "\u03bcm"),
-       title = "Grain size", bty = "n", cex = 0.8)
+# Legend for point size
+legend(
+  "topright",
+  pt.cex = seq(maxSize, 0, length.out = 5),
+  pch = 16, # Filled circle
+  legend = paste(
+    signif(seq(max(sizes), 0, length.out = 5), digits = 3),
+    "\u03bcm" # µm
+  ),
+  title = "Grain size",
+  title.font = 2, # Bold
+  bty = "n", # Do not frame with box
+  cex = 0.8
+)
 ```
 
 See the "Points" tab of the shiny app for a point-and-click implementation.
