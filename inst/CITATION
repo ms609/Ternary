@@ -7,6 +7,7 @@ bibentry(
                   email = "martin.smith@durham.ac.uk"),
   title = "Ternary: An R Package for Creating Ternary Plots",
   year = "2017",
+  doi = "10.5281/zenodo.1068996",
   
   textVersion = paste0(
     "Smith (2017). ",
