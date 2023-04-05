@@ -1,4 +1,5 @@
-# Ternary v2.1.3.9000
+# Ternary v2.1.3.9001
+- Improve clarity of point size plotting example.
 - Colour bar legend example for `ColourTernary()` in vignette
    ([#66](https://github.com/ms609/Ternary/issues/66)).
 

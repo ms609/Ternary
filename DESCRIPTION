@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 2.1.3.9000
+Version: 2.1.3.9001
 Title: Create Ternary and Holdridge Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
   Holdridge life zone plots <doi:10.1126/science.105.2727.367> using the
