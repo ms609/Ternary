@@ -52,5 +52,5 @@ The R package '[ggtern](https://CRAN.R-project.org/package=ggtern)'
 implements ternary plots within the 'ggplot2' framework.
 
 Please note that the 'Ternary' project is released with a
-[Contributor Code of Conduct](https://ms609.github.io/Ternary/CODE_OF_CONDUCT.html).
+[Contributor Code of Conduct](https://ms609.github.io/packages/CODE_OF_CONDUCT.html).
 By contributing to this project, you agree to abide by its terms.
