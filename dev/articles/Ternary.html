@@ -109,7 +109,7 @@
                         <h4 data-toc-skip class="author">Martin R.
 Smith</h4>
             
-            <h4 data-toc-skip class="date">2023-03-07</h4>
+            <h4 data-toc-skip class="date">2023-04-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/vignettes/Ternary.Rmd" class="external-link"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -248,43 +248,74 @@ orientations:</p>
 point according to additional properties of the data, in a manner
 analogous to the standard plotting functions:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co"># Configure plotting area</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Example data object</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>sio2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>,</span>
 <span>                  fe2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span><span class="op">)</span>,</span>
 <span>                  al2o3 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">11</span>, <span class="fl">10</span>, <span class="fl">9</span><span class="op">)</span>,</span>
 <span>                  grain_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">16</span>, <span class="fl">12</span>, <span class="fl">8</span><span class="op">)</span>,</span>
-<span>                  reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">63</span>, <span class="fl">61</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
+<span>                  reflectance <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">63</span>, <span class="fl">51</span>, <span class="fl">20</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
+<span><span class="co"># Define a colour spectrum</span></span>
+<span><span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">255</span> <span class="co"># Number of bins to use</span></span>
 <span><span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Cut our reflectance data into categories</span></span>
 <span><span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span></span>
-<span><span class="va">dat_col</span> <span class="op">&lt;-</span> <span class="va">mySpectrum</span><span class="op">[</span><span class="va">binnedReflectance</span><span class="op">]</span></span>
 <span></span>
-<span><span class="va">sizeBins</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span><span class="va">mySizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2.4</span>, length.out <span class="op">=</span> <span class="va">sizeBins</span><span class="op">)</span></span>
-<span><span class="va">binnedSize</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">grain_size</span>, <span class="va">sizeBins</span><span class="op">)</span></span>
-<span><span class="va">dat_cex</span> <span class="op">&lt;-</span> <span class="va">mySizes</span><span class="op">[</span><span class="va">binnedSize</span><span class="op">]</span></span>
+<span><span class="co"># Assign each data point a colour from the spectrum</span></span>
+<span><span class="va">pointCol</span> <span class="op">&lt;-</span> <span class="va">mySpectrum</span><span class="op">[</span><span class="va">binnedReflectance</span><span class="op">]</span></span>
 <span></span>
+<span></span>
+<span><span class="co"># Define a size range</span></span>
+<span><span class="va">maxSize</span> <span class="op">&lt;-</span> <span class="fl">2.4</span> <span class="co"># Size of largest point, in plotting units</span></span>
+<span><span class="va">sizes</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">grain_size</span></span>
+<span><span class="va">pointSize</span> <span class="op">&lt;-</span> <span class="va">sizes</span> <span class="op">*</span> <span class="va">maxSize</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">sizes</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Initialize the plot</span></span>
 <span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>atip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">SiO</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>,</span>
 <span>            btip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">Fe</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="st">" (wt%)"</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>            ctip <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">Al</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">O</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
+<span><span class="co"># Plot the points</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sio2"</span>, <span class="st">"fe2o3"</span>, <span class="st">"al2o3"</span><span class="op">)</span><span class="op">]</span>,</span>
-<span>              cex <span class="op">=</span> <span class="va">dat_cex</span>,</span>
-<span>              col <span class="op">=</span> <span class="va">dat_col</span>,</span>
-<span>              pch <span class="op">=</span> <span class="fl">16</span></span>
+<span>              cex <span class="op">=</span> <span class="va">pointSize</span>, <span class="co"># Point size</span></span>
+<span>              col <span class="op">=</span> <span class="va">pointCol</span>,  <span class="co"># Point colour</span></span>
+<span>              pch <span class="op">=</span> <span class="fl">16</span>         <span class="co"># Plotting symbol (16 = filled circle)</span></span>
 <span>              <span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, col <span class="op">=</span> <span class="va">dat_col</span>, pch <span class="op">=</span> <span class="fl">16</span>,</span>
-<span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">binnedReflectance</span>, <span class="st">"%"</span><span class="op">)</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Reflectance"</span>, bty <span class="op">=</span> <span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span>
+<span><span class="co"># Legend for colour scale</span></span>
+<span><span class="fu">TreeTools</span><span class="fu">::</span><span class="fu"><a href="https://ms609.github.io/TreeTools/reference/SpectrumLegend.html" class="external-link">SpectrumLegend</a></span><span class="op">(</span></span>
+<span>  x0 <span class="op">=</span> <span class="fl">0.0</span>, y0 <span class="op">=</span> <span class="fl">0.7</span>, <span class="co"># Position on plot; bottom left = 0, 0</span></span>
+<span>  cex <span class="op">=</span> <span class="fl">0.8</span>, <span class="co"># Font size</span></span>
+<span>  palette <span class="op">=</span> <span class="va">mySpectrum</span>,</span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span><span class="op">)</span>, to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span><span class="op">)</span>,</span>
+<span>        length.out <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
+<span>    <span class="st">"%"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  xpd <span class="op">=</span> <span class="cn">NA</span>, <span class="co"># Don't clip at margins</span></span>
+<span>  title <span class="op">=</span> <span class="st">"Reflectance"</span></span>
+<span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, pt.cex <span class="op">=</span> <span class="va">dat_cex</span>, pch <span class="op">=</span> <span class="fl">16</span>,</span>
-<span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">binnedSize</span>, <span class="st">"\u03bcm"</span><span class="op">)</span>,</span>
-<span>       title <span class="op">=</span> <span class="st">"Grain size"</span>, bty <span class="op">=</span> <span class="st">"n"</span>, cex <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/complex-plot-1.png" width="700"></p>
+<span><span class="co"># Legend for point size</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span></span>
+<span>  <span class="st">"topright"</span>,</span>
+<span>  pt.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">maxSize</span>, <span class="fl">0</span>, length.out <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>,</span>
+<span>  pch <span class="op">=</span> <span class="fl">16</span>, <span class="co"># Filled circle</span></span>
+<span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">sizes</span><span class="op">)</span>, <span class="fl">0</span>, length.out <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    <span class="st">"\u03bcm"</span> <span class="co"># µm</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Grain size"</span>,</span>
+<span>  title.font <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Bold</span></span>
+<span>  bty <span class="op">=</span> <span class="st">"n"</span>, <span class="co"># Do not frame with box</span></span>
+<span>  cex <span class="op">=</span> <span class="fl">0.8</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="Ternary_files/figure-html/point-styling-1.png" width="700"></p>
 <p>See the “Points” tab of the shiny app for a point-and-click
 implementation.</p>
 </div>
