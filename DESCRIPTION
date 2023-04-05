@@ -41,8 +41,8 @@ Config/Needs/memcheck: devtools, rcmdcheck
 Config/Needs/metadata: codemeta
 Config/Needs/revdeps: revdepcheck
 Config/Needs/website: pkgdown
-Config/testthat/parallel: false
 Config/testthat/edition: 3
+Config/testthat/parallel: false
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
