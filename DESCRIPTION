@@ -33,12 +33,12 @@ Suggests:
     shinyjs,
     spelling,
     testthat (>= 3.0),
-    TreeTools (>= 1.7.0),
+    PlotTools,
     vdiffr,
 Config/Needs/check: rcmdcheck
 Config/Needs/coverage: covr
 Config/Needs/memcheck: devtools, rcmdcheck
-Config/Needs/metadata: codemetar
+Config/Needs/metadata: codemeta
 Config/Needs/revdeps: revdepcheck
 Config/Needs/website: pkgdown
 Config/testthat/parallel: false
