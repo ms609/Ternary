@@ -11,6 +11,12 @@ TernaryDensityContour(
   tolerance = -0.2/resolution,
   edgeCorrection = TRUE,
   direction = getOption("ternDirection", 1L),
+  filled = FALSE,
+  nlevels = 10,
+  levels = pretty(zlim, nlevels),
+  zlim,
+  color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+  fill.col = color.palette(length(levels) - 1),
   ...
 )
 }
@@ -38,7 +44,25 @@ plot.}
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
 
-\item{\dots}{Further parameters to pass to \code{\link[graphics]{contour}()}.}
+\item{filled}{Logical; if \code{TRUE}, contours will be filled
+(using \code{\link[graphics]{.filled.contour}()}.).}
+
+\item{nlevels, levels, zlim, \dots}{parameters to pass to
+\code{\link[graphics]{contour}()}.}
+
+\item{color.palette}{parameters to pass to
+\code{\link[graphics]{.filled.contour}()}.}
+
+\item{fill.col}{Sent as \code{col} parameter to
+\code{\link[graphics]{.filled.contour}()}.
+Computed from \code{color.palette} if not specified.}
+}
+\value{
+\code{TernaryDensityContour()} invisibly returns a list containing:
+\itemize{
+\item \code{x},\code{y}: the Cartesian coordinates of each grid coordinate;
+\item \code{z}: The density at each grid coordinate.
+}
 }
 \description{
 Use two-dimensional kernel density estimation to plot contours of

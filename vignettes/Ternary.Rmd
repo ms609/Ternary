@@ -190,19 +190,21 @@ TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
               pch = 16         # Plotting symbol (16 = filled circle)
               )
 
-# Legend for colour scale
-TreeTools::SpectrumLegend(
-  x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
-  cex = 0.8, # Font size
-  palette = mySpectrum,
-  legend = paste(
-    seq(from = min(dat$reflectance), to = max(dat$reflectance),
-        length.out = 5),
-    "%"
-  ),
-  xpd = NA, # Don't clip at margins
-  title = "Reflectance"
-)
+if (requireNamespace("TreeTools", quietly = TRUE)) {
+  # Legend for colour scale
+  TreeTools::SpectrumLegend(
+    x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
+    cex = 0.8, # Font size
+    palette = mySpectrum,
+    legend = paste(
+      seq(from = min(dat$reflectance), to = max(dat$reflectance),
+          length.out = 5),
+      "%"
+    ),
+    xpd = NA, # Don't clip at margins
+    title = "Reflectance"
+  )
+}
 
 # Legend for point size
 legend(
@@ -257,19 +259,16 @@ FunctionToContour <- function(a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
-# Compute and plot colour tiles
-values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
-
 # Add contour lines
-TernaryContour(FunctionToContour, resolution = 36L)
+values <- TernaryContour(FunctionToContour, resolution = 36L, filled = TRUE)
 
 if (requireNamespace("TreeTools", quietly = TRUE)) {
+  zRange <- range(values$z, na.rm = TRUE)
   # Print legend for colour scale
   TreeTools::SpectrumLegend(
     x0 = 0.9,
     y0 = 0.6,
-    legend = signif(seq(min(values), max(values), length.out = 4), 3),
+    legend = round(seq(zRange[1], zRange[2], length.out = 4), 3),
     palette = viridisLite::viridis(256L, alpha = 0.6),
     xpd = NA # Do not clip at edge of figure
   )
