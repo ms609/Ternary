@@ -16,7 +16,7 @@ TernaryDensityContour(
   levels = pretty(zlim, nlevels),
   zlim,
   color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
-  col = color.palette(length(levels) - 1),
+  fill.col = color.palette(length(levels) - 1),
   ...
 )
 }
@@ -50,8 +50,12 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \item{nlevels, levels, zlim, \dots}{parameters to pass to
 \code{\link[graphics]{contour}()}.}
 
-\item{color.palette, col}{parameters to pass to
+\item{color.palette}{parameters to pass to
 \code{\link[graphics]{.filled.contour}()}.}
+
+\item{fill.col}{Sent as \code{col} parameter to
+\code{\link[graphics]{.filled.contour}()}.
+Computed from \code{color.palette} if not specified.}
 }
 \description{
 Use two-dimensional kernel density estimation to plot contours of

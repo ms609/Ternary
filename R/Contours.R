@@ -614,7 +614,7 @@ TernaryContour <- function(
     within = NULL, filled = FALSE,
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
     color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
-    col = if (filled) color.palette(length(levels) - 1) else  par("fg"),
+    fill.col = color.palette(length(levels) - 1),
     ...) {
   if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
@@ -654,7 +654,7 @@ TernaryContour <- function(
   z <- outer(X = x, Y = y, FUN = FunctionWrapper)
   if (missing(zlim)) zlim <- range(z, finite = TRUE)
   if (filled) {
-    .filled.contour(x, y, z, levels, col)
+    .filled.contour(x, y, z, levels, fill.col)
   }
   contour(x, y, z, add = TRUE, nlevels = nlevels, levels = levels,
           zlim = zlim, ...)
@@ -721,16 +721,13 @@ TernaryContour <- function(
 #' @family contour plotting functions
 #' @importFrom stats dnorm quantile var
 #' @export
-TernaryDensityContour <- function(coordinates, bandwidth, resolution = 25L,
-                                  tolerance = -0.2 / resolution,
-                                  edgeCorrection = TRUE,
-                                  direction = getOption("ternDirection", 1L),
-                                  filled = FALSE, nlevels = 10,
-                                  levels = pretty(zlim, nlevels), zlim,
-                                  color.palette = function(n)
-                                    viridisLite::viridis(n, alpha = 0.6),
-                                  col = color.palette(length(levels) - 1),
-                                  ...) {
+TernaryDensityContour <- function(
+    coordinates, bandwidth, resolution = 25L, tolerance = -0.2 / resolution,
+    edgeCorrection = TRUE, direction = getOption("ternDirection", 1L),
+    filled = FALSE, nlevels = 10, levels = pretty(zlim, nlevels), zlim,
+    color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+    fill.col = color.palette(length(levels) - 1),
+    ...) {
   # Adapted from MASS::kde2d
   xy <- apply(coordinates, 1, TernaryCoords)
   x <- xy[1, ]
@@ -796,7 +793,7 @@ TernaryDensityContour <- function(coordinates, bandwidth, resolution = 25L,
 
   if (missing(zlim)) zlim <- range(z, finite = TRUE)
   if (filled) {
-    .filled.contour(gx, gy, z, levels, col)
+    .filled.contour(gx, gy, z, levels, fill.col)
   }
   contour(list(x = gx, y = gy, z = z), add = TRUE, nlevels = nlevels,
           levels = levels, zlim = zlim, ...)

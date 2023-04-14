@@ -62,7 +62,8 @@ test_that("Contours are plotted", {
                      hcl.colors(n, alpha = 0.6, rev = TRUE))
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
-    TernaryContour(FunctionToContour, filled = TRUE, nlevels = 9, col = 0:8)
+    TernaryContour(FunctionToContour, filled = TRUE, nlevels = 9,
+                   fill.col = 0:8)
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
     TernaryContour(FunctionToContour, filled = TRUE, nlevels = 4)
@@ -120,7 +121,7 @@ test_that("Contours are plotted", {
   
     
     TernaryPlot()
-    TernaryDensityContour(coordinates, resolution = 10L, fill = TRUE)
+    TernaryDensityContour(coordinates, resolution = 10L, filled = TRUE)
     TernaryPoints(coordinates, col = "red", pch = ".")
   }
   skip_if_not_installed("vdiffr")
