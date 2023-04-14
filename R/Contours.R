@@ -605,7 +605,7 @@ ColorTernary <- ColourTernary
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' # Fill the contour areas, rather than using tiles
 #' TernaryContour(GeneralMax, fill = TRUE,
-#'                col = viridisLite::viridis(14, alpha = 0.6))
+#'                fill.col = viridisLite::viridis(14, alpha = 0.6))
 #' # Re-draw borders over fill
 #' TernaryPolygon(diag(3))
 #' 
