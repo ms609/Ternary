@@ -257,12 +257,8 @@ FunctionToContour <- function(a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
-# Compute and plot colour tiles
-values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
-
 # Add contour lines
-TernaryContour(FunctionToContour, resolution = 36L)
+values <- TernaryContour(FunctionToContour, resolution = 36L, filled = TRUE)
 
 if (requireNamespace("TreeTools", quietly = TRUE)) {
   # Print legend for colour scale

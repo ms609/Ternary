@@ -41,7 +41,11 @@ test_that("Contours are plotted", {
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L)
+    val <- TernaryContour(FunctionToContour, resolution = 12L)
+    expect_equal(val$x, seq(-sqrt(0.75), 0, length.out = 12L))
+    expect_equal(val$y, seq(-0.5, 0.5, length.out = 12L))
+    abc <- XYToTernary(val$x[4], val$y[7])
+    expect_equal(val$z[4, 7], FunctionToContour(abc[1], abc[2], abc[3]))
   }
   skip_if_not_installed("vdiffr")
   vdiffr::expect_doppelganger("Contours", Contours)
@@ -117,8 +121,11 @@ test_that("Contours are plotted", {
 
     ColourTernary(TernaryDensity(coordinates, resolution = 10L))
     TernaryPoints(coordinates, col = "red", pch = ".")
-    TernaryDensityContour(coordinates, resolution = 10L)
-  
+    val <- TernaryDensityContour(coordinates, resolution = 10L)
+    expect_equal(names(val), letters[24:26])
+    expect_equal(val$x, seq.int(-0.5, 0.5, length.out = 10))
+    expect_equal(val$y, seq.int(0, sqrt(0.75), length.out = 10))
+    expect_equal(val$z[10, 10], NA_real_)
     
     TernaryPlot()
     TernaryDensityContour(coordinates, resolution = 10L, filled = TRUE)

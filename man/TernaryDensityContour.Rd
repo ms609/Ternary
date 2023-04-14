@@ -57,6 +57,13 @@ should point: 1, up; 2, right; 3, down; 4, left.}
 \code{\link[graphics]{.filled.contour}()}.
 Computed from \code{color.palette} if not specified.}
 }
+\value{
+\code{TernaryDensityContour()} invisibly returns a list containing:
+\itemize{
+\item \code{x},\code{y}: the Cartesian coordinates of each grid coordinate;
+\item \code{z}: The density at each grid coordinate.
+}
+}
 \description{
 Use two-dimensional kernel density estimation to plot contours of
 point density.
