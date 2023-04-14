@@ -190,19 +190,21 @@ TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
               pch = 16         # Plotting symbol (16 = filled circle)
               )
 
-# Legend for colour scale
-TreeTools::SpectrumLegend(
-  x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
-  cex = 0.8, # Font size
-  palette = mySpectrum,
-  legend = paste(
-    seq(from = min(dat$reflectance), to = max(dat$reflectance),
-        length.out = 5),
-    "%"
-  ),
-  xpd = NA, # Don't clip at margins
-  title = "Reflectance"
-)
+if (requireNamespace("TreeTools", quietly = TRUE)) {
+  # Legend for colour scale
+  TreeTools::SpectrumLegend(
+    x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
+    cex = 0.8, # Font size
+    palette = mySpectrum,
+    legend = paste(
+      seq(from = min(dat$reflectance), to = max(dat$reflectance),
+          length.out = 5),
+      "%"
+    ),
+    xpd = NA, # Don't clip at margins
+    title = "Reflectance"
+  )
+}
 
 # Legend for point size
 legend(
