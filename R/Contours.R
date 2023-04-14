@@ -599,16 +599,23 @@ ColorTernary <- ColourTernary
 #'   apply(rbind(a, b, c), 2, max)
 #' }
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
-#' ColourTernary(TernaryPointValues(GeneralMax))
-#' TernaryContour(GeneralMax)
+#' # Fill the contour areas, rather than using tiles
+#' TernaryContour(GeneralMax, fill = TRUE,
+#'                col = viridisLite::viridis(14, alpha = 0.6))
+#' # Re-draw borders over fill
+#' TernaryPolygon(diag(3))
 #' 
 #' @family contour plotting functions
-#' @importFrom graphics contour
+#' @importFrom graphics contour filled.contour
 #' @importFrom sp point.in.polygon
 #' @export
-TernaryContour <- function (Func, resolution = 96L, 
-                            direction = getOption("ternDirection", 1L),
-                            within = NULL, ...) {
+TernaryContour <- function(
+    Func, resolution = 96L, direction = getOption("ternDirection", 1L),
+    within = NULL, filled = FALSE,
+    nlevels = 10, levels = pretty(zlim, nlevels), zlim,
+    color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+    col = if (filled) color.palette(length(levels) - 1) else  par("fg"),
+    ...) {
   if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
@@ -645,7 +652,12 @@ TernaryContour <- function (Func, resolution = 96L,
     ret
   }
   z <- outer(X = x, Y = y, FUN = FunctionWrapper)
-  contour(x, y, z, add = TRUE, ...)
+  if (missing(zlim)) zlim <- range(z, finite = TRUE)
+  if (filled) {
+    .filled.contour(x, y, z, levels, col)
+  }
+  contour(x, y, z, add = TRUE, nlevels = nlevels, levels = levels,
+          zlim = zlim, ...)
 }
 
 #' Add contours of estimated point density to a ternary plot
@@ -713,6 +725,11 @@ TernaryDensityContour <- function(coordinates, bandwidth, resolution = 25L,
                                   tolerance = -0.2 / resolution,
                                   edgeCorrection = TRUE,
                                   direction = getOption("ternDirection", 1L),
+                                  filled = FALSE, nlevels = 10,
+                                  levels = pretty(zlim, nlevels), zlim,
+                                  color.palette = function(n)
+                                    viridisLite::viridis(n, alpha = 0.6),
+                                  col = color.palette(length(levels) - 1),
                                   ...) {
   # Adapted from MASS::kde2d
   xy <- apply(coordinates, 1, TernaryCoords)
@@ -777,5 +794,10 @@ TernaryDensityContour <- function(coordinates, bandwidth, resolution = 25L,
     z[zOffPlot] <- NA
   }
 
-  contour(list(x = gx, y = gy, z = z), add = TRUE, ...)
+  if (missing(zlim)) zlim <- range(z, finite = TRUE)
+  if (filled) {
+    .filled.contour(gx, gy, z, levels, col)
+  }
+  contour(list(x = gx, y = gy, z = z), add = TRUE, nlevels = nlevels,
+          levels = levels, zlim = zlim, ...)
 }

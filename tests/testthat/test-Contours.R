@@ -45,6 +45,30 @@ test_that("Contours are plotted", {
   }
   skip_if_not_installed("vdiffr")
   vdiffr::expect_doppelganger("Contours", Contours)
+  
+  FilledContours <- function() {
+    par(mar = rep(0, 4), mfrow = c(2, 2))
+
+    FunctionToContour <- function(a, b, c) {
+      a - c + (4 * a * b) + (27 * a * b * c)
+    }
+
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 1L)
+    TernaryContour(FunctionToContour, filled = TRUE)
+
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 2L)
+    TernaryContour(FunctionToContour, filled = TRUE,
+                   color.palette = function(n) 
+                     hcl.colors(n, alpha = 0.6, rev = TRUE))
+
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
+    TernaryContour(FunctionToContour, filled = TRUE, nlevels = 9, col = 0:8)
+
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
+    TernaryContour(FunctionToContour, filled = TRUE, nlevels = 4)
+  }
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("FilledContours", FilledContours)
 
   ContoursSkiwiff <- function() {
     FunctionToContour <- function(a, b, c) {
@@ -79,7 +103,7 @@ test_that("Contours are plotted", {
 
 
   DensityContours <- function() {
-    par(mar = rep(0.2, 4))
+    par(mar = rep(0.2, 4), mfrow = c(1, 2))
     TernaryPlot()
 
     nPoints <- 400L
@@ -93,6 +117,11 @@ test_that("Contours are plotted", {
     ColourTernary(TernaryDensity(coordinates, resolution = 10L))
     TernaryPoints(coordinates, col = "red", pch = ".")
     TernaryDensityContour(coordinates, resolution = 10L)
+  
+    
+    TernaryPlot()
+    TernaryDensityContour(coordinates, resolution = 10L, fill = TRUE)
+    TernaryPoints(coordinates, col = "red", pch = ".")
   }
   skip_if_not_installed("vdiffr")
   vdiffr::expect_doppelganger("density-contours", DensityContours)
