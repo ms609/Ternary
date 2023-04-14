@@ -261,11 +261,12 @@ FunctionToContour <- function(a, b, c) {
 values <- TernaryContour(FunctionToContour, resolution = 36L, filled = TRUE)
 
 if (requireNamespace("TreeTools", quietly = TRUE)) {
+  zRange <- range(values$z, na.rm = TRUE)
   # Print legend for colour scale
   TreeTools::SpectrumLegend(
     x0 = 0.9,
     y0 = 0.6,
-    legend = signif(seq(min(values), max(values), length.out = 4), 3),
+    legend = round(seq(zRange[1], zRange[2], length.out = 4), 3),
     palette = viridisLite::viridis(256L, alpha = 0.6),
     xpd = NA # Do not clip at edge of figure
   )
