@@ -22,6 +22,7 @@ License: GPL (>= 2)
 Language: en-GB
 Depends: R (>= 3.2.0)
 Imports:
+    PlotTools,
     shiny,
     sp,
     viridisLite,
@@ -33,7 +34,6 @@ Suggests:
     shinyjs,
     spelling,
     testthat (>= 3.0),
-    PlotTools,
     vdiffr,
 Config/Needs/check: rcmdcheck
 Config/Needs/coverage: covr
