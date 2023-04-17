@@ -46,10 +46,20 @@ par(mar = c(0, 0, 0, 0))
 HoldridgePlot(hex.labels = holdridgeLifeZonesUp)
 HoldridgeBelts()
 
-# Plot data, shaded by latitude; darker = equitorial.
+# Plot data, shaded by latitude
 HoldridgePoints(holdridge$PET, holdridge$Precipitation,
                 col = hcl.colors(91)[abs(holdridge$Latitude) + 1],
                 lwd = 2)
+
+# Add legend to interpret shading
+PlotTools::SpectrumLegend(
+  "topright", bty = "n", # No box
+  horiz = TRUE, # Horizontal
+  x.intersp = -0.5, # Squeeze in X direction
+  legend = paste0(seq(0, 90, 15), "°"),
+  palette = hcl.colors(91),
+  title = "Latitude"
+)
 ```
 
 # References
