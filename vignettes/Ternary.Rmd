@@ -190,36 +190,70 @@ TernaryPoints(dat[, c("sio2", "fe2o3", "al2o3")],
               pch = 16         # Plotting symbol (16 = filled circle)
               )
 
-if (requireNamespace("TreeTools", quietly = TRUE)) {
+if (requireNamespace("PlotTools", quietly = TRUE)) {
   # Legend for colour scale
-  TreeTools::SpectrumLegend(
-    x0 = 0.0, y0 = 0.7, # Position on plot; bottom left = 0, 0
+  PlotTools::SpectrumLegend(
+    "topleft",
     cex = 0.8, # Font size
     palette = mySpectrum,
     legend = paste(
-      seq(from = min(dat$reflectance), to = max(dat$reflectance),
+      seq(from = max(dat$reflectance), to = min(dat$reflectance),
           length.out = 5),
       "%"
     ),
+    bty = "n", # No framing box
     xpd = NA, # Don't clip at margins
+    title.font = 2, # Bold
     title = "Reflectance"
   )
+  
+    # Legend for point size
+  PlotTools::SizeLegend(
+    "topright",
+    width = c(0, maxSize),
+    lend = "round", # Round end of scale bar
+    legend = paste(
+      signif(seq(max(sizes), 0, length.out = 5), digits = 3),
+      "\u03bcm" # µm
+    ),
+    title = "Grain size",
+    title.font = 2, # Bold
+    bty = "n", # Do not frame with box
+    cex = 0.8
+  )
+} else {
+  # Discrete legend for point size
+  legend(
+    "topleft",
+    cex = 0.8, # Font size
+    pch = 15, # Filled square
+    col = rev(viridisLite::viridis(5)),
+    legend = paste(
+      seq(from = max(dat$reflectance), to = min(dat$reflectance),
+          length.out = 5),
+      "%"
+    ),
+    bty = "n", # No framing box
+    xpd = NA, # Don't clip at margins
+    title.font = 2, # Bold
+    title = "Reflectance"
+  )
+  
+  # Discrete legend for point size
+  legend(
+    "topright",
+    pt.cex = seq(maxSize, 0, length.out = 5),
+    pch = 16, # Filled circle
+    legend = paste(
+      signif(seq(max(sizes), 0, length.out = 5), digits = 3),
+      "\u03bcm" # µm
+    ),
+    title = "Grain size",
+    title.font = 2, # Bold
+    bty = "n", # Do not frame with box
+    cex = 0.8
+  )
 }
-
-# Legend for point size
-legend(
-  "topright",
-  pt.cex = seq(maxSize, 0, length.out = 5),
-  pch = 16, # Filled circle
-  legend = paste(
-    signif(seq(max(sizes), 0, length.out = 5), digits = 3),
-    "\u03bcm" # µm
-  ),
-  title = "Grain size",
-  title.font = 2, # Bold
-  bty = "n", # Do not frame with box
-  cex = 0.8
-)
 ```
 
 See the "Points" tab of the shiny app for a point-and-click implementation.
@@ -261,16 +295,28 @@ FunctionToContour <- function(a, b, c) {
 
 # Add contour lines
 values <- TernaryContour(FunctionToContour, resolution = 36L, filled = TRUE)
+zRange <- range(values$z, na.rm = TRUE)
 
-if (requireNamespace("TreeTools", quietly = TRUE)) {
-  zRange <- range(values$z, na.rm = TRUE)
-  # Print legend for colour scale
-  TreeTools::SpectrumLegend(
-    x0 = 0.9,
-    y0 = 0.6,
+if (requireNamespace("PlotTools", quietly = TRUE)) {
+  # Continuous legend for colour scale
+  PlotTools::SpectrumLegend(
+    "topleft",
     legend = round(seq(zRange[1], zRange[2], length.out = 4), 3),
     palette = viridisLite::viridis(256L, alpha = 0.6),
-    xpd = NA # Do not clip at edge of figure
+    bty = "n",    # No framing box
+    inset = 0.02,
+    xpd = NA      # Do not clip at edge of figure
+  )
+} else {
+  # Discrete legend for colour scale
+  legend(
+    "topleft",
+    legend = round(seq(zRange[1], zRange[2], length.out = 4), 3),
+    col = viridisLite::viridis(4L, alpha = 0.6),
+    pch = 15,     # Filled square
+    bty = "n",    # No framing box
+    inset = 0.02,
+    xpd = NA      # Do not clip at edge of figure
   )
 }
 
