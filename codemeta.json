@@ -143,11 +143,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "PlotTools",
-      "name": "PlotTools"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "vdiffr",
       "name": "vdiffr",
       "provider": {
@@ -168,6 +163,11 @@
     },
     "2": {
       "@type": "SoftwareApplication",
+      "identifier": "PlotTools",
+      "name": "PlotTools"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
       "identifier": "shiny",
       "name": "shiny",
       "provider": {
@@ -178,7 +178,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
-    "3": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "sp",
       "name": "sp",
@@ -190,7 +190,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sp"
     },
-    "4": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "viridisLite",
       "name": "viridisLite",
@@ -204,7 +204,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "8159.071KB",
+  "fileSize": "8160.098KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
