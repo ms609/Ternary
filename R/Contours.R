@@ -478,6 +478,9 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' `values["z", ]`.
 #' @template resolutionParam
 #' @template directionParam
+#' @param legend Character vector specifying annotations for colour scale.
+#' If not provided, no colour legend is displayed.
+#' @param \dots Further arguments to [`SpectrumLegend()`].
 #' 
 #' @template MRS
 #' 
@@ -489,7 +492,12 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' }
 #' 
 #' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-#' ColourTernary(values)
+#' ColourTernary(
+#'   values,
+#'   x = "topleft",
+#'   bty = "n", # No box
+#'   legend = signif(seq(max(values), min(values), length.out = 4), 3)
+#' )
 #' TernaryContour(FunctionToContour, resolution = 36L)
 #' 
 #' 
@@ -513,11 +521,13 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' @importFrom viridisLite viridis
 #TODO when require r>3.6.0, update viridis calls to use hcl.colors()
 #' @importFrom grDevices col2rgb
+#' @importFrom PlotTools SpectrumLegend
 #' @export
 ColourTernary <- function(values, 
                           spectrum = viridisLite::viridis(256L, alpha = 0.6),
                           resolution = sqrt(ncol(values)),
-                          direction = getOption("ternDirection", 1L)) {
+                          direction = getOption("ternDirection", 1L),
+                          legend, ...) {
   z <- values["z", ]
   col <- if (is.null(spectrum) || 
              (!is.numeric(z) && 
@@ -544,6 +554,14 @@ ColourTernary <- function(values,
   TernaryTiles(as.numeric(values["x", ]), as.numeric(values["y", ]),
                as.numeric(values["down", ]),
                resolution = resolution, col = col, direction = direction)
+  
+  if (!missing(legend)) {
+    SpectrumLegend(
+      legend = legend,
+      palette = spectrum,
+      ...
+    )
+  }
   
   # Return:
   invisible()

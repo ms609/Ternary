@@ -15,7 +15,6 @@
 #' [online](https://ms609.github.io/Ternary/articles/Ternary.html) or by
 #' typing `vignette('Ternary', 'Ternary')` at the R console.
 #'
-#' @importFrom PlotTools SpectrumLegend
 #' @keywords internal
 "_PACKAGE"
 

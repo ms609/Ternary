@@ -119,7 +119,8 @@ test_that("Contours are plotted", {
       abs(rnorm(nPoints, 1, 0.5))
     )
 
-    ColourTernary(TernaryDensity(coordinates, resolution = 10L))
+    ColourTernary(TernaryDensity(coordinates, resolution = 10L),
+                  legend = 4:1, x = "topleft", bty = "n")
     TernaryPoints(coordinates, col = "red", pch = ".")
     val <- TernaryDensityContour(coordinates, resolution = 10L)
     expect_equal(names(val), letters[24:26])

@@ -1,8 +1,8 @@
-# Ternary v2.1.3.9002
+# Ternary v2.1.3.9003
 - New option `filled` to produce filled contour lines in `TernaryContour()`
   ([#69](https://github.com/ms609/Ternary/issues/69))
 - Improve clarity of point size plotting example.
-- Colour bar legend example for `ColourTernary()` in vignette
+- Native colour bar support in `ColourTernary()`
    ([#66](https://github.com/ms609/Ternary/issues/66)).
 
 # Ternary v2.1.3

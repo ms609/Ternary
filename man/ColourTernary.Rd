@@ -9,14 +9,18 @@ ColourTernary(
   values,
   spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  legend,
+  ...
 )
 
 ColorTernary(
   values,
   spectrum = viridisLite::viridis(256L, alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  legend,
+  ...
 )
 }
 \arguments{
@@ -35,6 +39,11 @@ colour gradients, but at a computational cost.}
 
 \item{direction}{(optional) Integer specifying the direction that the current ternary plot
 should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{legend}{Character vector specifying annotations for colour scale.
+If not provided, no colour legend is displayed.}
+
+\item{\dots}{Further arguments to \code{\link[=SpectrumLegend]{SpectrumLegend()}}.}
 }
 \description{
 Colour a ternary plot according to the output of a function
@@ -47,7 +56,12 @@ FunctionToContour <- function (a, b, c) {
 }
 
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
+ColourTernary(
+  values,
+  x = "topleft",
+  bty = "n", # No box
+  legend = signif(seq(max(values), min(values), length.out = 4), 3)
+)
 TernaryContour(FunctionToContour, resolution = 36L)
 
 
