@@ -22,6 +22,7 @@ License: GPL (>= 2)
 Language: en-GB
 Depends: R (>= 3.2.0)
 Imports:
+    RcppHungarian,
     PlotTools,
     shiny,
     sp,
