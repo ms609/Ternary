@@ -14,11 +14,10 @@
 #' data("Seatbelts")
 #' seats <- c("drivers", "front", "rear")
 #' seat <- Seatbelts[month.abb %in% "Oct", seats]
+#' law <- Seatbelts[month.abb %in% "Oct", "law"]
 #' TernaryPlot(alab = seats[1], blab = seats[2], clab = seats[3])
-#' TernaryPoints(seat, pch = 16, cex = 0.5)
-#' Annotate(seat[1, ], side = 1)
-#' Annotate(seat, labels = 1969:1984)
-#' 
+#' TernaryPoints(seat, cex = 0.8, col = 2 + law)
+#' Annotate(seat, labels = 1969:1984, col = 2 + law)
 #'  
 #' @importFrom graphics segments text
 #' @importFrom RcppHungarian HungarianSolver
