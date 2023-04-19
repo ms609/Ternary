@@ -522,6 +522,8 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #TODO when require r>3.6.0, update viridis calls to use hcl.colors()
 #' @importFrom grDevices col2rgb
 #' @importFrom PlotTools SpectrumLegend
+#' @seealso Fine control over continuous legends: 
+#' [`PlotTools::SpectrumLegend()`]
 #' @export
 ColourTernary <- function(values, 
                           spectrum = viridisLite::viridis(256L, alpha = 0.6),

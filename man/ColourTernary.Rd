@@ -82,6 +82,9 @@ ColourTernary(values, spectrum = NULL)
 
 }
 \seealso{
+Fine control over continuous legends:
+\code{\link[PlotTools:SpectrumLegend]{PlotTools::SpectrumLegend()}}
+
 Other contour plotting functions: 
 \code{\link{TernaryContour}()},
 \code{\link{TernaryDensityContour}()},
