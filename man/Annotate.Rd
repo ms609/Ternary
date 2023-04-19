@@ -4,19 +4,33 @@
 \alias{Annotate}
 \title{Annotate individual points on a ternary diagram}
 \usage{
-Annotate(coordinates, annotation, side, ...)
+Annotate(
+  coordinates,
+  labels,
+  side,
+  line.col = col,
+  lty = par("lty"),
+  lwd = par("lwd"),
+  col = par("col"),
+  font = par("font"),
+  ...
+)
 }
 \arguments{
 \item{coordinates}{A list, matrix, data.frame or vector in which each
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 
-\item{annotation}{Character vector of same length as \code{coordinates}
+\item{labels}{Character vector of same length as \code{coordinates}
 specifying text with which to annotate each point.}
 
 \item{side}{Optional integer vector specifying which side of the ternary
 plot each point should be labelled on. Points labelled 0 will not be
 annotated (but still require an entry in \code{annotation}).}
+
+\item{line.col, lty, lwd}{parameters to \code{\link[=segments]{segments()}}.}
+
+\item{col, font}{parameters to \code{\link[=text]{text()}}.}
 
 \item{\dots}{Further parameters to \code{\link[=text]{text()}} and \code{\link[=segments]{segments()}}.}
 }
@@ -29,7 +43,9 @@ seats <- c("drivers", "front", "rear")
 seat <- Seatbelts[month.abb \%in\% "Oct", seats]
 TernaryPlot(alab = seats[1], blab = seats[2], clab = seats[3])
 TernaryPoints(seat, pch = 16, cex = 0.5)
-Annotate(seat, annotation = 1969:1984, col = )
+Annotate(seat[1, ], side = 1)
+Annotate(seat, labels = 1969:1984)
+
  
 }
 \author{
