@@ -7,7 +7,7 @@
 #' plot each point should be labelled on. Points labelled 0 will not be
 #' annotated (but still require an entry in `annotation`).
 #' @param line.col,lty,lwd parameters to [`segments()`].
-#' @param col,font parameters to [`text()`].
+#' @param col,font,offset parameters to [`text()`].
 #' @param \dots Further parameters to [`text()`] and [`segments()`].
 #' 
 #' @examples
@@ -26,7 +26,7 @@
 #' @export
 Annotate <- function(coordinates, labels, side,
                      line.col = col, lty = par("lty"), lwd = par("lwd"),
-                     col = par("col"), font = par("font"),
+                     col = par("col"), font = par("font"), offset = 0.5,
                      ...) {
   xy <- CoordinatesToXY(coordinates)
   direction <- getOption("ternDirection", 1)
@@ -77,6 +77,7 @@ Annotate <- function(coordinates, labels, side,
   lwd <- rep_len(lwd, n)
   col <- rep_len(col, n)
   font <- rep_len(font, n)
+  offset <- rep_len(offset, n)
   
   for (i in 1:3) {
     onSide <- side == i
@@ -97,7 +98,7 @@ Annotate <- function(coordinates, labels, side,
            pos = pos[i],
            srt = srt[i],
            xpd = NA,
-           col = col[onSide], font = font[onSide],
+           col = col[onSide], font = font[onSide], offset = offset[onSide],
            ...)
     }
   }

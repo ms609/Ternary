@@ -13,6 +13,7 @@ Annotate(
   lwd = par("lwd"),
   col = par("col"),
   font = par("font"),
+  offset = 0.5,
   ...
 )
 }
@@ -30,7 +31,7 @@ annotated (but still require an entry in \code{annotation}).}
 
 \item{line.col, lty, lwd}{parameters to \code{\link[=segments]{segments()}}.}
 
-\item{col, font}{parameters to \code{\link[=text]{text()}}.}
+\item{col, font, offset}{parameters to \code{\link[=text]{text()}}.}
 
 \item{\dots}{Further parameters to \code{\link[=text]{text()}} and \code{\link[=segments]{segments()}}.}
 }
