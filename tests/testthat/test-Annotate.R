@@ -1,8 +1,8 @@
 test_that("Annotate() works", {
-  points <- cbind(c(1, 2, 7), c(1, 7, 2),
-                  c(2, 1, 7), c(7, 1, 2),
-                  c(2, 7, 1), c(7, 2, 1),
-                  c(3, 3, 4), c(3, 4, 3)
+  points <- list(c(1, 2, 7), c(1, 7, 2),
+                 c(2, 1, 7), c(7, 1, 2),
+                 c(2, 7, 1), c(7, 2, 1),
+                 c(3, 3, 4), c(3, 4, 3)
   )
   
   AnnotateBasics <- function() {
@@ -20,7 +20,7 @@ test_that("Annotate() works", {
   
   AnnotateAutoLocate <- function() {
     TernaryPlot()
-    Annotate(points, 1:8,
+    Annotate(do.call(cbind, points), 1:8,
              col = rainbow(8),
              lty = c("solid", "dashed"))
     legend("topleft", legend = 1:8, col = rainbow(8), pch = 15, bty = "n")
