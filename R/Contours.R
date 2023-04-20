@@ -759,18 +759,27 @@ TernaryContour <- function(
 #' - `z`: The density at each grid coordinate.
 #' 
 #' @examples
-#'
-#' TernaryPlot(axis.labels = seq(0, 10, by = 1))
-#'
+#' # Generate some example data
 #' nPoints <- 400L
 #' coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
 #'                      abs(rnorm(nPoints, 1, 1.5)),
 #'                      abs(rnorm(nPoints, 1, 0.5)))
+#' # Set up plot
+#' oPar <- par(mar = rep(0, 4))
+#' TernaryPlot(axis.labels = seq(0, 10, by = 1))
 #'
-#' ColourTernary(TernaryDensity(coordinates, resolution = 10L))
+#' # Colour background by density
+#' ColourTernary(TernaryDensity(coordinates, resolution = 10L),
+#'               legend = TRUE, bty = "n", title = "Density")
+#' 
+#' # Plot points
 #' TernaryPoints(coordinates, col = "red", pch = ".")
+#' 
+#' # Contour by density
 #' TernaryDensityContour(coordinates, resolution = 30L)
-#'
+#' 
+#' # Reset plotting parameters
+#' par(oPar)
 #' @author Adapted from `MASS::kde2d()` by Martin R. Smith
 #'
 #' @family contour plotting functions
