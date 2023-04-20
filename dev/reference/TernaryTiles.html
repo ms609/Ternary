@@ -137,19 +137,16 @@ should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">FunctionToContour</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="va">a</span> <span class="op">-</span> <span class="va">c</span> <span class="op">+</span> <span class="op">(</span><span class="fl">4</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">27</span> <span class="op">*</span> <span class="va">a</span> <span class="op">*</span> <span class="va">b</span> <span class="op">*</span> <span class="va">c</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="TernaryXRange.html">TernaryXRange</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.5  0.5</span>
+<span class="r-in"><span><span class="fu"><a href="TernaryXRange.html">TernaryYRange</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.0669873  0.9330127</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution<span class="op">=</span><span class="fl">36L</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">TernaryTiles</span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="cn">TRUE</span>, <span class="fl">10</span>, <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">xy</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryCoords.html">TernaryCoords</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">TernaryTiles</span><span class="op">(</span><span class="va">xy</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">xy</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="cn">FALSE</span>, <span class="fl">5</span>, <span class="st">"darkblue"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TernaryTiles-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
