@@ -2,7 +2,7 @@
 % Please edit documentation in R/Annotate.R
 \name{Annotate}
 \alias{Annotate}
-\title{Annotate points on a ternary diagram}
+\title{Annotate points on a ternary plot}
 \usage{
 Annotate(
   coordinates,
