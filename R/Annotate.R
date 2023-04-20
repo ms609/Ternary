@@ -100,9 +100,10 @@ Annotate <- function(coordinates, labels, side, outset = 0.16,
   font <- rep_len(font, n)
   offset <- rep_len(offset, n)
   if (missing(labels)) {
-    labels <- seq_len((if(is.list(coordinates)) length
-                       else if (is.matrix(coordinates)) nrow
-                       else function (x) length(x) / 3)(coordinates))
+    labels <- seq_len((
+      if (is.data.frame(coordinates) || is.matrix(coordinates)) nrow
+      else if (is.list(coordinates)) length
+      else function (x) length(x) / 3)(coordinates))
   }
   
   for (i in 1:3) {
