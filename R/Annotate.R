@@ -3,10 +3,12 @@
 #' @template coordinatesParam
 #' @param labels Character vector specifying text with which to annotate
 #' each entry in `coordinates`.
-#' @param side Optional integer vector specifying which side of the ternary
-#' plot each point should be labelled on.
-#' Entries of 0 will not be annotated (but still require an entry in `labels`);
-#' points labelled `NA` will be allocated automatically,
+#' @param side Optional vector specifying which side of the ternary
+#' plot each point should be labelled on, using the notation `"a", "b", "c"` or
+#' `1, 2, 3`.
+#' Entries of `"n"` or `0` will not be annotated
+#' (but still require an entry in `labels`).
+#' Entries of `NA` will be allocated a side automatically,
 #' based on the midpoint of `coordinates`.
 #' @param line.col,lty,lwd parameters to [`segments()`].
 #' @param col,font,offset parameters to [`text()`].
@@ -28,7 +30,7 @@
 #' @importFrom RcppHungarian HungarianSolver
 #' @template MRS
 #' @export
-Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
+Annotate <- function(coordinates, labels, side,
                      line.col = col, lty = par("lty"), lwd = par("lwd"),
                      col = par("col"), font = par("font"), offset = 0.5,
                      ...) {
@@ -37,11 +39,8 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
   n <- dim(xy)[2]
   if (missing(side)) {
     side <- rep_len(NA_integer_, n)
-  } else {
-    if (is.character(side)) {
-      side <- match(tolower(side), c("n", "a", "b", "c", 0:3)) %% 4
-    }
-    side <- rep_len(side, n)
+  } else if (is.character(side)) {
+    side <- match(tolower(side), c("a", "b", "c", 0:3, "n")) %% 4
   } 
   if (any(is.na(side))) {
     middle <- rowMeans(xy)#apply(xy, 1, median)
@@ -54,6 +53,7 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
       1 + ((as.double(cut(angle, c(-pi, cornerAngles, pi)))) %% 3)][
         is.na(side)]
   }
+  side <- rep_len(side, n)
   ends <- TernaryCoords(cbind(c(0, 90, 10), c(0, 10, 90),
                               c(10, 0, 90), c(90, 0, 10),
                               c(90, 10, 0), c(10, 90, 0))) + 
@@ -87,6 +87,11 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
   col <- rep_len(col, n)
   font <- rep_len(font, n)
   offset <- rep_len(offset, n)
+  if (missing(labels)) {
+    labels <- seq_len((if(is.list(coordinates)) length
+                       else if (is.matrix(coordinates)) nrow
+                       else function (x) length(x) / 3)(coordinates))
+  }
   
   for (i in 1:3) {
     onSide <- side == i

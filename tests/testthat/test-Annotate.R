@@ -20,21 +20,18 @@ test_that("Annotate() works", {
   
   AnnotateAutoLocate <- function() {
     TernaryPlot()
-    Annotate(do.call(cbind, points), 1:8,
+    Annotate(do.call(rbind, points),
              col = rainbow(8),
-             lty = c("solid", "dashed"))
-    legend("topleft", legend = 1:8, col = rainbow(8), pch = 15, bty = "n")
+             offset = 2,
+             font = 3,
+             lwd = 1,
+             lty = "dotted")
+    Annotate(do.call(rbind, points),
+             side = c("a", 1, "b", 0, "c", NA, NA, "N"),
+             col = rainbow(8),
+             lwd = 3)
   }
+  
   
   vdiffr::expect_doppelganger("Annotate-auto-locate", AnnotateAutoLocate)
-  
-  AnnotateSideLocator <- function() {
-    TernaryPlot()
-    Annotate(points, 1:8, side = c("a", "1", "b", NA, 0, 0, NA, NA),
-             col = rainbow(8),
-             lty = c("solid", "dashed"))
-    legend("topleft", legend = 1:8, col = rainbow(8), pch = 15, bty = "n")
-  }
-  
-  vdiffr::expect_doppelganger("Annotate-side-locate", AnnotateSideLocator)
 })
