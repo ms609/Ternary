@@ -22,12 +22,12 @@ Annotate(
 element (or row) specifies
 the three coordinates of a point in ternary space.}
 
-\item{labels}{Character vector of same length as \code{coordinates}
-specifying text with which to annotate each point.}
+\item{labels}{Character vector specifying text with which to annotate
+each entry in \code{coordinates}.}
 
 \item{side}{Optional integer vector specifying which side of the ternary
 plot each point should be labelled on. Points labelled 0 will not be
-annotated (but still require an entry in \code{annotation}).}
+annotated (but still require an entry in \code{labels}).}
 
 \item{line.col, lty, lwd}{parameters to \code{\link[=segments]{segments()}}.}
 

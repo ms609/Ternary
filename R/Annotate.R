@@ -1,11 +1,11 @@
 #' Annotate individual points on a ternary diagram
 #' 
 #' @template coordinatesParam
-#' @param labels Character vector of same length as `coordinates`
-#' specifying text with which to annotate each point.
+#' @param labels Character vector specifying text with which to annotate
+#' each entry in `coordinates`.
 #' @param side Optional integer vector specifying which side of the ternary
 #' plot each point should be labelled on. Points labelled 0 will not be
-#' annotated (but still require an entry in `annotation`).
+#' annotated (but still require an entry in `labels`).
 #' @param line.col,lty,lwd parameters to [`segments()`].
 #' @param col,font,offset parameters to [`text()`].
 #' @param \dots Further parameters to [`text()`] and [`segments()`].
