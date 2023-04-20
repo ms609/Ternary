@@ -38,7 +38,6 @@
 #' density <- TernaryDensity(coordinates, resolution = 10L)
 #' ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 #' TernaryPoints(coordinates, col = "red", pch = ".")
-#' 
 #' @family contour plotting functions
 #' @template MRS
 #' @export

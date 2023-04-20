@@ -67,9 +67,8 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                      abs(rnorm(nPoints, 1, 0.5)))
 
 density <- TernaryDensity(coordinates, resolution = 10L)
-ColourTernary(density)
+ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 TernaryPoints(coordinates, col = "red", pch = ".")
-
 }
 \seealso{
 Other contour plotting functions: 
