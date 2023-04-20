@@ -36,7 +36,8 @@ test_that("Contours are plotted", {
     TernaryContour(FunctionToContour, resolution = 12L, legend = TRUE)
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
+    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L),
+                  legend = TRUE, x = "bottomleft", bty = "n")
     TernaryContour(FunctionToContour, resolution = 12L)
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)

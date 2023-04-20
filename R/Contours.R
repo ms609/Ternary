@@ -557,6 +557,13 @@ ColourTernary <- function(values,
                resolution = resolution, col = col, direction = direction)
   
   if (!missing(legend)) {
+    if (isTRUE(legend)) {
+      legend <- 4
+    }
+    if (is.numeric(legend) && length(legend) == 1) {
+      legend <- signif(seq(max(z), min(z), length.out = legend))
+    }
+    
     SpectrumLegend(
       legend = legend,
       palette = spectrum,
