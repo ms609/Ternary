@@ -1,29 +1,45 @@
 #' Annotate individual points on a ternary diagram
 #' 
 #' @template coordinatesParam
-#' @param labels Character vector of same length as `coordinates`
-#' specifying text with which to annotate each point.
-#' @param side Optional integer vector specifying which side of the ternary
-#' plot each point should be labelled on. Points labelled 0 will not be
-#' annotated (but still require an entry in `annotation`).
+#' @param labels Character vector specifying text with which to annotate
+#' each entry in `coordinates`.
+#' @param side Optional vector specifying which side of the ternary
+#' plot each point should be labelled on, using the notation `"a", "b", "c"` or
+#' `1, 2, 3`.
+#' Entries of `"n"` or `0` will not be annotated
+#' (but still require an entry in `labels`).
+#' Entries of `NA` will be allocated a side automatically,
+#' based on the midpoint of `coordinates`.
+#' @param outset Numeric specifying distance from plot margins to labels.
 #' @param line.col,lty,lwd parameters to [`segments()`].
 #' @param col,font,offset parameters to [`text()`].
 #' @param \dots Further parameters to [`text()`] and [`segments()`].
 #' 
 #' @examples
+#' # Load some data
 #' data("Seatbelts")
 #' seats <- c("drivers", "front", "rear")
 #' seat <- Seatbelts[month.abb %in% "Oct", seats]
 #' law <- Seatbelts[month.abb %in% "Oct", "law"]
+#' 
+#' # Set up plot
+#' oPar <- par(mar = rep(0, 4))
 #' TernaryPlot(alab = seats[1], blab = seats[2], clab = seats[3])
 #' TernaryPoints(seat, cex = 0.8, col = 2 + law)
+#' 
+#' # Annotate points by year
 #' Annotate(seat, labels = 1969:1984, col = 2 + law)
-#'  
+#' 
+#' # Restore original graphical parameters
+#' par(oPar)  
+#' @seealso [Annotation vignette](
+#' https://ms609.github.io/Ternary/dev/articles/annotation.html) gives 
+#' further suggestions for manual annotation.
 #' @importFrom graphics segments text
 #' @importFrom RcppHungarian HungarianSolver
 #' @template MRS
 #' @export
-Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
+Annotate <- function(coordinates, labels, side, outset = 0.16,
                      line.col = col, lty = par("lty"), lwd = par("lwd"),
                      col = par("col"), font = par("font"), offset = 0.5,
                      ...) {
@@ -31,28 +47,31 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
   direction <- getOption("ternDirection", 1)
   n <- dim(xy)[2]
   if (missing(side)) {
+    side <- rep_len(NA_integer_, n)
+  } else if (is.character(side)) {
+    side <- match(tolower(side), c("a", "b", "c", 0:3, "n")) %% 4
+  } 
+  if (any(is.na(side))) {
     middle <- rowMeans(xy)#apply(xy, 1, median)
     centred <- xy - middle
     angle <- atan2(centred[2, ], centred[1, ])
     corners <- CoordinatesToXY(diag(3)) - middle
     cornerAngles <- atan2(corners[2, ], corners[1, ])
-    side <- switch(direction, 3:1, c(2, 1, 3), c(1, 3, 2), c(1, 3, 2))[
-      1 + ((as.double(cut(angle, c(-pi, cornerAngles, pi)))) %% 3)]
-  } else {
-    if (is.character(side)) {
-      side <- 1 + ((match(tolower(side), c("a", "b", "c", 1:3)) - 1) %% 3)
-    }
-    side <- rep_len(side, n)
+    side[is.na(side)] <- switch(
+      direction, 3:1, c(2, 1, 3), c(1, 3, 2), c(1, 3, 2))[
+      1 + ((as.double(cut(angle, c(-pi, cornerAngles, pi)))) %% 3)][
+        is.na(side)]
   }
+  side <- rep_len(side, n)
   ends <- TernaryCoords(cbind(c(0, 90, 10), c(0, 10, 90),
                               c(10, 0, 90), c(90, 0, 10),
                               c(90, 10, 0), c(10, 90, 0))) + 
-    0.12 * switch(getOption("ternDirection", 1),
-                  c(0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0),
-                  c(-1, 0, -1, 0, 0, 1, 0, 1, 0, -1, 0, -1),
-                  c(0, 1, 0, 1, 1, 0, 1, 0, -1, 0, -1, 0),
-                  c(1, 0, 1, 0, 0, -1, 0, -1, 0, 1, 0, 1)
-                  )
+    outset * switch(getOption("ternDirection", 1),
+                    c(0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0),
+                    c(-1, 0, -1, 0, 0, 1, 0, 1, 0, -1, 0, -1),
+                    c(0, 1, 0, 1, 1, 0, 1, 0, -1, 0, -1, 0),
+                    c(1, 0, 1, 0, 0, -1, 0, -1, 0, 1, 0, 1)
+                    )
   nAnchors <- table(side, dnn = NULL)
   nAnchors <- vapply(
     as.character(1:3),
@@ -77,6 +96,11 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
   col <- rep_len(col, n)
   font <- rep_len(font, n)
   offset <- rep_len(offset, n)
+  if (missing(labels)) {
+    labels <- seq_len((if(is.list(coordinates)) length
+                       else if (is.matrix(coordinates)) nrow
+                       else function (x) length(x) / 3)(coordinates))
+  }
   
   for (i in 1:3) {
     onSide <- side == i
