@@ -81,6 +81,21 @@ segments(
 
 ```
 
+Where less control is required over the location of individual annotations,
+labels can be added and positioned automatically.
+
+```{r auto-annotate}
+# Create ternary plot
+par(mar = rep(0.2, 4)) # Set figure margins
+TernaryPlot("a", "b", "c")
+
+# Add points
+TernaryPoints(points[, 1:3], col = points[, "col"], pch = 16)
+
+# Add annotations automatically
+Annotate(points[, 1:3], label = seq_along(points[, 1]), col = points[, "col"])
+```
+
 
 # Where next
 
