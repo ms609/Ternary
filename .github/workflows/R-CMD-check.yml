@@ -14,10 +14,10 @@ on:
       - "**.git"
       - "**.json"
       - "**.md"
-      - "**.yml"
-      - "!**R-cmd-check.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
+      - "**.yml"
+      - "!**R-cmd-check.yml"
   pull_request:
     branches:
       - main
@@ -29,10 +29,10 @@ on:
       - "**.git"
       - "**.json"
       - "**.md"
-      - "**.yml"
-      - "!**R-cmd-check.yml"
       - "**.R[dD]ata"
       - "**.Rpro*"
+      - "**.yml"
+      - "!**R-cmd-check.yml"
 
 name: R-CMD-check
 
