@@ -1,4 +1,5 @@
-# Ternary v2.1.3.9003
+# Ternary v2.1.3.9004
+- New function `Annotate()` annotates points on ternary plot.
 - New option `filled` to produce filled contour lines in `TernaryContour()`
   ([#69](https://github.com/ms609/Ternary/issues/69))
 - Improve clarity of point size plotting example.
