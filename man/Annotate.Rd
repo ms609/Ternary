@@ -8,6 +8,7 @@ Annotate(
   coordinates,
   labels,
   side,
+  outset = 0.16,
   line.col = col,
   lty = par("lty"),
   lwd = par("lwd"),
@@ -32,6 +33,8 @@ Entries of \code{"n"} or \code{0} will not be annotated
 (but still require an entry in \code{labels}).
 Entries of \code{NA} will be allocated a side automatically,
 based on the midpoint of \code{coordinates}.}
+
+\item{outset}{Numeric specifying distance from plot margins to labels.}
 
 \item{line.col, lty, lwd}{parameters to \code{\link[=segments]{segments()}}.}
 

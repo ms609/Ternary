@@ -8,11 +8,11 @@ test_that("Annotate() works", {
   AnnotateBasics <- function() {
     TernaryPlot()
     TernaryText(points, 1:8)
-    Annotate(points[1:2], side = 1, 1:2)
+    Annotate(points[1:2], side = 1, 1:2, outset = 0.2)
     Annotate(points[3:4], side = "b", 3:4, offset= 1.5,
              col = "darkgreen", line.col = "#003399aa",
              font = 3:4, lwd = c(10, 2))
-    Annotate(points[5:6], side = "3", labels = 5:6)
+    Annotate(points[5:6], side = "3", labels = 5:6,  outset = 0)
   }
 
   skip_if_not_installed("vdiffr")

@@ -10,6 +10,7 @@
 #' (but still require an entry in `labels`).
 #' Entries of `NA` will be allocated a side automatically,
 #' based on the midpoint of `coordinates`.
+#' @param outset Numeric specifying distance from plot margins to labels.
 #' @param line.col,lty,lwd parameters to [`segments()`].
 #' @param col,font,offset parameters to [`text()`].
 #' @param \dots Further parameters to [`text()`] and [`segments()`].
@@ -38,7 +39,7 @@
 #' @importFrom RcppHungarian HungarianSolver
 #' @template MRS
 #' @export
-Annotate <- function(coordinates, labels, side,
+Annotate <- function(coordinates, labels, side, outset = 0.16,
                      line.col = col, lty = par("lty"), lwd = par("lwd"),
                      col = par("col"), font = par("font"), offset = 0.5,
                      ...) {
@@ -65,12 +66,12 @@ Annotate <- function(coordinates, labels, side,
   ends <- TernaryCoords(cbind(c(0, 90, 10), c(0, 10, 90),
                               c(10, 0, 90), c(90, 0, 10),
                               c(90, 10, 0), c(10, 90, 0))) + 
-    0.12 * switch(getOption("ternDirection", 1),
-                  c(0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0),
-                  c(-1, 0, -1, 0, 0, 1, 0, 1, 0, -1, 0, -1),
-                  c(0, 1, 0, 1, 1, 0, 1, 0, -1, 0, -1, 0),
-                  c(1, 0, 1, 0, 0, -1, 0, -1, 0, 1, 0, 1)
-                  )
+    outset * switch(getOption("ternDirection", 1),
+                    c(0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0),
+                    c(-1, 0, -1, 0, 0, 1, 0, 1, 0, -1, 0, -1),
+                    c(0, 1, 0, 1, 1, 0, 1, 0, -1, 0, -1, 0),
+                    c(1, 0, 1, 0, 0, -1, 0, -1, 0, 1, 0, 1)
+                    )
   nAnchors <- table(side, dnn = NULL)
   nAnchors <- vapply(
     as.character(1:3),
