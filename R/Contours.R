@@ -478,8 +478,7 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' `values["z", ]`.
 #' @template resolutionParam
 #' @template directionParam
-#' @param legend Character vector specifying annotations for colour scale.
-#' If not provided, no colour legend is displayed.
+#' @template legendParam
 #' @param \dots Further arguments to [`SpectrumLegend()`].
 #' 
 #' @template MRS
@@ -581,6 +580,7 @@ ColorTernary <- ColourTernary
 #' @template resolutionParam
 #' @template directionParam
 #' @template dotsToContour
+#' @template legendParam
 #' @param within List or matrix of _x, y_ coordinates within which contours
 #' should be evaluated, in any format supported by 
 #' \code{\link[grDevices:xy.coords]{xy.coords(x = within)}}.
@@ -594,14 +594,17 @@ ColorTernary <- ColourTernary
 #' @template MRS
 #' 
 #' @examples
-#' TernaryPlot(alab = "a", blab = "b", clab = "c")
-#'  
 #' FunctionToContour <- function (a, b, c) {
 #'   a - c + (4 * a * b) + (27 * a * b * c)
 #' }
 #' 
+#' # Set up plot
+#' originalPar <- par(mar = rep(0, 4))
+#' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-#' ColourTernary(values)
+#' ColourTernary(values,
+#'   legend = signif(seq(max(values), min(values), length.out = 4), 2),
+#'    bty = "n")
 #' TernaryContour(FunctionToContour, resolution = 36L)
 #' 
 #' # Note that FunctionToContour is sent a vector.
@@ -624,18 +627,20 @@ ColorTernary <- ColourTernary
 #' }
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' # Fill the contour areas, rather than using tiles
-#' TernaryContour(GeneralMax, fill = TRUE,
+#' TernaryContour(GeneralMax, fill = TRUE, legend = c("Max", "Min"), bty = "n",
 #'                fill.col = viridisLite::viridis(14, alpha = 0.6))
-#' # Re-draw borders over fill
+#' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
 #' 
+#' # Restore plotting parameters
+#' par(originalPar)
 #' @family contour plotting functions
 #' @importFrom graphics contour .filled.contour
 #' @importFrom sp point.in.polygon
 #' @export
 TernaryContour <- function(
     Func, resolution = 96L, direction = getOption("ternDirection", 1L),
-    within = NULL, filled = FALSE,
+    within = NULL, filled = FALSE, legend,
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
     color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
     fill.col = color.palette(length(levels) - 1),
@@ -683,6 +688,19 @@ TernaryContour <- function(
   contour(x, y, z, add = TRUE, nlevels = nlevels, levels = levels,
           zlim = zlim, ...)
   
+  if (!missing(legend)) {
+    if (isTRUE(legend)) {
+      legend <- 4
+    }
+    if (is.numeric(legend) && length(legend) == 1) {
+      legend <- signif(seq(zlim[2], zlim[1], length.out = legend))
+    }
+    SpectrumLegend(
+      legend = legend,
+      palette = fill.col,
+      ...
+    )
+  }
   # Return:
   invisible(list(x = x, y = y, z = z))
 }
