@@ -202,7 +202,7 @@ PlotTools::SpectrumLegend(
   ),
   bty = "n", # No framing box
   xpd = NA, # Don't clip at margins
-  title.font = 2, # Bold
+  # title.font = 2, # Bold. Supported from R 3.6 onwards
   title = "Reflectance"
 )
 
@@ -216,7 +216,7 @@ PlotTools::SizeLegend(
     "\u03bcm" # µm
   ),
   title = "Grain size",
-  title.font = 2, # Bold
+  # title.font = 2, # Bold. Supported from R 3.6 onwards
   bty = "n", # Do not frame with box
   cex = 0.8
 )
