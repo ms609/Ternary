@@ -23,7 +23,7 @@
 #' law <- Seatbelts[month.abb %in% "Oct", "law"]
 #' 
 #' # Set up plot
-#' oPar <- par(mar = rep(0, 4))
+#' oPar <- par(mar = c(2, 0, 0, 0))
 #' TernaryPlot(alab = seats[1], blab = seats[2], clab = seats[3])
 #' TernaryPoints(seat, cex = 0.8, col = 2 + law)
 #' 
