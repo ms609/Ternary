@@ -12,6 +12,9 @@
 and Holdridge life zone diagrams
 using the familiar functions of the default 'graphics' package.
 
+![Example ternary plot](https://user-images.githubusercontent.com/1695515/233467338-88a3b3a8-5580-4924-a11e-06dc8a38b3e9.png)
+
+
 For simple use cases, generate ternary plots using the point-and-click
 Shiny app:
 
