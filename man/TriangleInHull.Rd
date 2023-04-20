@@ -50,7 +50,6 @@ ColourTernary(values)
 }
 \seealso{
 Other tiling functions: 
-\code{\link{Polygon-Geometry}},
 \code{\link{TriangleCentres}()}
 }
 \author{

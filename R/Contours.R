@@ -189,8 +189,9 @@ TriangleCentres <- function (resolution = 48L,
 #'        col = ifelse(inHull$inside, "#33cc33", "#cc3333"))
 #' ColourTernary(values)
 #' @template MRS
-#' @importFrom sp point.in.polygon
 #' @importFrom grDevices chull
+#' @importFrom PlotTools GrowPolygon
+#' @importFrom sp point.in.polygon
 #' @family tiling functions
 #' @export
 TriangleInHull <- function(triangles, coordinates, buffer) {
@@ -646,7 +647,7 @@ ColorTernary <- ColourTernary
 #' par(originalPar)
 #' @family contour plotting functions
 #' @importFrom graphics contour .filled.contour
-#' @importFrom PlotTools SpectrumLegend
+#' @importFrom PlotTools GrowPolygon SpectrumLegend
 #' @importFrom sp point.in.polygon
 #' @export
 TernaryContour <- function(
