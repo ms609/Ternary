@@ -23,7 +23,7 @@
 #' @importFrom RcppHungarian HungarianSolver
 #' @template MRS
 #' @export
-Annotate <- function(coordinates, labels, side,
+Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
                      line.col = col, lty = par("lty"), lwd = par("lwd"),
                      col = par("col"), font = par("font"), offset = 0.5,
                      ...) {

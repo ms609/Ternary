@@ -6,7 +6,7 @@
 \usage{
 Annotate(
   coordinates,
-  labels,
+  labels = seq_len(dim(coordinates)[1]),
   side,
   line.col = col,
   lty = par("lty"),
