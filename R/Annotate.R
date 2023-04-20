@@ -4,8 +4,10 @@
 #' @param labels Character vector specifying text with which to annotate
 #' each entry in `coordinates`.
 #' @param side Optional integer vector specifying which side of the ternary
-#' plot each point should be labelled on. Points labelled 0 will not be
-#' annotated (but still require an entry in `labels`).
+#' plot each point should be labelled on.
+#' Entries of 0 will not be annotated (but still require an entry in `labels`);
+#' points labelled `NA` will be allocated automatically,
+#' based on the midpoint of `coordinates`.
 #' @param line.col,lty,lwd parameters to [`segments()`].
 #' @param col,font,offset parameters to [`text()`].
 #' @param \dots Further parameters to [`text()`] and [`segments()`].
@@ -19,6 +21,9 @@
 #' TernaryPoints(seat, cex = 0.8, col = 2 + law)
 #' Annotate(seat, labels = 1969:1984, col = 2 + law)
 #'  
+#' @seealso [Annotation vignette](
+#' https://ms609.github.io/Ternary/dev/articles/annotation.html) gives 
+#' further suggestions for manual annotation.
 #' @importFrom graphics segments text
 #' @importFrom RcppHungarian HungarianSolver
 #' @template MRS
@@ -31,18 +36,23 @@ Annotate <- function(coordinates, labels = seq_len(dim(coordinates)[1]), side,
   direction <- getOption("ternDirection", 1)
   n <- dim(xy)[2]
   if (missing(side)) {
+    side <- rep_len(NA_integer_, n)
+  } else {
+    if (is.character(side)) {
+      side <- match(tolower(side), c("n", "a", "b", "c", 0:3)) %% 4
+    }
+    side <- rep_len(side, n)
+  } 
+  if (any(is.na(side))) {
     middle <- rowMeans(xy)#apply(xy, 1, median)
     centred <- xy - middle
     angle <- atan2(centred[2, ], centred[1, ])
     corners <- CoordinatesToXY(diag(3)) - middle
     cornerAngles <- atan2(corners[2, ], corners[1, ])
-    side <- switch(direction, 3:1, c(2, 1, 3), c(1, 3, 2), c(1, 3, 2))[
-      1 + ((as.double(cut(angle, c(-pi, cornerAngles, pi)))) %% 3)]
-  } else {
-    if (is.character(side)) {
-      side <- 1 + ((match(tolower(side), c("a", "b", "c", 1:3)) - 1) %% 3)
-    }
-    side <- rep_len(side, n)
+    side[is.na(side)] <- switch(
+      direction, 3:1, c(2, 1, 3), c(1, 3, 2), c(1, 3, 2))[
+      1 + ((as.double(cut(angle, c(-pi, cornerAngles, pi)))) %% 3)][
+        is.na(side)]
   }
   ends <- TernaryCoords(cbind(c(0, 90, 10), c(0, 10, 90),
                               c(10, 0, 90), c(90, 0, 10),

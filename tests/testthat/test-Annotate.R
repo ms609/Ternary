@@ -26,6 +26,15 @@ test_that("Annotate() works", {
     legend("topleft", legend = 1:8, col = rainbow(8), pch = 15, bty = "n")
   }
   
-  
   vdiffr::expect_doppelganger("Annotate-auto-locate", AnnotateAutoLocate)
+  
+  AnnotateSideLocator <- function() {
+    TernaryPlot()
+    Annotate(points, 1:8, side = c("a", "1", "b", NA, 0, 0, NA, NA),
+             col = rainbow(8),
+             lty = c("solid", "dashed"))
+    legend("topleft", legend = 1:8, col = rainbow(8), pch = 15, bty = "n")
+  }
+  
+  vdiffr::expect_doppelganger("Annotate-side-locate", AnnotateSideLocator)
 })
