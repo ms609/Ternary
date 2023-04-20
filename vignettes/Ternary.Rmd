@@ -94,7 +94,7 @@ data_points <- list(
   I = c(92, 12, 243),
   V = c(225, 24, 208)
 )
-AddToTernary(points, data_points, pch = 21, cex = 2.8, 
+AddToTernary(graphics::points, data_points, pch = 21, cex = 2.8, 
              bg = vapply(data_points, 
                          function (x) rgb(x[1], x[2], x[3], 128,
                                           maxColorValue = 255),
