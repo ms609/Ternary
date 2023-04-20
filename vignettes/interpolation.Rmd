@@ -36,7 +36,7 @@ values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 TernaryPlot(alab = "a", blab = "b", clab = "c",
             # Place an opaque fill behind grid lines:
             panel.first = ColourTernary(values, spectrum = hcl.colors(256)))
-TernaryContour(FunctionToContour, resolution = 36L)
+TernaryContour(FunctionToContour, resolution = 36L, legend = TRUE, bty = "n")
 
 ```
 
@@ -99,7 +99,7 @@ ColourTernary(map)
 
 # Calculate contours
 PredictABC <- function(a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
-TernaryContour(PredictABC, resolution = 36L)
+TernaryContour(PredictABC, resolution = 36L, legend = 6, bty = "n")
 
 # Mark the points at which we took measurements
 TernaryPoints(abc, pch = 3, col = "#cc3333")
