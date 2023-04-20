@@ -97,6 +97,9 @@ jobs:
           extra-packages: |
             readxl=?ignore-before-r=3.5.0
             rlang=?ignore-before-r=3.5.0
+            shiny=?ignore-before-r=3.5.0
+            testthat=?ignore-before-r=3.5.0
+            vdiffr=?ignore-before-r=3.5.0
           needs: |
             check
 
