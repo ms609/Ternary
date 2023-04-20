@@ -88,8 +88,9 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Annotate</span><span class="op">(</span></span>
 <span>  <span class="va">coordinates</span>,</span>
-<span>  labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">coordinates</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>,</span>
+<span>  <span class="va">labels</span>,</span>
 <span>  <span class="va">side</span>,</span>
+<span>  outset <span class="op">=</span> <span class="fl">0.16</span>,</span>
 <span>  line.col <span class="op">=</span> <span class="va">col</span>,</span>
 <span>  lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"lty"</span><span class="op">)</span>,</span>
 <span>  lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"lwd"</span><span class="op">)</span>,</span>
@@ -109,14 +110,22 @@ the three coordinates of a point in ternary space.</p></dd>
 
 
 <dt>labels</dt>
-<dd><p>Character vector of same length as <code>coordinates</code>
-specifying text with which to annotate each point.</p></dd>
+<dd><p>Character vector specifying text with which to annotate
+each entry in <code>coordinates</code>.</p></dd>
 
 
 <dt>side</dt>
-<dd><p>Optional integer vector specifying which side of the ternary
-plot each point should be labelled on. Points labelled 0 will not be
-annotated (but still require an entry in <code>annotation</code>).</p></dd>
+<dd><p>Optional vector specifying which side of the ternary
+plot each point should be labelled on, using the notation <code>"a", "b", "c"</code> or
+<code>1, 2, 3</code>.
+Entries of <code>"n"</code> or <code>0</code> will not be annotated
+(but still require an entry in <code>labels</code>).
+Entries of <code>NA</code> will be allocated a side automatically,
+based on the midpoint of <code>coordinates</code>.</p></dd>
+
+
+<dt>outset</dt>
+<dd><p>Numeric specifying distance from plot margins to labels.</p></dd>
 
 
 <dt>line.col, lty, lwd</dt>
@@ -131,6 +140,11 @@ annotated (but still require an entry in <code>annotation</code>).</p></dd>
 <dd><p>Further parameters to <code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text()</a></code> and <code><a href="https://rdrr.io/r/graphics/segments.html" class="external-link">segments()</a></code>.</p></dd>
 
 </dl></div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p><a href="https://ms609.github.io/Ternary/dev/articles/annotation.html">Annotation vignette</a> gives
+further suggestions for manual annotation.</p></div>
+    </div>
     <div id="author">
     <h2>Author</h2>
     <p><a href="https://orcid.org/0000-0001-5660-1727" class="external-link">Martin R. Smith</a>
@@ -139,15 +153,23 @@ annotated (but still require an entry in <code>annotation</code>).</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Seatbelts"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Load some data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"Seatbelts"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">seats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"drivers"</span>, <span class="st">"front"</span>, <span class="st">"rear"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">seat</span> <span class="op">&lt;-</span> <span class="va">Seatbelts</span><span class="op">[</span><span class="va">month.abb</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Oct"</span>, <span class="va">seats</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">law</span> <span class="op">&lt;-</span> <span class="va">Seatbelts</span><span class="op">[</span><span class="va">month.abb</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="st">"Oct"</span>, <span class="st">"law"</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Set up plot</span></span></span>
+<span class="r-in"><span><span class="va">oPar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="va">seats</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, blab <span class="op">=</span> <span class="va">seats</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, clab <span class="op">=</span> <span class="va">seats</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">seat</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, col <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="va">law</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Annotate points by year</span></span></span>
 <span class="r-in"><span><span class="fu">Annotate</span><span class="op">(</span><span class="va">seat</span>, labels <span class="op">=</span> <span class="fl">1969</span><span class="op">:</span><span class="fl">1984</span>, col <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="va">law</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="Annotate-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Restore original graphical parameters</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">oPar</span><span class="op">)</span>  </span></span>
 </code></pre></div>
     </div>
   </div>
