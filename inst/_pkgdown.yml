@@ -15,6 +15,7 @@ reference:
       - TernaryApp
       - TernaryPlot
       - AddToTernary
+      - Annotate
   - title: "Creating Holdridge plots"
     desc: >
       Functions for drawing and adding data to a Holdridge plot.
