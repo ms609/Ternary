@@ -206,7 +206,7 @@ PlotTools::SpectrumLegend(
   title = "Reflectance"
 )
 
-  # Legend for point size
+# Legend for point size
 PlotTools::SizeLegend(
   "topright",
   width = c(0, maxSize),
@@ -296,7 +296,6 @@ FunctionToContour <- function(a, b, c) {
 # Add contour lines
 values <- TernaryContour(FunctionToContour, resolution = 36L, filled = TRUE)
 zRange <- range(values$z, na.rm = TRUE)
-
 
 # Continuous legend for colour scale
 PlotTools::SpectrumLegend(
