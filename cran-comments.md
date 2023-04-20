@@ -1,7 +1,7 @@
 ## Test environments
 * R-hub, with `rhub::check_for_cran()`
 
-* Ubuntu 20.04 LTS, R 3.4.0, release and devel, via 
+* Ubuntu 20.04 LTS, R 3.5.0, release and devel, via 
   [GitHub actions](https://github.com/ms609/Ternary/actions)
   
 * local Windows 10 install, R 4.2.0

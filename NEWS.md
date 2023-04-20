@@ -5,6 +5,7 @@
 - Improve clarity of point size plotting example.
 - Native colour bar support in `ColourTernary()`
    ([#66](https://github.com/ms609/Ternary/issues/66)).
+- Updated to require R 3.5 (due to dependency on "rlang").
 
 # Ternary v2.1.3
 - New [vignette](https://ms609.github.io/Ternary/articles/annotation.html)
