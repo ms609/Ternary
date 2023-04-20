@@ -43,14 +43,22 @@ based on the midpoint of \code{coordinates}.}
 Annotate individual points on a ternary diagram
 }
 \examples{
+# Load some data
 data("Seatbelts")
 seats <- c("drivers", "front", "rear")
 seat <- Seatbelts[month.abb \%in\% "Oct", seats]
 law <- Seatbelts[month.abb \%in\% "Oct", "law"]
+
+# Set up plot
+oPar <- par(mar = rep(0, 4))
 TernaryPlot(alab = seats[1], blab = seats[2], clab = seats[3])
 TernaryPoints(seat, cex = 0.8, col = 2 + law)
+
+# Annotate points by year
 Annotate(seat, labels = 1969:1984, col = 2 + law)
- 
+
+# Restore original graphical parameters
+par(oPar)  
 }
 \seealso{
 \href{https://ms609.github.io/Ternary/dev/articles/annotation.html}{Annotation vignette} gives
