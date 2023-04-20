@@ -1,4 +1,7 @@
-#' Annotate individual points on a ternary diagram
+#' Annotate points on a ternary diagram
+#' 
+#' `Annotate()` identifies and label individual points on a ternary diagram
+#' in the plot margins.
 #' 
 #' @template coordinatesParam
 #' @param labels Character vector specifying text with which to annotate

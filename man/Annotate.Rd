@@ -2,7 +2,7 @@
 % Please edit documentation in R/Annotate.R
 \name{Annotate}
 \alias{Annotate}
-\title{Annotate individual points on a ternary diagram}
+\title{Annotate points on a ternary diagram}
 \usage{
 Annotate(
   coordinates,
@@ -43,7 +43,8 @@ based on the midpoint of \code{coordinates}.}
 \item{\dots}{Further parameters to \code{\link[=text]{text()}} and \code{\link[=segments]{segments()}}.}
 }
 \description{
-Annotate individual points on a ternary diagram
+\code{Annotate()} identifies and label individual points on a ternary diagram
+in the plot margins.
 }
 \examples{
 # Load some data
