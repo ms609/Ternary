@@ -17,7 +17,7 @@ on:
       - "**.R[dD]ata"
       - "**.Rpro*"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**R-CMD-check.yml"
   pull_request:
     branches:
       - main
@@ -32,7 +32,7 @@ on:
       - "**.R[dD]ata"
       - "**.Rpro*"
       - "**.yml"
-      - "!**R-cmd-check.yml"
+      - "!**R-CMD-check.yml"
 
 name: R-CMD-check
 
