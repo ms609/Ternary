@@ -94,6 +94,7 @@ jobs:
         if: runner.os != 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          extra-packages: readxl=?ignore-before-r=3.5.0
           needs: |
             check
 
