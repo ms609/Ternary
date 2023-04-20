@@ -29,11 +29,11 @@ test_that("Contours are plotted", {
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 1L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L)
+    TernaryContour(FunctionToContour, resolution = 12L, legend = 3, bty = "n")
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 2L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L)
+    TernaryContour(FunctionToContour, resolution = 12L, legend = TRUE)
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
@@ -41,7 +41,9 @@ test_that("Contours are plotted", {
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    val <- TernaryContour(FunctionToContour, resolution = 12L)
+    val <- TernaryContour(FunctionToContour, resolution = 12L,
+                          legend = letters[1:5],
+                          legend... = list(bty = "n", x = "bottomleft"))
     expect_equal(val$x, seq(-sqrt(0.75), 0, length.out = 12L))
     expect_equal(val$y, seq(-0.5, 0.5, length.out = 12L))
     abc <- XYToTernary(val$x[4], val$y[7])

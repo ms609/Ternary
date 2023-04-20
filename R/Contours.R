@@ -581,6 +581,8 @@ ColorTernary <- ColourTernary
 #' @template directionParam
 #' @template dotsToContour
 #' @template legendParam
+#' @param legend... List of additional parameters to send to
+#' [`SpectrumLegend()`].
 #' @param within List or matrix of _x, y_ coordinates within which contours
 #' should be evaluated, in any format supported by 
 #' \code{\link[grDevices:xy.coords]{xy.coords(x = within)}}.
@@ -627,7 +629,8 @@ ColorTernary <- ColourTernary
 #' }
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' # Fill the contour areas, rather than using tiles
-#' TernaryContour(GeneralMax, fill = TRUE, legend = c("Max", "Min"), bty = "n",
+#' TernaryContour(GeneralMax, filled = TRUE,
+#'                legend = c("Max", "Min"), bty = "n",
 #'                fill.col = viridisLite::viridis(14, alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
@@ -636,11 +639,12 @@ ColorTernary <- ColourTernary
 #' par(originalPar)
 #' @family contour plotting functions
 #' @importFrom graphics contour .filled.contour
+#' @importFrom PlotTools SpectrumLegend
 #' @importFrom sp point.in.polygon
 #' @export
 TernaryContour <- function(
     Func, resolution = 96L, direction = getOption("ternDirection", 1L),
-    within = NULL, filled = FALSE, legend,
+    within = NULL, filled = FALSE, legend, legend... = list(),
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
     color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
     fill.col = color.palette(length(levels) - 1),
@@ -695,10 +699,11 @@ TernaryContour <- function(
     if (is.numeric(legend) && length(legend) == 1) {
       legend <- signif(seq(zlim[2], zlim[1], length.out = legend))
     }
-    SpectrumLegend(
-      legend = legend,
-      palette = fill.col,
-      ...
+    if ("bty" %in% names(list(...))) {
+      legend... <- c(legend..., bty = list(...)$bty)
+    }
+    do.call(SpectrumLegend,
+            c(list(legend = legend, palette = fill.col), legend...)
     )
   }
   # Return:
