@@ -1,3 +1,7 @@
+# Ternary v2.2.0.9000 (development)
+  - `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
+    are provided but will be removed in a later version of this package.
+
 # Ternary v2.2.0 (2023-05-11)
 - New function `Annotate()` annotates points on ternary plot.
 - New option `filled` to produce filled contour lines in `TernaryContour()`
