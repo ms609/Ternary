@@ -8,13 +8,13 @@
   "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "2.2.0.9000",
+  "version": "2.2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.3.0 (2023-04-21)",
+  "runtimePlatform": "R version 4.3.1 (2023-06-16)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -224,7 +224,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "8312.385KB",
+  "fileSize": "8312.503KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
