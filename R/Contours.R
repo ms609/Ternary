@@ -10,39 +10,41 @@
 #' @template directionParam
 #' @param \dots Additional parameters to `Func()`.
 #' @return `TernaryPointValues()` returns a matrix whose rows correspond to:
-#' 
+#'
 #' - **x**, **y**: co-ordinates of the centres of smaller triangles
-#'   
-#' - **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the 
+#'
+#' - **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the
 #'   ternary coordinates of `x` and `y`.
-#'   
-#' - **down**: `0` if the triangle concerned points upwards (or right), 
+#'
+#' - **down**: `0` if the triangle concerned points upwards (or right),
 #'   `1` otherwise
-#' 
+#'
 #' @examples
 #' TernaryPointValues(function (a, b, c) a * b * c, resolution = 2)
-#' 
+#'
 #' TernaryPlot(grid.lines = 4)
 #' cols <- TernaryPointValues(rgb, resolution = 4)
 #' text(as.numeric(cols["x", ]), as.numeric(cols["y", ]),
 #'      labels =  ifelse(cols["down", ] == "1", "v", "^"),
 #'      col = cols["z", ])
-#' 
+#'
 #' TernaryPlot(axis.labels = seq(0, 10, by = 1))
-#' 
+#'
 #' nPoints <- 4000L
 #' coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
 #'                      abs(rnorm(nPoints, 1, 1.5)),
 #'                      abs(rnorm(nPoints, 1, 0.5)))
-#' 
+#'
 #' density <- TernaryDensity(coordinates, resolution = 10L)
 #' ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 #' TernaryPoints(coordinates, col = "red", pch = ".")
 #' @family contour plotting functions
 #' @template MRS
 #' @export
-TernaryPointValues <- function(Func, resolution = 48L, 
-                               direction = getOption("ternDirection", 1L), ...) {
+TernaryPointValues <- function(Func,
+                               resolution = 48L,
+                               direction = getOption("ternDirection", 1L),
+                               ...) {
   triangleCentres <- TriangleCentres(resolution, direction)
   x <- triangleCentres["x", ]
   y <- triangleCentres["y", ]
@@ -58,18 +60,18 @@ TernaryPointValues <- function(Func, resolution = 48L,
 }
 
 #' Coordinates of triangle mid-points
-#' 
+#'
 #' Calculate _x_ and _y_ coordinates of the midpoints of triangles
 #' tiled to cover a ternary plot.
-#' 
+#'
 #' @template resolutionParam
 #' @template directionParam
-#' 
+#'
 #' @return `TriangleCentres()` returns a matrix with three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
 #'  - `y` _y_ coordinates of triangle midpoints;
 #'  - `triDown` `0` for upwards-pointing triangles, `1` for downwards-pointing.
-#'  
+#'
 #' @examples
 #' TernaryPlot(grid.lines = 4)
 #' centres <- TriangleCentres(4)
@@ -80,9 +82,8 @@ TernaryPointValues <- function(Func, resolution = 48L,
 #' @template MRS
 #' @family tiling functions
 #' @export
-TriangleCentres <- function (resolution = 48L, 
+TriangleCentres <- function (resolution = 48L,
                              direction = getOption("ternDirection", 1L)) {
-  
   offset <- 1 / resolution / 2L
   triangleHeight <- sqrt(0.75) / resolution
   trianglesInRow <- 2L * rev(seq_len(resolution)) - 1L
@@ -119,13 +120,29 @@ TriangleCentres <- function (resolution = 48L,
     
   } else if (direction == 2L) { # "Up" is to the right
     
-    rightX <- seq(from = triangleHeight / 3,
-                  to = sqrt(0.75) - (2 * triangleHeight / 3), length.out = resolution)
-    triY <- seq(from = -0.5 + offset, to = 0.5 - offset, by=offset)
+    rightX <- seq(
+      from = triangleHeight / 3,
+      to = sqrt(0.75) - (2 * triangleHeight / 3),
+      length.out = resolution
+    )
+    triY <- seq(from = -0.5 + offset,
+                to = 0.5 - offset,
+                by = offset)
     y <- unlist(lapply(seq_len(resolution), function(xStep) {
-      rightY <- triY[seq(from = xStep, to = (2L * resolution) - xStep, by = 2L)]
-      leftY  <- if (xStep == resolution) integer(0) else 
-        triY[seq(from=xStep + 1, to = (2L * resolution) - xStep - 1, by = 2L)]
+      rightY <-
+        triY[seq(
+          from = xStep,
+          to = (2L * resolution) - xStep,
+          by = 2L
+        )]
+      leftY  <- if (xStep == resolution)
+        integer(0)
+      else
+        triY[seq(
+          from = xStep + 1,
+          to = (2L * resolution) - xStep - 1,
+          by = 2L
+        )]
       c(rbind(rightY, c(leftY, NA)))[-((resolution - xStep + 1) * 2L)]
     }))
     x <- rep(rightX[seq_len(resolution)], trianglesInRow)
@@ -153,29 +170,29 @@ TriangleCentres <- function (resolution = 48L,
 }
 
 #' Does triangle overlap convex hull of points?
-#' 
+#'
 #' @return `TriangleInHull()` returns a list with the elements:
-#' 
+#'
 #' - `$inside`: vector specifying whether each of a
 #' set of triangles produced by [`TriangleCentres()`] overlaps the convex
 #' hull of points specified by `coordinates`.
-#' 
+#'
 #' - `$hull`: Coordinates of convex hull of `coordinates`, after expansion
 #' to cover overlapping triangles.
-#' 
+#'
 #' @param triangles Three-row matrix as produced by [`TriangleCentres()`].
-#' @param coordinates A matrix with two or three rows specifying the 
+#' @param coordinates A matrix with two or three rows specifying the
 #' coordinates of points in _x, y_ or _a, b, c_ format.
 #' @param buffer Include triangles whose centres lie within `buffer` triangles
 #' widths (i.e. edge lengths) of the convex hull.
-#' @examples 
+#' @examples
 #' set.seed(0)
 #' nPts <- 50
 #' a <- runif(nPts, 0.3, 0.7)
 #' b <- 0.15 + runif(nPts, 0, 0.7 - a)
 #' c <- 1 - a - b
 #' coordinates <- rbind(a, b, c)
-#' 
+#'
 #' TernaryPlot(grid.lines = 5)
 #' TernaryPoints(coordinates, pch = 3, col = 4)
 #' triangles <- TriangleCentres(resolution = 5)
@@ -219,14 +236,17 @@ TriangleInHull <- function(triangles, coordinates, buffer) {
 #' @rdname TernaryPointValues
 #' @template coordinatesParam
 #' @export
-TernaryDensity <- function (coordinates, resolution = 48L, 
+TernaryDensity <- function (coordinates,
+                            resolution = 48L,
                             direction = getOption("ternDirection", 1L)) {
   if (inherits(coordinates, "list")) {
-    scaled <- resolution * 
-      vapply(coordinates,function (coord) coord / sum(coord), double(3L))
+    scaled <- resolution *
+      vapply(coordinates, function (coord)
+        coord / sum(coord), double(3L))
   } else {
-    scaled <- resolution * 
-      apply(coordinates, 1, function (coord) coord / sum(coord))
+    scaled <- resolution *
+      apply(coordinates, 1, function (coord)
+        coord / sum(coord))
   }
   
   whichTri <- floor(scaled)
@@ -235,23 +255,24 @@ TernaryDensity <- function (coordinates, resolution = 48L,
   onEdge <- logical(length(onVertex))
   onEdge[!onVertex] <- apply(margins[, !onVertex], 2, any)
   
-  centres <- whichTri[, !onEdge & !onVertex, drop=FALSE]
-  edges   <- scaled[, onEdge, drop=FALSE]
+  centres <- whichTri[, !onEdge & !onVertex, drop = FALSE]
+  edges   <- scaled[, onEdge, drop = FALSE]
   floorEdges <- floor(edges)
-  vertices <- scaled[, onVertex, drop=FALSE]
+  vertices <- scaled[, onVertex, drop = FALSE]
   vertexLocation <- apply(vertices == 0, 2, sum)
   vertexInternal <- vertexLocation == 0L
   vertexOnEdge <- vertexLocation == 1L
   vertexOnCorner <- vertexLocation == 2L
   
-  AllEqual <- function (x, y) all(x == y)
+  AllEqual <- function (x, y)
+    all(x == y)
   
   OnUpEdge <- function (abc) {
-    # Return 1 for points on edge, 
-    # 2 for each point on outer edge, 
+    # Return 1 for points on edge,
+    # 2 for each point on outer edge,
     # 0 for each other.
     onThisEdge <- apply(floorEdges, 2, AllEqual, abc)
-    theseEdges <- edges[, onThisEdge, drop=FALSE]
+    theseEdges <- edges[, onThisEdge, drop = FALSE]
     
     ncol(theseEdges) + 
     {if (abc[1] == 0) sum(theseEdges[1, ] == 0) else 0L} +
@@ -270,9 +291,9 @@ TernaryDensity <- function (coordinates, resolution = 48L,
       apply(vertices, 2, AllEqual, abc + c(1L, 0L, 0L)) |
       apply(vertices, 2, AllEqual, abc + c(0L, 1L, 0L)) |
       apply(vertices, 2, AllEqual, abc + c(0L, 0L, 1L))
-
-    sum(vertexInternal[onThisTriangle], # Return 1 for each point on vertex, 
-        2L * vertexOnEdge[onThisTriangle], # 2 for each point on a vertex on edge of plot, 
+    
+    sum(vertexInternal[onThisTriangle], # Return 1 for each point on vertex,
+        2L * vertexOnEdge[onThisTriangle], # 2 for each point on a vertex on edge of plot,
         6L * vertexOnCorner[onThisTriangle])# 6 for each point on outer vertex of plot
   }
   OnDownVertex <- function(abc) {
@@ -284,7 +305,7 @@ TernaryDensity <- function (coordinates, resolution = 48L,
     sum(vertexInternal[onThisTriangle], 2L * vertexOnEdge[onThisTriangle])
   }
   
-    
+  
   # Each point contributes a score of six, which -- if on a vertex -- may need
   # sharing between 2, 3 or 6 triangles.
   
@@ -306,18 +327,18 @@ TernaryDensity <- function (coordinates, resolution = 48L,
   ups <- unlist(lapply(seq_len(resolution) - 1L, function (a) {
     vapply(seq_len(resolution - a) - 1L, function (b) {
       abc <- c(a, b, resolution - a - b - 1L)
-      (6 * sum(apply(centres, 2, AllEqual, abc))) + 
-      (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
-      }, double(1), USE.NAMES = FALSE)
+      (6 * sum(apply(centres, 2, AllEqual, abc))) +
+        (3 * sum(OnUpEdge(abc))) + sum(OnUpVertex(abc))
+    }, double(1), USE.NAMES = FALSE)
   }))
-  downs <- unlist(
-    lapply(seq_len(resolution - 1L) - 1L, function (a) {
-    vapply(seq_len(resolution - a - 1L) - 1L, function (b) {
-      abc <- c(a, b, resolution - a - b - 2L)
-      6 * sum(apply(centres, 2, AllEqual, abc)) +
-        (3 * sum(OnDownEdge(abc))) + sum(OnDownVertex(abc))
+  downs <-
+    unlist(lapply(seq_len(resolution - 1L) - 1L, function (a) {
+      vapply(seq_len(resolution - a - 1L) - 1L, function (b) {
+        abc <- c(a, b, resolution - a - b - 2L)
+        6 * sum(apply(centres, 2, AllEqual, abc)) +
+          (3 * sum(OnDownEdge(abc))) + sum(OnDownVertex(abc))
       }, double(1), USE.NAMES = FALSE)
-  }))
+    }))
   
   centrePoints <- TriangleCentres(resolution, direction)
   triDown <- as.logical(centrePoints["triDown", ])
@@ -331,7 +352,7 @@ TernaryDensity <- function (coordinates, resolution = 48L,
     xy <- centrePoints[1:2, ]
   }, {
     #2L = right
-    xy <- rbind(x = centrePoints[1, ], 
+    xy <- rbind(x = centrePoints[1, ],
                 y = -centrePoints[2, ])
   }, {
     #3L = down
@@ -344,7 +365,7 @@ TernaryDensity <- function (coordinates, resolution = 48L,
   
   # TernaryPlot(grid.lines=3, axis.labels=1:3, point="right")
   # ColourTernary(rbind(xy, z = ret, down = triDown))
-
+  
   # Return:
   rbind(xy, z = ret, down = triDown)
 }
@@ -373,7 +394,7 @@ TernaryDownTiles <- function(x, y, resolution, col) {
   widthBy2 <- width / 2
   height <- sqrt(0.75) / resolution
   heightBy3 <- height / 3
-
+  
   vapply(seq_along(x), function(i) {
     cornerX <- x[i] + c(0, widthBy2, -widthBy2)
     cornerY <- y[i] - c(heightBy3 + heightBy3, rep(-heightBy3, 2))
@@ -381,7 +402,7 @@ TernaryDownTiles <- function(x, y, resolution, col) {
     logical(0)
   }, logical(0))
   
-  # Return: 
+  # Return:
   invisible()
 }
 
@@ -423,10 +444,10 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 
 
 #' Paint tiles on ternary plot
-#' 
-#' Function to fill a ternary plot with coloured tiles.  Useful in combination with 
+#'
+#' Function to fill a ternary plot with coloured tiles.  Useful in combination with
 #' [`TernaryPointValues`] and [`TernaryContour`].
-#' 
+#'
 #' @aliases TernaryUpTiles TernaryDownTiles TernaryLeftTiles TernaryRightTiles
 #' @param x,y Numeric vectors specifying _x_ and _y_ coordinates of centres of each triangle.
 #' @param down Logical vector specifying `TRUE` if each triangle should point
@@ -434,17 +455,17 @@ TernaryRightTiles <- function(x, y, resolution, col) {
 #' @template resolutionParam
 #' @param col Vector specifying the colour with which to fill each triangle.
 #' @template directionParam
-#' 
+#'
 #' @examples
 #' TernaryPlot()
 #' TernaryXRange()
 #' TernaryYRange()
-#' 
+#'
 #' TernaryTiles(0, 0.5, TRUE, 10, "red")
 #' xy <- TernaryCoords(c(4, 3, 3))
 #' TernaryTiles(xy[1], xy[2], FALSE, 5, "darkblue")
 #' @template MRS
-#' 
+#'
 #' @family functions for colouring and shading
 #' @export
 TernaryTiles <- function(x, y, down, resolution, col, 
@@ -457,16 +478,16 @@ TernaryTiles <- function(x, y, down, resolution, col,
     TernaryLeftTiles(x[down], y[down], resolution, col[down])
     TernaryRightTiles(x[!down], y[!down], resolution, col[!down])
   }
-  # Return: 
+  # Return:
   invisible()
 }
 
 
 #' Colour a ternary plot according to the output of a function
-#' 
-#' @param values Numeric matrix, possibly created using 
-#' [`TernaryPointValues()`], with four named rows: 
-#' `x`, `y`, cartesian coordinates of each triangle centre; 
+#'
+#' @param values Numeric matrix, possibly created using
+#' [`TernaryPointValues()`], with four named rows:
+#' `x`, `y`, cartesian coordinates of each triangle centre;
 #' `z`, value associated with that coordinate;
 #' `down`, triangle direction: `0` = point upwards; `1` = point downwards.
 #' @param spectrum Vector of colours to use as a spectrum, or `NULL` to use
@@ -475,16 +496,16 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' @template directionParam
 #' @template legendParam
 #' @param \dots Further arguments to [`SpectrumLegend()`].
-#' 
+#'
 #' @template MRS
-#' 
-#' @examples 
+#'
+#' @examples
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
-#'  
+#'
 #' FunctionToContour <- function (a, b, c) {
 #'   a - c + (4 * a * b) + (27 * a * b * c)
 #' }
-#' 
+#'
 #' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 #' ColourTernary(
 #'   values,
@@ -493,37 +514,38 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #'   legend = signif(seq(max(values), min(values), length.out = 4), 3)
 #' )
 #' TernaryContour(FunctionToContour, resolution = 36L)
-#' 
-#' 
+#'
+#'
 #' TernaryPlot()
 #' values <- TernaryPointValues(rgb, resolution = 20)
 #' ColourTernary(values, spectrum = NULL)
-#' 
+#'
 #' # Create a helper function to place white centrally:
 #' rgbWhite <- function (r, g, b) {
 #'   highest <- apply(rbind(r, g, b), 2L, max)
 #'   rgb(r/highest, g/highest, b/highest)
 #' }
-#' 
+#'
 #' TernaryPlot()
 #' values <- TernaryPointValues(rgbWhite, resolution = 20)
 #' ColourTernary(values, spectrum = NULL)
-#' 
-#' 
+#'
+#'
 #' @family contour plotting functions
 #' @family functions for colouring and shading
 #' @importFrom viridisLite viridis
 #TODO when require r>3.6.0, update viridis calls to use hcl.colors()
 #' @importFrom grDevices col2rgb
 #' @importFrom PlotTools SpectrumLegend
-#' @seealso Fine control over continuous legends: 
+#' @seealso Fine control over continuous legends:
 #' [`PlotTools::SpectrumLegend()`]
 #' @export
-ColourTernary <- function(values, 
+ColourTernary <- function(values,
                           spectrum = viridisLite::viridis(256L, alpha = 0.6),
                           resolution = sqrt(ncol(values)),
                           direction = getOption("ternDirection", 1L),
-                          legend, ...) {
+                          legend,
+                          ...) {
   z <- values["z", ]
   col <- if (is.null(spectrum) || 
              (!is.numeric(z) && 
@@ -575,9 +597,9 @@ ColourTernary <- function(values,
 ColorTernary <- ColourTernary
 
 #' Add contours to a ternary plot
-#' 
+#'
 #' Draws contour lines to depict the value of a function in ternary space.
-#' 
+#'
 #' @template FuncParam
 #' @template resolutionParam
 #' @template directionParam
@@ -586,22 +608,22 @@ ColorTernary <- ColourTernary
 #' @param legend... List of additional parameters to send to
 #' [`SpectrumLegend()`].
 #' @param within List or matrix of _x, y_ coordinates within which contours
-#' should be evaluated, in any format supported by 
+#' should be evaluated, in any format supported by
 #' \code{\link[grDevices:xy.coords]{xy.coords(x = within)}}.
 #' If `NULL`, defaults to a region slightly smaller than the ternary plot.
 #' The `$hull` entry generated by `TriangleInHull()` may also be used.
-#' 
+#'
 #' @return `TernaryContour()`  invisibly returns a list containing:
 #' - `x`,`y`: the Cartesian coordinates of each evaluated point;
 #' - `z`: The value of `Func()` at each coordinate.
-#' 
+#'
 #' @template MRS
-#' 
+#'
 #' @examples
 #' FunctionToContour <- function (a, b, c) {
 #'   a - c + (4 * a * b) + (27 * a * b * c)
 #' }
-#' 
+#'
 #' # Set up plot
 #' originalPar <- par(mar = rep(0, 4))
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
@@ -610,13 +632,13 @@ ColorTernary <- ColourTernary
 #'   legend = signif(seq(max(values), min(values), length.out = 4), 2),
 #'    bty = "n")
 #' TernaryContour(FunctionToContour, resolution = 36L)
-#' 
+#'
 #' # Note that FunctionToContour is sent a vector.
 #' # Instead of
 #' BadMax <- function (a, b, c) {
-#'   max(a, b, c) 
+#'   max(a, b, c)
 #' }
-#' 
+#'
 #' # Use
 #' GoodMax <- function (a, b, c) {
 #'   pmax(a, b, c)
@@ -624,7 +646,7 @@ ColorTernary <- ColourTernary
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' ColourTernary(TernaryPointValues(GoodMax))
 #' TernaryContour(GoodMax)
-#' 
+#'
 #' # Or, for a generalizable example,
 #' GeneralMax <- function (a, b, c) {
 #'   apply(rbind(a, b, c), 2, max)
@@ -636,7 +658,7 @@ ColorTernary <- ColourTernary
 #'                fill.col = viridisLite::viridis(14, alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
-#' 
+#'
 #' # Restore plotting parameters
 #' par(originalPar)
 #' @family contour plotting functions
@@ -675,12 +697,13 @@ TernaryContour <- function(
   FunctionWrapper <- function(x, y) {
     abc <- XYToTernary(x, y, direction)
     inPlot <- as.logical(point.in.polygon(x, y, within$x, within$y))
-    evaluated <- Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot])
+    evaluated <-
+      Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot])
     
     if (length(evaluated) == 1L) {
       warning("`Func(a, b, c)` should return a vector, but returned a single value.")
     }
-
+    
     ret <- rep_len(NA_real_, length(x))
     ret[inPlot] <- evaluated
     # Return:
@@ -758,7 +781,7 @@ TernaryContour <- function(
 #' @return `TernaryDensityContour()` invisibly returns a list containing:
 #' - `x`,`y`: the Cartesian coordinates of each grid coordinate;
 #' - `z`: The density at each grid coordinate.
-#' 
+#'
 #' @examples
 #' # Generate some example data
 #' nPoints <- 400L
@@ -772,13 +795,13 @@ TernaryContour <- function(
 #' # Colour background by density
 #' ColourTernary(TernaryDensity(coordinates, resolution = 10L),
 #'               legend = TRUE, bty = "n", title = "Density")
-#' 
+#'
 #' # Plot points
 #' TernaryPoints(coordinates, col = "red", pch = ".")
-#' 
+#'
 #' # Contour by density
 #' TernaryDensityContour(coordinates, resolution = 30L)
-#' 
+#'
 #' # Reset plotting parameters
 #' par(oPar)
 #' @author Adapted from `MASS::kde2d()` by Martin R. Smith
@@ -798,7 +821,7 @@ TernaryDensityContour <- function(
   x <- xy[1, ]
   y <- xy[2, ]
   n <- length(x)
-
+  
   Bandwidth <- function(x, lengthX) {
     # Adapted from MASS::bandwidth.nrd
     r <- quantile(x, c(0.25, 0.75))
@@ -806,7 +829,7 @@ TernaryDensityContour <- function(
     # Don't multiply by 4 just to divide by 4 again...
     1.06 * min(sqrt(var(x)), h) * lengthX ^ (-0.2)
   }
-
+  
   h <- if (missing(bandwidth)) {
     c(Bandwidth(x, n), Bandwidth(y, n))
   } else {
@@ -814,7 +837,7 @@ TernaryDensityContour <- function(
   }
   if (any(h <= 0))
     stop("bandwidths must be strictly positive")
-
+  
   switch(direction, {
     gx <- seq(-0.5, 0.5, length.out = resolution)
     gy <- seq(0, sqrt(0.75), length.out = resolution)
@@ -828,13 +851,14 @@ TernaryDensityContour <- function(
     gx <- seq(-sqrt(0.75), 0, length.out = resolution)
     gy <- seq(-0.5, 0.5, length.out = resolution)
   })
-
+  
   if (edgeCorrection) {
     KDE <- function(ix, iy) {
       if (OutsidePlot(ix, iy, tolerance = tolerance)) {
         NA
       } else {
-        reflections <- ReflectedEquivalents(ix, iy, direction = direction)[[1]]
+        reflections <-
+          ReflectedEquivalents(ix, iy, direction = direction)[[1]]
         ax <- outer(c(ix, reflections[, 1]), x, "-") / h[1L]
         ay <- outer(c(iy, reflections[, 2]), y, "-") / h[2L]
         sum(vapply(seq_len(1L + dim(reflections)[1]), function(i) {
@@ -843,14 +867,15 @@ TernaryDensityContour <- function(
           }, double(1))) / prod(n, h)
       }
     }
-
-    z <- matrix(mapply(KDE, gx, rep(gy, each = length(gx))), ncol = length(gx))
+    
+    z <-
+      matrix(mapply(KDE, gx, rep(gy, each = length(gx))), ncol = length(gx))
   } else {
     ax <- outer(gx, x, "-") / h[1L]
     ay <- outer(gy, y, "-") / h[2L]
     z <- tcrossprod(matrix(dnorm(ax), ncol = n),
                     matrix(dnorm(ay), ncol = n)) / prod(n, h)
-
+    
     # TODO make more efficient by doing this intelligently rather than lazily
     zOffPlot <- outer(gx, gy, OutsidePlot, tolerance = tolerance)
     z[zOffPlot] <- NA
