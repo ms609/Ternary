@@ -1,6 +1,8 @@
-# Ternary v2.2.0.9000 (development)
+# Ternary v2.2.1 (2023-06-28)
   - `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
     are provided but will be removed in a later version of this package.
+  - Use characters, not numerics, for version number checks
+    (see <https://bugs.r-project.org/show_bug.cgi?id=18548>).
 
 # Ternary v2.2.0 (2023-05-11)
 - New function `Annotate()` annotates points on ternary plot.
