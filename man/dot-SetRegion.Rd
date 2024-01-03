@@ -18,7 +18,7 @@ grid lines to be produced with \code{pretty(n = prettify)}. If \code{NA}, the
 smallest region encompassing \code{region} will be used.}
 }
 \value{
-\code{SetRegion()} returns the value of \code{options(ternRegion = region)}.
+\code{.SetRegion()} returns the value of \code{options(ternRegion = region)}.
 }
 \description{
 Sets the region of the ternary plot being drawn.
@@ -28,7 +28,7 @@ need to call this function directly.
 \examples{
 # XY Coordinates under original plotting region
 TernaryToXY(c(1, 2, 3))
-previous <- SetRegion(ternRegion20)
+previous <- .SetRegion(ternRegion20)
 
 # New region options set
 getOption("ternRegion")

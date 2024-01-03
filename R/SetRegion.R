@@ -17,12 +17,12 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 #'  grid lines to be produced with `pretty(n = prettify)`. If `NA`, the
 #'  smallest region encompassing `region` will be used.
 #' 
-#' @return `SetRegion()` returns the value of `options(ternRegion = region)`.
+#' @return `.SetRegion()` returns the value of `options(ternRegion = region)`.
 #' @template MRS
 #' @examples
 #' # XY Coordinates under original plotting region
 #' TernaryToXY(c(1, 2, 3))
-#' previous <- SetRegion(ternRegion20)
+#' previous <- .SetRegion(ternRegion20)
 #' 
 #' # New region options set
 #' getOption("ternRegion")
@@ -39,7 +39,7 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 
 #' @export
 .SetRegion.list <- function(region, prettify = NA_integer_) {
-  SetRegion(do.call(rbind, region), prettify = prettify)
+  .SetRegion(do.call(rbind, region), prettify = prettify)
 }
 
 #' @export
