@@ -48,7 +48,7 @@ as you like it and pointing in any of the four compass directions; secondly, add
 ## Create a blank plot
 
 At its simplest, all you need to do is type
-```{R create-blank-plot}
+```{R create-blank-plot, fig.asp = 1}
 TernaryPlot()
 ```
 
@@ -67,7 +67,7 @@ for (dir in c("up", "right", "down", "le")) {
 
 ## Plot two stylised plots side by side, and plot data
 
-```{R two-stylised-plots}
+```{R two-stylised-plots, fig.asp = 1/2}
 # Configure plotting area
 par(mfrow = c(1, 2), mar = rep(0.3, 4))
 
@@ -150,7 +150,7 @@ More sophisticated plots can be created, for example styling each point
 according to additional properties of the data, in a manner analogous to the
 standard plotting functions:
 
-```{r point-styling}
+```{r point-styling, fig.asp = 1}
 # Configure plotting area
 par(mar = rep(0.3, 4))
 
@@ -265,7 +265,7 @@ It is also possible to use cartesian coordinates to plot onto the graph.
 
 By default, the plotting area is a 1&times;1 square.
 
-```{r cartesian}
+```{r cartesian, fig.asp = 1}
 par(mar = rep(0, 4)) # Reduce margins
 TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
@@ -285,7 +285,7 @@ Note the anticlockwise axis labelling on this plot, obtained using
 
 A plot can be coloured and contoured according to the output of a mathematical expression:
 
-```{r contours}
+```{r contours, fig.asp = 1}
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 
@@ -323,7 +323,7 @@ PlotTools::SpectrumLegend(
 
 or according to the density of points across the plot:
 
-```{r density-contours}
+```{r density-contours, fig.asp = 1}
 par(mar = rep(0.2, 4))
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
@@ -347,7 +347,7 @@ points fall on boundaries of the triangular grid cells; text denotes the number
 of points within the cell, with cells straddling _n_ cells contributing 1/_n_ 
 of a point to each cell straddled.
 
-```{r low-resolution-density-contours, echo = FALSE}
+```{r low-resolution-density-contours, echo = FALSE, fig.asp = 1}
 coordinates <- list(middle = c(1, 1, 1),
                  top = c(3, 0, 0),
                  belowTop = c(2, 1, 1),
