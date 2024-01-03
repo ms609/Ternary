@@ -3,7 +3,9 @@ ternRegion20 <- cbind(a = c(20, 80), b = c(20, 80), c = c(20, 80))
 ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 
 .RegionCorners <- function(region = getOption("ternRegion", ternRegionDefault)) {
-  cbind(region[c(2, 3, 5)], region[c(1, 4, 5)], region[c(1, 3, 6)])
+  cbind(a = region[c(2, 3, 5)],
+        b = region[c(1, 4, 5)],
+        c = region[c(1, 3, 6)])
 }
 
 .RegionXY <- function(region = getOption("ternRegion", ternRegionDefault)) {
@@ -30,8 +32,8 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     xy
   } else {
     range <- .RegionXY(region)
-    c(.Unnormalize(.Normalize(xy[1], TernaryXRange()), range[, "x"]),
-      .Unnormalize(.Normalize(xy[2], TernaryYRange()), range[, "y"]))
+    c(.Unnormalize(.Normalize(xy[1], range[, "x"]), TernaryXRange()),
+      .Unnormalize(.Normalize(xy[2], range[, "y"]), TernaryYRange()))
   }
 }
 

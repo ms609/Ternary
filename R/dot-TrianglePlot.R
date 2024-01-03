@@ -86,9 +86,8 @@
   if (is.null(xlim)) xlim <- TernaryXRange(direction)
   if (is.null(ylim)) ylim <- TernaryYRange(direction)
 
-
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
-                 TernaryCoords, double(2))
+                 TernaryCoords, region = ternRegionDefault, double(2))
 
   axisBasis <- ifelse(ticks.incline, c(180, 300, 60), c(240, 0, 120))
   axisDegrees <- (axisBasis + (direction * 90)) %% 360

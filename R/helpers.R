@@ -80,7 +80,7 @@
       c(0, p, q), c(q, p, 0),
       c(q, 0, p), c(0, q, p)
     ),
-    TernaryCoords, double(2)
+    TernaryCoords, region = ternRegionDefault, double(2)
   )
   lapply(list(c(1, 2), c(3, 4), c(5, 6)), function(i) {
     lines(lineEnds[1, i], lineEnds[2, i],
@@ -119,15 +119,17 @@
       q <- 1 - p
       gridEnds <- vapply(
         list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
-        TernaryCoords, double(2)
+        TernaryCoords, region = ternRegionDefault, double(2)
       )
       lapply(1:3, .AxisTick, gridEnds)
     })
   }
 }
 
-.AxisLabel <- function(side, lineEnds, lab,
-                       tern = getOption(".Last.triangle")) {
+.AxisLabel <- function(
+    side, lineEnds, lab,
+    tern = getOption(".Last.triangle")
+  ) {
   selected <- tern$sideOrder[side]
   lng <- tern$ticks.length[side] * tern$axisMult[side]
   text(lineEnds[1, side] + sin(tern$axisRadians[side]) * lng,
@@ -176,7 +178,9 @@
         }
         if (length(sideLab) > 1 || sideLab != FALSE) {
           if (length(sideLab) == 1) {
-            sideLab <- round(tern$gridPoints * 100, 1)
+            range <- getOption("ternRegion")[, side]
+            sideLab <- round(seq(range[1], range[2],
+                                 length.out = length(tern$gridPoints)), 1)
           }
           if (!is.null(tern$grid.lines) &&
             length(sideLab) == tern$grid.lines) {

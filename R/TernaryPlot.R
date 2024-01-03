@@ -233,13 +233,16 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
 
   panel.first
 
-  .PlotMinorGridLines(tern$grid.lines, tern$grid.minor.lines,
+  .PlotMinorGridLines(
+    tern$grid.lines,
+    tern$grid.minor.lines,
     col = tern$grid.minor.col,
     lty = tern$grid.minor.lty,
     lwd = tern$grid.minor.lwd
   )
 
-  .PlotMajorGridLines(tern$grid.lines,
+  .PlotMajorGridLines(
+    tern$grid.lines,
     col = tern$grid.col,
     lty = tern$grid.lty,
     lwd = tern$grid.lwd
