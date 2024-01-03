@@ -44,18 +44,25 @@ test_that(".Normalize works", {
 })
 
 test_that("SetRegion() is stable", {
-  expect_equal(SetRegion(ternRegionDefault)$ternRegion, ternRegionDefault)
+  original <- SetRegion(ternRegionDefault)
+  on.exit(options(ternRegion = original))
+  expect_equal(getOption("ternRegion"), ternRegionDefault)
 })
 
 test_that("SetRegion() handles bad input", {
   expect_warning(
-    expect_equal(SetRegion(ternRegionDefault * 2)$ternRegion, ternRegionDefault),
+    original <- SetRegion(ternRegionDefault * 2),
     "Largest possible region is"
   )
+  on.exit(options(ternRegion = original))
+  
+  expect_equal(getOption("ternRegion"), ternRegionDefault)
+  
   expect_warning(
-    expect_equal(SetRegion(ternRegionDefault * 0)$ternRegion, ternRegionDefault),
+    SetRegion(ternRegionDefault * 0),
     "Region must have positive size"
   )
+  expect_equal(getOption("ternRegion"), ternRegionDefault)
 })
 
 test_that("Region validation works", {
