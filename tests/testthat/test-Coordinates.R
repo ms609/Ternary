@@ -93,10 +93,9 @@ test_that("Ranges are correct", {
 })
 
 test_that("Coordination supports ranges", {
-  TernaryToXY(c(33, 33, 33))
   expect_equal(
-    TernaryToXY(c(3, 3, 3), region = list(c(0, 30), c(0, 30), c(0, 30))),
-    c(1, 2, 3)
+    TernaryToXY(c(20, 15, 65), region = rbind(c(0, 0, 50), c(50, 50, 100))),
+    TernaryToXY(c(40, 30, 30))
   )
 })
 
