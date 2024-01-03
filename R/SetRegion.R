@@ -48,26 +48,6 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
   }
 }
 
-.NormalizeToRegionABC <- function(
-    abc,
-    region = getOption("ternRegion", ternRegionDefault)) {
-  c(
-    .Normalize(abc[1], region[[1]]),
-    .Normalize(abc[2], region[[2]]),
-    .Normalize(abc[3], region[[3]])
-    )
-}
-
-.UnnormalizeFromRegion <- function(
-    abc,
-    region = getOption("ternRegion", ternRegionDefault)) {
-  c(
-    .Unnormalize(abc[1], region[[1]][1], region[[1]][2]),
-    .Unnormalize(abc[2], region[[2]][1], region[[2]][2]),
-    .Unnormalize(abc[3], region[[3]][1], region[[3]][2])
-    )
-}
-
 .RegionIsEquilateral <- function(region) {
   length(unique(apply(region, 2, max) - apply(region, 2, min))) == 1
 }
@@ -94,7 +74,7 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
   if (maxSpan > 100) {
     warning("Largest possible region is (0, 100)")
     return(options(ternRegion = ternRegionDefault))
-  } else if (maxRange <= 0) {
+  } else if (maxSpan <= 0) {
     warning("Region must have positive size; ignoring")
     return(options(ternRegion = ternRegionDefault))
   }

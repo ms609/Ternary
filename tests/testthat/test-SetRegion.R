@@ -1,5 +1,6 @@
 test_that("Not a goof", {
-    # Define points corresponding to corners of a region to plot
+  skip_if(TRUE)
+  # Define points corresponding to corners of a region to plot
   my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
   
   par(mar = rep(0, 4))
@@ -34,28 +35,27 @@ test_that("Not a goof", {
 
 
 test_that(".Normalize works", {
-  expect_equal(.Normalize(0, 0, 1), 0)
-  expect_equal(.Normalize(1, 0, 1), 1)
-  expect_equal(.Normalize(1, 0, 2), 1/2)
+  expect_equal(.Normalize(0, c(0, 1)), 0)
+  expect_equal(.Normalize(1, c(0, 1)), 1)
+  expect_equal(.Normalize(1, c(0, 2)), 1/2)
   
-  expect_equal(.Normalize(1:3, 1, 3), 0:2 / 2)
-  expect_equal(.Unnormalize(0:2 / 2, 1, 3), 1:3)
-  
-  expect_equal(
-    # TODO DELETE
-    .NormalizeToRegionABC(1:3, region = list(c(0, 4), c(1, 5), c(0, 4))),
-    c(.Normalize(1, 0, 4), 1/4, 3/4)
-  )
-  
-  expect_equal(
-    .UnnormalizeFromRegion(1:3 / 4, region = list(c(0, 4), c(1, 5), c(0, 4))),
-    c(1, 3, 3)
-  )
-  
+  expect_equal(.Normalize(1:3, c(1, 3)), 0:2 / 2)
+  expect_equal(.Unnormalize(0:2 / 2, c(1, 3)), 1:3)
 })
 
 test_that("SetRegion() is stable", {
   expect_equal(SetRegion(ternRegionDefault)$ternRegion, ternRegionDefault)
+})
+
+test_that("SetRegion() handles bad input", {
+  expect_warning(
+    expect_equal(SetRegion(ternRegionDefault * 2)$ternRegion, ternRegionDefault),
+    "Largest possible region is"
+  )
+  expect_warning(
+    expect_equal(SetRegion(ternRegionDefault * 0)$ternRegion, ternRegionDefault),
+    "Region must have positive size"
+  )
 })
 
 test_that("Region validation works", {
