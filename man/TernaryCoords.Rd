@@ -57,6 +57,12 @@ coordinates of points.}
 
 \item{direction}{(optional) Integer specifying the direction that the
 current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{region}{List of length three specifying the sub-region of each ternary
+axis to be drawn; or a set of coordinates in a format accepted by
+\code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 }
 \value{
 \code{TernaryCoords()} returns a vector of length two that converts

@@ -6,6 +6,47 @@ ternRegionDefault <- cbind(
 ternRegion20 <- cbind(a = c(20, 60), b = c(20, 60), c = c(20, 60))
 ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 
+#' Set plotting region
+#' 
+#' Sets the region of the ternary plot being drawn.
+#' Usually called from within `TernaryPlot()`; everyday users are unlikely to
+#' need to call this function directly.
+#' 
+#' @inheritParams TernaryPlot
+#' @param prettify If numeric, the plotting region will be expanded to allow
+#'  grid lines to be produced with `pretty(n = prettify)`. If `NA`, the
+#'  smallest region encompassing `region` will be used.
+#' 
+#' @return `SetRegion()` returns the value of `options(ternRegion = region)`.
+#' @template MRS
+#' @examples
+#' # XY Coordinates under original plotting region
+#' TernaryToXY(c(1, 2, 3))
+#' previous <- SetRegion(ternRegion20)
+#' 
+#' # New region options set
+#' getOption("ternRegion")
+#' 
+#' # Coordinates under new plotting region
+#' TernaryToXY(c(1, 2, 3))
+#' 
+#' # Restore previous setting
+#' options(previous)
+#' getOption("ternRegion")
+#' @keywords internal
+#' @export
+.SetRegion <- function(region, prettify = NA_integer_) UseMethod(".SetRegion")
+
+#' @export
+.SetRegion.list <- function(region, prettify = NA_integer_) {
+  SetRegion(do.call(rbind, region), prettify = prettify)
+}
+
+#' @export
+.SetRegion.matrix <- function(region, prettify = NA_integer_) {
+  .MakeRegion(apply(region, 2, range), prettify = prettify)
+}
+
 .RegionCorners <- function(
     region = getOption("ternRegion", ternRegionDefault)
   ) {
@@ -94,15 +135,3 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
   options(ternRegion = region)
 }
 
-#' @export
-SetRegion <- function(region, prettify = NA_integer_) UseMethod("SetRegion")
-
-#' @export
-SetRegion.list <- function(region, prettify = NA_integer_) {
-  SetRegion(do.call(rbind, region), prettify = prettify)
-}
-
-#' @export
-SetRegion.matrix <- function(region, prettify = NA_integer_) {
-  .MakeRegion(apply(region, 2, range), prettify = prettify)
-}

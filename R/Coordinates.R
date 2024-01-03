@@ -17,6 +17,7 @@
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
 #' @template directionParam
+#' @inheritParams TernaryPlot
 #'
 #' @return `TernaryCoords()` returns a vector of length two that converts
 #' the coordinates given in `abc` into Cartesian (_x_, _y_) coordinates
@@ -116,6 +117,7 @@ TernaryToXY <- TernaryCoords
 #' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or
 #' points.
 #' @template directionParam
+#' @inheritParams TernaryPlot
 #'
 #' @return `XYToTernary()` Returns the ternary point(s) corresponding to the
 #' specified _x_ and _y_ coordinates, where a + b + c = 1.
