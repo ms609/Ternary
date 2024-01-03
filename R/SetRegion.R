@@ -20,8 +20,10 @@ ternRegionA <- structure(
 #' @param prettify If numeric, the plotting region will be expanded to allow
 #'  grid lines to be produced with `pretty(n = prettify)`. If `NA`, the
 #'  smallest region encompassing `region` will be used.
+#' @param set Logical specifying whether to set `options(ternRegion = region)`
 #' 
-#' @return `.SetRegion()` returns the value of `options(ternRegion = region)`.
+#' @return `.SetRegion()` returns the value of `options(ternRegion = region)` 
+#' if `set == TRUE`, or the region, otherwise..
 #' @template MRS
 #' @examples
 #' # XY Coordinates under original plotting region
@@ -39,19 +41,21 @@ ternRegionA <- structure(
 #' getOption("ternRegion")
 #' @keywords internal
 #' @export
-.SetRegion <- function(region, prettify = NA_integer_) UseMethod(".SetRegion")
+.SetRegion <- function(region, prettify = NA_integer_, set = TRUE) {
+  UseMethod(".SetRegion")
+}
 
 #' @export
-.SetRegion.list <- function(region, prettify = NA_integer_) {
-  .SetRegion(do.call(rbind, region), prettify = prettify)
+.SetRegion.list <- function(region, prettify = NA_integer_, set = TRUE) {
+  .SetRegion(do.call(rbind, region), prettify = prettify, set = set)
 }
 
 #' @export
 .SetRegion.data.frame <- .SetRegion.list
 
 #' @export
-.SetRegion.matrix <- function(region, prettify = NA_integer_) {
-  .MakeRegion(apply(region, 2, range), prettify = prettify)
+.SetRegion.matrix <- function(region, prettify = NA_integer_, set = TRUE) {
+  .MakeRegion(apply(region, 2, range), prettify = prettify, set = set)
 }
 
 .RegionCorners <- function(
@@ -59,7 +63,7 @@ ternRegionA <- structure(
   ) {
   # Check region is valid - may be send directly from TernaryToXY
   if (!inherits(region, "ternRegion")) {
-    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+    region <- .SetRegion(region, set = FALSE)
   }
   cbind(a = region[c(2, 3, 5)],
         b = region[c(1, 4, 5)],
@@ -95,7 +99,7 @@ ternRegionA <- structure(
     region = getOption("ternRegion", ternRegionDefault)) {
   
   if (!inherits(region, "ternRegion")) {
-    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+    region <- .SetRegion(region, set = FALSE)
   }
   
   if (all(region == ternRegionDefault)) {
@@ -113,7 +117,7 @@ ternRegionA <- structure(
     region = getOption("ternRegion", ternRegionDefault)) {
 
   if (!inherits(region, "ternRegion")) {
-    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+    region <- .SetRegion(region, set = FALSE)
   }
   
   if (all(region == ternRegionDefault)) {

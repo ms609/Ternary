@@ -99,6 +99,39 @@ test_that("Coordination supports ranges", {
   )
 })
 
+
+test_that("Regions are supported both ways", {
+  my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
+  expect_equal(
+    TernaryCoords(22, 72, 6, # my_corners[[2]]
+                  region = .SetRegion(my_corners, prettify = 10, set = FALSE)),
+    c(1/9, 0.4811252),
+    tolerance = 0.001
+  )
+  
+  expect_equal(
+    TernaryCoords(my_corners[[2]], region = my_corners),
+    TernaryToXY(
+      22, 72, 6,
+      region = .SetRegion(my_corners, prettify = NA_integer_, set = FALSE)
+    ),
+    tolerance = 0.001
+  )
+  
+  prior <- .SetRegion(my_corners, prettify = 10)
+  on.exit(options(prior))
+  expect_equal(
+    TernaryToXY(22, 72, 6),
+    c(1/9, 0.4811252),
+    tolerance = 0.001
+  )
+  expect_equal(
+    unname(XYToTernary(1/9, 0.4811252)),
+    cbind(my_corners[[2]] / 100),
+    tolerance = 0.001
+  )
+})
+
 test_that("OutsidePlot() works", {
   options("ternDirection" = 1L)
   expect_true(OutsidePlot(100, 100))
