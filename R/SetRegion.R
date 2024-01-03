@@ -138,7 +138,8 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
         i <- c(i, seq(max(i) + by, by = by, length.out = longest - n))
         i
       })
-    prettyRegion <- do.call(cbind, prettyRegion)[c(1, longest), ]
+    prettyRegion <- rbind(min = vapply(prettyRegion, `[`, 0, 1),
+                          max = vapply(prettyRegion, `[`, 0, longest))
     if (.RegionIsValid(prettyRegion)) {
       region <- prettyRegion
     }
