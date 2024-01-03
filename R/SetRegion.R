@@ -1,10 +1,14 @@
-ternRegionDefault <- cbind(
+ternRegionDefault <- structure(cbind(
   a = c(min = 0, max = 100),
   b = c(0, 100),
   c = c(0, 100)
-)
-ternRegion20 <- cbind(a = c(min = 20, max = 60), b = c(20, 60), c = c(20, 60))
-ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
+), class = "ternRegion")
+ternRegion20 <- structure(
+  cbind(a = c(min = 20, max = 60), b = c(20, 60), c = c(20, 60)),
+  class = "ternRegion")
+ternRegionA <- structure(
+  cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60)),
+  class = "ternRegion")
 
 #' Set plotting region
 #' 
@@ -54,14 +58,20 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     region = getOption("ternRegion", ternRegionDefault)
   ) {
   # Check region is valid - may be send directly from TernaryToXY
-  region <- .MakeRegion(region, prettify = NA, set = FALSE)
+  if (!inherits(region, "ternRegion")) {
+    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+  }
   cbind(a = region[c(2, 3, 5)],
         b = region[c(1, 4, 5)],
         c = region[c(1, 3, 6)])
 }
 
 .RegionXY <- function(region = getOption("ternRegion", ternRegionDefault)) {
-  apply(TernaryToXY(.RegionCorners(region), region = NULL), 1, range)
+  apply(
+    TernaryToXY(.RegionCorners(region), region = ternRegionDefault),
+    1,
+    range
+  )
 }
 
 .Normalize <- function(x, range) {
@@ -84,7 +94,7 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     xy,
     region = getOption("ternRegion", ternRegionDefault)) {
   
-  if (is.null(dim(region)) || any(dim(region) != dim(ternRegionDefault))) {
+  if (!inherits(region, "ternRegion")) {
     region <- .MakeRegion(region, prettify = NA, set = FALSE)
   }
   
@@ -95,6 +105,24 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     fullRange <- .RegionXY(ternRegionDefault)
     c(.Rebase(xy[1], range[, "x"], fullRange[, "x"]),
       .Rebase(xy[2], range[, "y"], fullRange[, "y"]))
+  }
+}
+
+.UnnormalizeXY <- function(
+    x, y,
+    region = getOption("ternRegion", ternRegionDefault)) {
+
+  if (!inherits(region, "ternRegion")) {
+    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+  }
+  
+  if (all(region == ternRegionDefault)) {
+    c(x, y)
+  } else {
+    fullRange <- .RegionXY(ternRegionDefault)
+    range <- .RegionXY(region)
+    c(.Rebase(x, fullRange[, "x"], range[, "x"]),
+      .Rebase(y, fullRange[, "y"], range[, "y"]))
   }
 }
 
@@ -159,6 +187,7 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     }
   }
   
+  class(region) <- "ternRegion"
   if (set) {
     options(ternRegion = region)
   } else {

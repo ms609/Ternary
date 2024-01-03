@@ -142,6 +142,10 @@ XYToTernary <- function(
   if (!(direction %in% 1:4)) {
     stop("Parameter direction must be 1, 2, 3 or 4")
   }
+  
+  xy <- .UnnormalizeXY(x, y)
+  x <- xy[1]
+  y <- xy[2]
 
   if (direction == 1L) {
     a <- y / sqrt(0.75)
