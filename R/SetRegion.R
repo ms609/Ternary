@@ -3,7 +3,7 @@ ternRegionDefault <- cbind(
   b = c(0, 100),
   c = c(0, 100)
 )
-ternRegion20 <- cbind(a = c(20, 60), b = c(20, 60), c = c(20, 60))
+ternRegion20 <- cbind(a = c(min = 20, max = 60), b = c(20, 60), c = c(20, 60))
 ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 
 #' Set plotting region
@@ -22,7 +22,7 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 #' @examples
 #' # XY Coordinates under original plotting region
 #' TernaryToXY(c(1, 2, 3))
-#' previous <- .SetRegion(ternRegion20)
+#' previous <- .SetRegion(rbind(min = c(20, 20, 20), max = c(60, 60, 60)))
 #' 
 #' # New region options set
 #' getOption("ternRegion")
@@ -41,6 +41,9 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 .SetRegion.list <- function(region, prettify = NA_integer_) {
   .SetRegion(do.call(rbind, region), prettify = prettify)
 }
+
+#' @export
+.SetRegion.data.frame <- .SetRegion.list
 
 #' @export
 .SetRegion.matrix <- function(region, prettify = NA_integer_) {
@@ -125,8 +128,17 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
   }
   region <- rbind(min = ranges[1, ], max = vapply(1:3, .Max, double(1)))
   if (!is.na(prettify)) {
-    prettyRegion <- apply(region, 2, pretty, prettify)
-    prettyRegion <- prettyRegion[c(1, nrow(prettyRegion)), ]
+    prettyRegion <- apply(region, 2, pretty, prettify, simplify = FALSE)
+    l <- lengths(prettyRegion)
+    longest <- max(l)
+    prettyRegion[l != longest] <- 
+      lapply(prettyRegion[l != longest], function(i) {
+        n <- length(i)
+        by <- i[2] - i[1]
+        i <- c(i, seq(max(i) + by, by = by, length.out = longest - n))
+        i
+      })
+    prettyRegion <- do.call(cbind, prettyRegion)[c(1, longest), ]
     if (.RegionIsValid(prettyRegion)) {
       region <- prettyRegion
     }

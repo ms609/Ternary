@@ -28,7 +28,7 @@ need to call this function directly.
 \examples{
 # XY Coordinates under original plotting region
 TernaryToXY(c(1, 2, 3))
-previous <- .SetRegion(ternRegion20)
+previous <- .SetRegion(rbind(min = c(20, 20, 20), max = c(60, 60, 60)))
 
 # New region options set
 getOption("ternRegion")

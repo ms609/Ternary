@@ -11,6 +11,35 @@ test_that(".SetRegion() is stable", {
   original <- .SetRegion(ternRegionDefault)
   on.exit(options(ternRegion = original))
   expect_equal(getOption("ternRegion"), ternRegionDefault)
+  .SetRegion(ternRegion20)
+  expect_equal(getOption("ternRegion"), ternRegion20)
+})
+
+test_that(".SetRegion() handles input types", {
+  region <- ternRegion20
+  original <- .SetRegion(list(region[1, ], region[2, ]))
+  on.exit(options(ternRegion = original))
+  expect_equal(getOption("ternRegion"), ternRegion20)
+  .SetRegion(ternRegionDefault)
+  .SetRegion(as.data.frame(t(region)))
+  expect_equal(unname(getOption("ternRegion")), unname(ternRegion20))
+})
+
+test_that(".SetRegion() prettifies", {
+  range <- c(min = 10.5, max = 19.5)
+  region <- cbind(a = range, b = range,
+                  c = c(100 - sum(range), 100 - (2 * range[1])))
+  expect_true(.RegionIsValid(region))
+  pretty <- c(min = 10, max = 20)
+  pretty <- cbind(a = pretty, b = pretty, c = c(70, 80))
+  expect_true(.RegionIsValid(pretty))
+  
+  original <- .SetRegion(region, prettify = NA)
+  on.exit(options(ternRegion = original))
+  expect_equal(getOption("ternRegion"), region)
+  
+  .SetRegion(region, prettify = 10)
+  expect_equal(getOption("ternRegion"), pretty)
 })
 
 test_that(".SetRegion() handles bad input", {
