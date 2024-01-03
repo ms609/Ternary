@@ -92,7 +92,15 @@ test_that("Ranges are correct", {
   expect_equal(c(-1, 0) + ((1 - sqrt(0.75)) / 2), TernaryXRange(direction = 4))
 })
 
-test_that("OutsidePlot works", {
+test_that("Coordination supports ranges", {
+  TernaryToXY(c(33, 33, 33))
+  expect_equal(
+    TernaryToXY(c(3, 3, 3), region = list(c(0, 30), c(0, 30), c(0, 30))),
+    c(1, 2, 3)
+  )
+})
+
+test_that("OutsidePlot() works", {
   options("ternDirection" = 1L)
   expect_true(OutsidePlot(100, 100))
   expect_false(OutsidePlot(0, 0))

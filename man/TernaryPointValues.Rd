@@ -26,8 +26,8 @@ returns a numeric vector whose value at each coordinate will be depicted.}
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{\dots}{Additional parameters to \code{Func()}.}
 

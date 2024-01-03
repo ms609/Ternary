@@ -29,8 +29,8 @@ colour gradients, but at a computational cost.}
 
 \item{col}{Vector specifying the colour with which to fill each triangle.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \description{
 Function to fill a ternary plot with coloured tiles.  Useful in combination with

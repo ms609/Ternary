@@ -11,28 +11,32 @@ TernaryCoords(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 \method{TernaryToXY}{matrix}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 \method{TernaryToXY}{numeric}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 TernaryToXY(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 }
 \arguments{
@@ -51,8 +55,8 @@ coordinates of points.}
 
 \item{c_coord}{The c coordinate, if \code{abc} is a single number.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 \code{TernaryCoords()} returns a vector of length two that converts

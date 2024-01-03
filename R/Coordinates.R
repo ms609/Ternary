@@ -34,16 +34,22 @@
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
-TernaryCoords <- function(abc, b_coord = NULL, c_coord = NULL,
-                          direction = getOption("ternDirection", 1L)) {
+TernaryCoords <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
   UseMethod("TernaryToXY")
 }
 
 #' @rdname TernaryCoords
 #' @export
-TernaryToXY.matrix <- function(abc, b_coord = NULL, c_coord = NULL,
-                               direction = getOption("ternDirection", 1L)) {
-  ret <- apply(abc, 2, TernaryToXY, direction = direction)
+TernaryToXY.matrix <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
+  ret <- apply(abc, 2, TernaryToXY, direction = direction, region = region)
   rownames(ret) <- c("x", "y")
 
   # Return:
@@ -52,8 +58,11 @@ TernaryToXY.matrix <- function(abc, b_coord = NULL, c_coord = NULL,
 
 #' @rdname TernaryCoords
 #' @export
-TernaryToXY.numeric <- function(abc, b_coord = NULL, c_coord = NULL,
-                                direction = getOption("ternDirection", 1L)) {
+TernaryToXY.numeric <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
@@ -66,9 +75,8 @@ TernaryToXY.numeric <- function(abc, b_coord = NULL, c_coord = NULL,
   if (!(direction %in% 1:4)) {
     stop("Parameter `direction` must be 1, 2, 3 or 4")
   }
-  names(abc) <- NULL # or they may be inherited by x and y, confusingly
-
-  abc <- abc[switch(direction,
+  # unname to avoid x and y inheriting names
+  abc <- unname(abc)[switch(direction,
     c(2, 3, 1),
     c(3, 2, 1),
     c(3, 2, 1),
@@ -84,13 +92,16 @@ TernaryToXY.numeric <- function(abc, b_coord = NULL, c_coord = NULL,
     x <- x_deviation * cos(pi / 6)
     y <- y_deviation * (1 - x_deviation) / 2
   }
-
+  
   # Return:
-  switch(direction,
-    c(y, x),
-    c(x, y),
-    c(y, -x),
-    c(-x, y)
+  .NormalizeToRegion(
+    switch(direction,
+      c(y, x),
+      c(x, y),
+      c(y, -x),
+      c(-x, y)
+    ),
+    region = region
   )
 }
 
@@ -115,10 +126,20 @@ TernaryToXY <- TernaryCoords
 #'
 #' @family coordinate translation functions
 #' @export
-XYToTernary <- function(x, y, direction = getOption("ternDirection", 1L)) {
-  if (!is.numeric(x)) stop("Parameter `x` must be numeric.")
-  if (!is.numeric(y)) stop("Parameter `y` must be numeric.")
-  if (!(direction %in% 1:4)) stop("Parameter direction must be 1, 2, 3 or 4")
+XYToTernary <- function(
+    x, y,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
+  if (!is.numeric(x)) {
+    stop("Parameter `x` must be numeric.")
+  }
+  if (!is.numeric(y)) {
+    stop("Parameter `y` must be numeric.")
+  }
+  if (!(direction %in% 1:4)) {
+    stop("Parameter direction must be 1, 2, 3 or 4")
+  }
 
   if (direction == 1L) {
     a <- y / sqrt(0.75)
@@ -269,8 +290,10 @@ OutsidePlot <- function(x, y, tolerance = 0) {
 #' points(ref[[3]][, 1], ref[[3]][, 2], col = "orange", pch = 3)
 #' @family coordinate translation functions
 #' @export
-ReflectedEquivalents <- function(x, y,
-                                 direction = getOption("ternDirection", 1L)) {
+ReflectedEquivalents <- function(
+    x, y,
+    direction = getOption("ternDirection", 1L)
+  ) {
   switch(direction,
     {
       # 1L

@@ -45,7 +45,7 @@
                           tip.col,
                           tip.cex,
                           tip.font,
-                          xlim, ylim,
+                          xlim, ylim, region,
                           ...) {
   direction <- 1L + (pmatch(tolower(point), c("right", "down", "left", "up",
                                               "east", "south", "west", "north",

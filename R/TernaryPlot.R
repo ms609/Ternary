@@ -32,6 +32,11 @@
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #'  May be overridden if `isometric = TRUE`; see documentation of
 #' `isometric` parameter.
+#' @param region List of length three specifying the sub-region of each ternary
+#'  axis to be drawn; or a set of coordinates in a format accepted by
+#'  [`TernaryPoints()`].
+#'  The plotted region will correspond to the smallest equilateral triangle
+#'  that encompasses the specified ranges or coordinates.
 #'
 #' @param lab.cex,tip.cex Numeric specifying character expansion (font size)
 #'  for axis labels.
@@ -139,7 +144,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         alab = NULL, blab = NULL, clab = NULL,
                         lab.offset = 0.16, lab.col = NULL,
                         point = "up", clockwise = TRUE,
-                        xlim = NULL, ylim = NULL,
+                        xlim = NULL, ylim = NULL, region = NULL,
                         lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
                         tip.font = 2, tip.col = "black",
                         isometric = TRUE, atip.rotate = NULL,
@@ -162,6 +167,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         ticks.lwd = axis.lwd, ticks.length = 0.025,
                         axis.col = "black", ticks.col = grid.col,
                         ...) {
+  SetRegion(region)
   tern <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,

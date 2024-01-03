@@ -18,6 +18,7 @@ TernaryPlot(
   clockwise = TRUE,
   xlim = NULL,
   ylim = NULL,
+  region = NULL,
   lab.cex = 1,
   lab.font = 0,
   tip.cex = lab.cex,
@@ -90,13 +91,19 @@ The integers 1 to 4 can be used in place of the character strings.}
 default), each axis runs from zero to its maximum value in a clockwise
 direction around the plot.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and
-maximum  \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
+\item{xlim, ylim}{Numeric vectors of length two specifying the minimum and
+maximum \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
 added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
+
+\item{region}{List of length three specifying the sub-region of each ternary
+axis to be drawn; or a set of coordinates in a format accepted by
+\code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
 for axis labels.
@@ -197,8 +204,8 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{\dots}{Additional parameters to \code{\link[graphics]{plot}}.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \description{
 Create and style a blank ternary plot.
