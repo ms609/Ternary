@@ -52,7 +52,7 @@ Colour a ternary plot according to the output of a function
 }
 \examples{
 TernaryPlot(alab = "a", blab = "b", clab = "c")
- 
+
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }

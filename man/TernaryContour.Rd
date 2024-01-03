@@ -85,7 +85,7 @@ TernaryContour(FunctionToContour, resolution = 36L)
 # Note that FunctionToContour is sent a vector.
 # Instead of
 BadMax <- function (a, b, c) {
-  max(a, b, c) 
+  max(a, b, c)
 }
 
 # Use
