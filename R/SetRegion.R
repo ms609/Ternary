@@ -24,6 +24,10 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
   ((max - min) * x) + min
 }
 
+.Rebase <- function(x, subRange, fullRange) {
+  .Unnormalize(.Normalize(x, subRange), fullRange)
+}
+
 .NormalizeToRegion <- function(
     xy,
     region = getOption("ternRegion", ternRegionDefault)) {
@@ -32,8 +36,8 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     xy
   } else {
     range <- .RegionXY(region)
-    c(.Unnormalize(.Normalize(xy[1], range[, "x"]), TernaryXRange()),
-      .Unnormalize(.Normalize(xy[2], range[, "y"]), TernaryYRange()))
+    c(.Rebase(xy[1], range[, "x"], TernaryXRange()),
+      .Rebase(xy[2], range[, "y"], TernaryYRange()))
   }
 }
 

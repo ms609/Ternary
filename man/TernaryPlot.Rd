@@ -18,7 +18,7 @@ TernaryPlot(
   clockwise = TRUE,
   xlim = NULL,
   ylim = NULL,
-  region = NULL,
+  region = ternRegionDefault,
   lab.cex = 1,
   lab.font = 0,
   tip.cex = lab.cex,
