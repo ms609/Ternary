@@ -159,6 +159,13 @@
     ctip.pos <- switch(direction, 4, 4, 2, 2)
   }
 
+  region <- getOption("ternRegion")
+  if (isTRUE(axis.labels) && !all(region == ternRegionDefault)) {
+    axis.labels <- apply(region, 2, pretty, n = grid.lines, simplify = FALSE)
+    grid.lines <- length(axis.labels[[1]]) - 1L
+  } else {
+    grid.lines <- .ValidateGridLines(grid.lines)
+  }
 
   # Return:
   structure(list(
@@ -208,7 +215,7 @@
     gridExists = .GridExists(grid.lines),
     gridPoints = seq(from = 0, to = 1, length.out = grid.lines + 1L),
 
-    grid.lines = .ValidateGridLines(grid.lines),
+    grid.lines = grid.lines,
     grid.col = .Triplicate(grid.col),
     grid.lwd = .Triplicate(grid.lwd),
     grid.lty = .Triplicate(grid.lty),

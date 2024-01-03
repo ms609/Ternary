@@ -442,22 +442,24 @@ text(0.38, 0.1, "<padding> ", pos = 2, cex = 0.75, srt = 90)
 An alternative approach is to plot a triangular sub-region of the larger
 ternary space, allowing axis annotations to be read more easily.
 
-```{r sub-plot, fig.asp = 1}
-TernaryPlot(region = my_corners)
-  
+```{r subregion-plot, fig.asp = 1}
+TernaryPlot(region = my_corners) # Fit plotted region to data
 TernaryPolygon(my_corners, col = "#2cbe4e88")
 ```
 
-```{r sub-plot, fig.asp = 1}
-TernaryPlot(region = list(
-  # axes will be extended to fit
-  c(amin = 10, bmin = 70, cmin = 0),
-  c(amax = 30, bmax = 70, cmax = 10)
-))
-  
+A region can be defined manually; the smallest triangle that covers the region
+will be employed.
+
+```{r manual-subregion, fig.asp = 1}
+region <- list(
+   c(amin = 10, bmin = 70, cmin = 0),
+   c(amax = 30, bmax = 70, cmax = 10)
+)
+TernaryPlot(region = region)
+
+# Data will be plotted even if it falls outside the plotted axes
 TernaryPolygon(my_corners, col = "#2cbe4e88")
 ```
-
 
 
 ## Further tutorials

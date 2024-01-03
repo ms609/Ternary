@@ -153,7 +153,8 @@ plot methods may well not work since it may be evaluated too early.}
 place but before the axes and box are added.  See the comments about
 \code{panel.first}.}
 
-\item{grid.lines}{Integer specifying the number of grid lines to plot.}
+\item{grid.lines}{Integer specifying the number of grid lines to plot.
+If \code{axis.labels = TRUE}, this will be used as a hint to \code{pretty()}.}
 
 \item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.}

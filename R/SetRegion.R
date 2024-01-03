@@ -1,8 +1,14 @@
-ternRegionDefault <- cbind(a = c(0, 100), b = c(0, 100), c = c(0, 100))
-ternRegion20 <- cbind(a = c(20, 80), b = c(20, 80), c = c(20, 80))
+ternRegionDefault <- cbind(
+  a = c(min = 0, max = 100),
+  b = c(0, 100),
+  c = c(0, 100)
+)
+ternRegion20 <- cbind(a = c(20, 60), b = c(20, 60), c = c(20, 60))
 ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 
-.RegionCorners <- function(region = getOption("ternRegion", ternRegionDefault)) {
+.RegionCorners <- function(
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
   cbind(a = region[c(2, 3, 5)],
         b = region[c(1, 4, 5)],
         c = region[c(1, 3, 6)])
@@ -36,8 +42,9 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     xy
   } else {
     range <- .RegionXY(region)
-    c(.Rebase(xy[1], range[, "x"], TernaryXRange()),
-      .Rebase(xy[2], range[, "y"], TernaryYRange()))
+    fullRange <- .RegionXY(ternRegionDefault)
+    c(.Rebase(xy[1], range[, "x"], fullRange[, "x"]),
+      .Rebase(xy[2], range[, "y"], fullRange[, "y"]))
   }
 }
 
@@ -61,9 +68,6 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     )
 }
 
-#' @export
-SetRegion <- function(region) UseMethod("SetRegion")
-
 .RegionIsEquilateral <- function(region) {
   length(unique(apply(region, 2, max) - apply(region, 2, min))) == 1
 }
@@ -72,36 +76,53 @@ SetRegion <- function(region) UseMethod("SetRegion")
   min(region) >= 0 && max(region) <= 100
 }
 
-.RegionIsValid <- function(region) {
-  .RegionIsEquilateral(region) && .RegionInRange(region)
+.RegionCorners100 <- function(region) {
+  sum(region[c(1, 3, 5) + c(1, 0, 0)]) == 100 &&
+  sum(region[c(1, 3, 5) + c(0, 1, 0)]) == 100 &&
+  sum(region[c(1, 3, 5) + c(0, 0, 1)]) == 100
 }
 
-.MakeRegion <- function(region) {
-  ranges <- region[2, ] - region[1, ]
-  maxRange <- max(ranges)
-  if (maxRange > 100) {
+.RegionIsValid <- function(region) {
+  .RegionIsEquilateral(region) && 
+    .RegionInRange(region) &&
+    .RegionCorners100(region)
+}
+
+.MakeRegion <- function(ranges, prettify = NA_integer_) {
+  spans <- ranges[2, ] - ranges[1, ]
+  maxSpan <- max(spans)
+  if (maxSpan > 100) {
     warning("Largest possible region is (0, 100)")
     return(options(ternRegion = ternRegionDefault))
   } else if (maxRange <= 0) {
     warning("Region must have positive size; ignoring")
     return(options(ternRegion = ternRegionDefault))
   }
-  mid <- apply(region, 2, mean)
-  ret <- rbind(min = mid, max = mid) + (c(-maxRange, maxRange) / 2)
-  tooSmall <- ret[1, ] < 0
-  ret[, tooSmall] <- ret[, tooSmall] - rep(ret[1, tooSmall], each = 2)
-  tooBig <- ret[2, ] > 100
-  ret[, tooBig] <- ret[, tooBig] - rep(ret[2, tooBig] - 100, each = 2)
   
-  options(ternRegion = ret)
+  .Max <- function(i) {
+    100 - sum(ranges[1, -i])
+  }
+  region <- rbind(min = ranges[1, ], max = vapply(1:3, .Max, double(1)))
+  if (!is.na(prettify)) {
+    prettyRegion <- apply(region, 2, pretty, prettify)
+    prettyRegion <- prettyRegion[c(1, nrow(prettyRegion)), ]
+    if (.RegionIsValid(prettyRegion)) {
+      region <- prettyRegion
+    }
+  }
+  
+  options(ternRegion = region)
 }
 
 #' @export
-SetRegion.list <- function(region) {
-  SetRegion(do.call(rbind, region))
+SetRegion <- function(region, prettify = NA_integer_) UseMethod("SetRegion")
+
+#' @export
+SetRegion.list <- function(region, prettify = NA_integer_) {
+  SetRegion(do.call(rbind, region), prettify = prettify)
 }
 
 #' @export
-SetRegion.matrix <- function(region) {
-  .MakeRegion(apply(region, 2, range))
+SetRegion.matrix <- function(region, prettify = NA_integer_) {
+  .MakeRegion(apply(region, 2, range), prettify = prettify)
 }

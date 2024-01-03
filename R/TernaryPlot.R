@@ -74,6 +74,7 @@
 #'  `panel.first`.
 #'
 #' @param grid.lines Integer specifying the number of grid lines to plot.
+#'  If `axis.labels = TRUE`, this will be used as a hint to `pretty()`.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled)
 #'  grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col Colours to draw the grid lines. Use a vector
@@ -168,7 +169,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         ticks.lwd = axis.lwd, ticks.length = 0.025,
                         axis.col = "black", ticks.col = grid.col,
                         ...) {
-  SetRegion(region)
+  SetRegion(region, prettify = if(isTRUE(axis.labels)) grid.lines else NA)
   tern <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,
