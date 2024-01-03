@@ -8,34 +8,34 @@
 #' \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 #'
 #' @param atip,btip,ctip Character string specifying text to title corners,
-#' proceeding clockwise from the corner specified in `point` (default: top).
+#'  proceeding clockwise from the corner specified in `point` (default: top).
 #' @param alab,blab,clab Character string specifying text with which to label
-#' the corresponding sides of the triangle.
-#' Left or right-pointing arrows are produced by
+#'  the corresponding sides of the triangle.
+#'  Left or right-pointing arrows are produced by
 #'  typing `\\U2190` or `\\U2192`, or using `expression('value' %->% '')`.
 #' @param lab.offset Numeric specifying distance between midpoint of axis label
-#' and the axis.
+#'  and the axis.
 #'  Increase `padding` if labels are being clipped.
 #'  Use a vector of length three to specify a different offset for each label.
 #'
 #' @param point Character string specifying the orientation of the ternary plot:
-#' should the triangle point `"up"`, `"right"`, `"down"` or `"left"`?
-#' The integers 1 to 4 can be used in place of the character strings.
+#'  should the triangle point `"up"`, `"right"`, `"down"` or `"left"`?
+#'  The integers 1 to 4 can be used in place of the character strings.
 #' @param clockwise Logical specifying the direction of axes.  If `TRUE` (the
-#' default), each axis runs from zero to its maximum value in a clockwise
-#' direction around the plot.
+#'  default), each axis runs from zero to its maximum value in a clockwise
+#'  direction around the plot.
 #'
-#' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and
-#'  maximum  _x_ and _y_ limits of the plotted area, to which `padding` will be
+#' @param xlim,ylim Numeric vectors of length two specifying the minimum and
+#'  maximum _x_ and _y_ limits of the plotted area, to which `padding` will be
 #'  added.
 #'  The default is to display the complete height or width of the plot.
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #'  May be overridden if `isometric = TRUE`; see documentation of
-#'  `isometric` parameter.
+#' `isometric` parameter.
 #'
 #' @param lab.cex,tip.cex Numeric specifying character expansion (font size)
-#' for axis labels.
-#' Use a vector of length three to specify a different value for each direction.
+#'  for axis labels.
+#'  Use a vector of length three to specify a different value for each direction.
 #' @param lab.font,tip.font Numeric specifying font style (Roman, bold, italic,
 #'  bold-italic) for axis titles.
 #'  Use a vector of length three to set a different font for each direction.
@@ -59,14 +59,14 @@
 #' \code{\link[graphics]{polygon}}.
 #'
 #' @param panel.first An expression to be evaluated after the plot axes are
-#' set up but before any plotting takes place.
-#' This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
-#' or [`HorizontalGrid()`].
-#' Note that this works by lazy evaluation: passing this argument from other
-#' plot methods may well not work since it may be evaluated too early.
+#'  set up but before any plotting takes place.
+#'  This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
+#'  or [`HorizontalGrid()`].
+#'  Note that this works by lazy evaluation: passing this argument from other
+#'  plot methods may well not work since it may be evaluated too early.
 #' @param panel.last An expression to be evaluated after plotting has taken
-#' place but before the axes and box are added.  See the comments about
-#' `panel.first`.
+#'  place but before the axes and box are added.  See the comments about
+#'  `panel.first`.
 #'
 #' @param grid.lines Integer specifying the number of grid lines to plot.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled)
