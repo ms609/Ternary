@@ -26,4 +26,8 @@ test_that("SetRegion() is stable", {
 test_that("Region validation works", {
   expect_true(.RegionIsEquilateral(cbind(c(10, 30), c(0, 20), c(60, 80))))
   expect_false(.RegionIsEquilateral(cbind(c(10, 30), c(0, 20), c(60, 81))))
+  
+  expect_true(.RegionInRange(ternRegionDefault))
+  expect_false(.RegionInRange(cbind(c(-10, 30), c(0, 20), c(60, 81))))
+  expect_false(.RegionInRange(cbind(c(10, 100.1), c(0, 20), c(60, 81))))
 })

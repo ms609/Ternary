@@ -167,7 +167,7 @@
       q <- 1 - p
       lineEnds <- vapply(
         list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
-        TernaryCoords, double(2)
+        TernaryCoords, region = ternRegionDefault, double(2)
       )
       
       for (side in 1:3) {
