@@ -53,6 +53,8 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 .RegionCorners <- function(
     region = getOption("ternRegion", ternRegionDefault)
   ) {
+  # Check region is valid - may be send directly from TernaryToXY
+  region <- .MakeRegion(region, prettify = NA, set = FALSE)
   cbind(a = region[c(2, 3, 5)],
         b = region[c(1, 4, 5)],
         c = region[c(1, 3, 6)])
@@ -81,6 +83,10 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
 .NormalizeToRegion <- function(
     xy,
     region = getOption("ternRegion", ternRegionDefault)) {
+  
+  if (is.null(dim(region)) || any(dim(region) != dim(ternRegionDefault))) {
+    region <- .MakeRegion(region, prettify = NA, set = FALSE)
+  }
   
   if (all(region == ternRegionDefault)) {
     xy
@@ -112,15 +118,23 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     .RegionCorners100(region)
 }
 
-.MakeRegion <- function(ranges, prettify = NA_integer_) {
+.MakeRegion <- function(ranges, prettify = NA_integer_, set = TRUE) {
   spans <- ranges[2, ] - ranges[1, ]
   maxSpan <- max(spans)
   if (maxSpan > 100) {
     warning("Largest possible region is (0, 100)")
-    return(options(ternRegion = ternRegionDefault))
+    return(if (set) {
+      options(ternRegion = ternRegionDefault)
+    } else {
+      ternRegionDefault
+    })
   } else if (maxSpan <= 0) {
     warning("Region must have positive size; ignoring")
-    return(options(ternRegion = ternRegionDefault))
+    return(if (set) {
+      options(ternRegion = ternRegionDefault)
+      } else {
+        ternRegionDefault
+      })
   }
   
   .Max <- function(i) {
@@ -145,6 +159,11 @@ ternRegionA <- cbind(a = c(40, 100), b = c(0, 60), c = c(0, 60))
     }
   }
   
-  options(ternRegion = region)
+  if (set) {
+    options(ternRegion = region)
+  } else {
+    region
+  }
+  
 }
 
