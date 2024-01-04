@@ -144,8 +144,8 @@ XYToTernary <- function(
   }
   
   xy <- .UnnormalizeXY(x, y)
-  x <- xy[1]
-  y <- xy[2]
+  x <- xy[[1]]
+  y <- xy[[2]]
 
   if (direction == 1L) {
     a <- y / sqrt(0.75)

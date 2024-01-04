@@ -58,6 +58,15 @@ ternRegionA <- structure(
   .MakeRegion(apply(region, 2, range), prettify = prettify, set = set)
 }
 
+#' @export
+.SetRegion.ternRegion <- function(region, prettify = NA_integer_, set = TRUE) {
+  if (set) {
+    options(ternRegion = region)
+  } else {
+    region
+  }
+}
+
 .RegionCorners <- function(
     region = getOption("ternRegion", ternRegionDefault)
   ) {
@@ -121,12 +130,12 @@ ternRegionA <- structure(
   }
   
   if (all(region == ternRegionDefault)) {
-    c(x, y)
+    list(x, y)
   } else {
     fullRange <- .RegionXY(ternRegionDefault)
     range <- .RegionXY(region)
-    c(.Rebase(x, fullRange[, "x"], range[, "x"]),
-      .Rebase(y, fullRange[, "y"], range[, "y"]))
+    list(.Rebase(x, fullRange[, "x"], range[, "x"]),
+         .Rebase(y, fullRange[, "y"], range[, "y"]))
   }
 }
 
