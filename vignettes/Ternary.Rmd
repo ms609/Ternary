@@ -33,7 +33,7 @@ Or if you want the latest development version of the package:
 
 ```{R github-package, eval = FALSE}
 if (!require("devtools")) install.packages("devtools")
-install_github("ms609/Ternary")
+install_github("ms609/Ternary", args = "--recursive")
 ```
 
 Once the package is installed, load it into the current R session with 
