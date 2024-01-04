@@ -183,7 +183,7 @@ ternRegionA <- structure(
   }
   region <- rbind(min = ranges[1, ], max = vapply(1:3, .Max, double(1)))
   if (!is.na(prettify)) {
-    prettyRegion <- apply(region, 2, pretty, prettify, simplify = FALSE)
+    prettyRegion <- .SimpleApply(region, 2, pretty, prettify)
     l <- lengths(prettyRegion)
     longest <- max(l)
     prettyRegion[l != longest] <- 

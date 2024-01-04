@@ -1,3 +1,15 @@
+.SimpleApply <- if (packageVersion("base") < "4.1") function(...) {
+  # Simplify not supported until R4.1
+  x <- apply(...)
+  if (is.list(x)) {
+    x
+  } else {
+    lapply(seq_len(ncol(x)), function(i) x[, i])
+  }
+} else function(...) {
+  apply(..., simplify = FALSE)
+}
+
 .StartPlot <- function(tern, ...) {
   padVec <- c(-1, 1) * tern$padding
 
