@@ -70,14 +70,18 @@ beltLawPch <- ifelse(Seatbelts[, "law"], 3, 1)
 ```
 
 
-Let's also make the plot more readable by shrinking the margins:
+Let's also make the plot more readable by shrinking the margins,
+and just plotting the region of the plot where the data lie:
 
 ```{r by-law, fig.asp = 1}
 # Shrink the margin so the plot's easier to read
 par(mar = c(0, 0, 0, 0))
 
-# Set up a blank plot
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+# Set up a blank plot, 
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 
 # Add a legend
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
@@ -105,7 +109,10 @@ Now we can plot our data:
 ```{r spectrum, fig.asp = 1}
 par(mar = c(0, 0, 0, 0))
 
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
 
 # Add a legend for our colour scale
@@ -126,7 +133,10 @@ monthCol <- colorRampPalette(fourSeasons[c(1:4, 1)])(13)[c(7:12, 1:6)]
 
 par(mar = c(0, 0, 0, 0))
 
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
 
 legendMonths <- seq(1, 12, by = 2)
@@ -149,7 +159,7 @@ TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
 With or without seatbelts, drivers are in more relative danger in winter!
 
 Now let's size each point by the number of casualties, scaled by distance driven.
-We'll need to zoom in closer to the plot to see this clearly.
+We can use a different approach to zoom into the relevant region.
 
 ```{r scale-by-deaths, fig.asp = 1}
 par(mar = c(0, 0, 0, 0))

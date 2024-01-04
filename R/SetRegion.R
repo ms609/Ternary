@@ -55,7 +55,8 @@ ternRegionA <- structure(
 
 #' @export
 .SetRegion.matrix <- function(region, prettify = NA_integer_, set = TRUE) {
-  .MakeRegion(apply(region, 2, range), prettify = prettify, set = set)
+  .MakeRegion(apply(region * 100 / rowSums(region), 2, range),
+              prettify = prettify, set = set)
 }
 
 #' @export
