@@ -4,21 +4,25 @@
 \alias{.SetRegion}
 \title{Set plotting region}
 \usage{
-.SetRegion(region, prettify = NA_integer_)
+.SetRegion(region, prettify = NA_integer_, set = TRUE)
 }
 \arguments{
-\item{region}{List of length three specifying the sub-region of each ternary
-axis to be drawn; or a set of coordinates in a format accepted by
-\code{\link[=TernaryPoints]{TernaryPoints()}}.
+\item{region}{(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
 The plotted region will correspond to the smallest equilateral triangle
 that encompasses the specified ranges or coordinates.}
 
 \item{prettify}{If numeric, the plotting region will be expanded to allow
 grid lines to be produced with \code{pretty(n = prettify)}. If \code{NA}, the
 smallest region encompassing \code{region} will be used.}
+
+\item{set}{Logical specifying whether to set \code{options(ternRegion = region)}}
 }
 \value{
-\code{.SetRegion()} returns the value of \code{options(ternRegion = region)}.
+\code{.SetRegion()} returns the value of \code{options(ternRegion = region)}
+if \code{set == TRUE}, or the region, otherwise..
 }
 \description{
 Sets the region of the ternary plot being drawn.
