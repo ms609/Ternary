@@ -71,10 +71,10 @@ test_that(".SetRegion() prettifies", {
   
   original <- .SetRegion(region, prettify = NA)
   on.exit(options(ternRegion = original))
-  expect_equal(getOption("ternRegion"), region)
+  expect_equal(getOption("ternRegion"), structure(region, class = "ternRegion"))
   
   .SetRegion(region, prettify = 10)
-  expect_equal(getOption("ternRegion"), pretty)
+  expect_equal(getOption("ternRegion"), structure(pretty, class = "ternRegion"))
 })
 
 test_that(".SetRegion() handles bad input", {
