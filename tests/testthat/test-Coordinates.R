@@ -92,11 +92,51 @@ test_that("Ranges are correct", {
   expect_equal(c(-1, 0) + ((1 - sqrt(0.75)) / 2), TernaryXRange(direction = 4))
 })
 
-test_that("OutsidePlot works", {
+test_that("Coordination supports ranges", {
+  expect_equal(
+    TernaryToXY(c(20, 15, 65), region = rbind(c(0, 0, 50), c(50, 50, 100))),
+    TernaryToXY(c(40, 30, 30))
+  )
+})
+
+
+test_that("Regions are supported both ways", {
+  my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
+  expect_equal(
+    TernaryCoords(22, 72, 6, # my_corners[[2]]
+                  region = .SetRegion(my_corners, prettify = 10, set = FALSE)),
+    c(1/9, 0.4811252),
+    tolerance = 0.001
+  )
+  
+  expect_equal(
+    TernaryCoords(my_corners[[2]], region = my_corners),
+    TernaryToXY(
+      22, 72, 6,
+      region = .SetRegion(my_corners, prettify = NA_integer_, set = FALSE)
+    ),
+    tolerance = 0.001
+  )
+  
+  prior <- .SetRegion(my_corners, prettify = 10)
+  on.exit(options(prior))
+  expect_equal(
+    TernaryToXY(22, 72, 6),
+    c(1/9, 0.4811252),
+    tolerance = 0.001
+  )
+  expect_equal(
+    unname(XYToTernary(1/9, 0.4811252)),
+    cbind(my_corners[[2]] / 100),
+    tolerance = 0.001
+  )
+})
+
+test_that("OutsidePlot() works", {
   options("ternDirection" = 1L)
   expect_true(OutsidePlot(100, 100))
   expect_false(OutsidePlot(0, 0))
-  expect_equal(c(TRUE, TRUE), OutsidePlot(0:1, 1:0))
+  expect_equal(OutsidePlot(0:1, 1:0), c(TRUE, TRUE))
   expect_false(OutsidePlot(0, 0.8))
   expect_true(OutsidePlot(0, 0.8, tolerance = 0.05))
 })

@@ -10,8 +10,8 @@ TernaryXRange(direction = getOption("ternDirection", 1L))
 TernaryYRange(direction = getOption("ternDirection", 1L))
 }
 \arguments{
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 \code{TernaryXRange()} and \code{TernaryYRange()} return the minimum and

@@ -8,6 +8,7 @@ TernaryContour(
   Func,
   resolution = 96L,
   direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault),
   within = NULL,
   filled = FALSE,
   legend,
@@ -28,8 +29,15 @@ returns a numeric vector whose value at each coordinate will be depicted.}
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{region}{(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{within}{List or matrix of \emph{x, y} coordinates within which contours
 should be evaluated, in any format supported by
@@ -85,7 +93,7 @@ TernaryContour(FunctionToContour, resolution = 36L)
 # Note that FunctionToContour is sent a vector.
 # Instead of
 BadMax <- function (a, b, c) {
-  max(a, b, c) 
+  max(a, b, c)
 }
 
 # Use

@@ -9,8 +9,8 @@ ReflectedEquivalents(x, y, direction = getOption("ternDirection", 1L))
 \arguments{
 \item{x, y}{Vectors of \emph{x} and \emph{y} coordinates of points.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 \code{ReflectedEquivalents()} returns a list of the \emph{x}, \emph{y} coordinates

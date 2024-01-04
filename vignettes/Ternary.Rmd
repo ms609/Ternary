@@ -48,7 +48,7 @@ as you like it and pointing in any of the four compass directions; secondly, add
 ## Create a blank plot
 
 At its simplest, all you need to do is type
-```{R create-blank-plot}
+```{R create-blank-plot, fig.asp = 1}
 TernaryPlot()
 ```
 
@@ -67,7 +67,7 @@ for (dir in c("up", "right", "down", "le")) {
 
 ## Plot two stylised plots side by side, and plot data
 
-```{R two-stylised-plots}
+```{R two-stylised-plots, fig.asp = 1/2}
 # Configure plotting area
 par(mfrow = c(1, 2), mar = rep(0.3, 4))
 
@@ -150,7 +150,7 @@ More sophisticated plots can be created, for example styling each point
 according to additional properties of the data, in a manner analogous to the
 standard plotting functions:
 
-```{r point-styling}
+```{r point-styling, fig.asp = 1}
 # Configure plotting area
 par(mar = rep(0.3, 4))
 
@@ -265,7 +265,7 @@ It is also possible to use cartesian coordinates to plot onto the graph.
 
 By default, the plotting area is a 1&times;1 square.
 
-```{r cartesian}
+```{r cartesian, fig.asp = 1}
 par(mar = rep(0, 4)) # Reduce margins
 TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
@@ -285,7 +285,7 @@ Note the anticlockwise axis labelling on this plot, obtained using
 
 A plot can be coloured and contoured according to the output of a mathematical expression:
 
-```{r contours}
+```{r contours, fig.asp = 1}
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 
@@ -323,7 +323,7 @@ PlotTools::SpectrumLegend(
 
 or according to the density of points across the plot:
 
-```{r density-contours}
+```{r density-contours, fig.asp = 1}
 par(mar = rep(0.2, 4))
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
@@ -347,7 +347,7 @@ points fall on boundaries of the triangular grid cells; text denotes the number
 of points within the cell, with cells straddling _n_ cells contributing 1/_n_ 
 of a point to each cell straddled.
 
-```{r low-resolution-density-contours, echo = FALSE}
+```{r low-resolution-density-contours, echo = FALSE, fig.asp = 1}
 coordinates <- list(middle = c(1, 1, 1),
                  top = c(3, 0, 0),
                  belowTop = c(2, 1, 1),
@@ -403,14 +403,21 @@ particular point in ternary space.
 Ensure that _dx_ = _dy_ if you want an isometric plot.
 
 ```{r find-corners}
+# Define points corresponding to corners of a region to plot
 my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
-lapply(my_corners, TernaryCoords, direction = 1)
+
+# Print Cartesian coordinates of points
+vapply(my_corners, TernaryCoords, direction = 1, FUN.VALUE = c(x = 0, y = 0))
 ```
 
 The `padding` parameter is added as a margin to each side of the region specified
 using `xlim` and `ylim`:
 
-```{r close-up}
+```{r close-up, fig.asp = 1}
+# Remove plot margins
+par(mar = rep(0, 4))
+
+# Create clipped plotting area
 TernaryPlot(xlim = c(0.28, 0.38), ylim = c(0.1, 0.2), padding = 0.04)
 
 # Annotate grid lines at user-specified points:
@@ -420,9 +427,9 @@ TernaryText(list(c(10, 69, 21), c(20, 64, 16)), c(10, 20), srt = 0, cex = 0.9,
             col = "darkgrey")
 
 # Plot desired polygon
-TernaryPolygon(my_corners, col = "#2cbe4e")
+TernaryPolygon(my_corners, col = "#2cbe4e88")
 
-# Show xlim, ylim and padding, using cartesian coordinates
+# Show xlim, ylim and padding, using Cartesian coordinates
 lines(c(0.28, 0.28, 0.38, 0.38, 0.28), c(0.1, 0.2, 0.2, 0.1, 0.1))
 text(0.28, 0.15, "xlim[1]", pos = 2, srt = 90)
 text(0.38, 0.15, "xlim[2]", pos = 4, srt = 90)
@@ -430,6 +437,28 @@ text(0.33, 0.1, "ylim[1]", pos = 1)
 text(0.33, 0.2, "ylim[2]", pos = 3)
 text(0.38, 0.1, "<padding>", pos = 4, cex = 0.75)
 text(0.38, 0.1, "<padding> ", pos = 2, cex = 0.75, srt = 90)
+```
+
+An alternative approach is to plot a triangular sub-region of the larger
+ternary space, allowing axis annotations to be read more easily.
+
+```{r subregion-plot, fig.asp = 1}
+TernaryPlot(region = my_corners) # Fit plotted region to data
+TernaryPolygon(my_corners, col = "#2cbe4e88")
+```
+
+A region can be defined manually; the smallest triangle that covers the region
+will be employed.
+
+```{r manual-subregion, fig.asp = 1}
+region <- list(
+   c(amin = 10, bmin = 70, cmin = 0),
+   c(amax = 30, bmax = 70, cmax = 10)
+)
+TernaryPlot(region = region)
+
+# Data will be plotted even if it falls outside the plotted axes
+TernaryPolygon(my_corners, col = "#2cbe4e88")
 ```
 
 

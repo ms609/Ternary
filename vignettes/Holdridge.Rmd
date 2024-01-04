@@ -33,6 +33,9 @@ using any of the standard plotting functions.
 and hexagons allowing plotted data to be linked to interpreted climate
 settings.
 
+Please cite Tsakalos _et al._ (2023) when using this function.
+
+
 ```{r holdridge, fig.asp = 1}
 # Load package and data
 library("Ternary")
@@ -71,3 +74,9 @@ _Science_ 105:367--368.
 Holdridge (1967),
 [_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
 Tropical Science Center, San Jos&eacute;.
+
+
+Tsakalos, Smith, Luebert & Mucina (2023).
+"[climenv: Download, extract and visualise climatic and elevation data.](
+10.1111/jvs.13215)",
+_Journal of Vegetation Science_ 6:e13215.

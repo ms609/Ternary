@@ -10,7 +10,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r hcl-colors-hack, echo=FALSE}
+```{r hcl-colors-hack, echo = FALSE}
 if (getRversion() < "3.6") {
   hcl.colors <- function(n, ...) {
     colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
@@ -24,7 +24,7 @@ Ternary package](Ternary.html)?
 
 A ternary plot can be shaded and contoured according to a known function:
 
-```{r contours-by-calculation}
+```{r contours-by-calculation, fig.asp = 1}
 library("Ternary")
 par(mar = rep(0.2, 4))
 
@@ -45,7 +45,7 @@ it is possible to interpolate between known values.
 
 Inverse distance weighting is a simple approach:
 
-```{r idw-interpolation}
+```{r idw-interpolation, fig.asp = 1}
 # If using your own data, set
 # abc <- [Three-column matrix containing a, b, c coordinates of points]
 # response <- [Vector of values at the points specified in abc]
@@ -113,7 +113,7 @@ More sophisticated interpolation approaches are possible, e.g.
 We might also encounter a situation where we have only sampled a small region
 of ternary space and do not wish to extrapolate beyond this region.
 
-```{r convex-hull, warning = FALSE}
+```{r convex-hull, warning = FALSE, fig.asp = 1}
 # Select some points at which to sample
 set.seed(0)
 nPts <- 50

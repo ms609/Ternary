@@ -41,8 +41,8 @@ plot.}
 \item{edgeCorrection}{Logical specifying whether to correct for edge effects
 (see details).}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{filled}{Logical; if \code{TRUE}, contours will be filled
 (using \code{\link[graphics]{.filled.contour}()}.).}

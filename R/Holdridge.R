@@ -13,6 +13,8 @@
 #' [`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
 #' and hexagons allowing plotted data to be linked to interpreted climate
 #' settings.
+#' 
+#' Please cite Tsakalos _et al._ (2023) when using this function.
 #'
 #' @inheritParams TernaryPlot
 #'
@@ -29,6 +31,10 @@
 #'
 #' Holdridge (1967), _[Life zone ecology]_.
 #' Tropical Science Center, San Jos&eacute;
+#' 
+#' Tsakalos, Smith, Luebert & Mucina (2023).
+#' "climenv: Download, extract and visualise climatic and elevation data.",
+#' _Journal of Vegetation Science_ 6:e13215. \doi{10.1111/jvs.13215}
 #'
 #' [Life zone ecology]: https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf
 #'
@@ -46,7 +52,7 @@ HoldridgePlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                           clab = "Humidity province",
                           lab.offset = 0.22,
                           lab.col = c("#D81B60", "#1E88E5", "#111111"),
-                          xlim = NULL, ylim = NULL,
+                          xlim = NULL, ylim = NULL, region = NULL,
                           lab.cex = 1.0,
                           lab.font = 0,
                           tip.cex = lab.cex,
@@ -88,6 +94,7 @@ HoldridgePlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                           ticks.length = 0.025,
                           ticks.col = grid.col,
                           ...) {
+  .SetRegion(ternRegionDefault)
   tri <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,

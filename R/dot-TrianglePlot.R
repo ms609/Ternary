@@ -45,7 +45,7 @@
                           tip.col,
                           tip.cex,
                           tip.font,
-                          xlim, ylim,
+                          xlim, ylim, region,
                           ...) {
   direction <- 1L + (pmatch(tolower(point), c("right", "down", "left", "up",
                                               "east", "south", "west", "north",
@@ -86,9 +86,8 @@
   if (is.null(xlim)) xlim <- TernaryXRange(direction)
   if (is.null(ylim)) ylim <- TernaryYRange(direction)
 
-
   axes <- vapply(list(c(1, 0, 0), c(0, 1, 0), c(0, 0, 1), c(1, 0, 0)),
-                 TernaryCoords, double(2))
+                 TernaryCoords, region = ternRegionDefault, double(2))
 
   axisBasis <- ifelse(ticks.incline, c(180, 300, 60), c(240, 0, 120))
   axisDegrees <- (axisBasis + (direction * 90)) %% 360
@@ -160,6 +159,13 @@
     ctip.pos <- switch(direction, 4, 4, 2, 2)
   }
 
+  region <- getOption("ternRegion")
+  if (isTRUE(axis.labels) && !all(region == ternRegionDefault)) {
+    axis.labels <- .SimpleApply(region, 2, pretty, n = grid.lines)
+    grid.lines <- length(axis.labels[[1]]) - 1L
+  } else {
+    grid.lines <- .ValidateGridLines(grid.lines)
+  }
 
   # Return:
   structure(list(
@@ -209,7 +215,7 @@
     gridExists = .GridExists(grid.lines),
     gridPoints = seq(from = 0, to = 1, length.out = grid.lines + 1L),
 
-    grid.lines = .ValidateGridLines(grid.lines),
+    grid.lines = grid.lines,
     grid.col = .Triplicate(grid.col),
     grid.lwd = .Triplicate(grid.lwd),
     grid.lty = .Triplicate(grid.lty),

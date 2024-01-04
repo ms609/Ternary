@@ -18,6 +18,7 @@ TernaryPlot(
   clockwise = TRUE,
   xlim = NULL,
   ylim = NULL,
+  region = ternRegionDefault,
   lab.cex = 1,
   lab.font = 0,
   tip.cex = lab.cex,
@@ -90,13 +91,20 @@ The integers 1 to 4 can be used in place of the character strings.}
 default), each axis runs from zero to its maximum value in a clockwise
 direction around the plot.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and
-maximum  \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
+\item{xlim, ylim}{Numeric vectors of length two specifying the minimum and
+maximum \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
 added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
+
+\item{region}{(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
 for axis labels.
@@ -137,7 +145,8 @@ plot methods may well not work since it may be evaluated too early.}
 place but before the axes and box are added.  See the comments about
 \code{panel.first}.}
 
-\item{grid.lines}{Integer specifying the number of grid lines to plot.}
+\item{grid.lines}{Integer specifying the number of grid lines to plot.
+If \code{axis.labels = TRUE}, this will be used as a hint to \code{pretty()}.}
 
 \item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.}
@@ -197,8 +206,8 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{\dots}{Additional parameters to \code{\link[graphics]{plot}}.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \description{
 Create and style a blank ternary plot.

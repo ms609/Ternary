@@ -6,7 +6,12 @@
 \alias{XYToPetPrec}
 \title{Cartesian coordinates to ternary point}
 \usage{
-XYToTernary(x, y, direction = getOption("ternDirection", 1L))
+XYToTernary(
+  x,
+  y,
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
+)
 
 XYToHoldridge(x, y)
 
@@ -16,8 +21,15 @@ XYToPetPrec(x, y)
 \item{x, y}{Numeric values giving the \emph{x} and \emph{y} coordinates of a point or
 points.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{region}{(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 }
 \value{
 \code{XYToTernary()} Returns the ternary point(s) corresponding to the

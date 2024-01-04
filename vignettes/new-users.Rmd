@@ -13,7 +13,7 @@ vignette: >
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
 
-```{r hcl-colors-hack, echo=FALSE}
+```{r hcl-colors-hack, echo = FALSE}
 if (getRversion() < "3.6") {
   hcl.colors <- function(n, ...) {
     if (n == 4) {
@@ -151,7 +151,7 @@ With or without seatbelts, drivers are in more relative danger in winter!
 Now let's size each point by the number of casualties, scaled by distance driven.
 We'll need to zoom in closer to the plot to see this clearly.
 
-```{r scale-by-deaths}
+```{r scale-by-deaths, fig.asp = 1}
 par(mar = c(0, 0, 0, 0))
 
 TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
@@ -176,7 +176,7 @@ The smaller size of points after mandatory seatbelt usage is evident.
 
 Now let's plot the annual trend as a line, taking the values for each October as representative:
 
-```{r all-deaths}
+```{r all-deaths, fig.asp = 1}
 # Subset our data to extract only Octobers:
 oct <- month.name == "October"
 octBelts <- Seatbelts[oct, ]

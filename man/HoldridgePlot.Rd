@@ -18,6 +18,7 @@ HoldridgePlot(
   lab.col = c("#D81B60", "#1E88E5", "#111111"),
   xlim = NULL,
   ylim = NULL,
+  region = NULL,
   lab.cex = 1,
   lab.font = 0,
   tip.cex = lab.cex,
@@ -99,13 +100,20 @@ Use a vector of length three to specify a different offset for each label.}
 \item{lab.col}{Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and
-maximum  \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
+\item{xlim, ylim}{Numeric vectors of length two specifying the minimum and
+maximum \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
 added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
+
+\item{region}{(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
 for axis labels.
@@ -146,7 +154,8 @@ plot methods may well not work since it may be evaluated too early.}
 place but before the axes and box are added.  See the comments about
 \code{panel.first}.}
 
-\item{grid.lines}{Integer specifying the number of grid lines to plot.}
+\item{grid.lines}{Integer specifying the number of grid lines to plot.
+If \code{axis.labels = TRUE}, this will be used as a hint to \code{pretty()}.}
 
 \item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.}
@@ -246,6 +255,8 @@ using any of the standard plotting functions.
 \code{\link[=HoldridgeBelts]{HoldridgeBelts()}} and \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}} plot interpretative lines
 and hexagons allowing plotted data to be linked to interpreted climate
 settings.
+
+Please cite Tsakalos \emph{et al.} (2023) when using this function.
 }
 \examples{
 data(holdridgeLifeZonesUp, package = "Ternary")
@@ -259,6 +270,10 @@ Holdridge (1947),
 
 Holdridge (1967), \emph{\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{Life zone ecology}}.
 Tropical Science Center, San José
+
+Tsakalos, Smith, Luebert & Mucina (2023).
+"climenv: Download, extract and visualise climatic and elevation data.",
+\emph{Journal of Vegetation Science} 6:e13215. \doi{10.1111/jvs.13215}
 }
 \seealso{
 Other Holdridge plotting functions: 
