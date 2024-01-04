@@ -13,6 +13,8 @@
 #' [`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
 #' and hexagons allowing plotted data to be linked to interpreted climate
 #' settings.
+#' 
+#' Please cite Tsakalos _et al._ (2023) when using this function.
 #'
 #' @inheritParams TernaryPlot
 #'
@@ -29,6 +31,10 @@
 #'
 #' Holdridge (1967), _[Life zone ecology]_.
 #' Tropical Science Center, San Jos&eacute;
+#' 
+#' Tsakalos, Smith, Luebert & Mucina (2023).
+#' "climenv: Download, extract and visualise climatic and elevation data.",
+#' _Journal of Vegetation Science_ 6:e13215. \doi{10.1111/jvs.13215}
 #'
 #' [Life zone ecology]: https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf
 #'
