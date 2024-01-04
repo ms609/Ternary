@@ -1,5 +1,5 @@
 bibentry(
-  mheader = "When using this package, please cite Smith (2017). For Holdridge plots, you may also cite Tsakalos et al. (2023).",
+  mheader = "When using this package, please cite Smith (2017). For Holdridge plots, also cite Tsakalos et al. (2023).",
   bibtype = "article",
   key = "Smith2017",
   journal = "Comprehensive R Archive Network",
