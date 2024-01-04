@@ -602,7 +602,7 @@ ColorTernary <- ColourTernary
 #'
 #' @template FuncParam
 #' @template resolutionParam
-#' @template directionParam
+#' @inheritParams TernaryPlot
 #' @template dotsToContour
 #' @template legendParam
 #' @param legend... List of additional parameters to send to
@@ -668,6 +668,7 @@ ColorTernary <- ColourTernary
 #' @export
 TernaryContour <- function(
     Func, resolution = 96L, direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault),
     within = NULL, filled = FALSE, legend, legend... = list(),
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
     color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
@@ -688,7 +689,7 @@ TernaryContour <- function(
   }
   
   if (is.null(within)) {
-    within <- GrowPolygon(t(TernaryToXY(diag(3))),
+    within <- GrowPolygon(t(TernaryToXY(.RegionCorners(region))),
                           buffer = 1 / resolution)
   } else {
     within <- xy.coords(within)

@@ -35,12 +35,14 @@ test_that("Contours are plotted", {
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
     TernaryContour(FunctionToContour, resolution = 12L, legend = TRUE)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L,
+                region = ternRegion20)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L),
                   legend = TRUE, x = "bottomleft", bty = "n")
     TernaryContour(FunctionToContour, resolution = 12L)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L,
+                region = ternRegionA)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
     val <- TernaryContour(FunctionToContour, resolution = 12L,
                           legend = letters[1:5],
@@ -68,11 +70,13 @@ test_that("Contours are plotted", {
                    color.palette = function(n) 
                      hcl.colors(n, alpha = 0.6, rev = TRUE))
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L,
+                region = ternRegion20)
     TernaryContour(FunctionToContour, filled = TRUE, nlevels = 9,
                    fill.col = 0:8)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L,
+                region = ternRegionA)
     TernaryContour(FunctionToContour, filled = TRUE, nlevels = 4)
   }
   skip_if_not_installed("vdiffr")
