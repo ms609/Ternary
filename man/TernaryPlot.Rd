@@ -99,8 +99,8 @@ Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
 
-\item{region}{(optional) List of length two specifying the the
-minimum and maximum values of each ternary axis to be drawn
+\item{region}{(optional) Named list of length two specifying the the
+\code{min}imum and \code{max}imum values of each ternary axis to be drawn
 (e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
 or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
 The plotted region will correspond to the smallest equilateral triangle

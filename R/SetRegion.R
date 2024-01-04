@@ -47,7 +47,18 @@ ternRegionA <- structure(
 
 #' @export
 .SetRegion.list <- function(region, prettify = NA_integer_, set = TRUE) {
-  .SetRegion(do.call(rbind, region), prettify = prettify, set = set)
+  names <- tolower(names(region))
+  region <- do.call(rbind, region)
+  if (!is.null(names) && length(names) == 2 && 
+      all(c("min", "max") %in% names)) {
+    .MakeRegion(
+      apply(region, 2, range),
+      prettify = prettify,
+      set = set
+    )
+  } else {
+    .SetRegion(region, prettify = prettify, set = set)
+  }
 }
 
 #' @export

@@ -32,8 +32,8 @@ colour gradients, but at a computational cost.}
 \item{direction}{(optional) Integer specifying the direction that the
 current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 
-\item{region}{(optional) List of length two specifying the the
-minimum and maximum values of each ternary axis to be drawn
+\item{region}{(optional) Named list of length two specifying the the
+\code{min}imum and \code{max}imum values of each ternary axis to be drawn
 (e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
 or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
 The plotted region will correspond to the smallest equilateral triangle
