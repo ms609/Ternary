@@ -94,6 +94,7 @@ HoldridgePlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                           ticks.length = 0.025,
                           ticks.col = grid.col,
                           ...) {
+  .SetRegion(ternRegionDefault)
   tri <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,
