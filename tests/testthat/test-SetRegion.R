@@ -1,3 +1,8 @@
+as.list.ternRegion <- function(x) {
+  list(min = apply(x, 2, min),
+       max = apply(x, 2, max))
+}
+
 test_that(".Normalize works", {
   expect_equal(.Normalize(0, c(0, 1)), 0)
   expect_equal(.Normalize(1, c(0, 1)), 1)
@@ -18,9 +23,10 @@ test_that(".UnnormalizeXY() handles vectorized input", {
     list(0:4, 4:0)
   ) 
   
+  
   # Construct region
   expect_equal(
-    .UnnormalizeXY(0:4, 4:0, region = unclass(ternRegion20)),
+    .UnnormalizeXY(0:4, 4:0, region = as.list(ternRegion20)),
     .UnnormalizeXY(0:4, 4:0, region = ternRegion20)
   )
   
@@ -59,7 +65,7 @@ test_that(".SetRegion() is stable", {
 
 test_that(".RegionCorners() can set up region", {
   expect_equal(
-    .RegionCorners(unclass(ternRegionA)),
+    .RegionCorners(as.list(ternRegionA)),
     .RegionCorners(ternRegionA)
   )
 })
@@ -93,7 +99,7 @@ test_that(".SetRegion() prettifies", {
 
 test_that(".SetRegion() handles bad input", {
   expect_warning(
-    original <- .SetRegion(unclass(ternRegionDefault) * 2),
+    original <- .SetRegion(list(min = rep(0, 3), max = rep(200, 3))),
     "Largest possible region is"
   )
   on.exit(options(ternRegion = original))
@@ -101,7 +107,7 @@ test_that(".SetRegion() handles bad input", {
   expect_equal(getOption("ternRegion"), ternRegionDefault)
   
   expect_warning(
-    .SetRegion(unclass(ternRegionDefault) * 0),
+    .SetRegion(list(min = rep(0, 3), max = rep(0, 3))),
     "Region must have positive size"
   )
   expect_equal(getOption("ternRegion"), ternRegionDefault)
@@ -111,7 +117,7 @@ test_that(".SetRegion() handles bad input", {
   .SetRegion(ternRegion20)
   expect_warning(
     expect_equal(
-      .SetRegion(unclass(ternRegionDefault) * 2, set = 0),
+      .SetRegion(list(min = rep(0, 3), max = rep(200, 3)), set = 0),
       ternRegionDefault
     ),
     "Largest possible region is"
@@ -120,7 +126,7 @@ test_that(".SetRegion() handles bad input", {
   
   expect_warning(
     expect_equal(
-      .SetRegion(unclass(ternRegionDefault) * 0, set = 0),
+      .SetRegion(list(min = rep(0, 3), max = rep(0, 3)), set = 0),
       ternRegionDefault
     ),
     "Region must have positive size"
