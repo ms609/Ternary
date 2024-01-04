@@ -135,18 +135,19 @@ smallest region encompassing <code>region</code> will be used.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="TernaryCoords.html">TernaryToXY</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.08333333  0.14433757</span>
 <span class="r-in"><span><span class="va">previous</span> <span class="op">&lt;-</span> <span class="fu">.SetRegion</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>min <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">20</span><span class="op">)</span>, max <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">60</span>, <span class="fl">60</span>, <span class="fl">60</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Region must have positive size; ignoring</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># New region options set</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternRegion"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     [,1] [,2] [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> min   20   20   20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> max   60   60   60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       a   b   c</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> min   0   0   0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> max 100 100 100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ternRegion"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Coordinates under new plotting region</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="TernaryCoords.html">TernaryToXY</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.20833333 -0.07216878</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.08333333  0.14433757</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Restore previous setting</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">previous</span><span class="op">)</span></span></span>
