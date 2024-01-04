@@ -37,18 +37,13 @@ Function to fill a ternary plot with coloured tiles.  Useful in combination with
 \code{\link{TernaryPointValues}} and \code{\link{TernaryContour}}.
 }
 \examples{
-
-FunctionToContour <- function (a, b, c) {
-  a - c + (4 * a * b) + (27 * a * b * c)
-}
-
 TernaryPlot()
+TernaryXRange()
+TernaryYRange()
 
-values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
-TernaryContour(FunctionToContour, resolution=36L)
-
-
+TernaryTiles(0, 0.5, TRUE, 10, "red")
+xy <- TernaryCoords(c(4, 3, 3))
+TernaryTiles(xy[1], xy[2], FALSE, 5, "darkblue")
 }
 \seealso{
 Other functions for colouring and shading: 

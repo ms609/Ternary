@@ -1,5 +1,5 @@
 Package: Ternary
-Version: 2.1.3.9004
+Version: 2.2.1
 Title: Create Ternary and Holdridge Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
   Holdridge life zone plots <doi:10.1126/science.105.2727.367> using the
@@ -23,7 +23,7 @@ Language: en-GB
 Depends: R (>= 3.5.0)
 Imports:
     RcppHungarian,
-    PlotTools,
+    PlotTools (>= 0.2.0),
     shiny,
     sp,
     viridisLite,

@@ -319,26 +319,35 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' \link[graphics:par]{graphical parameters} include `srt` to rotate text.
 #'
 #' @examples
+#' # Data to plot
 #' coords <- list(
 #'   A = c(1, 0, 2),
 #'   B = c(1, 1, 1),
 #'   C = c(1.5, 1.5, 0),
 #'   D = c(0.5, 1.5, 1)
 #' )
+#' 
+#' # Set up plot
+#' oPar <- par(mar = rep(0, 4), xpd = NA) # reduce margins and write in them
 #' TernaryPlot()
+#' 
+#' # Add elements to ternary diagram
 #' AddToTernary(lines, coords, col = "darkgreen", lty = "dotted", lwd = 3)
 #' TernaryLines(coords, col = "darkgreen")
 #' TernaryArrows(coords[1], coords[2:4], col = "orange", length = 0.2, lwd = 1)
 #' TernaryText(coords, cex = 0.8, col = "red", font = 2)
 #' TernaryPoints(coords, pch = 1, cex = 2, col = "blue")
-#' AddToTernary(points, coords, pch = 1, cex = 3)
+#' AddToTernary(graphics::points, coords, pch = 1, cex = 3)
 #'
 #' # An equivalent syntax applies to Holdridge plots:
 #' HoldridgePlot()
 #' pet <- c(0.8, 2, 0.42)
 #' prec <- c(250, 400, 1337)
 #' HoldridgeText(pet, prec, c("A", "B", "C"))
-#' AddToHoldridge(points, pet, prec, cex = 3)
+#' AddToHoldridge(graphics::points, pet, prec, cex = 3)
+#' 
+#' # Restore original plotting parameters
+#' par(oPar)
 #' @template MRS
 #' @export
 AddToTernary <- function(PlottingFunction, coordinates, ...) {
