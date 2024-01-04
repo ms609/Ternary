@@ -162,6 +162,9 @@
   region <- getOption("ternRegion")
   if (isTRUE(axis.labels) && !all(region == ternRegionDefault)) {
     axis.labels <- apply(region, 2, pretty, n = grid.lines, simplify = FALSE)
+    if (packageVersion("base") < "4.1") { # Simplify not supported until R4.0
+      lapply(1:3, function(i) axis.labels[, i])
+    }
     grid.lines <- length(axis.labels[[1]]) - 1L
   } else {
     grid.lines <- .ValidateGridLines(grid.lines)

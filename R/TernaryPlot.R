@@ -170,7 +170,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         ticks.lwd = axis.lwd, ticks.length = 0.025,
                         axis.col = "black", ticks.col = grid.col,
                         ...) {
-  .SetRegion(region, prettify = if(isTRUE(axis.labels)) grid.lines else NA)
+  .SetRegion(region, prettify = if (isTRUE(axis.labels)) grid.lines else NA)
   tern <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,
