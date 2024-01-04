@@ -84,16 +84,20 @@ test_that(".SetRegion() prettifies", {
   range <- c(min = 10.5, max = 19.5)
   region <- cbind(a = range, b = range,
                   c = c(100 - sum(range), 100 - (2 * range[1])))
+  regionList <- list(min = region[1, ], max = region[2, ])
   expect_true(.RegionIsValid(region))
   pretty <- c(min = 10, max = 20)
   pretty <- cbind(a = pretty, b = pretty, c = c(70, 80))
   expect_true(.RegionIsValid(pretty))
   
-  original <- .SetRegion(region, prettify = NA)
+  original <- .SetRegion(
+    regionList,
+    prettify = NA
+  )
   on.exit(options(ternRegion = original))
   expect_equal(getOption("ternRegion"), structure(region, class = "ternRegion"))
   
-  .SetRegion(region, prettify = 10)
+  .SetRegion(regionList, prettify = 10)
   expect_equal(getOption("ternRegion"), structure(pretty, class = "ternRegion"))
 })
 
