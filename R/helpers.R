@@ -218,12 +218,13 @@
     0, 90, 0, 270
   ), 4, 3)
 
+  region <- getOption("ternRegion")
+  mids <- colMeans(region)
   xy <- TernaryCoords(switch(side,
-    c(1, 0, 1),
-    c(1, 1, 0),
-    c(0, 1, 1)
-  )) +
-    (loff * .DirectionalOffset(do[tern$direction, side]))
+    c(mids[1], region[1, 2], mids[3]),
+    c(mids[1:2], region[1, 3]),
+    c(region[1, 1], mids[2:3])
+  )) + (loff * .DirectionalOffset(do[tern$direction, side]))
 
   text(xy[1], xy[2], switch(selected,
     tern$alab,
