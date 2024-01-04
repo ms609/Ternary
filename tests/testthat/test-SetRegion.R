@@ -18,11 +18,10 @@ test_that(".UnnormalizeXY handles vectorized input", {
     list(0:4, 4:0)
   )
   
-  TernaryPlot(region = ternRegionA)
   expect_equal(TernaryToXY(40, 60, 0, region = ternRegionA), c(0.5, 0))
   expect_equal(TernaryToXY(100, 0, 0, region = ternRegionA), c(0, cos(pi/6)))
   expect_equal(TernaryToXY(40, 0, 60, region = ternRegionA), c(-.5, 0))
-  TernaryToXY(0, 1, 0, region = ternRegionDefault)
+  
   expect_equal(
     XYToTernary(0, cos(pi/6), region = ternRegionA),
     rbind(a = 1, b = 0, c = 0)
@@ -32,10 +31,15 @@ test_that(".UnnormalizeXY handles vectorized input", {
     list(0, cos(pi/6))
   )
   expect_equal(
-    .UnnormalizeXY(0:4, 4:0 * .5, region = ternRegionA),
-    list(0:4 * .6, 4:0)
+    .UnnormalizeXY(0.5, 0, region = ternRegionA),
+    list(0.3, .3464),
+    tolerance = 0.0001
   )
-  
+  expect_equal(
+    .UnnormalizeXY(-1:1 / 2, c(0, cos(pi/6), 0), region = ternRegionA),
+    list(-1:1 * .3, c(.3464, cos(pi/6), .3464)),
+    tolerance = 0.0001
+  )
 })
 
 test_that(".SetRegion() is stable", {
@@ -75,7 +79,7 @@ test_that(".SetRegion() prettifies", {
 
 test_that(".SetRegion() handles bad input", {
   expect_warning(
-    original <- .SetRegion(ternRegionDefault * 2),
+    original <- .SetRegion(unclass(ternRegionDefault) * 2),
     "Largest possible region is"
   )
   on.exit(options(ternRegion = original))
@@ -83,7 +87,7 @@ test_that(".SetRegion() handles bad input", {
   expect_equal(getOption("ternRegion"), ternRegionDefault)
   
   expect_warning(
-    .SetRegion(ternRegionDefault * 0),
+    .SetRegion(unclass(ternRegionDefault) * 0),
     "Region must have positive size"
   )
   expect_equal(getOption("ternRegion"), ternRegionDefault)
