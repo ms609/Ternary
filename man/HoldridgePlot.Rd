@@ -255,6 +255,8 @@ using any of the standard plotting functions.
 \code{\link[=HoldridgeBelts]{HoldridgeBelts()}} and \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}} plot interpretative lines
 and hexagons allowing plotted data to be linked to interpreted climate
 settings.
+
+Please cite Tsakalos \emph{et al.} (2023) when using this function.
 }
 \examples{
 data(holdridgeLifeZonesUp, package = "Ternary")
@@ -268,6 +270,10 @@ Holdridge (1947),
 
 Holdridge (1967), \emph{\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{Life zone ecology}}.
 Tropical Science Center, San José
+
+Tsakalos, Smith, Luebert & Mucina (2023).
+"climenv: Download, extract and visualise climatic and elevation data.",
+\emph{Journal of Vegetation Science} 6:e13215. \doi{10.1111/jvs.13215}
 }
 \seealso{
 Other Holdridge plotting functions: 
