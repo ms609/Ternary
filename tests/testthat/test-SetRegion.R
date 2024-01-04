@@ -71,12 +71,12 @@ test_that(".RegionCorners() can set up region", {
 })
 
 test_that(".SetRegion() handles input types", {
-  region <- ternRegion20
-  original <- .SetRegion(list(region[1, ], region[2, ]))
+  corners <- .RegionCorners(ternRegion20)
+  original <- .SetRegion(lapply(1:3, function(i) corners[i, ]))
   on.exit(options(ternRegion = original))
   expect_equal(getOption("ternRegion"), ternRegion20)
   .SetRegion(ternRegionDefault)
-  .SetRegion(as.data.frame(t(unclass(region))))
+  .SetRegion(as.data.frame(corners))
   expect_equal(unname(getOption("ternRegion")), unname(ternRegion20))
 })
 
