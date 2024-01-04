@@ -19,7 +19,7 @@ bibentry(
   bibtype = "article",
   key = "Tsakalos2023",
   journal = "Journal of Vegetation Science",
-  author = personList(
+  author = c(
     person(c("James", "Lee"), "Tsakalos", email = "jamestsakalos@gmail.com"),
     person(c("Martin", "R."), "Smith",
            email = "martin.smith@durham.ac.uk"),
