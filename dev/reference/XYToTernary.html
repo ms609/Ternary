@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.2.1.9000</span>
       </span>
     </div>
 
@@ -86,7 +86,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">XYToTernary</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">XYToTernary</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">y</span>,</span>
+<span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>,</span>
+<span>  region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternRegion"</span>, <span class="va">ternRegionDefault</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">XYToHoldridge</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
 <span></span>
@@ -101,8 +106,17 @@ points.</p></dd>
 
 
 <dt>direction</dt>
-<dd><p>(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+<dd><p>(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
+
+<dt>region</dt>
+<dd><p>(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. <code>list(min = c(40, 0, 0), max = c(100, 60, 60)</code>);
+or a set of coordinates in a format accepted by <code><a href="AddToTernary.html">TernaryPoints()</a></code>.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.</p></dd>
 
 </dl></div>
     <div id="value">

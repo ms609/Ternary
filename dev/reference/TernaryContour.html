@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.2.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.2.1.9000</span>
       </span>
     </div>
 
@@ -90,6 +90,7 @@
 <span>  <span class="va">Func</span>,</span>
 <span>  resolution <span class="op">=</span> <span class="fl">96L</span>,</span>
 <span>  direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternDirection"</span>, <span class="fl">1L</span><span class="op">)</span>,</span>
+<span>  region <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"ternRegion"</span>, <span class="va">ternRegionDefault</span><span class="op">)</span>,</span>
 <span>  within <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  filled <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">legend</span>,</span>
@@ -117,8 +118,17 @@ colour gradients, but at a computational cost.</p></dd>
 
 
 <dt>direction</dt>
-<dd><p>(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+<dd><p>(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+
+
+<dt>region</dt>
+<dd><p>(optional) List of length two specifying the the
+minimum and maximum values of each ternary axis to be drawn
+(e.g. <code>list(min = c(40, 0, 0), max = c(100, 60, 60)</code>);
+or a set of coordinates in a format accepted by <code><a href="AddToTernary.html">TernaryPoints()</a></code>.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.</p></dd>
 
 
 <dt>within</dt>
@@ -201,7 +211,7 @@ Computed from <code>color.palette</code> if not specified.</p></dd>
 <span class="r-in"><span><span class="co"># Note that FunctionToContour is sent a vector.</span></span></span>
 <span class="r-in"><span><span class="co"># Instead of</span></span></span>
 <span class="r-in"><span><span class="va">BadMax</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span>, <span class="va">c</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Use</span></span></span>
