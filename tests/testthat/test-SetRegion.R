@@ -56,7 +56,7 @@ test_that(".SetRegion() handles input types", {
   on.exit(options(ternRegion = original))
   expect_equal(getOption("ternRegion"), ternRegion20)
   .SetRegion(ternRegionDefault)
-  .SetRegion(as.data.frame(t(region)))
+  .SetRegion(as.data.frame(t(unclass(region))))
   expect_equal(unname(getOption("ternRegion")), unname(ternRegion20))
 })
 
