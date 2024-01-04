@@ -11,11 +11,17 @@ test_that(".Rebase handles vectorized input", {
   expect_equal(.Rebase(0:4, c(0, 4), 1 + c(0, 8)), 1 + (0:4 * 2))
 })
 
-test_that(".UnnormalizeXY handles vectorized input", {
+test_that(".UnnormalizeXY() handles vectorized input", {
   # No renormalization
   expect_equal(
     .UnnormalizeXY(0:4, 4:0, region = ternRegionDefault),
     list(0:4, 4:0)
+  ) 
+  
+  # Construct region
+  expect_equal(
+    .UnnormalizeXY(0:4, 4:0, region = unclass(ternRegion20)),
+    .UnnormalizeXY(0:4, 4:0, region = ternRegion20)
   )
   
   expect_equal(TernaryToXY(40, 60, 0, region = ternRegionA), c(0.5, 0))
@@ -48,6 +54,14 @@ test_that(".SetRegion() is stable", {
   expect_equal(getOption("ternRegion"), ternRegionDefault)
   .SetRegion(ternRegion20)
   expect_equal(getOption("ternRegion"), ternRegion20)
+  expect_equal(.SetRegion(ternRegionA, set = FALSE), ternRegionA)
+})
+
+test_that(".RegionCorners() can set up region", {
+  expect_equal(
+    .RegionCorners(unclass(ternRegionA)),
+    .RegionCorners(ternRegionA)
+  )
 })
 
 test_that(".SetRegion() handles input types", {
@@ -91,6 +105,27 @@ test_that(".SetRegion() handles bad input", {
     "Region must have positive size"
   )
   expect_equal(getOption("ternRegion"), ternRegionDefault)
+  
+  .SetRegion(ternRegion20)
+  
+  .SetRegion(ternRegion20)
+  expect_warning(
+    expect_equal(
+      .SetRegion(unclass(ternRegionDefault) * 2, set = 0),
+      ternRegionDefault
+    ),
+    "Largest possible region is"
+  )
+  expect_equal(getOption("ternRegion"), ternRegion20)
+  
+  expect_warning(
+    expect_equal(
+      .SetRegion(unclass(ternRegionDefault) * 0, set = 0),
+      ternRegionDefault
+    ),
+    "Region must have positive size"
+  )
+  expect_equal(getOption("ternRegion"), ternRegion20)
 })
 
 test_that("Region validation works", {
