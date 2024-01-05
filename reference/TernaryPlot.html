@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -99,6 +99,7 @@
 <span>  clockwise <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ylim <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  region <span class="op">=</span> <span class="va">ternRegionDefault</span>,</span>
 <span>  lab.cex <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lab.font <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  tip.cex <span class="op">=</span> <span class="va">lab.cex</span>,</span>
@@ -186,13 +187,22 @@ direction around the plot.</p></dd>
 
 
 <dt>xlim, ylim</dt>
-<dd><p>Numeric vectors of length 2 specifying the minimum and
-maximum  <em>x</em> and <em>y</em> limits of the plotted area, to which <code>padding</code> will be
+<dd><p>Numeric vectors of length two specifying the minimum and
+maximum <em>x</em> and <em>y</em> limits of the plotted area, to which <code>padding</code> will be
 added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
 May be overridden if <code>isometric = TRUE</code>; see documentation of
 <code>isometric</code> parameter.</p></dd>
+
+
+<dt>region</dt>
+<dd><p>(optional) Named list of length two specifying the the
+<code>min</code>imum and <code>max</code>imum values of each ternary axis to be drawn
+(e.g. <code>list(min = c(40, 0, 0), max = c(100, 60, 60)</code>);
+or a set of coordinates in a format accepted by <code><a href="AddToTernary.html">TernaryPoints()</a></code>.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.</p></dd>
 
 
 <dt>lab.cex, tip.cex</dt>
@@ -253,7 +263,8 @@ place but before the axes and box are added.  See the comments about
 
 
 <dt>grid.lines</dt>
-<dd><p>Integer specifying the number of grid lines to plot.</p></dd>
+<dd><p>Integer specifying the number of grid lines to plot.
+If <code>axis.labels = TRUE</code>, this will be used as a hint to <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code>.</p></dd>
 
 
 <dt>grid.col, grid.minor.col</dt>
@@ -345,8 +356,8 @@ inline, and <code>ticks.col = NULL</code> means to use whatever colour
 
 
 <dt>direction</dt>
-<dd><p>(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
+<dd><p>(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
 </dl></div>
     <div id="details">
