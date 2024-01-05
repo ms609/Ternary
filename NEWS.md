@@ -1,5 +1,5 @@
-# Ternary v2.2.1.9000 (development, 2024-01-03)
-  - Option to plot smaller region of ternary plot (in progress).
+# Ternary v2.3.0 (2024-01-05)
+  - `region` parameter plots a sub-region of the ternary space.
 
 # Ternary v2.2.1 (2023-06-28)
   - `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
