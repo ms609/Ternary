@@ -629,9 +629,11 @@ ColorTernary <- ColourTernary
 #' originalPar <- par(mar = rep(0, 4))
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-#' ColourTernary(values,
+#' ColourTernary(
+#'   values,
 #'   legend = signif(seq(max(values), min(values), length.out = 4), 2),
-#'    legend... = list(bty = "n"))
+#'   bty = "n"
+#' )
 #' TernaryContour(FunctionToContour, resolution = 36L)
 #'
 #' # Note that FunctionToContour is sent a vector.
@@ -655,7 +657,7 @@ ColorTernary <- ColourTernary
 #' TernaryPlot(alab = "a", blab = "b", clab = "c")
 #' # Fill the contour areas, rather than using tiles
 #' TernaryContour(GeneralMax, filled = TRUE,
-#'                legend = c("Max", "Min"), bty = "n",
+#'                legend = c("Max", "...", "Min"), legend... = list(bty = "n"),
 #'                fill.col = viridisLite::viridis(14, alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
