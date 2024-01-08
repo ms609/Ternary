@@ -26,14 +26,18 @@ test_that("Contours are plotted", {
     FunctionToContour <- function(a, b, c) {
       a - c + (4 * a * b) + (27 * a * b * c)
     }
+    TestDots <- function(a, b, c, working = FALSE) {
+      if (working) a - c + (4 * a * b) + (27 * a * b * c) else NA
+    }
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 1L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L, legend = 3, bty = "n")
+    TernaryContour(FunctionToContour, resolution = 12L, legend = 3,
+                   legend... = list(bty = "n"))
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 2L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L, legend = TRUE)
+    ColourTernary(TernaryPointValues(TestDots, resolution = 6L, working = TRUE))
+    TernaryContour(TestDots, resolution = 12L, legend = TRUE, working = TRUE)
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L,
                 region = ternRegion20)

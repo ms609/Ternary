@@ -1,11 +1,13 @@
-# Ternary v2.3.0 (2024-01-05)
-  - `region` parameter plots a sub-region of the ternary space.
+# Ternary v2.3.0 (2024-01-08)
+- `region` parameter plots a sub-region of the ternary space.
+- Support `...`  in `TernaryContour(Func = function(...))`
+   ([#81](https://github.com/ms609/Ternary/issues/81)).
 
 # Ternary v2.2.1 (2023-06-28)
-  - `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
-    are provided but will be removed in a later version of this package.
-  - Use characters, not numerics, for version number checks
-    (see <https://bugs.r-project.org/show_bug.cgi?id=18548>).
+- `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
+  are provided but will be removed in a later version of this package.
+- Use characters, not numerics, for version number checks
+  (see <https://bugs.r-project.org/show_bug.cgi?id=18548>).
 
 # Ternary v2.2.0 (2023-05-11)
 - New function `Annotate()` annotates points on ternary plot.

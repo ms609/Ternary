@@ -39,7 +39,7 @@ the three coordinates of a point in ternary space.}
 \code{TernaryPointValues()} returns a matrix whose rows correspond to:
 \itemize{
 \item \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
-\item \strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the
+\item \strong{z}: The value of \code{Func(a, b, c, ...)}, where \code{a}, \code{b} and \code{c} are the
 ternary coordinates of \code{x} and \code{y}.
 \item \strong{down}: \code{0} if the triangle concerned points upwards (or right),
 \code{1} otherwise
