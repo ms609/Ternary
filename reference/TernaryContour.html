@@ -100,6 +100,7 @@
 <span>  <span class="va">zlim</span>,</span>
 <span>  color.palette <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span><span class="op">)</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">n</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,</span>
 <span>  fill.col <span class="op">=</span> <span class="fu">color.palette</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">levels</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  func... <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -171,6 +172,10 @@ Specify <code>TRUE</code> to generate automatically, or a single integer to gene
 <code><a href="https://rdrr.io/r/graphics/filled.contour.html" class="external-link">.filled.contour</a>()</code>.
 Computed from <code>color.palette</code> if not specified.</p></dd>
 
+
+<dt>func...</dt>
+<dd><p>List of additional parameters to send to <code>Func()</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -202,9 +207,11 @@ Computed from <code>color.palette</code> if not specified.</p></dd>
 <span class="r-in"><span><span class="va">originalPar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="TernaryPointValues.html">TernaryPointValues</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">24L</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span>,</span></span>
+<span class="r-in"><span><span class="fu"><a href="ColourTernary.html">ColourTernary</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">values</span>,</span></span>
 <span class="r-in"><span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">signif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span>, length.out <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  bty <span class="op">=</span> <span class="st">"n"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">TernaryContour</span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="TernaryContour-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
@@ -230,7 +237,7 @@ Computed from <code>color.palette</code> if not specified.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="st">"a"</span>, blab <span class="op">=</span> <span class="st">"b"</span>, clab <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Fill the contour areas, rather than using tiles</span></span></span>
 <span class="r-in"><span><span class="fu">TernaryContour</span><span class="op">(</span><span class="va">GeneralMax</span>, filled <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>               legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Max"</span>, <span class="st">"Min"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span>,</span></span>
+<span class="r-in"><span>               legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Max"</span>, <span class="st">"..."</span>, <span class="st">"Min"</span><span class="op">)</span>, legend... <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>               fill.col <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">14</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Re-draw edges of plot triangle over fill</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="AddToTernary.html">TernaryPolygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
