@@ -607,6 +607,7 @@ ColorTernary <- ColourTernary
 #' @template legendParam
 #' @param legend... List of additional parameters to send to
 #' [`SpectrumLegend()`].
+#' @param func... List of additional parameters to send to `Func()`.
 #' @param within List or matrix of _x, y_ coordinates within which contours
 #' should be evaluated, in any format supported by
 #' \code{\link[grDevices:xy.coords]{xy.coords(x = within)}}.
@@ -630,7 +631,7 @@ ColorTernary <- ColourTernary
 #' values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 #' ColourTernary(values,
 #'   legend = signif(seq(max(values), min(values), length.out = 4), 2),
-#'    bty = "n")
+#'    legend... = list(bty = "n"))
 #' TernaryContour(FunctionToContour, resolution = 36L)
 #'
 #' # Note that FunctionToContour is sent a vector.
@@ -673,7 +674,7 @@ TernaryContour <- function(
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
     color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
     fill.col = color.palette(length(levels) - 1),
-    ...) {
+    func... = list(), ...) {
   if (direction == 1L) {
     x <- seq(-0.5, 0.5, length.out = resolution)
     y <- seq(0, sqrt(0.75), length.out = resolution)
@@ -698,8 +699,9 @@ TernaryContour <- function(
   FunctionWrapper <- function(x, y) {
     abc <- XYToTernary(x, y, direction)
     inPlot <- as.logical(point.in.polygon(x, y, within$x, within$y))
-    evaluated <-
-      Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot], ...)
+    evaluated <- do.call(Func, c(
+      list(a = abc[1, inPlot], b = abc[2, inPlot], c = abc[3, inPlot]),
+      ...))
     
     if (length(evaluated) == 1L) {
       warning("`Func(a, b, c)` should return a vector, but returned a single value.")
@@ -724,9 +726,6 @@ TernaryContour <- function(
     }
     if (is.numeric(legend) && length(legend) == 1) {
       legend <- signif(seq(zlim[2], zlim[1], length.out = legend))
-    }
-    if ("bty" %in% names(list(...))) {
-      legend... <- c(legend..., bty = list(...)$bty)
     }
     do.call(SpectrumLegend,
             c(list(legend = legend, palette = fill.col), legend...)

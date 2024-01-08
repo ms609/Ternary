@@ -18,6 +18,7 @@ TernaryContour(
   zlim,
   color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
   fill.col = color.palette(length(levels) - 1),
+  func... = list(),
   ...
 )
 }
@@ -65,6 +66,8 @@ Specify \code{TRUE} to generate automatically, or a single integer to generate
 \item{fill.col}{Sent as \code{col} parameter to
 \code{\link[graphics]{.filled.contour}()}.
 Computed from \code{color.palette} if not specified.}
+
+\item{func...}{List of additional parameters to send to \code{Func()}.}
 }
 \value{
 \code{TernaryContour()}  invisibly returns a list containing:
@@ -87,7 +90,7 @@ TernaryPlot(alab = "a", blab = "b", clab = "c")
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 ColourTernary(values,
   legend = signif(seq(max(values), min(values), length.out = 4), 2),
-   bty = "n")
+   legend... = list(bty = "n"))
 TernaryContour(FunctionToContour, resolution = 36L)
 
 # Note that FunctionToContour is sent a vector.
