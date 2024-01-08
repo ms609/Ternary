@@ -1,3 +1,7 @@
+# Ternary v2.3.0.9000 (development)
+ - Support `...`  in `TernaryContour(Func = function(...))`
+   ([#81](https://github.com/ms609/Ternary/issues/81)).
+
 # Ternary v2.3.0 (2024-01-05)
   - `region` parameter plots a sub-region of the ternary space.
 

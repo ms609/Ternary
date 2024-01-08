@@ -23,7 +23,7 @@ test_that("Contours are plotted", {
   Contours <- function() {
     par(mar = rep(0, 4), mfrow = c(2, 2))
 
-    FunctionToContour <- function(a, b, c) {
+    FunctionToContour <- function(a, b, c, ...) {
       a - c + (4 * a * b) + (27 * a * b * c)
     }
 

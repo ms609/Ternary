@@ -13,7 +13,7 @@
 #'
 #' - **x**, **y**: co-ordinates of the centres of smaller triangles
 #'
-#' - **z**: The value of `Func(a, b, c)`, where `a`, `b` and `c` are the
+#' - **z**: The value of `Func(a, b, c, ...)`, where `a`, `b` and `c` are the
 #'   ternary coordinates of `x` and `y`.
 #'
 #' - **down**: `0` if the triangle concerned points upwards (or right),
@@ -699,7 +699,7 @@ TernaryContour <- function(
     abc <- XYToTernary(x, y, direction)
     inPlot <- as.logical(point.in.polygon(x, y, within$x, within$y))
     evaluated <-
-      Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot])
+      Func(abc[1, inPlot], abc[2, inPlot], abc[3, inPlot], ...)
     
     if (length(evaluated) == 1L) {
       warning("`Func(a, b, c)` should return a vector, but returned a single value.")
