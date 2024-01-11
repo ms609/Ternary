@@ -234,7 +234,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
 
   .PlotBackground(tern)
 
-  panel.first
+  panel.first # Execute user-supplied expression
 
   .PlotMinorGridLines(
     tern$grid.lines,
@@ -251,7 +251,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
     lwd = tern$grid.lwd
   )
 
-  panel.last
+  panel.last # Execute user-supplied expression
 
   .PlotAxisTicks(tern)
 

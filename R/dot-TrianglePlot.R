@@ -160,8 +160,9 @@
   }
 
   region <- getOption("ternRegion")
-  if (isTRUE(axis.labels) && !all(region == ternRegionDefault)) {
-    axis.labels <- .SimpleApply(region, 2, pretty, n = grid.lines)
+  region.labels <- attr(region, "tickLabels")
+  if (isTRUE(axis.labels) && !is.null(region.labels)) {
+    axis.labels <- region.labels
     grid.lines <- length(axis.labels[[1]]) - 1L
   } else {
     grid.lines <- .ValidateGridLines(grid.lines)

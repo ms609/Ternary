@@ -205,8 +205,12 @@ ternRegionA <- structure(
         i <- c(i, seq(max(i) + by, by = by, length.out = longest - n))
         i
       })
-    prettyRegion <- rbind(min = vapply(prettyRegion, `[`, 0, 1),
-                          max = vapply(prettyRegion, `[`, 0, longest))
+    prettyRegion <- structure(
+      rbind(min = vapply(prettyRegion, `[`, 0, 1),
+            max = vapply(prettyRegion, `[`, 0, longest)),
+      tickLabels = prettyRegion,
+      class = "ternRegion"
+    )
     if (.RegionIsValid(prettyRegion)) {
       region <- prettyRegion
     }

@@ -98,7 +98,11 @@ test_that(".SetRegion() prettifies", {
   expect_equal(getOption("ternRegion"), structure(region, class = "ternRegion"))
   
   .SetRegion(regionList, prettify = 10)
-  expect_equal(getOption("ternRegion"), structure(pretty, class = "ternRegion"))
+  expect_equal(getOption("ternRegion"), structure(
+    pretty,
+    tickLabels = list(a = 10:20, b = 10:20, c = 70:80),
+    class = "ternRegion")
+  )
 })
 
 test_that(".SetRegion() handles bad input", {
@@ -117,8 +121,6 @@ test_that(".SetRegion() handles bad input", {
   expect_equal(getOption("ternRegion"), ternRegionDefault)
   
   .SetRegion(ternRegion20)
-  
-  .SetRegion(ternRegion20)
   expect_warning(
     expect_equal(
       .SetRegion(list(min = rep(0, 3), max = rep(200, 3)), set = 0),
@@ -128,6 +130,7 @@ test_that(".SetRegion() handles bad input", {
   )
   expect_equal(getOption("ternRegion"), ternRegion20)
   
+  .SetRegion(ternRegion20)
   expect_warning(
     expect_equal(
       .SetRegion(list(min = rep(0, 3), max = rep(0, 3)), set = 0),
