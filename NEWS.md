@@ -1,4 +1,4 @@
-# Ternary v2.3.0.9000 (development)
+# Ternary v2.3.1 (2024-02-06)
 - Improve support for `region` parameter.
 
 # Ternary v2.3.0 (2024-01-08)
