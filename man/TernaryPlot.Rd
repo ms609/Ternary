@@ -126,7 +126,7 @@ other limit.}
 degrees to rotate label of rightmost apex.}
 
 \item{atip.pos, btip.pos, ctip.pos}{Integer specifying positioning of labels,
-iff the corresponding \code{xlab.rotate} parameter is set.}
+iff the corresponding \code{xtip.rotate} parameter is set.}
 
 \item{padding}{Numeric specifying size of internal margin of the plot;
 increase if axis labels are being clipped.}

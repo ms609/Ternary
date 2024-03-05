@@ -50,7 +50,7 @@
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
 #' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
-#'  iff the corresponding `xlab.rotate` parameter is set.
+#'  iff the corresponding `xtip.rotate` parameter is set.
 #'
 #' @param isometric Logical specifying whether to enforce an equilateral shape
 #'  for the ternary plot.
