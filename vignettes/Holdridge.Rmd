@@ -124,7 +124,7 @@ myPet <- myData[3, ] # Access row number 3.  Note the position of the comma.
 If your precipitation data is in a column with the heading "Prec", you can call:
 ```r
 myPrec <- myData[, "Prec"] # Access column with name "Prec". 
-                         # Columns are after the comma.
+                           # Columns go after the comma.
 ```
 
 This will allow you to plot your data using:
@@ -138,8 +138,10 @@ HoldridgePoints(pet = myPet, prec = myPrec)
 Details of how to customize Holdridge plots are given on the relevant manual
 pages.
 
-Try:
+See:
+
 - [`HoldridgePlot()`](https://ms609.github.io/Ternary/reference/HoldridgePlot.html)
+
 - [`AddToHoldridge()`](https://ms609.github.io/Ternary/reference/AddToTernary.html)
 
 
