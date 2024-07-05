@@ -37,9 +37,15 @@ Please cite Tsakalos _et al._ (2023) when using this function.
 
 
 ```{r holdridge, fig.asp = 1}
-# Load package and data
+# Install the Ternary package, if it's not already installed
+if (!requireNamespace("Ternary", quietly = TRUE)) {
+  install.packages("Ternary")
+}
+
+# Load the Ternary package
 library("Ternary")
 
+# Load some example data from the Ternary package
 data(holdridge, holdridgeLifeZonesUp, package = "Ternary")
 
 # Suppress plot margins
@@ -64,6 +70,78 @@ PlotTools::SpectrumLegend(
   title = "Latitude"
 )
 ```
+
+
+# Your own data
+
+The next step is to try plotting your own data.  There are many online
+tutorials for loading data in a variety of formats into R.
+Two of the most common cases are:
+
+- Reading data from an Excel file.  Here you can use:
+```r
+# On first use only, install the 'readxl' package
+install.packages("readxl")
+
+# Load data into an object called `myData`
+myData <- readxl::read_excel("path_to/your_excel_file.xlsx")
+
+# View the loaded data
+View(myData)
+
+# View manual page for `read_excel` function, with details for advanced use
+?read_excel
+```
+
+- Reading data from a delimited file, such as a `.csv`:
+
+```r
+# Read data into an object called `myData`
+myData <- read.csv("path_to/your_data_file.csv")
+
+# View the loaded data
+View(myData)
+
+# For more flexibility - for instance for tab-separated data - see:
+?read.table
+
+# Read data from a tab-separated file with a header row
+myData <- read.table("path_to/your_data_file.txt", sep = "\t", header = TRUE)
+
+View(myData)
+```
+
+Once your data are within R, you need to select the values for the
+potential evapotranspiration ratio (pet) and annual precipitation (in mm).
+
+
+If your PET data are in the third row of `myData`, you can call:
+```r
+myPet <- myData[3, ] # Access row number 3.  Note the position of the comma.
+```
+
+
+If your precipitation data is in a column with the heading "Prec", you can call:
+```r
+myPrec <- myData[, "Prec"] # Access column with name "Prec". 
+                         # Columns are after the comma.
+```
+
+This will allow you to plot your data using:
+```r
+HoldridgePlot()
+HoldridgePoints(pet = myPet, prec = myPrec)
+```
+
+# Customization
+
+Details of how to customize Holdridge plots are given on the relevant manual
+pages.
+
+Try:
+- [`HoldridgePlot()`](https://ms609.github.io/Ternary/reference/HoldridgePlot.html)
+- [`AddToHoldridge()`](https://ms609.github.io/Ternary/reference/AddToTernary.html)
+
 
 # References
 

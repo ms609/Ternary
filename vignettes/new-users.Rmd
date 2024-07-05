@@ -224,7 +224,7 @@ Two of the most common cases are:
 
 - Reading data from an Excel file.  Here you can use:
 ```r
-# On first use only, install thje 'readxl' package
+# On first use only, install the 'readxl' package
 install.packages("readxl")
 
 # Load data into an object called `myData`
