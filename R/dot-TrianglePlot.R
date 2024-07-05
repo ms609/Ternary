@@ -47,9 +47,10 @@
                           tip.font,
                           xlim, ylim, region,
                           ...) {
-  direction <- 1L + (pmatch(tolower(point), c("right", "down", "left", "up",
-                                              "east", "south", "west", "north",
-                                              2L, 3L, 4L, 1L)) %% 4L)
+  direction <- 1L + (pmatch(tolower(point[[1]]),
+                            c("right", "down", "left", "up",
+                              "east", "south", "west", "north",
+                              "2", "3", "4", "1")) %% 4L)
   if (is.na(direction)) {
     stop("`point` must be one of up, down, left or right")
   } else {

@@ -1,3 +1,6 @@
+# Ternary v2.3.1.9000 (development)
+- Document reading data into R in new users vignette.
+
 # Ternary v2.3.1 (2024-02-06)
 - Improve support for `region` parameter.
 
