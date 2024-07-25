@@ -36,7 +36,6 @@
 #' "climenv: Download, extract and visualise climatic and elevation data.",
 #' _Journal of Vegetation Science_ 6:e13215. \doi{10.1111/jvs.13215}
 #'
-#' [Life zone ecology]: https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf
 #'
 #' @encoding UTF-8
 #' @examples

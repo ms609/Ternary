@@ -151,9 +151,7 @@ Holdridge (1947),
 "[Determination of world plant formations from simple climatic data](https://dx.doi.org/10.1126/science.105.2727.367)",
 _Science_ 105:367--368.
 
-Holdridge (1967),
-[_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
-Tropical Science Center, San Jos&eacute;.
+Holdridge (1967), _Life zone ecology_. Tropical Science Center, San Jos&eacute;.
 
 Tsakalos, Smith, Luebert & Mucina (2023).
 "[climenv: Download, extract and visualise climatic and elevation data.](
