@@ -9,7 +9,7 @@
 
   gtag('config', 'G-5CGZXRTL3K');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -37,7 +37,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -59,25 +59,25 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ms609/Ternary/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul><form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"></div>
       </form>
-      
+
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Polygon geometry</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/R/Polygons.R" class="external-link"><code>R/Polygons.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/R/Polygons.R" class="external-link"><code>R/Polygons.R</code></a></small>
     <div class="hidden name"><code>Polygon-Geometry.Rd</code></div>
     </div>
 
@@ -97,47 +97,41 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x, y</dt>
+
+
+<dl><dt id="arg-x-y">x, y<a class="anchor" aria-label="anchor" href="#arg-x-y"></a></dt>
 <dd><p>Vectors containing the coordinates of the vertices of the polygon.</p></dd>
 
 
-<dt>positive</dt>
+<dt id="arg-positive">positive<a class="anchor" aria-label="anchor" href="#arg-positive"></a></dt>
 <dd><p>If vertices are specified in an anticlockwise direction,
 the polygon will be treated as a hole, with a negative area, unless
 <code>positive</code> is set to TRUE.
 Vertices specified in a clockwise sequence always yield a positive area.</p></dd>
 
 
-<dt>buffer</dt>
+<dt id="arg-buffer">buffer<a class="anchor" aria-label="anchor" href="#arg-buffer"></a></dt>
 <dd><p>Numeric specifying distance by which to grow polygon.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>PolygonArea()</code> returns the area of the specified polygon.</p>
-
-
+    <p><code>PolygonArea()</code> returns the area of the specified polygon.</p>
 <p><code>PolygonCentre()</code> returns a single-row matrix containing the
 <em>x</em> and <em>y</em> coordinates of the geometric centre of the polygon.</p>
-
-
-<p><code>GrowPolygon()</code> returns coordinates of the vertices of <code>polygon</code></p>
-
-
-<p>after moving each vertex <code>buffer</code> away from the polygon's centre.</p>
+<p><code>GrowPolygon()</code> returns coordinates of the vertices of <code>polygon</code>
+after moving each vertex <code>buffer</code> away from the polygon's centre.</p>
     </div>
     <div id="functions">
     <h2>Functions</h2>
-    
+
 <ul><li><p><code>PolygonArea()</code>: Calculate the area of an irregular polygon</p></li>
 <li><p><code>PolygonCentre()</code>: Locate the centre of a polygon</p></li>
 <li><p><code>GrowPolygon()</code>: Enlarge a polygon in all directions</p></li>
 </ul></div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>Other tiling functions: 
+    <div class="dont-index"><p>Other tiling functions:
 <code><a href="TriangleCentres.html">TriangleCentres</a>()</code>,
 <code><a href="TriangleInHull.html">TriangleInHull</a>()</code></p></div>
     </div>
@@ -177,16 +171,16 @@ Vertices specified in a clockwise sequence always yield a positive area.</p></dd
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     appId: 'PQTZW3A3WS',
-    
+
     apiKey: '1a3f070f20390600ef8e4f7801791ec3',
     indexName: 'ternary',
     inputSelector: 'input#search-input.form-control',

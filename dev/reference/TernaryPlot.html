@@ -9,7 +9,7 @@
 
   gtag('config', 'G-5CGZXRTL3K');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -37,7 +37,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -59,25 +59,25 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ms609/Ternary/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul><form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"></div>
       </form>
-      
+
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a ternary plot</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/R/TernaryPlot.R" class="external-link"><code>R/TernaryPlot.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/R/TernaryPlot.R" class="external-link"><code>R/TernaryPlot.R</code></a></small>
     <div class="hidden name"><code>TernaryPlot.Rd</code></div>
     </div>
 
@@ -150,43 +150,45 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>atip, btip, ctip</dt>
+
+
+<dl><dt id="arg-atip-btip-ctip">atip, btip, ctip<a class="anchor" aria-label="anchor" href="#arg-atip-btip-ctip"></a></dt>
 <dd><p>Character string specifying text to title corners,
 proceeding clockwise from the corner specified in <code>point</code> (default: top).</p></dd>
 
 
-<dt>alab, blab, clab</dt>
+<dt id="arg-alab-blab-clab">alab, blab, clab<a class="anchor" aria-label="anchor" href="#arg-alab-blab-clab"></a></dt>
 <dd><p>Character string specifying text with which to label
 the corresponding sides of the triangle.
 Left or right-pointing arrows are produced by
 typing <code>\\U2190</code> or <code>\\U2192</code>, or using <code>expression('value' %-&gt;% '')</code>.</p></dd>
 
 
-<dt>lab.offset</dt>
+<dt id="arg-lab-offset">lab.offset<a class="anchor" aria-label="anchor" href="#arg-lab-offset"></a></dt>
 <dd><p>Numeric specifying distance between midpoint of axis label
 and the axis.
 Increase <code>padding</code> if labels are being clipped.
 Use a vector of length three to specify a different offset for each label.</p></dd>
 
 
-<dt>lab.col</dt>
+<dt id="arg-lab-col">lab.col<a class="anchor" aria-label="anchor" href="#arg-lab-col"></a></dt>
 <dd><p>Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.</p></dd>
 
 
-<dt>point</dt>
+<dt id="arg-point">point<a class="anchor" aria-label="anchor" href="#arg-point"></a></dt>
 <dd><p>Character string specifying the orientation of the ternary plot:
 should the triangle point <code>"up"</code>, <code>"right"</code>, <code>"down"</code> or <code>"left"</code>?
 The integers 1 to 4 can be used in place of the character strings.</p></dd>
 
 
-<dt>clockwise</dt>
+<dt id="arg-clockwise">clockwise<a class="anchor" aria-label="anchor" href="#arg-clockwise"></a></dt>
 <dd><p>Logical specifying the direction of axes.  If <code>TRUE</code> (the
 default), each axis runs from zero to its maximum value in a clockwise
 direction around the plot.</p></dd>
 
 
-<dt>xlim, ylim</dt>
+<dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
 <dd><p>Numeric vectors of length two specifying the minimum and
 maximum <em>x</em> and <em>y</em> limits of the plotted area, to which <code>padding</code> will be
 added.
@@ -196,7 +198,7 @@ May be overridden if <code>isometric = TRUE</code>; see documentation of
 <code>isometric</code> parameter.</p></dd>
 
 
-<dt>region</dt>
+<dt id="arg-region">region<a class="anchor" aria-label="anchor" href="#arg-region"></a></dt>
 <dd><p>(optional) Named list of length two specifying the the
 <code>min</code>imum and <code>max</code>imum values of each ternary axis to be drawn
 (e.g. <code>list(min = c(40, 0, 0), max = c(100, 60, 60)</code>);
@@ -205,19 +207,19 @@ The plotted region will correspond to the smallest equilateral triangle
 that encompasses the specified ranges or coordinates.</p></dd>
 
 
-<dt>lab.cex, tip.cex</dt>
+<dt id="arg-lab-cex-tip-cex">lab.cex, tip.cex<a class="anchor" aria-label="anchor" href="#arg-lab-cex-tip-cex"></a></dt>
 <dd><p>Numeric specifying character expansion (font size)
 for axis labels.
 Use a vector of length three to specify a different value for each direction.</p></dd>
 
 
-<dt>lab.font, tip.font</dt>
+<dt id="arg-lab-font-tip-font">lab.font, tip.font<a class="anchor" aria-label="anchor" href="#arg-lab-font-tip-font"></a></dt>
 <dd><p>Numeric specifying font style (Roman, bold, italic,
 bold-italic) for axis titles.
 Use a vector of length three to set a different font for each direction.</p></dd>
 
 
-<dt>isometric</dt>
+<dt id="arg-isometric">isometric<a class="anchor" aria-label="anchor" href="#arg-isometric"></a></dt>
 <dd><p>Logical specifying whether to enforce an equilateral shape
 for the ternary plot.
 If only one of <code>xlim</code> and <code>ylim</code> is set, the other will be calculated to
@@ -227,27 +229,27 @@ with the smaller range will be scaled until its range matches that of the
 other limit.</p></dd>
 
 
-<dt>atip.rotate, btip.rotate, ctip.rotate</dt>
+<dt id="arg-atip-rotate-btip-rotate-ctip-rotate">atip.rotate, btip.rotate, ctip.rotate<a class="anchor" aria-label="anchor" href="#arg-atip-rotate-btip-rotate-ctip-rotate"></a></dt>
 <dd><p>Integer specifying number of
 degrees to rotate label of rightmost apex.</p></dd>
 
 
-<dt>atip.pos, btip.pos, ctip.pos</dt>
+<dt id="arg-atip-pos-btip-pos-ctip-pos">atip.pos, btip.pos, ctip.pos<a class="anchor" aria-label="anchor" href="#arg-atip-pos-btip-pos-ctip-pos"></a></dt>
 <dd><p>Integer specifying positioning of labels,
 iff the corresponding <code>xtip.rotate</code> parameter is set.</p></dd>
 
 
-<dt>padding</dt>
+<dt id="arg-padding">padding<a class="anchor" aria-label="anchor" href="#arg-padding"></a></dt>
 <dd><p>Numeric specifying size of internal margin of the plot;
 increase if axis labels are being clipped.</p></dd>
 
 
-<dt>col</dt>
+<dt id="arg-col">col<a class="anchor" aria-label="anchor" href="#arg-col"></a></dt>
 <dd><p>The colour for filling the plot; see
 <code><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></code>.</p></dd>
 
 
-<dt>panel.first</dt>
+<dt id="arg-panel-first">panel.first<a class="anchor" aria-label="anchor" href="#arg-panel-first"></a></dt>
 <dd><p>An expression to be evaluated after the plot axes are
 set up but before any plotting takes place.
 This can be useful for drawing backgrounds, e.g. with <code><a href="ColourTernary.html">ColourTernary()</a></code>
@@ -256,45 +258,45 @@ Note that this works by lazy evaluation: passing this argument from other
 plot methods may well not work since it may be evaluated too early.</p></dd>
 
 
-<dt>panel.last</dt>
+<dt id="arg-panel-last">panel.last<a class="anchor" aria-label="anchor" href="#arg-panel-last"></a></dt>
 <dd><p>An expression to be evaluated after plotting has taken
 place but before the axes and box are added.  See the comments about
 <code>panel.first</code>.</p></dd>
 
 
-<dt>grid.lines</dt>
+<dt id="arg-grid-lines">grid.lines<a class="anchor" aria-label="anchor" href="#arg-grid-lines"></a></dt>
 <dd><p>Integer specifying the number of grid lines to plot.
 If <code>axis.labels = TRUE</code>, this will be used as a hint to <code><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty()</a></code>.</p></dd>
 
 
-<dt>grid.col, grid.minor.col</dt>
+<dt id="arg-grid-col-grid-minor-col">grid.col, grid.minor.col<a class="anchor" aria-label="anchor" href="#arg-grid-col-grid-minor-col"></a></dt>
 <dd><p>Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.</p></dd>
 
 
-<dt>grid.lty, grid.minor.lty</dt>
+<dt id="arg-grid-lty-grid-minor-lty">grid.lty, grid.minor.lty<a class="anchor" aria-label="anchor" href="#arg-grid-lty-grid-minor-lty"></a></dt>
 <dd><p>Character or integer vector; line type of
 the grid lines. Use a vector of length three to set different values for
 each direction.</p></dd>
 
 
-<dt>grid.lwd, grid.minor.lwd</dt>
+<dt id="arg-grid-lwd-grid-minor-lwd">grid.lwd, grid.minor.lwd<a class="anchor" aria-label="anchor" href="#arg-grid-lwd-grid-minor-lwd"></a></dt>
 <dd><p>Non-negative numeric giving line width of the
 grid lines.  Use a vector of length three to set different values for each
 direction.</p></dd>
 
 
-<dt>grid.minor.lines</dt>
+<dt id="arg-grid-minor-lines">grid.minor.lines<a class="anchor" aria-label="anchor" href="#arg-grid-minor-lines"></a></dt>
 <dd><p>Integer specifying the number of minor (unlabelled)
 grid lines to plot between each major pair.</p></dd>
 
 
-<dt>axis.lty</dt>
+<dt id="arg-axis-lty">axis.lty<a class="anchor" aria-label="anchor" href="#arg-axis-lty"></a></dt>
 <dd><p>Line type for both the axis line and tick marks.
 Use a vector of length three to set a different value for each direction.</p></dd>
 
 
-<dt>axis.labels</dt>
+<dt id="arg-axis-labels">axis.labels<a class="anchor" aria-label="anchor" href="#arg-axis-labels"></a></dt>
 <dd><p>This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
 expression vector of labels to be placed at the tick points,
@@ -302,47 +304,47 @@ or a list of length three, with each entry specifying labels to be placed
 on each axis in turn.</p></dd>
 
 
-<dt>axis.cex</dt>
+<dt id="arg-axis-cex">axis.cex<a class="anchor" aria-label="anchor" href="#arg-axis-cex"></a></dt>
 <dd><p>Numeric specifying character expansion (font size)
 for axis labels.
 Use a vector of length three to set a different value for each direction.</p></dd>
 
 
-<dt>axis.font</dt>
+<dt id="arg-axis-font">axis.font<a class="anchor" aria-label="anchor" href="#arg-axis-font"></a></dt>
 <dd><p>Font for text. Defaults to <code>par('font')</code>.</p></dd>
 
 
-<dt>axis.rotate</dt>
+<dt id="arg-axis-rotate">axis.rotate<a class="anchor" aria-label="anchor" href="#arg-axis-rotate"></a></dt>
 <dd><p>Logical specifying whether to rotate axis labels
 to parallel grid lines, or numeric specifying custom rotation for each axis,
 to be passed as <code>srt</code> parameter to <code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text()</a></code>.  Expand margins or set
 <code>par(xpd = NA)</code> if labels are clipped.</p></dd>
 
 
-<dt>axis.pos</dt>
+<dt id="arg-axis-pos">axis.pos<a class="anchor" aria-label="anchor" href="#arg-axis-pos"></a></dt>
 <dd><p>Vector of length one or three specifying position of axis
 labels, to be passed as <code>pos</code> parameter to <code><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text()</a></code>; populated automatically
 if <code>NULL</code> (the default).</p></dd>
 
 
-<dt>axis.tick</dt>
+<dt id="arg-axis-tick">axis.tick<a class="anchor" aria-label="anchor" href="#arg-axis-tick"></a></dt>
 <dd><p>Logical specifying whether to mark the axes with tick marks.</p></dd>
 
 
-<dt>axis.lwd, ticks.lwd</dt>
+<dt id="arg-axis-lwd-ticks-lwd">axis.lwd, ticks.lwd<a class="anchor" aria-label="anchor" href="#arg-axis-lwd-ticks-lwd"></a></dt>
 <dd><p>Line width for the axis line and tick marks.
 Zero or negative values will suppress the line or ticks.
 Use a vector of length three to set different values for each axis.</p></dd>
 
 
-<dt>ticks.length</dt>
+<dt id="arg-ticks-length">ticks.length<a class="anchor" aria-label="anchor" href="#arg-ticks-length"></a></dt>
 <dd><p>Numeric specifying distance that ticks should extend
 beyond the plot margin.  Also affects position of axis labels, which are
 plotted at the end of each tick.
 Use a vector of length three to set a different length for each direction.</p></dd>
 
 
-<dt>axis.col, ticks.col, tip.col</dt>
+<dt id="arg-axis-col-ticks-col-tip-col">axis.col, ticks.col, tip.col<a class="anchor" aria-label="anchor" href="#arg-axis-col-ticks-col-tip-col"></a></dt>
 <dd><p>Colours for the axis line,
 tick marks and tip labels respectively.
 Use a vector of length three to set a different value for each direction.
@@ -351,11 +353,11 @@ inline, and <code>ticks.col = NULL</code> means to use whatever colour
 <code>axis.col</code> resolved to.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional parameters to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>.</p></dd>
 
 
-<dt>direction</dt>
+<dt id="arg-direction">direction<a class="anchor" aria-label="anchor" href="#arg-direction"></a></dt>
 <dd><p>(optional) Integer specifying the direction that the
 current ternary plot should point: 1, up; 2, right; 3, down; 4, left.</p></dd>
 
@@ -369,7 +371,7 @@ using functions such as <code><a href="https://rdrr.io/r/graphics/arrows.html" c
     </div>
     <div id="functions">
     <h2>Functions</h2>
-    
+
 <ul><li><p><code>HorizontalGrid()</code>: Add <code>grid.lines</code> horizontal lines to the ternary plot</p></li>
 </ul></div>
     <div id="see-also">
@@ -411,16 +413,16 @@ of the plotted region?</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     appId: 'PQTZW3A3WS',
-    
+
     apiKey: '1a3f070f20390600ef8e4f7801791ec3',
     indexName: 'ternary',
     inputSelector: 'input#search-input.form-control',

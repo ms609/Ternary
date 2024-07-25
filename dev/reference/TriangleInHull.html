@@ -9,7 +9,7 @@
 
   gtag('config', 'G-5CGZXRTL3K');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -37,7 +37,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -59,25 +59,25 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ms609/Ternary/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul><form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"></div>
       </form>
-      
+
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Does triangle overlap convex hull of points?</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/R/Contours.R" class="external-link"><code>R/Contours.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/R/Contours.R" class="external-link"><code>R/Contours.R</code></a></small>
     <div class="hidden name"><code>TriangleInHull.Rd</code></div>
     </div>
 
@@ -91,25 +91,25 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>triangles</dt>
+
+
+<dl><dt id="arg-triangles">triangles<a class="anchor" aria-label="anchor" href="#arg-triangles"></a></dt>
 <dd><p>Three-row matrix as produced by <code><a href="TriangleCentres.html">TriangleCentres()</a></code>.</p></dd>
 
 
-<dt>coordinates</dt>
+<dt id="arg-coordinates">coordinates<a class="anchor" aria-label="anchor" href="#arg-coordinates"></a></dt>
 <dd><p>A matrix with two or three rows specifying the
 coordinates of points in <em>x, y</em> or <em>a, b, c</em> format.</p></dd>
 
 
-<dt>buffer</dt>
+<dt id="arg-buffer">buffer<a class="anchor" aria-label="anchor" href="#arg-buffer"></a></dt>
 <dd><p>Include triangles whose centres lie within <code>buffer</code> triangles
 widths (i.e. edge lengths) of the convex hull.</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>TriangleInHull()</code> returns a list with the elements:</p><ul><li><p><code>$inside</code>: vector specifying whether each of a
+    <p><code>TriangleInHull()</code> returns a list with the elements:</p><ul><li><p><code>$inside</code>: vector specifying whether each of a
 set of triangles produced by <code><a href="TriangleCentres.html">TriangleCentres()</a></code> overlaps the convex
 hull of points specified by <code>coordinates</code>.</p></li>
 <li><p><code>$hull</code>: Coordinates of convex hull of <code>coordinates</code>, after expansion
@@ -117,7 +117,7 @@ to cover overlapping triangles.</p></li>
 </ul></div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>Other tiling functions: 
+    <div class="dont-index"><p>Other tiling functions:
 <code><a href="Polygon-Geometry.html">Polygon-Geometry</a></code>,
 <code><a href="TriangleCentres.html">TriangleCentres</a>()</code></p></div>
     </div>
@@ -162,16 +162,16 @@ to cover overlapping triangles.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     appId: 'PQTZW3A3WS',
-    
+
     apiKey: '1a3f070f20390600ef8e4f7801791ec3',
     indexName: 'ternary',
     inputSelector: 'input#search-input.form-control',

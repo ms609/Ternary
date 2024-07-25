@@ -10,7 +10,7 @@ a plotted ternary diagram."><meta name="robots" content="noindex"><!-- mathjax -
 
   gtag('config', 'G-5CGZXRTL3K');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -38,7 +38,7 @@ a plotted ternary diagram."><meta name="robots" content="noindex"><!-- mathjax -
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -60,25 +60,25 @@ a plotted ternary diagram."><meta name="robots" content="noindex"><!-- mathjax -
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ms609/Ternary/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul><form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"></div>
       </form>
-      
+
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Is a point in the plotting area?</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/HEAD/R/Coordinates.R" class="external-link"><code>R/Coordinates.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/R/Coordinates.R" class="external-link"><code>R/Coordinates.R</code></a></small>
     <div class="hidden name"><code>OutsidePlot.Rd</code></div>
     </div>
 
@@ -93,11 +93,13 @@ a plotted ternary diagram.</p>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x, y</dt>
+
+
+<dl><dt id="arg-x-y">x, y<a class="anchor" aria-label="anchor" href="#arg-x-y"></a></dt>
 <dd><p>Vectors of <em>x</em> and <em>y</em> coordinates of points.</p></dd>
 
 
-<dt>tolerance</dt>
+<dt id="arg-tolerance">tolerance<a class="anchor" aria-label="anchor" href="#arg-tolerance"></a></dt>
 <dd><p>Consider points this close to the edge of the plot to be
 inside.  Set to negative values to count points that are just outside the
 plot as inside, and to positive values to count points that are just inside
@@ -106,15 +108,13 @@ the margins as outside. Maximum positive value: 1/3.</p></dd>
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p><code>OutsidePlot()</code> returns a logical vector specifying whether each
+    <p><code>OutsidePlot()</code> returns a logical vector specifying whether each
 pair of <em>x</em> and <em>y</em> coordinates corresponds to a point outside the plotted
 ternary diagram.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>Other plot limits: 
+    <div class="dont-index"><p>Other plot limits:
 <code><a href="TernaryXRange.html">TernaryXRange</a>()</code></p></div>
     </div>
     <div id="author">
@@ -152,16 +152,16 @@ ternary diagram.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
     appId: 'PQTZW3A3WS',
-    
+
     apiKey: '1a3f070f20390600ef8e4f7801791ec3',
     indexName: 'ternary',
     inputSelector: 'input#search-input.form-control',
