@@ -69,7 +69,7 @@ for (dir in c("up", "right", "down", "le")) {
 
 ```{R two-stylised-plots, fig.asp = 1/2}
 # Configure plotting area
-par(mfrow = c(1, 2), mar = rep(0.3, 4))
+par(mfrow = c(1, 2), mar = c(0.3, 0.3, 1.3, 0.3))
 
 # Initial plot
 TernaryPlot(alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u2192",
