@@ -93,11 +93,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            readxl=?ignore-before-r=3.5.0
-            rlang=?ignore-before-r=3.5.0
-            shiny=?ignore-before-r=3.5.0
-            testthat=?ignore-before-r=3.5.0
-            vdiffr=?ignore-before-r=3.5.0
+            knitr=?ignore-before-r=4.0.0
           needs: |
             check
 
