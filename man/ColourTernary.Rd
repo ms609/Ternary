@@ -45,7 +45,8 @@ If not provided, no colour legend is displayed.
 Specify \code{TRUE} to generate automatically, or a single integer to generate
 \code{legend} annotations.}
 
-\item{\dots}{Further arguments to \code{\link[=SpectrumLegend]{SpectrumLegend()}}.}
+\item{\dots}{Further arguments to
+\code{\link[PlotTools:SpectrumLegend]{SpectrumLegend()}}.}
 }
 \description{
 Colour a ternary plot according to the output of a function

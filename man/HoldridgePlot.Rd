@@ -279,8 +279,8 @@ Tsakalos, Smith, Luebert & Mucina (2023).
 Other Holdridge plotting functions: 
 \code{\link{AddToHoldridge}()},
 \code{\link{HoldridgeHypsometricCol}()},
-\code{\link{holdridgeClasses}},
-\code{\link{holdridge}}
+\code{\link{holdridge}},
+\code{\link{holdridgeClasses}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

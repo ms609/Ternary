@@ -134,8 +134,8 @@ par(oPar)
 Other Holdridge plotting functions: 
 \code{\link{HoldridgeHypsometricCol}()},
 \code{\link{HoldridgePlot}()},
-\code{\link{holdridgeClasses}},
-\code{\link{holdridge}}
+\code{\link{holdridge}},
+\code{\link{holdridgeClasses}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

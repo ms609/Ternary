@@ -495,7 +495,8 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' @template resolutionParam
 #' @template directionParam
 #' @template legendParam
-#' @param \dots Further arguments to [`SpectrumLegend()`].
+#' @param \dots Further arguments to
+#' [`SpectrumLegend()`][PlotTools::SpectrumLegend].
 #'
 #' @template MRS
 #'
@@ -606,7 +607,7 @@ ColorTernary <- ColourTernary
 #' @template dotsToContour
 #' @template legendParam
 #' @param legend... List of additional parameters to send to
-#' [`SpectrumLegend()`].
+#' [`SpectrumLegend()`][PlotTools::SpectrumLegend].
 #' @param func... List of additional parameters to send to `Func()`.
 #' @param within List or matrix of _x, y_ coordinates within which contours
 #' should be evaluated, in any format supported by

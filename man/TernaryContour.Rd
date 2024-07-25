@@ -55,7 +55,7 @@ Specify \code{TRUE} to generate automatically, or a single integer to generate
 \code{legend} annotations.}
 
 \item{legend...}{List of additional parameters to send to
-\code{\link[=SpectrumLegend]{SpectrumLegend()}}.}
+\code{\link[PlotTools:SpectrumLegend]{SpectrumLegend()}}.}
 
 \item{nlevels, levels, zlim, \dots}{parameters to pass to
 \code{\link[graphics]{contour}()}.}
