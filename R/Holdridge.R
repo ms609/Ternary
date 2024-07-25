@@ -29,7 +29,7 @@
 #' "Determination of world plant formations from simple climatic data",
 #' _Science_ 105:367&ndash;368. \doi{10.1126/science.105.2727.367}
 #'
-#' Holdridge (1967), _[Life zone ecology]_.
+#' Holdridge (1967), _Life zone ecology_.
 #' Tropical Science Center, San Jos&eacute;
 #' 
 #' Tsakalos, Smith, Luebert & Mucina (2023).

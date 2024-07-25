@@ -269,7 +269,7 @@ Holdridge (1947),
 "Determination of world plant formations from simple climatic data",
 \emph{Science} 105:367–368. \doi{10.1126/science.105.2727.367}
 
-Holdridge (1967), \emph{\link{Life zone ecology}}.
+Holdridge (1967), \emph{Life zone ecology}.
 Tropical Science Center, San José
 
 Tsakalos, Smith, Luebert & Mucina (2023).
