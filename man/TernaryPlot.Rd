@@ -76,7 +76,8 @@ Left or right-pointing arrows are produced by
 typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
 \item{lab.offset}{Numeric specifying distance between midpoint of axis label
-and the axis.
+and the axis. The default value is given in the 'Usage' section; a value
+of \code{0} will position the axis label directly on the axis.
 Increase \code{padding} if labels are being clipped.
 Use a vector of length three to specify a different offset for each label.}
 
