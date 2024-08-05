@@ -83,13 +83,17 @@ TernaryToXY.numeric <- function(
     c(3, 2, 1),
     c(2, 3, 1)
   )]
+  if (!any(as.logical(abc))) {
+    # abc == c(0, 0, 0)
+    abc <- c(1, 1, 1)
+  }
 
-  x_deviation <- abc[3] / sum(abc)
+  x_deviation <- abc[[3]] / sum(abc)
   if (x_deviation == 1) {
     x <- cos(pi / 6)
     y <- 0
   } else {
-    y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
+    y_deviation <- (abc[[1]] - abc[[2]]) / sum(abc[1:2])
     x <- x_deviation * cos(pi / 6)
     y <- y_deviation * (1 - x_deviation) / 2
   }

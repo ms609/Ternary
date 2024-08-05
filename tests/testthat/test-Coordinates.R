@@ -141,6 +141,10 @@ test_that("OutsidePlot() works", {
   expect_true(OutsidePlot(0, 0.8, tolerance = 0.05))
 })
 
+test_that("Corner cases are correct", {
+  expect_equal(TernaryToXY(c(0, 0, 0)), TernaryToXY(c(2, 2, 2)))
+})
+
 test_that("Errors are handled nicely", {
   expect_error(TernaryCoords(1:3, direction = 5))
   expect_error(TernaryXRange(direction = 5))

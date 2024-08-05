@@ -1,3 +1,6 @@
+# Ternary v2.3.2.9000 (development)
+- Support plotting of `c(0, 0, 0)`, at origin.
+
 # Ternary v2.3.2 (2024-07-25)
 - Document reading data into R in vignette for new users.
 - Provide package anchors in documentation pages.
