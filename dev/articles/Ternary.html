@@ -191,7 +191,7 @@ orientations:</p>
 <span>  I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">92</span>, <span class="fl">12</span>, <span class="fl">243</span><span class="op">)</span>,</span>
 <span>  V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">225</span>, <span class="fl">24</span>, <span class="fl">208</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="fu">graphics</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span>, <span class="va">data_points</span>, pch <span class="op">=</span> <span class="fl">21</span>, cex <span class="op">=</span> <span class="fl">2.8</span>, </span>
+<span><span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">points</span>, <span class="va">data_points</span>, pch <span class="op">=</span> <span class="fl">21</span>, cex <span class="op">=</span> <span class="fl">2.8</span>, </span>
 <span>             bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">data_points</span>, </span>
 <span>                         <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">128</span>,</span>
 <span>                                          maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span>,</span>
@@ -259,7 +259,7 @@ analogous to the standard plotting functions:</p>
 <span></span>
 <span><span class="co"># Define a colour spectrum</span></span>
 <span><span class="va">spectrumBins</span> <span class="op">&lt;-</span> <span class="fl">255</span> <span class="co"># Number of bins to use</span></span>
-<span><span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="va">spectrumBins</span><span class="op">)</span></span>
+<span><span class="va">mySpectrum</span> <span class="op">&lt;-</span> <span class="va">rowCol</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="va">spectrumBins</span>, palette <span class="op">=</span> <span class="st">"viridis"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Cut our reflectance data into categories</span></span>
 <span><span class="va">binnedReflectance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cut.html" class="external-link">cut</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">reflectance</span>, <span class="va">spectrumBins</span><span class="op">)</span></span>
@@ -298,7 +298,7 @@ analogous to the standard plotting functions:</p>
 <span>  <span class="op">)</span>,</span>
 <span>  bty <span class="op">=</span> <span class="st">"n"</span>, <span class="co"># No framing box</span></span>
 <span>  xpd <span class="op">=</span> <span class="cn">NA</span>, <span class="co"># Don't clip at margins</span></span>
-<span>  <span class="co"># title.font = 2, # Bold. Supported from R 3.6 onwards</span></span>
+<span>  title.font <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Bold</span></span>
 <span>  title <span class="op">=</span> <span class="st">"Reflectance"</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -312,43 +312,11 @@ analogous to the standard plotting functions:</p>
 <span>    <span class="st">"\u03bcm"</span> <span class="co"># µm</span></span>
 <span>  <span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Grain size"</span>,</span>
-<span>  <span class="co"># title.font = 2, # Bold. Supported from R 3.6 onwards</span></span>
+<span>  title.font <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Bold</span></span>
 <span>  bty <span class="op">=</span> <span class="st">"n"</span>, <span class="co"># Do not frame with box</span></span>
 <span>  cex <span class="op">=</span> <span class="fl">0.8</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/point-styling-1.png" width="700"><!--} else {
-  # Discrete legend for point size
-  legend(
-    "topleft",
-    cex = 0.8, # Font size
-    pch = 15, # Filled square
-    col = rev(viridisLite::viridis(5)),
-    legend = paste(
-      seq(from = max(dat$reflectance), to = min(dat$reflectance),
-          length.out = 5),
-      "%"
-    ),
-    bty = "n", # No framing box
-    xpd = NA, # Don't clip at margins
-    title.font = 2, # Bold
-    title = "Reflectance"
-  )
-  
-  # Discrete legend for point size
-  legend(
-    "topright",
-    pt.cex = seq(maxSize, 0, length.out = 5),
-    pch = 16, # Filled circle
-    legend = paste(
-      signif(seq(max(sizes), 0, length.out = 5), digits = 3),
-      "\u03bcm" # µm
-    ),
-    title = "Grain size",
-    title.font = 2, # Bold
-    bty = "n", # Do not frame with box
-    cex = 0.8
-  )
-}--></p>
+<p><img src="Ternary_files/figure-html/point-styling-1.png" width="700"></p>
 <p>See the “Points” tab of the shiny app for a point-and-click
 implementation.</p>
 </div>
@@ -399,24 +367,12 @@ mathematical expression:</p>
 <span><span class="fu">PlotTools</span><span class="fu">::</span><span class="fu"><a href="https://ms609.github.io/PlotTools/reference/SpectrumLegend.html" class="external-link">SpectrumLegend</a></span><span class="op">(</span></span>
 <span>  <span class="st">"topleft"</span>,</span>
 <span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="va">zRange</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">zRange</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, length.out <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span>,</span>
-<span>  palette <span class="op">=</span> <span class="fu">viridisLite</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">viridis</a></span><span class="op">(</span><span class="fl">256L</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">265</span>, palette <span class="op">=</span> <span class="st">"viridis"</span>, alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span>,</span>
 <span>  bty <span class="op">=</span> <span class="st">"n"</span>,    <span class="co"># No framing box</span></span>
 <span>  inset <span class="op">=</span> <span class="fl">0.02</span>,</span>
 <span>  xpd <span class="op">=</span> <span class="cn">NA</span>      <span class="co"># Do not clip at edge of figure</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/contours-1.png" width="700"><!--} else {
-  # Discrete legend for colour scale
-  legend(
-    "topleft",
-    legend = round(seq(zRange[1], zRange[2], length.out = 4), 3),
-    col = viridisLite::viridis(4L, alpha = 0.6),
-    pch = 15,     # Filled square
-    bty = "n",    # No framing box
-    inset = 0.02,
-    xpd = NA      # Do not clip at edge of figure
-  )
-}
---></p>
+<p><img src="Ternary_files/figure-html/contours-1.png" width="700"></p>
 <p>or according to the density of points across the plot:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
