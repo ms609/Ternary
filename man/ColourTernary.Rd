@@ -7,7 +7,7 @@
 \usage{
 ColourTernary(
   values,
-  spectrum = viridisLite::viridis(256L, alpha = 0.6),
+  spectrum = hcl.colors(256L, palette = "viridis", alpha = 0.6),
   resolution = sqrt(ncol(values)),
   direction = getOption("ternDirection", 1L),
   legend,
@@ -16,7 +16,7 @@ ColourTernary(
 
 ColorTernary(
   values,
-  spectrum = viridisLite::viridis(256L, alpha = 0.6),
+  spectrum = hcl.colors(256L, palette = "viridis", alpha = 0.6),
   resolution = sqrt(ncol(values)),
   direction = getOption("ternDirection", 1L),
   legend,

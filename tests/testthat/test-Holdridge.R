@@ -10,7 +10,7 @@ test_that("Holdridge plotting", {
     pet <- holdridge[, 2]
     prec <- holdridge$Precipitation
     lat <- holdridge$Latitude
-    latCol <- viridisLite::plasma(90, alpha = 0.6)[ceiling(abs(lat))]
+    latCol <- hcl.colors(90, palette = "plasma", alpha = 0.6)[ceiling(abs(lat))]
     oPar <- par(mar = rep(0, 4))
     on.exit(par(oPar), TRUE)
 

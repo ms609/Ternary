@@ -10,15 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r hcl-colors-hack, echo=FALSE}
-if (getRversion() < "3.6") {
-  hcl.colors <- function(n, ...) {
-    colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
-                         "#7ED357", "#FDE333"))(n)
-  }
-}
-```
-
 `HoldridgePlot()` creates a blank triangular plot, as proposed by 
 Holdridge (1947, 1967), onto which potential evapotranspiration
 (PET) ratio and annual precipitation data can be plotted

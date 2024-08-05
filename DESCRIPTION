@@ -22,13 +22,12 @@ Authors@R: c(person("Martin R.", "Smith",
             )
 License: GPL (>= 2)
 Language: en-GB
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6.0)
 Imports:
-    RcppHungarian,
     PlotTools (>= 0.2.0),
+    RcppHungarian,
     shiny,
     sp,
-    viridisLite,
 Suggests:
     colourpicker,
     knitr,

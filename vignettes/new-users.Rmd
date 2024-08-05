@@ -13,19 +13,6 @@ vignette: >
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
 
-```{r hcl-colors-hack, echo = FALSE}
-if (getRversion() < "3.6") {
-  hcl.colors <- function(n, ...) {
-    if (n == 4) {
-      return(c("#A71B4B", "#F9C25C", "#81DEAD", "#584B9F"))
-    } else {
-      colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
-                         "#7ED357", "#FDE333"))(n)
-    }
-  }
-}
-```
-
 This guide gives a brief example of using the "Ternary" package, using
 road casualty data from Great Britain.
 

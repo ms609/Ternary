@@ -15,7 +15,7 @@ TernaryDensityContour(
   nlevels = 10,
   levels = pretty(zlim, nlevels),
   zlim,
-  color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+  color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
   fill.col = color.palette(length(levels) - 1),
   ...
 )

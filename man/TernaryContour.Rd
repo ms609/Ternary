@@ -16,7 +16,7 @@ TernaryContour(
   nlevels = 10,
   levels = pretty(zlim, nlevels),
   zlim,
-  color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+  color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
   fill.col = color.palette(length(levels) - 1),
   func... = list(),
   ...
@@ -117,7 +117,7 @@ TernaryPlot(alab = "a", blab = "b", clab = "c")
 # Fill the contour areas, rather than using tiles
 TernaryContour(GeneralMax, filled = TRUE,
                legend = c("Max", "...", "Min"), legend... = list(bty = "n"),
-               fill.col = viridisLite::viridis(14, alpha = 0.6))
+               fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 # Re-draw edges of plot triangle over fill
 TernaryPolygon(diag(3))
 

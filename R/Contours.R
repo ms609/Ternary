@@ -534,15 +534,14 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #'
 #' @family contour plotting functions
 #' @family functions for colouring and shading
-#' @importFrom viridisLite viridis
-#TODO when require r>3.6.0, update viridis calls to use hcl.colors()
-#' @importFrom grDevices col2rgb
+#' @importFrom grDevices col2rgb hcl.colors
 #' @importFrom PlotTools SpectrumLegend
 #' @seealso Fine control over continuous legends:
 #' [`PlotTools::SpectrumLegend()`]
 #' @export
 ColourTernary <- function(values,
-                          spectrum = viridisLite::viridis(256L, alpha = 0.6),
+                          spectrum = hcl.colors(256L, palette = "viridis",
+                                                alpha = 0.6),
                           resolution = sqrt(ncol(values)),
                           direction = getOption("ternDirection", 1L),
                           legend,
@@ -557,7 +556,8 @@ ColourTernary <- function(values,
     z
   } else {
     if (!is.numeric(z)) {
-      stop("values[\"z\", ] must be numeric.\nTo colour by values[\"z\", ], set `spectrum = FALSE`.")
+      stop("values[\"z\", ] must be numeric.\nTo colour by values[\"z\", ],",
+           "set `spectrum = FALSE`.")
     }
     zNorm <- z - min(z, na.rm = TRUE)
     zNorm <- zNorm / max(zNorm, na.rm = TRUE)
@@ -659,7 +659,7 @@ ColorTernary <- ColourTernary
 #' # Fill the contour areas, rather than using tiles
 #' TernaryContour(GeneralMax, filled = TRUE,
 #'                legend = c("Max", "...", "Min"), legend... = list(bty = "n"),
-#'                fill.col = viridisLite::viridis(14, alpha = 0.6))
+#'                fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
 #'
@@ -667,6 +667,7 @@ ColorTernary <- ColourTernary
 #' par(originalPar)
 #' @family contour plotting functions
 #' @importFrom graphics contour .filled.contour
+#' @importFrom grDevices hcl.colors
 #' @importFrom PlotTools GrowPolygon SpectrumLegend
 #' @importFrom sp point.in.polygon
 #' @export
@@ -675,7 +676,7 @@ TernaryContour <- function(
     region = getOption("ternRegion", ternRegionDefault),
     within = NULL, filled = FALSE, legend, legend... = list(),
     nlevels = 10, levels = pretty(zlim, nlevels), zlim,
-    color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+    color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
     fill.col = color.palette(length(levels) - 1),
     func... = list(), ...) {
   if (direction == 1L) {
@@ -816,7 +817,7 @@ TernaryDensityContour <- function(
     coordinates, bandwidth, resolution = 25L, tolerance = -0.2 / resolution,
     edgeCorrection = TRUE, direction = getOption("ternDirection", 1L),
     filled = FALSE, nlevels = 10, levels = pretty(zlim, nlevels), zlim,
-    color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+    color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
     fill.col = color.palette(length(levels) - 1),
     ...) {
   # Adapted from MASS::kde2d
