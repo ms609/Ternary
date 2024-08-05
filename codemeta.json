@@ -159,21 +159,9 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.5.0"
+      "version": ">= 3.6.0"
     },
     "2": {
-      "@type": "SoftwareApplication",
-      "identifier": "RcppHungarian",
-      "name": "RcppHungarian",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=RcppHungarian"
-    },
-    "3": {
       "@type": "SoftwareApplication",
       "identifier": "PlotTools",
       "name": "PlotTools",
@@ -185,6 +173,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=PlotTools"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "RcppHungarian",
+      "name": "RcppHungarian",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=RcppHungarian"
     },
     "4": {
       "@type": "SoftwareApplication",
@@ -210,21 +210,9 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sp"
     },
-    "6": {
-      "@type": "SoftwareApplication",
-      "identifier": "viridisLite",
-      "name": "viridisLite",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=viridisLite"
-    },
     "SystemRequirements": null
   },
-  "fileSize": "8241.525KB",
+  "fileSize": "8239.713KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
