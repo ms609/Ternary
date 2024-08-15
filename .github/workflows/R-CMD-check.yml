@@ -95,6 +95,8 @@ jobs:
           extra-packages: |
             evaluate@0.23
             knitr@1.45
+            rjson@0.2.18
+            XML@3.99-0.3
           needs: |
             check
             
