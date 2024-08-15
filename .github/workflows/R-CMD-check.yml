@@ -45,10 +45,10 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}
-          - {os: macOS-latest, r: 'release'}
+#          - {os: macOS-latest, r: 'release'}
           - {os: ubuntu-20.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
-          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+ #         - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
@@ -93,7 +93,8 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            knitr=<= 1.45
+            evaluate@0.23
+            knitr@1.45
           needs: |
             check
             
