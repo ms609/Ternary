@@ -349,7 +349,8 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' TernaryLines(coords, col = "darkgreen")
 #' TernaryArrows(coords[1], coords[2:4], col = "orange", length = 0.2, lwd = 1)
 #' TernaryText(coords, cex = 0.8, col = "red", font = 2)
-#' TernaryPoints(coords, pch = 1, cex = 2, col = "blue")
+#' seeThruBlue <- rgb(0, 0.2, 1, alpha = 0.8)
+#' TernaryPoints(coords, pch = 1, cex = 2, col = seeThruBlue)
 #' AddToTernary(graphics::points, coords, pch = 1, cex = 3)
 #'
 #' # An equivalent syntax applies to Holdridge plots:

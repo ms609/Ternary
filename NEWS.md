@@ -1,3 +1,7 @@
+# Ternary v2.3.3.9000 (development, 2024-10-21)
+- Tweak documentation to clarify point colouring
+
+
 # Ternary v2.3.3 (2024-08-27)
 - Support plotting of `c(0, 0, 0)`, at origin.
 - Require R 3.6.
