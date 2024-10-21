@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "2.3.2.9000",
+  "version": "2.3.3.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -212,7 +212,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "8239.713KB",
+  "fileSize": "8240.018KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
