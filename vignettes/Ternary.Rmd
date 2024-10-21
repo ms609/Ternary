@@ -94,12 +94,15 @@ data_points <- list(
   I = c(92, 12, 243),
   V = c(225, 24, 208)
 )
-AddToTernary(graphics::points, data_points, pch = 21, cex = 2.8, 
-             bg = vapply(data_points, 
-                         function (x) rgb(x[1], x[2], x[3], 128,
-                                          maxColorValue = 255),
-                         character(1))
-             )
+
+# Compute RGB colours based on point values
+PointColour <- function(x) {
+  rgb(x[1], x[2], x[3], maxColorValue = 255, # Use point values for RGB
+      alpha = 128 # Semitransparency
+      )
+}
+data_col <- sapply(data_points, PointColour)
+AddToTernary(graphics::points, data_points, pch = 21, cex = 2.8, bg = data_col)
 AddToTernary(text, data_points, names(data_points), cex = 0.8, font = 2)
 legend("bottomright", 
        legend = c("Red", "Orange", "Yellow", "Green"),
