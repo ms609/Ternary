@@ -1,5 +1,5 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   annotation: annotation.html
@@ -7,7 +7,7 @@ articles:
   interpolation: interpolation.html
   new-users: new-users.html
   Ternary: Ternary.html
-last_built: 2024-08-15T13:54Z
+last_built: 2024-10-21T08:35Z
 urls:
   reference: https://ms609.github.io/Ternary/reference
   article: https://ms609.github.io/Ternary/articles

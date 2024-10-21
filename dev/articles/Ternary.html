@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.3.2.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.3.3.9000</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
                         <h4 data-toc-skip class="author">Martin R.
 Smith</h4>
             
-            <h4 data-toc-skip class="date">2024-08-15</h4>
+            <h4 data-toc-skip class="date">2024-10-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/master/vignettes/Ternary.Rmd" class="external-link"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -191,12 +191,15 @@ orientations:</p>
 <span>  I <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">92</span>, <span class="fl">12</span>, <span class="fl">243</span><span class="op">)</span>,</span>
 <span>  V <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">225</span>, <span class="fl">24</span>, <span class="fl">208</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">points</span>, <span class="va">data_points</span>, pch <span class="op">=</span> <span class="fl">21</span>, cex <span class="op">=</span> <span class="fl">2.8</span>, </span>
-<span>             bg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">data_points</span>, </span>
-<span>                         <span class="kw">function</span> <span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, <span class="fl">128</span>,</span>
-<span>                                          maxColorValue <span class="op">=</span> <span class="fl">255</span><span class="op">)</span>,</span>
-<span>                         <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span>             <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Compute RGB colours based on point values</span></span>
+<span><span class="va">PointColour</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html" class="external-link">rgb</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, <span class="va">x</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span>, maxColorValue <span class="op">=</span> <span class="fl">255</span>, <span class="co"># Use point values for RGB</span></span>
+<span>      alpha <span class="op">=</span> <span class="fl">128</span> <span class="co"># Semitransparency</span></span>
+<span>      <span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">data_col</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">data_points</span>, <span class="va">PointColour</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="fu">graphics</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span>, <span class="va">data_points</span>, pch <span class="op">=</span> <span class="fl">21</span>, cex <span class="op">=</span> <span class="fl">2.8</span>, bg <span class="op">=</span> <span class="va">data_col</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">AddToTernary</a></span><span class="op">(</span><span class="va">text</span>, <span class="va">data_points</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">data_points</span><span class="op">)</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, </span>
 <span>       legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Orange"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span><span class="op">)</span>,</span>
@@ -505,7 +508,7 @@ issue</a>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
