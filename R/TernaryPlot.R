@@ -125,6 +125,8 @@
 #' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
 #'
 #' @seealso
+#'  - Detailed usage examples are available in the [package vignette](
+#'      https://ms609.github.io/Ternary/articles/Ternary.html)
 #'  - [`AddToTernary()`]: Add elements to a ternary plot
 #'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian
 #'    (_x_ and _y_) coordinates
