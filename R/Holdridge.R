@@ -435,6 +435,7 @@ HoldridgeToXY <- function(pet, prec) {
 #' @rdname AddToTernary
 #' @inheritParams HoldridgeToXY
 #' @family Holdridge plotting functions
+#' @order 20
 #' @export
 AddToHoldridge <- function(PlottingFunction, pet, prec, ...) {
   xy <- HoldridgeToXY(pet, prec)
@@ -443,6 +444,7 @@ AddToHoldridge <- function(PlottingFunction, pet, prec, ...) {
 
 #' @describeIn AddToTernary Add  \link[graphics]{arrows} to Holdridge plot
 #' @importFrom graphics arrows
+#' @order 25
 #' @export
 HoldridgeArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
                             ...) {
@@ -455,6 +457,7 @@ HoldridgeArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
 
 #' @describeIn AddToTernary Add \link[graphics]{lines} to Holdridge plot
 #' @importFrom graphics lines
+#' @order 25
 #' @export
 HoldridgeLines <- function(pet, prec, ...) {
   AddToHoldridge(lines, pet, prec, ...)
@@ -462,6 +465,7 @@ HoldridgeLines <- function(pet, prec, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{points} to Holdridge plot
 #' @importFrom graphics points
+#' @order 25
 #' @export
 HoldridgePoints <- function(pet, prec, ...) {
   AddToHoldridge(points, pet, prec, ...)
@@ -470,6 +474,7 @@ HoldridgePoints <- function(pet, prec, ...) {
 #' @describeIn AddToTernary Add \link[graphics:polygon]{polygons} to Holdridge
 #' plot
 #' @importFrom graphics polygon
+#' @order 25
 #' @export
 HoldridgePolygon <- function(pet, prec, ...) {
   AddToHoldridge(polygon, pet, prec, ...)
@@ -477,6 +482,7 @@ HoldridgePolygon <- function(pet, prec, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{text} to Holdridge plot
 #' @importFrom graphics text
+#' @order 25
 #' @export
 HoldridgeText <- function(pet, prec, ...) {
   AddToHoldridge(text, pet, prec, ...)

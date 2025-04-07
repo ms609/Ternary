@@ -278,7 +278,7 @@ Tsakalos, Smith, Luebert & Mucina (2023).
 }
 \seealso{
 Other Holdridge plotting functions: 
-\code{\link{AddToHoldridge}()},
+\code{\link{AddToTernary}()},
 \code{\link{HoldridgeHypsometricCol}()},
 \code{\link{holdridge}},
 \code{\link{holdridgeClasses}}

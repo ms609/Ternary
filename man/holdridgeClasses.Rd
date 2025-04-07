@@ -54,7 +54,7 @@ lines, for more legible plotting with \code{\link[=HoldridgeHexagons]{HoldridgeH
 }
 \seealso{
 Other Holdridge plotting functions: 
-\code{\link{AddToHoldridge}()},
+\code{\link{AddToTernary}()},
 \code{\link{HoldridgeHypsometricCol}()},
 \code{\link{HoldridgePlot}()},
 \code{\link{holdridge}}

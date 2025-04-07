@@ -363,6 +363,7 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' # Restore original plotting parameters
 #' par(oPar)
 #' @template MRS
+#' @order 1
 #' @export
 AddToTernary <- function(PlottingFunction, coordinates, ...) {
   xy <- CoordinatesToXY(coordinates)
@@ -406,20 +407,9 @@ CoordinatesToXY <- function(coordinates) {
   }
 }
 
-#' @describeIn AddToTernary Add \link[graphics]{segments}
-#' @importFrom graphics segments
-#' @export
-TernarySegments <- function(fromCoordinates, toCoordinates = fromCoordinates,
-                            ...) {
-  fromXY <- CoordinatesToXY(fromCoordinates)
-  toXY <- CoordinatesToXY(toCoordinates)
-
-  # Return:
-  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
-}
-
 #' @describeIn AddToTernary Add  \link[graphics]{arrows}
 #' @importFrom graphics arrows
+#' @order 3
 #' @export
 TernaryArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
                           ...) {
@@ -432,6 +422,7 @@ TernaryArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
 
 #' @describeIn AddToTernary Add \link[graphics]{lines}
 #' @importFrom graphics lines
+#' @order 3
 #' @export
 TernaryLines <- function(coordinates, ...) {
   AddToTernary(lines, coordinates, ...)
@@ -439,6 +430,7 @@ TernaryLines <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{points}
 #' @importFrom graphics points
+#' @order 3
 #' @export
 TernaryPoints <- function(coordinates, ...) {
   AddToTernary(points, coordinates, ...)
@@ -446,13 +438,28 @@ TernaryPoints <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics:polygon]{polygons}
 #' @importFrom graphics polygon
+#' @order 3
 #' @export
 TernaryPolygon <- function(coordinates, ...) {
   AddToTernary(polygon, coordinates, ...)
 }
 
+#' @describeIn AddToTernary Add \link[graphics]{segments}
+#' @importFrom graphics segments
+#' @order 3
+#' @export
+TernarySegments <- function(fromCoordinates, toCoordinates = fromCoordinates,
+                            ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
+  
+  # Return:
+  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
+
 #' @describeIn AddToTernary Add \link[graphics]{text}
 #' @importFrom graphics text
+#' @order 3
 #' @export
 TernaryText <- function(coordinates, ...) {
   AddToTernary(text, coordinates, ...)
@@ -460,6 +467,7 @@ TernaryText <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add points, joined by lines
 #' @importFrom graphics lines points
+#' @order 5
 #' @export
 JoinTheDots <- function(coordinates, ...) {
   AddToTernary(points, coordinates, ...)

@@ -41,7 +41,7 @@ Palette derived from the hypsometric colour scheme presented at
 }
 \seealso{
 Other Holdridge plotting functions: 
-\code{\link{AddToHoldridge}()},
+\code{\link{AddToTernary}()},
 \code{\link{HoldridgePlot}()},
 \code{\link{holdridge}},
 \code{\link{holdridgeClasses}}
