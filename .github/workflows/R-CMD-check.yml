@@ -80,6 +80,13 @@ jobs:
             aspell libcurl4-openssl-dev texlive-latex-base \
             texlive-fonts-extra
         
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+      
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
