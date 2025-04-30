@@ -668,7 +668,7 @@ ColorTernary <- ColourTernary
 #' # Fill the contour areas, rather than using tiles
 #' TernaryContour(GeneralMax, filled = TRUE,
 #'                legend = c("Max", "...", "Min"),
-#'                legend... = list(bty = "n", xpd = NA),
+#'                legend... = list(bty = "n", xpd = NA), # Tweak legend display
 #'                fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
