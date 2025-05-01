@@ -3,7 +3,7 @@
 \name{TernaryPointValues}
 \alias{TernaryPointValues}
 \alias{TernaryDensity}
-\title{Value of a function at regularly spaced points}
+\title{Evaluate function over a grid}
 \usage{
 TernaryPointValues(
   Func,

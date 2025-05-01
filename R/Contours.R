@@ -1,4 +1,4 @@
-#' Value of a function at regularly spaced points
+#' Evaluate function over a grid
 #'
 #' Intended to facilitate coloured contour plots with [`ColourTernary()`],
 #' `TernaryPointValue()` evaluates a function at points on a triangular grid;
