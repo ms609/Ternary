@@ -36,7 +36,7 @@ that encompasses the specified ranges or coordinates.}
 specified \emph{x} and \emph{y} coordinates, where a + b + c = 1.
 }
 \description{
-Convert cartesian (\emph{x}, \emph{y}) coordinates to a point in ternary space.
+Convert Cartesian (\emph{x}, \emph{y}) coordinates to a point in ternary space.
 }
 \examples{
 XYToTernary(c(0.1, 0.2), 0.5)

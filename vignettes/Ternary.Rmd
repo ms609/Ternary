@@ -230,7 +230,7 @@ See the "Points" tab of the shiny app for a point-and-click implementation.
 
 ### Cartesian coordinates 
 
-It is also possible to use cartesian coordinates to plot onto the graph.
+It is also possible to use Cartesian coordinates to plot onto the graph.
 
 By default, the plotting area is a 1&times;1 square.
 
@@ -354,7 +354,7 @@ of interest.
 
 To do this you can specify the _x_ and _y_ limits of the region of interest. 
 
-`TernaryCoords` might be useful in establishing the cartesian coordinates of a
+`TernaryCoords` might be useful in establishing the Cartesian coordinates of a
 particular point in ternary space.  
 Ensure that _dx_ = _dy_ if you want an isometric plot.
 

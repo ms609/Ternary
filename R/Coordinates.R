@@ -116,7 +116,7 @@ TernaryToXY <- TernaryCoords
 
 #' Cartesian coordinates to ternary point
 #'
-#' Convert cartesian (_x_, _y_) coordinates to a point in ternary space.
+#' Convert Cartesian (_x_, _y_) coordinates to a point in ternary space.
 #'
 #' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or
 #' points.

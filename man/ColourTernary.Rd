@@ -26,7 +26,7 @@ ColorTernary(
 \arguments{
 \item{values}{Numeric matrix, possibly created using
 \code{\link[=TernaryPointValues]{TernaryPointValues()}}, with four named rows:
-\code{x}, \code{y}, cartesian coordinates of each triangle centre;
+\code{x}, \code{y}, Cartesian coordinates of each triangle centre;
 \code{z}, value associated with that coordinate;
 \code{down}, triangle direction: \code{0} = point upwards; \code{1} = point downwards.}
 
