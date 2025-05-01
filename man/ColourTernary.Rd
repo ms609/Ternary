@@ -3,7 +3,7 @@
 \name{ColourTernary}
 \alias{ColourTernary}
 \alias{ColorTernary}
-\title{Colour a ternary plot according to the output of a function}
+\title{Colour ternary plot}
 \usage{
 ColourTernary(
   values,
@@ -48,31 +48,39 @@ Specify \code{TRUE} to generate automatically, or a single integer to generate
 \item{\dots}{Further arguments to
 \code{\link[PlotTools:SpectrumLegend]{SpectrumLegend()}}.}
 }
+\value{
+\code{ColourTernary()} is called for its side effect – colouring a ternary
+plot according to \code{values}.  It invisibly returns \code{NULL}.
+}
 \description{
-Colour a ternary plot according to the output of a function
+Colour a ternary plot according to the output of a function.
 }
 \examples{
-TernaryPlot(alab = "a", blab = "b", clab = "c")
+# Depict a function across a ternary plot with colour and contours
+
+TernaryPlot(alab = "a", blab = "b", clab = "c") # Blank plot
 
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
+# Evaluate function
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
+
+# Use the value of the function to determine the brightness of the plot
 ColourTernary(
   values,
   x = "topleft",
   bty = "n", # No box
   legend = signif(seq(max(values), min(values), length.out = 4), 3)
 )
+
+# Overlay contours
 TernaryContour(FunctionToContour, resolution = 36L)
 
+# Directly specify the colour with the output of a function
 
-TernaryPlot()
-values <- TernaryPointValues(rgb, resolution = 20)
-ColourTernary(values, spectrum = NULL)
-
-# Create a helper function to place white centrally:
+# Create a function that returns a vector of rgb strings:
 rgbWhite <- function (r, g, b) {
   highest <- apply(rbind(r, g, b), 2L, max)
   rgb(r/highest, g/highest, b/highest)

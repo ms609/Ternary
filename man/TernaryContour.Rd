@@ -23,11 +23,10 @@ TernaryContour(
 )
 }
 \arguments{
-\item{Func}{Function taking three arguments named \code{a}, \code{b} and \code{c}.
-\code{a}, \code{b} and \code{c} will each be a vector that specifies all the coordinates at
-which the function should be evaluated.
-\code{Func()} must return a numeric vector giving the value to be depicted at
-each coordinate.}
+\item{Func}{Function that takes three arguments named \code{a}, \code{b} and \code{c}, and
+returns a numeric vector of length \emph{n}.
+\code{a}, \code{b} and \code{c} will each be a vector of length \emph{n}. Together, they
+specify the series of coordinates at which the function should be evaluated.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -73,7 +72,10 @@ Computed from \code{color.palette} if not specified.}
 \item{func...}{List of additional parameters to send to \code{Func()}.}
 }
 \value{
-\code{TernaryContour()}  invisibly returns a list containing:
+\code{TernaryContour()} is called for its side effect – adding contours
+to a Ternary plot according to the value of \code{Func(a, b, c)} at each
+coordinate.
+It invisibly returns a list containing:
 \itemize{
 \item \code{x},\code{y}: the Cartesian coordinates of each evaluated point;
 \item \code{z}: The value of \code{Func()} at each coordinate.
@@ -126,7 +128,7 @@ TernaryPlot(alab = "a", blab = "b", clab = "c")
 # Fill the contour areas, rather than using tiles
 TernaryContour(GeneralMax, filled = TRUE,
                legend = c("Max", "...", "Min"),
-               legend... = list(bty = "n", xpd = NA),
+               legend... = list(bty = "n", xpd = NA), # Tweak legend display
                fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 # Re-draw edges of plot triangle over fill
 TernaryPolygon(diag(3))
