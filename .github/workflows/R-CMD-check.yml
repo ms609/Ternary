@@ -95,6 +95,7 @@ jobs:
             httr2@1.0.1
             magick@2.8.5
             knitr@1.45
+            profvis@0.3.8
             purrr@1.0.2
             rjson@0.2.20
             scales@1.3.0
