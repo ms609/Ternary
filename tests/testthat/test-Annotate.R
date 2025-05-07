@@ -6,7 +6,7 @@ test_that("Annotate() works", {
   )
   
   AnnotateBasics <- function() {
-    ptsList <- apply(points, 1, c, simplify = FALSE)
+    ptsList <- .SimpleApply(points, 1, c)
     TernaryPlot()
     TernaryText(ptsList, 1:8)
     Annotate(ptsList[1:2], side = 1, outset = 0.2)
@@ -27,7 +27,7 @@ test_that("Annotate() works", {
              font = 3,
              lwd = 1,
              lty = "dotted")
-    Annotate(as.data.frame(apply(points, 2, c, simplify = FALSE)),
+    Annotate(as.data.frame(.SimpleApply(points, 2, c)),
              side = c("a", 1, "b", 0, "c", NA, NA, "N"),
              col = rainbow(8),
              lwd = 3)

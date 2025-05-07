@@ -15,7 +15,7 @@ TernaryDensityContour(
   nlevels = 10,
   levels = pretty(zlim, nlevels),
   zlim,
-  color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+  color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
   fill.col = color.palette(length(levels) - 1),
   ...
 )
@@ -41,8 +41,8 @@ plot.}
 \item{edgeCorrection}{Logical specifying whether to correct for edge effects
 (see details).}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{filled}{Logical; if \code{TRUE}, contours will be filled
 (using \code{\link[graphics]{.filled.contour}()}.).}

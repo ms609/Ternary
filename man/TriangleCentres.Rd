@@ -11,8 +11,8 @@ TriangleCentres(resolution = 48L, direction = getOption("ternDirection", 1L))
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 }
 \value{
 \code{TriangleCentres()} returns a matrix with three named rows:

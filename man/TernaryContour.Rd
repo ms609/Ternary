@@ -8,6 +8,7 @@ TernaryContour(
   Func,
   resolution = 96L,
   direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault),
   within = NULL,
   filled = FALSE,
   legend,
@@ -15,21 +16,31 @@ TernaryContour(
   nlevels = 10,
   levels = pretty(zlim, nlevels),
   zlim,
-  color.palette = function(n) viridisLite::viridis(n, alpha = 0.6),
+  color.palette = function(n) hcl.colors(n, palette = "viridis", alpha = 0.6),
   fill.col = color.palette(length(levels) - 1),
+  func... = list(),
   ...
 )
 }
 \arguments{
-\item{Func}{Function taking vectors of coordinates \code{a}, \code{b} and \code{c}, which
-returns a numeric vector whose value at each coordinate will be depicted.}
+\item{Func}{Function that takes three arguments named \code{a}, \code{b} and \code{c}, and
+returns a numeric vector of length \emph{n}.
+\code{a}, \code{b} and \code{c} will each be a vector of length \emph{n}. Together, they
+specify the series of coordinates at which the function should be evaluated.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{region}{(optional) Named list of length two specifying the the
+\code{min}imum and \code{max}imum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{within}{List or matrix of \emph{x, y} coordinates within which contours
 should be evaluated, in any format supported by
@@ -46,7 +57,7 @@ Specify \code{TRUE} to generate automatically, or a single integer to generate
 \code{legend} annotations.}
 
 \item{legend...}{List of additional parameters to send to
-\code{\link[=SpectrumLegend]{SpectrumLegend()}}.}
+\code{\link[PlotTools:SpectrumLegend]{SpectrumLegend()}}.}
 
 \item{nlevels, levels, zlim, \dots}{parameters to pass to
 \code{\link[graphics]{contour}()}.}
@@ -57,9 +68,14 @@ Specify \code{TRUE} to generate automatically, or a single integer to generate
 \item{fill.col}{Sent as \code{col} parameter to
 \code{\link[graphics]{.filled.contour}()}.
 Computed from \code{color.palette} if not specified.}
+
+\item{func...}{List of additional parameters to send to \code{Func()}.}
 }
 \value{
-\code{TernaryContour()}  invisibly returns a list containing:
+\code{TernaryContour()} is called for its side effect – adding contours
+to a Ternary plot according to the value of \code{Func(a, b, c)} at each
+coordinate.
+It invisibly returns a list containing:
 \itemize{
 \item \code{x},\code{y}: the Cartesian coordinates of each evaluated point;
 \item \code{z}: The value of \code{Func()} at each coordinate.
@@ -77,34 +93,43 @@ FunctionToContour <- function (a, b, c) {
 originalPar <- par(mar = rep(0, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values,
+ColourTernary(
+  values,
   legend = signif(seq(max(values), min(values), length.out = 4), 2),
-   bty = "n")
+  bty = "n"
+)
 TernaryContour(FunctionToContour, resolution = 36L)
 
-# Note that FunctionToContour is sent a vector.
+# Note that FunctionToContour() is sent vectors of all values of a, b and
+# c at which it will be evaluated.
 # Instead of
 BadMax <- function (a, b, c) {
-  max(a, b, c) 
+  max(a, b, c) # Not vectorized
+  # Will return the single maximum of ALL a, b and c coordinates
 }
 
 # Use
 GoodMax <- function (a, b, c) {
-  pmax(a, b, c)
+  pmax(a, b, c) # Vectorized
+  # Will return the maximum of each trio of a, b and c coordinates
 }
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 ColourTernary(TernaryPointValues(GoodMax))
 TernaryContour(GoodMax)
 
-# Or, for a generalizable example,
+# When a vectorized version of a function is not available, you will need to
+# apply the function to each combination of a, b and c in turn:
 GeneralMax <- function (a, b, c) {
-  apply(rbind(a, b, c), 2, max)
+  abc.matrix <- rbind(a, b, c) # Matrix where each column gives an a,b,c trio
+  apply(abc.matrix, 2, max)    # Apply non-vectorized function to each trio
+  # Returns a vector with the maximum value of a,b,c at each coordinate.
 }
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 # Fill the contour areas, rather than using tiles
 TernaryContour(GeneralMax, filled = TRUE,
-               legend = c("Max", "Min"), bty = "n",
-               fill.col = viridisLite::viridis(14, alpha = 0.6))
+               legend = c("Max", "...", "Min"),
+               legend... = list(bty = "n", xpd = NA), # Tweak legend display
+               fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 # Re-draw edges of plot triangle over fill
 TernaryPolygon(diag(3))
 

@@ -3,39 +3,46 @@
 #' Create and style a blank ternary plot.
 #'
 #' The plot will be generated using the standard 'graphics' plot functions, on
-#' which additional elements can be added using cartesian coordinates, perhaps
+#' which additional elements can be added using Cartesian coordinates, perhaps
 #' using functions such as \code{\link[graphics]{arrows}},
 #' \code{\link[graphics]{legend}} or \code{\link[graphics]{text}}.
 #'
 #' @param atip,btip,ctip Character string specifying text to title corners,
-#' proceeding clockwise from the corner specified in `point` (default: top).
+#'  proceeding clockwise from the corner specified in `point` (default: top).
 #' @param alab,blab,clab Character string specifying text with which to label
-#' the corresponding sides of the triangle.
-#' Left or right-pointing arrows are produced by
+#'  the corresponding sides of the triangle.
+#'  Left or right-pointing arrows are produced by
 #'  typing `\\U2190` or `\\U2192`, or using `expression('value' %->% '')`.
 #' @param lab.offset Numeric specifying distance between midpoint of axis label
-#' and the axis.
+#'  and the axis. The default value is given in the 'Usage' section; a value 
+#'  of `0` will position the axis label directly on the axis.
 #'  Increase `padding` if labels are being clipped.
 #'  Use a vector of length three to specify a different offset for each label.
 #'
 #' @param point Character string specifying the orientation of the ternary plot:
-#' should the triangle point `"up"`, `"right"`, `"down"` or `"left"`?
-#' The integers 1 to 4 can be used in place of the character strings.
+#'  should the triangle point `"up"`, `"right"`, `"down"` or `"left"`?
+#'  The integers 1 to 4 can be used in place of the character strings.
 #' @param clockwise Logical specifying the direction of axes.  If `TRUE` (the
-#' default), each axis runs from zero to its maximum value in a clockwise
-#' direction around the plot.
+#'  default), each axis runs from zero to its maximum value in a clockwise
+#'  direction around the plot.
 #'
-#' @param xlim,ylim Numeric vectors of length 2 specifying the minimum and
-#'  maximum  _x_ and _y_ limits of the plotted area, to which `padding` will be
+#' @param xlim,ylim Numeric vectors of length two specifying the minimum and
+#'  maximum _x_ and _y_ limits of the plotted area, to which `padding` will be
 #'  added.
 #'  The default is to display the complete height or width of the plot.
 #'  Allows cropping to magnified region of the plot. (See vignette for diagram.)
 #'  May be overridden if `isometric = TRUE`; see documentation of
-#'  `isometric` parameter.
+#' `isometric` parameter.
+#' @param region (optional) Named list of length two specifying the the 
+#'  `min`imum and `max`imum values of each ternary axis to be drawn 
+#'  (e.g. `list(min = c(40, 0, 0), max = c(100, 60, 60)`);
+#'  or a set of coordinates in a format accepted by [`TernaryPoints()`].
+#'  The plotted region will correspond to the smallest equilateral triangle
+#'  that encompasses the specified ranges or coordinates.
 #'
 #' @param lab.cex,tip.cex Numeric specifying character expansion (font size)
-#' for axis labels.
-#' Use a vector of length three to specify a different value for each direction.
+#'  for axis labels.
+#'  Use a vector of length three to specify a different value for each direction.
 #' @param lab.font,tip.font Numeric specifying font style (Roman, bold, italic,
 #'  bold-italic) for axis titles.
 #'  Use a vector of length three to set a different font for each direction.
@@ -44,7 +51,7 @@
 #' @param atip.rotate,btip.rotate,ctip.rotate Integer specifying number of
 #'  degrees to rotate label of rightmost apex.
 #' @param atip.pos,btip.pos,ctip.pos Integer specifying positioning of labels,
-#'  iff the corresponding `xlab.rotate` parameter is set.
+#'  iff the corresponding `xtip.rotate` parameter is set.
 #'
 #' @param isometric Logical specifying whether to enforce an equilateral shape
 #'  for the ternary plot.
@@ -59,16 +66,17 @@
 #' \code{\link[graphics]{polygon}}.
 #'
 #' @param panel.first An expression to be evaluated after the plot axes are
-#' set up but before any plotting takes place.
-#' This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
-#' or [`HorizontalGrid()`].
-#' Note that this works by lazy evaluation: passing this argument from other
-#' plot methods may well not work since it may be evaluated too early.
+#'  set up but before any plotting takes place.
+#'  This can be useful for drawing backgrounds, e.g. with [`ColourTernary()`]
+#'  or [`HorizontalGrid()`].
+#'  Note that this works by lazy evaluation: passing this argument from other
+#'  plot methods may well not work since it may be evaluated too early.
 #' @param panel.last An expression to be evaluated after plotting has taken
-#' place but before the axes and box are added.  See the comments about
-#' `panel.first`.
+#'  place but before the axes and box are added.  See the comments about
+#'  `panel.first`.
 #'
 #' @param grid.lines Integer specifying the number of grid lines to plot.
+#'  If `axis.labels = TRUE`, this will be used as a hint to `pretty()`.
 #' @param grid.minor.lines Integer specifying the number of minor (unlabelled)
 #'  grid lines to plot between each major pair.
 #' @param grid.col,grid.minor.col Colours to draw the grid lines. Use a vector
@@ -117,6 +125,8 @@
 #' @param \dots Additional parameters to \code{\link[graphics]{plot}}.
 #'
 #' @seealso
+#'  - Detailed usage examples are available in the [package vignette](
+#'      https://ms609.github.io/Ternary/articles/Ternary.html)
 #'  - [`AddToTernary()`]: Add elements to a ternary plot
 #'  - [`TernaryCoords()`]: Convert ternary coordinates to Cartesian
 #'    (_x_ and _y_) coordinates
@@ -140,6 +150,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         lab.offset = 0.16, lab.col = NULL,
                         point = "up", clockwise = TRUE,
                         xlim = NULL, ylim = NULL,
+                        region = ternRegionDefault,
                         lab.cex = 1.0, lab.font = 0, tip.cex = lab.cex,
                         tip.font = 2, tip.col = "black",
                         isometric = TRUE, atip.rotate = NULL,
@@ -162,6 +173,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                         ticks.lwd = axis.lwd, ticks.length = 0.025,
                         axis.col = "black", ticks.col = grid.col,
                         ...) {
+  .SetRegion(region, prettify = if (isTRUE(axis.labels)) grid.lines else NA)
   tern <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,
@@ -225,21 +237,24 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
 
   .PlotBackground(tern)
 
-  panel.first
+  panel.first # Execute user-supplied expression
 
-  .PlotMinorGridLines(tern$grid.lines, tern$grid.minor.lines,
+  .PlotMinorGridLines(
+    tern$grid.lines,
+    tern$grid.minor.lines,
     col = tern$grid.minor.col,
     lty = tern$grid.minor.lty,
     lwd = tern$grid.minor.lwd
   )
 
-  .PlotMajorGridLines(tern$grid.lines,
+  .PlotMajorGridLines(
+    tern$grid.lines,
     col = tern$grid.col,
     lty = tern$grid.lty,
     lwd = tern$grid.lwd
   )
 
-  panel.last
+  panel.last # Execute user-supplied expression
 
   .PlotAxisTicks(tern)
 
@@ -336,7 +351,8 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' TernaryLines(coords, col = "darkgreen")
 #' TernaryArrows(coords[1], coords[2:4], col = "orange", length = 0.2, lwd = 1)
 #' TernaryText(coords, cex = 0.8, col = "red", font = 2)
-#' TernaryPoints(coords, pch = 1, cex = 2, col = "blue")
+#' seeThruBlue <- rgb(0, 0.2, 1, alpha = 0.8)
+#' TernaryPoints(coords, pch = 1, cex = 2, col = seeThruBlue)
 #' AddToTernary(graphics::points, coords, pch = 1, cex = 3)
 #'
 #' # An equivalent syntax applies to Holdridge plots:
@@ -349,6 +365,7 @@ HorizontalGrid <- function(grid.lines = 10, grid.col = "grey",
 #' # Restore original plotting parameters
 #' par(oPar)
 #' @template MRS
+#' @order 1
 #' @export
 AddToTernary <- function(PlottingFunction, coordinates, ...) {
   xy <- CoordinatesToXY(coordinates)
@@ -392,20 +409,9 @@ CoordinatesToXY <- function(coordinates) {
   }
 }
 
-#' @describeIn AddToTernary Add \link[graphics]{segments}
-#' @importFrom graphics segments
-#' @export
-TernarySegments <- function(fromCoordinates, toCoordinates = fromCoordinates,
-                            ...) {
-  fromXY <- CoordinatesToXY(fromCoordinates)
-  toXY <- CoordinatesToXY(toCoordinates)
-
-  # Return:
-  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
-}
-
 #' @describeIn AddToTernary Add  \link[graphics]{arrows}
 #' @importFrom graphics arrows
+#' @order 3
 #' @export
 TernaryArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
                           ...) {
@@ -418,6 +424,7 @@ TernaryArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
 
 #' @describeIn AddToTernary Add \link[graphics]{lines}
 #' @importFrom graphics lines
+#' @order 3
 #' @export
 TernaryLines <- function(coordinates, ...) {
   AddToTernary(lines, coordinates, ...)
@@ -425,6 +432,7 @@ TernaryLines <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{points}
 #' @importFrom graphics points
+#' @order 3
 #' @export
 TernaryPoints <- function(coordinates, ...) {
   AddToTernary(points, coordinates, ...)
@@ -432,13 +440,28 @@ TernaryPoints <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics:polygon]{polygons}
 #' @importFrom graphics polygon
+#' @order 3
 #' @export
 TernaryPolygon <- function(coordinates, ...) {
   AddToTernary(polygon, coordinates, ...)
 }
 
+#' @describeIn AddToTernary Add \link[graphics]{segments}
+#' @importFrom graphics segments
+#' @order 3
+#' @export
+TernarySegments <- function(fromCoordinates, toCoordinates = fromCoordinates,
+                            ...) {
+  fromXY <- CoordinatesToXY(fromCoordinates)
+  toXY <- CoordinatesToXY(toCoordinates)
+  
+  # Return:
+  segments(fromXY[1L, ], fromXY[2L, ], toXY[1L, ], toXY[2L, ], ...)
+}
+
 #' @describeIn AddToTernary Add \link[graphics]{text}
 #' @importFrom graphics text
+#' @order 3
 #' @export
 TernaryText <- function(coordinates, ...) {
   AddToTernary(text, coordinates, ...)
@@ -446,6 +469,7 @@ TernaryText <- function(coordinates, ...) {
 
 #' @describeIn AddToTernary Add points, joined by lines
 #' @importFrom graphics lines points
+#' @order 5
 #' @export
 JoinTheDots <- function(coordinates, ...) {
   AddToTernary(points, coordinates, ...)

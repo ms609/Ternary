@@ -69,10 +69,9 @@ NULL
 #' "Determination of world plant formations from simple climatic data",
 #' _Science_ 105:367&ndash;368. \doi{10.1126/science.105.2727.367}
 #'
-#' Holdridge (1967),
-#' [_Life zone ecology_](https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf).
-#' Tropical Science Center, San Jos&eacute;
-#'
+#' Holdridge (1967), _Life zone ecology_. Tropical Science Center, 
+#' San Jos&eacute;.
+#' 
 #' Leemans, R. (1990),
 #' "Possible change in natural vegetation patterns due to a global warming",
 #' _International Institute for Applied Systems Analysis_ Working paper

@@ -1,5 +1,5 @@
 bibentry(
-  mheader = "When using this package, please cite Smith (2017).",
+  mheader = "When using this package, please cite Smith (2017). For Holdridge plots, also cite Tsakalos et al. (2023).",
   bibtype = "article",
   key = "Smith2017",
   journal = "Comprehensive R Archive Network",
@@ -13,5 +13,29 @@ bibentry(
     "Smith (2017). ",
     "Ternary: An R Package for Creating Ternary Plots. ",
     "Comprehensive R Archive Network, doi: 10.5281/zenodo.1068996"
+  )
+)
+bibentry(
+  bibtype = "article",
+  key = "Tsakalos2023",
+  journal = "Journal of Vegetation Science",
+  author = c(
+    person(c("James", "Lee"), "Tsakalos", email = "jamestsakalos@gmail.com"),
+    person(c("Martin", "R."), "Smith",
+           email = "martin.smith@durham.ac.uk"),
+    person("Fredrico", "Luebert"),
+    person("Ladislav", "Mucina")
+  ),
+  title = "climenv: Download, extract and visualise climatic and elevation data",
+  year = "2023",
+  pages = "e13215",
+  volume = "6",
+  issue = "34",
+  doi = "10.1111/jvs.13215",
+  
+  textVersion = paste0(
+    "Tsakalos, Smith, Luebert & Mucina (2023). ",
+    "climenv: Download, extract and visualise climatic and elevation data. ",
+    "Journal of Vegetation Science, 6:e13215, doi: 10.1111/jvs.13215"
   )
 )

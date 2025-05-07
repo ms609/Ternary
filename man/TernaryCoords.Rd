@@ -11,28 +11,32 @@ TernaryCoords(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 \method{TernaryToXY}{matrix}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 \method{TernaryToXY}{numeric}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 
 TernaryToXY(
   abc,
   b_coord = NULL,
   c_coord = NULL,
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
 )
 }
 \arguments{
@@ -51,8 +55,15 @@ coordinates of points.}
 
 \item{c_coord}{The c coordinate, if \code{abc} is a single number.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{region}{(optional) Named list of length two specifying the the
+\code{min}imum and \code{max}imum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 }
 \value{
 \code{TernaryCoords()} returns a vector of length two that converts

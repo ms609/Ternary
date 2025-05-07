@@ -29,12 +29,16 @@ colour gradients, but at a computational cost.}
 
 \item{col}{Vector specifying the colour with which to fill each triangle.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+}
+\value{
+\code{TernaryTiles()} is called for its side effect – painting a ternary
+plot with coloured tiles.  It invisibly returns \code{NULL}.
 }
 \description{
 Function to fill a ternary plot with coloured tiles.  Useful in combination with
-\code{\link{TernaryPointValues}} and \code{\link{TernaryContour}}.
+\code{\link[=TernaryPointValues]{TernaryPointValues()}} and \code{\link[=TernaryContour]{TernaryContour()}}.
 }
 \examples{
 TernaryPlot()

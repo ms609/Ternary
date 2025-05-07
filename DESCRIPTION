@@ -1,12 +1,14 @@
 Package: Ternary
-Version: 2.2.1
+Version: 2.3.3.9000
 Title: Create Ternary and Holdridge Plots
 Description: Plots ternary diagrams (simplex plots / Gibbs triangles) and
   Holdridge life zone plots <doi:10.1126/science.105.2727.367> using the
   standard graphics functions.
+  Allows custom annotation, interpolating, contouring and scaling of plotting
+  region.
+  Includes a 'Shiny' user interface for point-and-click ternary plotting.
   An alternative to 'ggtern', which uses the 'ggplot2' family of plotting 
   functions.
-  Includes a 'Shiny' user interface for point-and-click ternary plotting.
 URL:
   https://ms609.github.io/Ternary/,
   https://github.com/ms609/Ternary/
@@ -20,13 +22,12 @@ Authors@R: c(person("Martin R.", "Smith",
             )
 License: GPL (>= 2)
 Language: en-GB
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.6.0)
 Imports:
-    RcppHungarian,
     PlotTools (>= 0.2.0),
+    RcppHungarian,
     shiny,
     sp,
-    viridisLite,
 Suggests:
     colourpicker,
     knitr,
@@ -47,5 +48,5 @@ Config/testthat/parallel: false
 LazyData: true
 VignetteBuilder: knitr
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)

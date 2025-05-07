@@ -1,8 +1,29 @@
+# Ternary v2.3.3.9000 (development, 2025-04-30)
+- Tweak documentation to clarify point colouring and contour vectorization
+
+
+# Ternary v2.3.3 (2024-08-27)
+- Support plotting of `c(0, 0, 0)`, at origin.
+- Require R 3.6.
+- Remove 'viridis' dependency.
+
+# Ternary v2.3.2 (2024-07-25)
+- Document reading data into R in vignette for new users.
+- Provide package anchors in documentation pages.
+
+# Ternary v2.3.1 (2024-02-06)
+- Improve support for `region` parameter.
+
+# Ternary v2.3.0 (2024-01-08)
+- `region` parameter plots a sub-region of the ternary space.
+- Support `...`  in `TernaryContour(Func = function(...))`
+   ([#81](https://github.com/ms609/Ternary/issues/81)).
+
 # Ternary v2.2.1 (2023-06-28)
-  - `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
-    are provided but will be removed in a later version of this package.
-  - Use characters, not numerics, for version number checks
-    (see <https://bugs.r-project.org/show_bug.cgi?id=18548>).
+- `Polygon-Geometry` now imported from PlotTools. Aliases of these functions
+  are provided but will be removed in a later version of this package.
+- Use characters, not numerics, for version number checks
+  (see <https://bugs.r-project.org/show_bug.cgi?id=18548>).
 
 # Ternary v2.2.0 (2023-05-11)
 - New function `Annotate()` annotates points on ternary plot.

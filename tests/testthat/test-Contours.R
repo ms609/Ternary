@@ -26,21 +26,27 @@ test_that("Contours are plotted", {
     FunctionToContour <- function(a, b, c) {
       a - c + (4 * a * b) + (27 * a * b * c)
     }
+    TestDots <- function(a, b, c, working = FALSE) {
+      if (working) a - c + (4 * a * b) + (27 * a * b * c) else NA
+    }
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 1L)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L, legend = 3, bty = "n")
+    TernaryContour(FunctionToContour, resolution = 12L, legend = 3,
+                   legend... = list(bty = "n"))
 
     TernaryPlot(alab = "a", blab = "b", clab = "c", point = 2L)
-    ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
-    TernaryContour(FunctionToContour, resolution = 12L, legend = TRUE)
+    ColourTernary(TernaryPointValues(TestDots, resolution = 6L, working = TRUE))
+    TernaryContour(TestDots, resolution = 12L, legend = TRUE, working = TRUE)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L,
+                region = ternRegion20)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L),
                   legend = TRUE, x = "bottomleft", bty = "n")
     TernaryContour(FunctionToContour, resolution = 12L)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L,
+                region = ternRegionA)
     ColourTernary(TernaryPointValues(FunctionToContour, resolution = 6L))
     val <- TernaryContour(FunctionToContour, resolution = 12L,
                           legend = letters[1:5],
@@ -68,11 +74,13 @@ test_that("Contours are plotted", {
                    color.palette = function(n) 
                      hcl.colors(n, alpha = 0.6, rev = TRUE))
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 3L,
+                region = ternRegion20)
     TernaryContour(FunctionToContour, filled = TRUE, nlevels = 9,
                    fill.col = 0:8)
 
-    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L)
+    TernaryPlot(alab = "a", blab = "b", clab = "c", point = 4L,
+                region = ternRegionA)
     TernaryContour(FunctionToContour, filled = TRUE, nlevels = 4)
   }
   skip_if_not_installed("vdiffr")
