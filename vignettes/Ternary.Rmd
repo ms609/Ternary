@@ -404,6 +404,6 @@ For further examples of usage, see the accompanying vignettes:
 
 ## Bugs and feature requests
 
-I hope the package proves useful. If there"s anything it can"t do that you wish
+I hope the package proves useful. If there's anything it can't do that you wish
 it could, please let me know by opening a
 [Github issue](https://github.com/ms609/Ternary/issues/new?title=Suggestion:+).
