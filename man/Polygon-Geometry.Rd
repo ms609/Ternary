@@ -3,8 +3,7 @@
 \name{Polygon-Geometry}
 \alias{Polygon-Geometry}
 \alias{PolygonArea}
-\title{Polygon geometry
-These deprecated functions have been moved to "PlotTools".}
+\title{Polygon geometry}
 \usage{
 PolygonArea(...)
 }
@@ -12,6 +11,5 @@ PolygonArea(...)
 \item{\dots}{Parameters to PlotTools function}
 }
 \description{
-Polygon geometry
-These deprecated functions have been moved to "PlotTools".
+These functions have moved to "\href{https://ms609.github.io/PlotTools}{PlotTools}" and are deprecated here.
 }
