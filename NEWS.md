@@ -1,6 +1,6 @@
 # Ternary v2.3.3.9000 (development, 2025-04-30)
 - Tweak documentation to clarify point colouring and contour vectorization
-
+- Move contour documentation from vignette to documentation page
 
 # Ternary v2.3.3 (2024-08-27)
 - Support plotting of `c(0, 0, 0)`, at origin.
