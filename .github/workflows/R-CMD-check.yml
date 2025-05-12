@@ -88,6 +88,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
+            svglite@2.1.3
             bench@1.1.3
             cpp11@0.5.0
             downlit@0.4.3
