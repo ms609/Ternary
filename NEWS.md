@@ -1,3 +1,6 @@
+# Ternary v2.3.4.9000 (devleopment)
+- No changes yet.
+
 # Ternary v2.3.4 (2025-05-07)
 - Tweak documentation to clarify point colouring and contour vectorization.
 - Move contour documentation from vignette to documentation page.
