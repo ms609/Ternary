@@ -1,5 +1,6 @@
-# Ternary v2.3.4.9000 (devleopment)
+# Ternary v2.3.4.9000 (development)
 - Fix location of `Annotate()` annotations with `TernaryPlot(region = *)`.
+- Increase oldest tested version from R3.6 to R4.0.
 
 # Ternary v2.3.4 (2025-05-07)
 - Tweak documentation to clarify point colouring and contour vectorization.
