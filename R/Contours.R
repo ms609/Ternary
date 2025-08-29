@@ -230,7 +230,7 @@ TriangleInHull <- function(triangles, coordinates, buffer) {
   triSize <- sqrt(sum((firstTris[, 2] - firstTris[, 1]) ^ 2)) / 2
   
   txy <- t(xy)
-  hull <- GrowPolygon(txy[chull(txy), ], buffer = triSize)
+  hull <- PlotTools::GrowPolygon(txy[chull(txy), ], buffer = triSize)
   
   # Return:
   list(inside = as.logical(point.in.polygon(triangles["x", ], triangles["y", ],
@@ -715,8 +715,8 @@ TernaryContour <- function(
   }
   
   if (is.null(within)) {
-    within <- GrowPolygon(t(TernaryToXY(.RegionCorners(region))),
-                          buffer = 1 / resolution)
+    within <- PlotTools::GrowPolygon(t(TernaryToXY(.RegionCorners(region))),
+                                     buffer = 1 / resolution)
   } else {
     within <- xy.coords(within)
   }

@@ -28,6 +28,8 @@ PolygonCentre <- function(...) {
 #' @rdname Polygon-Geometry
 #' @export
 GrowPolygon <- function(...) {
+  # TODO when we stop exporting, replace explicit link to PlotTools::GrowPolygon
+  # in other functions.
   .Deprecated("PlotTools::GrowPolygon", "PlotTools")
   PlotTools::GrowPolygon(...)
 }
