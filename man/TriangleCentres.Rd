@@ -41,7 +41,6 @@ Other coordinate translation functions:
 \code{\link{XYToTernary}()}
 
 Other tiling functions: 
-\code{\link{Polygon-Geometry}},
 \code{\link{TriangleInHull}()}
 }
 \author{
