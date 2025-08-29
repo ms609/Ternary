@@ -688,7 +688,7 @@ ColorTernary <- ColourTernary
 #' par(originalPar)
 #' @family contour plotting functions
 #' @importFrom graphics contour .filled.contour
-#' @importFrom grDevices hcl.colors
+#' @importFrom grDevices hcl.colors xy.coords
 #' @importFrom PlotTools GrowPolygon SpectrumLegend
 #' @importFrom sp point.in.polygon
 #' @export
