@@ -1,5 +1,5 @@
 # Ternary v2.3.4.9000 (devleopment)
-- Fix location of `Annotate()` annotations with zoomed plots.
+- Fix location of `Annotate()` annotations with `TernaryPlot(region = *)`.
 
 # Ternary v2.3.4 (2025-05-07)
 - Tweak documentation to clarify point colouring and contour vectorization.
