@@ -34,4 +34,11 @@ test_that("Annotate() works", {
   }
   
   vdiffr::expect_doppelganger("Annotate-auto-locate", AnnotateAutoLocate)
+  
+  vdiffr::expect_doppelganger("Annotate-zoomed", function() {
+    my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
+    TernaryPlot(region = my_corners)
+    TernaryPolygon(my_corners, col = "#2cbe4e88")
+    Annotate(my_corners, 1:4)
+  })
 })
