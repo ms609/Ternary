@@ -55,7 +55,7 @@ Annotate <- function(coordinates, labels, side, outset = 0.16,
     side <- match(tolower(side), c("a", "b", "c", 0:3, "n")) %% 4
   } 
   if (any(is.na(side))) {
-    middle <- rowMeans(xy)#apply(xy, 1, median)
+    middle <- rowMeans(xy) #apply(xy, 1, median)
     centred <- xy - middle
     angle <- atan2(centred[2, ], centred[1, ])
     corners <- CoordinatesToXY(diag(3)) - middle
@@ -66,9 +66,16 @@ Annotate <- function(coordinates, labels, side, outset = 0.16,
         is.na(side)]
   }
   side <- rep_len(side, n)
-  ends <- TernaryCoords(cbind(c(0, 90, 10), c(0, 10, 90),
-                              c(10, 0, 90), c(90, 0, 10),
-                              c(90, 10, 0), c(10, 90, 0))) + 
+  region <- options("ternRegion")[["ternRegion"]][, 1:3]
+  inset <- (region["max", ] - region["min", ]) / 10
+  mins <- region["min", ]
+  low <- mins + inset
+  high <- region["max", ] - inset
+  ends <- TernaryCoords(
+    cbind(c(mins[[1]], high[[2]], low[[3]]), c(mins[[1]], low[[2]], high[[3]]),
+          c(low[[1]], mins[[2]], high[[3]]), c(high[[1]], mins[[2]], low[[3]]),
+          c(high[[1]], low[[2]], mins[[3]]), c(low[[1]], high[[2]], mins[[3]]))
+    ) +
     outset * switch(getOption("ternDirection", 1),
                     c(0, -1, 0, -1, -1, 0, -1, 0, 1, 0, 1, 0),
                     c(-1, 0, -1, 0, 0, 1, 0, 1, 0, -1, 0, -1),

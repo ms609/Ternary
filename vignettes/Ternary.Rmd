@@ -68,24 +68,10 @@ for (dir in c("up", "right", "down", "le")) {
 
 ## Plot two stylised plots side by side, and plot data
 
-```{R two-stylised-plots, fig.asp = 1/2}
-# Configure plotting area
-par(mfrow = c(1, 2), mar = c(0.3, 0.3, 1.3, 0.3))
+First we will define some data that we wish to plot:
 
-# Initial plot
-TernaryPlot(alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u2192",
-            lab.col = c("red", "darkgreen", "blue"),
-            main = "Colours", # Title
-            point = "right", lab.cex = 0.8, grid.minor.lines = 0,
-            grid.lty = "solid", col = rgb(0.9, 0.9, 0.9), grid.col = "white", 
-            axis.col = rgb(0.6, 0.6, 0.6), ticks.col = rgb(0.6, 0.6, 0.6),
-            axis.rotate = FALSE,
-            padding = 0.08)
-# Colour the background:
-cols <- TernaryPointValues(rgb)
-ColourTernary(cols, spectrum = NULL)
-
-# Add data points
+```{R setup-stylized-plots}
+# Define data points
 data_points <- list(
   R = c(255, 0, 0), 
   O = c(240, 180, 52),
@@ -102,7 +88,35 @@ PointColour <- function(x) {
       alpha = 128 # Semitransparency
       )
 }
+
+# Precompute the colour for each point
 data_col <- sapply(data_points, PointColour)
+```
+
+Now we set up our plotting area to display two plots side by side, 
+and produce the plots.
+
+```{R two-stylised-plots, fig.asp = 1/2}
+par(                          # Configure plotting area
+  mfrow = c(1, 2),            # Plot one row of panels in two columns
+  mar = c(0.3, 0.3, 1.3, 0.3) # Set margins for each plot
+)
+
+# Initial plot
+TernaryPlot(alab = "Redder \u2192", blab = "\u2190 Greener", clab = "Bluer \u2192",
+            lab.col = c("red", "darkgreen", "blue"),
+            main = "Colours", # Title
+            point = "right", lab.cex = 0.8, grid.minor.lines = 0,
+            grid.lty = "solid", col = rgb(0.9, 0.9, 0.9), grid.col = "white", 
+            axis.col = rgb(0.6, 0.6, 0.6), ticks.col = rgb(0.6, 0.6, 0.6),
+            axis.rotate = FALSE,
+            padding = 0.08)
+
+# Colour the background:
+cols <- TernaryPointValues(rgb)
+ColourTernary(cols, spectrum = NULL)
+
+# Add the data to the plot
 AddToTernary(graphics::points, data_points, pch = 21, cex = 2.8, bg = data_col)
 AddToTernary(text, data_points, names(data_points), cex = 0.8, font = 2)
 legend("bottomright", 
@@ -390,6 +404,6 @@ For further examples of usage, see the accompanying vignettes:
 
 ## Bugs and feature requests
 
-I hope the package proves useful. If there"s anything it can"t do that you wish
+I hope the package proves useful. If there's anything it can't do that you wish
 it could, please let me know by opening a
 [Github issue](https://github.com/ms609/Ternary/issues/new?title=Suggestion:+).

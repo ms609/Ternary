@@ -159,7 +159,6 @@ TernaryDensityContour(t(vapply(coordinates, I, double(3L))),
 
 # Reset plotting parameters
 par(oPar)
-
 }
 \seealso{
 Other contour plotting functions: 

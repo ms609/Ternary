@@ -5,7 +5,7 @@
 * Ubuntu, R 3.6.0, release and devel, via 
   [GitHub actions](https://github.com/ms609/Ternary/actions)
 
-* local Windows 10 install, R 4.4.1
+* local Windows 10 install, R 4.6.0
 * Windows via `devtools::check_win_devel()`
 * Windows Server, R release, via GitHub actions
 
