@@ -3,9 +3,18 @@
 \name{Polygon-Geometry}
 \alias{Polygon-Geometry}
 \alias{PolygonArea}
+\alias{PolygonCenter}
+\alias{PolygonCentre}
+\alias{GrowPolygon}
 \title{Polygon geometry}
 \usage{
 PolygonArea(...)
+
+PolygonCenter(...)
+
+PolygonCentre(...)
+
+GrowPolygon(...)
 }
 \arguments{
 \item{\dots}{Parameters to PlotTools function}

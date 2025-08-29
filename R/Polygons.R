@@ -11,21 +11,21 @@ PolygonArea <- function(...) {
   PlotTools::PolygonArea(...)
 }
 
-#' @rdname Polygons
+#' @rdname Polygon-Geometry
 #' @export
 PolygonCenter <- function(...) {
   .Deprecated("PlotTools::PolygonCenter", "PlotTools")
   PlotTools::PolygonCenter(...)
 }
 
-#' @rdname Polygons
+#' @rdname Polygon-Geometry
 #' @export
 PolygonCentre <- function(...) {
   .Deprecated("PlotTools::PolygonCentre", "PlotTools")
   PlotTools::PolygonCenter(...)
 }
 
-#' @rdname Polygons
+#' @rdname Polygon-Geometry
 #' @export
 GrowPolygon <- function(...) {
   .Deprecated("PlotTools::GrowPolygon", "PlotTools")
