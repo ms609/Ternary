@@ -46,7 +46,7 @@ jobs:
         config:
           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-24.04, r: '3.6', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
+          - {os: ubuntu-22.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"}
           - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
           - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
 
@@ -113,10 +113,6 @@ jobs:
         if: runner.os != 'Windows' && matrix.config.r != '3.6'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            knitr=?ignore-before-r=4.0.0
-            rmarkdown=?ignore-before-r=4.0.0
-            testthat=?ignore-before-r=4.0.0
           needs: |
             check
 
