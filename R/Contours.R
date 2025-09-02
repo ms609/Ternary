@@ -500,7 +500,10 @@ TernaryTiles <- function(x, y, down, resolution, col,
 #' @param spectrum Vector of colours to use as a spectrum, or `NULL` to use
 #' `values["z", ]`.
 #' @inheritParams TernaryPointValues
-#' @template legendParam
+#' @param legend Character vector specifying annotations for colour scale.
+#' If not provided, no colour legend is displayed.
+#' Specify `TRUE` to generate automatically, or a single integer to generate
+#' `legend` annotations.
 #' @param \dots Further arguments to
 #' [`SpectrumLegend()`][PlotTools::SpectrumLegend].
 #' @return `ColourTernary()` is called for its side effect – colouring a ternary
@@ -616,7 +619,7 @@ ColorTernary <- ColourTernary
 #' @inheritParams TernaryPlot
 #' @inheritParams TernaryPointValues
 #' @template dotsToContour
-#' @template legendParam
+#' @inheritParams ColourTernary
 #' @param legend... List of additional parameters to send to
 #' [`SpectrumLegend()`][PlotTools::SpectrumLegend].
 #' @param func... List of additional parameters to send to `Func()`.
