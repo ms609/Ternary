@@ -22,3 +22,4 @@ GrowPolygon(...)
 \description{
 These functions have moved to "\href{https://ms609.github.io/PlotTools}{PlotTools}" and are deprecated here.
 }
+\keyword{internal}

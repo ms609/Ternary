@@ -5,6 +5,7 @@
 #' @param \dots Parameters to PlotTools function
 #' @name Polygon-Geometry
 #' @importFrom PlotTools PolygonArea PolygonCenter GrowPolygon
+#' @keywords internal
 #' @export
 PolygonArea <- function(...) {
   .Deprecated("PlotTools::PolygonArea", "PlotTools")
