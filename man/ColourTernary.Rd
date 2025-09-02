@@ -3,26 +3,30 @@
 \name{ColourTernary}
 \alias{ColourTernary}
 \alias{ColorTernary}
-\title{Colour a ternary plot according to the output of a function}
+\title{Colour ternary plot}
 \usage{
 ColourTernary(
   values,
-  spectrum = viridisLite::viridis(256L, alpha = 0.6),
+  spectrum = hcl.colors(256L, palette = "viridis", alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  legend,
+  ...
 )
 
 ColorTernary(
   values,
-  spectrum = viridisLite::viridis(256L, alpha = 0.6),
+  spectrum = hcl.colors(256L, palette = "viridis", alpha = 0.6),
   resolution = sqrt(ncol(values)),
-  direction = getOption("ternDirection", 1L)
+  direction = getOption("ternDirection", 1L),
+  legend,
+  ...
 )
 }
 \arguments{
-\item{values}{Numeric matrix, possibly created using \code{\link[=TernaryPointValues]{TernaryPointValues()}},
-with four named rows:
-\code{x}, \code{y}, cartesian coordinates of each triangle centre;
+\item{values}{Numeric matrix, possibly created using
+\code{\link[=TernaryPointValues]{TernaryPointValues()}}, with four named rows:
+\code{x}, \code{y}, Cartesian coordinates of each triangle centre;
 \code{z}, value associated with that coordinate;
 \code{down}, triangle direction: \code{0} = point upwards; \code{1} = point downwards.}
 
@@ -33,29 +37,50 @@ with four named rows:
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+
+\item{legend}{Character vector specifying annotations for colour scale.
+If not provided, no colour legend is displayed.
+Specify \code{TRUE} to generate automatically, or a single integer to generate
+\code{legend} annotations.}
+
+\item{\dots}{Further arguments to
+\code{\link[PlotTools:SpectrumLegend]{SpectrumLegend()}}.}
+}
+\value{
+\code{ColourTernary()} is called for its side effect – colouring a ternary
+plot according to \code{values}.  It invisibly returns \code{NULL}.
 }
 \description{
-Colour a ternary plot according to the output of a function
+Colour a ternary plot according to the output of a function.
 }
 \examples{
-TernaryPlot(alab = "a", blab = "b", clab = "c")
- 
+# Depict a function across a ternary plot with colour and contours
+
+TernaryPlot(alab = "a", blab = "b", clab = "c") # Blank plot
+
 FunctionToContour <- function (a, b, c) {
   a - c + (4 * a * b) + (27 * a * b * c)
 }
 
+# Evaluate function
 values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
+
+# Use the value of the function to determine the brightness of the plot
+ColourTernary(
+  values,
+  x = "topleft",
+  bty = "n", # No box
+  legend = signif(seq(max(values), min(values), length.out = 4), 3)
+)
+
+# Overlay contours
 TernaryContour(FunctionToContour, resolution = 36L)
 
+# Directly specify the colour with the output of a function
 
-TernaryPlot()
-values <- TernaryPointValues(rgb, resolution = 20)
-ColourTernary(values, spectrum = NULL)
-
-# Create a helper function to place white centrally:
+# Create a function that returns a vector of rgb strings:
 rgbWhite <- function (r, g, b) {
   highest <- apply(rbind(r, g, b), 2L, max)
   rgb(r/highest, g/highest, b/highest)
@@ -68,6 +93,9 @@ ColourTernary(values, spectrum = NULL)
 
 }
 \seealso{
+Fine control over continuous legends:
+\code{\link[PlotTools:SpectrumLegend]{PlotTools::SpectrumLegend()}}
+
 Other contour plotting functions: 
 \code{\link{TernaryContour}()},
 \code{\link{TernaryDensityContour}()},

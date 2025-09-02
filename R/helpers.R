@@ -1,3 +1,15 @@
+.SimpleApply <- if (packageVersion("base") < "4.1") function(...) {
+  # Simplify not supported until R4.1
+  x <- apply(...)
+  if (is.list(x)) {
+    x
+  } else {
+    lapply(seq_len(ncol(x)), function(i) x[, i])
+  }
+} else function(...) {
+  apply(..., simplify = FALSE)
+}
+
 .StartPlot <- function(tern, ...) {
   padVec <- c(-1, 1) * tern$padding
 
@@ -80,7 +92,7 @@
       c(0, p, q), c(q, p, 0),
       c(q, 0, p), c(0, q, p)
     ),
-    TernaryCoords, double(2)
+    TernaryCoords, region = ternRegionDefault, double(2)
   )
   lapply(list(c(1, 2), c(3, 4), c(5, 6)), function(i) {
     lines(lineEnds[1, i], lineEnds[2, i],
@@ -119,15 +131,17 @@
       q <- 1 - p
       gridEnds <- vapply(
         list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
-        TernaryCoords, double(2)
+        TernaryCoords, region = ternRegionDefault, double(2)
       )
       lapply(1:3, .AxisTick, gridEnds)
     })
   }
 }
 
-.AxisLabel <- function(side, lineEnds, lab,
-                       tern = getOption(".Last.triangle")) {
+.AxisLabel <- function(
+    side, lineEnds, lab,
+    tern = getOption(".Last.triangle")
+  ) {
   selected <- tern$sideOrder[side]
   lng <- tern$ticks.length[side] * tern$axisMult[side]
   text(lineEnds[1, side] + sin(tern$axisRadians[side]) * lng,
@@ -165,23 +179,32 @@
       q <- 1 - p
       lineEnds <- vapply(
         list(c(p, 0, q), c(q, p, 0), c(0, q, p)),
-        TernaryCoords, double(2)
+        TernaryCoords, region = ternRegionDefault, double(2)
       )
-
-      if (length(lab) > 1 || lab != FALSE) {
-        if (length(lab) == 1) {
-          lab <- round(tern$gridPoints * 100, 1)
+      
+      for (side in 1:3) {
+        sideLab <- if (is.list(lab)) {
+          lab[[side]]
+        } else {
+          lab
         }
-        if (!is.null(tern$grid.lines) &&
-          length(lab) == tern$grid.lines) {
-          lab <- c("", lab)
+        if (length(sideLab) > 1 || sideLab != FALSE) {
+          if (length(sideLab) == 1) {
+            range <- getOption("ternRegion")[, side]
+            sideLab <- round(seq(range[1], range[2],
+                                 length.out = length(tern$gridPoints)), 1)
+          }
+          if (!is.null(tern$grid.lines) &&
+            length(sideLab) == tern$grid.lines) {
+            sideLab <- c("", sideLab)
+          }
+          if (!tern$ticks.incline[1]) {
+            sideLab <- rev(sideLab)
+          }
+  
+          # Annotate axes
+          .AxisLabel(side, lineEnds, lab = sideLab[i])
         }
-        if (!tern$ticks.incline[1]) {
-          lab <- rev(lab)
-        }
-
-        # Annotate axes
-        lapply(1:3, .AxisLabel, lineEnds, lab = lab[i])
       }
     })
   }
@@ -207,12 +230,13 @@
     0, 90, 0, 270
   ), 4, 3)
 
+  region <- getOption("ternRegion")
+  mids <- colMeans(region)
   xy <- TernaryCoords(switch(side,
-    c(1, 0, 1),
-    c(1, 1, 0),
-    c(0, 1, 1)
-  )) +
-    (loff * .DirectionalOffset(do[tern$direction, side]))
+    c(mids[1], region[1, 2], mids[3]),
+    c(mids[1:2], region[1, 3]),
+    c(region[1, 1], mids[2:3])
+  )) + (loff * .DirectionalOffset(do[tern$direction, side]))
 
   text(xy[1], xy[2], switch(selected,
     tern$alab,
@@ -284,9 +308,15 @@
   cy <- c(-4, 2, 4, -2)[direction] * len[3]
 
   # Title corners
-  .TitleCorner(1, tern, ax, ay, tern$atip, tern$atip.pos, srt = tern$atip.rotate)
-  .TitleCorner(2, tern, bx, by, tern$btip, tern$btip.pos, srt = tern$btip.rotate)
-  .TitleCorner(3, tern, cx, cy, tern$ctip, tern$ctip.pos, srt = tern$ctip.rotate)
+  .TitleCorner(
+    1, tern, ax, ay, tern$atip, tern$atip.pos, srt = tern$atip.rotate
+  )
+  .TitleCorner(
+    2, tern, bx, by, tern$btip, tern$btip.pos, srt = tern$btip.rotate
+  )
+  .TitleCorner(
+    3, tern, cx, cy, tern$ctip, tern$ctip.pos, srt = tern$ctip.rotate
+  )
 }
 
 .TitleCorner <- function(side, tern, x, y, tip, pos, srt) {

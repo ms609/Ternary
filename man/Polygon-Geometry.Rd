@@ -3,71 +3,22 @@
 \name{Polygon-Geometry}
 \alias{Polygon-Geometry}
 \alias{PolygonArea}
-\alias{PolygonCentre}
 \alias{PolygonCenter}
+\alias{PolygonCentre}
 \alias{GrowPolygon}
 \title{Polygon geometry}
 \usage{
-PolygonArea(x, y = NULL, positive = TRUE)
+PolygonArea(...)
 
-PolygonCentre(x, y = NULL)
+PolygonCenter(...)
 
-PolygonCenter(x, y = NULL)
+PolygonCentre(...)
 
-GrowPolygon(x, y = NULL, buffer = 0)
+GrowPolygon(...)
 }
 \arguments{
-\item{x, y}{Vectors containing the coordinates of the vertices of the polygon.}
-
-\item{positive}{If vertices are specified in an anticlockwise direction,
-the polygon will be treated as a hole, with a negative area, unless
-\code{positive} is set to TRUE.
-Vertices specified in a clockwise sequence always yield a positive area.}
-
-\item{buffer}{Numeric specifying distance by which to grow polygon.}
-}
-\value{
-\code{PolygonArea()} returns the area of the specified polygon.
-
-\code{PolygonCentre()} returns a single-row matrix containing the
-\emph{x} and \emph{y} coordinates of the geometric centre of the polygon.
-
-\code{GrowPolygon()} returns coordinates of the vertices of \code{polygon}
-after moving each vertex \code{buffer} away from the polygon's centre.
+\item{\dots}{Parameters to PlotTools function}
 }
 \description{
-Geometry functions for irregular polygons.
+These functions have moved to "\href{https://ms609.github.io/PlotTools}{PlotTools}" and are deprecated here.
 }
-\section{Functions}{
-\itemize{
-\item \code{PolygonArea()}: Calculate the area of an irregular polygon
-
-\item \code{PolygonCentre()}: Locate the centre of a polygon
-
-\item \code{GrowPolygon()}: Enlarge a polygon in all directions
-
-}}
-\examples{
-x <- c(-3, -1, 6, 3, -4)
-y <- c(-2, 4, 1, 10, 9)
-plot(x, y, frame.plot = FALSE)
-polygon(x, y)
-PolygonArea(x, y)
-points(PolygonCentre(x, y), pch = 3, cex = 2)
-polygon(GrowPolygon(x, y, 1), border = "darkgreen",
-        xpd = NA # Allow drawing beyond plot border
-       )
-
-# Negative values shrink the polygon
-polygon(GrowPolygon(x, y, -1), border = "red")
-}
-\seealso{
-Other tiling functions: 
-\code{\link{TriangleCentres}()},
-\code{\link{TriangleInHull}()}
-}
-\author{
-\href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
-(\href{mailto:martin.smith@durham.ac.uk}{martin.smith@durham.ac.uk})
-}
-\concept{tiling functions}

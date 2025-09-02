@@ -3,7 +3,7 @@
 \name{TernaryPointValues}
 \alias{TernaryPointValues}
 \alias{TernaryDensity}
-\title{Value of a function at regularly spaced points}
+\title{Evaluate function over a grid}
 \usage{
 TernaryPointValues(
   Func,
@@ -19,27 +19,29 @@ TernaryDensity(
 )
 }
 \arguments{
-\item{Func}{Function taking vectors of coordinates \code{a}, \code{b} and \code{c}, which
-returns a numeric vector whose value at each coordinate will be depicted.}
+\item{Func}{Function that takes three arguments named \code{a}, \code{b} and \code{c}, and
+returns a numeric vector of length \emph{n}.
+\code{a}, \code{b} and \code{c} will each be a vector of length \emph{n}. Together, they
+specify the series of coordinates at which the function should be evaluated.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 colour gradients, but at a computational cost.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 
 \item{\dots}{Additional parameters to \code{Func()}.}
 
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 }
 \value{
 \code{TernaryPointValues()} returns a matrix whose rows correspond to:
 \itemize{
 \item \strong{x}, \strong{y}: co-ordinates of the centres of smaller triangles
-\item \strong{z}: The value of \code{Func(a, b, c)}, where \code{a}, \code{b} and \code{c} are the
+\item \strong{z}: The value of \code{Func(a, b, c, ...)}, where \code{a}, \code{b} and \code{c} are the
 ternary coordinates of \code{x} and \code{y}.
 \item \strong{down}: \code{0} if the triangle concerned points upwards (or right),
 \code{1} otherwise
@@ -67,9 +69,8 @@ coordinates <- cbind(abs(rnorm(nPoints, 2, 3)),
                      abs(rnorm(nPoints, 1, 0.5)))
 
 density <- TernaryDensity(coordinates, resolution = 10L)
-ColourTernary(density)
+ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 TernaryPoints(coordinates, col = "red", pch = ".")
-
 }
 \seealso{
 Other contour plotting functions: 

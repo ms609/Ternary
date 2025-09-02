@@ -13,6 +13,8 @@
 #' [`HoldridgeBelts()`] and [`HoldridgeHexagons()`] plot interpretative lines
 #' and hexagons allowing plotted data to be linked to interpreted climate
 #' settings.
+#' 
+#' Please cite Tsakalos _et al._ (2023) when using this function.
 #'
 #' @inheritParams TernaryPlot
 #'
@@ -27,10 +29,13 @@
 #' "Determination of world plant formations from simple climatic data",
 #' _Science_ 105:367&ndash;368. \doi{10.1126/science.105.2727.367}
 #'
-#' Holdridge (1967), _[Life zone ecology]_.
+#' Holdridge (1967), _Life zone ecology_.
 #' Tropical Science Center, San Jos&eacute;
 #' 
-#' [Life zone ecology]: https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf
+#' Tsakalos, Smith, Luebert & Mucina (2023).
+#' "climenv: Download, extract and visualise climatic and elevation data.",
+#' _Journal of Vegetation Science_ 6:e13215. \doi{10.1111/jvs.13215}
+#'
 #'
 #' @encoding UTF-8
 #' @examples
@@ -46,7 +51,7 @@ HoldridgePlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                           clab = "Humidity province",
                           lab.offset = 0.22,
                           lab.col = c("#D81B60", "#1E88E5", "#111111"),
-                          xlim = NULL, ylim = NULL,
+                          xlim = NULL, ylim = NULL, region = NULL,
                           lab.cex = 1.0,
                           lab.font = 0,
                           tip.cex = lab.cex,
@@ -88,6 +93,7 @@ HoldridgePlot <- function(atip = NULL, btip = NULL, ctip = NULL,
                           ticks.length = 0.025,
                           ticks.col = grid.col,
                           ...) {
+  .SetRegion(ternRegionDefault)
   tri <- .TrianglePlot(
     atip = atip, btip = btip, ctip = ctip,
     alab = alab, blab = blab, clab = clab,
@@ -420,13 +426,16 @@ HoldridgeToXY <- function(pet, prec) {
 
   plottable <- is.finite(pet08) & is.finite(prec08)
 
-  TernaryCoords(rbind(8 - pet08 - prec08, prec08, pet08)[, plottable, drop = FALSE])
+  TernaryCoords(
+    rbind(8 - pet08 - prec08, prec08, pet08)[, plottable, drop = FALSE]
+  )
 }
 
 
 #' @rdname AddToTernary
 #' @inheritParams HoldridgeToXY
 #' @family Holdridge plotting functions
+#' @order 20
 #' @export
 AddToHoldridge <- function(PlottingFunction, pet, prec, ...) {
   xy <- HoldridgeToXY(pet, prec)
@@ -435,6 +444,7 @@ AddToHoldridge <- function(PlottingFunction, pet, prec, ...) {
 
 #' @describeIn AddToTernary Add  \link[graphics]{arrows} to Holdridge plot
 #' @importFrom graphics arrows
+#' @order 25
 #' @export
 HoldridgeArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
                             ...) {
@@ -447,6 +457,7 @@ HoldridgeArrows <- function(fromCoordinates, toCoordinates = fromCoordinates,
 
 #' @describeIn AddToTernary Add \link[graphics]{lines} to Holdridge plot
 #' @importFrom graphics lines
+#' @order 25
 #' @export
 HoldridgeLines <- function(pet, prec, ...) {
   AddToHoldridge(lines, pet, prec, ...)
@@ -454,6 +465,7 @@ HoldridgeLines <- function(pet, prec, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{points} to Holdridge plot
 #' @importFrom graphics points
+#' @order 25
 #' @export
 HoldridgePoints <- function(pet, prec, ...) {
   AddToHoldridge(points, pet, prec, ...)
@@ -462,6 +474,7 @@ HoldridgePoints <- function(pet, prec, ...) {
 #' @describeIn AddToTernary Add \link[graphics:polygon]{polygons} to Holdridge
 #' plot
 #' @importFrom graphics polygon
+#' @order 25
 #' @export
 HoldridgePolygon <- function(pet, prec, ...) {
   AddToHoldridge(polygon, pet, prec, ...)
@@ -469,6 +482,7 @@ HoldridgePolygon <- function(pet, prec, ...) {
 
 #' @describeIn AddToTernary Add \link[graphics]{text} to Holdridge plot
 #' @importFrom graphics text
+#' @order 25
 #' @export
 HoldridgeText <- function(pet, prec, ...) {
   AddToHoldridge(text, pet, prec, ...)

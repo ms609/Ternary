@@ -18,6 +18,7 @@ HoldridgePlot(
   lab.col = c("#D81B60", "#1E88E5", "#111111"),
   xlim = NULL,
   ylim = NULL,
+  region = NULL,
   lab.cex = 1,
   lab.font = 0,
   tip.cex = lab.cex,
@@ -92,19 +93,28 @@ Left or right-pointing arrows are produced by
 typing \verb{\\\\U2190} or \verb{\\\\U2192}, or using \code{expression('value' \%->\% '')}.}
 
 \item{lab.offset}{Numeric specifying distance between midpoint of axis label
-and the axis.
+and the axis. The default value is given in the 'Usage' section; a value
+of \code{0} will position the axis label directly on the axis.
 Increase \code{padding} if labels are being clipped.
 Use a vector of length three to specify a different offset for each label.}
 
 \item{lab.col}{Character vector specifying colours for axis labels. Use a
 vector of length three to specify a different colour for each label.}
 
-\item{xlim, ylim}{Numeric vectors of length 2 specifying the minimum and maximum
-\emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be added.
+\item{xlim, ylim}{Numeric vectors of length two specifying the minimum and
+maximum \emph{x} and \emph{y} limits of the plotted area, to which \code{padding} will be
+added.
 The default is to display the complete height or width of the plot.
 Allows cropping to magnified region of the plot. (See vignette for diagram.)
-May be overridden if \code{isometric=TRUE}; see documentation of
+May be overridden if \code{isometric = TRUE}; see documentation of
 \code{isometric} parameter.}
+
+\item{region}{(optional) Named list of length two specifying the the
+\code{min}imum and \code{max}imum values of each ternary axis to be drawn
+(e.g. \verb{list(min = c(40, 0, 0), max = c(100, 60, 60)});
+or a set of coordinates in a format accepted by \code{\link[=TernaryPoints]{TernaryPoints()}}.
+The plotted region will correspond to the smallest equilateral triangle
+that encompasses the specified ranges or coordinates.}
 
 \item{lab.cex, tip.cex}{Numeric specifying character expansion (font size)
 for axis labels.
@@ -126,12 +136,13 @@ other limit.}
 degrees to rotate label of rightmost apex.}
 
 \item{atip.pos, btip.pos, ctip.pos}{Integer specifying positioning of labels,
-iff the corresponding \code{xlab.rotate} parameter is set.}
+iff the corresponding \code{xtip.rotate} parameter is set.}
 
-\item{padding}{Numeric specifying size of internal margin of the plot; increase
-if axis labels are being clipped.}
+\item{padding}{Numeric specifying size of internal margin of the plot;
+increase if axis labels are being clipped.}
 
-\item{col}{The colour for filling the plot; see \code{\link[graphics]{polygon}}.}
+\item{col}{The colour for filling the plot; see
+\code{\link[graphics]{polygon}}.}
 
 \item{panel.first}{An expression to be evaluated after the plot axes are
 set up but before any plotting takes place.
@@ -144,7 +155,8 @@ plot methods may well not work since it may be evaluated too early.}
 place but before the axes and box are added.  See the comments about
 \code{panel.first}.}
 
-\item{grid.lines}{Integer specifying the number of grid lines to plot.}
+\item{grid.lines}{Integer specifying the number of grid lines to plot.
+If \code{axis.labels = TRUE}, this will be used as a hint to \code{pretty()}.}
 
 \item{grid.col, grid.minor.col}{Colours to draw the grid lines. Use a vector
 of length three to set different values for each direction.}
@@ -190,7 +202,9 @@ inline, and \code{ticks.col = NULL} means to use whatever colour
 
 \item{axis.labels}{This can either be a logical value specifying whether
 (numerical) annotations are to be made at the tickmarks, or a character or
-expression vector of labels to be placed at the tick points.}
+expression vector of labels to be placed at the tick points,
+or a list of length three, with each entry specifying labels to be placed
+on each axis in turn.}
 
 \item{axis.lty}{Line type for both the axis line and tick marks.
 Use a vector of length three to set a different value for each direction.}
@@ -242,6 +256,8 @@ using any of the standard plotting functions.
 \code{\link[=HoldridgeBelts]{HoldridgeBelts()}} and \code{\link[=HoldridgeHexagons]{HoldridgeHexagons()}} plot interpretative lines
 and hexagons allowing plotted data to be linked to interpreted climate
 settings.
+
+Please cite Tsakalos \emph{et al.} (2023) when using this function.
 }
 \examples{
 data(holdridgeLifeZonesUp, package = "Ternary")
@@ -253,15 +269,19 @@ Holdridge (1947),
 "Determination of world plant formations from simple climatic data",
 \emph{Science} 105:367–368. \doi{10.1126/science.105.2727.367}
 
-Holdridge (1967), \emph{\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{Life zone ecology}}.
+Holdridge (1967), \emph{Life zone ecology}.
 Tropical Science Center, San José
+
+Tsakalos, Smith, Luebert & Mucina (2023).
+"climenv: Download, extract and visualise climatic and elevation data.",
+\emph{Journal of Vegetation Science} 6:e13215. \doi{10.1111/jvs.13215}
 }
 \seealso{
 Other Holdridge plotting functions: 
-\code{\link{AddToHoldridge}()},
+\code{\link{AddToTernary}()},
 \code{\link{HoldridgeHypsometricCol}()},
-\code{\link{holdridgeClasses}},
-\code{\link{holdridge}}
+\code{\link{holdridge}},
+\code{\link{holdridgeClasses}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

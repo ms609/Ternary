@@ -2,7 +2,7 @@ url: https://ms609.github.io/Ternary
 
 authors:
   Martin R. Smith: 
-    href: https://community.dur.ac.uk/martin.smith/
+    href: https://smithlabdurham.github.io/
     
 development:
   mode: auto
@@ -15,6 +15,7 @@ reference:
       - TernaryApp
       - TernaryPlot
       - AddToTernary
+      - Annotate
   - title: "Creating Holdridge plots"
     desc: >
       Functions for drawing and adding data to a Holdridge plot.
@@ -46,4 +47,4 @@ template:
       app_id: PQTZW3A3WS
       api_key: 1a3f070f20390600ef8e4f7801791ec3
       index_name: ternary
-    ganalytics: 312404279
+    ganalytics: G-5CGZXRTL3K

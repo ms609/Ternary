@@ -22,13 +22,13 @@ Holdridge (1947),
 "Determination of world plant formations from simple climatic data",
 \emph{Science} 105:367–368. \doi{10.1126/science.105.2727.367}
 
-Holdridge (1967),
-\href{https://reddcr.go.cr/sites/default/files/centro-de-documentacion/holdridge_1966_-_life_zone_ecology.pdf}{\emph{Life zone ecology}}.
-Tropical Science Center, San José
+Holdridge (1967), \emph{Life zone ecology}. Tropical Science Center,
+San José.
 
 Leemans, R. (1990),
 "Possible change in natural vegetation patterns due to a global warming",
-\emph{International Institute for Applied Systems Analysis} Working paper WP-90-08.
+\emph{International Institute for Applied Systems Analysis} Working paper
+WP-90-08.
 \url{https://pure.iiasa.ac.at/id/eprint/3443/1/WP-90-008.pdf}
 }
 \usage{
@@ -54,7 +54,7 @@ lines, for more legible plotting with \code{\link[=HoldridgeHexagons]{HoldridgeH
 }
 \seealso{
 Other Holdridge plotting functions: 
-\code{\link{AddToHoldridge}()},
+\code{\link{AddToTernary}()},
 \code{\link{HoldridgeHypsometricCol}()},
 \code{\link{HoldridgePlot}()},
 \code{\link{holdridge}}

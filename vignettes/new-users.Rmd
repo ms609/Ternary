@@ -13,19 +13,6 @@ vignette: >
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
 
-```{r hcl-colors-hack, echo=FALSE}
-if (getRversion() < 3.6) {
-  hcl.colors <- function(n, ...) {
-    if (n == 4) {
-      return(c("#A71B4B", "#F9C25C", "#81DEAD", "#584B9F"))
-    } else {
-      colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
-                         "#7ED357", "#FDE333"))(n)
-    }
-  }
-}
-```
-
 This guide gives a brief example of using the "Ternary" package, using
 road casualty data from Great Britain.
 
@@ -70,14 +57,18 @@ beltLawPch <- ifelse(Seatbelts[, "law"], 3, 1)
 ```
 
 
-Let's also make the plot more readable by shrinking the margins:
+Let's also make the plot more readable by shrinking the margins,
+and just plotting the region of the plot where the data lie:
 
 ```{r by-law, fig.asp = 1}
 # Shrink the margin so the plot's easier to read
 par(mar = c(0, 0, 0, 0))
 
-# Set up a blank plot
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+# Set up a blank plot, 
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 
 # Add a legend
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
@@ -100,39 +91,19 @@ rowCol <- hcl.colors(nPoints, palette = "viridis", alpha = 0.8)
 ```
 
 
-It's a bit of a fuss to draw legends for continuous colour scales, so to keep our code clean let's write a function to add our legends:
-
-```{r leg-funcs}
-SpectrumLegend <- function(spectrum, labels) {
-  nCol <- length(spectrum)
-
-  # Spectrum legends are inconvenient to produce:
-  xMax <- TernaryXRange()[2]
-  yMax <- TernaryYRange()[2]
-  legendY0 <- yMax * 0.75
-  legendY1 <- yMax * 0.95
-  legendHeight <- legendY1 - legendY0
-
-  segX <- rep(xMax, nCol)
-  segY <- seq_len(nCol) / nCol
-  segY <- legendY0 + (segY * legendHeight)
-  segments(segX, segY - segY[1] + legendY0, y1 = segY, col = spectrum,
-           lwd = 4)
-  text(range(segX), c(legendY0, legendY1), labels, pos = 2)
-}
-```
-
-
 Now we can plot our data:
 
 ```{r spectrum, fig.asp = 1}
 par(mar = c(0, 0, 0, 0))
 
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
 
-# Now we can call our legend-adding function:
-SpectrumLegend(rowCol, labels = c("Jan 1969", "Dec 1984"))
+# Add a legend for our colour scale
+PlotTools::SpectrumLegend(palette = rowCol, legend = c("Dec 1984", "Jan 1969"))
 
 # Use our rowCol variable to style points
 TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
@@ -149,12 +120,24 @@ monthCol <- colorRampPalette(fourSeasons[c(1:4, 1)])(13)[c(7:12, 1:6)]
 
 par(mar = c(0, 0, 0, 0))
 
-TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3])
+TernaryPlot(
+  alab = seat[1], blab = seat[2], clab = seat[3],
+  region = Seatbelts[, seat]
+)
 legend("topleft", c("Belt law", "No law"), pch = c(3, 1))
 
-SpectrumLegend(monthCol, c("Jan", "Dec"))
+legendMonths <- seq(1, 12, by = 2)
+# Add a legend for our colour index
+legend(
+  "topright",
+  bty = "n", # No frame
+  pch = 15, # Filled square
+  col = monthCol,
+  legend = month.abb,
+  title = "Month"
+)
 
-# Use our rowCol variable to style points
+# Style points by law and month
 TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
               lwd = 2, # Use wider lines so points are clearer
               col = monthCol)
@@ -163,9 +146,9 @@ TernaryPoints(Seatbelts[, seat], pch = beltLawPch,
 With or without seatbelts, drivers are in more relative danger in winter!
 
 Now let's size each point by the number of casualties, scaled by distance driven.
-We'll need to zoom in closer to the plot to see this clearly.
+We can use a different approach to zoom into the relevant region.
 
-```{r scale-by-deaths}
+```{r scale-by-deaths, fig.asp = 1}
 par(mar = c(0, 0, 0, 0))
 
 TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
@@ -180,7 +163,7 @@ legend("topright", title = "Casualties / Mm", legend = sizes,
       pt.cex = sizes / 1000 * scale,
       pch = 1, lwd = 2, lty = NA)
 
-# Use our rowCol variable to style points
+# Style points according to casualties and the law
 TernaryPoints(Seatbelts[, seat], pch = 1, lwd = 2,
               cex = Seatbelts[, "DriversKilled"] / Seatbelts[, "kms"] * scale,
               col = 2 + Seatbelts[, "law"])
@@ -190,7 +173,7 @@ The smaller size of points after mandatory seatbelt usage is evident.
 
 Now let's plot the annual trend as a line, taking the values for each October as representative:
 
-```{r all-deaths}
+```{r all-deaths, fig.asp = 1}
 # Subset our data to extract only Octobers:
 oct <- month.name == "October"
 octBelts <- Seatbelts[oct, ]
@@ -209,6 +192,54 @@ TernaryText(octBelts[, seat], paste0("'", 69:84),
             font = 2, cex = 1.5,
             # Semi-transparent colours
             col = adjustcolor(rowCol[oct], alpha.f = 0.8))
+
+# Provide a legend for our colour scheme
+PlotTools::SpectrumLegend(
+  "topright",
+  bty = "n",
+  palette = rowCol,
+  legend = seq(1984, 1969, length.out = 4),
+  title = "Year"
+)
+```
+
+# Your own data
+
+The next step is to try plotting your own data.  There are many online
+tutorials for loading data in a variety of formats into R.
+Two of the most common cases are:
+
+- Reading data from an Excel file.  Here you can use:
+```r
+# On first use only, install the 'readxl' package
+install.packages("readxl")
+
+# Load data into an object called `myData`
+myData <- readxl::read_excel("path_to/your_excel_file.xlsx")
+
+# View the loaded data
+View(myData)
+
+# View manual page for `read_excel` function, with details for advanced use
+?read_excel
+```
+
+- Reading data from a delimited file, such as a `.csv`:
+
+```r
+# Read data into an object called `myData`
+myData <- read.csv("path_to/your_data_file.csv")
+
+# View the loaded data
+View(myData)
+
+# For more flexibility - for instance for tab-separated data - see:
+?read.table
+
+# Read data from a tab-separated file with a header row
+myData <- read.table("path_to/your_data_file.txt", sep = "\t", header = TRUE)
+
+View(myData)
 ```
 
 # Where next
@@ -219,3 +250,6 @@ For more complicated examples of usage, see the accompanying vignettes:
 
 - [Interpolating and contouring](interpolation.html)
 
+- [Annotation of points](annotation.html)
+
+- [Plotting Holdridge climate zones](Holdridge.html)

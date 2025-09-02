@@ -20,8 +20,8 @@ TernaryTiles(
 \arguments{
 \item{x, y}{Numeric vectors specifying \emph{x} and \emph{y} coordinates of centres of each triangle.}
 
-\item{down}{Logical vector specifying \code{TRUE} if each triangle should point down (or right),
-\code{FALSE} otherwise.}
+\item{down}{Logical vector specifying \code{TRUE} if each triangle should point
+down (or right), \code{FALSE} otherwise.}
 
 \item{resolution}{The number of triangles whose base should lie on the longest
 axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
@@ -29,26 +29,25 @@ colour gradients, but at a computational cost.}
 
 \item{col}{Vector specifying the colour with which to fill each triangle.}
 
-\item{direction}{(optional) Integer specifying the direction that the current ternary plot
-should point: 1, up; 2, right; 3, down; 4, left.}
+\item{direction}{(optional) Integer specifying the direction that the
+current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
+}
+\value{
+\code{TernaryTiles()} is called for its side effect – painting a ternary
+plot with coloured tiles.  It invisibly returns \code{NULL}.
 }
 \description{
 Function to fill a ternary plot with coloured tiles.  Useful in combination with
-\code{\link{TernaryPointValues}} and \code{\link{TernaryContour}}.
+\code{\link[=TernaryPointValues]{TernaryPointValues()}} and \code{\link[=TernaryContour]{TernaryContour()}}.
 }
 \examples{
-
-FunctionToContour <- function (a, b, c) {
-  a - c + (4 * a * b) + (27 * a * b * c)
-}
-
 TernaryPlot()
+TernaryXRange()
+TernaryYRange()
 
-values <- TernaryPointValues(FunctionToContour, resolution = 24L)
-ColourTernary(values)
-TernaryContour(FunctionToContour, resolution=36L)
-
-
+TernaryTiles(0, 0.5, TRUE, 10, "red")
+xy <- TernaryCoords(c(4, 3, 3))
+TernaryTiles(xy[1], xy[2], FALSE, 5, "darkblue")
 }
 \seealso{
 Other functions for colouring and shading: 

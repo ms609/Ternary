@@ -10,21 +10,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r hcl-colors-hack, echo=FALSE}
-if (getRversion() < 3.6) {
-  hcl.colors <- function(n, ...) {
-    colorRampPalette(c("#4B0055", "#274983", "#008298", "#00B28A",
-                         "#7ED357", "#FDE333"))(n)
-  }
-}
-```
-
 > Before you start, have you read the [introduction to the
 Ternary package](Ternary.html)?
 
 A ternary plot can be shaded and contoured according to a known function:
 
-```{r contours-by-calculation}
+```{r contours-by-calculation, fig.asp = 1}
 library("Ternary")
 par(mar = rep(0.2, 4))
 
@@ -36,7 +27,8 @@ values <- TernaryPointValues(FunctionToContour, resolution = 24L)
 TernaryPlot(alab = "a", blab = "b", clab = "c",
             # Place an opaque fill behind grid lines:
             panel.first = ColourTernary(values, spectrum = hcl.colors(256)))
-TernaryContour(FunctionToContour, resolution = 36L)
+TernaryContour(FunctionToContour, resolution = 36L, legend = TRUE, 
+               legend... = list(bty = "n"))
 
 ```
 
@@ -45,7 +37,7 @@ it is possible to interpolate between known values.
 
 Inverse distance weighting is a simple approach:
 
-```{r idw-interpolation}
+```{r idw-interpolation, fig.asp = 1}
 # If using your own data, set
 # abc <- [Three-column matrix containing a, b, c coordinates of points]
 # response <- [Vector of values at the points specified in abc]
@@ -99,7 +91,8 @@ ColourTernary(map)
 
 # Calculate contours
 PredictABC <- function(a, b, c) Predict(TernaryToXY(rbind(a, b, c)))
-TernaryContour(PredictABC, resolution = 36L)
+TernaryContour(PredictABC, resolution = 36L, legend = 6, 
+               legend... = list(bty = "n"))
 
 # Mark the points at which we took measurements
 TernaryPoints(abc, pch = 3, col = "#cc3333")
@@ -113,7 +106,7 @@ More sophisticated interpolation approaches are possible, e.g.
 We might also encounter a situation where we have only sampled a small region
 of ternary space and do not wish to extrapolate beyond this region.
 
-```{r convex-hull, warning = FALSE}
+```{r convex-hull, warning = FALSE, fig.asp = 1}
 # Select some points at which to sample
 set.seed(0)
 nPts <- 50
@@ -169,3 +162,14 @@ polygon(t(xy)[chull(t(xy)), ], border = "#cc3333")
 
 
 
+# Where next
+
+For other examples of usage, see the accompanying vignettes:
+
+- [Introduction for new R users](new-users.html)
+
+- [Getting started guide](Ternary.html)
+
+- [Annotation of points](annotation.html)
+
+- [Plotting Holdridge climate zones](Holdridge.html)

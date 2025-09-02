@@ -16,7 +16,9 @@
 #' coordinates of points.
 #' @param b_coord The b coordinate, if \code{abc} is a single number.
 #' @param c_coord The c coordinate, if \code{abc} is a single number.
-#' @template directionParam
+#' @param direction (optional) Integer specifying the direction that the
+#'  current ternary plot should point: 1, up; 2, right; 3, down; 4, left.
+#' @inheritParams TernaryPlot
 #'
 #' @return `TernaryCoords()` returns a vector of length two that converts
 #' the coordinates given in `abc` into Cartesian (_x_, _y_) coordinates
@@ -34,16 +36,22 @@
 #' @family coordinate translation functions
 #' @template MRS
 #' @export
-TernaryCoords <- function(abc, b_coord = NULL, c_coord = NULL,
-                          direction = getOption("ternDirection", 1L)) {
+TernaryCoords <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
   UseMethod("TernaryToXY")
 }
 
 #' @rdname TernaryCoords
 #' @export
-TernaryToXY.matrix <- function(abc, b_coord = NULL, c_coord = NULL,
-                               direction = getOption("ternDirection", 1L)) {
-  ret <- apply(abc, 2, TernaryToXY, direction = direction)
+TernaryToXY.matrix <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
+  ret <- apply(abc, 2, TernaryToXY, direction = direction, region = region)
   rownames(ret) <- c("x", "y")
 
   # Return:
@@ -52,8 +60,11 @@ TernaryToXY.matrix <- function(abc, b_coord = NULL, c_coord = NULL,
 
 #' @rdname TernaryCoords
 #' @export
-TernaryToXY.numeric <- function(abc, b_coord = NULL, c_coord = NULL,
-                                direction = getOption("ternDirection", 1L)) {
+TernaryToXY.numeric <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
   if (!is.null(b_coord) && !is.null(c_coord)) {
     abc <- c(abc, b_coord, c_coord)
   }
@@ -66,31 +77,37 @@ TernaryToXY.numeric <- function(abc, b_coord = NULL, c_coord = NULL,
   if (!(direction %in% 1:4)) {
     stop("Parameter `direction` must be 1, 2, 3 or 4")
   }
-  names(abc) <- NULL # or they may be inherited by x and y, confusingly
-
-  abc <- abc[switch(direction,
+  # unname to avoid x and y inheriting names
+  abc <- unname(abc)[switch(direction,
     c(2, 3, 1),
     c(3, 2, 1),
     c(3, 2, 1),
     c(2, 3, 1)
   )]
+  if (!any(as.logical(abc))) {
+    # abc == c(0, 0, 0)
+    abc <- c(1, 1, 1)
+  }
 
-  x_deviation <- abc[3] / sum(abc)
+  x_deviation <- abc[[3]] / sum(abc)
   if (x_deviation == 1) {
     x <- cos(pi / 6)
     y <- 0
   } else {
-    y_deviation <- (abc[1] - abc[2]) / sum(abc[1:2])
+    y_deviation <- (abc[[1]] - abc[[2]]) / sum(abc[1:2])
     x <- x_deviation * cos(pi / 6)
     y <- y_deviation * (1 - x_deviation) / 2
   }
-
+  
   # Return:
-  switch(direction,
-    c(y, x),
-    c(x, y),
-    c(y, -x),
-    c(-x, y)
+  .NormalizeToRegion(
+    switch(direction,
+      c(y, x),
+      c(x, y),
+      c(y, -x),
+      c(-x, y)
+    ),
+    region = region
   )
 }
 
@@ -100,13 +117,15 @@ TernaryToXY <- TernaryCoords
 
 #' Cartesian coordinates to ternary point
 #'
-#' Convert cartesian (_x_, _y_) coordinates to a point in ternary space.
+#' Convert Cartesian (_x_, _y_) coordinates to a point in ternary space.
 #'
-#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or points.
-#' @template directionParam
+#' @param x,y Numeric values giving the _x_ and _y_ coordinates of a point or
+#' points.
+#' @inheritParams TernaryCoords
+#' @inheritParams TernaryPlot
 #'
-#' @return `XYToTernary()` Returns the ternary point(s) corresponding to the specified _x_ and _y_
-#' coordinates, where a + b + c = 1.
+#' @return `XYToTernary()` Returns the ternary point(s) corresponding to the
+#' specified _x_ and _y_ coordinates, where a + b + c = 1.
 #'
 #' @examples
 #' XYToTernary(c(0.1, 0.2), 0.5)
@@ -114,10 +133,24 @@ TernaryToXY <- TernaryCoords
 #'
 #' @family coordinate translation functions
 #' @export
-XYToTernary <- function(x, y, direction = getOption("ternDirection", 1L)) {
-  if (!is.numeric(x)) stop("Parameter `x` must be numeric.")
-  if (!is.numeric(y)) stop("Parameter `y` must be numeric.")
-  if (!(direction %in% 1:4)) stop("Parameter direction must be 1, 2, 3 or 4")
+XYToTernary <- function(
+    x, y,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
+  if (!is.numeric(x)) {
+    stop("Parameter `x` must be numeric.")
+  }
+  if (!is.numeric(y)) {
+    stop("Parameter `y` must be numeric.")
+  }
+  if (!(direction %in% 1:4)) {
+    stop("Parameter direction must be 1, 2, 3 or 4")
+  }
+  
+  xy <- .UnnormalizeXY(x, y)
+  x <- xy[[1]]
+  y <- xy[[2]]
 
   if (direction == 1L) {
     a <- y / sqrt(0.75)
@@ -162,20 +195,23 @@ XYToPetPrec <- XYToHoldridge
 
 #' X and Y coordinates of ternary plotting area
 #'
-#' @template directionParam
+#' @inheritParams TernaryCoords
 #'
 #' @return `TernaryXRange()` and `TernaryYRange()` return the minimum and
 #' maximum X or Y coordinate of the area in which a ternary plot is drawn,
 #' oriented in the specified direction.
 #' Because the plotting area is a square, the triangle of the ternary plot
 #' will not occupy the full range in one direction.
-#' Assumes that the defaults have not been overwritten by specifying `xlim` or `ylim`.
+#' Assumes that the defaults have not been overwritten by specifying `xlim` or
+#' `ylim`.
 #'
 #' @template MRS
 #' @family plot limits
 #' @export
 TernaryXRange <- function(direction = getOption("ternDirection", 1L)) {
-  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (is.na(direction) || !(direction %in% 1:4)) {
+    stop("Invalid ternary orientation")
+  }
   if (direction == 2L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal Y range. Centre plot.
   } else if (direction == 4L) {
@@ -185,10 +221,13 @@ TernaryXRange <- function(direction = getOption("ternDirection", 1L)) {
   }
 }
 
-#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a ternary plot in the specified direction.
+#' @describeIn TernaryXRange Returns the minimum and maximum Y coordinate for a
+#' ternary plot in the specified direction.
 #' @export
 TernaryYRange <- function(direction = getOption("ternDirection", 1L)) {
-  if (is.na(direction) || !(direction %in% 1:4)) stop("Invalid ternary orientation")
+  if (is.na(direction) || !(direction %in% 1:4)) {
+    stop("Invalid ternary orientation")
+  }
   if (direction == 1L) {
     c(0, 1) - ((1 - sqrt(0.75)) / 2) # Range should equal X range. Centre plot.
   } else if (direction == 3L) {
@@ -203,7 +242,7 @@ TernaryYRange <- function(direction = getOption("ternDirection", 1L)) {
 #' Evaluate whether a given set of coordinates lie outwith the boundaries of
 #' a plotted ternary diagram.
 #'
-#' @template xyParams
+#' @param x,y Vectors of _x_ and _y_ coordinates of points.
 #' @param tolerance Consider points this close to the edge of the plot to be
 #' inside.  Set to negative values to count points that are just outside the
 #' plot as inside, and to positive values to count points that are just inside
@@ -237,8 +276,8 @@ OutsidePlot <- function(x, y, tolerance = 0) {
 #' within a ternary plot with the value of its 'reflection' across the nearest
 #' axis or corner.
 #'
-#' @template xyParams
-#' @template directionParam
+#' @inheritParams OutsidePlot
+#' @inheritParams TernaryCoords
 #'
 #' @return `ReflectedEquivalents()` returns a list of the _x_, _y_ coordinates
 #' of the points produced if the given point is reflected across each of the
@@ -262,30 +301,28 @@ OutsidePlot <- function(x, y, tolerance = 0) {
 #' points(ref[[3]][, 1], ref[[3]][, 2], col = "orange", pch = 3)
 #' @family coordinate translation functions
 #' @export
-ReflectedEquivalents <- function(x, y,
-                                 direction = getOption("ternDirection", 1L)) {
+ReflectedEquivalents <- function(
+    x, y,
+    direction = getOption("ternDirection", 1L)
+  ) {
   switch(direction,
     {
       # 1L
-      corners <- matrix(c(0, cos(pi / 6), 0.5, 0, -0.5, 0), nrow = 2)
       edgeM <- tan(pi / 3) * rep(c(1, -1, 0), 2)
       edgeC <- cos(pi / 6) * c(1, 1, 0, -1, -1, 1)
     },
     {
       # 2L
-      corners <- matrix(c(cos(pi / 6), 0, 0, -0.5, 0, 0.5), nrow = 2)
       edgeM <- tan(pi / 6) * rep(c(-1, 1, Inf), 2)
       edgeC <- 0.5 * c(1, -1, 0, -1, 1, 2 * cos(pi / 6))
     },
     {
       # 3L
-      corners <- matrix(c(0, -cos(pi / 6), -0.5, 0, 0.5, 0), nrow = 2)
       edgeM <- tan(pi / 3) * rep(c(1, -1, 0), 2)
       edgeC <- cos(pi / 6) * c(-1, -1, 0, 1, 1, -1)
     },
     {
       # 4L
-      corners <- matrix(c(-cos(pi / 6), 0, 0, 0.5, 0, -0.5), nrow = 2)
       edgeM <- tan(pi / 6) * rep(c(1, -1, Inf), 2)
       edgeC <- 0.5 * c(1, -1, 0, -1, 1, -2 * cos(pi / 6))
     }
@@ -297,7 +334,8 @@ ReflectedEquivalents <- function(x, y,
     ret <- cbind(d + d - xi, 2 * d * m - yi + c + c)
     infiniteM <- !is.finite(m)
     if (any(infiniteM)) {
-      altRet <- cbind(c + c - xi, rep(yi, length.out = max(length(c), length(xi))))
+      altRet <- cbind(c + c - xi,
+                      rep(yi, length.out = max(length(c), length(xi))))
       ret[infiniteM, ] <- altRet[infiniteM, ]
     }
     ret
