@@ -378,8 +378,8 @@ AddToTernary <- function(PlottingFunction, coordinates, ...) {
 #' converts to X and Y coordinates.
 #'
 #' @param coordinates A list, matrix, data.frame or vector in which each
-#'                    element (or row) specifies
-#'                    the three coordinates of a point in ternary space.
+#' element (or row) specifies the three coordinates of a point in ternary space.
+#' Each element (or row) will be rescaled such that its entries sum to 100.
 #'
 #' @return `CoordinatesToXY()` returns an array of two rows, corresponding to
 #' the X and Y coordinates of `coordinates`.

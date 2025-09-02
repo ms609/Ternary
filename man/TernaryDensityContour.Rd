@@ -22,8 +22,8 @@ TernaryDensityContour(
 }
 \arguments{
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 
 \item{bandwidth}{Vector of bandwidths for x and y directions.
 Defaults to normal reference bandwidth (see \code{MASS::bandwidth.nrd}).

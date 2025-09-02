@@ -20,8 +20,8 @@ Annotate(
 }
 \arguments{
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 
 \item{labels}{Character vector specifying text with which to annotate
 each entry in \code{coordinates}.}

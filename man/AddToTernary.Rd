@@ -52,8 +52,8 @@ HoldridgeText(pet, prec, ...)
 \code{\link[graphics]{text}}.}
 
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 
 \item{\dots}{Additional parameters to pass to \code{PlottingFunction()}.
 If using \code{TernaryText()}, this will likely include the parameter \code{labels},

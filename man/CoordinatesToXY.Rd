@@ -14,8 +14,8 @@ CoordinatesToXY(coordinates)
 ratio and annual \emph{prec}ipitation (in mm).}
 
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 }
 \value{
 \code{CoordinatesToXY()} returns an array of two rows, corresponding to

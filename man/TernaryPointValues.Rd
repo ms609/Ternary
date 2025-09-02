@@ -34,8 +34,8 @@ current ternary plot should point: 1, up; 2, right; 3, down; 4, left.}
 \item{\dots}{Additional parameters to \code{Func()}.}
 
 \item{coordinates}{A list, matrix, data.frame or vector in which each
-element (or row) specifies
-the three coordinates of a point in ternary space.}
+element (or row) specifies the three coordinates of a point in ternary space.
+Each element (or row) will be rescaled such that its entries sum to 100.}
 }
 \value{
 \code{TernaryPointValues()} returns a matrix whose rows correspond to:
