@@ -241,7 +241,7 @@ TernaryYRange <- function(direction = getOption("ternDirection", 1L)) {
 #' Evaluate whether a given set of coordinates lie outwith the boundaries of
 #' a plotted ternary diagram.
 #'
-#' @template xyParams
+#' @param x,y Vectors of _x_ and _y_ coordinates of points.
 #' @param tolerance Consider points this close to the edge of the plot to be
 #' inside.  Set to negative values to count points that are just outside the
 #' plot as inside, and to positive values to count points that are just inside
@@ -275,7 +275,7 @@ OutsidePlot <- function(x, y, tolerance = 0) {
 #' within a ternary plot with the value of its 'reflection' across the nearest
 #' axis or corner.
 #'
-#' @template xyParams
+#' @inheritParams OutsidePlot
 #' @template directionParam
 #'
 #' @return `ReflectedEquivalents()` returns a list of the _x_, _y_ coordinates
