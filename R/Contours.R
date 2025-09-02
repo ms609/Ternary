@@ -12,7 +12,7 @@
 #' @param resolution The number of triangles whose base should lie on the longest 
 #' axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 #' colour gradients, but at a computational cost.
-#' @template directionParam
+#' @inheritParams TernaryCoords
 #' @param \dots Additional parameters to `Func()`.
 #' @return `TernaryPointValues()` returns a matrix whose rows correspond to:
 #'
@@ -70,7 +70,7 @@ TernaryPointValues <- function(Func,
 #' tiled to cover a ternary plot.
 #'
 #' @inheritParams TernaryPointValues
-#' @template directionParam
+#' @inheritParams TernaryCoords
 #'
 #' @return `TriangleCentres()` returns a matrix with three named rows:
 #'  - `x` _x_ coordinates of triangle midpoints;
@@ -801,7 +801,7 @@ TernaryContour <- function(
 #' should be plotted, as a fraction of the size of the triangle.
 #' Negative values will cause contour lines to extend beyond the margins of the
 #' plot.
-#' @template directionParam
+#' @inheritParams TernaryCoords
 #' @template dotsToContour
 #' @param edgeCorrection Logical specifying whether to correct for edge effects
 #'  (see details).

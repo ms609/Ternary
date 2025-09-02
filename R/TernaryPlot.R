@@ -269,7 +269,7 @@ TernaryPlot <- function(atip = NULL, btip = NULL, ctip = NULL,
 }
 
 #' @describeIn TernaryPlot Add `grid.lines` horizontal lines to the ternary plot
-#' @template directionParam
+#' @inheritParams TernaryCoords
 #'
 #' @importFrom graphics par
 #' @export
