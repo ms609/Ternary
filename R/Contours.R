@@ -239,7 +239,7 @@ TriangleInHull <- function(triangles, coordinates, buffer) {
 }
 
 #' @rdname TernaryPointValues
-#' @template coordinatesParam
+#' @inheritParams CoordinatesToXY
 #' @export
 TernaryDensity <- function (coordinates,
                             resolution = 48L,
@@ -789,7 +789,7 @@ TernaryContour <- function(
 #' \href{https://github.com/ms609/Ternary/issues/new?title=Triangular+KDE}{Github issue}.
 #'
 #'
-#' @template coordinatesParam
+#' @inheritParams TernaryDensity
 #' @param bandwidth Vector of bandwidths for x and y directions.
 #' Defaults to normal reference bandwidth (see `MASS::bandwidth.nrd`).
 #' A scalar value will be taken to apply to both directions.

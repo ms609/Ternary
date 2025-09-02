@@ -3,7 +3,7 @@
 #' `Annotate()` identifies and label individual points on a ternary diagram
 #' in the plot margins.
 #' 
-#' @template coordinatesParam
+#' @inheritParams CoordinatesToXY
 #' @param labels Character vector specifying text with which to annotate
 #' each entry in `coordinates`.
 #' @param side Optional vector specifying which side of the ternary
