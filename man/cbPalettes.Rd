@@ -35,8 +35,6 @@ cbPalette15
 Colour palettes recommended for use with colour blind audiences.
 }
 \details{
-Since R 4.0, \code{cbPalette8} is available in base R as \code{palette.colors(8)}.
-
 \code{cbPalette15} is a \href{https://mk.bcgsc.ca/brewer/}{Brewer palette}.
 Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 respectively, in individuals with tritanopia, \code{cbPalette13} omits these
@@ -53,5 +51,10 @@ data("cbPalette15")
 text(1:15, 1, col = cbPalette15)
 text(c(4, 7), 1, "[   ]")
 points(1:15, rep(0, 15), col = cbPalette15, pch = 15)
+}
+\seealso{
+Since R 4.0, \code{cbPalette8} is available in base R as \code{palette.colors(8)}.
+
+\pkg{PlotTools} implements improved palettes with 12, 15 and 24 colours.
 }
 \keyword{datasets}
