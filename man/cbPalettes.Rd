@@ -20,8 +20,7 @@ An object of class \code{character} of length 15.
 \itemize{
 \item \code{cbPalette8}: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441.
 \doi{10.1038/nmeth.1618}}
-\item \code{cbPalette15}: \url{
-https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
+\item \code{cbPalette15}: \url{https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
 }
 }
 \usage{

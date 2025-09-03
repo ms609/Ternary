@@ -24,8 +24,7 @@
 #' - `cbPalette8`: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441.
 #' \doi{10.1038/nmeth.1618}}
 #'
-#' - `cbPalette15`: \url{
-#' https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
+#' - `cbPalette15`: \url{https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
 #' 
 #' @seealso
 #' Since R 4.0, `cbPalette8` is available in base R as `palette.colors(8)`.
