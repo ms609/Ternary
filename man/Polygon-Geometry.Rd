@@ -20,6 +20,6 @@ GrowPolygon(...)
 \item{\dots}{Parameters to PlotTools function}
 }
 \description{
-These functions have moved to "\href{https://ms609.github.io/PlotTools}{PlotTools}" and are deprecated here.
+These functions have moved to "\href{https://ms609.github.io/PlotTools/}{PlotTools}" and are deprecated here.
 }
 \keyword{internal}

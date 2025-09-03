@@ -4,7 +4,7 @@
 #'
 #' Since R 4.0, `cbPalette8` is available in base R as `palette.colors(8)`.
 #'
-#' `cbPalette15` is a [Brewer palette](http://mkweb.bcgsc.ca/brewer/).
+#' `cbPalette15` is a [Brewer palette](https://mk.bcgsc.ca/brewer/).
 #' Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 #' respectively, in individuals with tritanopia, `cbPalette13` omits these
 #' colours (i.e. `cbPalette13 <- cbPalette15[-c(4, 7)]`).
@@ -26,8 +26,9 @@
 #' - `cbPalette8`: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441.
 #' \doi{10.1038/nmeth.1618}}
 #'
-#' - `cbPalette15`: \url{http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png}
-#'
+#' - `cbPalette15`: \url{
+#' https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
+#' 
 #' @keywords datasets
 #' @name cbPalettes
 NULL

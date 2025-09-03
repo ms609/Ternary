@@ -20,7 +20,8 @@ An object of class \code{character} of length 15.
 \itemize{
 \item \code{cbPalette8}: \cite{Wong B. 2011. Color blindness. Nat. Methods. 8:441.
 \doi{10.1038/nmeth.1618}}
-\item \code{cbPalette15}: \url{http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png}
+\item \code{cbPalette15}: \url{
+https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png}
 }
 }
 \usage{
@@ -36,7 +37,7 @@ Colour palettes recommended for use with colour blind audiences.
 \details{
 Since R 4.0, \code{cbPalette8} is available in base R as \code{palette.colors(8)}.
 
-\code{cbPalette15} is a \href{http://mkweb.bcgsc.ca/brewer/}{Brewer palette}.
+\code{cbPalette15} is a \href{https://mk.bcgsc.ca/brewer/}{Brewer palette}.
 Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 respectively, in individuals with tritanopia, \code{cbPalette13} omits these
 colours (i.e. \code{cbPalette13 <- cbPalette15[-c(4, 7)]}).

@@ -1,7 +1,7 @@
 #' Polygon geometry
 #' 
 #' These functions have moved to "[PlotTools](
-#' https://ms609.github.io/PlotTools)" and are deprecated here.
+#' https://ms609.github.io/PlotTools/)" and are deprecated here.
 #' @param \dots Parameters to PlotTools function
 #' @name Polygon-Geometry
 #' @importFrom PlotTools PolygonArea PolygonCenter GrowPolygon
