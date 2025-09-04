@@ -39,7 +39,7 @@
 #' https://ms609.github.io/Ternary/dev/articles/annotation.html) gives 
 #' further suggestions for manual annotation.
 #' @importFrom graphics segments text
-#' @importFrom RcppHungarian HungarianSolver
+#' @importFrom TreeDist LAPJV
 #' @template MRS
 #' @export
 Annotate <- function(coordinates, labels, side, outset = 0.16,
@@ -121,10 +121,10 @@ Annotate <- function(coordinates, labels, side, outset = 0.16,
       diffX <- outer(xyI[1, ], anchorI[1, ], `-`)
       diffY <- outer(xyI[2, ], anchorI[2, ], `-`)
       euclid <- sqrt((diffX ^ 2) + (diffY ^ 2))
-      matching <- RcppHungarian::HungarianSolver(euclid)$pairs
-      anchorX <- anchorI[1, matching[, 2]]
-      anchorY <- anchorI[2, matching[, 2]]
-      segments(xyI[1, matching[, 1]], xyI[2, matching[, 1]],
+      matching <- LAPJV(euclid)$matching
+      anchorX <- anchorI[1, matching]
+      anchorY <- anchorI[2, matching]
+      segments(xyI[1, ], xyI[2, ],
                anchorX, anchorY,
                col = line.col[onSide], lwd = lwd[onSide], lty = lty[onSide],
                ...)
