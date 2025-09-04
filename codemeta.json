@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "2.3.5",
+  "version": "2.3.5.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -176,18 +176,6 @@
     },
     "3": {
       "@type": "SoftwareApplication",
-      "identifier": "RcppHungarian",
-      "name": "RcppHungarian",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=RcppHungarian"
-    },
-    "4": {
-      "@type": "SoftwareApplication",
       "identifier": "shiny",
       "name": "shiny",
       "provider": {
@@ -198,7 +186,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
-    "5": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "sp",
       "name": "sp",
@@ -210,9 +198,21 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sp"
     },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "TreeDist",
+      "name": "TreeDist",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=TreeDist"
+    },
     "SystemRequirements": null
   },
-  "fileSize": "8268.526KB",
+  "fileSize": "8268.543KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
