@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.3.4.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="In-development version">2.3.5.9000</span>
       </span>
     </div>
 
@@ -106,15 +106,19 @@
 <ul><li><p><code>cbPalette8</code>: <cite>Wong B. 2011. Color blindness. Nat. Methods. 8:441.
 <a href="https://doi.org/10.1038/nmeth.1618" class="external-link">doi:10.1038/nmeth.1618</a>
 </cite></p></li>
-<li><p><code>cbPalette15</code>: <a href="http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png" class="external-link">http://mkweb.bcgsc.ca/biovis2012/color-blindness-palette.png</a></p></li>
+<li><p><code>cbPalette15</code>: <a href="https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png" class="external-link">https://mk.bcgsc.ca/biovis2012/color-blindness-palette.png</a></p></li>
 </ul></div>
     <div id="details">
     <h2>Details</h2>
-    <p>Since R 4.0, <code>cbPalette8</code> is available in base R as <code>palette.colors(8)</code>.</p>
-<p><code>cbPalette15</code> is a <a href="http://mkweb.bcgsc.ca/brewer/" class="external-link">Brewer palette</a>.
+    <p><code>cbPalette15</code> is a <a href="https://mk.bcgsc.ca/brewer/" class="external-link">Brewer palette</a>.
 Because colours 4 and 7 are difficult to distinguish from colours 13 and 3,
 respectively, in individuals with tritanopia, <code>cbPalette13</code> omits these
 colours (i.e. <code>cbPalette13 &lt;- cbPalette15[-c(4, 7)]</code>).</p>
+    </div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>Since R 4.0, <code>cbPalette8</code> is available in base R as <code>palette.colors(8)</code>.</p>
+<p><span class="pkg">PlotTools</span> implements improved palettes with 12, 15 and 24 colours.</p></div>
     </div>
 
     <div id="ref-examples">
