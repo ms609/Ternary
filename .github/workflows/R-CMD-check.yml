@@ -46,9 +46,9 @@ jobs:
         config:
           - {os: windows-latest, r: 'release'}
           - {os: macOS-latest, r: 'release'}
-          - {os: ubuntu-22.04, r: '4.0', rspm: "https://packagemanager.rstudio.com/cran/__linux__/jammy/latest"}
-          - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
-          - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/noble/latest"}
+          - {os: ubuntu-24.04, r: '3.6', rspm: "https://packagemanager.posit.co/cran/2020-03-30"}
+          - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
+          - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
 
     env:
       _R_CHECK_CRAN_INCOMING_: true # Seemingly not set by --as-cran
@@ -97,39 +97,8 @@ jobs:
             check
             coverage
             
-      - name: Set up R dependencies (R 4.0)
-        if: matrix.config.r == '4.0'
-        uses: r-lib/actions/setup-r-dependencies@v2
-        with: # Inherited from R3.6
-          extra-packages: |
-            Hmisc@5.0-0
-            ggplot2@3.5.2
-            rvest@1.0.4
-            svglite@2.1.3
-            bench@1.1.3
-            cpp11@0.5.0
-            downlit@0.4.3
-            evaluate@0.23
-            gh@1.4.1
-            gtable@0.3.5
-            httr2@1.0.1
-            magick@2.8.5
-            knitr@1.45
-            pkgdown@2.0.9
-            profvis@0.3.8
-            purrr@1.0.2
-            rjson@0.2.20
-            scales@1.3.0
-            testthat@3.2.1
-            usethis@3.1.0
-            vdiffr@1.0.7
-            waldo@0.5.3
-            XML@3.99-0.3
-          needs: |
-            check
-            
       - name: Set up R dependencies (Non-Windows)
-        if: runner.os != 'Windows' && matrix.config.r != '4.0'
+        if: runner.os != 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
