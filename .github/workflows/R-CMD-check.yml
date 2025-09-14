@@ -102,6 +102,7 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with: # Inherited from R3.6
           extra-packages: |
+            Hmisc@5.0-0
             ggplot2@3.5.2
             rvest@1.0.4
             svglite@2.1.3
