@@ -89,6 +89,45 @@ jobs:
           sudo apt-get install texlive-latex-base \
             texlive-fonts-recommended
         
+
+      - name: Install system dependencies (R 3.x)
+        if: ${{ matrix.config.r == '3.6' || matrix.config.r == '3.5' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+          libpng-dev \
+          libfreetype6-dev \
+          libjpeg-dev \
+          libxml2-dev \
+          libharfbuzz-dev \
+          libfribidi-dev
+
+      - name: Install vdiffr dependencies (R 3.x)
+        if: matrix.config.r < '4.0'
+        run: |
+          Rscript -e "install.packages(c('diffobj','glue','htmltools','lifecycle','rlang','testthat','xml2','cpp11', 'rcmdcheck'), repos = 'https://packagemanager.posit.co/cran/2021-08-02')"
+
+      - name: Install vdiffr patched (R 3.x)
+        if: matrix.config.r < '4.0'
+        run: |
+          git clone --branch v1.0.0 https://github.com/r-lib/vdiffr.git vdiffr-src
+          sed -i '1i#include <cstdint>' vdiffr-src/src/devSVG.cpp
+          R CMD INSTALL --preclean --no-multiarch --with-keep.source vdiffr-src
+          rm -rf vdiffr-src
+
+      - name: Set up R dependencies (R 3.x)
+        if: matrix.config.r < '4.0'
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          dependencies: '"hard"'
+          extra-packages:
+            testthat@3.0.4
+            waldo@0.4.0
+            xfun@0.28
+            knitr@1.33
+            rmarkdown@2.10
+            sp@1.4-5
+
       - name: Set up R dependencies (Windows)
         if: runner.os == 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
@@ -96,9 +135,9 @@ jobs:
           needs: |
             check
             coverage
-            
+
       - name: Set up R dependencies (Non-Windows)
-        if: runner.os != 'Windows'
+        if: ${{runner.os != 'Windows' && matrix.config.r >= '4.0' }}
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
