@@ -3,7 +3,7 @@
 [![Project Status: Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#project-statuses)
 [![codecov](https://codecov.io/gh/ms609/Ternary/branch/master/graph/badge.svg)](https://app.codecov.io/gh/ms609/Ternary)
 [![CRAN Status Badge](https://www.r-pkg.org/badges/version/Ternary)](https://cran.r-project.org/package=Ternary)
-[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://cran.r-project.org/package=Ternary)
+[![CRAN Downloads](https://cranlogs.r-pkg.org/badges/Ternary)](https://ms609.github.io/usage/#ternary)
 [![DOI](https://zenodo.org/badge/111806977.svg)](https://zenodo.org/badge/latestdoi/111806977)
 
 
