@@ -24,18 +24,4 @@ jobs:
     steps:
       - uses: ms609/actions/pkgdown@main
         with:
-          deploy: false
-          
-          
-      - name: Prepare Shinylive Asset
-        run: |
-          pkgdown::build_site(install = FALSE, new_process = FALSE)
-          dir.create("inst/pkgdown/assets/shiny", recursive = TRUE)
-          shinylive::export("inst/TernaryApp", "docs/articles/app")
-        shell: Rscript {0}
-    
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: docs
-          branch: gh-pages
+          shinylive-app: "inst/TernaryApp"
