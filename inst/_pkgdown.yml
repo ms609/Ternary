@@ -7,14 +7,11 @@ authors:
 development:
   mode: auto
 
-exclude:
-  - app # ShinyLive app
-  
 navbar:
   components:
     shiny:
-      text: Interactive App
-      href: app/index.html
+      text: Web App
+      href: app/
   
 reference:
   - title: "Creating ternary plots"
