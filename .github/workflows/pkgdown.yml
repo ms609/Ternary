@@ -24,4 +24,4 @@ jobs:
     steps:
       - uses: ms609/actions/pkgdown@main
         with:
-          shinylive-app: "inst/TernaryApp"
+          shinylive-app: "TernaryApp"
