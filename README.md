@@ -15,13 +15,22 @@ using the familiar functions of the default 'graphics' package.
 ![Example ternary plot](https://user-images.githubusercontent.com/1695515/233467338-88a3b3a8-5580-4924-a11e-06dc8a38b3e9.png)
 
 
-For simple use cases, generate ternary plots using the point-and-click
-Shiny app:
+For simple use cases, generate ternary plots using the 
+[web app](https://ms609.github.io/Ternary/articles/app/).
+
+The first use of the app may take a minute or two to load.
+
+
+You can also run the Shiny app through your local R installation:
 
 ```r
 install.packages("Ternary")
 Ternary::TernaryApp()
 ```
+
+
+
+
 
 For greater control over your plots, use the R command line;
 usage instructions are available for
