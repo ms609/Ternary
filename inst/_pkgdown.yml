@@ -9,7 +9,7 @@ development:
 
 navbar:
   structure:
-    left:  [intro, reference, articles, shiny, news]
+    left:  [shiny, intro, reference, articles, news]
     right: [github, search]
   components:
     shiny:
