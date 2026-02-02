@@ -8,6 +8,9 @@ development:
   mode: auto
 
 navbar:
+  structure:
+    left:  [intro, reference, articles, shiny, news]
+    right: [github, search]
   components:
     shiny:
       text: Web App
