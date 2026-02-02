@@ -20,7 +20,7 @@ plot](https://user-images.githubusercontent.com/1695515/233467338-88a3b3a8-5580-
 Example ternary plot
 
 For simple use cases, generate ternary plots using the [web
-app](https://ms609.github.io/Ternary/articles/app/).
+app](https://ms609.github.io/Ternary/app/).
 
 The first use of the app may take a minute or two to load.
 
