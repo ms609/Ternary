@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Ternary</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.6</span>
       </span>
     </div>
 
@@ -107,7 +107,7 @@
                         <h4 data-toc-skip class="author">Martin R.
 Smith</h4>
             
-            <h4 data-toc-skip class="date">2025-09-03</h4>
+            <h4 data-toc-skip class="date">2026-02-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/main/vignettes/interpolation.Rmd" class="external-link"><code>vignettes/interpolation.Rmd</code></a></small>
       <div class="hidden name"><code>interpolation.Rmd</code></div>
@@ -135,7 +135,7 @@ function:</p>
 <span>            panel.first <span class="op">=</span> <span class="fu"><a href="../reference/ColourTernary.html">ColourTernary</a></span><span class="op">(</span><span class="va">values</span>, spectrum <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">256</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/TernaryContour.html">TernaryContour</a></span><span class="op">(</span><span class="va">FunctionToContour</span>, resolution <span class="op">=</span> <span class="fl">36L</span>, legend <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>               legend... <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="interpolation_files/figure-html/contours-by-calculation-1.png" width="700"></p>
+<p><img src="interpolation_files/figure-html/contours-by-calculation-1.png" class="r-plt" alt="" width="700"></p>
 <p>If it is not computationally feasible to execute a function at every
 point, it is possible to interpolate between known values.</p>
 <p>Inverse distance weighting is a simple approach:</p>
@@ -198,7 +198,7 @@ point, it is possible to interpolate between known values.</p>
 <span></span>
 <span><span class="co"># Mark the points at which we took measurements</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">abc</span>, pch <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"#cc3333"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="interpolation_files/figure-html/idw-interpolation-1.png" width="700"></p>
+<p><img src="interpolation_files/figure-html/idw-interpolation-1.png" class="r-plt" alt="" width="700"></p>
 <p>More sophisticated interpolation approaches are possible, e.g.  <a href="https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm" class="external-link">kriging</a>;
 these may help to alleviate artefacts of sampling intensity as observed
 towards the bottom of the example plot above.</p>
@@ -260,7 +260,7 @@ region.</p>
 <span></span>
 <span><span class="co"># Mark the region in which we sampled</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/polygon.html" class="external-link">polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/grDevices/chull.html" class="external-link">chull</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">xy</span><span class="op">)</span><span class="op">)</span>, <span class="op">]</span>, border <span class="op">=</span> <span class="st">"#cc3333"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="interpolation_files/figure-html/convex-hull-1.png" width="700"></p>
+<p><img src="interpolation_files/figure-html/convex-hull-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="where-next">Where next<a class="anchor" aria-label="anchor" href="#where-next"></a>
@@ -292,7 +292,7 @@ zones</a></p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
