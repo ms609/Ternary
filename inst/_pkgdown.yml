@@ -10,6 +10,12 @@ development:
 exclude:
   - app # ShinyLive app
   
+navbar:
+  components:
+    shiny:
+      text: Interactive App
+      href: app/index.html
+  
 reference:
   - title: "Creating ternary plots"
     desc: >
