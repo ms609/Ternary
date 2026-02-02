@@ -5,12 +5,12 @@
 ^revdep$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.git/
+^\.github$
 .covrignore
-.github
 .Rprofile
 cran-comments.md
 CONTRIBUTING.md
-^\.git/
 ^inst/TernaryApp/\.git$
 ^Rplot.*$
 ^.*\.yml$
@@ -22,4 +22,3 @@ CONTRIBUTING.md
 ^doc$
 ^Meta$
 ^codemeta\.json$
-^\.github$

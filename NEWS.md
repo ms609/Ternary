@@ -1,6 +1,5 @@
-# Ternary v2.3.5.9000 (2025-09-04)
+# Ternary v2.3.6 (2026-02-02)
 - Upgrade `Annotate()` to use LAPJV in place of Hungarian algorithm.
-- R <4.0 no longer formally supported.
 
 # Ternary v2.3.5 (2025-09-03)
 - Fix location of `Annotate()` annotations with `TernaryPlot(region = *)`.

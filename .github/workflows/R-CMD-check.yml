@@ -102,7 +102,7 @@ jobs:
             coverage
 
       - name: Set up R dependencies (Non-Windows)
-        if: ${{runner.os != 'Windows' && matrix.config.r >= '4.0' }}
+        if: runner.os != 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           needs: |
