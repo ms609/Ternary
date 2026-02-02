@@ -42,7 +42,7 @@ Config/Needs/coverage: covr
 Config/Needs/memcheck: devtools, rcmdcheck
 Config/Needs/metadata: codemeta
 Config/Needs/revdeps: revdepcheck
-Config/Needs/website: pkgdown
+Config/Needs/website: pkgdown, shinylive
 Config/testthat/edition: 3
 Config/testthat/parallel: false
 LazyData: true
