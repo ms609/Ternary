@@ -108,7 +108,7 @@
                         <h4 data-toc-skip class="author">Martin R.
 Smith</h4>
             
-            <h4 data-toc-skip class="date">2025-10-16</h4>
+            <h4 data-toc-skip class="date">2026-02-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/main/vignettes/new-users.Rmd" class="external-link"><code>vignettes/new-users.Rmd</code></a></small>
       <div class="hidden name"><code>new-users.Rmd</code></div>
@@ -153,7 +153,7 @@ data:</p>
 <span><span class="co"># Extract and plot the data</span></span>
 <span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>alab <span class="op">=</span> <span class="va">seat</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, blab <span class="op">=</span> <span class="va">seat</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, clab <span class="op">=</span> <span class="va">seat</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">Seatbelts</span><span class="op">[</span>, <span class="va">seat</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/first-plot-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/first-plot-1.png" class="r-plt" alt="" width="700"></p>
 <p>The <code>law</code> column takes the value <code>1</code> for months
 in which the wearing of a seatbelt was made compulsory in UK law. Let’s
 explore the impact of this law by plotting data before and after the law
@@ -164,7 +164,7 @@ with different symbols. R’s <strong>p</strong>lotting
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">21</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">20</span>,</span>
 <span>     cex <span class="op">=</span> <span class="fl">2</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, ann <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">20</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">21</span><span class="op">)</span>, <span class="fl">0</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/pch-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/pch-1.png" class="r-plt" alt="" width="700"></p>
 <p>Let’s choose to plot a <code>+</code> (character <code>3</code>) when
 seatbelts are legally required, and <code>o</code> (character
 <code>1</code>) when they are not.</p>
@@ -187,7 +187,7 @@ just plotting the region of the plot where the data lie:</p>
 <span></span>
 <span><span class="co"># Use our beltLawPch variable to style points</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">Seatbelts</span><span class="op">[</span>, <span class="va">seat</span><span class="op">]</span>, pch <span class="op">=</span> <span class="va">beltLawPch</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/by-law-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/by-law-1.png" class="r-plt" alt="" width="700"></p>
 <p>This seems to show a clear pattern: the seatbelt law led to a higher
 proportion of deaths and serious injuries occurring in the rear of
 cars.</p>
@@ -217,7 +217,7 @@ friendly</a>, and works when printed in greyscale.</p>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">Seatbelts</span><span class="op">[</span>, <span class="va">seat</span><span class="op">]</span>, pch <span class="op">=</span> <span class="va">beltLawPch</span>,</span>
 <span>              lwd <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Use wider lines so points are clearer</span></span>
 <span>              col <span class="op">=</span> <span class="va">rowCol</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/spectrum-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/spectrum-1.png" class="r-plt" alt="" width="700"></p>
 <p>Our belt law appears to sit in the context of a longer term
 improvement in the relative safety of front-seat passengers. But how do
 we explain the scatter in the ‘drivers’ dimension? Let’s try plotting
@@ -250,7 +250,7 @@ seasonal variation:</p>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">Seatbelts</span><span class="op">[</span>, <span class="va">seat</span><span class="op">]</span>, pch <span class="op">=</span> <span class="va">beltLawPch</span>,</span>
 <span>              lwd <span class="op">=</span> <span class="fl">2</span>, <span class="co"># Use wider lines so points are clearer</span></span>
 <span>              col <span class="op">=</span> <span class="va">monthCol</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/month-spectrum-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/month-spectrum-1.png" class="r-plt" alt="" width="700"></p>
 <p>With or without seatbelts, drivers are in more relative danger in
 winter!</p>
 <p>Now let’s size each point by the number of casualties, scaled by
@@ -275,7 +275,7 @@ relevant region.</p>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPoints</a></span><span class="op">(</span><span class="va">Seatbelts</span><span class="op">[</span>, <span class="va">seat</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>              cex <span class="op">=</span> <span class="va">Seatbelts</span><span class="op">[</span>, <span class="st">"DriversKilled"</span><span class="op">]</span> <span class="op">/</span> <span class="va">Seatbelts</span><span class="op">[</span>, <span class="st">"kms"</span><span class="op">]</span> <span class="op">*</span> <span class="va">scale</span>,</span>
 <span>              col <span class="op">=</span> <span class="fl">2</span> <span class="op">+</span> <span class="va">Seatbelts</span><span class="op">[</span>, <span class="st">"law"</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/scale-by-deaths-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/scale-by-deaths-1.png" class="r-plt" alt="" width="700"></p>
 <p>The smaller size of points after mandatory seatbelt usage is
 evident.</p>
 <p>Now let’s plot the annual trend as a line, taking the values for each
@@ -308,7 +308,7 @@ October as representative:</p>
 <span>  legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1984</span>, <span class="fl">1969</span>, length.out <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Year"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="new-users_files/figure-html/all-deaths-1.png" width="700"></p>
+<p><img src="new-users_files/figure-html/all-deaths-1.png" class="r-plt" alt="" width="700"></p>
 <div class="section level2">
 <h2 id="your-own-data">Your own data<a class="anchor" aria-label="anchor" href="#your-own-data"></a>
 </h2>
@@ -380,7 +380,7 @@ zones</a></p></li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>

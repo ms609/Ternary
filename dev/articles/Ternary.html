@@ -108,7 +108,7 @@
                         <h4 data-toc-skip class="author">Martin R.
 Smith</h4>
             
-            <h4 data-toc-skip class="date">2025-10-16</h4>
+            <h4 data-toc-skip class="date">2026-02-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ms609/Ternary/blob/main/vignettes/Ternary.Rmd" class="external-link"><code>vignettes/Ternary.Rmd</code></a></small>
       <div class="hidden name"><code>Ternary.Rmd</code></div>
@@ -147,7 +147,7 @@ directions; secondly, adding data.</p>
 <p>At its simplest, all you need to do is type</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/create-blank-plot-1.png" width="480"></p>
+<p><img src="Ternary_files/figure-html/create-blank-plot-1.png" class="r-plt" alt="" width="480"></p>
 <p>The following charts show which corners are which, under different
 orientations:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -159,7 +159,7 @@ orientations:</p>
 <span>              labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"P1"</span>, <span class="st">"P2"</span>, <span class="st">"P3"</span><span class="op">)</span>,</span>
 <span>              col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/create-simple-plot-1.png" width="672"></p>
+<p><img src="Ternary_files/figure-html/create-simple-plot-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 <div class="section level2">
 <h2 id="plot-two-stylised-plots-side-by-side-and-plot-data">Plot two stylised plots side by side, and plot data<a class="anchor" aria-label="anchor" href="#plot-two-stylised-plots-side-by-side-and-plot-data"></a>
@@ -252,7 +252,7 @@ and produce the plots.</p>
 <span></span>
 <span><span class="co"># Add an arrow</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryArrows</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">20</span>, <span class="fl">60</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">0.2</span>, col <span class="op">=</span> <span class="st">"darkblue"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/two-stylised-plots-1.png" width="700"></p>
+<p><img src="Ternary_files/figure-html/two-stylised-plots-1.png" class="r-plt" alt="" width="700"></p>
 <div class="section level3">
 <h3 id="styling-points">Styling points<a class="anchor" aria-label="anchor" href="#styling-points"></a>
 </h3>
@@ -329,7 +329,7 @@ analogous to the standard plotting functions:</p>
 <span>  bty <span class="op">=</span> <span class="st">"n"</span>, <span class="co"># Do not frame with box</span></span>
 <span>  cex <span class="op">=</span> <span class="fl">0.8</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/point-styling-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/point-styling-1.png" class="r-plt" alt="" width="336"></p>
 <p>See the “Points” tab of the shiny app for a point-and-click
 implementation.</p>
 </div>
@@ -354,7 +354,7 @@ graph.</p>
 <span>     col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.5</span>, y <span class="op">=</span> <span class="fl">0</span>, <span class="st">"(0.5, 0)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.8</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, <span class="st">"(0.8, -0.5)"</span>, col <span class="op">=</span> <span class="va">cbPalette8</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/cartesian-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/cartesian-1.png" class="r-plt" alt="" width="336"></p>
 <p>Note the anticlockwise axis labelling on this plot, obtained using
 <code>clockwise = FALSE</code>.</p>
 </div>
@@ -385,7 +385,7 @@ mathematical expression:</p>
 <span>  inset <span class="op">=</span> <span class="fl">0.02</span>,</span>
 <span>  xpd <span class="op">=</span> <span class="cn">NA</span>      <span class="co"># Do not clip at edge of figure</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/contours-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/contours-1.png" class="r-plt" alt="" width="336"></p>
 <p>or according to the density of points across the plot:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
@@ -404,7 +404,7 @@ mathematical expression:</p>
 <span></span>
 <span><span class="co"># Contour by point density</span></span>
 <span><span class="fu"><a href="../reference/TernaryDensityContour.html">TernaryDensityContour</a></span><span class="op">(</span><span class="va">coordinates</span>, resolution <span class="op">=</span> <span class="fl">30L</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/density-contours-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/density-contours-1.png" class="r-plt" alt="" width="336"></p>
 </div>
 <div class="section level2">
 <h2 id="magnification">Magnification<a class="anchor" aria-label="anchor" href="#magnification"></a>
@@ -453,7 +453,7 @@ of the region specified using <code>xlim</code> and
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.33</span>, <span class="fl">0.2</span>, <span class="st">"ylim[2]"</span>, pos <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">"&lt;padding&gt;"</span>, pos <span class="op">=</span> <span class="fl">4</span>, cex <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="fl">0.38</span>, <span class="fl">0.1</span>, <span class="st">"&lt;padding&gt; "</span>, pos <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">0.75</span>, srt <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/close-up-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/close-up-1.png" class="r-plt" alt="" width="336"></p>
 <p>An alternative approach is to plot a triangular sub-region of the
 larger ternary space, allowing axis annotations to be read more
 easily.</p>
@@ -461,7 +461,7 @@ easily.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/TernaryPlot.html">TernaryPlot</a></span><span class="op">(</span>region <span class="op">=</span> <span class="va">my_corners</span><span class="op">)</span> <span class="co"># Fit plotted region to data</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPolygon</a></span><span class="op">(</span><span class="va">my_corners</span>, col <span class="op">=</span> <span class="st">"#2cbe4e88"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/subregion-plot-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/subregion-plot-1.png" class="r-plt" alt="" width="336"></p>
 <p>A region can be defined manually; the smallest triangle that covers
 the region will be employed.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
@@ -474,7 +474,7 @@ the region will be employed.</p>
 <span></span>
 <span><span class="co"># Data will be plotted even if it falls outside the plotted axes</span></span>
 <span><span class="fu"><a href="../reference/AddToTernary.html">TernaryPolygon</a></span><span class="op">(</span><span class="va">my_corners</span>, col <span class="op">=</span> <span class="st">"#2cbe4e88"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Ternary_files/figure-html/manual-subregion-1.png" width="336"></p>
+<p><img src="Ternary_files/figure-html/manual-subregion-1.png" class="r-plt" alt="" width="336"></p>
 </div>
 <div class="section level2">
 <h2 id="further-tutorials">Further tutorials<a class="anchor" aria-label="anchor" href="#further-tutorials"></a>
@@ -514,7 +514,7 @@ issue</a>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer>
