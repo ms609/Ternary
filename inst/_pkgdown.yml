@@ -7,6 +7,9 @@ authors:
 development:
   mode: auto
 
+exclude:
+  - articles/app # ShinyLive app
+  
 reference:
   - title: "Creating ternary plots"
     desc: >
