@@ -24,6 +24,13 @@ jobs:
     steps:
       - uses: ms609/actions/pkgdown@main
           
+      - name: Build ShinyLive app
+        run: |
+          install.pacakges("shinylive")
+          app_path <- system.file("TernaryApp", package = "Ternary")
+          shinylive::export(app_path, "docs/articles/app")
+        shell: Rscript {0}
+      
       - name: Algolia crawl
         uses: algolia/algoliasearch-crawler-github-actions@v1.0.10
         id: algolia_crawler
