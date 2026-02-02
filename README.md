@@ -16,7 +16,7 @@ using the familiar functions of the default 'graphics' package.
 
 
 For simple use cases, generate ternary plots using the 
-[web app](https://ms609.github.io/Ternary/articles/app/).
+[web app](https://ms609.github.io/Ternary/app/).
 
 The first use of the app may take a minute or two to load.
 

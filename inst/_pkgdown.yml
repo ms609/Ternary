@@ -8,7 +8,7 @@ development:
   mode: auto
 
 exclude:
-  - articles/app # ShinyLive app
+  - app # ShinyLive app
   
 reference:
   - title: "Creating ternary plots"
