@@ -63,7 +63,7 @@ Annotate(
 ## See also
 
 [Annotation
-vignette](https://ms609.github.io/Ternary/dev/articles/annotation.html)
+vignette](https://ms609.github.io/Ternary/articles/annotation.html)
 gives further suggestions for manual annotation.
 
 ## Author
