@@ -65,7 +65,7 @@ Annotate(seat, labels = 1969:1984, col = 2 + law)
 par(oPar)  
 }
 \seealso{
-\href{https://ms609.github.io/Ternary/dev/articles/annotation.html}{Annotation vignette} gives
+\href{https://ms609.github.io/Ternary/articles/annotation.html}{Annotation vignette} gives
 further suggestions for manual annotation.
 }
 \author{

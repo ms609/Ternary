@@ -36,7 +36,7 @@
 #' # Restore original graphical parameters
 #' par(oPar)  
 #' @seealso [Annotation vignette](
-#' https://ms609.github.io/Ternary/dev/articles/annotation.html) gives 
+#' https://ms609.github.io/Ternary/articles/annotation.html) gives 
 #' further suggestions for manual annotation.
 #' @importFrom graphics segments text
 #' @importFrom TreeDist LAPJV
