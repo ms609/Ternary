@@ -23,6 +23,5 @@ test_that("Holdridge plotting", {
     )
   }
 
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("holdridge-basic", HoldridgeBasic)
+  expect_doppelganger("holdridge-basic", HoldridgeBasic)
 })

@@ -16,8 +16,7 @@ test_that("Annotate() works", {
     Annotate(ptsList[5:6], side = "3", labels = 5:6,  outset = 0)
   }
 
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("Annotate-basics", AnnotateBasics)
+  expect_doppelganger("Annotate-basics", AnnotateBasics)
   
   AnnotateAutoLocate <- function() {
     TernaryPlot()
@@ -33,9 +32,9 @@ test_that("Annotate() works", {
              lwd = 3)
   }
   
-  vdiffr::expect_doppelganger("Annotate-auto-locate", AnnotateAutoLocate)
+  expect_doppelganger("Annotate-auto-locate", AnnotateAutoLocate)
   
-  vdiffr::expect_doppelganger("Annotate-zoomed", function() {
+  expect_doppelganger("Annotate-zoomed", function() {
     my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
     TernaryPlot(region = my_corners)
     TernaryPolygon(my_corners, col = "#2cbe4e88")

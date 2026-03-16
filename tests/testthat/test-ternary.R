@@ -62,9 +62,8 @@ test_that("Ternary plotting functions", {
     ), ncol = 3, byrow = TRUE))
   }
 
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("plot-to-ternary-x", TernaryPlotterXlim)
-  vdiffr::expect_doppelganger("plot-to-ternary-y", TernaryPlotterYlim)
+  expect_doppelganger("plot-to-ternary-x", TernaryPlotterXlim)
+  expect_doppelganger("plot-to-ternary-y", TernaryPlotterYlim)
 })
 
 test_that("Axes can be styled individually", {
@@ -123,13 +122,11 @@ test_that("Axes can be styled individually", {
     )
     TernaryPoints(c(2, 1, 0))
   }
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("AxisStyle", AxisStyle)
+  expect_doppelganger("AxisStyle", AxisStyle)
 })
 
 test_that("panel.xxst parameter", {
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("panel.xxst-parameter", function() {
+  expect_doppelganger("panel.xxst-parameter", function() {
     TernaryPlot(
       panel.first = rect(0, -1, -1, 1, col = 2),
       panel.last = rect(0, -1, 1, 1, col = 3),
@@ -140,8 +137,7 @@ test_that("panel.xxst parameter", {
 })
 
 test_that("Vignette plots are rendered correctly", {
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("Blank plot", TernaryPlot)
+  expect_doppelganger("Blank plot", TernaryPlot)
 
   BlankTernary <- function(dir, clockwise = TRUE) {
     TernaryPlot(
@@ -167,15 +163,15 @@ test_that("Vignette plots are rendered correctly", {
   TernaryDownAC <- function() BlankTernary("down", clockwise = FALSE)
   TernaryLeAC <- function() BlankTernary("le", clockwise = FALSE)
 
-  vdiffr::expect_doppelganger("Blank up", TernaryUp)
-  vdiffr::expect_doppelganger("Blank right", TernaryRight)
-  vdiffr::expect_doppelganger("Blank down", TernaryDown)
-  vdiffr::expect_doppelganger("Blank le", TernaryLe)
+  expect_doppelganger("Blank up", TernaryUp)
+  expect_doppelganger("Blank right", TernaryRight)
+  expect_doppelganger("Blank down", TernaryDown)
+  expect_doppelganger("Blank le", TernaryLe)
 
-  vdiffr::expect_doppelganger("Blank up anticlockwise", TernaryUpAC)
-  vdiffr::expect_doppelganger("Blank right anticlockwise", TernaryRightAC)
-  vdiffr::expect_doppelganger("Blank down anticlockwise", TernaryDownAC)
-  vdiffr::expect_doppelganger("Blank le anticlockwise", TernaryLeAC)
+  expect_doppelganger("Blank up anticlockwise", TernaryUpAC)
+  expect_doppelganger("Blank right anticlockwise", TernaryRightAC)
+  expect_doppelganger("Blank down anticlockwise", TernaryDownAC)
+  expect_doppelganger("Blank le anticlockwise", TernaryLeAC)
 
   TernaryCols <- function() {
     par(mfrow = c(1, 2), mar = rep(0.3, 4))
@@ -242,8 +238,7 @@ test_that("Vignette plots are rendered correctly", {
     )
   }
 
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("colours-and-water", TernaryCols)
+  expect_doppelganger("colours-and-water", TernaryCols)
 
   Cartesian <- function() {
     TernaryPlot(point = "right")
@@ -254,8 +249,7 @@ test_that("Vignette plots are rendered correctly", {
     text(x = 0.5, y = 0, "(0.5, 0)", col = cbPalette8[3])
     text(x = 0.8, y = -0.5, "(0.8, -0.5)", col = cbPalette8[3])
   }
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("Cartesian", Cartesian)
+  expect_doppelganger("Cartesian", Cartesian)
 
   Padding <- function() {
     TernaryPlot(xlim = c(0.28, 0.38), ylim = c(0.1, 0.2), padding = 0.04)
@@ -280,6 +274,5 @@ test_that("Vignette plots are rendered correctly", {
     text(0.38, 0.1, "<padding>", pos = 4, cex = 0.75)
     text(0.38, 0.1, "<padding> ", pos = 2, cex = 0.75, srt = 90)
   }
-  skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("padding", Padding)
+  expect_doppelganger("padding", Padding)
 })
