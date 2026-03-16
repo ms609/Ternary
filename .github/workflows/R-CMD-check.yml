@@ -97,6 +97,7 @@ jobs:
         if: runner.os == 'Windows'
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache-version: 2-${{ runner.arch }}
           needs: |
             check
             coverage
