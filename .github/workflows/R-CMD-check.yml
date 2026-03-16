@@ -51,8 +51,8 @@ jobs:
           - {os: macOS-latest, r: 'release'}
           - {os: macos-15-intel, r: 'release'} # Until Intel architecture retired 2027-11
           - {os: ubuntu-24.04, r: '4.0', rspm: "https://packagemanager.posit.co/cran/2022-02-18"}
-          - {os: ubuntu-24.04, r: 'release', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
-          - {os: ubuntu-24.04, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
+          - {os: ubuntu-24.04-arm, r: 'release', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
+          - {os: ubuntu-24.04-arm, r: 'devel', rspm: "https://packagemanager.posit.co/cran/__linux__/noble/latest"}
 
     env:
       _R_CHECK_CRAN_INCOMING_: ${{ github.event_name == 'pull_request' }}
