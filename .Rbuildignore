@@ -22,3 +22,5 @@ CONTRIBUTING.md
 ^doc$
 ^Meta$
 ^codemeta\.json$
+^\.positai$
+^\.claude$
