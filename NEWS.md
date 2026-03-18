@@ -1,3 +1,9 @@
+# Ternary v2.3.7
+
+- Document use of `Func` as a table lookup in `TernaryPointValues()` and
+  `TernaryContour()`, with worked examples in documentation and the
+  'Interpolating and contouring' vignette.
+
 # Ternary v2.3.6 (2026-02-02)
 - Enable [web app](http://ms609.github.io/Ternary/app).
 - Upgrade `Annotate()` to use LAPJV in place of Hungarian algorithm.

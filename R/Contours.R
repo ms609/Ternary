@@ -9,6 +9,9 @@
 #' returns a numeric vector of length _n_.
 #' `a`, `b` and `c` will each be a vector of length _n_. Together, they
 #' specify the series of coordinates at which the function should be evaluated.
+#' `Func` need not compute values analytically; it may also look up
+#' pre-computed values from a table – see the 'Interpolating and contouring'
+#' vignette for an example.
 #' @param resolution The number of triangles whose base should lie on the longest 
 #' axis of the triangle.  Higher numbers will result in smaller subdivisions and smoother
 #' colour gradients, but at a computational cost.
@@ -43,6 +46,26 @@
 #' density <- TernaryDensity(coordinates, resolution = 10L)
 #' ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 #' TernaryPoints(coordinates, col = "red", pch = ".")
+#'
+#' # Func can also look up values from a pre-computed table rather than
+#' # evaluate an analytic formula.  Here a data frame stores z-values at a
+#' # handful of ternary coordinates; Func snaps each queried point to its
+#' # nearest tabulated neighbour.
+#' lookup <- data.frame(
+#'   a = c(0.7, 0.5, 0.3, 0.1, 0.5),
+#'   b = c(0.1, 0.3, 0.5, 0.7, 0.2),
+#'   z = c(  9,   5,   3,   1,   7)
+#' )
+#' lookup$c <- 1 - lookup$a - lookup$b
+#'
+#' NearestLookup <- function(a, b, c) {
+#'   distSq <- outer(a, lookup$a, `-`)^2 + outer(b, lookup$b, `-`)^2
+#'   lookup$z[apply(distSq, 1, which.min)]
+#' }
+#'
+#' TernaryPlot(alab = "a", blab = "b", clab = "c")
+#' ColourTernary(TernaryPointValues(NearestLookup, resolution = 12L))
+#' TernaryPoints(lookup[c("a", "b", "c")], pch = 20, cex = 2)
 #' @family contour plotting functions
 #' @template MRS
 #' @export
@@ -686,6 +709,26 @@ ColorTernary <- ColourTernary
 #'                fill.col =  hcl.colors(14, palette = "viridis", alpha = 0.6))
 #' # Re-draw edges of plot triangle over fill
 #' TernaryPolygon(diag(3))
+#'
+#' # Func can also perform a table lookup rather than evaluate a formula.
+#' # TernaryContour() passes continuous vectorised (a, b, c) values to Func,
+#' # so the lookup must snap queried coordinates to tabulated values.
+#' lookup <- data.frame(
+#'   a = c(0.7, 0.5, 0.3, 0.1, 0.5),
+#'   b = c(0.1, 0.3, 0.5, 0.7, 0.2),
+#'   z = c(  9,   5,   3,   1,   7)
+#' )
+#' lookup$c <- 1 - lookup$a - lookup$b
+#'
+#' NearestLookup <- function(a, b, c) {
+#'   distSq <- outer(a, lookup$a, `-`)^2 + outer(b, lookup$b, `-`)^2
+#'   lookup$z[apply(distSq, 1, which.min)]
+#' }
+#'
+#' TernaryPlot(alab = "a", blab = "b", clab = "c")
+#' ColourTernary(TernaryPointValues(NearestLookup, resolution = 12L))
+#' TernaryContour(NearestLookup, resolution = 36L)
+#' TernaryPoints(lookup[c("a", "b", "c")], pch = 20, cex = 2)
 #'
 #' # Restore plotting parameters
 #' par(originalPar)

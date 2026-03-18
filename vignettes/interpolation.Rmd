@@ -32,6 +32,67 @@ TernaryContour(FunctionToContour, resolution = 36L, legend = TRUE,
 
 ```
 
+# Plotting from a pre-computed table
+
+`Func` is an ordinary R function, so it need not compute z-values
+analytically.
+It can equally well **look up pre-computed values** from a matrix or data
+frame.
+This is useful whenever z-values are already known at a set of discrete
+ternary coordinates – for instance, tabulated rates indexed by age, period,
+and cohort in a Lexis analysis.
+
+The key point is that both `TernaryPointValues()` and `TernaryContour()`
+call `Func` with **vectors** of `a`, `b`, `c` coordinates, so the lookup
+must be vectorised.
+A nearest-neighbour lookup is a simple, general approach: for each queried
+coordinate, find the closest row in the table and return its z-value.
+
+```{r table-lookup-tpv, fig.asp = 1}
+par(mar = rep(0.2, 4))
+
+# A small table of z-values at known (a, b, c) coordinates.
+# In practice this would be read in from a file.
+lookup <- data.frame(
+  a = c(0.7, 0.5, 0.3, 0.1, 0.5),
+  b = c(0.1, 0.3, 0.5, 0.7, 0.2),
+  z = c(  9,   5,   3,   1,   7)
+)
+lookup$c <- 1 - lookup$a - lookup$b
+
+# Func: snap each queried point to the nearest tabulated neighbour.
+NearestLookup <- function(a, b, c) {
+  distSq <- outer(a, lookup$a, `-`)^2 + outer(b, lookup$b, `-`)^2
+  lookup$z[apply(distSq, 1, which.min)]
+}
+
+TernaryPlot(alab = "a", blab = "b", clab = "c")
+ColourTernary(TernaryPointValues(NearestLookup, resolution = 12L))
+# Mark the tabulated points
+TernaryPoints(lookup[c("a", "b", "c")], pch = 20, cex = 2)
+```
+
+The coloured tiles show the Voronoi-like regions centred on each tabulated
+point.
+`TernaryContour()` accepts the same lookup function:
+
+```{r table-lookup-contour, fig.asp = 1}
+par(mar = rep(0.2, 4))
+TernaryPlot(alab = "a", blab = "b", clab = "c")
+ColourTernary(TernaryPointValues(NearestLookup, resolution = 12L))
+TernaryContour(NearestLookup, resolution = 36L)
+TernaryPoints(lookup[c("a", "b", "c")], pch = 20, cex = 2)
+```
+
+Note that `TernaryContour()` evaluates `Func` on a dense rectangular
+Cartesian grid (not just at triangle centres), so the queried `a`, `b`, `c`
+values will be continuous and will generally not coincide with table grid
+points.
+The nearest-neighbour lookup handles this naturally; the contour lines then
+correspond to the boundaries between adjacent tabulated values.
+For smoother contours, consider interpolating the table first – see the
+inverse distance weighting example below.
+
 If it is not computationally feasible to execute a function at every point,
 it is possible to interpolate between known values.
 
@@ -98,7 +159,7 @@ TernaryContour(PredictABC, resolution = 36L, legend = 6,
 TernaryPoints(abc, pch = 3, col = "#cc3333")
 ```
 
-More sophisticated interpolation approaches are possible, e.g. 
+More sophisticated interpolation approaches are possible, e.g.
 [kriging](https://desktop.arcgis.com/en/arcmap/10.3/tools/3d-analyst-toolbox/how-kriging-works.htm); these may help to alleviate artefacts of sampling intensity as observed towards the bottom of the example plot above.
 
 # Interpolation within a sampled region
