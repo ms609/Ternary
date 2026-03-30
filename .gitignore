@@ -23,3 +23,5 @@ doc
 Meta
 *.bak
 .positai
+/Ternary.Rcheck
+*.gz
