@@ -25,6 +25,12 @@ reference:
       - TernaryPlot
       - AddToTernary
       - Annotate
+  - title: "Creating Lexis diagrams"
+    desc: >
+      Functions for drawing and adding data to a Lexis (parallelogram) plot
+      for age-period-cohort analysis.
+    contents:
+      - has_concept("Lexis plotting functions")
   - title: "Creating Holdridge plots"
     desc: >
       Functions for drawing and adding data to a Holdridge plot.

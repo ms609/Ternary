@@ -295,64 +295,97 @@ exactly as `HoldridgePoints` etc. delegate to `AddToHoldridge()`.
 ### Open questions / decisions needed
 
 1. ~~**Naming**: Resolved — `LexisPlot()`.~~
-2. **Which two axes are "free"?**  Should the user specify which axis is
-   the "constrained" one (like Holdridge hard-codes direction = 1)?  Or
-   always use b and c with a as the dependent axis?
+2. ~~**Which two axes are "free"?**~~  Resolved: user specifies any two of
+   `aRange`, `bRange`, `cRange`.  The NULL one is the free/derived axis.
+   Default (all NULL) is `bRange = c(0,1), cRange = c(0,1)` (a free).
+   
 3. **Compatibility with existing Ternary functions**: Should
    `TernaryPoints()` etc. also work on a Lexis plot (by checking
    the plot state), or should users always use the `Lexis*()`
    wrappers?
+   > : both should work. Provide LexisPoints(b, c) as a convenience, but TernaryPoints(a, b, c) should work on a Lexis plot without any changes needed.
+   
 4. **Reuse of `.TrianglePlot()`**: HoldridgePlot() delegates to
    `.TrianglePlot()` heavily.  A parallelogram may need its own
    `.LexisPlot()` internal because the boundary geometry differs
    fundamentally (4 sides, not 3).
+   > Separate .LexisPlot() internal. The geometry difference is fundamental, not parametric. The duplicated code is mostly small styling boilerplate, and the low-level helpers (.AxisLabel, .AxisTick, .StartPlot) can be reused directly. The alternative — weaving parallelogram branches through every triangle helper — would make the existing code harder to maintain for a net reduction in clarity, not an increase.
+   
 5. **Region clipping**: The existing `region` parameter in TernaryPlot
    clips to a sub-triangle.  A parallelogram generalises this.  Should the
    region infrastructure be extended, or should LexisPlot be
    independent?
+   > Independent is the lower-risk, lower-complexity choice.
 
 ---
 
 ## Lexis Plot — Implementation Progress
 
-**Status as of 2026-03-18: No code written yet.  Design plan only.**
-
-All items below are **not started**.
+**Status as of 2026-03-30: Fully generalised.  Any two of {aRange, bRange,
+cRange} can be specified; the third axis is derived.  Free-axis ticks,
+labels, and titles now appear on edges 2→3 and 3→4.  R CMD check passes
+(0 errors, 0 warnings).**
 
 ### Checklist
 
-- [ ] **`R/Lexis.R`** — Create source file with all Lexis-specific code
-- [ ] `LexisToXY()` / `XYToLexis()` — Coordinate transforms
-- [ ] `LexisPlot()` — Plot initialisation (parallelogram setup, grid,
-      axes, labels)
-- [ ] `AddToLexis()` — Core dispatcher
-- [ ] Convenience wrappers: `LexisPoints()`, `LexisLines()`,
-      `LexisText()`, `LexisPolygon()`
-- [ ] `LexisPointValues()` / `ColourLexis()` — Tile/colour fill
-- [ ] `LexisContour()` — Contour support
-- [ ] **`tests/testthat/test-Lexis.R`** — Unit tests + vdiffr snapshots
-- [ ] **`vignettes/Lexis.Rmd`** — Worked APC/Lexis surface example
-- [ ] **`inst/_pkgdown.yml`** — Add Lexis reference page and vignette
-- [ ] **`NEWS.md`** — Add changelog entry
-- [ ] **`NAMESPACE`** — Regenerate via `devtools::document()`
+- [x] **`R/Lexis.R`** — Source file (~750 lines) with all Lexis-specific code
+- [x] `LexisToXY(a, b, c)` / `XYToLexis(x, y)` — Coordinate transforms
+      (named-arg API; any two of a/b/c)
+- [x] `LexisPlot(aRange, bRange, cRange)` — Plot initialisation; any two
+      non-NULL ranges accepted.  Stores `freeAxis`, `boundedAxes`, `axisMap`
+      in plot state.
+- [x] `AddToLexis(fn, a, b, c)` — Core dispatcher (named args)
+- [x] Convenience wrappers: `LexisPoints(a, b, c)`, `LexisLines()`,
+      `LexisText()`, `LexisPolygon()` — all use named args
+- [x] **`tests/testthat/test-Lexis.R`** — 60 tests + 7 vdiffr snapshots
+      (round-trips for a-free, b-free, c-free; axisMap; edge normals;
+      tile counts; APC layout snapshot; free.fun Cohort labels)
+- [x] **`vignettes/Lexis.Rmd`** — Lexis diagram vignette (basic, APC layout,
+      asymmetric, data points, TernaryPoints compat, orientations,
+      colour/contour)
+- [x] **`inst/_pkgdown.yml`** — "Creating Lexis diagrams" reference section
+- [x] **`NEWS.md`** — Changelog entry under v2.3.7
+- [x] **`NAMESPACE`** — Regenerated via `devtools::document()`
+- [x] `LexisPointValues()` / `ColourLexis()` / `ColorLexis()` — Tile/colour
+      fill; `Func` receives named args matching bounded axes
+- [x] `LexisContour()` — Contour support
+- [x] `.LexisTriangleCentres()` — Internal helper for parallelogram tiling
+- [x] `.ResolveLexisAxes()` — Determines free axis and builds axisMap
+- [x] `.LexisCoordsToXY()` / `.XYToLexisCoords()` — Internal transforms
+      for any free axis
+- [x] `.LexisEdgeNormals()` — Auto-corrects winding direction so normals
+      always point outward
+- [x] `.LexisTickDirs()` — Computes outward-oriented tick directions
+      parallel to each grid-line family (not perpendicular to edge)
+- [x] `.LexisAxisTicksFree()` / `.LexisAxisLabelsFree()` — Free-axis
+      ticks and labels on edges 2→3 and 3→4
+- [x] `.FreeLabelVals()` — Computes free-axis label values; supports
+      `free.fun` for domain-specific labels (e.g. Cohort = Period − Age)
+- [x] `free.fun` parameter on `LexisPlot()` — optional function
+      `f(axis1, axis2)` to compute derived-axis labels
 
-### Recommended implementation order
+### Key architecture details
 
-1. Start with `LexisToXY()` / `XYToLexis()` — the coordinate transforms
-   are the foundation; write round-trip tests immediately.
-2. Then `AddToLexis()` + convenience wrappers — straightforward once
-   transforms work.
-3. Then `LexisPlot()` — the hardest piece; study `R/Holdridge.R` and
-   `R/dot-TrianglePlot.R` closely first.  Resolve open question #4
-   (reuse `.TrianglePlot()` or build new internal) before coding.
-4. Then tile/colour and contour support.
-5. Vignette and docs last.
-
-### Key files to study before starting
-
-- `R/Holdridge.R` — The closest analogue; `HoldridgePlot()` pattern.
-- `R/dot-TrianglePlot.R` — `.TrianglePlot()` internals that
-  `HoldridgePlot()` delegates to.
-- `R/Coordinates.R` — `TernaryCoords()` / `XYToTernary()` math.
-- `R/helpers.R` — `.PlotGrid()`, `.TitleAxis()`, etc.
-- `R/TernaryPlot.R` — `AddToTernary()` dispatcher pattern.
+- **`axisMap`**: Named integer vector `c(axis1=, axis2=, free=)` mapping
+  roles to triplicate indices (a=1, b=2, c=3).  Used throughout for grid
+  styling, tick placement, label assignment, and corner tips.
+- **Winding correction**: Corner ordering can be clockwise or
+  counterclockwise depending on which axis is free and the direction.
+  `.LexisEdgeNormals()` checks signed area and negates normals when
+  counterclockwise, keeping corner ordering stable while ensuring
+  outward-pointing normals.
+- **Edge assignments** (invariant across all free-axis configs):
+  - Edge 1→2: axis1 ticks/labels (coord2 constant at range2 min)
+  - Edge 4→1: axis2 ticks/labels (coord1 constant at range1 min)
+  - Edge 2→3: free-axis ticks/labels + title (diagonal grid crossings)
+  - Edge 3→4: free-axis ticks/labels + title (diagonal grid crossings)
+  - Corner 1: free axis tip; Corner 2: axis1 tip; Corner 4: axis2 tip
+- **Tick directions**: `.LexisTickDirs()` computes outward-oriented unit
+  vectors parallel to each grid-line family, so ticks unambiguously
+  indicate which grid line they annotate.  Axis1 ticks ∥ coord2 direction,
+  axis2 ticks ∥ coord1 direction, free ticks ∥ diagonal direction.
+- **`free.fun`**: The ternary constraint a + b + c = k differs from the
+  demographic Lexis constraint (Period = Age + Cohort).  The diagonal grid
+  lines represent constant (c1' + c2'), NOT constant Cohort.  `free.fun`
+  lets users compute domain-specific labels at each edge position:
+  `free.fun = function(a, b) b - a` gives Cohort = Period − Age.

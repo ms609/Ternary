@@ -1,0 +1,188 @@
+---
+title: "Lexis diagrams"
+author: "Martin R. Smith"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_document
+
+vignette: >
+  %\VignetteIndexEntry{Lexis diagrams}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+`LexisPlot()` creates a blank parallelogram-shaped plot, based on the Lexis
+diagram used in demography for age–period–cohort (APC) analysis.
+Data can be added with `LexisPoints()`, `LexisLines()`, `LexisText()`, and
+`LexisPolygon()`; the generic dispatcher `AddToLexis()` accepts any base
+graphics plotting function.
+
+A standard ternary triangle constrains three axes to the same range
+(a + b + c = 1).  A Lexis plot relaxes this constraint: two of the three axes
+are "bounded" and the third is derived automatically.  Specify ranges for any
+two axes — `aRange`, `bRange`, `cRange` — and the third will be computed.
+
+# A basic Lexis plot
+
+With the default ranges (b ∈ [0, 1], c ∈ [0, 1], a derived) the plot
+is a rhombus — equivalent to two ternary triangles sharing an edge:
+
+```{r basic, fig.asp = 1}
+library("Ternary")
+par(mar = rep(0.2, 4))
+
+LexisPlot()
+```
+
+# Age–Period–Cohort layout
+
+In demographic applications, **Age + Cohort = Period**.  To produce the
+conventional Lexis surface with horizontal Age lines and slanted Period edges,
+specify `aRange` (Age) and `bRange` (Period), leaving Cohort as the derived
+axis:
+
+```{r apc, fig.asp = 0.7}
+par(mar = rep(0.2, 4))
+
+LexisPlot(
+  aRange = c(0, 100),
+  bRange = c(1900, 2000),
+  alab = "Age", blab = "Period", clab = "Cohort",
+  free.fun = function(a, b) b - a,
+  grid.lines = 10, grid.minor.lines = 0,
+  col = "white"
+)
+
+# Add some data points
+set.seed(4781)
+n <- 30
+ages <- runif(n, 5, 90)
+periods <- runif(n, 1910, 1990)
+LexisPoints(a = ages, b = periods, pch = 16, col = "#22558866", cex = 1.2)
+```
+
+Three families of grid lines appear:
+Age lines run horizontally, Period lines slant at 60° to the upper right,
+and the third family slants at 60° to the upper left.
+
+The `free.fun` argument controls how the derived axis is labelled on the
+remaining two edges.
+Passing `free.fun = function(a, b) b - a` labels them with
+Period − Age, i.e. the demographic Cohort.
+Without `free.fun`, labels show the ternary complement
+(the value of the internal third coordinate).
+
+# Asymmetric ranges (a derived)
+
+When `bRange` and `cRange` are specified, `a` is the derived axis.
+Asymmetric ranges produce a parallelogram wider than it is tall (or vice
+versa):
+
+```{r asymmetric, fig.asp = 0.6}
+par(mar = rep(0.2, 4))
+
+LexisPlot(
+  bRange = c(1900, 2100),
+  cRange = c(0, 99),
+  blab = "Period", clab = "Age", alab = "Cohort",
+  atip = "Cohort", btip = "Period", ctip = "Age",
+  grid.lines = 10
+)
+```
+
+
+# Adding data
+
+Points are specified using the two bounded axes by name.  The convenience
+wrappers `LexisPoints()`, `LexisLines()`, etc. handle coordinate
+conversion automatically:
+
+```{r data-points, fig.asp = 0.6}
+par(mar = rep(0.2, 4))
+
+LexisPlot(
+  bRange = c(1900, 2100),
+  cRange = c(0, 99),
+  blab = "Period", clab = "Age", alab = "Cohort",
+  grid.lines = 10
+)
+
+set.seed(4781)
+n <- 40
+period <- runif(n, 1920, 2080)
+age <- runif(n, 5, 90)
+
+LexisPoints(b = period, c = age, pch = 16, col = "#22558866", cex = 1.2)
+```
+
+# Compatibility with standard ternary functions
+
+Because the underlying coordinate maths is the same, `TernaryPoints()`,
+`TernaryLines()`, and other standard ternary functions also work on a
+Lexis plot — simply pass all three coordinates (a, b, c):
+
+```{r ternary-compat, fig.asp = 1}
+par(mar = rep(0.2, 4))
+
+LexisPlot(blab = "b", clab = "c", alab = "a")
+
+# Both calls place a point at the same position:
+LexisPoints(b = 0.3, c = 0.5, pch = 16, cex = 2, col = "red")
+TernaryPoints(c(1 - 0.3 - 0.5, 0.3, 0.5), pch = 1, cex = 3, col = "blue")
+```
+
+The red dot (`LexisPoints`) and the blue circle (`TernaryPoints`) overlap
+exactly.
+
+# Orientation
+
+`LexisPlot()` supports four orientations via the `point` parameter:
+
+```{r orientation, fig.asp = 1, fig.width = 7}
+par(mfrow = c(2, 2), mar = rep(1, 4))
+for (dir in c("up", "right", "down", "left")) {
+  LexisPlot(point = dir)
+  text(mean(par("usr")[1:2]), mean(par("usr")[3:4]),
+       paste0('point = "', dir, '"'), cex = 1.5)
+}
+```
+
+
+# Colour fill and contours
+
+`LexisPointValues()` evaluates a function at triangle tile centres across the
+parallelogram, and `ColourLexis()` paints those tiles.  The function's
+argument names must match the two bounded axes.
+
+Use the `panel.first` argument to place colour behind the grid lines.
+Because `panel.first` is evaluated inside `LexisPlot()`, call
+`LexisPointValues()` from a plot with the same ranges first:
+
+```{r colour-contour, fig.asp = 0.6}
+par(mar = rep(0.2, 4))
+
+# Set up ranges so LexisPointValues() can read them
+MySurface <- function(b, c) sin(b / 30) * cos(c / 15)
+
+LexisPlot(
+  bRange = c(1900, 2100), cRange = c(0, 100),
+  blab = "Period", clab = "Age", alab = "Cohort",
+  grid.lines = 10, grid.minor.lines = 0
+)
+
+vals <- LexisPointValues(MySurface, resolution = 24)
+ColourLexis(vals, legend = TRUE, bty = "n")
+LexisContour(MySurface, resolution = 48)
+```
+
+
+# Where next
+
+For other examples of usage, see the accompanying vignettes:
+
+- [Introduction for new R users](new-users.html)
+
+- [Getting started guide](Ternary.html)
+
+- [Interpolating and contouring](interpolation.html)
+
+- [Plotting Holdridge climate zones](Holdridge.html)

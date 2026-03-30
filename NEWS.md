@@ -1,11 +1,16 @@
 # Ternary v2.3.7
 
+- New `LexisPlot()` creates parallelogram-shaped Lexis diagrams for
+  age-period-cohort (APC) data, with `AddToLexis()`, `LexisPoints()`,
+  `LexisLines()`, `LexisText()`, `LexisPolygon()` convenience wrappers,
+  `LexisToXY()` / `XYToLexis()` coordinate transforms, and
+  `LexisPointValues()` / `ColourLexis()` / `LexisContour()` for tile
+  colouring and contouring.
 - Document use of `Func` as a table lookup in `TernaryPointValues()` and
   `TernaryContour()`, with worked examples in documentation and the
   'Interpolating and contouring' vignette.
 
 # Ternary v2.3.6 (2026-02-02)
-- Enable [web app](http://ms609.github.io/Ternary/app).
 - Upgrade `Annotate()` to use LAPJV in place of Hungarian algorithm.
 
 # Ternary v2.3.5 (2025-09-03)
