@@ -5,20 +5,16 @@
 * Ubuntu, R 4.0, release and devel, via 
   [GitHub actions](https://github.com/ms609/Ternary/actions)
 
-* local Windows 10 install, R 4.6.0
+* local Windows 10 install, R 4.6.0 & R-devel (2026-06-03)
 * Windows via `devtools::check_win_devel()`
+* Mac via `devtools::check_mac_release()`
 * Windows Server, R release, via GitHub actions
 
 * Mac OS, R release, via GitHub actions
 
 
 ## R CMD check results
-There were no ERRORs or WARNINGs.
-
-There is one NOTE about invalid URLs:
-  URL: https://www.shadedrelief.com/hypso/hypso.html
-  
-  The URL resolves; this is a false positive.
+There were no ERRORs or WARNINGs or NOTEs.
 
 
 ## Downstream dependencies
