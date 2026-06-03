@@ -99,10 +99,17 @@ test_that("Coordination supports ranges", {
   )
 })
 
-test_that("Time series supported", {
+test_that("Classed matrices supported", {
+  # ts supported by dedicated method
   seats <- c("drivers", "front", "rear")
-  expect_equal(TernaryToXY(Seatbelts[, seats]),
-               TernaryToXY(as.matrix(Seatbelts[, seats])))
+  expect_equal(CoordinatesToXY(Seatbelts[, seats]),
+               CoordinatesToXY(as.matrix(Seatbelts[, seats])))
+  sb <- Seatbelts[, seats]
+  
+  # Non-natively supported class:
+  class(sb) <- c("zoo", "matrix", "array")
+  expect_equal(CoordinatesToXY(sb),
+               CoordinatesToXY(as.matrix(sb)))
 })
 
 test_that("Regions are supported both ways", {
