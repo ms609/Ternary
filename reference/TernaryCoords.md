@@ -24,6 +24,15 @@ TernaryToXY(
   region = getOption("ternRegion", ternRegionDefault)
 )
 
+# S3 method for class 'ts'
+TernaryToXY(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
+)
+
 # S3 method for class 'numeric'
 TernaryToXY(
   abc,

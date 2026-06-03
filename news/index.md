@@ -1,5 +1,17 @@
 # Changelog
 
+## Ternary v2.3.7 (2026-06-03)
+
+- [`Annotate()`](https://ms609.github.io/Ternary/reference/Annotate.md)
+  now uses
+  [`clue::solve_LSAP`](https://rdrr.io/pkg/clue/man/solve_LSAP.html) in
+  place of
+  [`TreeDist::LAPJV`](https://ms609.github.io/TreeDist/reference/LAPJV.html),
+  simplifying the dependency graph.
+- [`CoordinatesToXY()`](https://ms609.github.io/Ternary/reference/CoordinatesToXY.md)
+  supports new [`apply()`](https://rdrr.io/r/base/apply.html) behaviour
+  in R devel.
+
 ## Ternary v2.3.6 (2026-02-02)
 
 CRAN release: 2026-02-03
