@@ -141,7 +141,7 @@ test_that("Contours are plotted", {
     TernaryPoints(coordinates, col = "red", pch = ".")
   }
   skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("density-contours", DensityContours, digits = 5)
+  vdiffr::expect_doppelganger("density-contours", DensityContours)
 
 
   DensityContours2 <- function() {
@@ -160,7 +160,7 @@ test_that("Contours are plotted", {
     TernaryDensityContour(coordinates, resolution = 10L, edgeCorrection = FALSE)
   }
   skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("density-contours-2", DensityContours2, digits = 5)
+  vdiffr::expect_doppelganger("density-contours-2", DensityContours2)
 
 
 
@@ -180,7 +180,7 @@ test_that("Contours are plotted", {
     TernaryDensityContour(coordinates, resolution = 10L)
   }
   skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("density-contours-3", DensityContours3, digits = 5)
+  vdiffr::expect_doppelganger("density-contours-3", DensityContours3)
 
   LoResDensCont <- function() {
     coordinates <- list(
@@ -225,7 +225,7 @@ test_that("Contours are plotted", {
     )
   }
   skip_if_not_installed("vdiffr")
-  vdiffr::expect_doppelganger("lo-res-density-contours", LoResDensCont, digits = 5)
+  vdiffr::expect_doppelganger("lo-res-density-contours", LoResDensCont)
 })
 
 test_that("Colours are drawn", {
