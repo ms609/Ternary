@@ -99,6 +99,11 @@ test_that("Coordination supports ranges", {
   )
 })
 
+test_that("Time series supported", {
+  seats <- c("drivers", "front", "rear")
+  expect_equal(TernaryToXY(Seatbelts[, seats]),
+               TernaryToXY(as.matrix(Seatbelts[, seats])))
+})
 
 test_that("Regions are supported both ways", {
   my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))

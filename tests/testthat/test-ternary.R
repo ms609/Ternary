@@ -43,6 +43,19 @@ test_that("TernaryCoords gives correct coordinates", {
   expect_equal(c(0, 0.5), TernaryCoords(0, 0, 1))
 })
 
+test_that("ts / mts coordinates are supported (#apply-keeps-class)", {
+  # R-devel (>= r90096) apply() preserves the class of each MARGIN slice, so
+  # CoordinatesToXY() now receives `ts`-classed vectors rather than bare
+  # numerics. Guards against the regression that broke new-users.Rmd on CRAN.
+  options("ternDirection" = 1L)
+  abc <- ts(cbind(a = c(1, 0), b = c(1, 1), c = c(1, 2)))
+  expect_silent(xy <- CoordinatesToXY(abc))
+  expect_equal(unname(xy), unname(apply(unclass(abc), 1, TernaryCoords)))
+  # Single ts slice (the object apply now hands to TernaryCoords)
+  slice <- ts(c(1, 1, 1))
+  expect_equal(TernaryCoords(slice), TernaryCoords(c(1, 1, 1)))
+})
+
 test_that("Ternary plotting functions", {
   TernaryPlotterXlim <- function() {
     TernaryPlot("A", "B", "C", xlim = c(0, 0.86), point = 2)

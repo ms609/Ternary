@@ -65,7 +65,7 @@ TernaryToXY.ts <- function(
     direction = getOption("ternDirection", 1L),
     region = getOption("ternRegion", ternRegionDefault)
   ) {
-  TernaryToXY(as.matrix(abc), b_coord, c_coord, direction, region)
+  TernaryToXY(unclass(abc), b_coord, c_coord, direction, region)
 }
 
 #' @rdname TernaryCoords
