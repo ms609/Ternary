@@ -2,8 +2,15 @@
 
 ## Ternary v2.3.6.9000 (development)
 
-- [`TernaryToXY()`](https://ms609.github.io/Ternary/dev/reference/TernaryCoords.md)
-  gains `ts` method, coercing to matrix.
+- [`Annotate()`](https://ms609.github.io/Ternary/dev/reference/Annotate.md)
+  now uses
+  [`clue::solve_LSAP`](https://rdrr.io/pkg/clue/man/solve_LSAP.html) in
+  place of
+  [`TreeDist::LAPJV`](https://ms609.github.io/TreeDist/reference/LAPJV.html),
+  simplifying the dependency graph.
+- [`CoordinatesToXY()`](https://ms609.github.io/Ternary/dev/reference/CoordinatesToXY.md)
+  supports new [`apply()`](https://rdrr.io/r/base/apply.html) behaviour
+  in R devel.
 
 ## Ternary v2.3.6 (2026-02-02)
 
