@@ -27,7 +27,7 @@ Imports:
     PlotTools (>= 0.2.0),
     shiny,
     sp,
-    TreeDist,
+    clue,
 Suggests:
     colourpicker,
     knitr,

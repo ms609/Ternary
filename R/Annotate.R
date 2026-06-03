@@ -39,7 +39,7 @@
 #' https://ms609.github.io/Ternary/articles/annotation.html) gives 
 #' further suggestions for manual annotation.
 #' @importFrom graphics segments text
-#' @importFrom TreeDist LAPJV
+#' @importFrom clue solve_LSAP
 #' @template MRS
 #' @export
 Annotate <- function(coordinates, labels, side, outset = 0.16,
@@ -121,7 +121,7 @@ Annotate <- function(coordinates, labels, side, outset = 0.16,
       diffX <- outer(xyI[1, ], anchorI[1, ], `-`)
       diffY <- outer(xyI[2, ], anchorI[2, ], `-`)
       euclid <- sqrt((diffX ^ 2) + (diffY ^ 2))
-      matching <- LAPJV(euclid)$matching
+      matching <- as.integer(solve_LSAP(euclid))
       anchorX <- anchorI[1, matching]
       anchorY <- anchorI[2, matching]
       segments(xyI[1, ], xyI[2, ],

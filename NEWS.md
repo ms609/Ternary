@@ -1,5 +1,7 @@
 # Ternary v2.3.6.9000 (development)
-- `TernaryToXY()` gains `ts` method, coercing to matrix.
+- `Annotate()` now uses `clue::solve_LSAP` in place of `TreeDist::LAPJV`,
+  simplifying the dependency graph.
+- `CoordinatesToXY()` supports new `apply()` behaviour in R devel.
 
 # Ternary v2.3.6 (2026-02-02)
 - Enable [web app](http://ms609.github.io/Ternary/app).
