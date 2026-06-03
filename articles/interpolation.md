@@ -7,6 +7,7 @@ A ternary plot can be shaded and contoured according to a known
 function:
 
 ``` r
+
 library("Ternary")
 par(mar = rep(0.2, 4))
 
@@ -30,6 +31,7 @@ point, it is possible to interpolate between known values.
 Inverse distance weighting is a simple approach:
 
 ``` r
+
 # If using your own data, set
 # abc <- [Three-column matrix containing a, b, c coordinates of points]
 # response <- [Vector of values at the points specified in abc]
@@ -104,6 +106,7 @@ region of ternary space and do not wish to extrapolate beyond this
 region.
 
 ``` r
+
 # Select some points at which to sample
 set.seed(0)
 nPts <- 50

@@ -2,6 +2,8 @@
 
 ## Ternary v2.3.6 (2026-02-02)
 
+CRAN release: 2026-02-03
+
 - Enable [web app](http://ms609.github.io/Ternary/app).
 - Upgrade
   [`Annotate()`](https://ms609.github.io/Ternary/reference/Annotate.md)

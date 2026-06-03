@@ -41,6 +41,7 @@ Other plot limits:
 ## Examples
 
 ``` r
+
 TernaryPlot()
 points(0.5, 0.5, col = "darkgreen")
 OutsidePlot(0.5, 0.5)

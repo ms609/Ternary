@@ -7,6 +7,7 @@ For simple use cases, generate Ternary plots using the point-and-click
 Shiny app:
 
 ``` r
+
 install.packages("Ternary")
 Ternary::TernaryApp()
 ```
@@ -16,12 +17,14 @@ For greater control over your plots, use the full R implementation.
 Install the package with:
 
 ``` r
+
 install.packages("Ternary")
 ```
 
 Or if you want the latest development version of the package:
 
 ``` r
+
 if (!require("devtools")) install.packages("devtools")
 install_github("ms609/Ternary", args = "--recursive")
 ```
@@ -29,6 +32,7 @@ install_github("ms609/Ternary", args = "--recursive")
 Once the package is installed, load it into the current R session with
 
 ``` r
+
 library("Ternary")
 ```
 
@@ -41,6 +45,7 @@ directions; secondly, adding data.
 At its simplest, all you need to do is type
 
 ``` r
+
 TernaryPlot()
 ```
 
@@ -50,6 +55,7 @@ The following charts show which corners are which, under different
 orientations:
 
 ``` r
+
 par(mfrow = c(2, 2), mar = rep(0.5, 4))
 for (dir in c("up", "right", "down", "le")) {
   TernaryPlot(point = dir, atip = "A", btip = "B", ctip = "C",
@@ -67,6 +73,7 @@ for (dir in c("up", "right", "down", "le")) {
 First we will define some data that we wish to plot:
 
 ``` r
+
 # Define data points
 data_points <- list(
   R = c(255, 0, 0), 
@@ -93,6 +100,7 @@ Now we set up our plotting area to display two plots side by side, and
 produce the plots.
 
 ``` r
+
 par(                          # Configure plotting area
   mfrow = c(1, 2),            # Plot one row of panels in two columns
   mar = c(0.3, 0.3, 1.3, 0.3) # Set margins for each plot
@@ -167,6 +175,7 @@ according to additional properties of the data, in a manner analogous to
 the standard plotting functions:
 
 ``` r
+
 # Configure plotting area
 par(mar = rep(0.3, 4))
 
@@ -250,6 +259,7 @@ It is also possible to use Cartesian coordinates to plot onto the graph.
 By default, the plotting area is a 1×1 square.
 
 ``` r
+
 par(mar = rep(0, 4)) # Reduce margins
 TernaryPlot(point = "right", clockwise = FALSE)
 cat("X range in this orientation:", TernaryXRange())
@@ -258,12 +268,14 @@ cat("X range in this orientation:", TernaryXRange())
     ## X range in this orientation: -0.0669873 0.9330127
 
 ``` r
+
 cat("Y range in this orientation:", TernaryYRange())
 ```
 
     ## Y range in this orientation: -0.5 0.5
 
 ``` r
+
 arrows(x0 = 0.5, y0 = 0.4, x1 = sqrt(3) / 2, y1 = 0.4, length = 0.1,
        col = cbPalette8[2])
 text(x = mean(c(0.5, sqrt(3) / 2)), y = 0.4, "Increasing X", pos = 3,
@@ -283,6 +295,7 @@ A plot can be coloured and contoured according to the output of a
 mathematical expression:
 
 ``` r
+
 par(mar = rep(0.2, 4))
 TernaryPlot(alab = "a", blab = "b", clab = "c")
 
@@ -310,6 +323,7 @@ PlotTools::SpectrumLegend(
 or according to the density of points across the plot:
 
 ``` r
+
 par(mar = rep(0.2, 4))
 TernaryPlot(axis.labels = seq(0, 10, by = 1))
 
@@ -344,6 +358,7 @@ coordinates of a particular point in ternary space.
 Ensure that *dx* = *dy* if you want an isometric plot.
 
 ``` r
+
 # Define points corresponding to corners of a region to plot
 my_corners <- list(c(22, 66, 12), c(22, 72, 6), c(15, 80, 5), c(12, 76, 12))
 
@@ -359,6 +374,7 @@ The `padding` parameter is added as a margin to each side of the region
 specified using `xlim` and `ylim`:
 
 ``` r
+
 # Remove plot margins
 par(mar = rep(0, 4))
 
@@ -390,6 +406,7 @@ An alternative approach is to plot a triangular sub-region of the larger
 ternary space, allowing axis annotations to be read more easily.
 
 ``` r
+
 par(mar = rep(0.2, 4))
 TernaryPlot(region = my_corners) # Fit plotted region to data
 TernaryPolygon(my_corners, col = "#2cbe4e88")
@@ -401,6 +418,7 @@ A region can be defined manually; the smallest triangle that covers the
 region will be employed.
 
 ``` r
+
 par(mar = rep(0.2, 4))
 region <- list(
    c(amin = 10, bmin = 70, cmin = 0),

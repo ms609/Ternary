@@ -22,6 +22,7 @@ linked to interpreted climate settings.
 Please cite Tsakalos *et al.* (2023) when using this function.
 
 ``` r
+
 # Install the Ternary package, if it's not already installed
 if (!requireNamespace("Ternary", quietly = TRUE)) {
   install.packages("Ternary")
@@ -67,6 +68,7 @@ most common cases are:
 - Reading data from an Excel file. Here you can use:
 
 ``` r
+
 # On first use only, install the 'readxl' package
 install.packages("readxl")
 
@@ -83,6 +85,7 @@ View(myData)
 - Reading data from a delimited file, such as a `.csv`:
 
 ``` r
+
 # Read data into an object called `myData`
 myData <- read.csv("path_to/your_data_file.csv")
 
@@ -105,6 +108,7 @@ mm).
 If your PET data are in the third row of `myData`, you can call:
 
 ``` r
+
 myPet <- myData[3, ] # Access row number 3.  Note the position of the comma.
 ```
 
@@ -112,6 +116,7 @@ If your precipitation data is in a column with the heading “Prec”, you
 can call:
 
 ``` r
+
 myPrec <- myData[, "Prec"] # Access column with name "Prec". 
                            # Columns go after the comma.
 ```
@@ -119,6 +124,7 @@ myPrec <- myData[, "Prec"] # Access column with name "Prec".
 This will allow you to plot your data using:
 
 ``` r
+
 HoldridgePlot()
 HoldridgePoints(pet = myPet, prec = myPrec)
 ```

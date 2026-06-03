@@ -27,6 +27,7 @@ The first use of the app may take a minute or two to load.
 You can also run the Shiny app through your local R installation:
 
 ``` r
+
 install.packages("Ternary")
 Ternary::TernaryApp()
 ```
@@ -42,6 +43,7 @@ plots](https://ms609.github.io/Ternary/articles/Holdridge.html).
 Install the development version from GitHub with
 
 ``` r
+
 devtools::install_github("ms609/Ternary", args = "--recursive")
 ```
 

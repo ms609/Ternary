@@ -9,6 +9,7 @@ road casualty data from Great Britain.
 First, we’ll load and preview the data:
 
 ``` r
+
 data("Seatbelts")
 
 # View the first few entries:
@@ -32,6 +33,7 @@ front-seat passengers (column `front`), or rear-seat passengers (column
 Let’s start by loading the “Ternary” package and plotting the data:
 
 ``` r
+
 # Load the Ternary library
 library("Ternary")
 
@@ -51,6 +53,7 @@ this law by plotting data before and after the law with different
 symbols. R’s **p**lotting **ch**aracters are numbered thus:
 
 ``` r
+
 par(mar = c(0, 0, 0, 0))
 plot(0:20, rep(2, 21), pch = 0:20,
      cex = 2, ylim = c(-1, 3), ann = FALSE)
@@ -63,6 +66,7 @@ Let’s choose to plot a `+` (character `3`) when seatbelts are legally
 required, and `o` (character `1`) when they are not.
 
 ``` r
+
 beltLawPch <- ifelse(Seatbelts[, "law"], 3, 1)
 ```
 
@@ -70,6 +74,7 @@ Let’s also make the plot more readable by shrinking the margins, and
 just plotting the region of the plot where the data lie:
 
 ``` r
+
 # Shrink the margin so the plot's easier to read
 par(mar = c(0, 0, 0, 0))
 
@@ -103,6 +108,7 @@ friendly](https://www.nature.com/articles/nmeth.1618#ref-CR2), and works
 when printed in greyscale.
 
 ``` r
+
 nPoints <- nrow(Seatbelts)
 rowCol <- hcl.colors(nPoints, palette = "viridis", alpha = 0.8)
 ```
@@ -110,6 +116,7 @@ rowCol <- hcl.colors(nPoints, palette = "viridis", alpha = 0.8)
 Now we can plot our data:
 
 ``` r
+
 par(mar = c(0, 0, 0, 0))
 
 TernaryPlot(
@@ -135,6 +142,7 @@ the scatter in the ‘drivers’ dimension? Let’s try plotting seasonal
 variation:
 
 ``` r
+
 # Define a suitable cyclical spectrum
 fourSeasons <- hcl.colors(4, "Spectral")
 monthCol <- colorRampPalette(fourSeasons[c(1:4, 1)])(13)[c(7:12, 1:6)]
@@ -174,6 +182,7 @@ distance driven. We can use a different approach to zoom into the
 relevant region.
 
 ``` r
+
 par(mar = c(0, 0, 0, 0))
 
 TernaryPlot(alab = seat[1], blab = seat[2], clab = seat[3],
@@ -202,6 +211,7 @@ Now let’s plot the annual trend as a line, taking the values for each
 October as representative:
 
 ``` r
+
 # Subset our data to extract only Octobers:
 oct <- month.name == "October"
 octBelts <- Seatbelts[oct, ]
@@ -242,6 +252,7 @@ most common cases are:
 - Reading data from an Excel file. Here you can use:
 
 ``` r
+
 # On first use only, install the 'readxl' package
 install.packages("readxl")
 
@@ -258,6 +269,7 @@ View(myData)
 - Reading data from a delimited file, such as a `.csv`:
 
 ``` r
+
 # Read data into an object called `myData`
 myData <- read.csv("path_to/your_data_file.csv")
 

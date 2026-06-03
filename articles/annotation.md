@@ -7,6 +7,7 @@ This vignette explores how to annotate specific points within a ternary
 plot. We’ll start by generating some example data:
 
 ``` r
+
 set.seed(40) # For reproducibility
 
 nPoints <- 40
@@ -23,6 +24,7 @@ It’s simple to plot and annotate all points with automatically
 positioned labels:
 
 ``` r
+
 library("Ternary") # Load the Ternary package
 
 # Create ternary plot
@@ -44,6 +46,7 @@ function permits, we can manually select which points to annotate and
 where to place their labels.
 
 ``` r
+
 # Create ternary plot
 par(mar = rep(0.2, 4)) # Set figure margins
 TernaryPlot("a", "b", "c")
@@ -66,6 +69,7 @@ par("usr") # c(x1, x2, y1, y2)
     ## [1] -0.6264000  0.6264000 -0.1933873  1.0594127
 
 ``` r
+
 # And the X and Y range of the ternary plot itself:
 TernaryXRange()
 ```
@@ -73,12 +77,14 @@ TernaryXRange()
     ## [1] -0.5  0.5
 
 ``` r
+
 TernaryYRange()
 ```
 
     ## [1] -0.0669873  0.9330127
 
 ``` r
+
 # Manually select locations for labels:
 labelXY <- rbind(c(0.28, 0.7),
                  c(0.35, 0.6),
