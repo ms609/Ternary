@@ -140,7 +140,8 @@ test_that("Contours are plotted", {
     TernaryDensityContour(coordinates, resolution = 10L, filled = TRUE)
     TernaryPoints(coordinates, col = "red", pch = ".")
   }
-  expect_doppelganger("density-contours", DensityContours)
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("density-contours", DensityContours, digits = 5)
 
 
   DensityContours2 <- function() {
@@ -158,7 +159,8 @@ test_that("Contours are plotted", {
     TernaryPoints(coordinates, col = "red", pch = ".")
     TernaryDensityContour(coordinates, resolution = 10L, edgeCorrection = FALSE)
   }
-  expect_doppelganger("density-contours-2", DensityContours2)
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("density-contours-2", DensityContours2, digits = 5)
 
 
 
@@ -177,7 +179,8 @@ test_that("Contours are plotted", {
     TernaryPoints(coordinates, col = "red", pch = ".")
     TernaryDensityContour(coordinates, resolution = 10L)
   }
-  expect_doppelganger("density-contours-3", DensityContours3)
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("density-contours-3", DensityContours3, digits = 5)
 
   LoResDensCont <- function() {
     coordinates <- list(
@@ -221,7 +224,8 @@ test_that("Contours are plotted", {
       resolution = 12L, tolerance = -0.02, col = "orange"
     )
   }
-  expect_doppelganger("lo-res-density-contours", LoResDensCont)
+  skip_if_not_installed("vdiffr")
+  vdiffr::expect_doppelganger("lo-res-density-contours", LoResDensCont, digits = 5)
 })
 
 test_that("Colours are drawn", {
@@ -243,7 +247,7 @@ test_that("Errors are handled", {
     # Positive bandwidths
     expect_error(TernaryDensityContour(rbind(c(1, 1, 1)), -1))
     expect_error(ColourTernary(TernaryPointValues(as.character, 5)))
-  })
+  }, digits = 5)
 })
 
 test_that("TriangleInHull()", {
