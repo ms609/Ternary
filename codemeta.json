@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/ms609/Ternary/",
   "issueTracker": "https://github.com/ms609/Ternary/issues/",
   "license": "https://spdx.org/licenses/GPL-2.0",
-  "version": "2.3.6",
+  "version": "2.3.6.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -200,19 +200,19 @@
     },
     "5": {
       "@type": "SoftwareApplication",
-      "identifier": "TreeDist",
-      "name": "TreeDist",
+      "identifier": "clue",
+      "name": "clue",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=TreeDist"
+      "sameAs": "https://CRAN.R-project.org/package=clue"
     },
     "SystemRequirements": null
   },
-  "fileSize": "8269.235KB",
+  "fileSize": "8271.034KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
