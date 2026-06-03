@@ -405,7 +405,7 @@ CoordinatesToXY <- function(coordinates) {
     } else {
       stop("Coordinates must be ternary points")
     }
-    apply(coordinates, which_dim, TernaryCoords)
+    apply(coordinates, which_dim, function(p) TernaryCoords(unclass(p)))
   } else {
     stop("Unrecognized format for coordinates parameter.")
   }
