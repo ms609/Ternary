@@ -7,7 +7,6 @@
 
 * local Windows 10 install, R 4.6.0 & R-devel (2026-06-03)
 * Windows via `devtools::check_win_devel()`
-* Mac via `devtools::check_mac_release()`
 * Windows Server, R release, via GitHub actions
 
 * Mac OS, R release, via GitHub actions
