@@ -60,6 +60,16 @@ TernaryToXY.matrix <- function(
 
 #' @rdname TernaryCoords
 #' @export
+TernaryToXY.ts <- function(
+    abc, b_coord = NULL, c_coord = NULL,
+    direction = getOption("ternDirection", 1L),
+    region = getOption("ternRegion", ternRegionDefault)
+  ) {
+  TernaryToXY(as.matrix(abc), b_coord, c_coord, direction, region)
+}
+
+#' @rdname TernaryCoords
+#' @export
 TernaryToXY.numeric <- function(
     abc, b_coord = NULL, c_coord = NULL,
     direction = getOption("ternDirection", 1L),

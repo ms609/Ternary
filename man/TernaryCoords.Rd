@@ -3,6 +3,7 @@
 \name{TernaryCoords}
 \alias{TernaryCoords}
 \alias{TernaryToXY.matrix}
+\alias{TernaryToXY.ts}
 \alias{TernaryToXY.numeric}
 \alias{TernaryToXY}
 \title{Convert ternary coordinates to Cartesian space}
@@ -16,6 +17,14 @@ TernaryCoords(
 )
 
 \method{TernaryToXY}{matrix}(
+  abc,
+  b_coord = NULL,
+  c_coord = NULL,
+  direction = getOption("ternDirection", 1L),
+  region = getOption("ternRegion", ternRegionDefault)
+)
+
+\method{TernaryToXY}{ts}(
   abc,
   b_coord = NULL,
   c_coord = NULL,
