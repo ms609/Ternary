@@ -87,10 +87,10 @@ TernaryToXY(coords)
 \item \code{\link[=TernaryPlot]{TernaryPlot()}}
 }
 
-Other coordinate translation functions: 
-\code{\link{ReflectedEquivalents}()},
-\code{\link{TriangleCentres}()},
-\code{\link{XYToTernary}()}
+Other coordinate translation functions:
+\code{\link[=ReflectedEquivalents]{ReflectedEquivalents()}},
+\code{\link[=TriangleCentres]{TriangleCentres()}},
+\code{\link[=XYToTernary]{XYToTernary()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

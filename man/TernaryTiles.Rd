@@ -50,8 +50,8 @@ xy <- TernaryCoords(c(4, 3, 3))
 TernaryTiles(xy[1], xy[2], FALSE, 5, "darkblue")
 }
 \seealso{
-Other functions for colouring and shading: 
-\code{\link{ColourTernary}()}
+Other functions for colouring and shading:
+\code{\link[=ColourTernary]{ColourTernary()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

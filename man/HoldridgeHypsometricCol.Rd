@@ -40,9 +40,9 @@ Palette derived from the hypsometric colour scheme presented at
 \href{https://www.shadedrelief.com/hypso/hypso.html}{Shaded Relief}.
 }
 \seealso{
-Other Holdridge plotting functions: 
-\code{\link{AddToTernary}()},
-\code{\link{HoldridgePlot}()},
+Other Holdridge plotting functions:
+\code{\link[=AddToTernary]{AddToTernary()}},
+\code{\link[=HoldridgePlot]{HoldridgePlot()}},
 \code{\link{holdridge}},
 \code{\link{holdridgeClasses}}
 }

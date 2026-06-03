@@ -35,13 +35,13 @@ text(centres["x", ], centres["y", ], ifelse(centres["triDown", ], "v", "^"))
 \seealso{
 Add triangles to a plot: \code{\link[=TernaryTiles]{TernaryTiles()}}
 
-Other coordinate translation functions: 
-\code{\link{ReflectedEquivalents}()},
-\code{\link{TernaryCoords}()},
-\code{\link{XYToTernary}()}
+Other coordinate translation functions:
+\code{\link[=ReflectedEquivalents]{ReflectedEquivalents()}},
+\code{\link[=TernaryCoords]{TernaryCoords()}},
+\code{\link[=XYToTernary]{XYToTernary()}}
 
-Other tiling functions: 
-\code{\link{TriangleInHull}()}
+Other tiling functions:
+\code{\link[=TriangleInHull]{TriangleInHull()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

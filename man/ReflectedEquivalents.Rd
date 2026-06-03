@@ -40,9 +40,9 @@ points(ref[[2]][, 1], ref[[2]][, 2], col = "green", pch = 2)
 points(ref[[3]][, 1], ref[[3]][, 2], col = "orange", pch = 3)
 }
 \seealso{
-Other coordinate translation functions: 
-\code{\link{TernaryCoords}()},
-\code{\link{TriangleCentres}()},
-\code{\link{XYToTernary}()}
+Other coordinate translation functions:
+\code{\link[=TernaryCoords]{TernaryCoords()}},
+\code{\link[=TriangleCentres]{TriangleCentres()}},
+\code{\link[=XYToTernary]{XYToTernary()}}
 }
 \concept{coordinate translation functions}

@@ -161,10 +161,10 @@ TernaryDensityContour(t(vapply(coordinates, I, double(3L))),
 par(oPar)
 }
 \seealso{
-Other contour plotting functions: 
-\code{\link{ColourTernary}()},
-\code{\link{TernaryContour}()},
-\code{\link{TernaryPointValues}()}
+Other contour plotting functions:
+\code{\link[=ColourTernary]{ColourTernary()}},
+\code{\link[=TernaryContour]{TernaryContour()}},
+\code{\link[=TernaryPointValues]{TernaryPointValues()}}
 }
 \author{
 Adapted from \code{MASS::kde2d()} by Martin R. Smith

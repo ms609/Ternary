@@ -96,13 +96,13 @@ ColourTernary(values, spectrum = NULL)
 Fine control over continuous legends:
 \code{\link[PlotTools:SpectrumLegend]{PlotTools::SpectrumLegend()}}
 
-Other contour plotting functions: 
-\code{\link{TernaryContour}()},
-\code{\link{TernaryDensityContour}()},
-\code{\link{TernaryPointValues}()}
+Other contour plotting functions:
+\code{\link[=TernaryContour]{TernaryContour()}},
+\code{\link[=TernaryDensityContour]{TernaryDensityContour()}},
+\code{\link[=TernaryPointValues]{TernaryPointValues()}}
 
-Other functions for colouring and shading: 
-\code{\link{TernaryTiles}()}
+Other functions for colouring and shading:
+\code{\link[=TernaryTiles]{TernaryTiles()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

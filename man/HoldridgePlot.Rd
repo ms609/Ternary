@@ -277,9 +277,9 @@ Tsakalos, Smith, Luebert & Mucina (2023).
 \emph{Journal of Vegetation Science} 6:e13215. \doi{10.1111/jvs.13215}
 }
 \seealso{
-Other Holdridge plotting functions: 
-\code{\link{AddToTernary}()},
-\code{\link{HoldridgeHypsometricCol}()},
+Other Holdridge plotting functions:
+\code{\link[=AddToTernary]{AddToTernary()}},
+\code{\link[=HoldridgeHypsometricCol]{HoldridgeHypsometricCol()}},
 \code{\link{holdridge}},
 \code{\link{holdridgeClasses}}
 }

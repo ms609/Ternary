@@ -19,10 +19,10 @@ data("holdridge", package = "Ternary")
 head(holdridge)
 }
 \seealso{
-Other Holdridge plotting functions: 
-\code{\link{AddToTernary}()},
-\code{\link{HoldridgeHypsometricCol}()},
-\code{\link{HoldridgePlot}()},
+Other Holdridge plotting functions:
+\code{\link[=AddToTernary]{AddToTernary()}},
+\code{\link[=HoldridgeHypsometricCol]{HoldridgeHypsometricCol()}},
+\code{\link[=HoldridgePlot]{HoldridgePlot()}},
 \code{\link{holdridgeClasses}}
 }
 \author{

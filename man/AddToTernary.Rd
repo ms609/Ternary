@@ -132,9 +132,9 @@ AddToHoldridge(graphics::points, pet, prec, cex = 3)
 par(oPar)
 }
 \seealso{
-Other Holdridge plotting functions: 
-\code{\link{HoldridgeHypsometricCol}()},
-\code{\link{HoldridgePlot}()},
+Other Holdridge plotting functions:
+\code{\link[=HoldridgeHypsometricCol]{HoldridgeHypsometricCol()}},
+\code{\link[=HoldridgePlot]{HoldridgePlot()}},
 \code{\link{holdridge}},
 \code{\link{holdridgeClasses}}
 }

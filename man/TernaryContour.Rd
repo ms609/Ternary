@@ -137,10 +137,10 @@ TernaryPolygon(diag(3))
 par(originalPar)
 }
 \seealso{
-Other contour plotting functions: 
-\code{\link{ColourTernary}()},
-\code{\link{TernaryDensityContour}()},
-\code{\link{TernaryPointValues}()}
+Other contour plotting functions:
+\code{\link[=ColourTernary]{ColourTernary()}},
+\code{\link[=TernaryDensityContour]{TernaryDensityContour()}},
+\code{\link[=TernaryPointValues]{TernaryPointValues()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

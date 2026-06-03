@@ -73,10 +73,10 @@ ColourTernary(density, legend = TRUE, bty = "n", title = "Density")
 TernaryPoints(coordinates, col = "red", pch = ".")
 }
 \seealso{
-Other contour plotting functions: 
-\code{\link{ColourTernary}()},
-\code{\link{TernaryContour}()},
-\code{\link{TernaryDensityContour}()}
+Other contour plotting functions:
+\code{\link[=ColourTernary]{ColourTernary()}},
+\code{\link[=TernaryContour]{TernaryContour()}},
+\code{\link[=TernaryDensityContour]{TernaryDensityContour()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}

@@ -32,8 +32,8 @@ ternary plot in the specified direction.
 
 }}
 \seealso{
-Other plot limits: 
-\code{\link{OutsidePlot}()}
+Other plot limits:
+\code{\link[=OutsidePlot]{OutsidePlot()}}
 }
 \author{
 \href{https://orcid.org/0000-0001-5660-1727}{Martin R. Smith}
