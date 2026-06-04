@@ -16,7 +16,7 @@
 
 CRAN release: 2026-02-03
 
-- Enable [web app](http://ms609.github.io/Ternary/app).
+- Enable [web app](https://ms609.github.io/Ternary/app/).
 - Upgrade
   [`Annotate()`](https://ms609.github.io/Ternary/reference/Annotate.md)
   to use LAPJV in place of Hungarian algorithm.
