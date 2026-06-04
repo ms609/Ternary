@@ -4,7 +4,7 @@
 - `CoordinatesToXY()` supports new `apply()` behaviour in R devel.
 
 # Ternary v2.3.6 (2026-02-02)
-- Enable [web app](http://ms609.github.io/Ternary/app).
+- Enable [web app](https://ms609.github.io/Ternary/app/).
 - Upgrade `Annotate()` to use LAPJV in place of Hungarian algorithm.
 
 # Ternary v2.3.5 (2025-09-03)
