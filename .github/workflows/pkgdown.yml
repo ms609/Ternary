@@ -17,7 +17,7 @@ name: pkgdown
  
 jobs:
   pkgdown:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
