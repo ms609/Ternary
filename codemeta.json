@@ -14,7 +14,6 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.6.0 (2026-04-24)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -154,14 +153,14 @@
       "sameAs": "https://CRAN.R-project.org/package=vdiffr"
     }
   ],
-  "softwareRequirements": {
-    "1": {
+  "softwareRequirements": [
+    {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.6.0"
     },
-    "2": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "PlotTools",
       "name": "PlotTools",
@@ -174,7 +173,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=PlotTools"
     },
-    "3": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "shiny",
       "name": "shiny",
@@ -186,7 +185,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=shiny"
     },
-    "4": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "sp",
       "name": "sp",
@@ -198,7 +197,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=sp"
     },
-    "5": {
+    {
       "@type": "SoftwareApplication",
       "identifier": "clue",
       "name": "clue",
@@ -209,10 +208,8 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=clue"
-    },
-    "SystemRequirements": null
-  },
-  "fileSize": "8271.023KB",
+    }
+  ],
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -220,7 +217,10 @@
       "author": [
         {
           "@type": "Person",
-          "givenName": ["Martin", "R."],
+          "givenName": [
+            "Martin",
+            "R."
+          ],
           "familyName": "Smith",
           "email": "martin.smith@durham.ac.uk"
         }
@@ -233,7 +233,10 @@
         "@type": "PublicationIssue",
         "datePublished": "2017",
         "isPartOf": {
-          "@type": ["PublicationVolume", "Periodical"],
+          "@type": [
+            "PublicationVolume",
+            "Periodical"
+          ],
           "name": "Comprehensive R Archive Network"
         }
       }
@@ -244,13 +247,19 @@
       "author": [
         {
           "@type": "Person",
-          "givenName": ["James", "Lee"],
+          "givenName": [
+            "James",
+            "Lee"
+          ],
           "familyName": "Tsakalos",
           "email": "jamestsakalos@gmail.com"
         },
         {
           "@type": "Person",
-          "givenName": ["Martin", "R."],
+          "givenName": [
+            "Martin",
+            "R."
+          ],
           "familyName": "Smith",
           "email": "martin.smith@durham.ac.uk"
         },
@@ -274,7 +283,10 @@
         "@type": "PublicationIssue",
         "datePublished": "2023",
         "isPartOf": {
-          "@type": ["PublicationVolume", "Periodical"],
+          "@type": [
+            "PublicationVolume",
+            "Periodical"
+          ],
           "volumeNumber": "6",
           "name": "Journal of Vegetation Science"
         }

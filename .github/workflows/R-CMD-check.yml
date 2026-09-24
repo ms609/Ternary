@@ -38,7 +38,30 @@ on:
 name: R-CMD-check
 
 jobs:
+  # ---------------------------------------------------------------------------
+  # PRs only: is codemeta.json current? If stale, pushes the regenerated file
+  # to the PR branch (as the codemeta-writer App, so the push starts a fresh
+  # run) and fails. See ms609/actions/update-codemeta.
+  # ---------------------------------------------------------------------------
+  codemeta:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-slim
+    timeout-minutes: 5  # healthy run is ~15 s
+    permissions:
+      contents: read
+    outputs:
+      pushed: ${{ steps.codemeta.outputs.pushed }}
+
+    steps:
+      - id: codemeta
+        uses: ms609/actions/update-codemeta@main
+        with:
+          client-id: ${{ vars.CODEMETA_APP_ID }}
+          private-key: ${{ secrets.CODEMETA_APP_KEY }}
+
   R-CMD-check:
+    needs: codemeta
+    if: ${{ !cancelled() && needs.codemeta.outputs.pushed != 'true' }}
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
